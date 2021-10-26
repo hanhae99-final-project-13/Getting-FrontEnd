@@ -3,15 +3,17 @@ import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
 
-import Main from '../pages/Main'
+import Main from '../pages/Main';
 
 import './App.css';
+import CommentList from '../components/CommentList';
 
 function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path='/' exact component={Main}/>
+        <Route path='/' exact component={Main} />
+        <Route path='/comment' exact component={CommentList} />
       </ConnectedRouter>
     </React.Fragment>
   );
