@@ -23,10 +23,12 @@ const Comment = (props) => {
       <Grid padding='20px'>
         {(cmt.commentId ? edit : false) ? (
           <React.Fragment>
+            <Image />
             <CommentWrite comment={cmt} setEdit={setEdit} />
           </React.Fragment>
         ) : (
           <React.Fragment>
+            <Image />
             {cmt.comment}
             <button onClick={editOn}>수정</button>
             <button onClick={commentDelete}>삭제</button>
