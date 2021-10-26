@@ -13,9 +13,10 @@ const MainAdoptionCardList = (props) => {
   let x;
 
   const sliderMouseDown = (e) => {
-    console.log(e.offsetX);
+    console.log(e.target.offsetX);
     pressed = true;
     startX = e.offsetX - InnerSlider.offsetLeft;
+    console.log(startX);
     slider.style.cursor = 'grabbing';
   };
   const sliderMouseenter = () => {
@@ -42,7 +43,7 @@ const MainAdoptionCardList = (props) => {
     history.push('/');
   };
   return (
-    <Grid>
+    <Grid overflowX='hidden'>
       <Grid display='flex' justifyContent='space-between'>
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
