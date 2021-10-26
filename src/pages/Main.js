@@ -1,16 +1,30 @@
 import React from 'react';
-import { Grid } from '../elements';
+import styled from 'styled-components';
+
+import { Grid, Grid2 } from '../elements';
+import {
+  MainHello,
+  MainIfYouFirstAdoption,
+  MainAdoptionCardList,
+  MainAdopted,
+} from '../components';
 
 const Main = () => {
-  console.log('sdflkjsdf');
   return (
-    <React.Fragment>
-      <Grid widht='500px' height='500px' bg='blue'>
-        sodyd
+    <Grid width='auto' padding='20px'>
+      <Grid margin='0 0 40px 0'>
+        <MainHello />
       </Grid>
-      메인페이지입니다
-      <Grid></Grid>
-    </React.Fragment>
+      <Grid margin='0 0 40px 0'>
+        <MainIfYouFirstAdoption />
+      </Grid>
+      <Grid>
+        <MainAdoptionCardList />
+      </Grid>
+      <Grid>
+        <MainAdopted />
+      </Grid>
+    </Grid>
   );
 };
 
