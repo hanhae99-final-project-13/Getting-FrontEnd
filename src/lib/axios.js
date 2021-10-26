@@ -30,6 +30,7 @@ instance.interceptors.response.use(
 export const apis = {
   //회원가입 및 로그인 관련 api
   login: (loginInfo) => instance.post('/login', loginInfo),
+  loginCheck: () => instance.post('api/login/check/'), // 만들어만 놓음
   kakaoLogin: () => instance.post('/login/kakao'),
   signup: (registerInfo) => instance.post('/signup', registerInfo),
 

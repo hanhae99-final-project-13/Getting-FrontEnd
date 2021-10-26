@@ -32,7 +32,7 @@ const Main = () => {
       </Grid>
       <Grid>
         <MainAdopted />
-      </Grid>      
+      </Grid>
     </Grid>
   );
 };

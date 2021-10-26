@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
+import User from './modules/user';
 import comment from './modules/comment';
 import Post from './modules/post';
 export const history = createBrowserHistory();
@@ -9,6 +10,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   comment,
   post: Post,
+  user: User,
   router: connectRouter(history),
 });
 
