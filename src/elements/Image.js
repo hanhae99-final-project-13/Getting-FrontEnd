@@ -1,8 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Image = props => {
-  const { shape, src, size, margin, border, backgroundPosition, id, _onMouseEnter, _onMouseLeave, display } = props;
+const Image = (props) => {
+  const {
+    shape,
+    src,
+    size,
+    margin,
+    border,
+    backgroundPosition,
+    id,
+    _onClick,
+    _onMouseEnter,
+    _onMouseLeave,
+    display,
+    zIndex,
+  } = props;
 
   const styles = {
     src: src,
@@ -11,25 +24,46 @@ const Image = props => {
     border: border,
     backgroundPosition: backgroundPosition,
     display: display,
+    zIndex,
   };
 
   if (shape === 'circle') {
     return (
       <React.Fragment>
-        <ImageCircle {...styles} id={id} onMouseEnter={_onMouseEnter} onMouseLeave={_onMouseLeave}></ImageCircle>
+        <ImageCircle
+          {...styles}
+          id={id}
+          onMouseEnter={_onMouseEnter}
+          onMouseLeave={_onMouseLeave}
+          onClick={_onClick}
+        ></ImageCircle>
       </React.Fragment>
     );
   }
 
   if (shape === 'TitleLogo') {
-    return <MainInner {...styles} id={id} onMouseEnter={_onMouseEnter} onMouseLeave={_onMouseLeave}></MainInner>;
+    return (
+      <MainInner
+        {...styles}
+        id={id}
+        onMouseEnter={_onMouseEnter}
+        onMouseLeave={_onMouseLeave}
+        onClick={_onClick}
+      ></MainInner>
+    );
   }
 
   if (shape === 'square') {
     return (
       <React.Fragment>
         <OuterRect>
-          <InnerRect {...styles} id={id} onMouseEnter={_onMouseEnter} onMouseLeave={_onMouseLeave}></InnerRect>
+          <InnerRect
+            {...styles}
+            id={id}
+            onMouseEnter={_onMouseEnter}
+            onMouseLeave={_onMouseLeave}
+            onClick={_onClick}
+          ></InnerRect>
         </OuterRect>
       </React.Fragment>
     );
@@ -38,7 +72,13 @@ const Image = props => {
   return (
     <React.Fragment>
       <OuterRect>
-        <InnerRect {...styles} id={id} onMouseEnter={_onMouseEnter} onMouseLeave={_onMouseLeave}></InnerRect>
+        <InnerRect
+          {...styles}
+          id={id}
+          onMouseEnter={_onMouseEnter}
+          onMouseLeave={_onMouseLeave}
+          onClick={_onClick}
+        ></InnerRect>
       </OuterRect>
     </React.Fragment>
   );
@@ -53,51 +93,56 @@ Image.defaultProps = {
   backgroundPosition: false,
   _onMouseEnter: () => {},
   _onMouseLeave: () => {},
+  _onClick: () => {},
   display: null,
+  zIndex: null,
 };
 
 const ImageCircle = styled.div`
-  --size: ${props => props.size}px;
+  --size: ${(props) => props.size}px;
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
-  background-image: url(${props => props.src});
+  background-image: url(${(props) => props.src});
   background-size: cover;
-  background-position: ${props => props.backgroundPosition};
-  ${props => (props.margin ? `margin: ${props.margin}` : 'margin: 4px')};
+  background-position: ${(props) => props.backgroundPosition};
+  ${(props) => (props.margin ? `margin: ${props.margin}` : 'margin: 4px')};
   flex-shrink: 0;
-  ${props => (props.border ? `border: ${props.border};` : '')};
+  ${(props) => (props.border ? `border: ${props.border};` : '')};
   box-sizing: border-box;
-  display: ${props => props.display};
+  display: ${(props) => props.display};
+  z-index: ${(props) => props.zIndex};
 `;
 
 const OuterRect = styled.div`
   width: 100%;
-  min-width: 250px;
+  min-width: 150px;
 `;
 
 const InnerRect = styled.div`
   position: relative;
   padding-top: 75%;
   overflow: hidden;
-  background-image: url(${props => props.src});
+  background-image: url(${(props) => props.src});
   background-size: cover;
-  background-position: ${props => props.backgroundPosition};
-  margin: ${props => props.margin};
-  display: ${props => props.display};
+  background-position: ${(props) => props.backgroundPosition};
+  margin: ${(props) => props.margin};
+  display: ${(props) => props.display};
+  z-index: ${(props) => props.zIndex};
 `;
 
 const MainInner = styled.div`
   width: 300px;
   padding-top: 22%;
   overflow: hidden;
-  background-image: url(${props => props.src});
+  background-image: url(${(props) => props.src});
   background-position: left;
   background-size: cover;
-  ${props => (props.border ? `border: ${props.border};` : '')};
+  ${(props) => (props.border ? `border: ${props.border};` : '')};
   box-sizing: border-box;
-  margin: ${props => props.margin};
-  display: ${props => props.display};
+  margin: ${(props) => props.margin};
+  display: ${(props) => props.display};
+  z-index: ${(props) => props.zIndex};
 `;
 
 export default Image;
