@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
 
 import styled from 'styled-components';
-import { Grid } from '../elements';
-import { Input } from '../elements';
+import { Grid, Input, Text } from '../elements';
+import Logo from '../images/doking_logo.jpg';
+import { KAKAO_AUTH_URL } from '../shared/kakaoAuth';
 
-const Login = () => {
+const Login = (props) => {
+  const { history } = props;
   const dispatch = useDispatch();
 
   const [id, setID] = useState('');
@@ -31,67 +33,135 @@ const Login = () => {
   };
 
   return (
-    <Grid width='80vw' margin='200px auto 0px'>
-      <Grid>
-        <Text size='30px'>로그인</Text>
+    <Grid width='80vw' margin='80px auto 0'>
+      <Grid margin='0 0 60px 0' display='flex' justifyContent='center'>
+        <ImageBox
+          alt='mainlogo'
+          cursor
+          src={Logo}
+          onClick={() => {
+            history.push('/');
+          }}
+        />
       </Grid>
 
-      <Grid width='80vw' margin=' 15px 0px 0px 0px'>
-        <Grid display='flex'>
-          <Text size='15px' width='90px' padding='5px'>
-            아이디
-          </Text>
+      <Grid>
+        <Text size='15px' bold>
+          Login to your Account
+        </Text>
+      </Grid>
+
+      <Grid width='80vw' margin=' 20px 0px 0px 0px'>
+        <Grid>
           <Input
+            border_radius='5px'
             width='100%'
-            padding='5px'
+            padding='15px'
             box-sizing
             value={id}
             _onChange={handleChangeID}
-            placeholder='아이디를 적어주세요'
+            placeholder='Email'
           />
         </Grid>
 
-        <Grid display='flex' margin=' 10px 0 0 0'>
-          <Text size='15px' width='90px' padding='5px'>
-            비밀번호
-          </Text>
+        <Grid margin=' 15px 0 0 0'>
           <Input
+            type='password'
+            border_radius='5px'
             width='100%'
-            padding='5px'
+            padding='15px'
             box-sizing
             value={pw}
             _onChange={handleChangePW}
-            placeholder='비밀번호를 적어주세요'
+            placeholder='Password'
           />
         </Grid>
       </Grid>
 
-      <Grid display='flex' flexDirection='column' margin=' 10px 0 0 0'>
-        <Button padding='10px' bg='black' onClick={onClickButton}>
+      <Grid
+        display='flex'
+        flexDirection='column'
+        margin=' 20px 0 0 0'
+        width='80vw'>
+        <Button
+          padding='10px'
+          bg='black'
+          border='1px solid black'
+          border_radius='5px'
+          onClick={onClickButton}>
           로그인
         </Button>
-        <Button padding='10px' margin='5px 0 0 0' bg='black'>
-          회원가입
-        </Button>
-        <Button padding='10px' margin='5px 0 0 0' bg='black'>
-          카카오 로그인
-        </Button>
+        <Grid margin='5px 0 0 0'>
+          <Button
+            padding='10px'
+            bg='black'
+            border='1px solid black'
+            border_radius='5px'
+            onClick={() => {
+              history.push('/signup');
+            }}>
+            회원가입
+          </Button>
+        </Grid>
+      </Grid>
+
+      <Grid
+        display='flex'
+        flexDirection='column'
+        width='80vw'
+        margin='30px 0 0 0'>
+        <Text bold align='center' size='12px'>
+          - Or sign in with -
+        </Text>
+
+        <Grid display='flex' justifyContent='space-around'>
+          {/* <Button
+            margin='0 5px 0 0 '
+            width='auto'
+            padding='10px'
+            bg='black'
+            border='1px solid black'
+            border_radius='5px'
+            onClick={() => {}}>
+            페이스북
+          </Button> */}
+          <Button
+            margin='0 5px 0 0 '
+            width='auto'
+            padding='10px'
+            bg='black'
+            border='1px solid black'
+            border_radius='5px'
+            onClick={() => {
+              window.location.href = KAKAO_AUTH_URL;
+            }}>
+            카카오로 바로 시작하기
+          </Button>
+          {/* <Button
+            padding='10px'
+            bg='black'
+            border='1px solid black'
+            border_radius='5px'
+            onClick={() => {}}>
+            구글
+          </Button> */}
+        </Grid>
       </Grid>
     </Grid>
   );
 };
 
-const Text = styled.p`
-  font-size: ${(props) => props.size};
-  font-weight: ${(props) => props.weight};
-  text-align: ${(props) => props.align};
-  width: ${(props) => props.width};
-  color: ${(props) => props.color};
-  padding: ${(props) => props.padding};
-  margin: 0px;
+const ImageBox = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  src: '';
+  ${(props) => (props.cursor ? `cursor : pointer;` : '')}
 `;
 
 const Button = styled.button`
+  border: ${(props) => props.border};
+  border-radius: ${(props) => props.border_radius};
   width: 100%;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};

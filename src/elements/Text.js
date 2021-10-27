@@ -12,6 +12,7 @@ const Text = (props) => {
     family,
     padding,
     border,
+    width,
   } = props;
 
   const styles = {
@@ -23,6 +24,7 @@ const Text = (props) => {
     family: family,
     padding: padding,
     border: border,
+    width: width,
   };
 
   return (
@@ -42,6 +44,7 @@ Text.defaultProps = {
   padding: false,
   family: false, //폰트 타입
   border: null,
+  width: false,
 };
 
 const TextBox = styled.p`
@@ -53,6 +56,7 @@ const TextBox = styled.p`
     ${(props) => (props.padding ? `padding: ${props.padding};` : '')}
     ${(props) => (props.family ? `font-family: ${props.family};` : '')}
     border: ${(props) => (props.border ? props.border : '')};
+  width: ${(props) => props.width};
   word-break: break-all;
 `;
 
