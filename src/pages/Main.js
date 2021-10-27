@@ -11,7 +11,7 @@ import {
 
 const Main = () => {
   return (
-    <Grid width='auto' padding='20px'>
+    <Grid width='auto' padding='20px' overflow='auto'>
       <Grid margin='0 0 40px 0'>
         <MainHello />
       </Grid>
