@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Slider = (props) => {
   const p = props;
-  console.log(p);
   const switchClick = () => {
     if (p.sexCheck) {
       p.sexCheck(!p.sexToggle);
     } else if (p.ownerTypeCheck) {
       p.ownerTypeCheck(!p.ownerTypeToggle);
-    } else if (p.conditionCheck) {
-      p.conditionCheck(!p.conditionToggle);
     } else if (p.tagCheck) {
       p.tagCheck(!p.tagToggle);
     }
@@ -31,7 +28,7 @@ const SwitchBox = styled.label`
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 32px;
 `;
 const Switch = styled.span`
   position: absolute;
@@ -41,7 +38,7 @@ const Switch = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #3ef;
+  background-color: #ff6666;
 
   &::after {
     content: '';
@@ -61,14 +58,14 @@ const CheckBox = styled.input`
   width: 0;
   height: 0;
   &:checked + ${Switch} {
-    background-color: #3ef;
+    background-color: #ff6666;
     &::after {
       content: '';
       display: block;
       border-radius: 50%;
       width: 26px;
       height: 26px;
-      margin-left: 30px;
+      margin-left: 31px;
       transition: 0.2s;
     }
   }
