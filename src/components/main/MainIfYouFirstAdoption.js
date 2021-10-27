@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Grid, Image } from '../elements';
+import { Grid, Image } from '../../elements';
 
 const MainIfYouFirstAdoption = (props) => {
   return (

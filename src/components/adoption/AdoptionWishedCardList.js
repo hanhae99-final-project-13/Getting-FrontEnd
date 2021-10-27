@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { history } from '../redux/configureStore';
 
-import { Card } from '../components';
-import { Grid, Image } from '../elements';
+import { Grid, Image } from '../../elements';
+import { Card } from '../';
+import { history } from '../../redux/configureStore';
 
-const MainAdoptionCardList = (props) => {
-  const goAdoptionPage = () => {
+const AdoptionWishedCardList = (props) => {
+  const goDetail = () => {
     history.push('/');
   };
 
   return (
     <Grid width='calc(100% + 1rem)' margin='0 0 20px 0'>
       <Grid display='flex' justifyContent='space-between'>
-        <Title onClick={goAdoptionPage}>
-          저랑 <span>가족</span>하실래요?
+        <Title>
+          저에게 <span>관심</span>있으시죠?
         </Title>
-        <Image size='12' _onClick={goAdoptionPage} />
+        <Image size='12' />
       </Grid>
       <SliderBox>
         <InnerSlider>
@@ -66,4 +66,4 @@ const InnerSlider = styled.div`
   padding-top: 1rem;
 `;
 
-export default MainAdoptionCardList;
+export default AdoptionWishedCardList;

@@ -15,9 +15,6 @@ const Card = (props) => {
     history.push('/');
   };
 
-  React.useEffect(() => {
-    dispatch(postActions.getPostMW());
-  }, []);
   return (
     <Grid
       position='relative'
