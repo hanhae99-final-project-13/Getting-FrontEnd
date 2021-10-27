@@ -1,10 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Grid, Image, Text } from '../elements';
+import { postActions } from '../redux/modules/post';
 
 const Card = (props) => {
   const { margin } = props;
+  const dispatch = useDispatch();
+  const postList = useSelector((state) => state.post.postList);
+
+  const goDetail = () => {
+    history.push('/');
+  };
+
+  React.useEffect(() => {
+    dispatch(postActions.getPostMW());
+  }, []);
   return (
     <Grid
       position='relative'
@@ -13,20 +26,11 @@ const Card = (props) => {
       borderRadius='10px'
       margin={margin}
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
+      _onClick={goDetail}
     >
-      <Grid
-        position='absolute'
-        top='-10px'
-        left='0'
-        width='60px'
-        height='auto'
-        padding='3px 5px'
-        bg='white'
-        borderRadius='15px'
-        boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      >
+      <Tag>
         <ElP>임시보호중</ElP>
-      </Grid>
+      </Tag>
       <ImageBox />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         <Text margin='0' bold>
@@ -54,6 +58,18 @@ const ElP = styled.p`
   margin: 0;
   font-size: 0.7rem;
   text-align: center;
+`;
+
+const Tag = styled.div`
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 60px;
+  height: auto;
+  padding: 3px 5px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
 const ImageBox = styled.div`
