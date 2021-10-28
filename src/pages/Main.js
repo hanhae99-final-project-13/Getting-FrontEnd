@@ -9,8 +9,9 @@ import {
   MainHello,
   MainIfYouFirstAdoption,
   MainAdoptionCardList,
-  MainAdopted,
+  MainAdopted,  
 } from '../components/main';
+import {Calendar} from '../components/adoption'
 import { postActions } from '../redux/modules/post';
 
 const Main = () => {

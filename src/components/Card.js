@@ -30,11 +30,8 @@ const Card = (props) => {
       </Tag>
       <ImageBox />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' bold>
-          콩이
-        </Text>
+        <Text margin='0' size='14px' bold>닥스훈트</Text>
         <Image size='8' />
-        <Text margin='0'>(닥스훈트)</Text>
       </Grid>
       <Grid display='flex' width='auto'>
         <Image size='8' />
@@ -53,17 +50,16 @@ Card.defaultProps = {
 const ElP = styled.p`
   width: auto;
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 8px;
   text-align: center;
 `;
 
 const Tag = styled.div`
   position: absolute;
   top: -10px;
-  left: 0;
-  width: 60px;
+  left: 0;  
   height: auto;
-  padding: 3px 5px;
+  padding: 3px 6px;
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

@@ -40,16 +40,8 @@ const AdoptionModal = (props) => {
         <p>검색 조건</p>
         <hr />
         <Grid>
-          <span>기간</span>
-          <Grid
-            display='flex'
-            justifyContent='space-between'
-            width='auto'
-            height='auto'
-          >
-            <Grid display='flex' width='auto'></Grid>
-            <Grid></Grid>
-          </Grid>
+          <span>기간</span>         
+          <Calendar/>          
           <span>장소</span>
           <Grid width='auto' height='auto'></Grid>
           <span>지역</span>
