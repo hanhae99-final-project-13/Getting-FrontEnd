@@ -38,7 +38,7 @@ export const apis = {
 
   //포스트 관련 api
   getPots: () => instance.get('/pets'),
-  addPost: (postInfo) => instance.post(`/pest`, postInfo),
+  addPost: (postInfo) => instance.post(`/pets`, postInfo),
   updatePost: (postId, postInfo) => instance.post(`/pets/${postId}`, postInfo),
   deletePost: (postId) => instance.delete(`/post/${postId}`),
   clickWish: (postId) => instance.post(`/wishes/${postId}`),
