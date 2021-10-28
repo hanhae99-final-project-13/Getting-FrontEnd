@@ -2,6 +2,8 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
 
+
+
 const GET_POST = 'GET_POST';
 const GET_WISHED = 'GET_WISED';
 
@@ -13,6 +15,17 @@ const initialState = {
   wishedPostList: [],
 };
 
+const addPostToAxios = (postInfo) => {
+  console.log('값확인', postInfo);
+  return (dispatch) => {
+    apis
+      .addPost(postInfo)
+      .then((res) => {
+        console.log('분양글등록리스폰스', res);
+      })
+      .catch((res) => {
+        console.log(res);
+
 const getPostMW = () => {
   return function (dispatch) {
     apis
@@ -22,9 +35,17 @@ const getPostMW = () => {
       })
       .catch((err) => {
         console.log(err);
+
       });
   };
 };
+
+
+const postCreators = {
+  addPostToAxios,
+};
+
+export { postCreators };
 
 export default handleActions(
   {
