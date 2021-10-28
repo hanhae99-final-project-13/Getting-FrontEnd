@@ -82,6 +82,7 @@ const SignupDB = (form) => {
   };
 };
 
+//로그인체크
 const LoginCheck = () => {
   // console.log();
   return (dispatch, getState, { history }) => {
@@ -107,30 +108,63 @@ const LoginCheck = () => {
   };
 };
 
+//카카오 로그인
 const KakaoLogin = (code) => {
   // console.log();
   return (dispatch, getState, { history }) => {
+    apis.kakaoLogin(code).then((res) => {
+      console.log(res.data);
+      // const USER_TOKEN = res.data.data.token;
+      // window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+      // const user = {
+      //   userInfo: {
+      //     email: res.data.data.email,
+      //     nickname: res.data.data.nickname,
+      //     classCount: res.data.data.classCount,
+      //     alarmCount: res.data.data.alarmCount,
+      //   },
+      //   isLogin: true,
+      // };
+      // dispatch(SetUser(user));
+      // window.alert('성공적으로 로그인이 되었습니다!!');
+      // history.push('/');
+    });
+    // .catch((error) => {
+    //   // error.response.data.data.message
+    //   console.log(error, '로그인 실패');
+    // });
+  };
+};
+
+const CheckId = (username) => {
+  console.log(username);
+  // console.log();
+  return (dispatch, getState, { history }) => {
     apis
-      .kakaoLogin(code)
+      .checkId(username)
       .then((res) => {
-        const USER_TOKEN = res.data.data.token;
-        window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
-        const user = {
-          userInfo: {
-            email: res.data.data.email,
-            nickname: res.data.data.nickname,
-            classCount: res.data.data.classCount,
-            alarmCount: res.data.data.alarmCount,
-          },
-          isLogin: true,
-        };
-        dispatch(SetUser(user));
-        window.alert('성공적으로 로그인이 되었습니다!!');
-        history.push('/');
+        console.log(res.data.data, '아이디체크');
+        console.log(res.data.status, '아이디체크');
       })
       .catch((error) => {
         // error.response.data.data.message
-        console.log(error, '로그인 실패');
+        console.log(error, '아이디체크 실패');
+      });
+  };
+};
+
+const Checknickname = (nickname) => {
+  // console.log();
+  return (dispatch, getState, { history }) => {
+    apis
+      .checknickName(nickname)
+      .then((res) => {
+        console.log(res.data.data, '닉네임체크');
+        console.log(res.data.status, '닉네임체크');
+      })
+      .catch((error) => {
+        // error.response.data.data.message
+        console.log(error, '닉네임체크 실패');
       });
   };
 };
@@ -157,6 +191,8 @@ const actionCreators = {
   LogOutDB,
   LoginCheck,
   KakaoLogin,
+  CheckId,
+  Checknickname,
 };
 
 export { actionCreators };

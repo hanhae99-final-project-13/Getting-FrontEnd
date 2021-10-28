@@ -38,6 +38,9 @@ export const apis = {
   loginCheck: () => instance.get('/login/check'),
   kakaoLogin: (code) => instance.get(`/oauth/callback/kakao?code=${code}`),
   signup: (registerInfo) => instance.post('/signup', registerInfo),
+  checkId: (username) => instance.get(`/signup/checkid?username=${username}`),
+  checknickName: (nickname) =>
+    instance.get(`/signup/checknickname?nickname=${nickname}`),
 
   // 유저 관련 api
   getUserInfo: () => instance.get('/userInfo'),

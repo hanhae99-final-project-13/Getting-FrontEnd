@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
-import Logo from '../images/doking_logo.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
+import { apis } from '../lib/axios';
 
 const Signup = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
+
+  //중복 체크 useState
+  const [check, setCheck] = useState(false);
+  console.log(check);
+
+  // 회원가입 useState
 
   const data = {
     username: '',
@@ -17,7 +25,6 @@ const Signup = (props) => {
     nickname: '',
     email: '',
   };
-
   const [form, setForm] = useState(data);
 
   const { username, password, pwcheck, nickname, email } = form;
@@ -28,49 +35,122 @@ const Signup = (props) => {
   };
   console.log(form);
 
+  // 중복체크 및 숨기기
+
+  const idcheckButton = document.querySelector('#idcheckButton');
+  const idValue = document.querySelector('#idValue').value;
+
+  const pwcheckIcon = document.querySelector('#pwcheckIcon');
+  let pwcheckValue = document.querySelector('#pwcheckValue').value;
+
+  const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
+  let nicknameValue = document.querySelector('#nicknameValue').value;
+
+  if (idValue !== '') {
+    idcheckButton.style.display = 'block';
+  } else {
+    idcheckButton.style.display = 'none';
+  }
+
+  if (pwcheckValue !== '') {
+    pwcheckIcon.style.display = 'block';
+  } else {
+    pwcheckIcon.style.display = 'none';
+  }
+
+  if (nicknameValue !== '') {
+    nicknameCheckButton.style.display = 'block';
+  } else {
+    nicknameCheckButton.style.display = 'none';
+  }
+
+  //회원가입 버튼 함수
   const registerClick = () => {
     dispatch(userAction.SignupDB(form));
   };
 
   return (
-    <Grid width='80vw' margin='80px  auto 0px'>
-      <Grid margin='30px 0' display='flex' justifyContent='center'>
-        <ImageBox
-          alt='mainlogo'
-          cursor
-          src={Logo}
-          onClick={() => {
-            history.push('/');
-          }}
-        />
-      </Grid>
+    <Grid width='80vw' margin='142px auto 0px'>
       <Grid>
-        <Text size='15px' bold>
-          Create your Account
+        <Text size='24px' weight='700' align='center'>
+          회원가입
         </Text>
       </Grid>
 
-      <Grid width='80vw' margin='15px auto 0px'>
-        <Grid>
+      <Grid width='80vw' margin='70px auto 0px'>
+        <Grid position='relative'>
+          {!check ? (
+            <Text
+              _onClick={() => {
+                console.log(username);
+                apis
+                  .checkId(username)
+                  .then((res) => {
+                    if (!res.data.data.msg) {
+                      alert('중복된 아이디가 존재합니다.');
+                      return;
+                    }
+                    setCheck(res.data.data.msg);
+                    // console.log(res.data.data, '아이디체크');
+                    // console.log(res.data.status, '아이디체크');
+                  })
+                  .catch((error) => {
+                    // error.response.data.data.message
+                    console.log(error, '아이디체크 실패');
+                  });
+              }}
+              display='none'
+              id='idcheckButton'
+              position='absolute'
+              right='10px'
+              width='auto'
+              top='15px'
+              size='12px'
+              bold
+              margin='0'>
+              중복확인
+            </Text>
+          ) : (
+            <Grid
+              position='absolute'
+              right='10px'
+              top='15px'
+              width='20px'
+              height='20px'
+              borderRadius='10px'
+              bg='#00B412'>
+              <Grid margin='0 0 0 2px'>
+                <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
+              </Grid>
+            </Grid>
+          )}
           <Input
+            id='idValue'
+            bg='#FFFFFF'
             width='100%'
-            border_radius='5px'
-            padding='15px'
+            border='none'
+            border_top='1px solid rgba(225, 225, 225, 0.5) '
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            padding='16px'
             box-sizing
-            placeholder='ID'
+            placeholder='아이디'
+            placeholder_color='#DFDFDF'
             name='username'
             value={username}
             _onChange={handleForm}
           />
         </Grid>
 
-        <Grid margin='8px 0 0 0'>
+        <Grid>
           <Input
+            bg='#FFFFFF'
             width='100%'
-            border_radius='5px'
-            padding='15px'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            padding='16px'
             box-sizing
-            placeholder='Password'
+            placeholder='패스워드'
+            placeholder_color='#DFDFDF'
             type='password'
             name='password'
             value={password}
@@ -78,13 +158,33 @@ const Signup = (props) => {
           />
         </Grid>
 
-        <Grid display='flex' margin='8px 0 0 0'>
+        <Grid position='relative'>
+          <Grid
+            display='none'
+            id='pwcheckIcon'
+            position='absolute'
+            right='10px'
+            top='15px'
+            width='20px'
+            height='20px'
+            borderRadius='10px'
+            bg={
+              password !== '' && password === pwcheck ? '#00B412' : '#DFDFDF'
+            }>
+            <Grid margin='0 0 0 2px'>
+              <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
+            </Grid>
+          </Grid>
           <Input
+            id='pwcheckValue'
+            bg='#FFFFFF'
             width='100%'
-            border_radius='5px'
-            padding='15px'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            padding='16px'
             box-sizing
-            placeholder='Confirm Password'
+            placeholder='패스워드 확인'
+            placeholder_color='#DFDFDF'
             type='password'
             name='pwcheck'
             value={pwcheck}
@@ -92,103 +192,116 @@ const Signup = (props) => {
           />
         </Grid>
 
-        <Grid display='flex' margin='8px 0 0 0'>
+        <Grid position='relative'>
+          <Text
+            _onClick={() => {
+              dispatch(userAction.Checknickname(nickname));
+            }}
+            display='none'
+            id='nicknameCheckButton'
+            position='absolute'
+            right='10px'
+            width='auto'
+            top='15px'
+            size='12px'
+            bold
+            margin='0'>
+            중복확인
+          </Text>
           <Input
+            id='nicknameValue'
+            bg='#FFFFFF'
             width='100%'
-            border_radius='5px'
-            padding='15px'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            padding='16px'
             box-sizing
-            placeholder='Nick Name'
+            placeholder='닉네임'
+            placeholder_color='#DFDFDF'
             name='nickname'
             value={nickname}
             _onChange={handleForm}
           />
         </Grid>
 
-        <Grid display='flex' margin='8px 0 0 0'>
+        <Grid position='relative'>
+          <Text
+            color='#00B412'
+            position='absolute'
+            right='10px'
+            width='auto'
+            top='15px'
+            size='12px'
+            bold
+            margin='0'>
+            인증하기
+          </Text>
           <Input
+            bg='#FFFFFF'
             width='100%'
-            border_radius='5px'
-            padding='15px'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            padding='16px'
             box-sizing
-            placeholder='Email'
+            placeholder='이메일'
+            placeholder_color='#DFDFDF'
             name='email'
             value={email}
             _onChange={handleForm}
           />
         </Grid>
       </Grid>
-      <Grid margin='15px 0 0 0'>
-        <Button
-          padding='10px'
-          bg='black'
-          border='1px solid black'
-          border_radius='5px'
-          onClick={registerClick}>
-          회원가입
-        </Button>
+
+      <Grid margin='81px 0 50px 0'>
+        <Text
+          color='#A5A5A5'
+          align='center'
+          bold
+          size='10px'
+          margin='0px'
+          line_height='18px'>
+          회원가입시,
+          <Span style={{ fontWeight: '600' }}> 개인정보 처리방침</Span>을
+          읽었으며
+          <br />
+          <Span style={{ fontWeight: '600' }}>이용양관</Span>에 동의하신 것으로
+          간주합니다.
+        </Text>
       </Grid>
 
-      <Grid
-        display='flex'
-        flexDirection='column'
-        width='80vw'
-        margin='15px 0 0 0'>
-        <Text bold align='center' size='12px'>
-          - Or sign in with -
-        </Text>
-
-        <Grid display='flex' justifyContent='space-around'>
-          <Button
-            margin='0 5px 0 0 '
-            width='auto'
-            padding='10px'
-            bg='black'
-            border='1px solid black'
-            border_radius='5px'
-            onClick={() => {}}>
-            페이스북
-          </Button>
-          <Button
-            margin='0 5px 0 0 '
-            width='auto'
-            padding='10px'
-            bg='black'
-            border='1px solid black'
-            border_radius='5px'
-            onClick={() => {}}>
-            카카오
-          </Button>
-          <Button
-            padding='10px'
-            bg='black'
-            border='1px solid black'
-            border_radius='5px'
-            onClick={() => {}}>
-            구글
-          </Button>
-        </Grid>
+      <Grid margin=' 12px 0 0 0' width='80vw'>
+        <Button
+          size='16px'
+          weight='700'
+          height='50px'
+          padding='16px'
+          bg='#FF6666'
+          border='none'
+          border_radius='25px'
+          onClick={registerClick}>
+          가입하기
+        </Button>
       </Grid>
     </Grid>
   );
 };
 
-const ImageBox = styled.img`
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
-  src: '';
-  ${(props) => (props.cursor ? `cursor : pointer;` : '')}
-`;
-
 const Button = styled.button`
   border: ${(props) => props.border};
   border-radius: ${(props) => props.border_radius};
+  height: ${(props) => props.height};
   width: 100%;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   background-color: ${(props) => props.bg};
   color: white;
+  font-size: ${(props) => props.size};
+  font-weight: ${(props) => props.weight};
+`;
+
+const Span = styled.span`
+  font-weight: ${(props) => props.weight};
+  color: black;
 `;
 
 export default Signup;
