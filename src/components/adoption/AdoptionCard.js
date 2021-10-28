@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { history } from '../redux/configureStore';
+import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Grid, Image, Text } from '../elements';
-import { postActions } from '../redux/modules/post';
+import { Grid, Image, Text } from '../../elements';
+import { postActions } from '../../redux/modules/post';
 
-const Card = (props) => {
+const AdoptionCard = (props) => {
   const { margin } = props;
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.postList);
@@ -18,23 +18,19 @@ const Card = (props) => {
   return (
     <Grid
       position='relative'
-      width='180px'
+      width='130px'
       padding='1rem'
       borderRadius='10px'
       margin={margin}
-      boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      _onClick={goDetail}
+      boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'      
     >
       <Tag>
         <ElP>임시보호중</ElP>
       </Tag>
       <ImageBox />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' bold>
-          콩이
-        </Text>
+        <Text margin='0' size='14px' >닥스훈트</Text>
         <Image size='8' />
-        <Text margin='0'>(닥스훈트)</Text>
       </Grid>
       <Grid display='flex' width='auto'>
         <Image size='8' />
@@ -46,7 +42,7 @@ const Card = (props) => {
   );
 };
 
-Card.defaultProps = {
+AdoptionCard.defaultProps = {
   margin: null,
 };
 
@@ -79,4 +75,4 @@ const ImageBox = styled.div`
   border-radius: 5px;
 `;
 
-export default Card;
+export default AdoptionCard;

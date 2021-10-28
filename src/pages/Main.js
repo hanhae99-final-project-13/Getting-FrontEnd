@@ -1,15 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-import { Grid, Grid2 } from '../elements';
+import { Grid } from '../elements';
 import {
   MainHello,
   MainIfYouFirstAdoption,
   MainAdoptionCardList,
   MainAdopted,
-} from '../components';
+} from '../components/main';
+import { postActions } from '../redux/modules/post';
 
 const Main = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(postActions.getPostMW());
+  }, []);
   return (
     <Grid width='auto' padding='20px' overflow='auto'>
       <Grid margin='0 0 40px 0'>
@@ -23,7 +32,7 @@ const Main = () => {
       </Grid>
       <Grid>
         <MainAdopted />
-      </Grid>
+      </Grid>      
     </Grid>
   );
 };
