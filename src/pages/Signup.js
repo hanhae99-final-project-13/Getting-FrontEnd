@@ -29,40 +29,40 @@ const Signup = (props) => {
 
   const { username, password, pwcheck, nickname, email } = form;
 
+  //회원가입 onChange에 넣는 함수
   const handleForm = (e) => {
     const Newform = { ...form, [e.target.name]: e.target.value };
+
+    const idcheckButton = document.querySelector('#idcheckButton');
+    const idValue = document.querySelector('#idValue').value;
+
+    const pwcheckIcon = document.querySelector('#pwcheckIcon');
+    let pwcheckValue = document.querySelector('#pwcheckValue').value;
+
+    const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
+    let nicknameValue = document.querySelector('#nicknameValue').value;
+
+    if (idValue !== '') {
+      idcheckButton.style.display = 'block';
+    } else {
+      idcheckButton.style.display = 'none';
+    }
+
+    if (pwcheckValue !== '') {
+      pwcheckIcon.style.display = 'block';
+    } else {
+      pwcheckIcon.style.display = 'none';
+    }
+
+    if (nicknameValue !== '') {
+      nicknameCheckButton.style.display = 'block';
+    } else {
+      nicknameCheckButton.style.display = 'none';
+    }
+
     setForm(Newform);
   };
   console.log(form);
-
-  // 중복체크 및 숨기기
-
-  const idcheckButton = document.querySelector('#idcheckButton');
-  const idValue = document.querySelector('#idValue').value;
-
-  const pwcheckIcon = document.querySelector('#pwcheckIcon');
-  let pwcheckValue = document.querySelector('#pwcheckValue').value;
-
-  const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
-  let nicknameValue = document.querySelector('#nicknameValue').value;
-
-  if (idValue !== '') {
-    idcheckButton.style.display = 'block';
-  } else {
-    idcheckButton.style.display = 'none';
-  }
-
-  if (pwcheckValue !== '') {
-    pwcheckIcon.style.display = 'block';
-  } else {
-    pwcheckIcon.style.display = 'none';
-  }
-
-  if (nicknameValue !== '') {
-    nicknameCheckButton.style.display = 'block';
-  } else {
-    nicknameCheckButton.style.display = 'none';
-  }
 
   //회원가입 버튼 함수
   const registerClick = () => {
