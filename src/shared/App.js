@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
 
+import './App.css';
 import Main from '../pages/Main';
 import CommentList from '../components/CommentList';
 import AddPost from '../components/AddPost';

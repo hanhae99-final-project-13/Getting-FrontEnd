@@ -163,7 +163,7 @@ const GridBox = styled.div`
   right: ${(props) => props.right};
   background-color: ${(props) => props.backgroundColor};
   z-index: ${(props) => props.zIndex};
-
+  font-family: 'NanumSquareR';
   :hover {
     ${(props) =>
       props.hover
