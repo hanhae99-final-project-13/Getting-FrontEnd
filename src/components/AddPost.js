@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Image } from '../elements/index';
 import Slider from './Slider';
-import { postCreators } from '../redux/modules/post';
+import { postActions } from '../redux/modules/post';
 
 const AddPost = () => {
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ const AddPost = () => {
   };
 
   const addPostCard = () => {
-    dispatch(postCreators.addPostToAxios(postInfo));
+    dispatch(postActions.addPostToAxios(postInfo));
   };
   return (
     <React.Fragment>
