@@ -7,12 +7,12 @@ import moment from 'moment';
 import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
 
-const AdoptionModal = (props) => {  
+const AdoptionModal = (props) => {
   const [startDate, setStartDate] = React.useState();
   const [endDate, setEndDate] = React.useState();
 
-  const hideModal = (e) => {            
-    document.querySelector('#searchModal').style.display = 'none';    
+  const hideModal = (e) => {
+    document.querySelector('#searchModal').style.display = 'none';
   };
 
   return (
@@ -22,7 +22,7 @@ const AdoptionModal = (props) => {
       left='0'
       display='none'
       justifyContent='center'
-      alignItems='center'      
+      alignItems='center'
       id='searchModal'
       overflow='hidden'
       zIndex='100'
@@ -97,8 +97,6 @@ const ModalBox = styled.div`
     border: none;
     background-color: #504b4b;
     font-size: 12px;
-  }
-  
   }
 `;
 

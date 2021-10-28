@@ -2,8 +2,6 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
 
-
-
 const GET_POST = 'GET_POST';
 const GET_WISHED = 'GET_WISED';
 
@@ -25,6 +23,9 @@ const addPostToAxios = (postInfo) => {
       })
       .catch((res) => {
         console.log(res);
+      });
+  };
+};
 
 const getPostMW = () => {
   return function (dispatch) {
@@ -35,17 +36,9 @@ const getPostMW = () => {
       })
       .catch((err) => {
         console.log(err);
-
       });
   };
 };
-
-
-const postCreators = {
-  addPostToAxios,
-};
-
-export { postCreators };
 
 export default handleActions(
   {
@@ -59,6 +52,7 @@ export default handleActions(
 
 const postActions = {
   getPostMW,
+  addPostToAxios,
 };
 
 export { postActions };
