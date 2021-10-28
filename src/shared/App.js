@@ -8,11 +8,12 @@ import Main from '../pages/Main';
 import CommentList from '../components/CommentList';
 import AddPost from '../components/AddPost';
 import Adoption from '../pages/Adoption';
-
+import Landing from '../pages/Landing';
 function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Route path='/landing' exact component={Landing} />
         <Route path='/' exact component={Main} />
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/addpost' exact component={AddPost} />

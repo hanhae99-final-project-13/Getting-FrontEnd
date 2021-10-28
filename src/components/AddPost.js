@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Grid, Image } from '../elements/index';
 import Slider from './Slider';
@@ -30,9 +31,9 @@ const AddPost = () => {
   const sexCheck = () => {
     setSexToggle(!sexToggle);
     if (sexToggle === true) {
-      setSex('남아');
+      setSex('M');
     } else {
-      setSex('여아');
+      setSex('F');
     }
   };
   const ownerTypeCheck = () => {
@@ -136,6 +137,7 @@ const AddPost = () => {
         </p>
         <p>
           <input
+            type='number'
             placeholder='나이'
             value={age}
             onChange={(e) => {
@@ -144,6 +146,7 @@ const AddPost = () => {
           />
 
           <input
+            type='number'
             placeholder='체중'
             value={weight}
             onChange={(e) => {
@@ -227,4 +230,8 @@ const AddPost = () => {
   );
 };
 
+const InputNumberBox = styled.input`
+  &:appearance: none; -moz-appearance: none; -webkit-appearance: none;
+
+`;
 export default AddPost;
