@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Grid, Image } from '../elements/index';
 import Slider from './Slider';
+import { postCreators } from '../redux/modules/post';
 
 const AddPost = () => {
+  const dispatch = useDispatch();
   // const [petName, setPetName] = React.useState('');
   const [breed, setBreed] = React.useState('');
   const [sex, setSex] = React.useState('남아');
@@ -23,11 +26,6 @@ const AddPost = () => {
   const [tagToggle, setTagToggle] = React.useState(false);
 
   //토글
-  // const nameCheck = (e) => {
-  //   if (e.currentTarget.checked === true) {
-  //     setPetName('아직 이름이 없어요!');
-  //   } else setPetName('');
-  // };
 
   const sexCheck = () => {
     setSexToggle(!sexToggle);
@@ -64,38 +62,66 @@ const AddPost = () => {
     }
   };
   console.log(sex, ownerType, tag);
-  const [files, setFiles] = useState('');
+
+  const [files, setFiles] = useState([]);
   const onloadFile = (e) => {
-    const file = e.target.files[0];
+    const selectImg = e.target.files;
+    const imgUrlList = [...files];
     console.log(e.target.files);
-    setFiles(URL.createObjectURL(file));
+
+    for (let i = 0; i < selectImg.length; i++) {
+      const nowImgUrl = URL.createObjectURL(selectImg[i]);
+      imgUrlList.push(nowImgUrl);
+    }
+
+    setFiles(imgUrlList);
+  };
+  const postInfo = {
+    breed: breed,
+    sex: sex,
+    age: age,
+    weight: weight,
+    lostLocation: lostLocation,
+    ownerType: ownerType,
+    address: address,
+    url: url,
+    tag: tag,
+    phone: phone,
+    extra: extra,
+    img: files,
+    isAdopted: false,
   };
 
+  const addPostCard = () => {
+    dispatch(postCreators.addPostToAxios(postInfo));
+  };
   return (
     <React.Fragment>
       <Grid>
-        <button>등록완료</button>
-        <input type='file' multiple onChange={onloadFile} />
+        <button onClick={addPostCard}>등록완료</button>
+        <input type='file' multiple accept='image/*' onChange={onloadFile} />
         이미지
-        {files && (
-          <img
-            alt='sample'
-            src={files}
-            style={{ margin: 'auto', width: '150px', height: '150px' }}
-          />
-        )}
+        <div style={{ display: 'flex' }}>
+          {files &&
+            files.map((a) => {
+              return (
+                <>
+                  <img
+                    alt='sample'
+                    src={a}
+                    style={{
+                      margin: 'auto',
+                      width: '150px',
+                      height: '150px',
+                      objectFit: 'scale-down',
+                    }}
+                  />
+                  <button>x</button>
+                </>
+              );
+            })}
+        </div>
         <Image />
-        {/* <p>
-          <input
-            placeholder='이름'
-            value={petName}
-            onChange={(e) => {
-              setPetName(e.target.value);
-            }}
-          />
-          <input type='checkbox' onClick={nameCheck} />
-          이름없음
-        </p> */}
         <p>
           <input
             placeholder='견종'
