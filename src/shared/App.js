@@ -11,6 +11,7 @@ import Signup from '../pages/Signup';
 import CommentList from '../components/CommentList';
 import AddPost from '../components/AddPost';
 import Adoption from '../pages/Adoption';
+import Landing from '../pages/Landing';
 import Mypage from '../pages/Mypage';
 import Kakao from '../components/Kakao';
 
@@ -31,6 +32,7 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Route path='/landing' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />
         <Route path='/' exact component={Main} />
         <Route path='/adoption' exact component={Adoption} />
