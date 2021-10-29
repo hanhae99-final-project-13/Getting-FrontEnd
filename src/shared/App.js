@@ -17,6 +17,7 @@ import Kakao from '../components/Kakao';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
+import Detail from '../pages/Detail';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
         <Route path='/oauth/callback/kakao' component={Kakao} />
         <Route path='/' exact component={Main} />
         <Route path='/adoption' exact component={Adoption} />
+        <Route path='/detail' exact component={Detail} />
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
         <Route path='/mypage' exact component={Mypage} />
