@@ -15,6 +15,7 @@ const Image = (props) => {
     _onMouseLeave,
     display,
     zIndex,
+    boxShadow,
   } = props;
 
   const styles = {
@@ -25,6 +26,7 @@ const Image = (props) => {
     backgroundPosition: backgroundPosition,
     display: display,
     zIndex,
+    boxShadow,
   };
 
   if (shape === 'circle') {
@@ -96,6 +98,7 @@ Image.defaultProps = {
   _onClick: () => {},
   display: null,
   zIndex: null,
+  boxShadow: null,
 };
 
 const ImageCircle = styled.div`
@@ -112,6 +115,7 @@ const ImageCircle = styled.div`
   box-sizing: border-box;
   display: ${(props) => props.display};
   z-index: ${(props) => props.zIndex};
+  box-shadow: ${(props) => props.boxShadow};
 `;
 
 const OuterRect = styled.div`
@@ -129,6 +133,7 @@ const InnerRect = styled.div`
   margin: ${(props) => props.margin};
   display: ${(props) => props.display};
   z-index: ${(props) => props.zIndex};
+  box-shadow: ${(props) => props.boxShadow};
 `;
 
 const MainInner = styled.div`
@@ -143,6 +148,7 @@ const MainInner = styled.div`
   margin: ${(props) => props.margin};
   display: ${(props) => props.display};
   z-index: ${(props) => props.zIndex};
+  box-shadow: ${(props) => props.boxShadow};
 `;
 
 export default Image;
