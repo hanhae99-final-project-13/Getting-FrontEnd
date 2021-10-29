@@ -15,22 +15,22 @@ const Adoption = () => {
   const wishedPostList = useSelector((state) => state.post.wishedpostList);
   const cur = React.useRef();
   const old = React.useRef();
-  
-  const activeCurButton = () => {    
+
+  const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
-  }
-  const activeOldButton = () => {    
+  };
+  const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
-  }
-  
+  };
+
   const goAddPost = () => {
-    history.push('/addpost')
-  }
+    history.push('/addpost');
+  };
 
   return (
-    <Grid width='auto' padding='20px' overflow='auto' >
+    <Grid width='auto' padding='20px' overflow='auto'>
       <Grid>
         <AdoptionWishedCardList />
       </Grid>
@@ -38,11 +38,15 @@ const Adoption = () => {
         <AdoptionSearchInput />
       </Grid>
       <Grid>
-        <Tag ref={cur} onClick={activeCurButton}>최신순</Tag>
-        <Tag ref={old} onClick={activeOldButton} >등록순</Tag>
+        <Tag ref={cur} onClick={activeCurButton}>
+          최신순
+        </Tag>
+        <Tag ref={old} onClick={activeOldButton}>
+          등록순
+        </Tag>
         <AdoptionCardList />
       </Grid>
-      <AddButton onClick={goAddPost} >+</AddButton>
+      <AddButton onClick={goAddPost}>+</AddButton>
     </Grid>
   );
 };

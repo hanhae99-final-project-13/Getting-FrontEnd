@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,11 +9,31 @@ import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
 
 const AdoptionModal = (props) => {
-  const [startDate, setStartDate] = React.useState();
-  const [endDate, setEndDate] = React.useState();
+  const dispatch = useDispatch();
+
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [endDate, setEndDate] = React.useState(new Date());
+  const changeDate = (e) => {
+    setStartDate(e);
+  };
+
+  const [ownerType, setOwnerType] = React.useState('개인');
+  const toggleOwnerType = () => {
+    if (ownerType === '개인') {
+      setOwnerType('보호소');
+      document.querySelector('#toggleCircle').style.marginLeft = '27px';
+    } else {
+      setOwnerType('개인');
+      document.querySelector('#toggleCircle').style.marginLeft = '0';
+    }
+  };
 
   const hideModal = (e) => {
     document.querySelector('#searchModal').style.display = 'none';
+  };
+  const doSearch = () => {
+    console.log(startDate);
+    console.log(ownerType);
   };
 
   return (
@@ -40,14 +61,42 @@ const AdoptionModal = (props) => {
         <p>검색 조건</p>
         <hr />
         <Grid>
-          <span>기간</span>         
-          <Calendar/>          
+          <span>기간</span>
+          <Grid
+            display='flex'
+            justifyContent='space-around'
+            alignItems='center'
+            height='auto'
+          >
+            <Calendar
+              changeDate={(e) => {
+                changeDate(e);
+                console.log(startDate);
+              }}
+            />
+            <span className='between'>~</span>
+            <Calendar />
+          </Grid>
           <span>장소</span>
-          <Grid width='auto' height='auto'></Grid>
+          <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            width='auto'
+            height='auto'
+          >
+            <p className='toggleText'>개인</p>
+            <ToggleButton onClick={toggleOwnerType}>
+              <div id='toggleCircle' />
+            </ToggleButton>
+            <p className='toggleText'>보호소</p>
+          </Grid>
           <span>지역</span>
           <Grid width='auto' height='auto'></Grid>
         </Grid>
-        <button id='submit'>찾아보기</button>
+        <button id='submit' onClick={doSearch}>
+          찾아보기
+        </button>
       </ModalBox>
     </Grid>
   );
@@ -69,6 +118,9 @@ const ModalBox = styled.div`
     font-weight: bold;
     text-align: center;
   }
+  p.toggleText {
+    margin: 0;
+  }
   hr {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.4);
@@ -77,6 +129,10 @@ const ModalBox = styled.div`
     height: auto;
     font-size: 7px;
   }
+  span.between {
+    color: #a7a7a7;
+  }
+
   button#submit {
     position: absolute;
     bottom: 0;
@@ -89,6 +145,24 @@ const ModalBox = styled.div`
     border: none;
     background-color: #504b4b;
     font-size: 12px;
+  }
+`;
+
+const ToggleButton = styled.div`
+  margin: 0 10px;
+  width: 50px;
+  height: 23px;
+  background-color: #ececec;
+  border-radius: 50px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  div#toggleCircle {
+    width: 23px;
+    height: 23px;
+    background-color: #fff;
+    border-radius: 50px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: 0.3s all ease;
   }
 `;
 

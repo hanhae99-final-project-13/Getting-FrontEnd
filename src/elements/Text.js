@@ -38,21 +38,21 @@ Text.defaultProps = {
   size: null,
   bold: false,
   align: null,
-  margin: false,
-  padding: false,
-  family: false, //폰트 타입
+  margin: null,
+  padding: null,
+  family: null, //폰트 타입
   border: null,
 };
 
 const TextBox = styled.p`
-  ${(props) => (props.color ? `color: ${props.color};` : '')}
-  ${(props) => (props.size ? `font-size: ${props.size};` : '')}
-    font-weight: ${(props) => (props.bold ? `600` : `400`)};
-  ${(props) => (props.align ? `text-align: ${props.align};` : '')}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
-    ${(props) => (props.padding ? `padding: ${props.padding};` : '')}
-    ${(props) => (props.family ? `font-family: ${props.family};` : '')}
-    border: ${(props) => (props.border ? props.border : '')};
+  ${(props) => (props.color ? `color: ${props.color};` : '')};
+  ${(props) => (props.size ? `font-size: ${props.size};` : '')};
+  font-weight: ${(props) => (props.bold ? `600` : `400`)};
+  ${(props) => (props.align ? `text-align: ${props.align};` : '')};
+  margin: ${(props) => props.margin};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : '')};
+  ${(props) => (props.family ? `font-family: ${props.family};` : '')};
+  border: ${(props) => (props.border ? props.border : '')};
   word-break: break-all;
 `;
 

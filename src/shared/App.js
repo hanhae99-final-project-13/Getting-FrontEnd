@@ -8,6 +8,7 @@ import Main from '../pages/Main';
 import CommentList from '../components/CommentList';
 import AddPost from '../components/AddPost';
 import Adoption from '../pages/Adoption';
+import Mypage from '../pages/Mypage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
+        <Route path='/mypage' exact component={Mypage} />
       </ConnectedRouter>
     </React.Fragment>
   );
