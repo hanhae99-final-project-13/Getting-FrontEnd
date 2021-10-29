@@ -11,6 +11,7 @@ import Signup from '../pages/Signup';
 import CommentList from '../components/CommentList';
 import AddPost from '../components/AddPost';
 import Adoption from '../pages/Adoption';
+import Mypage from '../pages/Mypage';
 import Kakao from '../components/Kakao';
 
 import { useDispatch } from 'react-redux';
@@ -35,6 +36,7 @@ function App() {
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
+        <Route path='/mypage' exact component={Mypage} />
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={Signup} />
       </ConnectedRouter>

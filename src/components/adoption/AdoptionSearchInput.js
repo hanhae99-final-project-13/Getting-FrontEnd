@@ -14,8 +14,8 @@ const AdoptionSearchInput = () => {
         display='flex'
         justifyContent='space-between'
         width='auto'
-        padding='12px'
-        borderRadius='15px'
+        padding='10px 10px'
+        borderRadius='7px'
         boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
         bg='#ebebeb'
         _onClick={showModal}
@@ -23,7 +23,7 @@ const AdoptionSearchInput = () => {
         <Text margin='0' size='0.85rem' color='#BBBBBB'>
           조건에 맞는 반려친구들을 찾아보세요!
         </Text>
-        <Image size='12' />
+        <Image size='12' margin='0'/>
       </Grid>
       <AdoptionModal />
     </Container>

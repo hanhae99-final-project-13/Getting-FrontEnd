@@ -11,8 +11,8 @@ const AdoptionWishedCardList = (props) => {
   };
 
   return (
-    <Grid width='calc(100% + 1rem)' margin='0 0 20px 0'>
-      <Grid display='flex' justifyContent='space-between'>
+    <Grid width='calc(100% + 1rem)'>
+      <Grid display='flex' justifyContent='space-between' width='calc(100% - 1rem)' >
         <Title>
           저에게 <span>관심</span>있으시죠?
         </Title>
@@ -46,7 +46,7 @@ const Title = styled.p`
   }
 `;
 
-const SliderBox = styled.div`
+const SliderBox = styled.div`  
   height: 220px;
   margin-left: -1rem;
   margin-top: -1rem;

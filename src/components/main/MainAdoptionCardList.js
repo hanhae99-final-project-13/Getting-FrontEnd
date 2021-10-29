@@ -12,7 +12,7 @@ const MainAdoptionCardList = (props) => {
 
   return (
     <Grid width='calc(100% + 1rem)' margin='0 0 20px 0'>
-      <Grid display='flex' justifyContent='space-between'>
+      <Grid display='flex' justifyContent='space-between' width='calc(100% - 1rem)' >
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
         </Title>

@@ -62,9 +62,9 @@ Text.defaultProps = {
   size: null,
   bold: false,
   align: null,
-  margin: false,
-  padding: false,
-  family: false, //폰트 타입
+  margin: null,
+  padding: null,
+  family: null, //폰트 타입
   border: null,
   width: false,
   weight: false,
