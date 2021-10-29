@@ -3,6 +3,8 @@ import MypageWishedList from './MypageWishedList';
 import MypageAdoptionCheck from './MypageAdoptionCheck';
 import MypageImageUpload from './MypageImageUpload';
 import MypageCategory from './MypageCategory';
+import MyWriteList from './MyWriteList';
+import ReceivedAdoption from './ReceivedAdoption';
 
 export {
   MypageUserInfo,
@@ -10,4 +12,6 @@ export {
   MypageAdoptionCheck,
   MypageImageUpload,
   MypageCategory,
+  MyWriteList,
+  ReceivedAdoption,
 };

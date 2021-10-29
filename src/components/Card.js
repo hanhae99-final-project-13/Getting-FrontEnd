@@ -7,7 +7,7 @@ import { Grid, Image, Text } from '../elements';
 import { postActions } from '../redux/modules/post';
 
 const Card = (props) => {
-  const { margin } = props;
+  const { margin, width, height } = props;
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.postList);
 
@@ -18,11 +18,12 @@ const Card = (props) => {
   return (
     <Grid
       position='relative'
-      width='180px'
+      width={width ? width : '180px'}
+      height={height}
       padding='1rem'
       borderRadius='10px'
       margin={margin}
-      boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
+      boxShadow='10px 10px 20px rgba(0, 0, 0, 0.1)'
       _onClick={goDetail}
     >
       <Tag>
@@ -30,7 +31,9 @@ const Card = (props) => {
       </Tag>
       <ImageBox />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' size='14px' bold>닥스훈트</Text>
+        <Text margin='0' size='14px' bold>
+          닥스훈트
+        </Text>
         <Image size='8' />
       </Grid>
       <Grid display='flex' width='auto'>
@@ -57,7 +60,7 @@ const ElP = styled.p`
 const Tag = styled.div`
   position: absolute;
   top: -10px;
-  left: 0;  
+  left: 0;
   height: auto;
   padding: 3px 6px;
   background-color: white;
