@@ -5,10 +5,14 @@ import { apis } from '../../lib/axios';
 //액션타입
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';
+const UPDATE_USERINFO = 'UPDATE_USERINFO';
 
 //액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
 const LogOut = createAction(LOG_OUT, () => {});
+const updateUserInfo = createAction(UPDATE_USERINFO, (userInfo) => ({
+  userInfo,
+}));
 
 //초기값
 const initialState = {
@@ -16,6 +20,8 @@ const initialState = {
     userInfo: {
       nickname: null,
       email: null,
+      userImgUrl:
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
       classCount: null,
       alarmCount: null,
     },
@@ -185,6 +191,10 @@ export default handleActions(
         draft.user.userInfo = null;
         draft.user.isLogin = null;
       }),
+    [UPDATE_USERINFO]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user.userInfo = action.payload.userInfo;
+      }),
   },
   initialState,
 );
@@ -197,6 +207,7 @@ const actionCreators = {
   KakaoLogin,
   CheckId,
   Checknickname,
+  updateUserInfo,
 };
 
 export { actionCreators };
