@@ -13,8 +13,10 @@ const Signup = (props) => {
   const dispatch = useDispatch();
 
   //중복 체크 useState
-  const [check, setCheck] = useState('');
-  console.log(check);
+  const [checkId, setCheckId] = useState(false);
+  const [checknickName, setChecknickName] = useState(false);
+  console.log(checkId, '아이디체크');
+  console.log(checknickName, '닉네임체크');
 
   // 회원가입 useState
 
@@ -32,34 +34,6 @@ const Signup = (props) => {
   //회원가입 onChange에 넣는 함수
   const handleForm = (e) => {
     const Newform = { ...form, [e.target.name]: e.target.value };
-
-    // const idcheckButton = document.querySelector('#idcheckButton');
-    // const idValue = document.querySelector('#idValue').value;
-
-    // const pwcheckIcon = document.querySelector('#pwcheckIcon');
-    // let pwcheckValue = document.querySelector('#pwcheckValue').value;
-
-    // const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
-    // let nicknameValue = document.querySelector('#nicknameValue').value;
-
-    // if (idValue !== '') {
-    //   idcheckButton.style.display = 'block';
-    // } else {
-    //   idcheckButton.style.display = 'none';
-    // }
-
-    // if (pwcheckValue !== '') {
-    //   pwcheckIcon.style.display = 'block';
-    // } else {
-    //   pwcheckIcon.style.display = 'none';
-    // }
-
-    // if (nicknameValue !== '') {
-    //   nicknameCheckButton.style.display = 'block';
-    // } else {
-    //   nicknameCheckButton.style.display = 'none';
-    // }
-
     setForm(Newform);
   };
   console.log(form);
@@ -79,54 +53,58 @@ const Signup = (props) => {
 
       <Grid width='80vw' margin='70px auto 0px'>
         <Grid position='relative'>
-          {!check ? (
-            <Text
-              _onClick={() => {
-                setCheck(true);
-                // apis
-                //   .checkId(username)
-                //   .then((res) => {
-                //     if (!res.data.data.msg) {
-                //       alert('중복된 아이디가 존재합니다.');
-                //       return;
-                //     }
-                //     setCheck(res.data.data.msg);
-                //     // console.log(res.data.data, '아이디체크');
-                //     // console.log(res.data.status, '아이디체크');
-                //   })
-                //   .catch((error) => {
-                //     // error.response.data.data.message
-                //     console.log(error, '아이디체크 실패');
-                //   });
-              }}
-              id='idcheckButton'
-              position='absolute'
-              right='10px'
-              width='auto'
-              top='15px'
-              size='12px'
-              bold
-              margin='0'>
-              중복확인
-            </Text>
-          ) : (
+          <Text
+            _onClick={() => {
+              apis
+                .checkId(username)
+                .then((res) => {
+                  if (username === '') {
+                    alert('아이디를 입력해주세요');
+                    return;
+                  }
+                  if (!res.data.data.msg) {
+                    alert(
+                      '중복된 아이디가 존재합니다. 다른아이디를 입력해주세요',
+                    );
+                    setCheckId(res.data.data.msg);
+                    return;
+                  }
+                  alert('아이디 중복확인이 완료되었습니다.');
+                  setCheckId(res.data.data.msg);
+                })
+                .catch((error) => {
+                  // error.response.data.data.message
+                  console.log(error, '아이디체크 실패');
+                });
+            }}
+            position='absolute'
+            right='10px'
+            width='auto'
+            top='15px'
+            size='12px'
+            bold
+            margin='0'>
+            중복확인
+          </Text>
+
+          {checkId ? (
             <Grid
-              id='pwcheckIcon'
               position='absolute'
-              right='10px'
-              top='15px'
+              right='57px'
+              top='11px'
               width='20px'
               height='20px'
               borderRadius='10px'
               bg={'#00B412'}>
-              <Grid margin='0 0 0 2px'>
+              <Grid margin='2px 0 0 2px'>
                 <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
               </Grid>
             </Grid>
+          ) : (
+            ' '
           )}
 
           <Input
-            id='idValue'
             bg='#FFFFFF'
             width='100%'
             border='none'
@@ -161,7 +139,6 @@ const Signup = (props) => {
 
         <Grid position='relative'>
           <Grid
-            id='pwcheckIcon'
             position='absolute'
             right='10px'
             top='15px'
@@ -171,12 +148,11 @@ const Signup = (props) => {
             bg={
               password !== '' && password === pwcheck ? '#00B412' : '#DFDFDF'
             }>
-            <Grid margin='0 0 0 2px'>
+            <Grid margin='2px 0 0 2px'>
               <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
             </Grid>
           </Grid>
           <Input
-            id='pwcheckValue'
             bg='#FFFFFF'
             width='100%'
             border='none'
@@ -195,9 +171,28 @@ const Signup = (props) => {
         <Grid position='relative'>
           <Text
             _onClick={() => {
-              dispatch(userAction.Checknickname(nickname));
+              apis
+                .checknickName(nickname)
+                .then((res) => {
+                  if (nickname === '') {
+                    alert('닉네임을 입력해주세요');
+                    return;
+                  }
+                  if (!res.data.data.msg) {
+                    alert(
+                      '중복된 닉네임이 존재합니다. 다른 닉네임을 작성해주세요',
+                    );
+                    setChecknickName(res.data.data.msg);
+                    return;
+                  }
+                  alert('닉네임 중복확인이 완료되었습니다.');
+                  setChecknickName(res.data.data.msg);
+                })
+                .catch((error) => {
+                  // error.response.data.data.message
+                  console.log(error, '아이디체크 실패');
+                });
             }}
-            id='nicknameCheckButton'
             position='absolute'
             right='10px'
             width='auto'
@@ -207,6 +202,24 @@ const Signup = (props) => {
             margin='0'>
             중복확인
           </Text>
+
+          {checknickName ? (
+            <Grid
+              position='absolute'
+              right='57px'
+              top='11px'
+              width='20px'
+              height='20px'
+              borderRadius='10px'
+              bg={'#00B412'}>
+              <Grid margin='2px 0 0 2px'>
+                <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
+              </Grid>
+            </Grid>
+          ) : (
+            ''
+          )}
+
           <Input
             id='nicknameValue'
             bg='#FFFFFF'
@@ -225,6 +238,9 @@ const Signup = (props) => {
 
         <Grid position='relative'>
           <Text
+            _onClick={() => {
+              alert('서비스 준비 중 입니다.');
+            }}
             color='#00B412'
             position='absolute'
             right='10px'

@@ -37,6 +37,7 @@ const Login = (props) => {
         <Grid
           position='absolute'
           left='180px'
+          top='-5px'
           width='8px'
           height='8px'
           bg='#FF6666'

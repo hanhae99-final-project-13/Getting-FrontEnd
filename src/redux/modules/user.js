@@ -39,8 +39,10 @@ const GetUserDB = (user) => {
           userInfo: {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
+            userImgUrl: res.data.data.userImgUrl,
             classCount: res.data.data.classCount,
             alarmCount: res.data.data.alarmCount,
+            applyList: res.data.data.applyList,
           },
           isLogin: true,
         };
@@ -94,8 +96,10 @@ const LoginCheck = () => {
           userInfo: {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
+            userImgUrl: res.data.data.userImgUrl,
             classCount: res.data.data.classCount,
             alarmCount: res.data.data.alarmCount,
+            applyList: res.data.data.applyList,
           },
           isLogin: true,
         };
@@ -144,7 +148,7 @@ const CheckId = (username) => {
       .checkId(username)
       .then((res) => {
         console.log(res.data.data, '아이디체크');
-        console.log(res.data.status, '아이디체크');
+        // console.log(res.data.status, '아이디체크');
       })
       .catch((error) => {
         // error.response.data.data.message
@@ -160,7 +164,7 @@ const Checknickname = (nickname) => {
       .checknickName(nickname)
       .then((res) => {
         console.log(res.data.data, '닉네임체크');
-        console.log(res.data.status, '닉네임체크');
+        // console.log(res.data.status, '닉네임체크');
       })
       .catch((error) => {
         // error.response.data.data.message
