@@ -13,7 +13,7 @@ const Signup = (props) => {
   const dispatch = useDispatch();
 
   //중복 체크 useState
-  const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState('');
   console.log(check);
 
   // 회원가입 useState
@@ -33,32 +33,32 @@ const Signup = (props) => {
   const handleForm = (e) => {
     const Newform = { ...form, [e.target.name]: e.target.value };
 
-    const idcheckButton = document.querySelector('#idcheckButton');
-    const idValue = document.querySelector('#idValue').value;
+    // const idcheckButton = document.querySelector('#idcheckButton');
+    // const idValue = document.querySelector('#idValue').value;
 
-    const pwcheckIcon = document.querySelector('#pwcheckIcon');
-    let pwcheckValue = document.querySelector('#pwcheckValue').value;
+    // const pwcheckIcon = document.querySelector('#pwcheckIcon');
+    // let pwcheckValue = document.querySelector('#pwcheckValue').value;
 
-    const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
-    let nicknameValue = document.querySelector('#nicknameValue').value;
+    // const nicknameCheckButton = document.querySelector('#nicknameCheckButton');
+    // let nicknameValue = document.querySelector('#nicknameValue').value;
 
-    if (idValue !== '') {
-      idcheckButton.style.display = 'block';
-    } else {
-      idcheckButton.style.display = 'none';
-    }
+    // if (idValue !== '') {
+    //   idcheckButton.style.display = 'block';
+    // } else {
+    //   idcheckButton.style.display = 'none';
+    // }
 
-    if (pwcheckValue !== '') {
-      pwcheckIcon.style.display = 'block';
-    } else {
-      pwcheckIcon.style.display = 'none';
-    }
+    // if (pwcheckValue !== '') {
+    //   pwcheckIcon.style.display = 'block';
+    // } else {
+    //   pwcheckIcon.style.display = 'none';
+    // }
 
-    if (nicknameValue !== '') {
-      nicknameCheckButton.style.display = 'block';
-    } else {
-      nicknameCheckButton.style.display = 'none';
-    }
+    // if (nicknameValue !== '') {
+    //   nicknameCheckButton.style.display = 'block';
+    // } else {
+    //   nicknameCheckButton.style.display = 'none';
+    // }
 
     setForm(Newform);
   };
@@ -82,24 +82,23 @@ const Signup = (props) => {
           {!check ? (
             <Text
               _onClick={() => {
-                console.log(username);
-                apis
-                  .checkId(username)
-                  .then((res) => {
-                    if (!res.data.data.msg) {
-                      alert('중복된 아이디가 존재합니다.');
-                      return;
-                    }
-                    setCheck(res.data.data.msg);
-                    // console.log(res.data.data, '아이디체크');
-                    // console.log(res.data.status, '아이디체크');
-                  })
-                  .catch((error) => {
-                    // error.response.data.data.message
-                    console.log(error, '아이디체크 실패');
-                  });
+                setCheck(true);
+                // apis
+                //   .checkId(username)
+                //   .then((res) => {
+                //     if (!res.data.data.msg) {
+                //       alert('중복된 아이디가 존재합니다.');
+                //       return;
+                //     }
+                //     setCheck(res.data.data.msg);
+                //     // console.log(res.data.data, '아이디체크');
+                //     // console.log(res.data.status, '아이디체크');
+                //   })
+                //   .catch((error) => {
+                //     // error.response.data.data.message
+                //     console.log(error, '아이디체크 실패');
+                //   });
               }}
-              display='none'
               id='idcheckButton'
               position='absolute'
               right='10px'
@@ -112,18 +111,20 @@ const Signup = (props) => {
             </Text>
           ) : (
             <Grid
+              id='pwcheckIcon'
               position='absolute'
               right='10px'
               top='15px'
               width='20px'
               height='20px'
               borderRadius='10px'
-              bg='#00B412'>
+              bg={'#00B412'}>
               <Grid margin='0 0 0 2px'>
                 <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
               </Grid>
             </Grid>
           )}
+
           <Input
             id='idValue'
             bg='#FFFFFF'
@@ -160,7 +161,6 @@ const Signup = (props) => {
 
         <Grid position='relative'>
           <Grid
-            display='none'
             id='pwcheckIcon'
             position='absolute'
             right='10px'
@@ -197,7 +197,6 @@ const Signup = (props) => {
             _onClick={() => {
               dispatch(userAction.Checknickname(nickname));
             }}
-            display='none'
             id='nicknameCheckButton'
             position='absolute'
             right='10px'
