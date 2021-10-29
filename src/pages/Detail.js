@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Image } from '../elements/index';
+import { Grid, Image, Text } from '../elements/index';
 const Detail = () => {
   return (
     <React.Fragment>
@@ -100,7 +100,22 @@ const Detail = () => {
             </span>
           </Grid>
         </Grid>
-
+        <Grid display='flex' justifyContent='center' alignItems='center'>
+          <Grid
+            position='fixed'
+            margin='auto'
+            bg='#FF6666'
+            width='144px'
+            height='50px'
+            borderRadius='25px'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            top='512px'
+          >
+            <Text color='white'>입양 신청하기</Text>
+          </Grid>
+        </Grid>
         <Grid display='flex' margin='20px 0 0 0'>
           <Grid>
             특이사항
@@ -165,7 +180,5 @@ const Detail = () => {
     </React.Fragment>
   );
 };
-
-// const
 
 export default Detail;
