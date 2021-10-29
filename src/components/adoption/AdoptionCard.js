@@ -29,13 +29,13 @@ const AdoptionCard = (props) => {
       </Tag>
       <ImageBox />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' size='14px' >닥스훈트</Text>
+        <Text margin='0' size='14px' bold >닥스훈트</Text>
         <Image size='8' />
       </Grid>
-      <Grid display='flex' width='auto'>
-        <Image size='8' />
-        <ElP>2021.10.24 &nbsp;&nbsp;&nbsp;&nbsp;</ElP>
-        <Image size='8' />
+      <Grid display='flex' alignItems='center' width='auto' height='auto'>
+        <Image size='8' margin='0'/>
+        <ElP>2021.10.24 &nbsp;&nbsp;</ElP>
+        <Image size='8' margin='0'/>
         <ElP>경기도 수원</ElP>
       </Grid>
     </Grid>
@@ -47,19 +47,18 @@ AdoptionCard.defaultProps = {
 };
 
 const ElP = styled.p`
-  width: auto;
+  width: auto;  
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 6px;
   text-align: center;
 `;
 
 const Tag = styled.div`
   position: absolute;
   top: -10px;
-  left: 0;
-  width: 60px;
+  left: 0;  
   height: auto;
-  padding: 3px 5px;
+  padding: 3px 6px;
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

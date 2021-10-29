@@ -15,9 +15,6 @@ const Landing = () => {
       setImgPosition(0);
     }
   };
-  // const prev = () => {
-  //   setPrevImg(prevImg + 375);
-  // }
   return (
     <React.Fragment>
       <div
@@ -27,7 +24,6 @@ const Landing = () => {
           height: '300px',
           overflowX: 'hidden',
           marginLeft: `${imgPosition}px`,
-          // transform: translateX(10%),
           transition: '1s',
         }}
       >
@@ -106,7 +102,7 @@ const Landing = () => {
       <ButtonBox>
         <Button
           onClick={() => {
-            console.log('회원가입페이지로');
+            history.push('/signup');
           }}
         >
           시작하기

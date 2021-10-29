@@ -31,6 +31,7 @@ const SwitchBox = styled.label`
   height: 32px;
 `;
 const Switch = styled.span`
+  z-index: -1;
   position: absolute;
   cursor: pointer;
   border-radius: 17px;

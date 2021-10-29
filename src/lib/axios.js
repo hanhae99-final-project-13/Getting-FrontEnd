@@ -2,14 +2,19 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://13.209.98.45',
   headers: {
-    'content-type': 'application/json; charset=UTF-8',
+    'Content-Type': 'application/json; charset=UTF-8',
     accept: 'application/json',
-    authorization: `Bearer ${localStorage.getItem('MY_TOKEN')}`,
+    'X-AUTH-TOKEN': `${localStorage.getItem('USER_TOKEN')}`,
   },
-  withCredentials: true,
+  withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
+
+// 참고용
+// export const saveToken = (token) => window.localStorage.setItem('jwt', token);
+// export const getToken = () => window.localStorage.getItem('jwt');
+// export const removeToken = () => window.localStorage.removeItem('jwt');
 
 instance.interceptors.request.use(
   (config) => {
@@ -30,8 +35,12 @@ instance.interceptors.response.use(
 export const apis = {
   //회원가입 및 로그인 관련 api
   login: (loginInfo) => instance.post('/login', loginInfo),
-  kakaoLogin: () => instance.post('/login/kakao'),
+  loginCheck: () => instance.get('/login/check'),
+  kakaoLogin: (code) => instance.get(`/oauth/callback/kakao?code=${code}`),
   signup: (registerInfo) => instance.post('/signup', registerInfo),
+  checkId: (username) => instance.get(`/signup/checkid?username=${username}`),
+  checknickName: (nickname) =>
+    instance.get(`/signup/checknickname?nickname=${nickname}`),
 
   // 유저 관련 api
   getUserInfo: () => instance.get('/userInfo'),

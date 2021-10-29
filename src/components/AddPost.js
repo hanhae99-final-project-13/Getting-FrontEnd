@@ -4,18 +4,18 @@ import { useDispatch } from 'react-redux';
 import { Grid, Image } from '../elements/index';
 import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
+import AddressSelector from './AddressSelector';
 
 const AddPost = () => {
   const dispatch = useDispatch();
-  // const [petName, setPetName] = React.useState('');
   const [breed, setBreed] = React.useState('');
   const [sex, setSex] = React.useState('남아');
   const [age, setAge] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [lostLocation, setLostLocation] = React.useState('');
   const [ownerType, setOwnerType] = React.useState('개인');
-  // const [condition, setCondition] = React.useState('임시보호중');
   const [address, setAddress] = React.useState('');
+  const [siAddress, setSiAddress] = React.useState('');
   const [url, setUrl] = React.useState('');
   const [tag, setTag] = React.useState('직접등록');
   const [phone, setPhone] = React.useState('');
@@ -23,9 +23,8 @@ const AddPost = () => {
 
   const [sexToggle, setSexToggle] = React.useState(false);
   const [ownerTypeToggle, setOwnerTypeToggle] = React.useState(false);
-  // const [conditionToggle, setConditionToggle] = React.useState(false);
   const [tagToggle, setTagToggle] = React.useState(false);
-
+  const [files, setFiles] = useState([]);
   //토글
 
   const sexCheck = () => {
@@ -45,15 +44,6 @@ const AddPost = () => {
     }
   };
 
-  // const conditionCheck = () => {
-  //   setConditionToggle(!conditionToggle);
-  //   if (conditionToggle === true) {
-  //     setCondition('임시보호중');
-  //   } else {
-  //     setCondition('입양중');
-  //   }
-  // };
-
   const tagCheck = () => {
     setTagToggle(!tagToggle);
     if (tagToggle === true) {
@@ -62,19 +52,16 @@ const AddPost = () => {
       setTag('가져온 정보');
     }
   };
-  console.log(sex, ownerType, tag);
 
-  const [files, setFiles] = useState([]);
+  //이미지 여러개 미리보기
   const onloadFile = (e) => {
     const selectImg = e.target.files;
     const imgUrlList = [...files];
-    console.log(e.target.files);
 
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
       imgUrlList.push(nowImgUrl);
     }
-
     setFiles(imgUrlList);
   };
   const postInfo = {
@@ -84,13 +71,17 @@ const AddPost = () => {
     weight: weight,
     lostLocation: lostLocation,
     ownerType: ownerType,
-    address: address,
+    address: address + siAddress,
     url: url,
     tag: tag,
     phone: phone,
     extra: extra,
     img: files,
     isAdopted: false,
+  };
+  const [addressModal, setAddressModal] = React.useState(false);
+  const addressSelect = () => {
+    setAddressModal(!addressModal);
   };
 
   const addPostCard = () => {
@@ -172,25 +163,22 @@ const AddPost = () => {
           />
           보호소
         </p>
-        {/* 토글버튼, 임시보호중, 입양중 >> 마이페이지로 가야함
-        <p>
-          <input placeholder='상태' value={condition} />
-          임시보호중
-          <Slider
-            conditionCheck={conditionCheck}
-            conditionToggle={conditionToggle}
-          />
-          입양중
-        </p> */}
-        {/* 시 단위까지 추가  얘기해봐야함*/}
         <p>
           <input
             placeholder='주소'
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
+            type='text'
+            value={address + siAddress}
+            onClick={addressSelect}
           />
+          {addressModal ? (
+            <AddressSelector
+              visible={addressSelect}
+              setAddress={setAddress}
+              siAddress={siAddress}
+              setSiAddress={setSiAddress}
+              addressModal={addressModal}
+            />
+          ) : null}
         </p>
         <p>
           <input placeholder='정보출처' value={tag} />
@@ -230,8 +218,4 @@ const AddPost = () => {
   );
 };
 
-const InputNumberBox = styled.input`
-  &:appearance: none; -moz-appearance: none; -webkit-appearance: none;
-
-`;
 export default AddPost;
