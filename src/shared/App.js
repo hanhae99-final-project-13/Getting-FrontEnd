@@ -14,7 +14,7 @@ import Adoption from '../pages/Adoption';
 import Landing from '../pages/Landing';
 import Mypage from '../pages/Mypage';
 import Kakao from '../components/Kakao';
-// import Footer from './Footer';
+import Header from '../components/Header';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -33,16 +33,16 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path='/landing' exact component={Landing} />
+        <Route path='/header' exact component={Header} />
+        <Route path='/' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={Signup} />
-        <Route path='/' exact component={Main} />
+        <Route path='/main' exact component={Main} />
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
         <Route path='/mypage' exact component={Mypage} />
-        {/* <Footer path='/footer' /> */}
       </ConnectedRouter>
     </React.Fragment>
   );

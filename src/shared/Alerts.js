@@ -30,7 +30,7 @@ export const ErrorAlert = (error_text, position_text) => {
 export const imageSuccessAlert = (success_text) => {
   Swal.fire({
     title: success_text,
-    // text: '',
+    // text: success_text,
     imageUrl: 'https://unsplash.it/400/200',
     imageWidth: 400,
     imageHeight: 200,

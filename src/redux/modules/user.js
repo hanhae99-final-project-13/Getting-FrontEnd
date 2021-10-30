@@ -30,6 +30,7 @@ const initialState = {
         'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
       classCount: null,
       alarmCount: null,
+      applyList: [],
     },
     isLogin: false,
   },
@@ -60,10 +61,9 @@ const GetUserDB = (user) => {
           isLogin: true,
         };
         dispatch(SetUser(user));
-        history.push('/');
+        history.push('/main');
       })
       .catch((error) => {
-        console.log(error, '등록되지않은 회원입니다.');
         ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
       });
   };
@@ -88,12 +88,12 @@ const SignupDB = (form) => {
       .then((res) => {
         console.log('회원가입정보', res.data.data);
         console.log('회원가입정보', res.data.status);
-        // imageSuccessAlert('회원 가입 성공!');
-        // history.push('/login');
+        imageSuccessAlert('회원 가입을 축하드립니다');
+        history.push('/login');
       })
       .catch((error) => {
         // error.response.data.data.message
-        window.alert('회원가입 실패', error);
+        ErrorAlert('회원가입 실패');
       });
   };
 };
@@ -148,8 +148,8 @@ const KakaoLogin = (code) => {
           isLogin: true,
         };
         dispatch(SetUser(user));
-        window.alert('성공적으로 로그인이 되었습니다!!');
-        history.push('/');
+        // window.alert('성공적으로 로그인이 되었습니다!!');
+        history.push('/main');
       })
       .catch((error) => {
         // error.response.data.data.message
@@ -157,39 +157,6 @@ const KakaoLogin = (code) => {
       });
   };
 };
-
-// const CheckId = (username) => {
-//   console.log(username);
-//   // console.log();
-//   return (dispatch, getState, { history }) => {
-//     apis
-//       .checkId(username)
-//       .then((res) => {
-//         console.log(res.data.data, '아이디체크');
-//         // console.log(res.data.status, '아이디체크');
-//       })
-//       .catch((error) => {
-//         // error.response.data.data.message
-//         console.log(error, '아이디체크 실패');
-//       });
-//   };
-// };
-
-// const Checknickname = (nickname) => {
-//   // console.log();
-//   return (dispatch, getState, { history }) => {
-//     apis
-//       .checknickName(nickname)
-//       .then((res) => {
-//         console.log(res.data.data, '닉네임체크');
-//         // console.log(res.data.status, '닉네임체크');
-//       })
-//       .catch((error) => {
-//         // error.response.data.data.message
-//         console.log(error, '닉네임체크 실패');
-//       });
-//   };
-// };
 
 export default handleActions(
   {
@@ -217,8 +184,6 @@ const actionCreators = {
   LogOutDB,
   LoginCheck,
   KakaoLogin,
-  // CheckId,
-  // Checknickname,
 };
 
 export { actionCreators };

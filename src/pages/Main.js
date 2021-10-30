@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Footer from '../shared/Footer';
+import Footer from '../components/Footer';
 
 import { Grid } from '../elements';
 import {

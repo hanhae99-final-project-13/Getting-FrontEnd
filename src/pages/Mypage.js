@@ -9,6 +9,8 @@ import {
   MypageCategory,
 } from '../components/mypage';
 
+import Footer from '../components/Footer';
+
 const Mypage = () => {
   const dispatch = useDispatch();
   const useInfo = useSelector((state) => state.user.user.userInfo);
@@ -23,14 +25,19 @@ const Mypage = () => {
     setAdoptionCheckDisplay('black');
   };
   return (
-    <Grid padding='36px' width='auto'>
-      <MypageUserInfo />
-      <MypageCategory
-        showWishedList={showWishedList}
-        showadoptionCheck={showadoptionCheck}
-      />
-      <MypageWishedList display={wishedListDisplay} />
-      <MypageAdoptionCheck display={adoptionCheckDisplay} />
+    <Grid>
+      <Grid padding='36px' width='auto'>
+        <MypageUserInfo />
+        <MypageCategory
+          showWishedList={showWishedList}
+          showadoptionCheck={showadoptionCheck}
+        />
+        <MypageWishedList display={wishedListDisplay} />
+        <MypageAdoptionCheck display={adoptionCheckDisplay} />
+      </Grid>
+      <Grid>
+        <Footer></Footer>
+      </Grid>
     </Grid>
   );
 };
