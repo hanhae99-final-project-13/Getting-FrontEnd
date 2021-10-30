@@ -5,6 +5,7 @@ import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
 import Upload from './Upload';
+import Footer from './Footer';
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
@@ -233,6 +234,7 @@ const AddPost = () => {
           />
         </Grid>
       </Grid>
+      <Footer></Footer>
     </React.Fragment>
   );
 };

@@ -9,6 +9,7 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
+import Footer from '../components/Footer';
 
 const Adoption = () => {
   const dispatch = useDispatch();
@@ -30,23 +31,26 @@ const Adoption = () => {
   };
 
   return (
-    <Grid width='auto' padding='20px' overflow='auto'>
-      <Grid>
-        <AdoptionWishedCardList />
+    <Grid>
+      <Grid width='auto' padding='20px' overflow='auto'>
+        <Grid>
+          <AdoptionWishedCardList />
+        </Grid>
+        <Grid width='auto' margin='0 0 20px 0'>
+          <AdoptionSearchInput />
+        </Grid>
+        <Grid>
+          <Tag ref={cur} onClick={activeCurButton}>
+            최신순
+          </Tag>
+          <Tag ref={old} onClick={activeOldButton}>
+            등록순
+          </Tag>
+          <AdoptionCardList />
+        </Grid>
+        <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
-      <Grid width='auto' margin='0 0 20px 0'>
-        <AdoptionSearchInput />
-      </Grid>
-      <Grid>
-        <Tag ref={cur} onClick={activeCurButton}>
-          최신순
-        </Tag>
-        <Tag ref={old} onClick={activeOldButton}>
-          등록순
-        </Tag>
-        <AdoptionCardList />
-      </Grid>
-      <AddButton onClick={goAddPost}>+</AddButton>
+      <Footer></Footer>
     </Grid>
   );
 };
