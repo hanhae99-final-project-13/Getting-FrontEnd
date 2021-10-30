@@ -4,9 +4,9 @@ import { history } from '../redux/configureStore';
 const instance = axios.create({
   baseURL: 'http://13.209.98.45',
   headers: {
-    'Content-Type': 'application/json; charset=UTF-8',
+    'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪾에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
-    'X-AUTH-TOKEN': `${localStorage.getItem('USER_TOKEN')}`,
+    Authorization: `Bearer ${localStorage.getItem('USER_TOKEN')}`,
   },
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
@@ -34,8 +34,8 @@ instance.interceptors.response.use(
 
 export const apis = {
   //회원가입 및 로그인 관련 api
-  login: (loginInfo) => instance.post('/login', loginInfo),
-  loginCheck: () => instance.get('/login/check'),
+  login: (loginInfo) => instance.post('/user/login', loginInfo),
+  loginCheck: () => instance.get('/user/check'),
   kakaoLogin: (code) => instance.get(`/oauth/callback/kakao?code=${code}`),
   signup: (registerInfo) => instance.post('/signup', registerInfo),
   checkId: (username) => instance.get(`/signup/checkid?username=${username}`),

@@ -8,7 +8,6 @@ import { SuccessAlert, WarningAlert, ErrorAlert } from '../shared/Alerts';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
 import { apis } from '../lib/axios';
-import Header from '../components/Header';
 
 const Signup = (props) => {
   const { history } = props;
@@ -100,7 +99,6 @@ const Signup = (props) => {
 
   return (
     <Grid>
-      <Header></Header>
       <Grid width='80vw' margin='142px auto 0px'>
         <Grid>
           <Text size='24px' weight='700' align='center'>
