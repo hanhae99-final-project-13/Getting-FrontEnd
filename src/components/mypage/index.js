@@ -5,6 +5,7 @@ import MypageImageUpload from './MypageImageUpload';
 import MypageCategory from './MypageCategory';
 import MyWriteList from './MyWriteList';
 import ReceivedAdoption from './ReceivedAdoption';
+import DockingCheck from './DockingCheck';
 
 export {
   MypageUserInfo,
@@ -14,4 +15,5 @@ export {
   MypageCategory,
   MyWriteList,
   ReceivedAdoption,
+  DockingCheck,
 };

@@ -15,12 +15,12 @@ const MypageWishedList = (props) => {
           3
         </Text>
       </Grid>
-      <Card width='auto' margin='0 0 20px 0' />
-      <Card width='auto' margin='0 0 20px 0' />
-      <Card width='auto' margin='0 0 20px 0' />
-      <Card width='auto' margin='0 0 20px 0' />
-      <Card width='auto' margin='0 0 20px 0' />
-      <Card width='auto' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
+      <Card width='auto' imageHeight='150px' margin='0 0 20px 0' />
     </Grid>
   );
 };

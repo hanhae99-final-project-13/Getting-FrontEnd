@@ -7,7 +7,7 @@ import { Grid, Image, Text } from '../elements';
 import { postActions } from '../redux/modules/post';
 
 const Card = (props) => {
-  const { margin, width, height } = props;
+  const { margin, width, imageHeight } = props;
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.postList);
 
@@ -19,7 +19,6 @@ const Card = (props) => {
     <Grid
       position='relative'
       width={width ? width : '180px'}
-      height={height}
       padding='1rem'
       borderRadius='10px'
       margin={margin}
@@ -29,12 +28,14 @@ const Card = (props) => {
       <Tag>
         <ElP>임시보호중</ElP>
       </Tag>
-      <ImageBox />
+      <ImageBox imageHeight={imageHeight} />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' size='14px' bold>
+        <Text margin='0 10px 0 0' size='14px' bold>
           닥스훈트
         </Text>
-        <Image size='8' />
+        <Text margin='0' size='14px'>
+          (남아/2018년생)
+        </Text>
       </Grid>
       <Grid display='flex' width='auto'>
         <Image size='8' />
@@ -70,7 +71,8 @@ const Tag = styled.div`
 
 const ImageBox = styled.div`
   width: 100%;
-  height: 100px;
+  ${(props) =>
+    props.imageHeight ? `height: ${props.imageHeight};` : `height: 100px;`}
   background: url('http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg')
     no-repeat;
   background-size: cover;

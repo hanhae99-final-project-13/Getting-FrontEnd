@@ -6,20 +6,33 @@ import { MyWriteList, ReceivedAdoption } from '.';
 
 const MypageAdoptionCheck = (props) => {
   const myWriteList = React.useRef();
+
+  const [myWriteListDisplay, setMyWriteListDisplay] = React.useState();
+  const [rceivedAdoptionDisplay, setRceivedAdoptionDisplay] =
+    React.useState('none');
   const receivedAdoption = React.useRef();
 
   const showMyWriteList = () => {
     receivedAdoption.current.classList.remove('active');
     myWriteList.current.classList.add('active');
+    setRceivedAdoptionDisplay('none');
+    setMyWriteListDisplay('block');
   };
   const showReceivedAdoption = () => {
     myWriteList.current.classList.remove('active');
     receivedAdoption.current.classList.add('active');
+    setMyWriteListDisplay('none');
+    setRceivedAdoptionDisplay('block');
   };
+
   return (
     <Grid display={props.display} margin='22px 0 0 0' _onClick={props._onClick}>
       <CategoryBox>
-        <span className='category' ref={myWriteList} onClick={showMyWriteList}>
+        <span
+          className='category active'
+          ref={myWriteList}
+          onClick={showMyWriteList}
+        >
           작성한 공고
         </span>
         <span
@@ -30,8 +43,8 @@ const MypageAdoptionCheck = (props) => {
           받은 입양 신청
         </span>
       </CategoryBox>
-      <MyWriteList />
-      <ReceivedAdoption />
+      <MyWriteList display={myWriteListDisplay} />
+      <ReceivedAdoption display={rceivedAdoptionDisplay} />
     </Grid>
   );
 };
