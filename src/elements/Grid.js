@@ -180,7 +180,7 @@ const GridBox = styled.div`
   }
 
   ::-webkit-scrollbar {
-    width: 5px;
+    display: none;
   }
   ::-webkit-scrollbar-thumb {
     background-color: #2f3542;

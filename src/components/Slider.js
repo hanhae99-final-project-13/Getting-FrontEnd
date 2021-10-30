@@ -29,6 +29,7 @@ const SwitchBox = styled.label`
   display: inline-block;
   width: 60px;
   height: 32px;
+  margin: 0 2px;
 `;
 const Switch = styled.span`
   z-index: -1;

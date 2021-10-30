@@ -4,13 +4,9 @@ import { Grid, Image, Text } from '../elements/index';
 const Detail = () => {
   return (
     <React.Fragment>
-      <Grid width='auto' padding='0px 46px'>
+      <Grid width='auto' padding='0 46px'>
         <p>저와 친구하실래요?😁</p>
-        <div
-          style={{
-            display: 'flex',
-          }}
-        >
+        <div>
           <div
             style={{
               display: 'flex',
@@ -19,10 +15,11 @@ const Detail = () => {
               width: '80px',
               height: '30px',
               borderRadius: '15px',
-              position: 'absolute',
+              // position: 'absolute',
               backgroundColor: 'white',
               top: '40px',
               left: '50px',
+              marginBottom: '5px',
             }}
           >
             임시보호중
@@ -40,7 +37,7 @@ const Detail = () => {
       </Grid>
       <Grid
         width='280px'
-        margin='20px auto'
+        margin='0 auto'
         padding='15px 20px'
         boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
         borderRadius='10px'
