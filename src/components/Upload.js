@@ -13,7 +13,7 @@ const Upload = (props) => {
     props.setFiles(imgUrlList);
   };
   const deleteImg = (e) => {
-    console.log(e.parentNode);
+    console.log(e);
   };
   return (
     <>
@@ -58,9 +58,10 @@ const Upload = (props) => {
       ) : (
         <Grid display='flex' overflowX='auto'>
           {props.files &&
-            props.files.map((a) => {
+            props.files.map((a, i) => {
               return (
                 <Grid
+                  key={i}
                   width='150px'
                   height='150px'
                   bg='white'
