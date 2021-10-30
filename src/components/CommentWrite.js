@@ -10,7 +10,6 @@ const CommentWrite = (props) => {
     console.log('수정버튼시 활성화', props.comment.commentId);
   }
   const editSubmit = () => {
-    console.log('A');
     dispatch(
       commentCreators.updateComment({
         commentId: props.comment.commentId,
@@ -30,7 +29,16 @@ const CommentWrite = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid>
+      <Grid
+        bg='rgba(235, 235, 235)'
+        width='auto'
+        height='40px'
+        borderRadius='10px'
+        margin=' auto'
+        display='flex'
+        alignItems='center'
+        justifyContent='space-between'
+      >
         <CommentBox
           value={comment}
           onChange={(e) => {
@@ -38,15 +46,52 @@ const CommentWrite = (props) => {
           }}
         />
         {props.comment ? (
-          <button onClick={editSubmit}>submit</button>
+          <button
+            style={{
+              marginRight: '10px',
+              padding: '4px 10px',
+              border: 'none',
+              color: 'white',
+              backgroundColor: '#3FCC66',
+              borderRadius: '10px',
+            }}
+            onClick={editSubmit}
+          >
+            입력
+          </button>
         ) : (
-          <button onClick={commentSubmit}>submit</button>
+          <button
+            style={{
+              marginRight: '10px',
+              padding: '4px 10px',
+              border: 'none',
+              color: 'white',
+              backgroundColor: '#3FCC66',
+              borderRadius: '10px',
+            }}
+            onClick={commentSubmit}
+          >
+            입력
+          </button>
         )}
       </Grid>
     </React.Fragment>
   );
 };
 
-const CommentBox = styled.input``;
+const CommentBox = styled.input`
+  background-color: rgba(235, 235, 235);
+  width: 200px;
+  height: 35px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+`;
 
 export default CommentWrite;
