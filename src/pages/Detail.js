@@ -18,6 +18,7 @@ const Detail = () => {
     <React.Fragment>
       <Grid width='auto' padding='0 46px'>
         <p>저와 친구하실래요?😁</p>
+
         <div>
           <div
             style={{

@@ -67,6 +67,8 @@ const AddPost = () => {
     img: files,
     isAdopted: false,
   };
+
+  console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
@@ -87,8 +89,7 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
           <input
             placeholder='견종'
             value={breed}
@@ -99,7 +100,7 @@ const AddPost = () => {
           />
           <Grid display='flex' alignItems='center'>
             남아
-            <Slider sexCheck={sexCheck} sexToggle={sexToggle} />
+            <Slider _onClick={sexCheck} sexToggle={sexToggle} />
             여아
           </Grid>
         </Grid>
@@ -107,8 +108,7 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='15px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
           <Grid display='flex' justifyContent='space-between'>
             <input
               type='number'
@@ -147,8 +147,7 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
           <input
             placeholder='보호장소'
             value={ownerType}
@@ -157,7 +156,7 @@ const AddPost = () => {
           <Grid display='flex' alignItems='center'>
             개인
             <Slider
-              ownerTypeCheck={ownerTypeCheck}
+              _onClick={ownerTypeCheck}
               ownerTypeToggle={ownerTypeToggle}
             />
             보호소
@@ -184,8 +183,7 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
           <input
             placeholder='정보출처'
             value={tag}
@@ -193,7 +191,7 @@ const AddPost = () => {
           />
           <Grid display='flex' alignItems='center'>
             직접등록
-            <Slider tagCheck={tagCheck} tagToggle={tagToggle} />
+            <Slider _onClick={tagCheck} tagToggle={tagToggle} />
             가져온정보
           </Grid>
         </Grid>
