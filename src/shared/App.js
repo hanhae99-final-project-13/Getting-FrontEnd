@@ -15,10 +15,12 @@ import Landing from '../pages/Landing';
 import Mypage from '../pages/Mypage';
 import Kakao from '../components/Kakao';
 import Header from '../components/Header';
+import Detail from '../pages/Detail';
+import Intro from '../pages/Intro';
+import Alarm from '../pages/Alarm';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
-import Detail from '../pages/Detail';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +47,8 @@ function App() {
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
         <Route path='/mypage' exact component={Mypage} />
+        <Route path='/intro' exact component={Intro} />
+        <Route path='/alarm' exact component={Alarm} />
       </ConnectedRouter>
     </React.Fragment>
   );

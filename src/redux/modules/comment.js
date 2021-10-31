@@ -15,11 +15,11 @@ const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
   commentInfo,
 }));
 
-const addCommentToAxios = (postId, comment) => {
-  console.log('댓글등록액시오스', postId, comment);
+const addCommentToAxios = (comment) => {
+  console.log('댓글등록액시오스', comment);
   return (dispatch) => {
     apis
-      .addComment(postId, comment)
+      .addComment(comment)
       .then((res) => {
         console.log('댓글등록리스폰스', res);
         dispatch(addComment(res));
@@ -35,12 +35,12 @@ const updateComment = createAction(UPDATE_COMMENT, (comment) => ({
 }));
 
 const updateCommentToAxios = (commentId, comment) => {
-  console.log('댓글삭제액시오스', commentId, comment);
+  console.log('댓글수정액시오스', commentId, comment);
   return (dispatch) => {
     apis
       .editComment(commentId, comment)
       .then((res) => {
-        console.log('댓글삭제리스폰스', res);
+        console.log('댓글수정리스폰스', res);
         dispatch(updateComment(res));
       })
       .catch((res) => {

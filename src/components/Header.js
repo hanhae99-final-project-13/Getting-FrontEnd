@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-
+import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +19,10 @@ const Header = (props) => {
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        height='80px'>
+        // width추가
+        width='375px'
+        height='80px'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -28,7 +31,8 @@ const Header = (props) => {
             bg='white'
             display='flex'
             alignItems='center'
-            justifyContent='center'>
+            justifyContent='center'
+          >
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -47,8 +51,16 @@ const Header = (props) => {
             bg='white'
             display='flex'
             alignItems='center'
-            justifyContent='center'>
-            <FontAwesomeIcon icon={faBell} color='black' fontSize='1x' />
+            justifyContent='center'
+          >
+            <FontAwesomeIcon
+              onClick={() => {
+                history.push('/alarm');
+              }}
+              icon={faBell}
+              color='black'
+              fontSize='1x'
+            />
           </Grid>
         </Grid>
       </Grid>
