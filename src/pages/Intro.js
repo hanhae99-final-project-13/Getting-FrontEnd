@@ -18,7 +18,7 @@ const Intro = () => {
         </Grid>
 
         {/* 이미지 */}
-        <Grid display='flex'>
+        <Grid display='flex' overflowX='hidden'>
           <Grid
             bg='blue'
             borderRadius='15px'
@@ -87,7 +87,6 @@ const Intro = () => {
               src='https://img.etoday.co.kr/pto_db/2021/05/600/20210502144631_1615216_1200_1800.jpg'
             />
           </Grid>
-          <Grid> ?</Grid>
         </Grid>
       </Grid>
     </>

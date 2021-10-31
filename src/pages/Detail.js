@@ -157,11 +157,11 @@ const Detail = () => {
         </Grid>
       </Grid>
 
-      <Grid width='auto' padding='0px 46px 40px 46px'>
-        <p>댓글😁</p>
+      {/* <Grid width='auto' padding='0px 46px 40px 46px'> */}
+      <p style={{ padding: '0 46px' }}>댓글😁</p>
 
-        <CommentList />
-      </Grid>
+      <CommentList />
+      {/* </Grid> */}
     </React.Fragment>
   );
 };

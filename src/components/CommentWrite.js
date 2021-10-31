@@ -36,7 +36,8 @@ const CommentWrite = (props) => {
     <React.Fragment>
       <Grid
         bg='rgba(235, 235, 235)'
-        width='auto'
+        padding='0 8px'
+        width='283px'
         height='40px'
         borderRadius='10px'
         margin=' auto'
