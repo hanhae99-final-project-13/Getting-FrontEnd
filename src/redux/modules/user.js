@@ -184,6 +184,7 @@ const actionCreators = {
   LogOutDB,
   LoginCheck,
   KakaoLogin,
+  updateUserInfo,
 };
 
 export { actionCreators };

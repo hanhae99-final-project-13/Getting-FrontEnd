@@ -10,6 +10,14 @@ const MypageImageUpload = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const [userImage, setUserImage] = React.useState();
+  const [adoptionNoDisplay, setAdoptionNoDisplay] = React.useState();
+
+  AWS.config.update({
+    region: 'ap-northeast-2',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'ap-northeast-2:3be6a8f1-b813-418a-914b-0707888dcbdc',
+    }),
+  });
 
   const selectFile = (e) => {
     const fileName = e.target.files[0].name.split('.')[0];
@@ -17,7 +25,7 @@ const MypageImageUpload = (props) => {
     const fileFullName = e.target.files[0].name;
     const file = e.target.files[0];
     const reader = new FileReader();
-    console.log(file);
+    console.log(e.target.files);
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       const imageInfo = {
@@ -27,30 +35,18 @@ const MypageImageUpload = (props) => {
         fileFullName,
         file,
       };
-      setUserImage(imageInfo);
-      console.log(userImage);
-      document
-        .querySelector('#fileSelect')
-        .addEventListener('change', uploadToAws);
+      console.log(imageInfo);
+      setUserImage('imageInfo');
     };
-  };
-
-  AWS.config.update({
-    region: 'ap-northeast-2',
-    credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:3be6a8f1-b813-418a-914b-0707888dcbdc',
-    }),
-  });
-
-  const uploadToAws = () => {
     const awsUpload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: 'team13-docking',
-        Key: `${userImage.fileName}.${userImage.fileType}`,
-        Body: userImage.file,
+        Key: `${fileName}.${fileType}`,
+        Body: file,
         ACL: 'public-read',
       },
     });
+
     const promise = awsUpload.promise();
     promise
       .then((data) => {
@@ -63,10 +59,11 @@ const MypageImageUpload = (props) => {
         dispatch(
           userActions.updateUserInfo({
             ...userInfo,
-            userImgUrl: `https://team13-docking.s3.ap-northeast-2.amazonaws.com/${userImage.fileFullName}`,
+            userImgUrl: `https://team13-docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
       });
+    console.log(userImage);
   };
 
   return (
@@ -80,6 +77,8 @@ const MypageImageUpload = (props) => {
         style={{ display: 'none' }}
         onChange={(e) => {
           selectFile(e);
+          setUserImage('제발 좀');
+          console.log(userImage);
         }}
       />
     </Grid>
