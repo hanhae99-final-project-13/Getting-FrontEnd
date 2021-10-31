@@ -11,7 +11,7 @@ const CommentWrite = (props) => {
   }
   const editSubmit = () => {
     dispatch(
-      commentCreators.updateComment({
+      commentCreators.updateCommentToAxios({
         commentId: props.comment.commentId,
         comment,
       }),
@@ -20,10 +20,15 @@ const CommentWrite = (props) => {
   };
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
+  // 임시로 id값 지정
   const commentId = Date.now();
+  const postId = Date.now();
   const commentSubmit = () => {
     dispatch(
-      commentCreators.addComment(/* commentId, */ { commentId, comment }),
+      commentCreators.addComment({
+        postId: postId,
+        comment: comment,
+      }),
     );
     setComment('');
   };

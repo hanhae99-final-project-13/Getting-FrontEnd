@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
-import { Grid, Image, Text } from '../elements/';
+import { Grid, Image } from '../elements/';
 import { commentCreators } from '../redux/modules/comment';
 import CommentWrite from './CommentWrite';
 
@@ -11,7 +10,7 @@ const Comment = (props) => {
   const cmt = props.comment;
   console.log('아이디확인,', cmt.commentId);
   const commentDelete = () => {
-    dispatch(commentCreators.deleteComment(cmt.commentId));
+    dispatch(commentCreators.deleteCommentToAxios(cmt.commentId));
   };
   const [edit, setEdit] = React.useState(false);
   const editOn = () => {
@@ -75,8 +74,6 @@ const Comment = (props) => {
                   </div>
                 </div>
                 <div style={{ paddingBottom: '8px' }}>{cmt.comment}</div>
-                {/* <button onClick={editOn}>수정</button>
-                <button onClick={commentDelete}>삭제</button> */}
               </Grid>
             </div>
           </Grid>
@@ -95,6 +92,7 @@ const Comment = (props) => {
               flexDirection: 'column',
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',
+              boxSizing: 'border-box',
             }}
           >
             <Grid display='flex' justifyContent='center' alignItems='center'>

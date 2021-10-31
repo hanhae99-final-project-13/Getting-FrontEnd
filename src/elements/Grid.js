@@ -42,6 +42,8 @@ const Grid = (props) => {
     hover,
     zIndex,
     is_flex,
+    color,
+    fontSize,
   } = props;
 
   const styles = {
@@ -82,6 +84,8 @@ const Grid = (props) => {
     hover,
     zIndex,
     is_flex,
+    color,
+    fontSize,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -127,6 +131,8 @@ Grid.defaultProps = {
   zIndex: null,
   _onClick: () => {},
   is_flex: null,
+  color: null,
+  fontSize: null,
 };
 
 const GridBox = styled.div`
@@ -166,6 +172,8 @@ const GridBox = styled.div`
   right: ${(props) => props.right};
   background-color: ${(props) => props.backgroundColor};
   z-index: ${(props) => props.zIndex};
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.fontSize};
   font-family: 'NanumSquareR';
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}

@@ -51,9 +51,8 @@ export const apis = {
   updatePost: (postId, postInfo) => instance.post(`/pets/${postId}`, postInfo),
   deletePost: (postId) => instance.delete(`/post/${postId}`),
   clickWish: (postId) => instance.post(`/wishes/${postId}`),
-  addComment: (postId, comment) =>
-    instance.post(`/comments/${postId}`, comment),
+  addComment: (comment) => instance.post(`/comments/`, comment),
   deleteComment: (commentId) => instance.delete(`/comments/${commentId}`),
   editComment: (commentId, content) =>
-    instance.post(`/comments/${commentId}`, content),
+    instance.patch(`/comments/${commentId}`, content),
 };
