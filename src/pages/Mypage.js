@@ -7,8 +7,11 @@ import {
   MypageWishedList,
   MypageAdoptionCheck,
   MypageCategory,
-  DockingCheck,
+  MypageDockingCheck,
 } from '../components/mypage';
+import { postActions } from '../redux/modules/post';
+
+import Footer from '../components/Footer';
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -17,32 +20,46 @@ const Mypage = () => {
   const [adoptionCheckDisplay, setAdoptionCheckDisplay] =
     React.useState('none');
   const [dockingCheck, setDockingCheck] = React.useState('none');
-  const showWishedList = () => {
+  const showWishedList = (a) => {
     setAdoptionCheckDisplay('none');
     setDockingCheck('none');
     setWishedListDisplay('block');
+    a();
+    dispatch(postActions.changeDeleteMode(false));
+    dispatch(postActions.changeCardCover(false));
   };
-  const showadoptionCheck = () => {
+  const showadoptionCheck = (a) => {
     setWishedListDisplay('none');
     setDockingCheck('none');
     setAdoptionCheckDisplay('black');
+    a();
+    dispatch(postActions.changeDeleteMode(false));
+    dispatch(postActions.changeCardCover(true));
   };
-  const showaDockingCheck = () => {
+  const showaDockingCheck = (a) => {
     setWishedListDisplay('none');
     setAdoptionCheckDisplay('none');
     setDockingCheck('block');
+    a();
+    dispatch(postActions.changeDeleteMode(false));
+    dispatch(postActions.changeCardCover(false));
   };
   return (
-    <Grid padding='36px' width='auto'>
-      <MypageUserInfo />
-      <MypageCategory
-        showWishedList={showWishedList}
-        showadoptionCheck={showadoptionCheck}
-        showaDockingCheck={showaDockingCheck}
-      />
-      <MypageWishedList display={wishedListDisplay} />
-      <MypageAdoptionCheck display={adoptionCheckDisplay} />
-      <DockingCheck display={dockingCheck} />
+    <Grid>
+      <Grid padding='36px' width='auto'>
+        <MypageUserInfo />
+        <MypageCategory
+          showWishedList={showWishedList}
+          showadoptionCheck={showadoptionCheck}
+          showaDockingCheck={showaDockingCheck}
+        />
+        <MypageWishedList display={wishedListDisplay} />
+        <MypageAdoptionCheck display={adoptionCheckDisplay} />
+        <MypageDockingCheck display={dockingCheck} />
+      </Grid>
+      <Grid>
+        <Footer></Footer>
+      </Grid>
     </Grid>
   );
 };

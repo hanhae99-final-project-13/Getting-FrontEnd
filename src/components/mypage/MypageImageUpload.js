@@ -29,6 +29,9 @@ const MypageImageUpload = (props) => {
       };
       setUserImage(imageInfo);
       console.log(userImage);
+      document
+        .querySelector('#fileSelect')
+        .addEventListener('change', uploadToAws);
     };
   };
 
@@ -70,13 +73,15 @@ const MypageImageUpload = (props) => {
     <Grid>
       <CameraIcon for='imageSelect' />
       <input
+        id='fileSelect'
         type='file'
         accept='image/*'
         id='imageSelect'
         style={{ display: 'none' }}
-        onChange={selectFile}
+        onChange={(e) => {
+          selectFile(e);
+        }}
       />
-      <button onClick={uploadToAws}>전송</button>
     </Grid>
   );
 };

@@ -26,7 +26,7 @@ const MypageAdoptionCheck = (props) => {
   };
 
   return (
-    <Grid display={props.display} margin='22px 0 0 0' _onClick={props._onClick}>
+    <Grid display={props.display} margin='22px 0 0 0'>
       <CategoryBox>
         <span
           className='category active'

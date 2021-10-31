@@ -6,7 +6,7 @@ import Card from '../Card';
 
 const MypageWishedList = (props) => {
   return (
-    <Grid display={props.display} margin='22px 0 0 0' _onClick={props._onClick}>
+    <Grid display={props.display} margin='22px 0 0 0'>
       <Grid display='flex' margin='0 0 22px 0' width='auto' height='auto'>
         <Text margin='0 10px 0 0' bold size='12px'>
           나의 관심 친구 수

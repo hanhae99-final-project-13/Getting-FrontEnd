@@ -52,7 +52,9 @@ const MypageCategory = (props) => {
         bg={WLBG}
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='14px'
-        _onClick={showWishedList() && changeWL}
+        _onClick={() => {
+          showWishedList(changeWL);
+        }}
       >
         <Image size='28' />
         <Text margin='0' size='14px' weight='800' color={WLFC}>
@@ -68,7 +70,7 @@ const MypageCategory = (props) => {
         bg={DCBG}
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='14px'
-        _onClick={showaDockingCheck() && changeDC}
+        _onClick={() => showaDockingCheck(changeDC)}
       >
         <Image size='28' />
         <Text margin='0' size='14px' weight='800' color={DCFC}>
@@ -84,7 +86,7 @@ const MypageCategory = (props) => {
         bg={ACBG}
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='14px'
-        _onClick={showadoptionCheck}
+        _onClick={() => showadoptionCheck(changeAC)}
       >
         <Image size='28' />
         <Text margin='0' size='14px' weight='800' color={ACFC}>
