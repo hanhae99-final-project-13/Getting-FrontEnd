@@ -36,10 +36,11 @@ const CommentWrite = (props) => {
     <React.Fragment>
       <Grid
         bg='rgba(235, 235, 235)'
-        width='auto'
+        padding='0 8px'
+        width='283px'
         height='40px'
         borderRadius='10px'
-        margin=' auto'
+        margin='0 auto 10px auto'
         display='flex'
         alignItems='center'
         justifyContent='space-between'
@@ -53,7 +54,7 @@ const CommentWrite = (props) => {
         {props.comment ? (
           <button
             style={{
-              marginRight: '10px',
+              marginRight: '4px',
               padding: '4px 10px',
               border: 'none',
               color: 'white',
@@ -67,7 +68,7 @@ const CommentWrite = (props) => {
         ) : (
           <button
             style={{
-              marginRight: '10px',
+              marginRight: '4px',
               padding: '4px 10px',
               border: 'none',
               color: 'white',
