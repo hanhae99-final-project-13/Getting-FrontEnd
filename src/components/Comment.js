@@ -34,7 +34,7 @@ const Comment = (props) => {
           <Grid
             height='70px'
             width='auto'
-            padding='0 0px 0 0'
+            padding='0 46px'
             borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
             borderRadius='10px'
             display='flex'
@@ -84,7 +84,7 @@ const Comment = (props) => {
             style={{
               backgroundColor: 'white',
               boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-              width: '283px',
+              width: '100%',
               height: '200px',
               position: 'fixed',
               bottom: '0',

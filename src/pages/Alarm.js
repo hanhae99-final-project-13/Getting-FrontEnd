@@ -39,7 +39,7 @@ const Alarm = () => {
         </Grid>
 
         <Grid
-          bg='#eee'
+          bg='white'
           height='60px'
           padding='10px 5px'
           borderRadius='15px'
@@ -62,7 +62,7 @@ const Alarm = () => {
         </Grid>
 
         <Grid
-          bg='#eee'
+          bg='#white'
           height='60px'
           padding='10px 5px'
           borderRadius='15px'
@@ -85,7 +85,7 @@ const Alarm = () => {
         </Grid>
 
         <Grid
-          bg='#eee'
+          bg='white'
           height='60px'
           padding='10px 5px'
           borderRadius='15px'
@@ -112,7 +112,7 @@ const Alarm = () => {
         <div
           style={{
             width: '100%',
-            backgroundColor: '#eee',
+            backgroundColor: 'white',
             position: 'fixed',
             bottom: '0',
             borderTopLeftRadius: '15px',

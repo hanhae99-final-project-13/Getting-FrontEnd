@@ -25,7 +25,8 @@ const Landing = () => {
           overflowX: 'hidden',
           marginLeft: `${imgPosition}px`,
           transition: '1s',
-        }}>
+        }}
+      >
         <img
           src='https://cdn.royalcanin-weshare-online.io/UCImMmgBaxEApS7LuQnZ/v2/eukanuba-market-image-puppy-beagle?w=5596&h=2317&rect=574,77,1850,1045&auto=compress,enhance '
           style={{
@@ -40,7 +41,8 @@ const Landing = () => {
             top: '150px',
             left: '5px',
           }}
-          onClick={prev}>
+          onClick={prev}
+        >
           ㅁ
         </button>
         <button
@@ -49,7 +51,8 @@ const Landing = () => {
             top: '150px',
             left: '340px',
           }}
-          onClick={next}>
+          onClick={next}
+        >
           ㅁ
         </button>
 
@@ -83,7 +86,8 @@ const Landing = () => {
           backgroundColor: 'white',
           height: '300px',
           marginBottom: '40px',
-        }}>
+        }}
+      >
         <p style={{ width: '305px', margin: '10px auto' }}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos esse
           velit odit, exercitationem animi, dicta ex voluptates consequatur
@@ -98,14 +102,16 @@ const Landing = () => {
       <ButtonBox
         onClick={() => {
           history.push('/signup');
-        }}>
+        }}
+      >
         <Button>시작하기</Button>
       </ButtonBox>
 
       <ButtonBox2
         onClick={() => {
           history.push('/login');
-        }}>
+        }}
+      >
         <Button2>이미 계정이 있어요</Button2>
       </ButtonBox2>
     </React.Fragment>
