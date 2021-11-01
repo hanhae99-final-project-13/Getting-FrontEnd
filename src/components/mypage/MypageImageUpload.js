@@ -11,13 +11,20 @@ const MypageImageUpload = (props) => {
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const [userImage, setUserImage] = React.useState();
 
+  AWS.config.update({
+    region: 'ap-northeast-2',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'ap-northeast-2:3be6a8f1-b813-418a-914b-0707888dcbdc',
+    }),
+  });
+
   const selectFile = (e) => {
     const fileName = e.target.files[0].name.split('.')[0];
     const fileType = e.target.files[0].name.split('.')[1];
     const fileFullName = e.target.files[0].name;
     const file = e.target.files[0];
     const reader = new FileReader();
-    console.log(file);
+    console.log(e.target.files);
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       const imageInfo = {
@@ -28,31 +35,19 @@ const MypageImageUpload = (props) => {
         file,
       };
       setUserImage(imageInfo);
-      console.log(userImage);
     };
-  };
-
-  AWS.config.update({
-    region: 'ap-northeast-2',
-    credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:3be6a8f1-b813-418a-914b-0707888dcbdc',
-    }),
-  });
-
-  const uploadToAws = () => {
     const awsUpload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: 'team13-docking',
-        Key: `${userImage.fileName}.${userImage.fileType}`,
-        Body: userImage.file,
+        Key: `${fileName}.${fileType}`,
+        Body: file,
         ACL: 'public-read',
       },
     });
+
     const promise = awsUpload.promise();
     promise
-      .then((data) => {
-        window.alert('업로드 승공');
-      })
+      .then((data) => {})
       .catch((err) => {
         window.alert('업로드 실패');
       })
@@ -60,7 +55,7 @@ const MypageImageUpload = (props) => {
         dispatch(
           userActions.updateUserInfo({
             ...userInfo,
-            userImgUrl: `https://team13-docking.s3.ap-northeast-2.amazonaws.com/${userImage.fileFullName}`,
+            userImgUrl: `https://team13-docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
       });
@@ -70,13 +65,15 @@ const MypageImageUpload = (props) => {
     <Grid>
       <CameraIcon for='imageSelect' />
       <input
+        id='fileSelect'
         type='file'
         accept='image/*'
         id='imageSelect'
         style={{ display: 'none' }}
-        onChange={selectFile}
+        onChange={(e) => {
+          selectFile(e);
+        }}
       />
-      <button onClick={uploadToAws}>전송</button>
     </Grid>
   );
 };
