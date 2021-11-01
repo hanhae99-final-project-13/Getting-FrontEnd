@@ -19,7 +19,7 @@ const Comment = (props) => {
   };
   const [commentModal, setCommentModal] = React.useState(false);
   const onModal = () => {
-    console.log(commentModal);
+    // console.log(commentModal);
     setCommentModal(!commentModal);
   };
   return (
@@ -38,15 +38,13 @@ const Comment = (props) => {
             borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
             borderRadius='10px'
             display='flex'
-            alignItems='center'
-          >
+            alignItems='center'>
             <div
               style={{
                 width: '100%',
                 height: '40px',
                 display: 'flex',
-              }}
-            >
+              }}>
               <Image />
               <Grid margin='0 0 0 5px'>
                 <div
@@ -54,21 +52,18 @@ const Comment = (props) => {
                     margin: '4px 0',
                     display: 'flex',
                     justifyContent: 'space-between',
-                  }}
-                >
+                  }}>
                   <div style={{ fontSize: '12px' }}>닉네임</div>
                   <div
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-around',
-                    }}
-                  >
+                    }}>
                     <div style={{ fontSize: '12px' }}>얼마 전</div>
                     <div
                       style={{ fontSize: '12px', margin: '0 0 0 8px' }}
-                      onClick={onModal}
-                    >
+                      onClick={onModal}>
                       💛
                     </div>
                   </div>
@@ -93,8 +88,7 @@ const Comment = (props) => {
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',
               boxSizing: 'border-box',
-            }}
-          >
+            }}>
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <button
                 style={{
@@ -106,8 +100,7 @@ const Comment = (props) => {
                   width: '100%',
                   height: '100%',
                 }}
-                onClick={editOn}
-              >
+                onClick={editOn}>
                 수정
               </button>
             </Grid>
@@ -127,8 +120,7 @@ const Comment = (props) => {
                 onClick={() => {
                   window.confirm('정말 삭제하시겠습니까?');
                   commentDelete();
-                }}
-              >
+                }}>
                 삭제
               </button>
             </Grid>
@@ -145,8 +137,7 @@ const Comment = (props) => {
                 }}
                 onClick={() => {
                   setCommentModal(!commentModal);
-                }}
-              >
+                }}>
                 취소
               </button>
             </Grid>

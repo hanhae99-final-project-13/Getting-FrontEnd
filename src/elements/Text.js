@@ -23,6 +23,7 @@ const Text = (props) => {
     _onClick,
     id,
     display,
+    borderBottom,
   } = props;
 
   const styles = {
@@ -45,6 +46,7 @@ const Text = (props) => {
     _onClick: _onClick,
     id: id,
     display: display,
+    borderBottom: borderBottom,
   };
 
   return (
@@ -75,6 +77,7 @@ Text.defaultProps = {
   left: false,
   right: false,
   display: null,
+  borderBottom: null,
   _onClick: () => {},
 };
 
@@ -97,6 +100,7 @@ const TextBox = styled.p`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   display: ${(props) => props.display};
+  border-bottom: ${(props) => props.borderBottom};
 `;
 
 export default Text;
