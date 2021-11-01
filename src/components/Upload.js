@@ -12,6 +12,7 @@ const Upload = (props) => {
     }
     props.setFiles(imgUrlList);
   };
+  console.log(props.files);
   const deleteImg = (e) => {
     console.log(e);
   };
@@ -97,42 +98,43 @@ const Upload = (props) => {
                 </Grid>
               );
             })}
-          {/* if .length > 4 === display:none */}
-          <Grid
-            width='150px'
-            height='150px'
-            bg='white'
-            borderRadius='10px'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            margin='0 10px 0px 0'
-            boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
-            boxSizing='border-box'
-          >
-            <input
-              type='file'
-              multiple
-              accept='image/*'
-              onChange={onloadFile}
-              id='file'
-              style={{ display: 'none' }}
-            />
-            <label for='file' style={{ fontSize: '48px' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: '48px',
-                  width: '150px',
-                  height: '150px',
-                }}
-              >
-                +
-              </div>
-            </label>
-          </Grid>
+          {props.files.length >= 4 ? null : (
+            <Grid
+              width='150px'
+              height='150px'
+              bg='white'
+              borderRadius='10px'
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              margin='0 10px 0px 0'
+              boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
+              boxSizing='border-box'
+            >
+              <input
+                type='file'
+                multiple
+                accept='image/*'
+                onChange={onloadFile}
+                id='file'
+                style={{ display: 'none' }}
+              />
+              <label for='file' style={{ fontSize: '48px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '48px',
+                    width: '150px',
+                    height: '150px',
+                  }}
+                >
+                  +
+                </div>
+              </label>
+            </Grid>
+          )}
         </Grid>
       )}
     </>

@@ -77,164 +77,166 @@ const AddPost = () => {
   };
   return (
     <React.Fragment>
-      <Grid padding='35px' boxSizing='border-box'>
-        <button onClick={addPostCard}>등록완료</button>
+      <Grid width='375px' margin='0 auto'>
+        <Grid padding='35px' boxSizing='border-box'>
+          <button onClick={addPostCard}>등록완료</button>
 
-        <p>이미지</p>
-        <Upload files={files} setFiles={setFiles} />
+          <p>이미지</p>
+          <Upload files={files} setFiles={setFiles} />
 
-        <p>상세 정보</p>
-        <Grid
-          display='flex'
-          padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
-          <input
-            placeholder='견종'
-            value={breed}
-            onChange={(e) => {
-              setBreed(e.target.value);
-            }}
-            style={{ border: 'none', width: '70%' }}
-          />
-          <Grid display='flex' alignItems='center'>
-            남아
-            <Slider sexCheck={sexCheck} sexToggle={sexToggle} />
-            여아
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          padding='15px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
-          <Grid display='flex' justifyContent='space-between'>
+          <p>상세 정보</p>
+          <Grid
+            display='flex'
+            padding='10px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
-              type='number'
-              placeholder='나이'
-              value={age}
+              placeholder='견종'
+              value={breed}
               onChange={(e) => {
-                setAge(e.target.value);
+                setBreed(e.target.value);
               }}
-              style={{ border: 'none', width: '60%' }}
+              style={{ border: 'none', width: '70%' }}
             />
-            <strong style={{ paddingRight: '10px' }}>년생</strong>
+            <Grid display='flex' alignItems='center'>
+              남아
+              <Slider sexCheck={sexCheck} sexToggle={sexToggle} />
+              여아
+            </Grid>
           </Grid>
-          <Grid display='flex' justifyContent='space-between'>
+
+          <Grid
+            display='flex'
+            padding='15px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
+            <Grid display='flex' justifyContent='space-between'>
+              <input
+                type='number'
+                placeholder='나이'
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                }}
+                style={{ border: 'none', width: '60%' }}
+              />
+              <strong style={{ paddingRight: '10px' }}>년생</strong>
+            </Grid>
+            <Grid display='flex' justifyContent='space-between'>
+              <input
+                type='number'
+                placeholder='체중'
+                value={weight}
+                onChange={(e) => {
+                  setWeight(e.target.value);
+                }}
+                style={{ border: 'none', width: '60%' }}
+              />
+              <strong style={{ paddingRight: '10px' }}>kg</strong>
+            </Grid>
+          </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input
-              type='number'
-              placeholder='체중'
-              value={weight}
+              placeholder='발견장소'
+              value={lostLocation}
               onChange={(e) => {
-                setWeight(e.target.value);
+                setLostLocation(e.target.value);
               }}
-              style={{ border: 'none', width: '60%' }}
+              style={{ border: 'none' }}
             />
-            <strong style={{ paddingRight: '10px' }}>kg</strong>
+          </Grid>
+          <Grid
+            display='flex'
+            padding='10px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
+            <input
+              placeholder='보호장소'
+              value={ownerType}
+              style={{ border: 'none', width: '70%' }}
+            />
+            <Grid display='flex' alignItems='center'>
+              개인
+              <Slider
+                ownerTypeCheck={ownerTypeCheck}
+                ownerTypeToggle={ownerTypeToggle}
+              />
+              보호소
+            </Grid>
+          </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <input
+              placeholder='주소'
+              type='text'
+              value={address + siAddress}
+              onClick={addressSelect}
+              style={{ border: 'none' }}
+            />
+            {addressModal ? (
+              <AddressSelector
+                visible={addressSelect}
+                setAddress={setAddress}
+                siAddress={siAddress}
+                setSiAddress={setSiAddress}
+                addressModal={addressModal}
+              />
+            ) : null}
+          </Grid>
+          <Grid
+            display='flex'
+            padding='10px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
+            <input
+              placeholder='정보출처'
+              value={tag}
+              style={{ border: 'none', width: '50%' }}
+            />
+            <Grid display='flex' alignItems='center'>
+              직접등록
+              <Slider tagCheck={tagCheck} tagToggle={tagToggle} />
+              가져온정보
+            </Grid>
+          </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <input
+              placeholder='SNS주소나 URL주소를 입력해주세요'
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+              }}
+              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
+            />
+          </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <input
+              placeholder='연락처 정보'
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
+            />
+          </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <textarea
+              placeholder='특이사항'
+              value={extra}
+              onChange={(e) => {
+                setExtra(e.target.value);
+              }}
+              style={{
+                width: '100%',
+                height: '200px',
+                border: 'none',
+                resize: 'none',
+                boxSizing: 'border-box',
+              }}
+            />
           </Grid>
         </Grid>
-        <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-          <input
-            placeholder='발견장소'
-            value={lostLocation}
-            onChange={(e) => {
-              setLostLocation(e.target.value);
-            }}
-            style={{ border: 'none' }}
-          />
-        </Grid>
-        <Grid
-          display='flex'
-          padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
-          <input
-            placeholder='보호장소'
-            value={ownerType}
-            style={{ border: 'none', width: '70%' }}
-          />
-          <Grid display='flex' alignItems='center'>
-            개인
-            <Slider
-              ownerTypeCheck={ownerTypeCheck}
-              ownerTypeToggle={ownerTypeToggle}
-            />
-            보호소
-          </Grid>
-        </Grid>
-        <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-          <input
-            placeholder='주소'
-            type='text'
-            value={address + siAddress}
-            onClick={addressSelect}
-            style={{ border: 'none' }}
-          />
-          {addressModal ? (
-            <AddressSelector
-              visible={addressSelect}
-              setAddress={setAddress}
-              siAddress={siAddress}
-              setSiAddress={setSiAddress}
-              addressModal={addressModal}
-            />
-          ) : null}
-        </Grid>
-        <Grid
-          display='flex'
-          padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
-          <input
-            placeholder='정보출처'
-            value={tag}
-            style={{ border: 'none', width: '50%' }}
-          />
-          <Grid display='flex' alignItems='center'>
-            직접등록
-            <Slider tagCheck={tagCheck} tagToggle={tagToggle} />
-            가져온정보
-          </Grid>
-        </Grid>
-        <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-          <input
-            placeholder='SNS주소나 URL주소를 입력해주세요'
-            value={url}
-            onChange={(e) => {
-              setUrl(e.target.value);
-            }}
-            style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
-          />
-        </Grid>
-        <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-          <input
-            placeholder='연락처 정보'
-            value={phone}
-            onChange={(e) => {
-              setPhone(e.target.value);
-            }}
-            style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
-          />
-        </Grid>
-        <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-          <textarea
-            placeholder='특이사항'
-            value={extra}
-            onChange={(e) => {
-              setExtra(e.target.value);
-            }}
-            style={{
-              width: '100%',
-              height: '200px',
-              border: 'none',
-              resize: 'none',
-              boxSizing: 'border-box',
-            }}
-          />
-        </Grid>
+        <Footer></Footer>
       </Grid>
-      <Footer></Footer>
     </React.Fragment>
   );
 };
