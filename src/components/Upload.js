@@ -6,7 +6,7 @@ const Upload = (props) => {
     const selectImg = e.target.files;
     const imgUrlList = [...props.files];
 
-    for (let i = 0; i < selectImg.length; i++) {
+    for (let i = 0; i < 4; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
       imgUrlList.push(nowImgUrl);
     }
@@ -97,6 +97,7 @@ const Upload = (props) => {
                 </Grid>
               );
             })}
+          {/* if .length > 4 === display:none */}
           <Grid
             width='150px'
             height='150px'

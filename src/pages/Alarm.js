@@ -38,6 +38,7 @@ const Alarm = () => {
           </button>
         </Grid>
 
+        {/* 삼항연산자 넣을 곳 알람.length === 0 일때 ?알람없음 이미지 화면 : 아닐때 알람 리스트화면  */}
         <Grid
           bg='white'
           height='60px'
@@ -60,53 +61,28 @@ const Alarm = () => {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
 
+      {/* 알람없을때 화면 */}
+      <Grid display='flex' justifyContent='center' alignItems='center'>
         <Grid
-          bg='#white'
-          height='60px'
-          padding='10px 5px'
-          borderRadius='15px'
-          width='auto'
-          display='flex'
-          alignItems='center'
-          margin='15px 0'
-          boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
-        >
-          <Image margin='0 10px' size='50' />
-          <Grid display='flex' flexDirection='column' boxSizing='border-box'>
-            <Grid fontSize='12px' color='darkgrey'>
-              30분 전
-            </Grid>
-            <Grid>{'닉네임'}님, 새로운 반려친구가 뭐시깽이~</Grid>
-            <Grid fontSize='12px' color='darkgrey'>
-              {'랜덤메세지 뭐시깽이'}
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid
+          width='260px'
+          height='260px'
           bg='white'
-          height='60px'
-          padding='10px 5px'
-          borderRadius='15px'
-          width='auto'
-          display='flex'
-          alignItems='center'
-          margin='15px 0'
-          boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+          borderRadius='200px'
+          color='black'
+          boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         >
-          <Image margin='0 10px' size='50' />
-          <Grid display='flex' flexDirection='column' boxSizing='border-box'>
-            <Grid fontSize='12px' color='darkgrey'>
-              30분 전
-            </Grid>
-            <Grid>{'닉네임'}님, 새로운 반려친구가 뭐시깽이~</Grid>
-            <Grid fontSize='12px' color='darkgrey'>
-              {'랜덤메세지 뭐시깽이'}
-            </Grid>
-          </Grid>
+          알림 없을 경우 이미지
         </Grid>
       </Grid>
+      <Grid display='flex' justifyContent='center' margin='10px 0'>
+        <Text size='20px'>
+          <span style={{ fontWeight: '800', fontSize: '20px' }}>최근 알림</span>
+          이 없습니다!
+        </Text>
+      </Grid>
+
       {/* 전체삭제 모달 */}
       {deleteModal ? (
         <div
