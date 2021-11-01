@@ -23,7 +23,7 @@ const Main = () => {
   }, []);
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto'>
+      <Grid width='auto' padding='20px' overflow='auto' margin='50px 0 0 0'>
         <Grid margin='0 0 40px 0'>
           <MainHello />
         </Grid>

@@ -43,7 +43,7 @@ const Mypage = () => {
   };
   return (
     <Grid>
-      <Grid padding='36px' width='auto'>
+      <Grid margin='40px 0 0 0' padding='36px' width='auto'>
         <MypageUserInfo />
         <MypageCategory
           showWishedList={showWishedList}

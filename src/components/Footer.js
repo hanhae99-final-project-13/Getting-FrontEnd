@@ -8,9 +8,9 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faHouseUser } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
-import { history } from '../redux/configureStore';
-
+import { useHistory } from 'react-router-dom';
 const Footer = (props) => {
+  const history = useHistory();
   return (
     <React.Fragment>
       <Grid
@@ -27,6 +27,9 @@ const Footer = (props) => {
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
+          _onClick={() => {
+            alert('아직 페이지 준비중~~');
+          }}
         >
           <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
@@ -84,6 +87,9 @@ const Footer = (props) => {
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
+          _onClick={() => {
+            history.push('/setting');
+          }}
         >
           <FontAwesomeIcon icon={faHammer} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>

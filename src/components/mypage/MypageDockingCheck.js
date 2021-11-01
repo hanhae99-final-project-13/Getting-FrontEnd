@@ -52,7 +52,7 @@ const MypageDockingCheck = (props) => {
     }
   };
   return (
-    <Grid display={props.display} margin='22px 0 0 0'>
+    <Grid display={props.display} margin='22px 0 80px 0'>
       <CategoryBox>
         <span
           className='category active'
