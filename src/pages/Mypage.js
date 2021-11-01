@@ -25,7 +25,6 @@ const Mypage = () => {
     setDockingCheck('none');
     setWishedListDisplay('block');
     a();
-    dispatch(postActions.changeDeleteMode(false));
     dispatch(postActions.changeCardCover(false));
   };
   const showadoptionCheck = (a) => {
@@ -33,16 +32,14 @@ const Mypage = () => {
     setDockingCheck('none');
     setAdoptionCheckDisplay('black');
     a();
-    dispatch(postActions.changeDeleteMode(false));
-    dispatch(postActions.changeCardCover(true));
+    dispatch(postActions.changeCardCover(false));
   };
   const showaDockingCheck = (a) => {
     setWishedListDisplay('none');
     setAdoptionCheckDisplay('none');
     setDockingCheck('block');
     a();
-    dispatch(postActions.changeDeleteMode(false));
-    dispatch(postActions.changeCardCover(false));
+    dispatch(postActions.changeCardCover(true));
   };
   return (
     <Grid>
@@ -50,12 +47,12 @@ const Mypage = () => {
         <MypageUserInfo />
         <MypageCategory
           showWishedList={showWishedList}
-          showadoptionCheck={showadoptionCheck}
           showaDockingCheck={showaDockingCheck}
+          showadoptionCheck={showadoptionCheck}
         />
         <MypageWishedList display={wishedListDisplay} />
-        <MypageAdoptionCheck display={adoptionCheckDisplay} />
         <MypageDockingCheck display={dockingCheck} />
+        <MypageAdoptionCheck display={adoptionCheckDisplay} />
       </Grid>
       <Grid>
         <Footer></Footer>

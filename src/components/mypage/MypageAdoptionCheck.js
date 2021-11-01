@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Grid, Text } from '../../elements';
 import { MyWriteList, ReceivedAdoption } from '.';
+import { postActions } from '../../redux/modules/post';
 
 const MypageAdoptionCheck = (props) => {
+  const dispatch = useDispatch();
+  const isDeleteMode = useSelector((state) => state.post.isDeleteMode);
   const myWriteList = React.useRef();
 
   const [myWriteListDisplay, setMyWriteListDisplay] = React.useState();
@@ -17,12 +21,22 @@ const MypageAdoptionCheck = (props) => {
     myWriteList.current.classList.add('active');
     setRceivedAdoptionDisplay('none');
     setMyWriteListDisplay('block');
+    dispatch(postActions.changeDeleteMode(true));
   };
   const showReceivedAdoption = () => {
     myWriteList.current.classList.remove('active');
     receivedAdoption.current.classList.add('active');
     setMyWriteListDisplay('none');
     setRceivedAdoptionDisplay('block');
+    dispatch(postActions.changeDeleteMode(false));
+  };
+
+  const changeDeleteMode = () => {
+    if (isDeleteMode === false) {
+      dispatch(postActions.changeDeleteMode(true));
+    } else {
+      dispatch(postActions.changeDeleteMode(false));
+    }
   };
 
   return (
@@ -42,6 +56,13 @@ const MypageAdoptionCheck = (props) => {
         >
           받은 입양 신청
         </span>
+        <span
+          className='deleteMyRequest'
+          style={{ display: myWriteListDisplay }}
+          onClick={changeDeleteMode}
+        >
+          {isDeleteMode ? '완료' : '수정하기'}
+        </span>
       </CategoryBox>
       <MyWriteList display={myWriteListDisplay} />
       <ReceivedAdoption display={rceivedAdoptionDisplay} />
@@ -50,6 +71,7 @@ const MypageAdoptionCheck = (props) => {
 };
 
 const CategoryBox = styled.div`
+  position: relative;
   display: flex;
   margin: 0 0 22px 0;
 
@@ -62,6 +84,13 @@ const CategoryBox = styled.div`
     color: #000;
     font-weight: 800;
     border-bottom: 2px solid #ff8888;
+  }
+  .deleteMyRequest {
+    position: absolute;
+    right: 0;
+    color: #4a4a4a;
+    font-size: 12px;
+    font-weight: 800;
   }
 `;
 

@@ -10,7 +10,6 @@ const MypageImageUpload = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const [userImage, setUserImage] = React.useState();
-  const [adoptionNoDisplay, setAdoptionNoDisplay] = React.useState();
 
   AWS.config.update({
     region: 'ap-northeast-2',
@@ -35,8 +34,7 @@ const MypageImageUpload = (props) => {
         fileFullName,
         file,
       };
-      console.log(imageInfo);
-      setUserImage('imageInfo');
+      setUserImage(imageInfo);
     };
     const awsUpload = new AWS.S3.ManagedUpload({
       params: {
@@ -49,9 +47,7 @@ const MypageImageUpload = (props) => {
 
     const promise = awsUpload.promise();
     promise
-      .then((data) => {
-        window.alert('업로드 승공');
-      })
+      .then((data) => {})
       .catch((err) => {
         window.alert('업로드 실패');
       })
@@ -63,7 +59,6 @@ const MypageImageUpload = (props) => {
           }),
         );
       });
-    console.log(userImage);
   };
 
   return (
@@ -77,8 +72,6 @@ const MypageImageUpload = (props) => {
         style={{ display: 'none' }}
         onChange={(e) => {
           selectFile(e);
-          setUserImage('제발 좀');
-          console.log(userImage);
         }}
       />
     </Grid>

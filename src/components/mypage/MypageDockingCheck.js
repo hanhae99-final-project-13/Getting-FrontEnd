@@ -23,6 +23,7 @@ const MypageDockingCheck = (props) => {
     setAdoptionOkDisplay('none');
     setAdoptionNoDisplay('none');
     setAdoptionWaitDisplay('block');
+    dispatch(postActions.changeCardCover(true));
   };
   const showAdoptionOk = () => {
     adoptionNo.current.classList.remove('active');
@@ -31,6 +32,7 @@ const MypageDockingCheck = (props) => {
     setAdoptionNoDisplay('none');
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('block');
+    dispatch(postActions.changeCardCover(false));
   };
   const showAdoptionNo = () => {
     adoptionWait.current.classList.remove('active');
@@ -39,6 +41,7 @@ const MypageDockingCheck = (props) => {
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('none');
     setAdoptionNoDisplay('block');
+    dispatch(postActions.changeCardCover(false));
   };
 
   const changeDeleteMode = () => {
@@ -70,7 +73,6 @@ const MypageDockingCheck = (props) => {
           onClick={changeDeleteMode}
         >
           {isDeleteMode ? '완료' : '삭제하기'}
-          {isDeleteMode}
         </span>
       </CategoryBox>
       <AdoptionWait display={adoptionWaitDisplay} />
