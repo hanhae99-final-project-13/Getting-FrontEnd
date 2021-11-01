@@ -65,12 +65,14 @@ const Modal = (props) => {
   const [genderToggle, setGenderToggle] = React.useState(false);
   const checkGender = () => {
     setGenderToggle(!genderToggle);
+    console.log(genderToggle);
     if (genderToggle === true) {
       setGender('M');
     } else {
       setGender('F');
     }
   };
+  console.log(genderToggle);
 
   // 주소토글
 
