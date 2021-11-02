@@ -74,8 +74,8 @@ const LogOutDB = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem('USER_TOKEN');
     dispatch(LogOut());
-    window.alert('로그아웃 되었습니다!');
-    history.push('/');
+    imageSuccessAlert('로그아웃 되셨습니다');
+    history.push('/main');
   };
 };
 
@@ -184,6 +184,7 @@ const actionCreators = {
   LogOutDB,
   LoginCheck,
   KakaoLogin,
+  updateUserInfo,
 };
 
 export { actionCreators };

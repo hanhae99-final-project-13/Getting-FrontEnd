@@ -4,13 +4,21 @@ import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
 const GET_WISHED = 'GET_WISED';
+const CHANGE_DELETEMODE = 'CHANGE_DELETEMODE';
+const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 const getWished = createAction(GET_WISHED, (postList) => ({ postList }));
+const changeDeleteMode = createAction(CHANGE_DELETEMODE, (value) => ({
+  value,
+}));
+const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
 
 const initialState = {
   postList: [],
   wishedPostList: [],
+  isDeleteMode: false,
+  isAdoptionWait: false,
 };
 
 const addPostToAxios = (postInfo) => {
@@ -46,6 +54,14 @@ export default handleActions(
       produce(state, (darft) => {
         darft.postList = action.payload.postList;
       }),
+    [CHANGE_DELETEMODE]: (state, action) =>
+      produce(state, (darft) => {
+        darft.isDeleteMode = action.payload.value;
+      }),
+    [CHANGE_CARDCOVER]: (state, action) =>
+      produce(state, (darft) => {
+        darft.isAdoptionWait = action.payload.value;
+      }),
   },
   initialState,
 );
@@ -53,6 +69,8 @@ export default handleActions(
 const postActions = {
   getPostMW,
   addPostToAxios,
+  changeDeleteMode,
+  changeCardCover,
 };
 
 export { postActions };

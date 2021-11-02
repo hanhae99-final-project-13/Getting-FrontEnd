@@ -2,21 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Slider = (props) => {
-  const p = props;
-  const switchClick = () => {
-    if (p.sexCheck) {
-      p.sexCheck(!p.sexToggle);
-    } else if (p.ownerTypeCheck) {
-      p.ownerTypeCheck(!p.ownerTypeToggle);
-    } else if (p.tagCheck) {
-      p.tagCheck(!p.tagToggle);
-    }
-  };
+  const { _onClick } = props;
+
+  // const switchClick = () => {
+  //   if (p.sexCheck) {
+  //     p.sexCheck(!p.sexToggle);
+  //   } else if (p.ownerTypeCheck) {
+  //     p.ownerTypeCheck(!p.ownerTypeToggle);
+  //   } else if (p.tagCheck) {
+  //     p.tagCheck(!p.tagToggle);
+  //   }
+  // };
 
   return (
     <React.Fragment>
       <SwitchBox>
-        <CheckBox type='checkbox' onClick={switchClick} />
+        <CheckBox type='checkbox' onClick={_onClick} />
 
         <Switch />
       </SwitchBox>
@@ -41,7 +42,6 @@ const Switch = styled.span`
   right: 0;
   bottom: 0;
   background-color: #ff6666;
-
   &::after {
     content: '';
     display: block;

@@ -18,6 +18,7 @@ import Header from '../components/Header';
 import Detail from '../pages/Detail';
 import Intro from '../pages/Intro';
 import Alarm from '../pages/Alarm';
+import Setting from '../components/Setting';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -36,6 +37,7 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Header></Header>
         <Route path='/header' exact component={Header} />
         <Route path='/' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />
@@ -49,6 +51,7 @@ function App() {
         <Route path='/mypage' exact component={Mypage} />
         <Route path='/intro' exact component={Intro} />
         <Route path='/alarm' exact component={Alarm} />
+        <Route path='/setting' exact component={Setting} />
       </ConnectedRouter>
     </React.Fragment>
   );

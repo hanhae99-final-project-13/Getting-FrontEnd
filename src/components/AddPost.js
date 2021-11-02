@@ -69,6 +69,8 @@ const AddPost = () => {
     img: img,
     isAdopted: false,
   };
+
+  console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
@@ -82,7 +84,6 @@ const AddPost = () => {
       <Grid width='375px' margin='0 auto'>
         <Grid padding='35px' boxSizing='border-box'>
           <button onClick={addPostCard}>등록완료</button>
-          {/* <button onClick={}>등록완료</button> */}
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
 
@@ -137,15 +138,25 @@ const AddPost = () => {
               <strong style={{ paddingRight: '10px' }}>kg</strong>
             </Grid>
           </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='발견장소'
-              value={lostLocation}
-              onChange={(e) => {
-                setLostLocation(e.target.value);
-              }}
-              style={{ border: 'none' }}
-            />
+          <Grid
+            padding='15px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          ></Grid>
+          <Grid
+            display='flex'
+            padding='15px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
+            <Grid display='flex' justifyContent='space-between'>
+              <input
+                placeholder='발견장소'
+                value={lostLocation}
+                onChange={(e) => {
+                  setLostLocation(e.target.value);
+                }}
+                style={{ border: 'none' }}
+              />
+            </Grid>
           </Grid>
           <Grid
             display='flex'
@@ -220,6 +231,36 @@ const AddPost = () => {
               style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
             />
           </Grid>
+
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <input
+              placeholder='발견장소'
+              value={lostLocation}
+              onChange={(e) => {
+                setLostLocation(e.target.value);
+              }}
+              style={{ border: 'none' }}
+            />
+          </Grid>
+
+          <Grid
+            display='flex'
+            padding='10px 0'
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
+            <input
+              placeholder='보호장소'
+              value={ownerType}
+              style={{ border: 'none', width: '70%' }}
+            />
+            <Grid display='flex' alignItems='center'>
+              개인
+              <Slider
+                _onClick={ownerTypeCheck}
+                ownerTypeToggle={ownerTypeToggle}
+              />
+            </Grid>
+          </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <textarea
               placeholder='특이사항'
@@ -235,6 +276,23 @@ const AddPost = () => {
                 boxSizing: 'border-box',
               }}
             />
+          </Grid>
+        </Grid>
+
+        <Grid
+          display='flex'
+          padding='10px 0'
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'
+        >
+          <input
+            placeholder='정보출처'
+            value={tag}
+            style={{ border: 'none', width: '50%' }}
+          />
+          <Grid display='flex' alignItems='center'>
+            직접등록
+            <Slider _onClick={tagCheck} tagToggle={tagToggle} />
+            가져온정보
           </Grid>
         </Grid>
         <Footer></Footer>

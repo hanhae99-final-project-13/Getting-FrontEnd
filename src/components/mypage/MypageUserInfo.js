@@ -8,7 +8,6 @@ import { MypageImageUpload } from '.';
 const MypageUserInfo = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const [preview, setPreview] = React.useState();
   return (
     <Container>
       <Grid display='flex' width='auto' height='auto'>

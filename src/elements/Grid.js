@@ -44,6 +44,7 @@ const Grid = (props) => {
     is_flex,
     color,
     fontSize,
+    backdropFilter,
   } = props;
 
   const styles = {
@@ -86,6 +87,7 @@ const Grid = (props) => {
     is_flex,
     color,
     fontSize,
+    backdropFilter,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -133,6 +135,7 @@ Grid.defaultProps = {
   is_flex: null,
   color: null,
   fontSize: null,
+  backdropFilter: null,
 };
 
 const GridBox = styled.div`
@@ -174,6 +177,7 @@ const GridBox = styled.div`
   z-index: ${(props) => props.zIndex};
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
+  backdrop-filter: ${(props) => props.backdropFilter};
   font-family: 'NanumSquareR';
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}

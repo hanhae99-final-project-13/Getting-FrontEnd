@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,19 +8,21 @@ import { Grid, Image, Text } from '../elements';
 import { postActions } from '../redux/modules/post';
 
 const Card = (props) => {
-  const { margin, width, height } = props;
+  const { margin, width, imageHeight } = props;
   const dispatch = useDispatch();
+  const isDeleteMode = useSelector((state) => state.post.isDeleteMode);
+  const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
   const postList = useSelector((state) => state.post.postList);
+  const currentUrl = document.location.href.split('/').reverse()[0];
 
   const goDetail = () => {
-    history.push('/');
+    // console.log(url);
   };
 
   return (
     <Grid
       position='relative'
       width={width ? width : '180px'}
-      height={height}
       padding='1rem'
       borderRadius='10px'
       margin={margin}
@@ -29,12 +32,40 @@ const Card = (props) => {
       <Tag>
         <ElP>임시보호중</ElP>
       </Tag>
-      <ImageBox />
+      {isDeleteMode && <DeleteButton />}
+      <ImageBox imageHeight={imageHeight}>
+        {isAdoptionWait && (
+          <CardCover imageHeight={imageHeight}>
+            <Text margin='0' size='12px' weight='700' color='white'>
+              잠시 살펴보고 있어요. 조금만 기다려주세요!
+            </Text>
+            <Grid
+              display='flex'
+              position='absolute'
+              bottom='11px'
+              right='9px'
+              alignItems='center'
+              width='auto'
+              height='auto'
+            >
+              <Image size='12' margin='0' />
+              <Text margin='0' size='12px' weight='700' color='white'>
+                신청날짜
+              </Text>
+              <Text margin='0' size='12px' weight='700' color='white'>
+                2021.10.27
+              </Text>
+            </Grid>
+          </CardCover>
+        )}
+      </ImageBox>
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' size='14px' bold>
+        <Text margin='0 10px 0 0' size='14px' bold>
           닥스훈트
         </Text>
-        <Image size='8' />
+        <Text margin='0' size='14px'>
+          (남아/2018년생)
+        </Text>
       </Grid>
       <Grid display='flex' width='auto'>
         <Image size='8' />
@@ -69,13 +100,43 @@ const Tag = styled.div`
 `;
 
 const ImageBox = styled.div`
+  position: relative;
   width: 100%;
-  height: 100px;
+  ${(props) =>
+    props.imageHeight ? `height: ${props.imageHeight};` : `height: 100px;`}
   background: url('http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg')
     no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 5px;
+  border-radius: 10px;
+`;
+
+const DeleteButton = styled.div`
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  right: 0;
+  border-radius: 14px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cancel_icon.svg/1200px-Cancel_icon.svg.png')
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+`;
+
+const CardCover = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  ${(props) =>
+    props.imageHeight ? `height: ${props.imageHeight};` : `height: 100px;`}
+  background-color: rgba(49, 49, 49, 0.7);
+  border-radius: 10px;
 `;
 
 export default Card;

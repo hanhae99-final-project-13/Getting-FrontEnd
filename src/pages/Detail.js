@@ -2,7 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
+import { useDispatch } from 'react-redux';
+import Modal from '../components/Modal';
 const Detail = () => {
+  //입양신청하기 modal
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <React.Fragment>
       <Grid width='375px' margin='0 auto'>
@@ -158,11 +169,11 @@ const Detail = () => {
           </Grid>
         </Grid>
 
-        {/* <Grid width='auto' padding='0px 46px 40px 46px'> */}
         <p style={{ padding: '0 46px' }}>댓글😁</p>
 
         <CommentList />
-        {/* </Grid> */}
+
+        {modalOpen ? <Modal close={closeModal}></Modal> : ' '}
       </Grid>
     </React.Fragment>
   );
