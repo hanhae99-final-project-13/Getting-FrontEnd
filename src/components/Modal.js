@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Grid, Text, Input } from '../elements';
-import Slider from './Slider';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import AddressSelector from './AddressSelector';
-import Footer from './Footer';
 
+import Slider from './Slider';
+import AddressSelector from './AddressSelector';
+import Upload2 from './Upload2';
+import Swal from 'sweetalert2';
+
+import Footer from './Footer';
 import { useDispatch } from 'react-redux';
 
 const Modal = (props) => {
+  // s3에 이미지 업로드하는 자식함수
+  const sampleRef = useRef();
+
   const dispatch = useDispatch();
 
   // 정보입력창 여는 토글
@@ -41,7 +48,6 @@ const Modal = (props) => {
   const [roomUrl, setRoomUrl] = React.useState('');
 
   // 서버전달 데이터
-
   const data = {
     name: name,
     birthYear: birthYear,
@@ -58,7 +64,6 @@ const Modal = (props) => {
     bark: bark,
     roomUrl: roomUrl,
   };
-
   console.log(data);
 
   // 성별토글
@@ -75,7 +80,6 @@ const Modal = (props) => {
   console.log(genderToggle);
 
   // 주소토글
-
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
@@ -107,13 +111,34 @@ const Modal = (props) => {
 
   //입양신청버튼
   const applyPoster = () => {
-    dispatch();
+    Swal.fire({
+      title: '입양을 신청하시면 되돌릴 수 없습니다',
+      text: '신중하게 선택해주세요:)',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '승인',
+      cancelButtonText: '취소',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '입양신청이 완료되었습니다.',
+          '임보자님의 연락을 기다려주세요!',
+          'success',
+        );
+        // sampleRef.current.upload();
+        // dispatch()
+      }
+    });
   };
 
   return (
     <React.Fragment>
       <Grid position='fixed' top='60px' left='0' zIndex='999'>
         <Grid
+          margin='0 auto'
+          width='375px'
           bg='#FFFFFF'
           backdropFilter='blur(20px)'
           border='none'
@@ -223,20 +248,7 @@ const Modal = (props) => {
                   setPhone(e.target.value);
                 }}
               />
-              {/* <Input
-                bg='#FFFFFF'
-                width='100%'
-                border='none'
-                border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-                padding='16px'
-                box-sizing
-                placeholder='거주지를 입력해 주세요'
-                placeholder_color='#DFDFDF'
-                type='password'
-                name='password'
-                // value={password}
-                // _onChange={handleForm}
-              /> */}
+
               <Grid
                 bg='#FFFFFF'
                 width='100%'
@@ -368,22 +380,7 @@ const Modal = (props) => {
                   setBark(e.target.value);
                 }}
               />
-
-              <Input
-                bg='#FFFFFF'
-                width='100%'
-                border='none'
-                border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-                padding='16px'
-                box-sizing
-                placeholder='반려동물이 지내게될 곳을 올려주세요(이미지파일 업로드로 바꿀예정)'
-                placeholder_color='#DFDFDF'
-                name='roomUrl'
-                value={roomUrl}
-                _onChange={(e) => {
-                  setRoomUrl(e.target.value);
-                }}
-              />
+              <Upload2 ref={sampleRef} setRoomUrl={setRoomUrl}></Upload2>
             </Grid>
           ) : (
             ' '
@@ -403,16 +400,21 @@ const Modal = (props) => {
           </Grid>
 
           {reasonToggle ? (
-            <Grid>
+            <Grid
+              boxSizing='border-box'
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              height='250px'>
               <Textarea
                 name='Reason'
                 value={reason}
                 onChange={(e) => {
                   setReason(e.target.value);
                 }}
-                cols='35'
-                rows='15'
-                placeholder='500자이상 적어주세요'></Textarea>
+                cols='40'
+                rows='13'
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           ) : (
             ''
@@ -432,7 +434,7 @@ const Modal = (props) => {
             alignItems='center'
             top='90px'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-            <Text color='white' _onClick={() => {}}>
+            <Text color='white' _onClick={applyPoster}>
               입양 신청하기
             </Text>
           </Grid>
@@ -446,7 +448,6 @@ const Modal = (props) => {
 const Textarea = styled.textarea`
   border-radius: 15px;
   background-color: #f7f7f7;
-  width: auto;
   border: none;
   padding: 19px;
   box-sizing: border-box;
