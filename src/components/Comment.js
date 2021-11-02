@@ -84,7 +84,7 @@ const Comment = (props) => {
             style={{
               backgroundColor: 'white',
               boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-              width: '100%',
+              width: '375px',
               height: '200px',
               position: 'fixed',
               bottom: '0',

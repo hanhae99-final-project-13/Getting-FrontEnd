@@ -32,8 +32,8 @@ const Login = (props) => {
   };
 
   return (
-    <Grid width='80vw' margin='120px auto 0' position='relative'>
-      <Grid width='80vw'>
+    <Grid width='305px' margin='120px auto' position='relative'>
+      <Grid>
         <Grid
           position='absolute'
           left='180px'
@@ -41,7 +41,8 @@ const Login = (props) => {
           width='8px'
           height='8px'
           bg='#FF6666'
-          borderRadius='4px'></Grid>
+          borderRadius='4px'
+        ></Grid>
 
         <Text weight='800' align='center' size='35px' margin='0 0 12px 0'>
           도킹
@@ -52,7 +53,8 @@ const Login = (props) => {
           weight='500'
           size='12px'
           margin='0px'
-          line_height='18px'>
+          line_height='18px'
+        >
           반려친구와 내가
           <span style={{ fontWeight: 'bold' }}>이어지는 순간,</span> <br />내 손
           안에
@@ -61,8 +63,8 @@ const Login = (props) => {
         </Text>
       </Grid>
 
-      <Grid width='80vw' margin='37px 0 0px 0'>
-        <Grid margin='0 0 0 6px'>
+      <Grid margin='37px 0 0px 0'>
+        <Grid>
           <Text size='18px' weight='800' margin='0'>
             도킹하기
           </Text>
@@ -73,7 +75,6 @@ const Login = (props) => {
             bg='#FFFFFF'
             border='0.3px solid rgba(0, 0, 0, 0.05)'
             border_radius='25px'
-            width='100%'
             padding='16px'
             box-sizing
             value={id}
@@ -89,7 +90,6 @@ const Login = (props) => {
             type='password'
             border=' 0.3px solid rgba(0, 0, 0, 0.05)'
             border_radius='25px'
-            width='100%'
             padding='16px'
             box-sizing
             value={pw}
@@ -99,7 +99,7 @@ const Login = (props) => {
           />
         </Grid>
 
-        <Grid margin=' 12px 0 0 0' width='80vw'>
+        <Grid margin=' 12px 0 0 0' /*  width='375px' */>
           <Button
             size='16px'
             weight='600'
@@ -108,7 +108,8 @@ const Login = (props) => {
             bg='#FF6666'
             border='none'
             border_radius='25px'
-            onClick={onClickButton}>
+            onClick={onClickButton}
+          >
             로그인하기
           </Button>
         </Grid>
@@ -125,8 +126,8 @@ const Login = (props) => {
         <Hr margin='14px 0 0 0' />
       </Grid>
 
-      <Grid width='80vw' margin='22px 0 0px 0'>
-        <Grid margin='0 0 0 6px'>
+      <Grid margin='22px 0 0px 0'>
+        <Grid margin='0 0 0 0px'>
           <Text size='14px' bold margin='0' color='#DFDFDF'>
             더 빠르게
             <Span weight='700'> 도킹</Span>
@@ -145,7 +146,8 @@ const Login = (props) => {
             border_radius='25px'
             onClick={() => {
               window.location.href = KAKAO_AUTH_URL;
-            }}>
+            }}
+          >
             카카오톡으로 시작하기
           </Button>
 
@@ -160,7 +162,8 @@ const Login = (props) => {
               border_radius='25px'
               onClick={() => {
                 history.push('/signup');
-              }}>
+              }}
+            >
               메일로 회원가입하기
             </Button>
           </Grid>

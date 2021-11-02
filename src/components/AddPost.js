@@ -1,4 +1,5 @@
 import React from 'react';
+import AWS from 'aws-sdk';
 import { useDispatch } from 'react-redux';
 import { Grid, Text } from '../elements/index';
 import Slider from './Slider';
@@ -20,6 +21,7 @@ const AddPost = () => {
   const [tag, setTag] = React.useState('직접등록');
   const [phone, setPhone] = React.useState('');
   const [extra, setExtra] = React.useState('');
+  const [img, setImg] = React.useState('');
 
   const [sexToggle, setSexToggle] = React.useState(false);
   const [ownerTypeToggle, setOwnerTypeToggle] = React.useState(false);
@@ -64,7 +66,7 @@ const AddPost = () => {
     tag: tag,
     phone: phone,
     extra: extra,
-    img: files,
+    img: img,
     isAdopted: false,
   };
   const [addressModal, setAddressModal] = React.useState(false);
@@ -80,9 +82,9 @@ const AddPost = () => {
       <Grid width='375px' margin='0 auto'>
         <Grid padding='35px' boxSizing='border-box'>
           <button onClick={addPostCard}>등록완료</button>
-
+          {/* <button onClick={}>등록완료</button> */}
           <p>이미지</p>
-          <Upload files={files} setFiles={setFiles} />
+          <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
 
           <p>상세 정보</p>
           <Grid
