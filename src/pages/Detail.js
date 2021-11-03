@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
-import Modal from '../components/Modal';
+import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
 import { postActions } from '../redux/modules/post';
 
 const Detail = (props) => {
@@ -30,138 +30,142 @@ const Detail = (props) => {
 
   return (
     <React.Fragment>
-      <Grid width='auto' padding='0 46px' margin='80px 0 0 0'>
-        <p>저와 친구하실래요?😁</p>
-
-        <div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '80px',
-              height: '30px',
-              borderRadius: '15px',
-              backgroundColor: 'white',
-              top: '40px',
-              left: '50px',
-              marginBottom: '5px',
-            }}
-          >
-            {post.post.ownerType}
-          </div>
-          <img
-            style={{
-              marginBottom: '15px',
-              borderRadius: '10px',
-              width: '283px',
-              height: '145px',
-              objectFit: 'cover',
-            }}
-            src={post.post.img}
-          />
-        </div>
-      </Grid>
-      <Grid
-        width='280px'
-        margin='0 auto'
-        padding='15px 25px'
-        boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-        borderRadius='10px'
-      >
-        <Grid
-          display='flex'
-          margin='10px 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid width='50%'>
-            견종
-            <span style={{ margin: '0 5px 0 10px' }}>
-              {post.post.breed.split('[개]').reverse()[0]}
-            </span>
-          </Grid>
-
-          <Grid width='50%'>
-            성별
-            <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          margin='20px 0 0 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid width='50%'>
-            체중
-            <span style={{ margin: '0 5px 0 10px' }}>
-              {post.post.weight} kg
-            </span>
-          </Grid>
-
-          <Grid width='50%'>
-            나이
-            <span style={{ margin: '0 5px 0 10px' }}>{post.post.age} 년생</span>
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          margin='20px 0 0 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid>
-            발견 장소
-            <span style={{ margin: '0 5px 0 10px' }}>
-              {post.post.lostLocation}
-            </span>
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          margin='20px 0 0 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid>
-            보호 장소
-            <span style={{ margin: '0 5px 0 10px' }}>
+      <Grid width='375px' margin='0 auto'>
+        <Grid width='auto' padding='0 46px'>
+          <p>저와 친구하실래요?😁</p>
+          <div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '80px',
+                height: '30px',
+                borderRadius: '15px',
+                backgroundColor: 'white',
+                top: '40px',
+                left: '50px',
+                marginBottom: '5px',
+              }}
+            >
               {post.post.ownerType}
-            </span>
+            </div>
+            <img
+              style={{
+                marginBottom: '15px',
+                borderRadius: '10px',
+                width: '283px',
+                height: '145px',
+                objectFit: 'cover',
+              }}
+              src={post.post.img}
+            />
+          </div>
+        </Grid>
+        <Grid
+          width='280px'
+          margin='0 auto'
+          padding='15px 25px'
+          boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
+          borderRadius='10px'
+        >
+          <Grid
+            display='flex'
+            margin='10px 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid width='50%'>
+              견종
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.breed.split('[개]').reverse()[0]}
+              </span>
+            </Grid>
+
+            <Grid width='50%'>
+              성별
+              <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
+            </Grid>
+          </Grid>
+
+          <Grid
+            display='flex'
+            margin='20px 0 0 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid width='50%'>
+              체중
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.weight} kg
+              </span>
+            </Grid>
+
+            <Grid width='50%'>
+              나이
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.age} 년생
+              </span>
+            </Grid>
+          </Grid>
+
+          <Grid
+            display='flex'
+            margin='20px 0 0 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid>
+              발견 장소
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.lostLocation}
+              </span>
+            </Grid>
+          </Grid>
+
+          <Grid
+            display='flex'
+            margin='20px 0 0 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid>
+              보호 장소
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.ownerType}
+              </span>
+            </Grid>
+          </Grid>
+
+          <Grid
+            display='flex'
+            margin='20px 0 0 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid>
+              주소
+              <span style={{ margin: '0 5px 0 10px' }}>
+                갱기도 수원시 뭐시깽이~
+              </span>
+            </Grid>
+          </Grid>
+
+          <Grid
+            display='flex'
+            margin='20px 0 0 0'
+            padding='0 0 15px 0'
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
+            <Grid>
+              SNS
+              <span style={{ margin: '0 5px 0 10px' }}>
+                트윗 페북 인스타 마크
+              </span>
+            </Grid>
           </Grid>
         </Grid>
 
-        <Grid
-          display='flex'
-          margin='20px 0 0 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid>
-            주소
-            <span style={{ margin: '0 5px 0 10px' }}>
-              갱기도 수원시 뭐시깽이~
-            </span>
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          margin='20px 0 0 0'
-          padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-        >
-          <Grid>
-            SNS
-            <span style={{ margin: '0 5px 0 10px' }}>
-              트윗 페북 인스타 마크
-            </span>
-          </Grid>
-        </Grid>
         <Grid display='flex' justifyContent='center' alignItems='center'>
           <Grid
             position='fixed'
@@ -173,12 +177,11 @@ const Detail = (props) => {
             display='flex'
             justifyContent='center'
             alignItems='center'
-            top='512px'
+            bottom='30px'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+            _onClick={openModal}
           >
-            <Text color='white' _onClick={openModal}>
-              입양 신청하기
-            </Text>
+            <Text color='white'>입양 신청하기</Text>
           </Grid>
         </Grid>
         <Grid display='flex' margin='5px 0 0 0'>
@@ -197,7 +200,11 @@ const Detail = (props) => {
 
       <CommentList />
 
-      {modalOpen ? <Modal close={closeModal}></Modal> : ' '}
+      {modalOpen ? (
+        <AdoptionModal closeModal={closeModal}></AdoptionModal>
+      ) : (
+        ' '
+      )}
     </React.Fragment>
   );
 };

@@ -4,7 +4,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
 import './App.css';
 
-import './App.css';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
@@ -38,7 +37,7 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Header></Header>
-        <Route path='/header' exact component={Header} />
+
         <Route path='/' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />
         <Route path='/login' exact component={Login} />

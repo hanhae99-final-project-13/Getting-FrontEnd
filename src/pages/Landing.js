@@ -1,6 +1,7 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
+import { Grid } from '../elements/index';
 const Landing = () => {
   const [imgPosition, setImgPosition] = React.useState(0);
   const next = () => {
@@ -17,103 +18,106 @@ const Landing = () => {
   };
   return (
     <React.Fragment>
-      <div
-        style={{
-          display: 'flex',
-          backgroundColor: 'skyblue',
-          height: '300px',
-          overflowX: 'hidden',
-          marginLeft: `${imgPosition}px`,
-          transition: '1s',
-        }}
-      >
-        <img
-          src='https://cdn.royalcanin-weshare-online.io/UCImMmgBaxEApS7LuQnZ/v2/eukanuba-market-image-puppy-beagle?w=5596&h=2317&rect=574,77,1850,1045&auto=compress,enhance '
+      <Grid width='375px' margin='0 auto' overflowX='hidden'>
+        <Grid width='375px' margin='0 auto' height='0'>
+          <button
+            style={{
+              position: 'relative',
+              top: '150px',
+              left: '0px',
+            }}
+            onClick={prev}
+          >
+            ㅁ
+          </button>
+          <button
+            style={{
+              position: 'relative',
+              top: '150px',
+              left: '315px',
+            }}
+            onClick={next}
+          >
+            ㅁ
+          </button>
+        </Grid>
+        <div
           style={{
-            width: '375px',
+            display: 'flex',
+            backgroundColor: 'skyblue',
             height: '300px',
-            objectFit: 'cover',
+            marginLeft: `${imgPosition}px`,
+            transition: '1s',
           }}
-        />
-        <button
-          style={{
-            position: 'absolute',
-            top: '150px',
-            left: '5px',
-          }}
-          onClick={prev}
         >
-          ㅁ
-        </button>
-        <button
+          <img
+            src='https://cdn.royalcanin-weshare-online.io/UCImMmgBaxEApS7LuQnZ/v2/eukanuba-market-image-puppy-beagle?w=5596&h=2317&rect=574,77,1850,1045&auto=compress,enhance '
+            style={{
+              width: '375px',
+              height: '300px',
+              objectFit: 'cover',
+            }}
+          />
+
+          <img
+            src='https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg'
+            style={{
+              width: '375px',
+              height: '300px',
+              objectFit: 'cover',
+            }}
+          />
+          <img
+            src='https://blog.kakaocdn.net/dn/Z1F5v/btqLNsEwNKZ/eDuSRnRxoIHnpyrO4uX570/img.jpg'
+            style={{
+              width: '375px',
+              height: '300px',
+              objectFit: 'cover',
+            }}
+          />
+          <img
+            src='https://blog.hmgjournal.com/images_n/contents/170421_dog01.png'
+            style={{
+              width: '375px',
+              height: '300px',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+        <div
           style={{
-            position: 'absolute',
-            top: '150px',
-            left: '340px',
+            backgroundColor: 'white',
+            height: '300px',
+            marginBottom: '40px',
           }}
-          onClick={next}
         >
-          ㅁ
-        </button>
+          <p style={{ width: '305px', margin: '10px auto' }}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos esse
+            velit odit, exercitationem animi, dicta ex voluptates consequatur
+            commodi, beatae sint labore odio? Ducimus omnis ratione harum
+            explicabo laudantium. Nulla officia fuga enim sapiente dicta illum
+            ipsa atque nam pariatur accusantium consequuntur voluptate, incidunt
+            itaque aspernatur. Ipsum ratione impedit corporis iste. Aut sint
+            laborum nisi obcaecati officia suscipit reiciendis fugiat, eos
+            expedita delectus? Unde adipisci aliquid, harum vero veniam eligendi
+          </p>
+        </div>
+        <ButtonBox
+          onClick={() => {
+            history.push('/signup');
+          }}
+        >
+          <Button>시작하기</Button>
+        </ButtonBox>
 
-        <img
-          src='https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg'
-          style={{
-            width: '375px',
-            height: '300px',
-            objectFit: 'cover',
+        <ButtonBox2
+          onClick={() => {
+            history.push('/login');
           }}
-        />
-        <img
-          src='https://blog.kakaocdn.net/dn/Z1F5v/btqLNsEwNKZ/eDuSRnRxoIHnpyrO4uX570/img.jpg'
-          style={{
-            width: '375px',
-            height: '300px',
-            objectFit: 'cover',
-          }}
-        />
-        <img
-          src='https://blog.hmgjournal.com/images_n/contents/170421_dog01.png'
-          style={{
-            width: '375px',
-            height: '300px',
-            objectFit: 'cover',
-          }}
-        />
-      </div>
-      <div
-        style={{
-          backgroundColor: 'white',
-          height: '300px',
-          marginBottom: '40px',
-        }}
-      >
-        <p style={{ width: '305px', margin: '10px auto' }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos esse
-          velit odit, exercitationem animi, dicta ex voluptates consequatur
-          commodi, beatae sint labore odio? Ducimus omnis ratione harum
-          explicabo laudantium. Nulla officia fuga enim sapiente dicta illum
-          ipsa atque nam pariatur accusantium consequuntur voluptate, incidunt
-          itaque aspernatur. Ipsum ratione impedit corporis iste. Aut sint
-          laborum nisi obcaecati officia suscipit reiciendis fugiat, eos
-          expedita delectus? Unde adipisci aliquid, harum vero veniam eligendi
-        </p>
-      </div>
-      <ButtonBox
-        onClick={() => {
-          history.push('/signup');
-        }}
-      >
-        <Button>시작하기</Button>
-      </ButtonBox>
-
-      <ButtonBox2
-        onClick={() => {
-          history.push('/login');
-        }}
-      >
-        <Button2>이미 계정이 있어요</Button2>
-      </ButtonBox2>
+        >
+          <Button2>이미 계정이 있어요</Button2>
+        </ButtonBox2>
+      </Grid>
     </React.Fragment>
   );
 };

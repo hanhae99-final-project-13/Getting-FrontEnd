@@ -32,8 +32,8 @@ const Login = (props) => {
   };
 
   return (
-    <Grid width='80vw' margin='120px auto 0' position='relative'>
-      <Grid width='80vw'>
+    <Grid width='305px' margin='120px auto 0' position='relative'>
+      <Grid>
         <Grid
           position='absolute'
           left='180px'
@@ -61,8 +61,8 @@ const Login = (props) => {
         </Text>
       </Grid>
 
-      <Grid width='80vw' margin='37px 0 0px 0'>
-        <Grid margin='0 0 0 6px'>
+      <Grid margin='37px 0 0px 0'>
+        <Grid>
           <Text size='18px' weight='800' margin='0'>
             도킹하기
           </Text>
@@ -73,7 +73,6 @@ const Login = (props) => {
             bg='#FFFFFF'
             border='0.3px solid rgba(0, 0, 0, 0.05)'
             border_radius='25px'
-            width='100%'
             padding='16px'
             box-sizing
             value={id}
@@ -89,7 +88,6 @@ const Login = (props) => {
             type='password'
             border=' 0.3px solid rgba(0, 0, 0, 0.05)'
             border_radius='25px'
-            width='100%'
             padding='16px'
             box-sizing
             value={pw}
@@ -99,7 +97,7 @@ const Login = (props) => {
           />
         </Grid>
 
-        <Grid margin=' 12px 0 0 0' width='80vw'>
+        <Grid margin=' 12px 0 0 0'>
           <Button
             size='16px'
             weight='600'
@@ -125,8 +123,8 @@ const Login = (props) => {
         <Hr margin='14px 0 0 0' />
       </Grid>
 
-      <Grid width='80vw' margin='22px 0 0px 0'>
-        <Grid margin='0 0 0 6px'>
+      <Grid margin='22px 0 0px 0'>
+        <Grid margin='0 0 0 0px'>
           <Text size='14px' bold margin='0' color='#DFDFDF'>
             더 빠르게
             <Span weight='700'> 도킹</Span>

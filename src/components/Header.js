@@ -28,9 +28,8 @@ const Header = (props) => {
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        // width추가
         width='375px'
-        height='80px'
+        height='60px'
         zIndex='1'
       >
         <Grid display='flex' alignItems='center'>

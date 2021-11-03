@@ -99,14 +99,14 @@ const Signup = (props) => {
 
   return (
     <Grid>
-      <Grid width='80vw' margin='142px auto 0px'>
+      <Grid width='305px' margin='142px auto 0px'>
         <Grid>
           <Text size='24px' weight='700' align='center'>
             회원가입
           </Text>
         </Grid>
 
-        <Grid width='80vw' margin='70px auto 0px'>
+        <Grid width='305px' margin='70px auto 0px'>
           <Grid position='relative'>
             <Text
               _onClick={idCheckButton}
@@ -294,7 +294,7 @@ const Signup = (props) => {
           </Text>
         </Grid>
 
-        <Grid margin=' 12px 0 0 0' width='80vw'>
+        <Grid margin=' 12px 0 0 0' width='305px'>
           <Button
             size='16px'
             weight='700'
