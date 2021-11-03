@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,15 +7,32 @@ import { Grid, Image, Text } from '../elements';
 import { postActions } from '../redux/modules/post';
 
 const Card = (props) => {
-  const { margin, width, imageHeight } = props;
+  const {
+    margin,
+    width,
+    imageHeight,
+    postId,
+    breed,
+    sex,
+    age,
+    createdAt,
+    modifiedAt,
+    ownerType,
+    address,
+    img,
+    isAdopted,
+  } = props;
   const dispatch = useDispatch();
-  const isDeleteMode = useSelector((state) => state.post.isDeleteMode);
+  const isDockingDeleteMode = useSelector(
+    (state) => state.post.isDockingDeleteMode,
+  );
+  const isAdoptionDeleteMode = useSelector(
+    (state) => state.post.isAdoptionDeleteMode,
+  );
   const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
-  const postList = useSelector((state) => state.post.postList);
-  const currentUrl = document.location.href.split('/').reverse()[0];
 
   const goDetail = () => {
-    // console.log(url);
+    history.push(`/detail/${postId}`);
   };
 
   return (
@@ -30,10 +46,14 @@ const Card = (props) => {
       _onClick={goDetail}
     >
       <Tag>
-        <ElP>임시보호중</ElP>
+        <ElP>{ownerType ? ownerType : '임시보호중'}</ElP>
       </Tag>
-      {isDeleteMode && <DeleteButton />}
-      <ImageBox imageHeight={imageHeight}>
+      <Tag2>
+        <ElP>{isAdopted ? isAdopted : '임시보호중'}</ElP>
+      </Tag2>
+      {isDockingDeleteMode && <DeleteButton />}
+      {isAdoptionDeleteMode && <DeleteButton />}
+      <ImageBox imageHeight={imageHeight} img={img}>
         {isAdoptionWait && (
           <CardCover imageHeight={imageHeight}>
             <Text margin='0' size='12px' weight='700' color='white'>
@@ -61,17 +81,19 @@ const Card = (props) => {
       </ImageBox>
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         <Text margin='0 10px 0 0' size='14px' bold>
-          닥스훈트
+          {breed ? breed.split('[개]').reverse()[0] : '닥스훈트'}
         </Text>
         <Text margin='0' size='14px'>
-          (남아/2018년생)
+          {sex ? sex : '남아'}/{age ? age : '2018년생'}
         </Text>
       </Grid>
       <Grid display='flex' width='auto'>
         <Image size='8' />
-        <ElP>2021.10.24 &nbsp;&nbsp;&nbsp;&nbsp;</ElP>
+        <ElP>
+          {createdAt ? createdAt : '2021.10.24'} &nbsp;&nbsp;&nbsp;&nbsp;
+        </ElP>
         <Image size='8' />
-        <ElP>경기도 수원</ElP>
+        <ElP>{address ? address : '경기도 수원'}</ElP>
       </Grid>
     </Grid>
   );
@@ -98,13 +120,27 @@ const Tag = styled.div`
   border-radius: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
+const Tag2 = styled.div`
+  position: absolute;
+  top: -10px;
+  left: 100px;
+  height: auto;
+  padding: 3px 6px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
 
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
   ${(props) =>
     props.imageHeight ? `height: ${props.imageHeight};` : `height: 100px;`}
-  background: url('http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg')
+  background: url(${(props) =>
+    props.img
+      ? props.img
+      : 'http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg'})
+    
     no-repeat;
   background-size: cover;
   background-position: center;

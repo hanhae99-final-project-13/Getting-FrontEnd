@@ -16,14 +16,16 @@ const Calendar = (props) => {
   return (
     <Grid width='auto' height='auto'>
       <DatePicker
-        selected={startDate}
+        selected={startDate || endDate}
         dateFormat='yyyy-MM-dd'
         onChange={(date) => {
           setStartDate(date);
+          setEndDate(date);
           props.changeDate(date);
         }}
         customInput={<ExampleCustomInput />}
         maxDate={new Date()}
+        minDate={props.startDate}
       />
     </Grid>
   );

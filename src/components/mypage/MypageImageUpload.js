@@ -41,7 +41,6 @@ const MypageImageUpload = (props) => {
         Bucket: 'team13-docking',
         Key: `${fileName}.${fileType}`,
         Body: file,
-        ACL: 'public-read',
       },
     });
 

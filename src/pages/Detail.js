@@ -1,10 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
-import { useDispatch } from 'react-redux';
 import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
-const Detail = () => {
+import { postActions } from '../redux/modules/post';
+
+const Detail = (props) => {
+  const dispatch = useDispatch();
+  const postId = props.match.params.id;
+  const post = useSelector((state) => state.post?.detailPost);
   //입양신청하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
@@ -13,6 +19,14 @@ const Detail = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  React.useEffect(() => {
+    dispatch(postActions.getDetailPostMW(postId));
+  }, []);
+
+  if (!post.post) {
+    return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
+  }
 
   return (
     <React.Fragment>
@@ -34,7 +48,7 @@ const Detail = () => {
                 marginBottom: '5px',
               }}
             >
-              임시보호중
+              {post.post.ownerType}
             </div>
             <img
               style={{
@@ -44,7 +58,7 @@ const Detail = () => {
                 height: '145px',
                 objectFit: 'cover',
               }}
-              src='http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg'
+              src={post.post.img}
             />
           </div>
         </Grid>
@@ -63,12 +77,14 @@ const Detail = () => {
           >
             <Grid width='50%'>
               견종
-              <span style={{ margin: '0 5px 0 10px' }}>닥스훈트</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.breed.split('[개]').reverse()[0]}
+              </span>
             </Grid>
 
             <Grid width='50%'>
               성별
-              <span style={{ margin: '0 5px 0 10px' }}>여아</span>
+              <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
             </Grid>
           </Grid>
 
@@ -80,12 +96,16 @@ const Detail = () => {
           >
             <Grid width='50%'>
               체중
-              <span style={{ margin: '0 5px 0 10px' }}>5 kg</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.weight} kg
+              </span>
             </Grid>
 
             <Grid width='50%'>
               나이
-              <span style={{ margin: '0 5px 0 10px' }}>2020 년생</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.age} 년생
+              </span>
             </Grid>
           </Grid>
 
@@ -97,7 +117,9 @@ const Detail = () => {
           >
             <Grid>
               발견 장소
-              <span style={{ margin: '0 5px 0 10px' }}>경기도 안양</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.lostLocation}
+              </span>
             </Grid>
           </Grid>
 
@@ -109,7 +131,9 @@ const Detail = () => {
           >
             <Grid>
               보호 장소
-              <span style={{ margin: '0 5px 0 10px' }}>개인</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post.post.ownerType}
+              </span>
             </Grid>
           </Grid>
 

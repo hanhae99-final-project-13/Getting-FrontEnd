@@ -8,7 +8,7 @@ import { postActions } from '../../redux/modules/post';
 
 const MypageDockingCheck = (props) => {
   const dispatch = useDispatch();
-  const isDeleteMode = useSelector((state) => state.post.isDeleteMode);
+  const isDeleteMode = useSelector((state) => state.post.isDockingDeleteMode);
   const [adoptionWaitDisplay, setAdoptionWaitDisplay] = React.useState('block');
   const [adoptionOkDisplay, setAdoptionOkDisplay] = React.useState('none');
   const [adoptionNoDisplay, setAdoptionNoDisplay] = React.useState('none');
@@ -16,7 +16,19 @@ const MypageDockingCheck = (props) => {
   const adoptionOk = React.useRef();
   const adoptionNo = React.useRef();
 
+  if (adoptionOkDisplay === 'block') {
+    dispatch(postActions.changeCardCover(false));
+  }
+  if (adoptionNoDisplay === 'block') {
+    dispatch(postActions.changeCardCover(false));
+  }
+
+  // if (adoptionOkDisplay || adoptionNoDisplay === 'block') {
+  //   dispatch(postActions.changeCardCover(false));
+  // }
+
   const showAdoptionWait = () => {
+    dispatch(postActions.changeCardCover(true));
     adoptionOk.current.classList.remove('active');
     adoptionNo.current.classList.remove('active');
     adoptionWait.current.classList.add('active');
@@ -32,6 +44,7 @@ const MypageDockingCheck = (props) => {
     setAdoptionNoDisplay('none');
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('block');
+    dispatch(postActions.changeDockingDeleteMode(false));
     dispatch(postActions.changeCardCover(false));
   };
   const showAdoptionNo = () => {
@@ -41,16 +54,18 @@ const MypageDockingCheck = (props) => {
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('none');
     setAdoptionNoDisplay('block');
+    dispatch(postActions.changeDockingDeleteMode(false));
     dispatch(postActions.changeCardCover(false));
   };
 
   const changeDeleteMode = () => {
     if (isDeleteMode === false) {
-      dispatch(postActions.changeDeleteMode(true));
+      dispatch(postActions.changeDockingDeleteMode(true));
     } else {
-      dispatch(postActions.changeDeleteMode(false));
+      dispatch(postActions.changeDockingDeleteMode(false));
     }
   };
+
   return (
     <Grid display={props.display} margin='22px 0 80px 0'>
       <CategoryBox>

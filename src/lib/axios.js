@@ -20,12 +20,12 @@ instance.interceptors.request.use(
   },
 );
 
-instance.interceptors.response.use(
-  (success) => {
-    return success;
-  },
-  (error) => {},
-);
+// instance.interceptors.response.use(
+//   (success) => {
+//     return success;
+//   },
+//   (error) => {},
+// );
 
 export const apis = {
   //회원가입 및 로그인 관련 api
@@ -39,9 +39,12 @@ export const apis = {
 
   // 유저 관련 api
   getUserInfo: () => instance.get('/userInfo'),
+  updateUserInfo: (userInfo) => instance.patch('/user', userInfo),
 
   //포스트 관련 api
+  getMainPots: () => instance.get('/posts'),
   getPots: () => instance.get('/pets'),
+  getDetailPost: (postId) => instance.get(`/posts/${postId}`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
   updatePost: (postId, postInfo) => instance.post(`/pets/${postId}`, postInfo),
   deletePost: (postId) => instance.delete(`/post/${postId}`),

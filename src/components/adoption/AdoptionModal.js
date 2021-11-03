@@ -3,18 +3,22 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import moment from 'moment';
 
 import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
+import AddressSelector from '../AddressSelector';
+import SearchAddressSelector from './SearchAddressSelector';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = React.useState(new Date());
   const [endDate, setEndDate] = React.useState(new Date());
-  const changeDate = (e) => {
+  const changeStartDate = (e) => {
     setStartDate(e);
+  };
+  const changeEndDate = (e) => {
+    setEndDate(e);
   };
 
   const [ownerType, setOwnerType] = React.useState('개인');
@@ -33,8 +37,15 @@ const AdoptionModal = (props) => {
   };
   const doSearch = () => {
     console.log(startDate);
+    console.log(endDate);
     console.log(ownerType);
   };
+  // const [address, setAddress] = React.useState('');
+  // const [siAddress, setSiAddress] = React.useState('');
+  // const [addressModal, setAddressModal] = React.useState(false);
+  // const addressSelect = () => {
+  //   setAddressModal(!addressModal);
+  // };
 
   return (
     <Grid
@@ -68,14 +79,9 @@ const AdoptionModal = (props) => {
             alignItems='center'
             height='auto'
           >
-            <Calendar
-              changeDate={(e) => {
-                changeDate(e);
-                console.log(startDate);
-              }}
-            />
+            <Calendar changeDate={changeStartDate} />
             <span className='between'>~</span>
-            <Calendar />
+            <Calendar changeDate={changeEndDate} startDate={startDate} />
           </Grid>
           <span>장소</span>
           <Grid
@@ -92,7 +98,16 @@ const AdoptionModal = (props) => {
             <p className='toggleText'>보호소</p>
           </Grid>
           <span>지역</span>
-          <Grid width='auto' height='auto'></Grid>
+          <Grid width='auto' height='auto'>
+            {/* <AddressSelector
+              visible={addressSelect}
+              setAddress={setAddress}
+              siAddress={siAddress}
+              setSiAddress={setSiAddress}
+              addressModal={addressModal}
+            /> */}
+          </Grid>
+          <SearchAddressSelector />
         </Grid>
         <button id='submit' onClick={doSearch}>
           찾아보기
