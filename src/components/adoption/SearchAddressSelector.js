@@ -4,18 +4,39 @@ import styled from 'styled-components';
 import { Grid } from '../../elements';
 import AddressData from '../AddressData';
 
-const SearchAddressSelector = () => {
-  const makeDropBox = () => {
-    const selectBox = document.querySelector('#selectBox');
-    const locations = Object.keys(AddressData);
-  };
+const SearchAddressSelector = (props) => {
+  const { setCity, setDistrict } = props;
+  const changeDistrict = () => {
+    const currentCity = document.querySelector('#citySelectBox').value;
+    const districtSelectBox = document.querySelector('#districtSelectBox');
+    const renewal = document.querySelectorAll(
+      '#districtSelectBox option.renewal',
+    );
+    if (renewal.length !== 0) {
+      renewal.forEach((val) => {
+        val.remove();
+      });
+    }
 
-  console.log(Object.keys(AddressData));
+    if (currentCity === '지역선택') {
+      return;
+    }
+
+    AddressData[currentCity].map((val, idx) => {
+      let opt = document.createElement('option');
+      opt.textContent = val;
+      opt.classList.add('renewal');
+      districtSelectBox.appendChild(opt);
+    });
+    setCity(currentCity);
+  };
 
   return (
     <SelectBoxGroup>
-      <select>
-        <option selected>지역선택</option>
+      <select id='citySelectBox' onChange={changeDistrict}>
+        <option selected value='지역선택'>
+          지역선택
+        </option>
         <option>강원도</option>
         <option>경기도</option>
         <option>경상남도</option>
@@ -24,11 +45,22 @@ const SearchAddressSelector = () => {
         <option>대구광역시</option>
         <option>대전광역시</option>
         <option>부산광역시</option>
-        <option>강원도</option>
-        <option>강원도</option>
-        <option>강원도</option>
+        <option>서울특별시</option>
+        <option>세종특별자치시&nbsp;</option>
+        <option>울산광역시</option>
+        <option>인천광역시</option>
+        <option>전라남도</option>
+        <option>전라북도</option>
+        <option>제주특별자치도</option>
+        <option>충청남도</option>
+        <option>충청북도</option>
       </select>
-      <select>
+      <select
+        id='districtSelectBox'
+        onChange={() => {
+          setDistrict(document.querySelector('#districtSelectBox').value);
+        }}
+      >
         <option selected>세부지역 선택</option>
       </select>
     </SelectBoxGroup>

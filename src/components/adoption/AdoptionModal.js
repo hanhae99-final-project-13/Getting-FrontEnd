@@ -11,9 +11,13 @@ import SearchAddressSelector from './SearchAddressSelector';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
-
   const [startDate, setStartDate] = React.useState(new Date());
   const [endDate, setEndDate] = React.useState(new Date());
+  const [city, setCity] = React.useState();
+  const [district, setDistrict] = React.useState();
+  const [termCheck, setTermCheck] = React.useState(false);
+  const [ownerTypeCheck, setOwnerTypeCheck] = React.useState(false);
+  const [locationCheck, setLocationCheck] = React.useState(false);
   const changeStartDate = (e) => {
     setStartDate(e);
   };
@@ -36,16 +40,20 @@ const AdoptionModal = (props) => {
     document.querySelector('#searchModal').style.display = 'none';
   };
   const doSearch = () => {
-    console.log(startDate);
-    console.log(endDate);
+    console.log(
+      `${startDate.getUTCFullYear()}-${
+        startDate.getUTCMonth() + 1
+      }-${startDate.getUTCDate()}`,
+    );
+    console.log(
+      `${endDate.getUTCFullYear()}-${
+        endDate.getUTCMonth() + 1
+      }-${endDate.getUTCDate()}`,
+    );
     console.log(ownerType);
+    console.log(city);
+    console.log(district);
   };
-  // const [address, setAddress] = React.useState('');
-  // const [siAddress, setSiAddress] = React.useState('');
-  // const [addressModal, setAddressModal] = React.useState(false);
-  // const addressSelect = () => {
-  //   setAddressModal(!addressModal);
-  // };
 
   return (
     <Grid
@@ -72,7 +80,14 @@ const AdoptionModal = (props) => {
         <p>검색 조건</p>
         <hr />
         <Grid>
-          <span>기간</span>
+          <Grid display='flex' width='auto' height='auto'>
+            {termCheck ? (
+              <CheckBoxOn onClick={() => setTermCheck(!termCheck)} />
+            ) : (
+              <CheckBoxOff onClick={() => setTermCheck(!termCheck)} />
+            )}
+            <span>기간</span>
+          </Grid>
           <Grid
             display='flex'
             justifyContent='space-around'
@@ -83,7 +98,14 @@ const AdoptionModal = (props) => {
             <span className='between'>~</span>
             <Calendar changeDate={changeEndDate} startDate={startDate} />
           </Grid>
-          <span>장소</span>
+          <Grid display='flex' width='auto' height='auto'>
+            {ownerTypeCheck ? (
+              <CheckBoxOn onClick={() => setOwnerTypeCheck(!ownerTypeCheck)} />
+            ) : (
+              <CheckBoxOff onClick={() => setOwnerTypeCheck(!ownerTypeCheck)} />
+            )}
+            <span>장소</span>
+          </Grid>
           <Grid
             display='flex'
             justifyContent='center'
@@ -97,17 +119,16 @@ const AdoptionModal = (props) => {
             </ToggleButton>
             <p className='toggleText'>보호소</p>
           </Grid>
-          <span>지역</span>
-          <Grid width='auto' height='auto'>
-            {/* <AddressSelector
-              visible={addressSelect}
-              setAddress={setAddress}
-              siAddress={siAddress}
-              setSiAddress={setSiAddress}
-              addressModal={addressModal}
-            /> */}
+          <Grid display='flex' width='auto' height='auto'>
+            {locationCheck ? (
+              <CheckBoxOn onClick={() => setLocationCheck(!locationCheck)} />
+            ) : (
+              <CheckBoxOff onClick={() => setLocationCheck(!locationCheck)} />
+            )}
+            <span>지역</span>
           </Grid>
-          <SearchAddressSelector />
+          <Grid width='auto' height='auto'></Grid>
+          <SearchAddressSelector setCity={setCity} setDistrict={setDistrict} />
         </Grid>
         <button id='submit' onClick={doSearch}>
           찾아보기
@@ -179,6 +200,26 @@ const ToggleButton = styled.div`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transition: 0.3s all ease;
   }
+`;
+
+const CheckBoxOn = styled.div`
+  margin-right: 4px;
+  width: 11px;
+  height: 11px;
+  background: url(https://toppng.com/uploads/preview/checked-checkbox-icon-checkbox-ico-115632629493xkxpf63d8.png)
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
+
+const CheckBoxOff = styled.div`
+  margin-right: 4px;
+  width: 11px;
+  height: 11px;
+  background: url(https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/checked_checkbox.png)
+    no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 
 export default AdoptionModal;
