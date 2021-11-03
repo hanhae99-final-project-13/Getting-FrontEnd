@@ -38,10 +38,11 @@ export const imageSuccessAlert = (success_text) => {
   });
 };
 
-const a = () => {
+// 신중한 선택 버튼
+export const a = () => {
   Swal.fire({
-    title: '정말로 그렇게 하시겠습니까?',
-    text: '다시 되돌릴 수 없습니다. 신중하세요.',
+    title: '입양을 신청하시면 되돌릴 수 없습니다',
+    text: '신중하게 선택해주세요:)',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -50,9 +51,11 @@ const a = () => {
     cancelButtonText: '취소',
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire('승인이 완료되었습니다.', '화끈하시네요~!', 'success');
+      Swal.fire(
+        '입양신청이 완료되었습니다.',
+        '임보자님의 연락을 기다려주세요!',
+        'success',
+      );
     }
   });
 };
-
-// 요청 처리 과정 여기서 처리

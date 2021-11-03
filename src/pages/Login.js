@@ -32,7 +32,7 @@ const Login = (props) => {
   };
 
   return (
-    <Grid width='305px' margin='120px auto' position='relative'>
+    <Grid width='305px' margin='120px auto 0' position='relative'>
       <Grid>
         <Grid
           position='absolute'
@@ -41,8 +41,7 @@ const Login = (props) => {
           width='8px'
           height='8px'
           bg='#FF6666'
-          borderRadius='4px'
-        ></Grid>
+          borderRadius='4px'></Grid>
 
         <Text weight='800' align='center' size='35px' margin='0 0 12px 0'>
           도킹
@@ -53,8 +52,7 @@ const Login = (props) => {
           weight='500'
           size='12px'
           margin='0px'
-          line_height='18px'
-        >
+          line_height='18px'>
           반려친구와 내가
           <span style={{ fontWeight: 'bold' }}>이어지는 순간,</span> <br />내 손
           안에
@@ -99,7 +97,7 @@ const Login = (props) => {
           />
         </Grid>
 
-        <Grid margin=' 12px 0 0 0' /*  width='375px' */>
+        <Grid margin=' 12px 0 0 0'>
           <Button
             size='16px'
             weight='600'
@@ -108,8 +106,7 @@ const Login = (props) => {
             bg='#FF6666'
             border='none'
             border_radius='25px'
-            onClick={onClickButton}
-          >
+            onClick={onClickButton}>
             로그인하기
           </Button>
         </Grid>
@@ -146,8 +143,7 @@ const Login = (props) => {
             border_radius='25px'
             onClick={() => {
               window.location.href = KAKAO_AUTH_URL;
-            }}
-          >
+            }}>
             카카오톡으로 시작하기
           </Button>
 
@@ -162,8 +158,7 @@ const Login = (props) => {
               border_radius='25px'
               onClick={() => {
                 history.push('/signup');
-              }}
-            >
+              }}>
               메일로 회원가입하기
             </Button>
           </Grid>

@@ -1,11 +1,20 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
 * {
-  font-family: "nanumsquare";
-  font-size:medium;
-  font-weight:bold;
-  
+  font-family: 'nanumsquare';
+  font-size: medium;
+  font-weight: bold;
 }
-input:focus{
+input:focus {
   outline: none;
+}
+
+.imgae-upload {
+  display: none;
+}
+
+.image-upload-wrapper {
+  font-size: 70px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
 }
