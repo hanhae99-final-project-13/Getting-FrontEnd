@@ -97,7 +97,7 @@ const AddPost = () => {
               onChange={(e) => {
                 setBreed(e.target.value);
               }}
-              style={{ border: 'none', width: '50%' }}
+              style={{ border: 'none', width: '80%' }}
             />
             <Grid display='flex' alignItems='center'>
               남아
@@ -154,7 +154,7 @@ const AddPost = () => {
             <input
               placeholder='보호장소'
               value={ownerType}
-              style={{ border: 'none', width: '50%' }}
+              style={{ border: 'none', width: '80%' }}
             />
             <Grid display='flex' alignItems='center'>
               개인
@@ -191,7 +191,7 @@ const AddPost = () => {
             <input
               placeholder='정보출처'
               value={tag}
-              style={{ border: 'none', width: '30%' }}
+              style={{ border: 'none', width: '50%' }}
             />
             <Grid display='flex' alignItems='center'>
               직접등록
