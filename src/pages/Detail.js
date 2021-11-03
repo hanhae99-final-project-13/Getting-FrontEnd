@@ -32,7 +32,8 @@ const Detail = () => {
                 top: '40px',
                 left: '50px',
                 marginBottom: '5px',
-              }}>
+              }}
+            >
               임시보호중
             </div>
             <img
@@ -52,12 +53,14 @@ const Detail = () => {
           margin='0 auto'
           padding='15px 25px'
           boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-          borderRadius='10px'>
+          borderRadius='10px'
+        >
           <Grid
             display='flex'
             margin='10px 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid width='50%'>
               견종
               <span style={{ margin: '0 5px 0 10px' }}>닥스훈트</span>
@@ -73,7 +76,8 @@ const Detail = () => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid width='50%'>
               체중
               <span style={{ margin: '0 5px 0 10px' }}>5 kg</span>
@@ -89,7 +93,8 @@ const Detail = () => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               발견 장소
               <span style={{ margin: '0 5px 0 10px' }}>경기도 안양</span>
@@ -100,7 +105,8 @@ const Detail = () => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               보호 장소
               <span style={{ margin: '0 5px 0 10px' }}>개인</span>
@@ -111,7 +117,8 @@ const Detail = () => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               주소
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -124,11 +131,23 @@ const Detail = () => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               SNS
               <span style={{ margin: '0 5px 0 10px' }}>
                 트윗 페북 인스타 마크
+              </span>
+            </Grid>
+          </Grid>
+
+          <Grid display='flex' margin='5px 0 0 0'>
+            <Grid>
+              <p>특이사항</p>
+              <span>
+                겁이 엄청 많은 친구라 아직도 집에서 꼬리 내리고 다니는데 요즘엔
+                무서워하면서 옆에 붙어다니고 신나면 빙글빙글 돌기도하고 그럽니다
+                부르면 귀찮다는듯 터벅터벅 걸어와서 쳐다봐서 너무 귀여워요!
               </span>
             </Grid>
           </Grid>
@@ -147,31 +166,22 @@ const Detail = () => {
             alignItems='center'
             bottom='30px'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={openModal}>
+            _onClick={openModal}
+          >
             <Text color='white'>입양 신청하기</Text>
           </Grid>
         </Grid>
-        <Grid display='flex' margin='5px 0 0 0'>
-          <Grid>
-            <p>특이사항</p>
-            <span>
-              겁이 엄청 많은 친구라 아직도 집에서 꼬리 내리고 다니는데 요즘엔
-              무서워하면서 옆에 붙어다니고 신나면 빙글빙글 돌기도하고 그럽니다
-              부르면 귀찮다는듯 터벅터벅 걸어와서 쳐다봐서 너무 귀여워요!
-            </span>
-          </Grid>
-        </Grid>
+
+        <p style={{ padding: '0 46px' }}>댓글😁</p>
+
+        <CommentList />
+
+        {modalOpen ? (
+          <AdoptionModal closeModal={closeModal}></AdoptionModal>
+        ) : (
+          ' '
+        )}
       </Grid>
-
-      <p style={{ padding: '0 46px' }}>댓글😁</p>
-
-      <CommentList />
-
-      {modalOpen ? (
-        <AdoptionModal closeModal={closeModal}></AdoptionModal>
-      ) : (
-        ' '
-      )}
     </React.Fragment>
   );
 };
