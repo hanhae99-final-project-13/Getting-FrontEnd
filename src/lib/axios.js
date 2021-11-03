@@ -11,11 +11,6 @@ const instance = axios.create({
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
 
-// 참고용
-// export const saveToken = (token) => window.localStorage.setItem('jwt', token);
-// export const getToken = () => window.localStorage.getItem('jwt');
-// export const removeToken = () => window.localStorage.removeItem('jwt');
-
 instance.interceptors.request.use(
   (config) => {
     return config;

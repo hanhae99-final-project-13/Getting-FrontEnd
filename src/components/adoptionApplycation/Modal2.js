@@ -1,19 +1,19 @@
 import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
 import styled from 'styled-components';
-import { Grid, Text, Input } from '../elements';
+import { Grid, Text, Input } from '../../elements';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
-import Slider from './Slider';
-import AddressSelector from './AddressSelector';
-import Upload2 from './Upload2';
+import Slider from '../Slider';
+import AddressSelector from '../AddressSelector';
+import Upload2 from '../Upload2';
 import Swal from 'sweetalert2';
+import Footer from '../Footer';
 
-import Footer from './Footer';
-import { useDispatch } from 'react-redux';
-
-const Modal = (props) => {
+const Modal2 = (props) => {
   // s3에 이미지 업로드하는 자식함수
   const sampleRef = useRef();
 
@@ -456,4 +456,4 @@ const Textarea = styled.textarea`
   }
 `;
 
-export default Modal;
+export default Modal2;
