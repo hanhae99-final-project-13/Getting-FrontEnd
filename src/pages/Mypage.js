@@ -26,6 +26,19 @@ const Mypage = () => {
     setWishedListDisplay('block');
     a();
     dispatch(postActions.changeCardCover(false));
+    dispatch(postActions.changeDockingDeleteMode(false));
+    dispatch(postActions.changeAdoptionDeleteMode(false));
+  };
+  const showaDockingCheck = (a) => {
+    if (dockingCheck === 'block') {
+      return;
+    }
+    setWishedListDisplay('none');
+    setAdoptionCheckDisplay('none');
+    setDockingCheck('block');
+    a();
+    dispatch(postActions.changeAdoptionDeleteMode(false));
+    dispatch(postActions.changeCardCover(true));
   };
   const showadoptionCheck = (a) => {
     setWishedListDisplay('none');
@@ -33,13 +46,7 @@ const Mypage = () => {
     setAdoptionCheckDisplay('black');
     a();
     dispatch(postActions.changeCardCover(false));
-  };
-  const showaDockingCheck = (a) => {
-    setWishedListDisplay('none');
-    setAdoptionCheckDisplay('none');
-    setDockingCheck('block');
-    a();
-    dispatch(postActions.changeCardCover(true));
+    dispatch(postActions.changeDockingDeleteMode(false));
   };
   return (
     <Grid>

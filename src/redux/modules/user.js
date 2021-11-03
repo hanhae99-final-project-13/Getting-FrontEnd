@@ -62,6 +62,7 @@ const GetUserDB = (user) => {
         };
         dispatch(SetUser(user));
         history.push('/main');
+        localStorage.getItem('USER_TOKEN');
       })
       .catch((error) => {
         ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
@@ -158,6 +159,20 @@ const KakaoLogin = (code) => {
   };
 };
 
+const updateUserInfoMW = (userInfo) => {
+  return (dispatch) => {
+    apis
+      .updateUserInfo(userInfo)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(updateUserInfo(userInfo));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
@@ -185,6 +200,7 @@ const actionCreators = {
   LoginCheck,
   KakaoLogin,
   updateUserInfo,
+  updateUserInfoMW,
 };
 
 export { actionCreators };

@@ -8,8 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { postActions } from '../redux/modules/post';
 
 const Header = (props) => {
+  const dispatch = useDispatch();
   const histroy = useHistory();
   const path = useParams();
   console.log(path, '경로');
@@ -28,7 +30,9 @@ const Header = (props) => {
         justifyContent='space-between'
         // width추가
         width='375px'
-        height='80px'>
+        height='80px'
+        zIndex='1'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -40,7 +44,8 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -50,7 +55,9 @@ const Header = (props) => {
           alignItems='center'
           _onClick={() => {
             histroy.push('/main');
-          }}>
+            dispatch(postActions.changeCardCover(false));
+          }}
+        >
           <TEXT size='20px' bold margin='0'>
             도킹
           </TEXT>
@@ -65,7 +72,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon
                 onClick={() => {
                   history.push('/alarm');
@@ -88,7 +96,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>

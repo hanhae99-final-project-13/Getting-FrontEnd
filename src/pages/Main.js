@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Footer from '../components/Footer';
@@ -12,18 +12,17 @@ import {
   MainAdoptionCardList,
   MainAdopted,
 } from '../components/main';
-import { Calendar } from '../components/adoption';
 import { postActions } from '../redux/modules/post';
 
 const Main = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(postActions.getPostMW());
+    dispatch(postActions.getMainPostMW());
   }, []);
   return (
-    <Grid>
-      <Grid width='auto' padding='20px' overflow='auto' margin='50px 0 0 0'>
+    <Grid width='375px' margin='0 auto'>
+      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0 0 0'>
         <Grid margin='0 0 40px 0'>
           <MainHello />
         </Grid>

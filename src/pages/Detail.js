@@ -1,10 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
-import { useDispatch } from 'react-redux';
 import Modal from '../components/Modal';
-const Detail = () => {
+import { postActions } from '../redux/modules/post';
+
+const Detail = (props) => {
+  const dispatch = useDispatch();
+  const postId = props.match.params.id;
+  const post = useSelector((state) => state.post?.detailPost);
   //입양신청하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
@@ -14,9 +20,17 @@ const Detail = () => {
     setModalOpen(false);
   };
 
+  React.useEffect(() => {
+    dispatch(postActions.getDetailPostMW(postId));
+  }, []);
+
+  if (!post.post) {
+    return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
+  }
+
   return (
     <React.Fragment>
-      <Grid width='auto' padding='0 46px'>
+      <Grid width='auto' padding='0 46px' margin='80px 0 0 0'>
         <p>저와 친구하실래요?😁</p>
 
         <div>
@@ -32,8 +46,9 @@ const Detail = () => {
               top: '40px',
               left: '50px',
               marginBottom: '5px',
-            }}>
-            임시보호중
+            }}
+          >
+            {post.post.ownerType}
           </div>
           <img
             style={{
@@ -43,7 +58,7 @@ const Detail = () => {
               height: '145px',
               objectFit: 'cover',
             }}
-            src='http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg'
+            src={post.post.img}
           />
         </div>
       </Grid>
@@ -52,20 +67,24 @@ const Detail = () => {
         margin='0 auto'
         padding='15px 25px'
         boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-        borderRadius='10px'>
+        borderRadius='10px'
+      >
         <Grid
           display='flex'
           margin='10px 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid width='50%'>
             견종
-            <span style={{ margin: '0 5px 0 10px' }}>닥스훈트</span>
+            <span style={{ margin: '0 5px 0 10px' }}>
+              {post.post.breed.split('[개]').reverse()[0]}
+            </span>
           </Grid>
 
           <Grid width='50%'>
             성별
-            <span style={{ margin: '0 5px 0 10px' }}>여아</span>
+            <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
           </Grid>
         </Grid>
 
@@ -73,15 +92,18 @@ const Detail = () => {
           display='flex'
           margin='20px 0 0 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid width='50%'>
             체중
-            <span style={{ margin: '0 5px 0 10px' }}>5 kg</span>
+            <span style={{ margin: '0 5px 0 10px' }}>
+              {post.post.weight} kg
+            </span>
           </Grid>
 
           <Grid width='50%'>
             나이
-            <span style={{ margin: '0 5px 0 10px' }}>2020 년생</span>
+            <span style={{ margin: '0 5px 0 10px' }}>{post.post.age} 년생</span>
           </Grid>
         </Grid>
 
@@ -89,10 +111,13 @@ const Detail = () => {
           display='flex'
           margin='20px 0 0 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid>
             발견 장소
-            <span style={{ margin: '0 5px 0 10px' }}>경기도 안양</span>
+            <span style={{ margin: '0 5px 0 10px' }}>
+              {post.post.lostLocation}
+            </span>
           </Grid>
         </Grid>
 
@@ -100,10 +125,13 @@ const Detail = () => {
           display='flex'
           margin='20px 0 0 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid>
             보호 장소
-            <span style={{ margin: '0 5px 0 10px' }}>개인</span>
+            <span style={{ margin: '0 5px 0 10px' }}>
+              {post.post.ownerType}
+            </span>
           </Grid>
         </Grid>
 
@@ -111,7 +139,8 @@ const Detail = () => {
           display='flex'
           margin='20px 0 0 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid>
             주소
             <span style={{ margin: '0 5px 0 10px' }}>
@@ -124,7 +153,8 @@ const Detail = () => {
           display='flex'
           margin='20px 0 0 0'
           padding='0 0 15px 0'
-          borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+          borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+        >
           <Grid>
             SNS
             <span style={{ margin: '0 5px 0 10px' }}>
@@ -144,7 +174,8 @@ const Detail = () => {
             justifyContent='center'
             alignItems='center'
             top='512px'
-            boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
+            boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+          >
             <Text color='white' _onClick={openModal}>
               입양 신청하기
             </Text>

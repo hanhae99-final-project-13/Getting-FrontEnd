@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -10,6 +10,7 @@ import {
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
 import Footer from '../components/Footer';
+import { postActions } from '../redux/modules/post';
 
 const Adoption = () => {
   const dispatch = useDispatch();
@@ -30,9 +31,14 @@ const Adoption = () => {
     history.push('/addpost');
   };
 
+  useEffect(() => {
+    dispatch(postActions.getPostMW());
+    console.log(wishedPostList);
+  }, []);
+
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto'>
+      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0 0 0'>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>

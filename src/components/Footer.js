@@ -1,16 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { Grid } from '../elements';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faHouseUser } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
+import { postActions } from '../redux/modules/post';
+
 const Footer = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const CardCoverInitialization = () => {
+    dispatch(postActions.changeCardCover(false));
+  };
   return (
     <React.Fragment>
       <Grid
@@ -44,6 +52,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
+            CardCoverInitialization();
           }}
         >
           <FontAwesomeIcon icon={faPen} color='black' fontSize='1x' />
@@ -59,6 +68,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
+            CardCoverInitialization();
           }}
         >
           <FontAwesomeIcon icon={faHouseUser} color='black' fontSize='1x' />

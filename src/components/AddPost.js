@@ -79,7 +79,7 @@ const AddPost = () => {
   };
   return (
     <React.Fragment>
-      <Grid padding='35px' boxSizing='border-box'>
+      <Grid padding='35px' boxSizing='border-box' margin='80px 0 0 0'>
         <button onClick={addPostCard}>등록완료</button>
 
         <p>이미지</p>
@@ -89,7 +89,8 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'
+        >
           <input
             placeholder='견종'
             value={breed}
@@ -108,7 +109,8 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='15px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'
+        >
           <Grid display='flex' justifyContent='space-between'>
             <input
               type='number'
@@ -147,7 +149,8 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'
+        >
           <input
             placeholder='보호장소'
             value={ownerType}
@@ -183,7 +186,8 @@ const AddPost = () => {
         <Grid
           display='flex'
           padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+          borderTop='1px solid rgba(225, 225, 225, 0.5)'
+        >
           <input
             placeholder='정보출처'
             value={tag}

@@ -8,7 +8,7 @@ import { postActions } from '../../redux/modules/post';
 
 const MypageAdoptionCheck = (props) => {
   const dispatch = useDispatch();
-  const isDeleteMode = useSelector((state) => state.post.isDeleteMode);
+  const isDeleteMode = useSelector((state) => state.post.isAdoptionDeleteMode);
   const myWriteList = React.useRef();
 
   const [myWriteListDisplay, setMyWriteListDisplay] = React.useState();
@@ -21,21 +21,20 @@ const MypageAdoptionCheck = (props) => {
     myWriteList.current.classList.add('active');
     setRceivedAdoptionDisplay('none');
     setMyWriteListDisplay('block');
-    dispatch(postActions.changeDeleteMode(true));
   };
   const showReceivedAdoption = () => {
     myWriteList.current.classList.remove('active');
     receivedAdoption.current.classList.add('active');
     setMyWriteListDisplay('none');
     setRceivedAdoptionDisplay('block');
-    dispatch(postActions.changeDeleteMode(false));
+    dispatch(postActions.changeAdoptionDeleteMode(false));
   };
 
   const changeDeleteMode = () => {
     if (isDeleteMode === false) {
-      dispatch(postActions.changeDeleteMode(true));
+      dispatch(postActions.changeAdoptionDeleteMode(true));
     } else {
-      dispatch(postActions.changeDeleteMode(false));
+      dispatch(postActions.changeAdoptionDeleteMode(false));
     }
   };
 
