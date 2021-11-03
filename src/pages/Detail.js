@@ -11,6 +11,7 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
   const post = useSelector((state) => state.post?.detailPost);
+  console.log(post);
   //입양신청하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
@@ -46,8 +47,7 @@ const Detail = (props) => {
                 top: '40px',
                 left: '50px',
                 marginBottom: '5px',
-              }}
-            >
+              }}>
               {post.post.ownerType}
             </div>
             <img
@@ -67,14 +67,12 @@ const Detail = (props) => {
           margin='0 auto'
           padding='15px 25px'
           boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-          borderRadius='10px'
-        >
+          borderRadius='10px'>
           <Grid
             display='flex'
             margin='10px 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid width='50%'>
               견종
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -92,8 +90,7 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid width='50%'>
               체중
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -113,8 +110,7 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid>
               발견 장소
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -127,8 +123,7 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid>
               보호 장소
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -141,8 +136,7 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid>
               주소
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -155,8 +149,7 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
             <Grid>
               SNS
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -190,8 +183,7 @@ const Detail = (props) => {
             alignItems='center'
             bottom='30px'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={openModal}
-          >
+            _onClick={openModal}>
             <Text color='white'>입양 신청하기</Text>
           </Grid>
         </Grid>
