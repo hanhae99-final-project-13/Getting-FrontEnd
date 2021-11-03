@@ -21,8 +21,7 @@ const AdoptionModal = () => {
         position='fixed'
         top='43px'
         left='20px'
-        zIndex='999'
-      >
+        zIndex='999'>
         <Grid margin='40px 0 0 0' position='relative' height='auto'>
           <Grid position='absolute' left='225px' bottom='16px'>
             <FontAwesomeIcon icon={faComment} color='red' fontSize='2x' />
@@ -34,8 +33,7 @@ const AdoptionModal = () => {
                 boxShadow: 'inset 0px -9px 0px #FFC98A',
                 fontWeight: '800',
                 fontSize: '18px',
-              }}
-            >
+              }}>
               입양신청서&nbsp;
             </span>
             <span
@@ -45,8 +43,7 @@ const AdoptionModal = () => {
                 fontWeight: '800',
                 fontSize: '18px',
                 color: '#FF0000',
-              }}
-            >
+              }}>
               주의사항
             </span>
           </Text>
@@ -57,14 +54,12 @@ const AdoptionModal = () => {
           margin='15px 0 0 0'
           height='auto'
           justifyContent='center'
-          alignItems='center'
-        >
+          alignItems='center'>
           <Image
             margin='0'
             size='60'
             src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
-          ></Image>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
 
           <Grid
             margin='0 0 0 10px'
@@ -73,16 +68,14 @@ const AdoptionModal = () => {
             boxShadow=' 10px 10px 20px rgba(0, 0, 0, 0.1);'
             display='flex'
             justifyContent='center'
-            alignItems='center'
-          >
+            alignItems='center'>
             <Text
               padding='15px'
               margin='0'
               weight='800'
               size='15px'
               align='center'
-              line_height='22px'
-            >
+              line_height='22px'>
               저희를 가족으로 입양하실려면,
               <br />
               <span
@@ -91,8 +84,7 @@ const AdoptionModal = () => {
                   boxShadow: 'inset 0px -9px 0px #FFC98A',
                   fontSize: '18px',
                   color: '#FF0000',
-                }}
-              >
+                }}>
                 꼭 아래부분
               </span>
               대로 임해주세요!
@@ -168,8 +160,7 @@ const AdoptionModal = () => {
           margin='15px 0 0 0'
           height='auto'
           justifyContent='center'
-          alignItems='center'
-        >
+          alignItems='center'>
           <Grid
             margin='0 10px 0 0px'
             boxSizing='border-box'
@@ -177,16 +168,14 @@ const AdoptionModal = () => {
             boxShadow=' 10px 10px 20px rgba(0, 0, 0, 0.1);'
             display='flex'
             justifyContent='center'
-            alignItems='center'
-          >
+            alignItems='center'>
             <Text
               padding='15px'
               margin='0'
               weight='800'
               size='15px'
               align='center'
-              line_height='22px'
-            >
+              line_height='22px'>
               아래 분들을 저희를
               <span
                 style={{
@@ -194,8 +183,7 @@ const AdoptionModal = () => {
                   boxShadow: 'inset 0px -9px 0px #FFC98A',
                   fontSize: '18px',
                   color: '#FF0000',
-                }}
-              >
+                }}>
                 가족으로 데려올 수 없습니다!
               </span>
             </Text>
@@ -204,8 +192,7 @@ const AdoptionModal = () => {
             margin='0'
             size='60'
             src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
-          ></Image>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
         </Grid>
 
         <Grid margin='20px 0 0 0' height='auto'>
@@ -259,8 +246,7 @@ const AdoptionModal = () => {
             justifyContent='center'
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={() => {}}
-          >
+            _onClick={() => {}}>
             <Text margin='0' color='white'>
               확인했습니다
             </Text>
