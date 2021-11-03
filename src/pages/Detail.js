@@ -164,6 +164,17 @@ const Detail = (props) => {
               </span>
             </Grid>
           </Grid>
+
+          <Grid display='flex' margin='5px 0 0 0'>
+            <Grid>
+              <p>특이사항</p>
+              <span>
+                겁이 엄청 많은 친구라 아직도 집에서 꼬리 내리고 다니는데 요즘엔
+                무서워하면서 옆에 붙어다니고 신나면 빙글빙글 돌기도하고 그럽니다
+                부르면 귀찮다는듯 터벅터벅 걸어와서 쳐다봐서 너무 귀여워요!
+              </span>
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid display='flex' justifyContent='center' alignItems='center'>
@@ -184,27 +195,17 @@ const Detail = (props) => {
             <Text color='white'>입양 신청하기</Text>
           </Grid>
         </Grid>
-        <Grid display='flex' margin='5px 0 0 0'>
-          <Grid>
-            <p>특이사항</p>
-            <span>
-              겁이 엄청 많은 친구라 아직도 집에서 꼬리 내리고 다니는데 요즘엔
-              무서워하면서 옆에 붙어다니고 신나면 빙글빙글 돌기도하고 그럽니다
-              부르면 귀찮다는듯 터벅터벅 걸어와서 쳐다봐서 너무 귀여워요!
-            </span>
-          </Grid>
-        </Grid>
+
+        <p style={{ padding: '0 46px' }}>댓글😁</p>
+
+        <CommentList />
+
+        {modalOpen ? (
+          <AdoptionModal closeModal={closeModal}></AdoptionModal>
+        ) : (
+          ' '
+        )}
       </Grid>
-
-      <p style={{ padding: '0 46px' }}>댓글😁</p>
-
-      <CommentList />
-
-      {modalOpen ? (
-        <AdoptionModal closeModal={closeModal}></AdoptionModal>
-      ) : (
-        ' '
-      )}
     </React.Fragment>
   );
 };

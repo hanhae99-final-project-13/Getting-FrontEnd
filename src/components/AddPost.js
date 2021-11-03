@@ -1,5 +1,4 @@
 import React from 'react';
-import AWS from 'aws-sdk';
 import { useDispatch } from 'react-redux';
 import { Grid, Text } from '../elements/index';
 import Slider from './Slider';
@@ -83,10 +82,9 @@ const AddPost = () => {
     <React.Fragment>
       <Grid width='375px' margin='0 auto'>
         <Grid padding='35px' boxSizing='border-box'>
-          <button onClick={addPostCard}>등록완료</button>
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
-
+          <button onClick={addPostCard}>등록완료</button>
           <p>상세 정보</p>
           <Grid
             display='flex'
@@ -99,11 +97,11 @@ const AddPost = () => {
               onChange={(e) => {
                 setBreed(e.target.value);
               }}
-              style={{ border: 'none', width: '70%' }}
+              style={{ border: 'none', width: '50%' }}
             />
             <Grid display='flex' alignItems='center'>
               남아
-              <Slider sexCheck={sexCheck} sexToggle={sexToggle} />
+              <Slider _onClick={sexCheck} sexToggle={sexToggle} />
               여아
             </Grid>
           </Grid>
@@ -138,25 +136,15 @@ const AddPost = () => {
               <strong style={{ paddingRight: '10px' }}>kg</strong>
             </Grid>
           </Grid>
-          <Grid
-            padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          ></Grid>
-          <Grid
-            display='flex'
-            padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
-            <Grid display='flex' justifyContent='space-between'>
-              <input
-                placeholder='발견장소'
-                value={lostLocation}
-                onChange={(e) => {
-                  setLostLocation(e.target.value);
-                }}
-                style={{ border: 'none' }}
-              />
-            </Grid>
+          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            <input
+              placeholder='발견장소'
+              value={lostLocation}
+              onChange={(e) => {
+                setLostLocation(e.target.value);
+              }}
+              style={{ border: 'none' }}
+            />
           </Grid>
           <Grid
             display='flex'
@@ -166,12 +154,12 @@ const AddPost = () => {
             <input
               placeholder='보호장소'
               value={ownerType}
-              style={{ border: 'none', width: '70%' }}
+              style={{ border: 'none', width: '50%' }}
             />
             <Grid display='flex' alignItems='center'>
               개인
               <Slider
-                ownerTypeCheck={ownerTypeCheck}
+                _onClick={ownerTypeCheck}
                 ownerTypeToggle={ownerTypeToggle}
               />
               보호소
@@ -203,11 +191,11 @@ const AddPost = () => {
             <input
               placeholder='정보출처'
               value={tag}
-              style={{ border: 'none', width: '50%' }}
+              style={{ border: 'none', width: '30%' }}
             />
             <Grid display='flex' alignItems='center'>
               직접등록
-              <Slider tagCheck={tagCheck} tagToggle={tagToggle} />
+              <Slider _onClick={tagCheck} tagToggle={tagToggle} />
               가져온정보
             </Grid>
           </Grid>
@@ -231,36 +219,6 @@ const AddPost = () => {
               style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
             />
           </Grid>
-
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='발견장소'
-              value={lostLocation}
-              onChange={(e) => {
-                setLostLocation(e.target.value);
-              }}
-              style={{ border: 'none' }}
-            />
-          </Grid>
-
-          <Grid
-            display='flex'
-            padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
-            <input
-              placeholder='보호장소'
-              value={ownerType}
-              style={{ border: 'none', width: '70%' }}
-            />
-            <Grid display='flex' alignItems='center'>
-              개인
-              <Slider
-                _onClick={ownerTypeCheck}
-                ownerTypeToggle={ownerTypeToggle}
-              />
-            </Grid>
-          </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <textarea
               placeholder='특이사항'
@@ -276,23 +234,6 @@ const AddPost = () => {
                 boxSizing: 'border-box',
               }}
             />
-          </Grid>
-        </Grid>
-
-        <Grid
-          display='flex'
-          padding='10px 0'
-          borderTop='1px solid rgba(225, 225, 225, 0.5)'
-        >
-          <input
-            placeholder='정보출처'
-            value={tag}
-            style={{ border: 'none', width: '50%' }}
-          />
-          <Grid display='flex' alignItems='center'>
-            직접등록
-            <Slider _onClick={tagCheck} tagToggle={tagToggle} />
-            가져온정보
           </Grid>
         </Grid>
         <Footer></Footer>
