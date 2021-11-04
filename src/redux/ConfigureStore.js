@@ -6,10 +6,12 @@ import User from './modules/user';
 import comment from './modules/comment';
 import Post from './modules/post';
 import Search from './modules/search';
+import Apply from './modules/apply';
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   comment,
+  apply: Apply,
   post: Post,
   user: User,
   search: Search,

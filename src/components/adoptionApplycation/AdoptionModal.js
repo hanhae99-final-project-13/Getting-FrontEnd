@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Grid, Text, Image } from '../../elements';
-
+import { history } from '../../redux/configureStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
-const AdoptionModal = () => {
+const AdoptionModal = (props) => {
+  const { postId } = props;
   return (
     <ModalParent>
       <Grid
@@ -246,7 +247,9 @@ const AdoptionModal = () => {
             justifyContent='center'
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={() => {}}>
+            _onClick={() => {
+              history.push(`/apply/${postId}`);
+            }}>
             <Text margin='0' color='white'>
               확인했습니다
             </Text>

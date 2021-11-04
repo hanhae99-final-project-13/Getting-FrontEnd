@@ -10,6 +10,7 @@ import { postActions } from '../redux/modules/post';
 const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
+  console.log(postId);
   const post = useSelector((state) => state.post?.detailPost);
   console.log(post);
   //입양신청하기 modal
@@ -193,7 +194,9 @@ const Detail = (props) => {
         <CommentList />
 
         {modalOpen ? (
-          <AdoptionModal closeModal={closeModal}></AdoptionModal>
+          <AdoptionModal
+            postId={postId}
+            closeModal={closeModal}></AdoptionModal>
         ) : (
           ' '
         )}
