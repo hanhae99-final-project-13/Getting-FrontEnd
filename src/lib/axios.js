@@ -63,6 +63,10 @@ export const apis = {
   editComment: (commentId, content) =>
     instance.patch(`/comments/${commentId}`, content),
 
+  //알람 api
+  getAlarmList: () => instance.get('/alarms'),
+  getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
+  deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
   applyFoster: (postId) => instance.post(`/${postId}/adoptions`),
 };

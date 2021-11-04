@@ -5,11 +5,13 @@ import { Grid, Image } from '../elements/';
 import Comment from './Comment';
 import CommentWrite from './CommentWrite';
 
-const CommentList = () => {
+const CommentList = (props) => {
+  const { postId } = props;
+  console.log(postId, 'aa');
   const commentList = useSelector((state) => state.comment.commentList);
   return (
     <React.Fragment>
-      <CommentWrite />
+      <CommentWrite postId={postId} />
       {commentList.map((c) => {
         return <Comment key={c.commentId} comment={c} />;
       })}

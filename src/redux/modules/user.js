@@ -12,6 +12,10 @@ import {
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';
 const UPDATE_USERINFO = 'UPDATE_USERINFO';
+//알림 액션
+const LOAD_ALARMLIST = 'LOAD_ALARMLIST';
+const LOAD_ALARM = 'LOAD_ALARM';
+const DELETE_ALARMLIST = 'DELETE_ALARMLIST';
 
 //액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
@@ -19,7 +23,16 @@ const LogOut = createAction(LOG_OUT, () => {});
 const updateUserInfo = createAction(UPDATE_USERINFO, (userInfo) => ({
   userInfo,
 }));
-
+//알림 액션생성함수
+const loadAlarmList = createAction(LOAD_ALARMLIST, (alarm) => ({
+  alarm,
+}));
+const loadAlarm = createAction(LOAD_ALARM, (alarm) => ({
+  alarm,
+}));
+const deleteAlarm = createAction(DELETE_ALARMLIST, (alarm) => ({
+  alarm,
+}));
 //초기값
 const initialState = {
   user: {
@@ -31,6 +44,7 @@ const initialState = {
       classCount: null,
       alarmCount: null,
       applyList: [],
+      alarmContent: [],
     },
     isLogin: false,
   },
@@ -114,6 +128,7 @@ const LoginCheck = () => {
             classCount: res.data.data.classCount,
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
+            alarmContent: [],
           },
           isLogin: true,
         };
@@ -171,6 +186,46 @@ const updateUserInfoMW = (userInfo) => {
       });
   };
 };
+const loadAlarmListToAxios = () => {
+  return (dispatch) => {
+    apis
+      .getAlarmList()
+      .then((res) => {
+        console.log('알람리스트 ', res);
+        dispatch(loadAlarmList(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+const loadAlarmToAxios = () => {
+  return (dispatch) => {
+    apis
+      .getAlarm()
+      .then((res) => {
+        console.log('알람하나 로드', res);
+        dispatch(loadAlarm(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const deleteAlarmToAxios = () => {
+  return (dispatch) => {
+    apis
+      .deleteAlarmList()
+      .then((res) => {
+        console.log('알람리스트 삭제', res);
+        dispatch(deleteAlarm(res.data));
+      })
+      .catch((err) => {
+        console.log('알람리스트 삭제 오류', err);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -188,6 +243,22 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user.userInfo = action.payload.userInfo;
       }),
+    [LOAD_ALARMLIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user.userInfo.alarmCount = action.payload.alarm.data.alarmCount;
+        draft.user.userInfo.alarmContent = action.payload.alarm.data.data;
+        console.log('알림 컨텐츠1', action.payload.alarm.data.data);
+        console.log(state.user.userInfo.alarmContent);
+      }),
+    [LOAD_ALARM]: (state, action) =>
+      produce(state, (draft) => {
+        console.log('알람 로드', state.alarmList);
+        console.log('무슨 값', action.payload.alarm.data);
+      }),
+    [DELETE_ALARMLIST]: (state, action) =>
+      produce(state, (draft) => {
+        console.log('알람삭제', action.payload);
+      }),
   },
   initialState,
 );
@@ -200,6 +271,9 @@ const actionCreators = {
   KakaoLogin,
   updateUserInfo,
   updateUserInfoMW,
+  loadAlarmListToAxios,
+  loadAlarmToAxios,
+  deleteAlarmToAxios,
 };
 
 export { actionCreators };

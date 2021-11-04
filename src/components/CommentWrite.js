@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { Grid, Image } from '../elements/';
 import { commentCreators } from '../redux/modules/comment';
 const CommentWrite = (props) => {
-  console.log(props);
+  const { postId } = props;
+
   if (props.comment) {
     console.log('수정버튼시 활성화', props.comment.commentId);
   }
@@ -22,10 +23,9 @@ const CommentWrite = (props) => {
   const [comment, setComment] = useState('');
   // 임시로 id값 지정
   const commentId = Date.now();
-  const postId = Date.now();
   const commentSubmit = () => {
     dispatch(
-      commentCreators.addComment({
+      commentCreators.addCommentToAxios({
         postId: postId,
         comment: comment,
       }),
