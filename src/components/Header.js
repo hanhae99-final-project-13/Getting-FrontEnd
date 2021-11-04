@@ -28,9 +28,10 @@ const Header = (props) => {
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        width='375px'
+        width='100%'
         height='60px'
-        zIndex='1'>
+        zIndex='1'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -42,7 +43,8 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -53,7 +55,8 @@ const Header = (props) => {
           _onClick={() => {
             histroy.push('/main');
             dispatch(postActions.changeCardCover(false));
-          }}>
+          }}
+        >
           <TEXT size='20px' bold margin='0'>
             도킹
           </TEXT>
@@ -68,7 +71,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon
                 onClick={() => {
                   history.push('/alarm');
@@ -91,7 +95,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>
