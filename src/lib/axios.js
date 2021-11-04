@@ -2,7 +2,7 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://3.38.107.59',
+  baseURL: 'http://3.36.92.203',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪾에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -43,7 +43,16 @@ export const apis = {
 
   //포스트 관련 api
   getMainPots: () => instance.get('/posts'),
-  getPots: () => instance.get('/pets'),
+  getPots: (defaultSearch) =>
+    instance.get(
+      `/posts/search/${defaultSearch.page}?
+      ${defaultSearch.startDt ? `startDt=${defaultSearch.startDt}` : ``}
+      ${defaultSearch.endDt ? `&endDt=${defaultSearch.endDt}` : ``}
+      ${defaultSearch.ownerType ? `&ownerType=${defaultSearch.ownerType}` : ``}
+      ${defaultSearch.city ? `&city=${defaultSearch.city}` : ``}
+      ${defaultSearch.district ? `&district=${defaultSearch.district}` : ``}
+      &sort=${defaultSearch.sort}`,
+    ),
   getDetailPost: (postId) => instance.get(`/posts/${postId}`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
   updatePost: (postId, postInfo) => instance.post(`/pets/${postId}`, postInfo),
