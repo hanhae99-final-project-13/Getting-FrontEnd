@@ -7,12 +7,24 @@ import { Grid, Image, Text } from '../../elements';
 import { postActions } from '../../redux/modules/post';
 
 const AdoptionCard = (props) => {
+  const {
+    breed,
+    sex,
+    age,
+    createAt,
+    modifiedAt,
+    ownerType,
+    address,
+    img,
+    postId,
+    isAdopted,
+  } = props;
   const { margin } = props;
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.postList);
 
   const goDetail = () => {
-    history.push('/');
+    history.push(`/detail/${postId}`);
   };
 
   return (
@@ -23,25 +35,28 @@ const AdoptionCard = (props) => {
       borderRadius='10px'
       margin={margin}
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      _onClick={() => {
-        history.push('/detail');
-      }}
+      _onClick={goDetail}
     >
       <Tag>
-        <ElP>임시보호중</ElP>
+        <ElP>{ownerType}</ElP>
       </Tag>
-      <ImageBox />
+      <Tag2>
+        <ElP>{isAdopted}</ElP>
+      </Tag2>
+      <ImageBox img={img} />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         <Text margin='0' size='14px' bold>
-          닥스훈트
+          {breed.split('[개]').reverse()[0]}
         </Text>
         <Image size='8' />
       </Grid>
       <Grid display='flex' alignItems='center' width='auto' height='auto'>
         <Image size='8' margin='0' />
-        <ElP>2021.10.24 &nbsp;&nbsp;</ElP>
+        <ElP>
+          {modifiedAt ? modifiedAt.split('T')[0] : createAt} &nbsp;&nbsp;
+        </ElP>
         <Image size='8' margin='0' />
-        <ElP>경기도 수원</ElP>
+        <ElP>{address}</ElP>
       </Grid>
     </Grid>
   );
@@ -69,11 +84,21 @@ const Tag = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
+const Tag2 = styled.div`
+  position: absolute;
+  top: -10px;
+  left: 100px;
+  height: auto;
+  padding: 3px 6px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
+
 const ImageBox = styled.div`
   width: 100%;
   height: 100px;
-  background: url('http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg')
-    no-repeat;
+  background: url(${(props) => props.img}) no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 5px;

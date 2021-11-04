@@ -14,7 +14,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
   const path = useParams();
-  console.log(path, '경로');
+  // console.log(path, '경로');
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo.alarmCount,

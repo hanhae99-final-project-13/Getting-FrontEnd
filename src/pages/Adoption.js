@@ -11,20 +11,25 @@ import {
 import { history } from '../redux/configureStore';
 import Footer from '../components/Footer';
 import { postActions } from '../redux/modules/post';
+import { searchActions } from '../redux/modules/search';
 
 const Adoption = () => {
   const dispatch = useDispatch();
+  const postList = useSelector((state) => state.post.postList);
   const wishedPostList = useSelector((state) => state.post.wishedpostList);
+  const searchSetting = useSelector((state) => state.search.searchSetting);
   const cur = React.useRef();
   const old = React.useRef();
 
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
+    dispatch(searchActions.setSearch({ sort: 'new' }));
   };
   const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
+    dispatch(searchActions.setSearch({ sort: 'old' }));
   };
 
   const goAddPost = () => {
@@ -32,13 +37,13 @@ const Adoption = () => {
   };
 
   useEffect(() => {
-    dispatch(postActions.getPostMW());
-    console.log(wishedPostList);
-  }, []);
+    dispatch(postActions.getPostMW(searchSetting));
+  }, [searchSetting]);
+  console.log(postList);
 
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0 0 0'>
+      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>

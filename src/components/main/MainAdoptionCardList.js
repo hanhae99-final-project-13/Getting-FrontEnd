@@ -17,8 +17,7 @@ const MainAdoptionCardList = (props) => {
       <Grid
         display='flex'
         justifyContent='space-between'
-        width='calc(100% - 1rem)'
-      >
+        width='calc(100% - 1rem)'>
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
         </Title>
@@ -63,8 +62,7 @@ const SliderBox = styled.div`
   margin-top: -1rem;
   overflow: visible;
   overflow-x: scroll;
-
-  :: -webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
   }
 `;

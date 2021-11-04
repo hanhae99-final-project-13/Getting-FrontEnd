@@ -9,7 +9,7 @@ const MainHello = (props) => {
   const userInfo = useSelector((state) => state.user.user.userInfo);
   return (
     <Grid>
-      <Image src={userInfo.userImgUrl ? userInfo.userImgUrl : ''} />
+      <Image src={userInfo ? userInfo.userImgUrl : ''} />
       <ElP>
         안녕하세요 {userInfo.nickname ? userInfo.nickname + '님!' : '!'}
       </ElP>

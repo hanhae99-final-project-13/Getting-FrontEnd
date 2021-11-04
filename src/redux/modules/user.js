@@ -115,7 +115,6 @@ const SignupDB = (form) => {
 
 //로그인체크
 const LoginCheck = () => {
-  // console.log();
   return (dispatch, getState, { history }) => {
     apis
       .loginCheck()
