@@ -18,6 +18,8 @@ import Detail from '../pages/Detail';
 import Intro from '../pages/Intro';
 import Alarm from '../pages/Alarm';
 import Setting from '../components/Setting';
+import AdoptionApply from '../pages/AdoptionApply';
+import AdoptionApply2 from '../pages/AdoptionApply2';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -26,6 +28,7 @@ function App() {
   const dispatch = useDispatch();
 
   const isToken = window.localStorage.getItem('USER_TOKEN') ? true : false;
+  console.log(isToken, '로그인 토큰 체크');
 
   React.useEffect(() => {
     if (isToken) {
@@ -45,6 +48,8 @@ function App() {
         <Route path='/main' exact component={Main} />
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/detail/:id' exact component={Detail} />
+        <Route path='/apply/:id' exact component={AdoptionApply} />
+        <Route path='/apply2/:id' exact component={AdoptionApply2} />
         <Route path='/addpost' exact component={AddPost} />
         <Route path='/comment' exact component={CommentList} />
         <Route path='/mypage' exact component={Mypage} />
