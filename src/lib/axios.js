@@ -2,7 +2,7 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://3.38.107.59',
+  baseURL: 'http://3.36.92.203',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪾에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -53,4 +53,9 @@ export const apis = {
   deleteComment: (commentId) => instance.delete(`/comments/${commentId}`),
   editComment: (commentId, content) =>
     instance.patch(`/comments/${commentId}`, content),
+
+  //알람 api
+  getAlarmList: () => instance.get('/alarms'),
+  getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
+  deleteAlarmList: () => instance.delete('/alarms'),
 };

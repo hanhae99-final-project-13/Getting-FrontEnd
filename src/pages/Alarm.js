@@ -1,21 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import { Grid, Text, Image } from '../elements/index';
+import { actionCreators } from '../redux/modules/user';
 const Alarm = () => {
+  const dispatch = useDispatch();
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo.alarmCount,
   );
-  console.log(alarmCount);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
+  console.log(userInfo);
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);
   };
+  const deleteList = () => {
+    dispatch(actionCreators.deleteAlarmToAxios());
+  };
+  React.useEffect(() => {
+    dispatch(actionCreators.loadAlarmListToAxios());
+  }, []);
 
   return (
     <>
       <Grid width='375px' margin='0 auto'>
-        <Header />
         <Grid padding='35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
@@ -30,7 +38,13 @@ const Alarm = () => {
             justifyContent='space-between'
             alignItems='center'
           >
-            <Text size='12px'>알림 {alarmCount}개</Text>
+            <Text size='12px'>
+              새로운 알림{' '}
+              <span style={{ color: 'red', fontSize: '12px' }}>
+                {alarmCount}
+              </span>
+              개
+            </Text>
             <button
               style={{
                 all: 'unset',
@@ -43,8 +57,8 @@ const Alarm = () => {
               전체삭제{' '}
             </button>
           </Grid>
-
-          {alarmCount === 0 ? (
+          {/* 삼항을 알람컨텐츠 렝스로 해야할듯 */}
+          {userInfo.alarmContent.length === 0 ? (
             <>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <Grid
@@ -77,32 +91,41 @@ const Alarm = () => {
               </Grid>
             </>
           ) : (
-            <Grid
-              bg='white'
-              height='60px'
-              padding='10px 5px'
-              borderRadius='15px'
-              width='auto'
-              display='flex'
-              alignItems='center'
-              margin='15px 0'
-              boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
-            >
-              <Image margin='0 10px' size='50' />
-              <Grid
-                display='flex'
-                flexDirection='column'
-                boxSizing='border-box'
-              >
-                <Grid fontSize='12px' color='darkgrey'>
-                  {'30분'} 전
-                </Grid>
-                <Grid>{'닉네임'}님, 새로운 반려친구가 뭐시깽이~</Grid>
-                <Grid fontSize='12px' color='darkgrey'>
-                  {'랜덤메세지 뭐시깽이'}
-                </Grid>
-              </Grid>
-            </Grid>
+            <>
+              {userInfo.alarmContent.map((a) => {
+                console.log(a);
+                return (
+                  <Grid
+                    bg='white'
+                    height='60px'
+                    padding='10px 5px'
+                    borderRadius='15px'
+                    width='auto'
+                    display='flex'
+                    alignItems='center'
+                    margin='15px 0'
+                    boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+                  >
+                    <Image margin='0 10px' size='50' />
+                    <Grid
+                      display='flex'
+                      flexDirection='column'
+                      boxSizing='border-box'
+                    >
+                      <Grid fontSize='12px' color='darkgrey'>
+                        {'30분'} 전
+                      </Grid>
+                      <Grid>
+                        {userInfo.nickname}님, {a.alarmContent}
+                      </Grid>
+                      <Grid fontSize='12px' color='darkgrey'>
+                        {'랜덤메세지 뭐시깽이'}
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                );
+              })}
+            </>
           )}
         </Grid>
 
@@ -179,8 +202,11 @@ const Alarm = () => {
                   alignItems: 'center',
                   color: 'white',
                 }}
+                onClick={() => {
+                  deleteList();
+                }}
               >
-                괜찮습니다
+                네, 삭제할게요
               </button>
             </Grid>
           </div>

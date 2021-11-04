@@ -16,20 +16,23 @@ const Header = (props) => {
   const path = useParams();
   console.log(path, '경로');
   const isLogin = useSelector((state) => state.user.user.isLogin);
-
+  const alarmCount = useSelector(
+    (state) => state.user.user.userInfo.alarmCount,
+  );
   return (
     <React.Fragment>
       <Grid
         bg='white'
         boxSizing='border-box'
-        padding='0 20px'
-        position='fixed'
+        // padding='0 20px'
+        // position='fixed'
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
         width='375px'
         height='60px'
+        margin='0 auto'
         zIndex='1'
       >
         <Grid display='flex' alignItems='center'>
@@ -63,7 +66,12 @@ const Header = (props) => {
         </Grid>
 
         {isLogin ? (
-          <Grid display='flex' alignItems='center' justifyContent='flex-end'>
+          <Grid
+            display='flex'
+            alignItems='center'
+            justifyContent='flex-end'
+            width='375px'
+          >
             <Grid
               borderRadius='3px'
               width='45px'
@@ -81,6 +89,22 @@ const Header = (props) => {
                 color='black'
                 fontSize='1x'
               />
+              <Grid
+                display='flex'
+                alignItems='center'
+                justifyContent='center'
+                width='12px'
+                height='12px'
+                borderRadius='20px'
+                position='relative '
+                right='15%'
+                top='-10%'
+                color='white'
+                bg='red'
+                fontSize='10px'
+              >
+                {alarmCount}
+              </Grid>
             </Grid>
           </Grid>
         ) : (
