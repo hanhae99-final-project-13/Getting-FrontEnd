@@ -14,7 +14,8 @@ const Calendar = (props) => {
   );
 
   return (
-    <Grid width='auto' height='auto'>
+    <Grid position='relative' width='auto' height='auto'>
+      {props.termCheck ? null : <Cover />}
       <DatePicker
         selected={startDate || endDate}
         dateFormat='yyyy-MM-dd'
@@ -44,6 +45,17 @@ const ElButton = styled.button`
 const ElP = styled.p`
   height: auto;
   color: #a7a7a7;
+`;
+
+const Cover = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.9;
+  border-radius: 10px;
+  z-index: 1;
 `;
 
 export default Calendar;

@@ -5,7 +5,7 @@ import { Grid } from '../../elements';
 import AddressData from '../AddressData';
 
 const SearchAddressSelector = (props) => {
-  const { setCity, setDistrict } = props;
+  const { setCity, setDistrict, locationCheck } = props;
   const changeDistrict = () => {
     const currentCity = document.querySelector('#citySelectBox').value;
     const districtSelectBox = document.querySelector('#districtSelectBox');
@@ -32,49 +32,56 @@ const SearchAddressSelector = (props) => {
   };
 
   return (
-    <SelectBoxGroup>
-      <select id='citySelectBox' onChange={changeDistrict}>
-        <option selected value='지역선택'>
-          지역선택
-        </option>
-        <option>강원도</option>
-        <option>경기도</option>
-        <option>경상남도</option>
-        <option>경상북도</option>
-        <option>광주광역시</option>
-        <option>대구광역시</option>
-        <option>대전광역시</option>
-        <option>부산광역시</option>
-        <option>서울특별시</option>
-        <option>세종특별자치시&nbsp;</option>
-        <option>울산광역시</option>
-        <option>인천광역시</option>
-        <option>전라남도</option>
-        <option>전라북도</option>
-        <option>제주특별자치도</option>
-        <option>충청남도</option>
-        <option>충청북도</option>
-      </select>
-      <select
-        id='districtSelectBox'
-        onChange={() => {
-          setDistrict(document.querySelector('#districtSelectBox').value);
-        }}
-      >
-        <option selected>세부지역 선택</option>
-      </select>
-    </SelectBoxGroup>
+    <Grid display='flex' justifyContent='center' width='auto' height='auto'>
+      <SelectBoxGroup>
+        {locationCheck ? null : <Cover />}
+        <select id='citySelectBox' onChange={changeDistrict}>
+          <option selected value='지역선택'>
+            지역선택
+          </option>
+          <option>강원도</option>
+          <option>경기도</option>
+          <option>경상남도</option>
+          <option>경상북도</option>
+          <option>광주광역시</option>
+          <option>대구광역시</option>
+          <option>대전광역시</option>
+          <option>부산광역시</option>
+          <option>서울특별시</option>
+          <option>세종특별자치시&nbsp;</option>
+          <option>울산광역시</option>
+          <option>인천광역시</option>
+          <option>전라남도</option>
+          <option>전라북도</option>
+          <option>제주특별자치도</option>
+          <option>충청남도</option>
+          <option>충청북도</option>
+        </select>
+      </SelectBoxGroup>
+      <SelectBoxGroup>
+        {locationCheck ? null : <Cover />}
+        <select
+          id='districtSelectBox'
+          onChange={() => {
+            setDistrict(document.querySelector('#districtSelectBox').value);
+          }}
+        >
+          <option selected>세부지역 선택</option>
+        </select>
+      </SelectBoxGroup>
+    </Grid>
   );
 };
 
 const SelectBoxGroup = styled.div`
-  display: flex;
-  justify-content: center;
+  position: relative;
   margin: 0;
   padding: 0;
   width: auto;
+  height: auto;
 
   select {
+    position: relative;
     margin: 0;
     padding: 5px 10px;
     background-color: #ebebeb;
@@ -85,6 +92,17 @@ const SelectBoxGroup = styled.div`
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.06);
+
+    ::after {
+      position: absolute;
+      top: 50%;
+      content: '왜 안되냐';
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      opacity: 0.5;
+    }
   }
 
   select option {
@@ -93,6 +111,18 @@ const SelectBoxGroup = styled.div`
     text-align: left;
     -webkit-transform: scale(0.1);
   }
+`;
+
+const Cover = styled.div`
+  position: absolute;
+  top: 3.4px;
+  left: 12.5px;
+  width: 61px;
+  height: 15px;
+  background-color: white;
+  opacity: 0.9;
+  border-radius: 10px;
+  z-index: 1;
 `;
 
 export default SearchAddressSelector;

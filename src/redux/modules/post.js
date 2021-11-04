@@ -38,11 +38,13 @@ const initialState = {
   isAdoptionWait: false,
 };
 
-const getPostMW = () => {
+const getPostMW = (searchData) => {
+  console.log(searchData);
   return function (dispatch) {
     apis
-      .getPots()
+      .getPots(searchData)
       .then((res) => {
+        console.log(res.data);
         dispatch(getPost(res.data.data.postList));
       })
       .catch((err) => {

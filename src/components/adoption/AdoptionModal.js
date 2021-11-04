@@ -1,16 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
-import AddressSelector from '../AddressSelector';
 import SearchAddressSelector from './SearchAddressSelector';
+import { searchActions } from '../../redux/modules/search';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
+  const searchSetting = useSelector((state) => state.search.searchSetting);
   const [startDate, setStartDate] = React.useState(new Date());
   const [endDate, setEndDate] = React.useState(new Date());
   const [city, setCity] = React.useState();
@@ -40,19 +39,32 @@ const AdoptionModal = (props) => {
     document.querySelector('#searchModal').style.display = 'none';
   };
   const doSearch = () => {
-    console.log(
-      `${startDate.getUTCFullYear()}-${
+    const newSearchSetting = {
+      ...searchSetting,
+      startDt: `${startDate.getUTCFullYear()}-${
         startDate.getUTCMonth() + 1
       }-${startDate.getUTCDate()}`,
-    );
-    console.log(
-      `${endDate.getUTCFullYear()}-${
+      endDt: `${endDate.getUTCFullYear()}-${
         endDate.getUTCMonth() + 1
       }-${endDate.getUTCDate()}`,
-    );
-    console.log(ownerType);
-    console.log(city);
-    console.log(district);
+      ownerType: ownerType,
+      city: city,
+      district: district,
+    };
+    if (!termCheck) {
+      newSearchSetting.startDt = undefined;
+      newSearchSetting.endDt = undefined;
+    }
+    if (!ownerTypeCheck) {
+      newSearchSetting.ownerType = undefined;
+    }
+    if (!locationCheck) {
+      newSearchSetting.city = undefined;
+      newSearchSetting.district = undefined;
+    }
+    console.log(newSearchSetting);
+    dispatch(searchActions.setSearch(newSearchSetting));
+    hideModal();
   };
 
   return (
@@ -94,9 +106,13 @@ const AdoptionModal = (props) => {
             alignItems='center'
             height='auto'
           >
-            <Calendar changeDate={changeStartDate} />
+            <Calendar changeDate={changeStartDate} termCheck={termCheck} />
             <span className='between'>~</span>
-            <Calendar changeDate={changeEndDate} startDate={startDate} />
+            <Calendar
+              changeDate={changeEndDate}
+              startDate={startDate}
+              termCheck={termCheck}
+            />
           </Grid>
           <Grid display='flex' width='auto' height='auto'>
             {ownerTypeCheck ? (
@@ -114,9 +130,18 @@ const AdoptionModal = (props) => {
             height='auto'
           >
             <p className='toggleText'>개인</p>
-            <ToggleButton onClick={toggleOwnerType}>
-              <div id='toggleCircle' />
-            </ToggleButton>
+            <Grid
+              position='relative'
+              display='flex'
+              justifyContent='center'
+              width='auto'
+              height='auto'
+            >
+              {ownerTypeCheck ? null : <Cover />}
+              <ToggleButton onClick={toggleOwnerType}>
+                <div id='toggleCircle' />
+              </ToggleButton>
+            </Grid>
             <p className='toggleText'>보호소</p>
           </Grid>
           <Grid display='flex' width='auto' height='auto'>
@@ -128,7 +153,11 @@ const AdoptionModal = (props) => {
             <span>지역</span>
           </Grid>
           <Grid width='auto' height='auto'></Grid>
-          <SearchAddressSelector setCity={setCity} setDistrict={setDistrict} />
+          <SearchAddressSelector
+            setCity={setCity}
+            setDistrict={setDistrict}
+            locationCheck={locationCheck}
+          />
         </Grid>
         <button id='submit' onClick={doSearch}>
           찾아보기
@@ -216,10 +245,21 @@ const CheckBoxOff = styled.div`
   margin-right: 4px;
   width: 11px;
   height: 11px;
-  background: url(https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/checked_checkbox.png)
+  background: url(http://download.seaicons.com/icons/icons8/windows-8/512/User-Interface-Unchecked-Checkbox-icon.png)
     no-repeat;
   background-size: cover;
   background-position: center;
+`;
+
+const Cover = styled.div`
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: white;
+  opacity: 0.6;
+  border-radius: 10px;
+  z-index: 1;
 `;
 
 export default AdoptionModal;
