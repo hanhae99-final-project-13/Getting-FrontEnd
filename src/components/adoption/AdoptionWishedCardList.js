@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { Grid, Image } from '../../elements';
 import { Card } from '../';
 import { history } from '../../redux/configureStore';
+import { useSelector } from 'react-redux';
 
 const AdoptionWishedCardList = (props) => {
+  // const wishedPostList = useSelector(state => state.)
   const goDetail = () => {
     history.push('/');
   };
@@ -24,17 +26,6 @@ const AdoptionWishedCardList = (props) => {
       </Grid>
       <SliderBox>
         <InnerSlider>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
           <Card></Card>
         </InnerSlider>
       </SliderBox>
