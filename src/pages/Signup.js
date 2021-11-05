@@ -4,6 +4,7 @@ import { Grid, Input, Text } from '../elements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { SuccessAlert, WarningAlert, ErrorAlert } from '../shared/Alerts';
+import { emailCheck } from '../shared/emailCheck';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -40,60 +41,82 @@ const Signup = (props) => {
 
   // ID 중복체크 버튼 함수
   const idCheckButton = () => {
+    if (username === '') {
+      WarningAlert('아이디를 입력해주세요');
+      setCheckId(false);
+      return;
+    }
+
     apis
       .checkId(username)
       .then((res) => {
         console.log(res.data.data, '아이디 중복체크');
         console.log(res.data.status, '아이디 중복체크');
-        if (username === '') {
-          WarningAlert('아이디를 입력해주세요');
-          setCheckId(false);
-          return;
-        }
-        if (res.data.status === 'fail') {
-          ErrorAlert('중복된 아이디가 존재합니다');
-          setCheckId(false);
-          return;
-        }
+
+        // if (res.data.status === 'fail') {
+        //   ErrorAlert('중복된 아이디가 존재합니다');
+        // setCheckId(false);
+        //   return;
+        // }
         console.log(res.data.status);
         SuccessAlert('아이디 중복확인이 완료되었습니다.');
         setCheckId(true);
       })
       .catch((error) => {
-        // error.response.data.data.message
-        console.log(error, '아이디체크 실패');
+        ErrorAlert(error.response.data.errorMessage);
+        setCheckId(false);
+        console.log(error, '아이디중복');
       });
   };
 
   // 닉네임 중복체크 버튼 함수
   const nicknameCheckButton = () => {
+    if (nickname === '') {
+      WarningAlert('닉네임을 입력해주세요');
+      setChecknickName(false);
+      return;
+    }
+
     console.log(nickname);
     apis
       .checknickName(nickname)
       .then((res) => {
         console.log(res.data.data, '닉네임 중복체크');
         console.log(res.data.status, '닉네임 중복체크');
-        if (nickname === '') {
-          WarningAlert('닉네임을 입력해주세요');
-          setChecknickName(false);
-          return;
-        }
-        if (res.data.status === 'fail') {
-          ErrorAlert('중복된 닉네임이 존재합니다');
-          setChecknickName(false);
-          return;
-        }
+
         SuccessAlert('닉네임 중복확인이 완료되었습니다.');
         setChecknickName(true);
       })
       .catch((error) => {
-        // error.response.data.data.message
-        console.log(error, '아이디체크 실패');
+        ErrorAlert(error.response.data.errorMessage);
+        setChecknickName(false);
+        console.log(error, '닉네임 중복');
       });
   };
 
   //회원가입 버튼 함수
   const registerClick = () => {
+    if (username === '' || checkId === false) {
+      ErrorAlert('아이디 중복확인을 먼저 진행해 주세요');
+      return;
+    }
+    if (password === '') {
+      ErrorAlert('패스워드를 입력해주세요');
+      return;
+    }
+    if (password !== pwcheck) {
+      ErrorAlert('패스워드 확인을 다시 확인해주세요.');
+      return;
+    }
+    if (nickname === '' || checknickName === false) {
+      ErrorAlert('닉네임을 중복확인을 먼저 진행해주세요 입력해주세요');
+      return;
+    }
+    if (email === '') {
+      ErrorAlert('이메일을 입력해주세요');
+      return;
+    }
+
     dispatch(userAction.SignupDB(form));
   };
 

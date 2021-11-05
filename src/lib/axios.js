@@ -2,7 +2,7 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://3.36.92.203',
+  baseURL: 'http://3.38.107.59',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -68,5 +68,5 @@ export const apis = {
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
-  applyFoster: (postId) => instance.post(`/${postId}/adoptions`),
+  applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
 };

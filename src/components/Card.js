@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Grid, Image, Text } from '../elements';
 import { postActions } from '../redux/modules/post';
-
 const Card = (props) => {
   const {
     margin,
@@ -30,11 +28,9 @@ const Card = (props) => {
     (state) => state.post.isAdoptionDeleteMode,
   );
   const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
-
   const goDetail = () => {
     history.push(`/detail/${postId}`);
   };
-
   return (
     <Grid
       position='relative'
@@ -43,8 +39,7 @@ const Card = (props) => {
       borderRadius='10px'
       margin={margin}
       boxShadow='10px 10px 20px rgba(0, 0, 0, 0.1)'
-      _onClick={goDetail}
-    >
+      _onClick={goDetail}>
       <Tag>
         <ElP>{ownerType ? ownerType : '임시보호중'}</ElP>
       </Tag>
@@ -66,8 +61,7 @@ const Card = (props) => {
               right='9px'
               alignItems='center'
               width='auto'
-              height='auto'
-            >
+              height='auto'>
               <Image size='12' margin='0' />
               <Text margin='0' size='12px' weight='700' color='white'>
                 신청날짜
@@ -102,14 +96,12 @@ const Card = (props) => {
 Card.defaultProps = {
   margin: null,
 };
-
 const ElP = styled.p`
   width: auto;
   margin: 0;
   font-size: 8px;
   text-align: center;
 `;
-
 const Tag = styled.div`
   position: absolute;
   top: -10px;
@@ -130,7 +122,6 @@ const Tag2 = styled.div`
   border-radius: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
-
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
@@ -145,7 +136,6 @@ const ImageBox = styled.div`
   background-position: center;
   border-radius: 10px;
 `;
-
 const DeleteButton = styled.div`
   position: absolute;
   width: 28px;
@@ -159,7 +149,6 @@ const DeleteButton = styled.div`
   background-position: center;
   z-index: 1;
 `;
-
 const CardCover = styled.div`
   display: flex;
   justify-content: center;
@@ -173,5 +162,4 @@ const CardCover = styled.div`
   background-color: rgba(49, 49, 49, 0.7);
   border-radius: 10px;
 `;
-
 export default Card;
