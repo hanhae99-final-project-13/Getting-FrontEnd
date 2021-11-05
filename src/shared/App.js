@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
@@ -20,8 +21,8 @@ import Alarm from '../pages/Alarm';
 import Setting from '../components/Setting';
 import AdoptionApply from '../pages/AdoptionApply';
 import AdoptionApply2 from '../pages/AdoptionApply2';
+import TakeAdoptionApply from '../pages/TakeAdoptionApply';
 
-import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path='/intro' exact component={Intro} />
         <Route path='/alarm' exact component={Alarm} />
         <Route path='/setting' exact component={Setting} />
+        <Route path='/takeapply' exact component={TakeAdoptionApply} />
       </ConnectedRouter>
     </React.Fragment>
   );

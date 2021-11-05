@@ -46,7 +46,7 @@ export const apis = {
   getPots: (defaultSearch) =>
     instance.get(
       `/posts/search/${defaultSearch.page}?
-      ${defaultSearch.startDt ? `startDt=${defaultSearch.startDt}` : ``}
+      ${defaultSearch.startDt ? `&startDt=${defaultSearch.startDt}` : ``}
       ${defaultSearch.endDt ? `&endDt=${defaultSearch.endDt}` : ``}
       ${defaultSearch.ownerType ? `&ownerType=${defaultSearch.ownerType}` : ``}
       ${defaultSearch.city ? `&city=${defaultSearch.city}` : ``}

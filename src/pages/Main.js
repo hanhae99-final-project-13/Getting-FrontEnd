@@ -32,9 +32,6 @@ const Main = () => {
         <Grid>
           <MainAdoptionCardList />
         </Grid>
-        <Grid>
-          <MainAdopted />
-        </Grid>
       </Grid>
       <Footer></Footer>
     </Grid>

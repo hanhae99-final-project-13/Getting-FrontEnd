@@ -81,7 +81,7 @@ const Card = (props) => {
       </ImageBox>
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         <Text margin='0 10px 0 0' size='14px' bold>
-          {breed ? breed.split('[개]').reverse()[0] : '닥스훈트'}
+          {breed ? breed.split('[개]').reverse()[0] : '말이 되는 소리를 해!'}
         </Text>
         <Text margin='0' size='14px'>
           {sex ? sex : '남아'}/{age ? age : '2018년생'}
@@ -140,8 +140,7 @@ const ImageBox = styled.div`
     props.img
       ? props.img
       : 'http://rgo4.com/files/attach/images/2681740/682/850/029/5993dcd644b29c202130d9204e876693.jpeg'})
-    
-    no-repeat;
+        no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
