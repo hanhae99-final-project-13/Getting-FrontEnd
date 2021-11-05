@@ -10,6 +10,7 @@ import {
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
 import Footer from '../components/Footer';
+import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
 import { searchActions } from '../redux/modules/search';
 
@@ -20,6 +21,7 @@ const Adoption = () => {
   const searchSetting = useSelector((state) => state.search.searchSetting);
   const cur = React.useRef();
   const old = React.useRef();
+  const getMoreTrigger = React.useRef();
 
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
@@ -61,6 +63,7 @@ const Adoption = () => {
         </Grid>
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
+      <InfinityScroll />
       <Footer></Footer>
     </Grid>
   );

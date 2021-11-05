@@ -46,7 +46,7 @@ export const apis = {
   getPots: (defaultSearch) =>
     instance.get(
       `/posts/search/${defaultSearch.page}?
-      ${defaultSearch.startDt ? `startDt=${defaultSearch.startDt}` : ``}
+      ${defaultSearch.startDt ? `&startDt=${defaultSearch.startDt}` : ``}
       ${defaultSearch.endDt ? `&endDt=${defaultSearch.endDt}` : ``}
       ${defaultSearch.ownerType ? `&ownerType=${defaultSearch.ownerType}` : ``}
       ${defaultSearch.city ? `&city=${defaultSearch.city}` : ``}
@@ -63,6 +63,10 @@ export const apis = {
   editComment: (commentId, content) =>
     instance.patch(`/comments/${commentId}`, content),
 
+  //알람 api
+  getAlarmList: () => instance.get('/alarms'),
+  getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
+  deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
   applyFoster: (postId) => instance.post(`/${postId}/adoptions`),
 };

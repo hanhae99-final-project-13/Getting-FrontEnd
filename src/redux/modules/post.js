@@ -3,6 +3,7 @@ import { produce } from 'immer';
 import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
+const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
 const GET_DETAILPOST = 'GET_DETAILPOST';
 const GET_WISHED = 'GET_WISED';
@@ -11,6 +12,7 @@ const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
+const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
 const getMainPost = createAction(GET_MAINPOST, (postList) => ({ postList }));
 const getDetailPost = createAction(GET_DETAILPOST, (post) => ({ post }));
 const getWished = createAction(GET_WISHED, (postList) => ({ postList }));
@@ -36,6 +38,7 @@ const initialState = {
   isDockingDeleteMode: false,
   isAdoptionDeleteMode: false,
   isAdoptionWait: false,
+  isLoading: false,
 };
 
 const getPostMW = (searchData) => {
@@ -46,6 +49,21 @@ const getPostMW = (searchData) => {
       .then((res) => {
         console.log(res.data);
         dispatch(getPost(res.data.data.postList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMorePostMW = (searchData) => {
+  console.log(searchData);
+  return (dispatch) => {
+    apis
+      .getPots(searchData)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getMorePost(res.data.data.postList));
       })
       .catch((err) => {
         console.log(err);
@@ -97,28 +115,32 @@ const addPostToAxios = (postInfo) => {
 export default handleActions(
   {
     [GET_POST]: (state, action) =>
-      produce(state, (darft) => {
-        darft.postList = action.payload.postList;
+      produce(state, (draft) => {
+        draft.postList = action.payload.postList;
+      }),
+    [GET_MOREPOST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.postList = [...draft.postList, ...action.payload.postList];
       }),
     [GET_MAINPOST]: (state, action) =>
-      produce(state, (darft) => {
-        darft.mainPostList = action.payload.postList;
+      produce(state, (draft) => {
+        draft.mainPostList = action.payload.postList;
       }),
     [GET_DETAILPOST]: (state, action) =>
-      produce(state, (darft) => {
-        darft.detailPost = action.payload.post;
+      produce(state, (draft) => {
+        draft.detailPost = action.payload.post;
       }),
     [CHANGE_DOCKINGDELETEMODE]: (state, action) =>
-      produce(state, (darft) => {
-        darft.isDockingDeleteMode = action.payload.value;
+      produce(state, (draft) => {
+        draft.isDockingDeleteMode = action.payload.value;
       }),
     [CHANGE_ADOPTIONDELETEMODE]: (state, action) =>
-      produce(state, (darft) => {
-        darft.isAdoptionDeleteMode = action.payload.value;
+      produce(state, (draft) => {
+        draft.isAdoptionDeleteMode = action.payload.value;
       }),
     [CHANGE_CARDCOVER]: (state, action) =>
-      produce(state, (darft) => {
-        darft.isAdoptionWait = action.payload.value;
+      produce(state, (draft) => {
+        draft.isAdoptionWait = action.payload.value;
       }),
   },
   initialState,
@@ -132,6 +154,7 @@ const postActions = {
   changeDockingDeleteMode,
   changeAdoptionDeleteMode,
   getDetailPostMW,
+  getMorePostMW,
 };
 
 export { postActions };

@@ -191,7 +191,7 @@ const Detail = (props) => {
 
         <p style={{ padding: '0 46px' }}>댓글😁</p>
 
-        <CommentList />
+        <CommentList postId={postId} />
 
         {modalOpen ? (
           <AdoptionModal
