@@ -15,29 +15,31 @@ const initialState = {
   apply: {
     name: '',
     job: '',
-    age: '',
+    fosterAge: '',
     gender: '',
-    adress: '',
+    fosterAddress: '',
     family: '',
     currnetPet: '',
     reason: '',
-    Allergie: '',
+    allergy: '',
     experience: '',
     timeTogether: '',
     anxiety: '',
     bark: '',
     roomUrl: '',
     phone: '',
-    code: '',
+    // code: '',
   },
 };
 
 //미들웨어
 
-const addApplyDB = (postId) => {
+const addApplyDB = (postId, data) => {
+  console.log(postId, '서버에 id넘어가는값');
+  console.log(data, '서버에 넘어가는 데이터');
   return (dispatch, getState, { history }) => {
     apis
-      .applyFoster(postId)
+      .applyFoster(postId, data)
       .then((res) => {
         console.log(res.data);
         //  dispatch(addApply(res.data.FosterForm));

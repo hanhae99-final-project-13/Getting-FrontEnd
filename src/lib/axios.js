@@ -68,5 +68,5 @@ export const apis = {
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
-  applyFoster: (postId) => instance.post(`/${postId}/adoptions`),
+  applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
 };

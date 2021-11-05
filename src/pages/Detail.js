@@ -10,7 +10,7 @@ import { postActions } from '../redux/modules/post';
 const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
-  console.log(postId);
+  console.log(postId, '디테일 id');
   const post = useSelector((state) => state.post?.detailPost);
   console.log(post);
   //입양신청하기 modal

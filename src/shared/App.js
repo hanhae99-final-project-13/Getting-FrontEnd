@@ -22,6 +22,9 @@ import Setting from '../components/Setting';
 import AdoptionApply from '../pages/AdoptionApply';
 import AdoptionApply2 from '../pages/AdoptionApply2';
 import TakeAdoptionApply from '../pages/TakeAdoptionApply';
+import Tutorial from '../pages/Tutorial';
+import Tutorial2 from '../pages/Tutorial2';
+import FosterKnowledge from '../pages/FosterKnowledge';
 
 import { actionCreators as userAction } from '../redux/modules/user';
 
@@ -47,6 +50,9 @@ function App() {
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={Signup} />
         <Route path='/main' exact component={Main} />
+        <Route path='/tutorial' exact component={Tutorial} />
+        <Route path='/tutorial2' exact component={Tutorial2} />
+        <Route path='/fosterknowledge' exact component={FosterKnowledge} />
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/detail/:id' exact component={Detail} />
         <Route path='/apply/:id' exact component={AdoptionApply} />

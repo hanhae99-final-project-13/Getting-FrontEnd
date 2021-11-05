@@ -7,6 +7,7 @@ import { Grid, Input, Text } from '../elements';
 import { KAKAO_AUTH_URL } from '../shared/kakaoAuth';
 
 const Login = (props) => {
+  const isToken = window.localStorage.getItem('USER_TOKEN') ? true : false;
   const { history } = props;
   const dispatch = useDispatch();
 
@@ -28,6 +29,9 @@ const Login = (props) => {
     password: pw,
   };
   const onClickButton = () => {
+    if (isToken) {
+      window.localStorage.removeItem('USER_TOKEN');
+    }
     dispatch(userAction.GetUserDB(user));
   };
 
