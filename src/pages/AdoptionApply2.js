@@ -50,6 +50,10 @@ const AdoptionApply2 = () => {
 
   //입양 신청버튼
   const applyClick = () => {
+    // console.log(Object.values(data));
+    // if (Object.keys(data) === "") {
+
+    // }
     Swal.fire({
       title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
       text: '정말 이대로 제출 하시겠습니까?',

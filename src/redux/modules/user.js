@@ -143,10 +143,11 @@ const LoginCheck = () => {
 
 //카카오 로그인
 const KakaoLogin = (code) => {
-  // console.log();
+  console.log(code, 'db에 넘겨주는코드');
   return (dispatch, getState, { history }) => {
     apis
       .kakaoLogin(code)
+
       .then((res) => {
         console.log('카카오 로그인정보', res.data.data);
         const USER_TOKEN = res.data.data.token;

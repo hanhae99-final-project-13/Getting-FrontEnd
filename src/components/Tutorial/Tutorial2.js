@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Image, Text } from '../elements';
-import Footer from '../components/Footer';
+import { Grid, Image, Text } from '../../elements';
+import Footer from '../Footer';
 
 const Tutorial2 = (props) => {
   const { history } = props;
@@ -61,6 +61,9 @@ const Tutorial2 = (props) => {
         </Text>
       </Grid>
       <Grid
+        _onClick={() => {
+          history.push('/fosterknowledge');
+        }}
         margin=' 0 auto'
         bg='#FF6666'
         width='157px'

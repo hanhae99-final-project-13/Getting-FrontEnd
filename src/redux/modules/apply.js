@@ -19,7 +19,7 @@ const initialState = {
     gender: '',
     fosterAddress: '',
     family: '',
-    currnetPet: '',
+    currentPet: '',
     reason: '',
     allergy: '',
     experience: '',

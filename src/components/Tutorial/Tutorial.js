@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Image, Text } from '../elements';
-import Footer from '../components/Footer';
+import { Grid, Image, Text } from '../../elements';
+import Footer from '../Footer';
 
 const Tutorial = (props) => {
   const { history } = props;

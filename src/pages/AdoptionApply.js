@@ -21,12 +21,12 @@ const AdoptionApply = (props) => {
   const { history } = props;
   const [name, setName] = React.useState('');
   const [job, setJob] = React.useState('');
-  const [fosterage, setFosterage] = React.useState('20');
+  const [fosterAge, setFosterAge] = React.useState('20');
   const [gender, setGender] = React.useState('F');
   const [address, setAddress] = React.useState('');
   const [siAddress, setSiAddress] = React.useState('');
   const [family, setFamily] = React.useState('');
-  const [currnetPet, setCurrnetPet] = React.useState('있음');
+  const [currentPet, setCurrentPet] = React.useState('있음');
   const [reason, setReason] = React.useState('');
   // const [allergy, setAllergy] = React.useState('있음');
   // const [experience, setExperience] = React.useState('있음');
@@ -50,7 +50,7 @@ const AdoptionApply = (props) => {
   // AgeData는 type이 number인데 setAge로들어가면 string으로 나옴. 그래서 type string으로 서버에넘김
   const AGEOPTION = AgeData;
   const handleAgeChange = (e) => {
-    setFosterage(e.target.value);
+    setFosterAge(e.target.value);
     // console.log(typeof AGEOPTION[0].value);
   };
 
@@ -59,11 +59,11 @@ const AdoptionApply = (props) => {
   const data = {
     name: name,
     job: job,
-    fosterAge: fosterage,
+    fosterAge: fosterAge,
     gender: gender,
     fosterAddress: address + siAddress,
     family: family,
-    currnetPet: currnetPet,
+    currentPet: currentPet,
     phone: phone,
     // code: code,
     reason: reason,
@@ -82,8 +82,8 @@ const AdoptionApply = (props) => {
     setClick(!click);
     // console.log(click);
     if (click === true) {
-      setCurrnetPet('없음');
-    } else setCurrnetPet('있음');
+      setCurrentPet('없음');
+    } else setCurrentPet('있음');
   };
   // console.log(click);
 
@@ -151,7 +151,7 @@ const AdoptionApply = (props) => {
           <SelectBox
             options={AGEOPTION}
             _onChange={handleAgeChange}
-            defaultValue={fosterage}></SelectBox>
+            defaultValue={fosterAge}></SelectBox>
           <Text margin='0' bold margin='0 11px 0 8px'>
             살
           </Text>
@@ -235,14 +235,14 @@ const AdoptionApply = (props) => {
           </Grid>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text
-              color={currnetPet === '있음' ? '#000000' : '#E1E1E1'}
+              color={currentPet === '있음' ? '#000000' : '#E1E1E1'}
               bold
               margin='0 10px 0 0'>
               있음
             </Text>
             <Slider _onClick={handleCurrentPet} />
             <Text
-              color={currnetPet === '없음' ? '#000000' : '#E1E1E1'}
+              color={currentPet === '없음' ? '#000000' : '#E1E1E1'}
               bold
               margin='0  0 0 10px'>
               없음
