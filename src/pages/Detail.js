@@ -6,15 +6,15 @@ import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
 import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
 import { postActions } from '../redux/modules/post';
+import { history } from '../redux/configureStore';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
   console.log(postId, '디테일 id');
   const post = useSelector((state) => state.post?.detailPost);
-  console.log(post);
+  // console.log(post.post);
 
-  // const imgs = post.post.img;
   // console.log(imgs);
   //입양신청하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -36,10 +36,9 @@ const Detail = (props) => {
     dispatch(postActions.getDetailPostMW(postId));
   }, []);
 
-  if (post && !post.post) {
+  if (!post.post) {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
-
   return (
     <React.Fragment>
       <Grid width='375px' margin='0 auto'>
@@ -54,8 +53,8 @@ const Detail = (props) => {
             </p>
           </Grid>
           <Grid display='flex' overflowX='auto'>
-            {/* {imgs &&
-              imgs.map((m, i) => {
+            {post.post.img &&
+              post.post.img.map((m, i) => {
                 return (
                   <>
                     <img
@@ -71,7 +70,7 @@ const Detail = (props) => {
                     />
                   </>
                 );
-              })} */}
+              })}
           </Grid>
         </Grid>
         <Grid

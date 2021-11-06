@@ -17,7 +17,8 @@ const MainAdoptionCardList = (props) => {
       <Grid
         display='flex'
         justifyContent='space-between'
-        width='calc(100% - 1rem)'>
+        width='calc(100% - 1rem)'
+      >
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
         </Title>
@@ -36,7 +37,7 @@ const MainAdoptionCardList = (props) => {
                 modifiedAt={p.modifiedAt}
                 ownerType={p.ownerType}
                 address={p.address}
-                img={p.img}
+                img={p.img[0]}
                 postId={p.postId}
                 isAdopted={p.isAdopted}
               />
