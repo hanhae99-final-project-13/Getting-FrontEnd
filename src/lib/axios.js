@@ -60,8 +60,8 @@ export const apis = {
   clickWish: (postId) => instance.post(`/wishes/${postId}`),
   addComment: (comment) => instance.post(`/comments/`, comment),
   deleteComment: (commentId) => instance.delete(`/comments/${commentId}`),
-  editComment: (commentId, content) =>
-    instance.patch(`/comments/${commentId}`, content),
+  editComment: (commentId, comment) =>
+    instance.patch(`/comments/${commentId}`, comment),
 
   //알람 api
   getAlarmList: () => instance.get('/alarms'),

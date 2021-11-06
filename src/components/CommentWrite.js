@@ -3,32 +3,25 @@ import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Image } from '../elements/';
-import { commentCreators } from '../redux/modules/comment';
+import { postActions } from '../redux/modules/post';
 const CommentWrite = (props) => {
-  const { postId } = props;
-
+  const postId = props.postId;
+  console.log(props.comment);
   if (props.comment) {
     console.log('수정버튼시 활성화', props.comment.commentId);
   }
+
   const editSubmit = () => {
-    dispatch(
-      commentCreators.updateCommentToAxios({
-        commentId: props.comment.commentId,
-        comment,
-      }),
-    );
+    const commentId = props.comment.commentId;
+    dispatch(postActions.updateCommentToAxios(commentId, comment));
     props.setEdit(false);
   };
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
   // 임시로 id값 지정
-  const commentId = Date.now();
   const commentSubmit = () => {
     dispatch(
-      commentCreators.addCommentToAxios({
-        postId: postId,
-        comment: comment,
-      }),
+      postActions.addCommentToAxios({ postId: postId, comment: comment }),
     );
     setComment('');
   };

@@ -257,7 +257,9 @@ export default handleActions(
       }),
     [DELETE_ALARMLIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log('알람삭제', action.payload);
+        console.log('알람 삭제');
+        draft.user.userInfo.alarmContent = [];
+        console.log(draft.user.userInfo.alarmContent);
       }),
   },
   initialState,

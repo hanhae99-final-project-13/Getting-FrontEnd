@@ -10,9 +10,12 @@ import { postActions } from '../redux/modules/post';
 const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
-  console.log(postId);
+  // console.log(postId);
   const post = useSelector((state) => state.post?.detailPost);
   console.log(post);
+
+  // const imgs = post.post.img;
+  // console.log(imgs);
   //입양신청하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
@@ -26,7 +29,7 @@ const Detail = (props) => {
     dispatch(postActions.getDetailPostMW(postId));
   }, []);
 
-  if (!post.post) {
+  if (post && !post.post) {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
 
@@ -34,56 +37,59 @@ const Detail = (props) => {
     <React.Fragment>
       <Grid width='375px' margin='0 auto'>
         <Grid width='auto' padding='0 46px'>
-          <p>저와 친구하실래요?😁</p>
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '80px',
-                height: '30px',
-                borderRadius: '15px',
-                backgroundColor: 'white',
-                top: '40px',
-                left: '50px',
-                marginBottom: '5px',
-              }}>
-              {post.post.ownerType}
-            </div>
-            <img
-              style={{
-                marginBottom: '15px',
-                borderRadius: '10px',
-                width: '283px',
-                height: '145px',
-                objectFit: 'cover',
-              }}
-              src={post.post.img}
-            />
-          </div>
+          <Grid display='flex' justifyContent='space-between'>
+            <p>저와 친구하실래요?😁</p>
+            {/* 삼항연산자 수정,삭제 모달 */}
+            <p>
+              <button style={{ all: 'unset' }}>🖤</button>{' '}
+            </p>
+          </Grid>
+          <Grid display='flex' overflowX='auto'>
+            {/* {imgs &&
+              imgs.map((m, i) => {
+                return (
+                  <>
+                    <img
+                      key={i}
+                      style={{
+                        margin: '0 5px 15px 5px',
+                        borderRadius: '10px',
+                        width: '283px',
+                        height: '145px',
+                        objectFit: 'cover',
+                      }}
+                      src={m}
+                    />
+                  </>
+                );
+              })} */}
+          </Grid>
         </Grid>
         <Grid
           width='280px'
           margin='0 auto'
           padding='15px 25px'
           boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-          borderRadius='10px'>
+          borderRadius='10px'
+        >
           <Grid
             display='flex'
             margin='10px 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid width='50%'>
               견종
               <span style={{ margin: '0 5px 0 10px' }}>
-                {post.post.breed.split('[개]').reverse()[0]}
+                {post && post.post.breed.split('[개]').reverse()[0]}
               </span>
             </Grid>
 
             <Grid width='50%'>
               성별
-              <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
+              <span style={{ margin: '0 5px 0 10px' }}>
+                {post && post.post.sex}
+              </span>
             </Grid>
           </Grid>
 
@@ -91,18 +97,19 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid width='50%'>
               체중
               <span style={{ margin: '0 5px 0 10px' }}>
-                {post.post.weight} kg
+                {post && post.post.weight} kg
               </span>
             </Grid>
 
             <Grid width='50%'>
               나이
               <span style={{ margin: '0 5px 0 10px' }}>
-                {post.post.age} 년생
+                {post && post.post.age} 년생
               </span>
             </Grid>
           </Grid>
@@ -111,11 +118,12 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               발견 장소
               <span style={{ margin: '0 5px 0 10px' }}>
-                {post.post.lostLocation}
+                {post && post.post.lostLocation}
               </span>
             </Grid>
           </Grid>
@@ -124,11 +132,12 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               보호 장소
               <span style={{ margin: '0 5px 0 10px' }}>
-                {post.post.ownerType}
+                {post && post.post.ownerType}
               </span>
             </Grid>
           </Grid>
@@ -137,7 +146,8 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               주소
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -150,7 +160,8 @@ const Detail = (props) => {
             display='flex'
             margin='20px 0 0 0'
             padding='0 0 15px 0'
-            borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+          >
             <Grid>
               SNS
               <span style={{ margin: '0 5px 0 10px' }}>
@@ -184,7 +195,8 @@ const Detail = (props) => {
             alignItems='center'
             bottom='30px'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={openModal}>
+            _onClick={openModal}
+          >
             <Text color='white'>입양 신청하기</Text>
           </Grid>
         </Grid>
@@ -196,7 +208,8 @@ const Detail = (props) => {
         {modalOpen ? (
           <AdoptionModal
             postId={postId}
-            closeModal={closeModal}></AdoptionModal>
+            closeModal={closeModal}
+          ></AdoptionModal>
         ) : (
           ' '
         )}
