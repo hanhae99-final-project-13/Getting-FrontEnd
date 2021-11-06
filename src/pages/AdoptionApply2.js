@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as useActions } from '../redux/modules/apply';
 import styled from 'styled-components';
+import { ErrorAlert } from '../shared/Alerts';
 
 const AdoptionApply2 = () => {
   const postId = useParams().id;
@@ -50,10 +51,13 @@ const AdoptionApply2 = () => {
 
   //입양 신청버튼
   const applyClick = () => {
-    // console.log(Object.values(data));
-    // if (Object.keys(data) === "") {
-
-    // }
+    const info = Object.values(data);
+    console.log(info);
+    if (info.includes('') === true) {
+      ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
+    } else {
+      console.log('성공!');
+    }
     Swal.fire({
       title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
       text: '정말 이대로 제출 하시겠습니까?',

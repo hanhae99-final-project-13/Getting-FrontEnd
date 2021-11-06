@@ -20,18 +20,19 @@ const Adoption = () => {
   const wishedPostList = useSelector((state) => state.post.wishedpostList);
   const searchSetting = useSelector((state) => state.search.searchSetting);
   const cur = React.useRef();
-  const old = React.useRef();
-  const getMoreTrigger = React.useRef();
+  const old = React.useRef();  
 
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
     dispatch(searchActions.setSearch({ page: 0, sort: 'new' }));
+    dispatch(postActions.getPostMW(searchSetting));
   };
   const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
     dispatch(searchActions.setSearch({ page: 0, sort: 'old' }));
+    dispatch(postActions.getPostMW(searchSetting));
   };
 
   const goAddPost = () => {
@@ -40,7 +41,7 @@ const Adoption = () => {
 
   useEffect(() => {
     dispatch(postActions.getPostMW(searchSetting));
-  }, [searchSetting]);
+  }, []);
   console.log(postList);
 
   return (

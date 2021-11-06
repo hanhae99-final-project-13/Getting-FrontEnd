@@ -6,6 +6,7 @@ import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
 import SearchAddressSelector from './SearchAddressSelector';
 import { searchActions } from '../../redux/modules/search';
+import { postActions } from '../../redux/modules/post';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const AdoptionModal = (props) => {
     }
     console.log(newSearchSetting);
     dispatch(searchActions.setSearch(newSearchSetting));
+    dispatch(postActions.getPostMW(searchSetting));
     hideModal();
   };
 
