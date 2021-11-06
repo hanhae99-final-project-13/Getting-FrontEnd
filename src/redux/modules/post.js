@@ -242,6 +242,7 @@ export default handleActions(
 
 const postActions = {
   getPostMW,
+  getMorePostMW,
   getMainPostMW,
   addPostToAxios,
   changeCardCover,
