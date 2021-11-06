@@ -6,7 +6,7 @@ const EssentialComponent = (props) => {
 
   return (
     <Grid is_flex width='300px' margin='37px 0 0 0' padding='0 35px'>
-      <Text margin='0 4px 0 0' size='14px' line_height='22px' bold>
+      <Text margin='0 4px 0 0' size='14px' line_height='22px'>
         {number + 1}.
       </Text>
       <Grid>

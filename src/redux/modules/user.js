@@ -54,13 +54,14 @@ const initialState = {
 
 // 로그인
 const GetUserDB = (user) => {
-  console.log(user);
+  // console.log(user,'서버에 보내는 값')
+
   return (dispatch, getState, { history }) => {
     apis
       .login(user)
       .then((res) => {
-        console.log('로그인 정보', res.data.data);
-        console.log('로그인 정보', res.data.status);
+        console.log('서버에서 받은 로그인 정보', res.data.data);
+        console.log('서버 로그인 status정보', res.data.status);
         const USER_TOKEN = res.data.data.token;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         const user = {
