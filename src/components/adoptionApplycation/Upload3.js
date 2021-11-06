@@ -53,6 +53,10 @@ const Upload3 = forwardRef((props, ref) => {
 
   // 이미지 핸들 함수
   const handleImage = (e) => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0] === undefined) {
+      return;
+    }
     const imagefile = e.target.files[0];
     setUploadImage(imagefile);
     const imagefullname = e.target.files[0].name;

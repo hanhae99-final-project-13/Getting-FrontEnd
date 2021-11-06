@@ -37,7 +37,7 @@ const Footer = (props) => {
           alignItems='center'
           justifyContent='center'
           _onClick={() => {
-            alert('아직 페이지 준비중~~');
+            history.push('/fosterknowledge');
           }}>
           <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>

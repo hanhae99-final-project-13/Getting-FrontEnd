@@ -62,7 +62,7 @@ const Tutorial2 = (props) => {
       </Grid>
       <Grid
         _onClick={() => {
-          history.push('/fosterknowledge');
+          history.push('/essentialknowledge');
         }}
         margin=' 0 auto'
         bg='#FF6666'
