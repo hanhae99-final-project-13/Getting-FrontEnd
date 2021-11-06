@@ -1,7 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
-
 const GET_POST = 'GET_POST';
 const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
@@ -114,11 +113,12 @@ const getDetailPostMW = (postId) => {
 
 const addPostToAxios = (postInfo) => {
   console.log('값확인', postInfo);
-  return (dispatch) => {
+  return (dispatch, getState, { history }) => {
     apis
       .addPost(postInfo)
       .then((res) => {
         console.log('분양글등록리스폰스', res.data);
+        history.push('/main');
       })
       .catch((res) => {
         console.log(res);
@@ -133,6 +133,7 @@ const addCommentToAxios = (comment) => {
   return (dispatch) => {
     apis
       .addComment(comment)
+
       .then((res) => {
         console.log('댓글등록리스폰스', res.data);
         dispatch(addComment(comment));
@@ -174,11 +175,12 @@ const deleteCommentToAxios = (commentId) => {
 };
 
 const deleteDetailToAxios = (postId) => {
-  return (dispatch) => {
+  return (dispatch, getState, { history }) => {
     apis
       .deleteDetail(postId)
       .then((res) => {
         alert('삭제 완료');
+        history.push('/main');
       })
       .catch((res) => {
         console.log(res);
