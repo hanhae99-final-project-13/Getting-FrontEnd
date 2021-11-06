@@ -26,12 +26,12 @@ const Adoption = () => {
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
-    dispatch(searchActions.setSearch({ sort: 'new' }));
+    dispatch(searchActions.setSearch({ page: 0, sort: 'new' }));
   };
   const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
-    dispatch(searchActions.setSearch({ sort: 'old' }));
+    dispatch(searchActions.setSearch({ page: 0, sort: 'old' }));
   };
 
   const goAddPost = () => {
@@ -63,7 +63,7 @@ const Adoption = () => {
         </Grid>
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
-      <InfinityScroll />
+      {/* <InfinityScroll /> */}
       <Footer></Footer>
     </Grid>
   );

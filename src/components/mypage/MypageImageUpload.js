@@ -14,7 +14,7 @@ const MypageImageUpload = (props) => {
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:3be6a8f1-b813-418a-914b-0707888dcbdc',
+      IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff',
     }),
   });
 
@@ -26,19 +26,10 @@ const MypageImageUpload = (props) => {
     const reader = new FileReader();
     console.log(e.target.files);
     reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const imageInfo = {
-        preview: reader.result,
-        fileName,
-        fileType,
-        fileFullName,
-        file,
-      };
-      setUserImage(imageInfo);
-    };
+    reader.onloadend = () => {};
     const awsUpload = new AWS.S3.ManagedUpload({
       params: {
-        Bucket: 'team13-docking',
+        Bucket: 'docking',
         Key: `${fileName}.${fileType}`,
         Body: file,
       },
@@ -52,9 +43,9 @@ const MypageImageUpload = (props) => {
       })
       .then((data) => {
         dispatch(
-          userActions.updateUserInfo({
-            ...userInfo,
-            userImgUrl: `https://team13-docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
+          userActions.updateUserInfoMW({
+            nickname: userInfo.nickname,
+            userImgUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
       });
