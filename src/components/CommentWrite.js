@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { Grid, Image } from '../elements/';
 import { postActions } from '../redux/modules/post';
 const CommentWrite = (props) => {
+  console.log('코멘트', props);
   const postId = props.postId;
-  console.log(props.comment);
   if (props.comment) {
     console.log('수정버튼시 활성화', props.comment.commentId);
   }
