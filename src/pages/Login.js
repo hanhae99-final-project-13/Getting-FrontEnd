@@ -5,8 +5,10 @@ import { actionCreators as userAction } from '../redux/modules/user';
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
 import { KAKAO_AUTH_URL } from '../shared/kakaoAuth';
+import { WarningAlert } from '../shared/Alerts';
 
 const Login = (props) => {
+  const isToken = window.localStorage.getItem('USER_TOKEN') ? true : false;
   const { history } = props;
   const dispatch = useDispatch();
 
@@ -28,6 +30,10 @@ const Login = (props) => {
     password: pw,
   };
   const onClickButton = () => {
+    if (isToken) {
+      console.log(isToken);
+      window.localStorage.removeItem('USER_TOKEN');
+    }
     dispatch(userAction.GetUserDB(user));
   };
 

@@ -10,7 +10,7 @@ import { postActions } from '../redux/modules/post';
 const Detail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
-  // console.log(postId);
+  console.log(postId, '디테일 id');
   const post = useSelector((state) => state.post?.detailPost);
   console.log(post);
 
@@ -23,6 +23,13 @@ const Detail = (props) => {
   };
   const closeModal = () => {
     setModalOpen(false);
+  };
+  const [detailModal, setDetailModal] = React.useState(false);
+  const onModal = () => {
+    setDetailModal(!detailModal);
+  };
+  const detailDelete = () => {
+    dispatch(postActions.deleteDetailToAxios(postId));
   };
 
   React.useEffect(() => {
@@ -41,7 +48,9 @@ const Detail = (props) => {
             <p>저와 친구하실래요?😁</p>
             {/* 삼항연산자 수정,삭제 모달 */}
             <p>
-              <button style={{ all: 'unset' }}>🖤</button>{' '}
+              <button style={{ all: 'unset' }} onClick={onModal}>
+                🖤
+              </button>{' '}
             </p>
           </Grid>
           <Grid display='flex' overflowX='auto'>
@@ -213,6 +222,80 @@ const Detail = (props) => {
         ) : (
           ' '
         )}
+        {/* 글 수정 삭제 모달 */}
+        {detailModal ? (
+          <div
+            style={{
+              backgroundColor: 'white',
+              boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
+              width: '375px',
+              height: '200px',
+              position: 'fixed',
+              bottom: '0',
+              display: 'flex',
+              flexDirection: 'column',
+              borderTopLeftRadius: '15px',
+              borderTopRightRadius: '15px',
+              boxSizing: 'border-box',
+            }}
+          >
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <button
+                style={{
+                  all: 'unset',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: '#ff6666',
+                  width: '100%',
+                  height: '100%',
+                }}
+                // onClick={editOn}
+              >
+                수정
+              </button>
+            </Grid>
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <button
+                style={{
+                  all: 'unset',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: '#ff6666',
+                  width: '100%',
+                  height: '100%',
+                  borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
+                  borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
+                }}
+                onClick={() => {
+                  window.confirm('정말 삭제하시겠습니까?');
+                  detailDelete();
+                }}
+              >
+                삭제
+              </button>
+            </Grid>
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <button
+                style={{
+                  all: 'unset',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: '#ff6666',
+                  width: '100%',
+                  height: '100%',
+                }}
+                onClick={() => {
+                  setDetailModal(!detailModal);
+                }}
+              >
+                취소
+              </button>
+            </Grid>
+          </div>
+        ) : null}
       </Grid>
     </React.Fragment>
   );

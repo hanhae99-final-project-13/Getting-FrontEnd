@@ -30,7 +30,7 @@ const Header = (props) => {
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        width='375px'
+        width='100%'
         height='60px'
         margin='0 auto'
         zIndex='1'

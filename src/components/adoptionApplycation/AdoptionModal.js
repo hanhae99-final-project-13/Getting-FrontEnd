@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 const AdoptionModal = (props) => {
   const { postId } = props;
+  console.log(postId, '모달id');
   return (
     <ModalParent>
       <Grid

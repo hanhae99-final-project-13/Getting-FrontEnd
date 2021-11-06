@@ -3,6 +3,7 @@ import { produce } from 'immer';
 import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
+const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
 const GET_DETAILPOST = 'GET_DETAILPOST';
 const GET_WISHED = 'GET_WISED';
@@ -15,6 +16,7 @@ const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const DELETE_COMMENT = 'DELETE_COMMENT';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
+const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
 const getMainPost = createAction(GET_MAINPOST, (postList) => ({ postList }));
 const getDetailPost = createAction(GET_DETAILPOST, (post) => ({ post }));
 const getWished = createAction(GET_WISHED, (postList) => ({ postList }));
@@ -50,6 +52,7 @@ const initialState = {
   isDockingDeleteMode: false,
   isAdoptionDeleteMode: false,
   isAdoptionWait: false,
+  isLoading: false,
 };
 
 const getPostMW = (searchData) => {
@@ -60,6 +63,21 @@ const getPostMW = (searchData) => {
       .then((res) => {
         console.log(res.data);
         dispatch(getPost(res.data.data.postList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMorePostMW = (searchData) => {
+  console.log(searchData);
+  return (dispatch) => {
+    apis
+      .getPots(searchData)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getMorePost(res.data.data.postList));
       })
       .catch((err) => {
         console.log(err);
@@ -155,11 +173,28 @@ const deleteCommentToAxios = (commentId) => {
   };
 };
 
+const deleteDetailToAxios = (postId) => {
+  return (dispatch) => {
+    apis
+      .deleteDetail(postId)
+      .then((res) => {
+        alert('삭제 완료');
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.postList = action.payload.postList;
+      }),
+    [GET_MOREPOST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.postList = [...draft.postList, ...action.payload.postList];
       }),
     [GET_MAINPOST]: (state, action) =>
       produce(state, (draft) => {
@@ -216,6 +251,7 @@ const postActions = {
   addCommentToAxios,
   updateCommentToAxios,
   deleteCommentToAxios,
+  deleteDetailToAxios,
 };
 
 export { postActions };

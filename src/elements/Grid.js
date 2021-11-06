@@ -45,6 +45,10 @@ const Grid = (props) => {
     color,
     fontSize,
     backdropFilter,
+    bgi,
+    bgisize,
+    bgiposition,
+    bgirepeat,
   } = props;
 
   const styles = {
@@ -88,6 +92,10 @@ const Grid = (props) => {
     color,
     fontSize,
     backdropFilter,
+    bgi,
+    bgisize,
+    bgiposition,
+    bgirepeat,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -136,6 +144,10 @@ Grid.defaultProps = {
   color: null,
   fontSize: null,
   backdropFilter: null,
+  bgi: null,
+  bgisize: null,
+  bgiposition: null,
+  bgirepeat: null,
 };
 
 const GridBox = styled.div`
@@ -173,7 +185,12 @@ const GridBox = styled.div`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
-  background-color: ${(props) => props.backgroundColor};
+  ${(props) => (props.bgi ? `background-image:url(${props.bgi})` : '')};
+  z-index: ${(props) => props.zIndex};
+  ${(props) => (props.bgisize ? `background-size:${props.bgisize}` : '')};
+  ${(props) =>
+    props.bgiposition ? `background-position:${props.bgiposition}` : ''};
+  ${(props) => (props.bgirepeat ? `background-repeat:${props.bgirepeat}` : '')};
   z-index: ${(props) => props.zIndex};
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
