@@ -58,28 +58,27 @@ const AdoptionApply2 = () => {
       ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
     } else {
       console.log('성공!');
+      Swal.fire({
+        title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
+        text: '정말 이대로 제출 하시겠습니까?',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '확인했습니다',
+        cancelButtonText: '다시 생각해볼게요',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          imageRef.current.upload();
+          dispatch(useActions.addApplyDB(postId, data));
+          Swal.fire(
+            '입양신청이 완료되었습니다.',
+            '임보자님의 연락을 기다려주세요!',
+            'success',
+          );
+        }
+      });
     }
-
-    // Swal.fire({
-    //   title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
-    //   text: '정말 이대로 제출 하시겠습니까?',
-    //   icon: 'error',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: '확인했습니다',
-    //   cancelButtonText: '다시 생각해볼게요',
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     imageRef.current.upload();
-    //     dispatch(useActions.addApplyDB(postId, data));
-    //     Swal.fire(
-    //       '입양신청이 완료되었습니다.',
-    //       '임보자님의 연락을 기다려주세요!',
-    //       'success',
-    //     );
-    //   }
-    // });
   };
 
   return (

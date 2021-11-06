@@ -59,6 +59,7 @@ function App() {
           component={EssentialKnowledge}
         />
         <Route path='/fosterknowledge' exact component={FosterKnowledge} />
+
         <Route path='/adoption' exact component={Adoption} />
         <Route path='/detail/:id' exact component={Detail} />
         <Route path='/apply/:id' exact component={AdoptionApply} />

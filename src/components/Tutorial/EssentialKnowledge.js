@@ -12,7 +12,7 @@ const EssentialKnowledge = () => {
   return (
     <>
       <Grid width='375px' margin='0 auto 100px'>
-        <Text margin='30px 0 0 0' weight='800' padding='0 35px'>
+        <Text width='300px' margin='30px 0 0 0' weight='800' padding='0 35px'>
           필수 지식 리스트
         </Text>
         {data.map((i, idx) => {
