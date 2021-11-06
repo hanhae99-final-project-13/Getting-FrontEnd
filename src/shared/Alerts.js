@@ -1,8 +1,9 @@
 import Swal from 'sweetalert2';
 
 //경고 alert
-export const WarningAlert = (warning_text, footer) => {
+export const WarningAlert = (warning_text, footer, title) => {
   Swal.fire({
+    title: title,
     text: warning_text,
     icon: 'warning',
     confirmButtonColor: '#999cda',

@@ -11,7 +11,7 @@ const EssentialKnowledge = () => {
 
   return (
     <>
-      <Grid width='375px' margin='0 auto 100px'>
+      <Grid width='375px' margin='0 auto 90px'>
         <Text width='300px' margin='30px 0 0 0' weight='800' padding='0 35px'>
           필수 지식 리스트
         </Text>
@@ -21,9 +21,9 @@ const EssentialKnowledge = () => {
         <Grid width='300px' margin='15px 0 0 0' padding='0 35px'>
           <Grid
             _onClick={() => {
-              // history.push('/fosterknowledge');
+              history.push('/essentialquiz');
             }}
-            margin=' 0 auto'
+            margin='0 auto'
             bg='#FF6666'
             width='157px'
             height='52px'

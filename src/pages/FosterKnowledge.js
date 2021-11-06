@@ -19,6 +19,7 @@ const FosterKnowledge = (props) => {
         <Grid
           _onClick={() => {
             history.push('/essentialknowledge');
+            window.location.reload();
           }}
           margin='24px 0 0 0'
           position='relative'
