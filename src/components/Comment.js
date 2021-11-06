@@ -1,18 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Image } from '../elements/';
-import { commentCreators } from '../redux/modules/comment';
+import { postActions } from '../redux/modules/post';
 import CommentWrite from './CommentWrite';
 
 const Comment = (props) => {
-  const user = useSelector((state) => state.user.user.userInfo);
-  console.log('유저', user);
-  console.log(props);
+  const { comment } = props;
+  console.log(comment);
+
   const dispatch = useDispatch();
-  const cmt = props.comment;
-  console.log('아이디확인,', cmt.commentId);
+
   const commentDelete = () => {
-    dispatch(commentCreators.deleteCommentToAxios(cmt.commentId));
+    console.log(comment.commentId);
+    dispatch(postActions.deleteCommentToAxios(comment.commentId));
+    setCommentModal(!commentModal);
   };
   const [edit, setEdit] = React.useState(false);
   const editOn = () => {
@@ -27,10 +28,14 @@ const Comment = (props) => {
   return (
     <React.Fragment>
       <Grid boxSizing='border-box'>
-        {(cmt.commentId ? edit : false) ? (
+        {(comment.commentId ? edit : false) ? (
           <React.Fragment>
             <Image />
-            <CommentWrite comment={cmt} setEdit={setEdit} />
+            <CommentWrite
+              key={comment.commentId}
+              comment={comment}
+              setEdit={setEdit}
+            />
           </React.Fragment>
         ) : (
           <Grid
@@ -58,7 +63,7 @@ const Comment = (props) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <div style={{ fontSize: '12px' }}>{user.nickname}</div>
+                  <div style={{ fontSize: '12px' }}>{comment.nickname}</div>
                   <div
                     style={{
                       display: 'flex',
@@ -75,7 +80,7 @@ const Comment = (props) => {
                     </div>
                   </div>
                 </div>
-                <div style={{ paddingBottom: '8px' }}>{cmt.comment}</div>
+                <div style={{ paddingBottom: '8px' }}>{comment.comment}</div>
               </Grid>
             </div>
           </Grid>

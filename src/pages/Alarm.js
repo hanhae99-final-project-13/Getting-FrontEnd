@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import { Grid, Text, Image } from '../elements/index';
 import { actionCreators } from '../redux/modules/user';
+import { history } from '../redux/configureStore';
 const Alarm = () => {
   const dispatch = useDispatch();
   const alarmCount = useSelector(
@@ -57,7 +58,6 @@ const Alarm = () => {
               전체삭제{' '}
             </button>
           </Grid>
-          {/* 삼항을 알람컨텐츠 렝스로 해야할듯 */}
           {userInfo.alarmContent.length === 0 ? (
             <>
               <Grid display='flex' justifyContent='center' alignItems='center'>
@@ -96,6 +96,7 @@ const Alarm = () => {
                 console.log(a);
                 return (
                   <Grid
+                    key={a.alarmId}
                     bg='white'
                     height='60px'
                     padding='10px 5px'
@@ -105,6 +106,9 @@ const Alarm = () => {
                     alignItems='center'
                     margin='15px 0'
                     boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+                    _onClick={() => {
+                      history.push(`/detail/${a.alarmId}`);
+                    }}
                   >
                     <Image margin='0 10px' size='50' />
                     <Grid

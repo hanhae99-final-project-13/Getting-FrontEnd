@@ -10,6 +10,10 @@ const GET_WISHED = 'GET_WISED';
 const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
+//댓글
+const ADD_COMMENT = 'ADD_COMMENT';
+const UPDATE_COMMENT = 'UPDATE_COMMENT';
+const DELETE_COMMENT = 'DELETE_COMMENT';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
@@ -29,6 +33,16 @@ const changeAdoptionDeleteMode = createAction(
   }),
 );
 const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
+//댓글
+const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
+  commentInfo,
+}));
+const updateComment = createAction(UPDATE_COMMENT, (comment) => ({
+  comment,
+}));
+const deleteComment = createAction(DELETE_COMMENT, (commentInfo) => ({
+  commentInfo,
+}));
 
 const initialState = {
   postList: [],
@@ -104,7 +118,67 @@ const addPostToAxios = (postInfo) => {
     apis
       .addPost(postInfo)
       .then((res) => {
-        console.log('분양글등록리스폰스', res);
+        console.log('분양글등록리스폰스', res.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+};
+
+//댓글
+
+const addCommentToAxios = (comment) => {
+  console.log('댓글등록액시오스', comment);
+  return (dispatch) => {
+    apis
+      .addComment(comment)
+      .then((res) => {
+        console.log('댓글등록리스폰스', res.data);
+        dispatch(addComment(comment));
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+};
+
+const updateCommentToAxios = (commentId, comment) => {
+  console.log('댓글수정액시오스', commentId, comment);
+  return (dispatch) => {
+    apis
+      .editComment(commentId, comment)
+      .then((res) => {
+        console.log('댓글수정리스폰스', res);
+        dispatch(updateComment(commentId, comment));
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+};
+
+const deleteCommentToAxios = (commentId) => {
+  console.log('댓글삭제액시오스', commentId);
+  return (dispatch) => {
+    apis
+      .deleteComment(commentId)
+      .then((res) => {
+        console.log('댓글삭제리스폰스', res.data);
+        dispatch(deleteComment(commentId));
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+};
+
+const deleteDetailToAxios = (postId) => {
+  return (dispatch) => {
+    apis
+      .deleteDetail(postId)
+      .then((res) => {
+        alert('삭제 완료');
       })
       .catch((res) => {
         console.log(res);
@@ -142,6 +216,26 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isAdoptionWait = action.payload.value;
       }),
+    [ADD_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload);
+        draft.detailPost.commentList.unshift(action.payload.commentInfo);
+      }),
+    [UPDATE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        const idx = state.commentList.findIndex(
+          (a) => a.commentId === action.payload.comment.commentId,
+        );
+        draft.commentList[idx] = action.payload.comment;
+      }),
+    [DELETE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload);
+        const newComment = draft.detailPost.commentList.filter(
+          (c) => c.commentId !== action.payload.commentInfo,
+        );
+        draft.detailPost.commentList = newComment;
+      }),
   },
   initialState,
 );
@@ -154,7 +248,10 @@ const postActions = {
   changeDockingDeleteMode,
   changeAdoptionDeleteMode,
   getDetailPostMW,
-  getMorePostMW,
+  addCommentToAxios,
+  updateCommentToAxios,
+  deleteCommentToAxios,
+  deleteDetailToAxios,
 };
 
 export { postActions };

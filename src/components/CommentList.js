@@ -7,13 +7,13 @@ import CommentWrite from './CommentWrite';
 
 const CommentList = (props) => {
   const { postId } = props;
-  console.log(postId, 'aa');
-  const commentList = useSelector((state) => state.comment.commentList);
+  const commentList = useSelector((state) => state.post.detailPost.commentList);
+  console.log(commentList);
   return (
     <React.Fragment>
       <CommentWrite postId={postId} />
-      {commentList.map((c) => {
-        return <Comment key={c.commentId} comment={c} />;
+      {commentList.map((c, i) => {
+        return <Comment key={i} comment={c} />;
       })}
     </React.Fragment>
   );

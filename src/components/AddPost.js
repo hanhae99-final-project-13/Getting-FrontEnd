@@ -9,7 +9,7 @@ import Footer from './Footer';
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
-  const [sex, setSex] = React.useState('남아');
+  const [sex, setSex] = React.useState('M');
   const [age, setAge] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [lostLocation, setLostLocation] = React.useState('');
@@ -66,7 +66,7 @@ const AddPost = () => {
     phone: phone,
     extra: extra,
     img: img,
-    isAdopted: false,
+    isAdopted: '보호중',
   };
 
   console.log(postInfo);
@@ -89,7 +89,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='견종'
               value={breed}
@@ -108,7 +109,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <Grid display='flex' justifyContent='space-between'>
               <input
                 type='number'
@@ -147,7 +149,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='보호장소'
               value={ownerType}
@@ -183,7 +186,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='정보출처'
               value={tag}
