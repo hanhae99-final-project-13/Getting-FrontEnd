@@ -174,6 +174,7 @@ const KakaoLogin = (code) => {
 };
 
 const updateUserInfoMW = (userInfo) => {
+  console.log(userInfo);
   return (dispatch) => {
     apis
       .updateUserInfo(userInfo)

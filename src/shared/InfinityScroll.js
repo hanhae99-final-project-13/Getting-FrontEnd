@@ -9,13 +9,11 @@ const InfinityScroll = (props) => {
 
   const getMoreTrigger = React.useRef();
 
-  let newPage = searchSetting.page;
-
+  let page = searchSetting.page;
+  console.log(page);
   const getMoreObserver = new IntersectionObserver((entry) => {
-    console.log(entry);
-    console.log(entry[0].isIntersecting);
     if (entry[0].isIntersecting) {
-      newPage += 1;
+      const newPage = page + 1;
       const newSearchSetting = { ...searchSetting, page: newPage };
       dispatch(postActions.getMorePostMW(newSearchSetting));
     }
@@ -24,10 +22,12 @@ const InfinityScroll = (props) => {
   React.useEffect(() => {
     getMoreObserver.observe(getMoreTrigger.current);
 
-    // return () => getMoreObserver.unobserve(getMoreTrigger.current);
+    return () => {
+      getMoreObserver.disconnect();
+    };
   }, []);
 
-  return <div ref={getMoreTrigger}></div>;
+  return <div style={{ marginTop: '100px' }} ref={getMoreTrigger}></div>;
 };
 
 export default InfinityScroll;

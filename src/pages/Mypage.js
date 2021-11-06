@@ -12,6 +12,7 @@ import {
 import { postActions } from '../redux/modules/post';
 
 import Footer from '../components/Footer';
+import { history } from '../redux/configureStore';
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,10 @@ const Mypage = () => {
     dispatch(postActions.changeCardCover(false));
     dispatch(postActions.changeDockingDeleteMode(false));
   };
+  // if (!useInfo.nickname) {
+  //   window.alert('로그인을 해주세요!');
+  //   history.goBack();
+  // }
   return (
     <Grid>
       <Grid margin='40px 0 0 0' padding='36px' width='auto'>
