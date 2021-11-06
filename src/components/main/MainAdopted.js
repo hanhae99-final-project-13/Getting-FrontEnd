@@ -35,7 +35,7 @@ const SliderBox = styled.div`
   overflow: visible;
   overflow-x: scroll;
 
-  :: -webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
   }
 `;

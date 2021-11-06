@@ -9,7 +9,8 @@ import { applyActions as useActions } from '../redux/modules/apply';
 import styled from 'styled-components';
 
 const AdoptionApply2 = () => {
-  const postId = useParams();
+  const postId = useParams().id;
+  console.log(postId, '입양신청서2번 id');
 
   const dispatch = useDispatch();
   const applyData = useSelector((state) => state.apply);
@@ -19,7 +20,7 @@ const AdoptionApply2 = () => {
   const imageRef = useRef();
   // console.log(imageRef.current);
 
-  const [Allergie, setAllergie] = React.useState('있음');
+  const [allergy, setAllergy] = React.useState('있음');
   const [experience, setExperience] = React.useState('');
   const [timeTogether, setTimeTogether] = React.useState('');
   const [anxiety, setAnxiety] = React.useState('');
@@ -27,28 +28,32 @@ const AdoptionApply2 = () => {
   const [roomUrl, setRoomUrl] = React.useState('');
 
   // db에 전송할 데이터
-  const dbData = {
+  const data = {
     ...applyData.apply,
-    Allergie: Allergie,
+    allergy: allergy,
     experience: experience,
     timeTogether: timeTogether,
     anxiety: anxiety,
     bark: bark,
     roomUrl: roomUrl,
   };
-  console.log(dbData);
+  console.log(data);
 
   // 알러지 체크함수
   const [check, setCheck] = useState(true);
-  const handleAllergie = () => {
+  const handleallergy = () => {
     setCheck(!check);
     if (check === true) {
-      setAllergie('없음');
-    } else setAllergie('있음');
+      setAllergy('없음');
+    } else setAllergy('있음');
   };
 
   //입양 신청버튼
   const applyClick = () => {
+    // console.log(Object.values(data));
+    // if (Object.keys(data) === "") {
+
+    // }
     Swal.fire({
       title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
       text: '정말 이대로 제출 하시겠습니까?',
@@ -60,8 +65,8 @@ const AdoptionApply2 = () => {
       cancelButtonText: '다시 생각해볼게요',
     }).then((result) => {
       if (result.isConfirmed) {
-        // imageRef.current.upload();
-        // dispatch(useActions.addApplyDB(postId));
+        imageRef.current.upload();
+        dispatch(useActions.addApplyDB(postId, data));
         Swal.fire(
           '입양신청이 완료되었습니다.',
           '임보자님의 연락을 기다려주세요!',
@@ -104,16 +109,14 @@ const AdoptionApply2 = () => {
             height='auto'
             margin='12px 0 0 0'>
             <Text
-              color={Allergie === '있음' ? '#000000' : '#E1E1E1'}
-              margin='0'
+              color={allergy === '있음' ? '#000000' : '#E1E1E1'}
               bold
               margin='0 7px 0 0'>
               있음
             </Text>
-            <Slider _onClick={handleAllergie} />
+            <Slider _onClick={handleallergy} />
             <Text
-              color={Allergie === '없음' ? '#000000' : '#E1E1E1'}
-              margin='0'
+              color={allergy === '없음' ? '#000000' : '#E1E1E1'}
               bold
               margin='0  0 0 7px'>
               없음

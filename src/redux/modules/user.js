@@ -76,6 +76,7 @@ const GetUserDB = (user) => {
         };
         dispatch(SetUser(user));
         history.push('/main');
+        // window.location.reload();
         localStorage.getItem('USER_TOKEN');
       })
       .catch((error) => {
@@ -107,8 +108,7 @@ const SignupDB = (form) => {
         history.push('/login');
       })
       .catch((error) => {
-        // error.response.data.data.message
-        ErrorAlert('회원가입 실패');
+        ErrorAlert(error.response.data.errorMessage);
       });
   };
 };
@@ -143,10 +143,11 @@ const LoginCheck = () => {
 
 //카카오 로그인
 const KakaoLogin = (code) => {
-  // console.log();
+  console.log(code, 'db에 넘겨주는코드');
   return (dispatch, getState, { history }) => {
     apis
       .kakaoLogin(code)
+
       .then((res) => {
         console.log('카카오 로그인정보', res.data.data);
         const USER_TOKEN = res.data.data.token;
