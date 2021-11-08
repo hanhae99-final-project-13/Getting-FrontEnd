@@ -17,7 +17,7 @@ const MypageWishedList = (props) => {
           3
         </Text>
       </Grid>
-      {wishPostList.map((p) => {
+      {wishPostList && wishPostList.map((p) => {
         <Card width='auto' imageHeight='150px' margin='0 0 20px 0'
         key={p.postId}
         breed={p.breed}

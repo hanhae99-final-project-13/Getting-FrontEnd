@@ -9,6 +9,8 @@ import MypageDockingCheck from './MypageDockingCheck';
 import AdoptionWait from './AdoptionWait';
 import AdoptionOk from './AdoptionOk';
 import AdoptionNo from './AdoptionNo';
+import ReceivedAdoptionList from './ReceivedAdoptionList';
+import ReceiveCard from './ReceiveCard';
 
 export {
   MypageUserInfo,
@@ -22,4 +24,6 @@ export {
   AdoptionWait,
   AdoptionOk,
   AdoptionNo,
+  ReceivedAdoptionList,
+  ReceiveCard,
 };
