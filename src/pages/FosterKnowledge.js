@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, Image, Text } from '../elements';
 import Footer from '../components/Footer';
-import EssentialKnowledge from '../components/Tutorial/EssentialKnowledge';
+import { useSelector } from 'react-redux';
 
 const FosterKnowledge = (props) => {
   const { history } = props;
+  // const checkEduSuccess = useSelector((state) => state.user.user.userInfo.eduList);
 
-  //유저데이터의 class count[0]번 값 true로 오면 바꿔주면됨, useEffect로 유저 정보 불러와서 의존성배열에 넣으면될듯
   const [complete, setcomplete] = React.useState(false);
 
   return (
@@ -19,7 +19,7 @@ const FosterKnowledge = (props) => {
         <Grid
           _onClick={() => {
             history.push('/essentialknowledge');
-            window.location.reload();
+            // window.location.reload();
           }}
           margin='24px 0 0 0'
           position='relative'

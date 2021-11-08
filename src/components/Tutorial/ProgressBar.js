@@ -4,15 +4,17 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 const ProgressBar = () => {
   const data = useSelector((state) => state.quiz.totalAnswer);
-  const length = Object.values(data);
-  console.log(length);
-  let count = 1;
+  const totalQuizLength = Object.values(data);
+  // // console.log(length);
+  // let count = 1;
+  const progressLength = window.sessionStorage.length;
+  console.log(progressLength);
 
-  length.map((i) => {
-    if (i !== '') {
-      count++;
-    }
-  });
+  // length.map((i) => {
+  //   if (i !== '') {
+  //     count++;
+  //   }
+  // });
 
   return (
     <Grid
@@ -21,7 +23,7 @@ const ProgressBar = () => {
       bg='#EEEEEE'
       margin='10px auto 0'
       borderRadius='3px'>
-      <Bar width={(count / length.length) * 100 + '%'}></Bar>
+      <Bar width={(progressLength / totalQuizLength.length) * 100 + '%'}></Bar>
     </Grid>
   );
 };

@@ -7,6 +7,7 @@ import { quizActions as userAction } from '../../redux/modules/quiz';
 import ProgressBar from './ProgressBar';
 
 const EssentialQuiz5 = (props) => {
+  const classNumber = '1';
   const answerSheet = ['true', 'true', 'true', 'true', 'true'];
   const dispatch = useDispatch();
   const { history } = props;
@@ -116,9 +117,10 @@ const EssentialQuiz5 = (props) => {
             } else {
               dispatch(userAction.addQuizAnswer(answer));
               getSessiondata();
-              console.log(totalAnswer);
-              console.log(answerSheet);
+              console.log(totalAnswer, '유저의답');
+              console.log(answerSheet, '퀴즈 정답');
               if (JSON.stringify(totalAnswer) === JSON.stringify(answerSheet)) {
+                dispatch(userAction.sendEduSuccessDB(classNumber));
                 SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
                 window.sessionStorage.clear();
                 history.push('/main');
@@ -128,7 +130,7 @@ const EssentialQuiz5 = (props) => {
                   '필수지식을 다시 진행해 주세요!',
                 );
                 window.sessionStorage.clear();
-                history.push('/fosterknowledge');
+                history.push('/essentialknowledge');
               }
             }
           }}

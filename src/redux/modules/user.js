@@ -41,7 +41,8 @@ const initialState = {
       email: null,
       userImgUrl:
         'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
-      classCount: null,
+      // classCount: null, //지울거
+      eduList: null,
       alarmCount: null,
       applyList: [],
       alarmContent: [],
@@ -69,7 +70,8 @@ const GetUserDB = (user) => {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl,
-            classCount: res.data.data.classCount,
+            eduList: res.data.data.eduList,
+            // classCount: res.data.data.classCount, //지울거
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
           },
@@ -98,7 +100,7 @@ const LogOutDB = () => {
 
 // 회원가입
 const SignupDB = (form) => {
-  // console.log(form);
+  console.log(form);
   return (dispatch, getState, { history }) => {
     apis
       .signup(form)
@@ -126,7 +128,8 @@ const LoginCheck = () => {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl,
-            classCount: res.data.data.classCount,
+            // classCount: res.data.data.classCount, //지울거
+            eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
             alarmContent: [],
@@ -157,8 +160,9 @@ const KakaoLogin = (code) => {
           userInfo: {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
-            userImgUrl: res.data.data.userImgUrl,
-            classCount: res.data.data.classCount,
+            userImgUrl: res.data.data.userImgUrl, // 기본값 넣어달라하기
+            // classCount: res.data.data.classCount, //지울거
+            eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
           },
@@ -174,7 +178,7 @@ const KakaoLogin = (code) => {
       });
   };
 };
-
+// 유저정보수정
 const updateUserInfoMW = (userInfo) => {
   console.log(userInfo);
   return (dispatch) => {
