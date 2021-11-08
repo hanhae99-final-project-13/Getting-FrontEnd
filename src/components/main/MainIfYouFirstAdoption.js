@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { history } from '../../redux/configureStore';
 import { Grid, Image } from '../../elements';
 
 const MainIfYouFirstAdoption = (props) => {
@@ -13,21 +13,24 @@ const MainIfYouFirstAdoption = (props) => {
       padding='1em'
       borderRadius='10px'
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      height='125px'
-    >
+      height='125px'>
       <Grid
         display='flex'
         alignItems='center'
         justifyContent='space-between'
-        height='auto'
-      >
+        height='auto'>
         <Image />
         <ElP>
           입양이<ElSpan>처음</ElSpan>이라면?
         </ElP>
       </Grid>
       <Grid display='flex' justifyContent='flex-end' height='auto'>
-        <ElButton>완벽한 견주되기</ElButton>
+        <ElButton
+          onClick={() => {
+            history.push('/Tutorial');
+          }}>
+          완벽한 견주되기
+        </ElButton>
       </Grid>
     </Grid>
   );
