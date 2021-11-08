@@ -94,7 +94,7 @@ const Card = (props) => {
           <ElP>{address ? address : '경기도 수원'}</ElP>
         </Grid>
       </Grid>
-      <ReceivedAdoptionList />
+      {/* <ReceivedAdoptionList /> */}
     </React.Fragment>
   );
 };

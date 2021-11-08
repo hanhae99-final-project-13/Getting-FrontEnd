@@ -52,7 +52,7 @@ const Detail = (props) => {
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='0 auto'>
+        <Grid width='375px' margin='0 auto 80px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p>저와 친구하실래요?😁</p>

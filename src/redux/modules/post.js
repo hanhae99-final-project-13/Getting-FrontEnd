@@ -1,12 +1,12 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import { apis } from '../../lib/axios';
 import {
   SuccessAlert,
   WarningAlert,
   ErrorAlert,
   imageSuccessAlert,
 } from '../../shared/Alerts';
+import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
 const GET_MOREPOST = 'GET_MOREPOST';
@@ -17,6 +17,8 @@ const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
 const UPDATE_DETAIL = 'UPDATE_DETAIL';
+const SET_SEARCH = 'SET_SEARCH';
+const SET_SEARCHPREV = 'SET_SEARCHPREV';
 
 //댓글
 const ADD_COMMENT = 'ADD_COMMENT';
@@ -61,6 +63,10 @@ const setLoading = createAction(LOADING, (crrLoading) => ({ crrLoading }));
 const setTotalPage = createAction(SET_TOTALPAGE, (totalPage) => ({
   totalPage,
 }));
+const setSearch = createAction(SET_SEARCH, (searchSetting) => ({
+  searchSetting,
+}));
+const setSearchPrev = createAction(SET_SEARCHPREV, (prev) => ({ prev }));
 
 const initialState = {
   postList: [],
@@ -72,11 +78,21 @@ const initialState = {
   isAdoptionWait: false,
   isLoading: false,
   totalPage: null,
+  searchSetting: {
+    page: 0,
+    startDt: undefined,
+    endDt: undefined,
+    ownerType: undefined,
+    city: undefined,
+    district: undefined,
+    sort: 'new',
+  },
+  prevSearchSetting: {},
 };
 
 const getPostMW = (searchData) => {
   console.log(searchData);
-  return function (dispatch) {
+  return function (dispatch, getState) {
     dispatch(setLoading(true));
     apis
       .getPots(searchData)
@@ -84,6 +100,7 @@ const getPostMW = (searchData) => {
         console.log(res.data);
         if (res.data.data.postList.length === 0) {
           ErrorAlert('해당 조건 맞는 친구들이 없습니다!');
+          dispatch(setSearchPrev());
           dispatch(setLoading(false));
           return;
         }
@@ -336,6 +353,18 @@ export default handleActions(
       produce(state, (draft) => {
         draft.totalPage = action.payload.totalPage;
       }),
+    [SET_SEARCH]: (state, action) =>
+      produce(state, (draft) => {
+        draft.prevSearchSetting = draft.searchSetting;
+        draft.searchSetting = {
+          ...draft.searchSetting,
+          ...action.payload.searchSetting,
+        };
+      }),
+    [SET_SEARCHPREV]: (state, action) =>
+      produce(state, (draft) => {
+        draft.searchSetting = draft.prevSearchSetting;
+      }),
   },
   initialState,
 );
@@ -356,6 +385,7 @@ const postActions = {
   heartToAxios,
   updateDetailToAxios,
   getWishPostMW,
+  setSearch,
 };
 
 export { postActions };

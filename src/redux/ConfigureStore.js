@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
   apply: Apply,
   post: Post,
   user: User,
-  search: Search,
   router: connectRouter(history),
 });
 
