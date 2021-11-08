@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
+import { Link } from 'react-router-dom';
 
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
 import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
 import EditPost from '../components/EditPost';
-import { postActions } from '../redux/modules/post';
-import { history } from '../redux/configureStore';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -210,8 +213,15 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                SNS
-                <span style={{ margin: '0 5px 0 10px' }}>{post.post.url}</span>
+                웹사이트
+                <span style={{ margin: '0 5px 0 10px' }}>
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    color='black'
+                    fontSize='1x'
+                    onClick={() => window.open(`${post.post.url}`, '_blank')}
+                  ></FontAwesomeIcon>
+                </span>
               </Grid>
             </Grid>
 
@@ -236,7 +246,7 @@ const Detail = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {post.post.tag === '가져온 정보' ? null : (
+          {post.post.tag !== '직접등록' ? null : (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'

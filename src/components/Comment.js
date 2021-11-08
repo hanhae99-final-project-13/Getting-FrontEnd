@@ -7,12 +7,13 @@ import CommentWrite from './CommentWrite';
 const Comment = (props) => {
   const { comment } = props;
   // console.log(comment);
-
+  const userInfo = useSelector((state) => state.user.user.userInfo);
   const dispatch = useDispatch();
 
   const commentDelete = () => {
     console.log(comment.commentId);
     dispatch(postActions.deleteCommentToAxios(comment.commentId));
+
     setCommentModal(!commentModal);
   };
   const [edit, setEdit] = React.useState(false);
@@ -30,7 +31,7 @@ const Comment = (props) => {
       <Grid boxSizing='border-box'>
         {(comment.commentId ? edit : false) ? (
           <React.Fragment>
-            <Image />
+            <Image src={userInfo ? userInfo.userImgUrl : ''} />
             <CommentWrite
               key={comment.commentId}
               comment={comment}
@@ -54,7 +55,7 @@ const Comment = (props) => {
                 display: 'flex',
               }}
             >
-              <Image />
+              <Image src={userInfo ? userInfo.userImgUrl : ''} />
               <Grid margin='0 0 0 5px'>
                 <div
                   style={{
@@ -72,7 +73,7 @@ const Comment = (props) => {
                     }}
                   >
                     <div style={{ fontSize: '12px' }}>
-                      {comment.createdAt /* .split('.')[0] */}
+                      {comment.createdAt.split('.')[0]}
                     </div>
                     <div
                       style={{ fontSize: '12px', margin: '0 0 0 8px' }}
