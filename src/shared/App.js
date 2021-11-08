@@ -31,6 +31,7 @@ import EssentialQuiz3 from '../components/Tutorial/EssentialQuiz3';
 import EssentialQuiz4 from '../components/Tutorial/EssentialQuiz4';
 import EssentialQuiz5 from '../components/Tutorial/EssentialQuiz5';
 import FosterKnowledge from '../pages/FosterKnowledge';
+import EditPost from '../components/EditPost';
 
 import { actionCreators as userAction } from '../redux/modules/user';
 
@@ -81,6 +82,7 @@ function App() {
         <Route path='/alarm' exact component={Alarm} />
         <Route path='/setting' exact component={Setting} />
         <Route path='/takeapply' exact component={TakeAdoptionApply} />
+        <Route path='/editpost' exact component={EditPost} />
       </ConnectedRouter>
     </React.Fragment>
   );

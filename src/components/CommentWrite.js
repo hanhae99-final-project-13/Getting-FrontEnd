@@ -13,7 +13,8 @@ const CommentWrite = (props) => {
 
   const editSubmit = () => {
     const commentId = props.comment.commentId;
-    dispatch(postActions.updateCommentToAxios(commentId, comment));
+    console.log('수정코멘트', comment);
+    dispatch(postActions.updateCommentToAxios(commentId, { comment: comment }));
     props.setEdit(false);
   };
   const dispatch = useDispatch();

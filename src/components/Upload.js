@@ -2,6 +2,7 @@ import React from 'react';
 import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
 const Upload = (props) => {
+  console.log('수정 프롭스', props.img.length > 0);
   //다중이미지 aws s3 업로드
   AWS.config.update({
     region: 'ap-northeast-2',

@@ -22,24 +22,24 @@ const Landing = () => {
         <Grid width='375px' margin='0 auto' height='0'>
           <button
             style={{
+              all: 'unset',
               position: 'relative',
-              top: '150px',
               left: '0px',
+              height: '300px',
+              padding: '0 75px',
             }}
             onClick={prev}
-          >
-            ㅁ
-          </button>
+          ></button>
           <button
             style={{
+              all: 'unset',
               position: 'relative',
-              top: '150px',
-              left: '315px',
+              left: '40px',
+              height: '300px',
+              padding: '0 75px',
             }}
             onClick={next}
-          >
-            ㅁ
-          </button>
+          ></button>
         </Grid>
         <div
           style={{

@@ -19,6 +19,7 @@ const AddressSelector = (props) => {
   return (
     <>
       <Grid
+        // width='375px'
         display='flex'
         zindex='5'
         position='fixed'
@@ -96,7 +97,8 @@ const AddressSelector = (props) => {
 
 const ModalBox = styled.div`
   margin: auto;
-  width: 80%;
+  position: relative;
+  width: 305px;
   height: 40%;
   background-color: white;
   border-radius: 15px;

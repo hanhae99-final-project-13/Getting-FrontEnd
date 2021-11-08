@@ -6,7 +6,7 @@ import CommentWrite from './CommentWrite';
 
 const Comment = (props) => {
   const { comment } = props;
-  console.log(comment);
+  // console.log(comment);
 
   const dispatch = useDispatch();
 
@@ -71,7 +71,9 @@ const Comment = (props) => {
                       justifyContent: 'space-around',
                     }}
                   >
-                    <div style={{ fontSize: '12px' }}>얼마 전</div>
+                    <div style={{ fontSize: '12px' }}>
+                      {comment.createdAt /* .split('.')[0] */}
+                    </div>
                     <div
                       style={{ fontSize: '12px', margin: '0 0 0 8px' }}
                       onClick={onModal}
@@ -132,8 +134,9 @@ const Comment = (props) => {
                   borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
                 }}
                 onClick={() => {
-                  window.confirm('정말 삭제하시겠습니까?');
-                  commentDelete();
+                  if (window.confirm('정말 삭제하시겠습니까?')) {
+                    commentDelete();
+                  }
                 }}
               >
                 삭제
