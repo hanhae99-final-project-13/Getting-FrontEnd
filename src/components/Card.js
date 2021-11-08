@@ -149,6 +149,21 @@ const DeleteButton = styled.div`
   background-position: center;
   z-index: 1;
 `;
+
+const EditButton = styled.div`
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  right: 0;
+  border-radius: 14px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cancel_icon.svg/1200px-Cancel_icon.svg.png')
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+`;
+
 const CardCover = styled.div`
   display: flex;
   justify-content: center;
