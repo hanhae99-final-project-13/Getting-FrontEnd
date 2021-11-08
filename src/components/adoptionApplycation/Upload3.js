@@ -26,7 +26,7 @@ const Upload3 = forwardRef((props, ref) => {
   const upload = () => {
     const upload = new AWS.S3.ManagedUpload({
       params: {
-        Bucket: 'gceebucket',
+        Bucket: 'docking',
         Key: uploadImageFullname,
         Body: uploadImage,
       },
