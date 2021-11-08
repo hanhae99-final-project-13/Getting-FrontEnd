@@ -25,6 +25,11 @@ import TakeAdoptionApply from '../pages/TakeAdoptionApply';
 import Tutorial from '../components/Tutorial/Tutorial';
 import Tutorial2 from '../components/Tutorial/Tutorial2';
 import EssentialKnowledge from '../components/Tutorial/EssentialKnowledge';
+import EssentialQuiz from '../components/Tutorial/EssentialQuiz';
+import EssentialQuiz2 from '../components/Tutorial/EssentialQuiz2';
+import EssentialQuiz3 from '../components/Tutorial/EssentialQuiz3';
+import EssentialQuiz4 from '../components/Tutorial/EssentialQuiz4';
+import EssentialQuiz5 from '../components/Tutorial/EssentialQuiz5';
 import FosterKnowledge from '../pages/FosterKnowledge';
 
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -58,6 +63,11 @@ function App() {
           exact
           component={EssentialKnowledge}
         />
+        <Route path='/essentialquiz' exact component={EssentialQuiz} />
+        <Route path='/essentialquiz2' exact component={EssentialQuiz2} />
+        <Route path='/essentialquiz3' exact component={EssentialQuiz3} />
+        <Route path='/essentialquiz4' exact component={EssentialQuiz4} />
+        <Route path='/essentialquiz5' exact component={EssentialQuiz5} />
         <Route path='/fosterknowledge' exact component={FosterKnowledge} />
 
         <Route path='/adoption' exact component={Adoption} />

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://13.209.33.63', // 선강님 
-  // baseURL: 'http://3.38.107.59', // 지은님
+  // baseURL: 'http://13.209.33.63', // 선강님
+  baseURL: 'http://3.38.107.59', // 지은님
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -37,6 +37,8 @@ export const apis = {
   checkId: (username) => instance.get(`/signup/checkid?username=${username}`),
   checknickName: (nickname) =>
     instance.get(`/signup/checknickname?nickname=${nickname}`),
+  sendPhoneNumber: (phoneNumber) => instance.post('/sendNumber', phoneNumber),
+  sendPhoneAuthCode: (authCode) => instance.post('/phoneConfirm', authCode),
 
   // 유저 관련 api
   getUserInfo: () => instance.get('/userInfo'),
@@ -72,4 +74,6 @@ export const apis = {
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
   applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
+  //교육자료 api
+  education: (classNumber) => instance.get(`/quiz?edu=${classNumber}`),
 };
