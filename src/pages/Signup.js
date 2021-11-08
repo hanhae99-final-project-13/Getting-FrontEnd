@@ -3,7 +3,13 @@ import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { SuccessAlert, WarningAlert, ErrorAlert } from '../shared/Alerts';
+import {
+  SuccessAlert,
+  WarningAlert,
+  ErrorAlert,
+  SuccessAlert2,
+  ErrorAlert2,
+} from '../shared/Alerts';
 import { emailCheck } from '../shared/emailCheck';
 
 import { useDispatch } from 'react-redux';
@@ -14,13 +20,23 @@ const Signup = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
 
-  //ID, nickName 중복체크 useState
+  // 휴대폰 인증 토글
+  const [openCodeInput, setOpenCodeInput] = useState(false);
+  const [clickCodeAuthButton, setClickCodeAuthButton] = useState(false);
+
+  //ID, nickName 중복체크, 휴대폰인증 useState
   const [checkId, setCheckId] = useState(false);
   const [checknickName, setChecknickName] = useState(false);
-  console.log(checkId, '아이디체크');
-  console.log(checknickName, '닉네임체크');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneCode, setPhoneCode] = useState('');
+  console.log(checkId, '아이디중복체크 확인');
+  console.log(checknickName, '닉네임중복체크 확인');
 
   // 회원가입데이터 useState
+  const phone = {
+    phoneNumber: phoneNumber,
+  };
+
   const data = {
     username: '',
     password: '',
@@ -31,6 +47,19 @@ const Signup = (props) => {
   const [form, setForm] = useState(data);
 
   const { username, password, pwcheck, nickname, email } = form;
+
+  //phoneNumber, phoneAuthCode 서버에 넘기는 데이터
+
+  const phoneNumberInfo = {
+    username: username,
+    phoneNumber: phoneNumber,
+  };
+
+  const phoneAuthCode = {
+    username: username,
+    phoneNumber: phoneNumber,
+    randomNumber: phoneCode,
+  };
 
   //회원가입데이터 onChange에 넣는 함수
   const handleForm = (e) => {
@@ -53,11 +82,6 @@ const Signup = (props) => {
         console.log(res.data.data, '아이디 중복체크');
         console.log(res.data.status, '아이디 중복체크');
 
-        // if (res.data.status === 'fail') {
-        //   ErrorAlert('중복된 아이디가 존재합니다');
-        // setCheckId(false);
-        //   return;
-        // }
         console.log(res.data.status);
         SuccessAlert('아이디 중복확인이 완료되었습니다.');
         setCheckId(true);
@@ -94,6 +118,56 @@ const Signup = (props) => {
       });
   };
 
+  // 휴대폰 번호전송 버튼 함수
+  const sendPhoneNumber = (phoneNumberInfo) => {
+    if (phoneNumber === '') {
+      WarningAlert('휴대폰 번호를 입력해주세요');
+      return;
+    }
+    console.log(phoneNumberInfo, '서버에전송되는 번호데이터');
+    //서버에 phoneNumber전송 api
+    apis
+      .sendPhoneNumber(phoneNumberInfo)
+      .then((res) => {
+        console.log(res.data.status, '번호전송 성공');
+        SuccessAlert2(`${phoneNumber} 로 인증번호가 <br/>
+        발송되었습니다.`);
+        setOpenCodeInput(!openCodeInput);
+      })
+      .catch((error) => {
+        // ErrorAlert(error.response.data.errorMessage);
+        console.log(error, '번호전송 실패');
+      });
+  };
+
+  // 휴대폰 인증코드 인증하기 버튼 함수
+
+  const sendPhoneAuthCode = (phoneAuthCode) => {
+    if (phoneCode === '') {
+      WarningAlert('인증코드를 입력해주세요.');
+      return;
+    }
+
+    console.log(phoneAuthCode, '서버에전송되는 코드데이터');
+    apis
+      .sendPhoneAuthCode(phoneAuthCode)
+      .then((res) => {
+        console.log(res.data.status, '코드전송 성공');
+        setClickCodeAuthButton(!clickCodeAuthButton);
+
+        SuccessAlert2('휴대폰 인증 성공!');
+      })
+      .catch((error) => {
+        console.log(error, '코드 잘못입력');
+        ErrorAlert2(
+          '인증코드가 일치하지 않습니다! </br>다시 인증을 진행해주세요.',
+        );
+        setPhoneCode('');
+        setOpenCodeInput(!openCodeInput);
+      });
+    console.log(clickCodeAuthButton, '인증코드버튼 확인용');
+  };
+  console.log(clickCodeAuthButton, '인증코드버튼 확인용');
   //회원가입 버튼 함수
   const registerClick = () => {
     if (username === '' || checkId === false) {
@@ -116,13 +190,22 @@ const Signup = (props) => {
       ErrorAlert('이메일을 입력해주세요');
       return;
     }
+    if (!emailCheck(email)) {
+      ErrorAlert('이메일양식에 맞게 입력해주세요.  test@test.com');
+      return;
+    }
 
-    dispatch(userAction.SignupDB(form));
+    if (!clickCodeAuthButton) {
+      ErrorAlert('휴대폰 인증을 진행해 주세요.');
+      return;
+    }
+
+    dispatch(userAction.SignupDB({ ...form, ...phone }));
   };
 
   return (
     <Grid>
-      <Grid width='305px' margin='142px auto 0px'>
+      <Grid width='305px' margin='60px auto 0px'>
         <Grid>
           <Text size='24px' weight='700' align='center'>
             회원가입
@@ -270,20 +353,6 @@ const Signup = (props) => {
           </Grid>
 
           <Grid position='relative'>
-            <Text
-              _onClick={() => {
-                WarningAlert('서비스 준비 중 입니다');
-              }}
-              color='#00B412'
-              position='absolute'
-              right='10px'
-              width='auto'
-              top='15px'
-              size='12px'
-              bold
-              margin='0'>
-              인증하기
-            </Text>
             <Input
               bg='#FFFFFF'
               width='100%'
@@ -298,6 +367,74 @@ const Signup = (props) => {
               _onChange={handleForm}
             />
           </Grid>
+
+          {openCodeInput ? (
+            <Grid position='relative'>
+              <Text
+                _onClick={() => {
+                  sendPhoneAuthCode(phoneAuthCode);
+                }}
+                color='#00B412'
+                position='absolute'
+                right='10px'
+                width='auto'
+                top='15px'
+                size='12px'
+                bold
+                margin='0'>
+                코드인증하기
+              </Text>
+              <Input
+                type='number'
+                bg='#FFFFFF'
+                width='100%'
+                border='none'
+                border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+                padding='16px'
+                box-sizing
+                placeholder='인증코드'
+                placeholder_color='#DFDFDF'
+                name='phoneCode'
+                value={phoneCode}
+                _onChange={(e) => {
+                  setPhoneCode(e.target.value);
+                }}
+              />
+            </Grid>
+          ) : (
+            <Grid position='relative'>
+              <Text
+                _onClick={() => {
+                  sendPhoneNumber(phoneNumberInfo);
+                }}
+                color='#00B412'
+                position='absolute'
+                right='10px'
+                width='auto'
+                top='15px'
+                size='12px'
+                bold
+                margin='0'>
+                인증하기
+              </Text>
+              <Input
+                type='number'
+                bg='#FFFFFF'
+                width='100%'
+                border='none'
+                border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+                padding='16px'
+                box-sizing
+                placeholder='휴대폰번호(- 없이입력해주세요)'
+                placeholder_color='#DFDFDF'
+                name='phoneNumber'
+                value={phoneNumber}
+                _onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                }}
+              />
+            </Grid>
+          )}
         </Grid>
 
         <Grid margin='81px 0 50px 0'>
