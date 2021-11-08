@@ -53,7 +53,6 @@ const AdoptionApply2 = () => {
   const applyClick = () => {
     const info = Object.values(data);
     console.log(info);
-
     if (info.includes('') === true) {
       ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
     } else {

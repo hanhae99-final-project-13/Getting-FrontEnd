@@ -16,22 +16,24 @@ import { searchActions } from '../redux/modules/search';
 
 const Adoption = () => {
   const dispatch = useDispatch();
-  const postList = useSelector((state) => state.post.postList);
-  const wishedPostList = useSelector((state) => state.post.wishedpostList);
+  const userInfo = useSelector(state => state.user.user.userInfo)    
   const searchSetting = useSelector((state) => state.search.searchSetting);
+  const totalPage = useSelector((state) => state.post.totalPage);
+  const isLoading = useSelector(state => state.post.isLoading)
   const cur = React.useRef();
-  const old = React.useRef();
-  const getMoreTrigger = React.useRef();
+  const old = React.useRef();  
 
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
     dispatch(searchActions.setSearch({ page: 0, sort: 'new' }));
+    dispatch(postActions.getPostMW({...searchSetting, page: 0, sort: 'new'}));
   };
   const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
     dispatch(searchActions.setSearch({ page: 0, sort: 'old' }));
+    dispatch(postActions.getPostMW({...searchSetting, page: 0, sort: 'old'}));
   };
 
   const goAddPost = () => {
@@ -39,10 +41,9 @@ const Adoption = () => {
   };
 
   useEffect(() => {
-    dispatch(postActions.getPostMW(searchSetting));
-  }, [searchSetting]);
-  console.log(postList);
-
+    dispatch(postActions.getPostMW({ ...searchSetting, page: 0 }));
+    dispatch(postActions.getWishPostMW(userInfo.email))
+  }, []);  
   return (
     <Grid>
       <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>
@@ -63,7 +64,7 @@ const Adoption = () => {
         </Grid>
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
-      {/* <InfinityScroll /> */}
+      {isLoading || totalPage <= searchSetting.page || totalPage === 1? '' : <InfinityScroll page={searchSetting.page} />}      
       <Footer></Footer>
     </Grid>
   );
@@ -94,6 +95,8 @@ const AddButton = styled.button`
   border: none;
   border-radius: 50px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  
 `;
 
 export default Adoption;

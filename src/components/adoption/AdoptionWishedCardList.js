@@ -7,11 +7,11 @@ import { history } from '../../redux/configureStore';
 import { useSelector } from 'react-redux';
 
 const AdoptionWishedCardList = (props) => {
-  // const wishedPostList = useSelector(state => state.)
+  const wishPostList = useSelector(state => state.post.wishPostList)
   const goDetail = () => {
     history.push('/');
   };
-
+    
   return (
     <Grid width='calc(100% + 1rem)'>
       <Grid
@@ -26,7 +26,20 @@ const AdoptionWishedCardList = (props) => {
       </Grid>
       <SliderBox>
         <InnerSlider>
-          <Card></Card>
+          {wishPostList.map((p) => {
+            <Card key={p.postId}
+            breed={p.breed}
+            sex={p.sex}
+            age={p.age}
+            createAt={p.createAt}
+            modifiedAt={p.modifiedAt}
+            ownerType={p.ownerType}
+            address={p.address}
+            img={p.img[0]}
+            postId={p.postId}
+            isAdopted={p.isAdopted}/>
+
+          })}
         </InnerSlider>
       </SliderBox>
     </Grid>
