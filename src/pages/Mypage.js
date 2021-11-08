@@ -16,7 +16,7 @@ import { history } from '../redux/configureStore';
 
 const Mypage = () => {
   const dispatch = useDispatch();
-  const useInfo = useSelector((state) => state.user.user.userInfo);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
   const [wishedListDisplay, setWishedListDisplay] = React.useState();
   const [adoptionCheckDisplay, setAdoptionCheckDisplay] =
     React.useState('none');
@@ -49,10 +49,11 @@ const Mypage = () => {
     dispatch(postActions.changeCardCover(false));
     dispatch(postActions.changeDockingDeleteMode(false));
   };
-  // if (!useInfo.nickname) {
-  //   window.alert('로그인을 해주세요!');
-  //   history.goBack();
-  // }
+  
+  React.useEffect(() => {
+    dispatch(postActions.getWishPostMW(userInfo.email))
+  }, [])
+
   return (
     <Grid>
       <Grid margin='40px 0 0 0' padding='36px' width='auto'>

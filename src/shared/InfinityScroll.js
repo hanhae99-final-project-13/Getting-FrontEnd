@@ -6,28 +6,29 @@ import { postActions } from '../redux/modules/post';
 const InfinityScroll = (props) => {
   const dispatch = useDispatch();
   const searchSetting = useSelector((state) => state.search.searchSetting);
-
-  const getMoreTrigger = React.useRef();
-
-  let page = searchSetting.page;
-  console.log(page);
-  const getMoreObserver = new IntersectionObserver((entry) => {
-    if (entry[0].isIntersecting) {
-      const newPage = page + 1;
-      const newSearchSetting = { ...searchSetting, page: newPage };
-      dispatch(postActions.getMorePostMW(newSearchSetting));
+  const getMoreTrigger = React.useRef(); 
+  
+  
+  const getMoreObserver = new IntersectionObserver((entry) => {        
+    if (entry[0].isIntersecting) {      
+      
+      console.log(props.page);
+      const newSearchSetting = { ...searchSetting, page: props.page + 1 };
+      console.log(newSearchSetting)
+      dispatch(searchActions.setSearch(newSearchSetting));
+      dispatch(postActions.getMorePostMW(newSearchSetting));      
     }
   });
 
-  React.useEffect(() => {
+  React.useEffect(() => {    
     getMoreObserver.observe(getMoreTrigger.current);
 
-    return () => {
-      getMoreObserver.disconnect();
-    };
+    return () => getMoreObserver.disconnect();    
   }, []);
-
-  return <div style={{ marginTop: '100px' }} ref={getMoreTrigger}></div>;
+  return (    
+      <div ref={getMoreTrigger}/>
+    
+  );
 };
 
 export default InfinityScroll;

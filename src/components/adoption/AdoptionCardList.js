@@ -40,7 +40,7 @@ const AdoptionCardList = () => {
           );
         })}
       </Grid>
-      <InfinityScroll />
+      {/* {<AdoptionCard /> ? <InfinityScroll /> : '' } */}
     </Grid>
   );
 };

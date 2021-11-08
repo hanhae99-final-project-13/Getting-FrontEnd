@@ -6,6 +6,7 @@ import { Grid, Image, Text } from '../../elements';
 import { Calendar } from '.';
 import SearchAddressSelector from './SearchAddressSelector';
 import { searchActions } from '../../redux/modules/search';
+import { postActions } from '../../redux/modules/post';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
@@ -38,9 +39,10 @@ const AdoptionModal = (props) => {
   const hideModal = (e) => {
     document.querySelector('#searchModal').style.display = 'none';
   };
-  const doSearch = () => {
+  const doSearch = () => {    
     const newSearchSetting = {
       ...searchSetting,
+      page: 0,
       startDt: `${startDate.getUTCFullYear()}-${
         startDate.getUTCMonth() + 1
       }-${startDate.getUTCDate()}`,
@@ -64,6 +66,7 @@ const AdoptionModal = (props) => {
     }
     console.log(newSearchSetting);
     dispatch(searchActions.setSearch(newSearchSetting));
+    dispatch(postActions.getPostMW(newSearchSetting))
     hideModal();
   };
 
