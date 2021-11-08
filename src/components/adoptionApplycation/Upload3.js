@@ -15,7 +15,7 @@ const Upload3 = forwardRef((props, ref) => {
   AWS.config.update({
     region: 'ap-northeast-2', // 버킷이 존재하는 리전을 문자열로 입력합니다. (Ex. "ap-northeast-2")
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:1adaddbf-fd10-4925-bd1e-45188fd5188f', // cognito 인증 풀에서 받아온 키를 문자열로 입력합니다. (Ex. "ap-northeast-2...")
+      IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff', // cognito 인증 풀에서 받아온 키를 문자열로 입력합니다. (Ex. "ap-northeast-2...")
     }),
   });
   // s3업로드 이미지
@@ -71,7 +71,7 @@ const Upload3 = forwardRef((props, ref) => {
     };
     //우리서버에 보낼 데이터
     setRoomUrl(
-      `https://gceebucket.s3.ap-northeast-2.amazonaws.com/${imagefullname}`,
+      `https://docking.s3.ap-northeast-2.amazonaws.com/${imagefullname}`,
     );
   };
 
