@@ -33,7 +33,7 @@ const AdoptionCardList = () => {
               modifiedAt={p.modifiedAt}
               ownerType={p.ownerType}
               address={p.address}
-              img={p.img}
+              img={p.img[0]}
               postId={p.postId}
               isAdopted={p.isAdopted}
             />

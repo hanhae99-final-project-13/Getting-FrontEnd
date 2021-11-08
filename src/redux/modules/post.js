@@ -9,10 +9,14 @@ const GET_WISHED = 'GET_WISED';
 const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
+const UPDATE_DETAIL = 'UPDATE_DETAIL';
+
 //댓글
 const ADD_COMMENT = 'ADD_COMMENT';
 const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const DELETE_COMMENT = 'DELETE_COMMENT';
+//관심등록
+const WISH_POST = 'WISH_POST';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
@@ -36,13 +40,14 @@ const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
 const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
   commentInfo,
 }));
-const updateComment = createAction(UPDATE_COMMENT, (comment) => ({
-  comment,
+const updateComment = createAction(UPDATE_COMMENT, (updateComment) => ({
+  updateComment,
 }));
 const deleteComment = createAction(DELETE_COMMENT, (commentInfo) => ({
   commentInfo,
 }));
-
+const wishPost = createAction(WISH_POST, (heart) => ({ heart }));
+const updateDetail = createAction(UPDATE_DETAIL, (post) => ({ post }));
 const initialState = {
   postList: [],
   mainPostList: [],
@@ -120,8 +125,39 @@ const addPostToAxios = (postInfo) => {
         console.log('분양글등록리스폰스', res.data);
         history.push('/main');
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const deleteDetailToAxios = (postId) => {
+  return (dispatch, getState, { history }) => {
+    apis
+      .deleteDetail(postId)
+      .then((res) => {
+        alert('삭제 완료');
+        history.push('/main');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const updateDetailToAxios = (postId, postInfo) => {
+  return (dispatch, getState, { history }) => {
+    console.log('디테일 수정', postId);
+    console.log('디테일 수정정보', postInfo);
+    apis
+      .updatePost(postId, postInfo)
+      .then((res) => {
+        console.log('디테일수정 리스폰스', res.data);
+        dispatch(updateDetail(res.data));
+        history.push('/main');
+      })
+      .catch((err) => {
+        console.log('디테일수정 에러', err);
       });
   };
 };
@@ -135,11 +171,11 @@ const addCommentToAxios = (comment) => {
       .addComment(comment)
 
       .then((res) => {
-        console.log('댓글등록리스폰스', res.data);
-        dispatch(addComment(comment));
+        // console.log('댓글등록리스폰스', res.data.data.newComment);
+        dispatch(addComment(res.data.data.newComment));
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -150,11 +186,11 @@ const updateCommentToAxios = (commentId, comment) => {
     apis
       .editComment(commentId, comment)
       .then((res) => {
-        console.log('댓글수정리스폰스', res);
-        dispatch(updateComment(commentId, comment));
+        console.log('댓글수정리스폰스', res.data.data.updatedComment);
+        dispatch(updateComment(res.data.data.updatedComment));
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -168,22 +204,26 @@ const deleteCommentToAxios = (commentId) => {
         console.log('댓글삭제리스폰스', res.data);
         dispatch(deleteComment(commentId));
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
 
-const deleteDetailToAxios = (postId) => {
-  return (dispatch, getState, { history }) => {
+const heartToAxios = (postId) => {
+  console.log(postId);
+  return (dispatch) => {
     apis
-      .deleteDetail(postId)
+      .addWish(postId)
       .then((res) => {
-        alert('삭제 완료');
-        history.push('/main');
+        if (res.data.data.msg === '관심목록에서 삭제되었습니다.') {
+          dispatch(wishPost(false));
+        } else if (res.data.data.msg === '관심목록에 추가되었습니다.') {
+          dispatch(wishPost(true));
+        }
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -225,10 +265,12 @@ export default handleActions(
       }),
     [UPDATE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        const idx = state.commentList.findIndex(
-          (a) => a.commentId === action.payload.comment.commentId,
+        console.log(action.payload.updateComment);
+        const idx = state.detailPost.commentList.findIndex(
+          (a) => a.commentId === action.payload.updateComment.commentId,
         );
-        draft.commentList[idx] = action.payload.comment;
+        console.log(idx);
+        draft.detailPost.commentList[idx] = action.payload.updateComment;
       }),
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -237,6 +279,10 @@ export default handleActions(
           (c) => c.commentId !== action.payload.commentInfo,
         );
         draft.detailPost.commentList = newComment;
+      }),
+    [WISH_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.detailPost.post.heart = action.payload.heart;
       }),
   },
   initialState,
@@ -255,6 +301,8 @@ const postActions = {
   updateCommentToAxios,
   deleteCommentToAxios,
   deleteDetailToAxios,
+  heartToAxios,
+  updateDetailToAxios,
 };
 
 export { postActions };

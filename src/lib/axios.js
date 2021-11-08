@@ -2,8 +2,8 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  baseURL: 'http://3.36.92.203', // 선강님
-  // baseURL: 'http://3.38.107.59', // 지은님
+  // baseURL: 'http://3.36.92.203', // 선강님
+  baseURL: 'http://13.209.33.63', // 지은님
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -56,10 +56,11 @@ export const apis = {
     ),
   getDetailPost: (postId) => instance.get(`/posts/${postId}`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
-  updatePost: (postId, postInfo) => instance.post(`/pets/${postId}`, postInfo),
+  updatePost: (postId, postInfo) =>
+    instance.patch(`/posts/${postId}`, postInfo),
   deletePost: (postId) => instance.delete(`/post/${postId}`),
   clickWish: (postId) => instance.post(`/wishes/${postId}`),
-  addComment: (comment) => instance.post(`/comments/`, comment),
+  addComment: (comment) => instance.post(`/comments`, comment),
   deleteComment: (commentId) => instance.delete(`/comments/${commentId}`),
   editComment: (commentId, comment) =>
     instance.patch(`/comments/${commentId}`, comment),
@@ -71,4 +72,6 @@ export const apis = {
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
   applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
+  //관심친구 등록
+  addWish: (postId) => instance.post('/wishes/', postId),
 };
