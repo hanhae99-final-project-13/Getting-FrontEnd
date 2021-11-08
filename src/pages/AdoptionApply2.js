@@ -52,11 +52,10 @@ const AdoptionApply2 = () => {
   //입양 신청버튼
   const applyClick = () => {
     const info = Object.values(data);
-    console.log(info);
+    console.log(data, '서버에 넘어갈데이터');
     if (info.includes('') === true) {
       ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
     } else {
-      console.log('성공!');
       Swal.fire({
         title: '작성한 입양신청서는 &nbsp 수정/삭제가 불가합니다',
         text: '정말 이대로 제출 하시겠습니까?',
@@ -68,6 +67,7 @@ const AdoptionApply2 = () => {
         cancelButtonText: '다시 생각해볼게요',
       }).then((result) => {
         if (result.isConfirmed) {
+          console.log('성공!');
           imageRef.current.upload();
           dispatch(useActions.addApplyDB(postId, data));
           Swal.fire(
