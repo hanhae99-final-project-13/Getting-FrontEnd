@@ -2,15 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { Grid, Image, Text } from '../../elements';
+import { Grid } from '../../elements';
 import { Calendar } from '.';
 import SearchAddressSelector from './SearchAddressSelector';
-import { searchActions } from '../../redux/modules/search';
 import { postActions } from '../../redux/modules/post';
 
 const AdoptionModal = (props) => {
   const dispatch = useDispatch();
-  const searchSetting = useSelector((state) => state.search.searchSetting);
+  const searchSetting = useSelector((state) => state.post.searchSetting);
   const [startDate, setStartDate] = React.useState(new Date());
   const [endDate, setEndDate] = React.useState(new Date());
   const [city, setCity] = React.useState();
@@ -39,7 +38,7 @@ const AdoptionModal = (props) => {
   const hideModal = (e) => {
     document.querySelector('#searchModal').style.display = 'none';
   };
-  const doSearch = () => {    
+  const doSearch = () => {
     const newSearchSetting = {
       ...searchSetting,
       page: 0,
@@ -65,8 +64,8 @@ const AdoptionModal = (props) => {
       newSearchSetting.district = undefined;
     }
     console.log(newSearchSetting);
-    dispatch(searchActions.setSearch(newSearchSetting));
-    dispatch(postActions.getPostMW(newSearchSetting))
+    dispatch(postActions.setSearch(newSearchSetting));
+    dispatch(postActions.getPostMW(newSearchSetting));
     hideModal();
   };
 

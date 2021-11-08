@@ -18,14 +18,16 @@ const initialState = {
     district: undefined,
     sort: 'new',
   },
+  prevSearchSetting: {},
 };
 
 export default handleActions(
   {
     [SET_SEARCH]: (state, action) =>
-      produce(state, (darft) => {
-        darft.searchSetting = {
-          ...darft.searchSetting,
+      produce(state, (draft) => {
+        draft.prevSearchSetting = draft.searchSetting;
+        draft.searchSetting = {
+          ...draft.searchSetting,
           ...action.payload.searchSetting,
         };
       }),
