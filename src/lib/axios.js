@@ -2,8 +2,8 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 const instance = axios.create({
-  // baseURL: 'http://13.209.33.63', // 선강님
-  baseURL: 'http://3.38.107.59', // 지은님
+  baseURL: 'http://13.209.33.63', // 선강님
+  // baseURL: 'http://3.38.107.59', // 지은님
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
