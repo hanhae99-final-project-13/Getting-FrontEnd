@@ -27,6 +27,7 @@ const MypageUserInfo = (props) => {
         <Image
           margin='0'
           size='119'
+          backgroundPosition='center'
           src={userInfo.userImgUrl}
           boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         />

@@ -128,6 +128,7 @@ const LoginCheck = () => {
             email: res.data.data.email,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl,
+            // phone:res.data.data.phone
             // classCount: res.data.data.classCount, //지울거
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
