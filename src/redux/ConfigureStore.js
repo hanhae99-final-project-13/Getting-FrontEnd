@@ -6,9 +6,11 @@ import User from './modules/user';
 import Post from './modules/post';
 import Search from './modules/search';
 import Apply from './modules/apply';
+import Quiz from './modules/quiz';
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  quiz: Quiz,
   apply: Apply,
   post: Post,
   user: User,

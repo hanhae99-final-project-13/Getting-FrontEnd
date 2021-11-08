@@ -1,33 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { quizActions as userAction } from '../../redux/modules/quiz';
 import ProgressBar from './ProgressBar';
 
-const EssentialQuiz = (props) => {
+const EssentialQuiz2 = (props) => {
   const dispatch = useDispatch();
   const { history } = props;
 
-  const totalUserAnswer = {
-    answer1: '',
-    answer2: '',
-    answer3: '',
-    answer4: '',
-    answer5: '',
-  };
+  const beforeQuizAnswerData = useSelector((state) => state.quiz.totalAnswer);
+  console.log(beforeQuizAnswerData, '리덕스에서 불러온 앤서');
 
-  const [answer, setAnswer] = useState(totalUserAnswer);
+  const [answer, setAnswer] = useState(beforeQuizAnswerData);
 
   const handleClickRadioButton = (e) => {
     const newAnswer = { ...answer, [e.target.name]: e.target.value };
 
     setAnswer(newAnswer);
   };
-
   console.log(answer);
-
-  window.sessionStorage.setItem('answer1', answer.answer1);
+  window.sessionStorage.setItem('answer2', answer.answer2);
 
   return (
     <Grid width='375px' margin='0 auto'>
@@ -38,7 +31,7 @@ const EssentialQuiz = (props) => {
         weight='700'
         padding='0 35px'
         size='18px'>
-        Q1.
+        Q2.
       </Text>
       <Text width='300px' margin='12px 0 0 0' padding='0 35px' size='18px'>
         입양이 확정되면 아이의
@@ -67,15 +60,15 @@ const EssentialQuiz = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='1true'
-            name='answer1'
+            id='2true'
+            name='answer2'
             value='true'
             onClick={handleClickRadioButton}
             // checked={answer.answer1 === 'true'}
           ></input>
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='1true'>
+            htmlFor='2true'>
             맞습니다
           </label>
         </Grid>
@@ -87,16 +80,15 @@ const EssentialQuiz = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='1false'
-            name='answer1'
+            id='2false'
+            name='answer2'
             value='false'
             onClick={handleClickRadioButton}
             // checked={answer.answer1 === 'false'}
           ></input>
-
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='1false'>
+            htmlFor='2false'>
             아닙니다
           </label>
         </Grid>
@@ -105,12 +97,12 @@ const EssentialQuiz = (props) => {
       <Grid width='300px' margin='281px 0 0 0' padding='0 35px'>
         <Grid
           _onClick={() => {
-            if (answer.answer1 === '') {
+            if (answer.answer2 === '') {
               WarningAlert('정답을 선택해주세요!');
               return;
             } else {
               dispatch(userAction.addQuizAnswer(answer));
-              history.push('/essentialquiz2');
+              history.push('/essentialquiz3');
             }
           }}
           margin=' 0 auto'
@@ -131,4 +123,4 @@ const EssentialQuiz = (props) => {
   );
 };
 
-export default EssentialQuiz;
+export default EssentialQuiz2;

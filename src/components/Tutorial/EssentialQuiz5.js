@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { SuccessAlert, WarningAlert } from '../../shared/Alerts';
 import { Grid, Text } from '../../elements';
-import { WarningAlert } from '../../shared/Alerts';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { quizActions as userAction } from '../../redux/modules/quiz';
 import ProgressBar from './ProgressBar';
 
-const EssentialQuiz = (props) => {
+const EssentialQuiz5 = (props) => {
+  const classNumber = '1';
+  const answerSheet = ['true', 'true', 'true', 'true', 'true'];
   const dispatch = useDispatch();
   const { history } = props;
 
-  const totalUserAnswer = {
-    answer1: '',
-    answer2: '',
-    answer3: '',
-    answer4: '',
-    answer5: '',
-  };
+  const beforeQuizAnswerData = useSelector((state) => state.quiz.totalAnswer);
+  console.log(beforeQuizAnswerData, '리덕스에서 불러온 앤서');
 
-  const [answer, setAnswer] = useState(totalUserAnswer);
+  const [answer, setAnswer] = useState(beforeQuizAnswerData);
 
   const handleClickRadioButton = (e) => {
     const newAnswer = { ...answer, [e.target.name]: e.target.value };
 
     setAnswer(newAnswer);
   };
-
   console.log(answer);
+  window.sessionStorage.setItem('answer5', answer.answer5);
 
-  window.sessionStorage.setItem('answer1', answer.answer1);
+  let totalAnswer = [];
+  const getSessiondata = () => {
+    const answer1 = window.sessionStorage.getItem('answer1');
+    const answer2 = window.sessionStorage.getItem('answer2');
+    const answer3 = window.sessionStorage.getItem('answer3');
+    const answer4 = window.sessionStorage.getItem('answer4');
+    const answer5 = window.sessionStorage.getItem('answer5');
+
+    totalAnswer = [answer1, answer2, answer3, answer4, answer5];
+  };
 
   return (
     <Grid width='375px' margin='0 auto'>
@@ -38,7 +45,7 @@ const EssentialQuiz = (props) => {
         weight='700'
         padding='0 35px'
         size='18px'>
-        Q1.
+        Q5.
       </Text>
       <Text width='300px' margin='12px 0 0 0' padding='0 35px' size='18px'>
         입양이 확정되면 아이의
@@ -67,15 +74,15 @@ const EssentialQuiz = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='1true'
-            name='answer1'
+            id='5true'
+            name='answer5'
             value='true'
             onClick={handleClickRadioButton}
             // checked={answer.answer1 === 'true'}
           ></input>
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='1true'>
+            htmlFor='5true'>
             맞습니다
           </label>
         </Grid>
@@ -87,16 +94,15 @@ const EssentialQuiz = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='1false'
-            name='answer1'
+            id='5false'
+            name='answer5'
             value='false'
             onClick={handleClickRadioButton}
             // checked={answer.answer1 === 'false'}
           ></input>
-
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='1false'>
+            htmlFor='5false'>
             아닙니다
           </label>
         </Grid>
@@ -105,12 +111,27 @@ const EssentialQuiz = (props) => {
       <Grid width='300px' margin='281px 0 0 0' padding='0 35px'>
         <Grid
           _onClick={() => {
-            if (answer.answer1 === '') {
+            if (answer.answer5 === '') {
               WarningAlert('정답을 선택해주세요!');
               return;
             } else {
               dispatch(userAction.addQuizAnswer(answer));
-              history.push('/essentialquiz2');
+              getSessiondata();
+              console.log(totalAnswer, '유저의답');
+              console.log(answerSheet, '퀴즈 정답');
+              if (JSON.stringify(totalAnswer) === JSON.stringify(answerSheet)) {
+                dispatch(userAction.sendEduSuccessDB(classNumber));
+                SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
+                window.sessionStorage.clear();
+                history.push('/main');
+              } else {
+                WarningAlert(
+                  '안타깝게도 틀린부분이 있네요!',
+                  '필수지식을 다시 진행해 주세요!',
+                );
+                window.sessionStorage.clear();
+                history.push('/essentialknowledge');
+              }
             }
           }}
           margin=' 0 auto'
@@ -123,7 +144,7 @@ const EssentialQuiz = (props) => {
           alignItems='center'
           boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
           <Text color='white' margin='0'>
-            다음퀴즈
+            채점하기
           </Text>
         </Grid>
       </Grid>
@@ -131,4 +152,4 @@ const EssentialQuiz = (props) => {
   );
 };
 
-export default EssentialQuiz;
+export default EssentialQuiz5;
