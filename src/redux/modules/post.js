@@ -1,11 +1,18 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
+import {
+  SuccessAlert,
+  WarningAlert,
+  ErrorAlert,
+  imageSuccessAlert,
+} from '../../shared/Alerts';
+
 const GET_POST = 'GET_POST';
 const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
 const GET_DETAILPOST = 'GET_DETAILPOST';
-const GET_WISHED = 'GET_WISED';
+const GET_WISHPOST = 'GET_WISHPOST';
 const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
@@ -13,12 +20,14 @@ const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
 const ADD_COMMENT = 'ADD_COMMENT';
 const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const DELETE_COMMENT = 'DELETE_COMMENT';
+const LOADING = 'LOADING';
+const SET_TOTALPAGE = 'SET_TOTALPAGE';
 
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
 const getMainPost = createAction(GET_MAINPOST, (postList) => ({ postList }));
 const getDetailPost = createAction(GET_DETAILPOST, (post) => ({ post }));
-const getWished = createAction(GET_WISHED, (postList) => ({ postList }));
+const getWishPost = createAction(GET_WISHPOST, (postList) => ({ postList }));
 const changeDockingDeleteMode = createAction(
   CHANGE_DOCKINGDELETEMODE,
   (value) => ({
@@ -42,26 +51,37 @@ const updateComment = createAction(UPDATE_COMMENT, (comment) => ({
 const deleteComment = createAction(DELETE_COMMENT, (commentInfo) => ({
   commentInfo,
 }));
+const setLoading = createAction(LOADING, (crrLoading) => ({crrLoading}))
+const setTotalPage = createAction(SET_TOTALPAGE, (totalPage) => ({totalPage}))
 
 const initialState = {
   postList: [],
   mainPostList: [],
   detailPost: [],
-  wishedPostList: [],
+  wishPostList: [],
   isDockingDeleteMode: false,
   isAdoptionDeleteMode: false,
   isAdoptionWait: false,
   isLoading: false,
+  totalPage: null,
 };
 
 const getPostMW = (searchData) => {
   console.log(searchData);
   return function (dispatch) {
+    dispatch(setLoading(true))
     apis
       .getPots(searchData)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data);        
+        if (res.data.data.postList.length === 0) {
+          ErrorAlert('해당 조건 맞는 친구들이 없습니다!')
+          dispatch(setLoading(false))
+          return;
+        }
         dispatch(getPost(res.data.data.postList));
+        dispatch(setTotalPage(res.data.data.totalPages))
+        dispatch(setLoading(false))
       })
       .catch((err) => {
         console.log(err);
@@ -72,11 +92,14 @@ const getPostMW = (searchData) => {
 const getMorePostMW = (searchData) => {
   console.log(searchData);
   return (dispatch) => {
+    dispatch(setLoading(true))
     apis
       .getPots(searchData)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data);       
         dispatch(getMorePost(res.data.data.postList));
+        dispatch(setTotalPage(res.data.data.totalPages))
+        dispatch(setLoading(false))
       })
       .catch((err) => {
         console.log(err);
@@ -110,6 +133,21 @@ const getDetailPostMW = (postId) => {
       });
   };
 };
+
+const getWishPostMW = (userId) => {
+  return (dispatch) => {
+    apis
+      .getWishPost(userId)
+      .then(res => {
+        console.log(res.data)
+        dispatch(getWishPost(res.data.postList))
+      })
+      .catch(err => {
+      console.log(err)
+    })
+
+  }
+}
 
 const addPostToAxios = (postInfo) => {
   console.log('값확인', postInfo);
@@ -206,6 +244,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.detailPost = action.payload.post;
       }),
+    [GET_WISHPOST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.wishPostList = action.payload.postList;
+      }),
     [CHANGE_DOCKINGDELETEMODE]: (state, action) =>
       produce(state, (draft) => {
         draft.isDockingDeleteMode = action.payload.value;
@@ -238,6 +280,14 @@ export default handleActions(
         );
         draft.detailPost.commentList = newComment;
       }),
+    [LOADING]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isLoading = action.payload.crrLoading;
+      }),
+    [SET_TOTALPAGE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.totalPage = action.payload.totalPage;
+      }),
   },
   initialState,
 );
@@ -255,6 +305,7 @@ const postActions = {
   updateCommentToAxios,
   deleteCommentToAxios,
   deleteDetailToAxios,
+  getWishPostMW,
 };
 
 export { postActions };

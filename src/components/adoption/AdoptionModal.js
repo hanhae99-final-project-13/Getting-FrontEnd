@@ -39,9 +39,10 @@ const AdoptionModal = (props) => {
   const hideModal = (e) => {
     document.querySelector('#searchModal').style.display = 'none';
   };
-  const doSearch = () => {
+  const doSearch = () => {    
     const newSearchSetting = {
       ...searchSetting,
+      page: 0,
       startDt: `${startDate.getUTCFullYear()}-${
         startDate.getUTCMonth() + 1
       }-${startDate.getUTCDate()}`,
@@ -65,7 +66,7 @@ const AdoptionModal = (props) => {
     }
     console.log(newSearchSetting);
     dispatch(searchActions.setSearch(newSearchSetting));
-    dispatch(postActions.getPostMW(searchSetting));
+    dispatch(postActions.getPostMW(newSearchSetting))
     hideModal();
   };
 
