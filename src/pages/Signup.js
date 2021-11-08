@@ -222,8 +222,7 @@ const Signup = (props) => {
               top='15px'
               size='12px'
               bold
-              margin='0'
-            >
+              margin='0'>
               중복확인
             </Text>
 
@@ -235,8 +234,7 @@ const Signup = (props) => {
                 width='20px'
                 height='20px'
                 borderRadius='10px'
-                bg={'#00B412'}
-              >
+                bg={'#00B412'}>
                 <Grid margin='2px 0 0 2px'>
                   <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
                 </Grid>
@@ -288,8 +286,7 @@ const Signup = (props) => {
               borderRadius='10px'
               bg={
                 password !== '' && password === pwcheck ? '#00B412' : '#DFDFDF'
-              }
-            >
+              }>
               <Grid margin='2px 0 0 2px'>
                 <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
               </Grid>
@@ -319,8 +316,7 @@ const Signup = (props) => {
               top='15px'
               size='12px'
               bold
-              margin='0'
-            >
+              margin='0'>
               중복확인
             </Text>
 
@@ -332,8 +328,7 @@ const Signup = (props) => {
                 width='20px'
                 height='20px'
                 borderRadius='10px'
-                bg={'#00B412'}
-              >
+                bg={'#00B412'}>
                 <Grid margin='2px 0 0 2px'>
                   <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
                 </Grid>
@@ -386,8 +381,7 @@ const Signup = (props) => {
                 top='15px'
                 size='12px'
                 bold
-                margin='0'
-              >
+                margin='0'>
                 코드인증하기
               </Text>
               <Input
@@ -420,8 +414,7 @@ const Signup = (props) => {
                 top='15px'
                 size='12px'
                 bold
-                margin='0'
-              >
+                margin='0'>
                 인증하기
               </Text>
               <Input
@@ -451,8 +444,7 @@ const Signup = (props) => {
             bold
             size='10px'
             margin='0px'
-            line_height='18px'
-          >
+            line_height='18px'>
             회원가입시,
             <Span style={{ fontWeight: '600' }}> 개인정보 처리방침</Span>을
             읽었으며
@@ -471,8 +463,7 @@ const Signup = (props) => {
             bg='#FF6666'
             border='none'
             border_radius='25px'
-            onClick={registerClick}
-          >
+            onClick={registerClick}>
             가입하기
           </Button>
         </Grid>
