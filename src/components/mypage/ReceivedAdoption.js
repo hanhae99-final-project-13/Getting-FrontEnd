@@ -6,8 +6,7 @@ import Card from '../Card';
 const ReceivedAdoption = (props) => {
   return (
     <Grid display={props.display}>
-      <Card width='auto' imageHeight='150px' />
-      느ㅔ가 봗은 입앵 싄췅
+      <Card width='auto' imageHeight='150px' margin='0 0 30px 0' />
     </Grid>
   );
 };

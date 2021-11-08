@@ -21,7 +21,7 @@ const AdoptionCardList = () => {
         flexWrap='wrap'
         margin='20px 0 0 0'
       >
-        {postList.map((p, idx) => {
+        {postList && postList.map((p) => {
           return (
             <AdoptionCard
               margin='0 0 20px 0'
