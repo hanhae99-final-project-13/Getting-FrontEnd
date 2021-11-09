@@ -22,7 +22,6 @@ const Intro = () => {
               도킹
             </Text>
           </Grid>
-
           {/* 이미지 */}
           <Grid display='flex' height='560px' overflowX='hidden'>
             <StyledSlider {...settings}>

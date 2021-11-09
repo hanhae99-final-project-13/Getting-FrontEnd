@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { history } from '../redux/configureStore';
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
-  console.log(data.img.length > 0);
+  // console.log(data.img.length > 0);
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState(data.breed);
   const [sex, setSex] = React.useState(data.sex);
@@ -35,7 +35,7 @@ const EditPost = (props) => {
     setSexToggle(!sexToggle);
     if (sexToggle === true) {
       setSex('M');
-    } else {
+    } else if (sexToggle === false) {
       setSex('F');
     }
   };
@@ -79,11 +79,7 @@ const EditPost = (props) => {
   const editPost = () => {
     dispatch(postActions.updateDetailToAxios(postId, postInfo));
   };
-  React.useEffect(() => {
-    if (data.sex === 'F') {
-      setSexToggle(false);
-    }
-  }, []);
+
   return (
     <React.Fragment>
       <Grid width='375px' margin='0 auto'>
@@ -119,7 +115,11 @@ const EditPost = (props) => {
             />
             <Grid display='flex' alignItems='center'>
               남아
-              <Slider _onClick={sexCheck} /* sexToggle={sexToggle} */ />
+              <Slider
+                data={data.sex}
+                handleToggle={sexCheck}
+                valueCheck={sexToggle}
+              />
               여아
             </Grid>
           </Grid>
@@ -177,8 +177,9 @@ const EditPost = (props) => {
             <Grid display='flex' alignItems='center'>
               개인
               <Slider
-                _onClick={ownerTypeCheck}
-                ownerTypeToggle={ownerTypeToggle}
+                data={data.ownerType}
+                handleToggle={ownerTypeCheck}
+                valueCheck={ownerTypeToggle}
               />
               보호소
             </Grid>
@@ -213,7 +214,11 @@ const EditPost = (props) => {
             />
             <Grid display='flex' alignItems='center'>
               직접등록
-              <Slider _onClick={tagCheck} tagToggle={tagToggle} />
+              <Slider
+                data={data.tag}
+                handleToggle={tagCheck}
+                valueCheck={tagToggle}
+              />
               가져온정보
             </Grid>
           </Grid>

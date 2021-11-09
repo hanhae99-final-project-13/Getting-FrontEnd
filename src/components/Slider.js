@@ -1,23 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Slider = (props) => {
-  const { _onClick } = props;
-
-  // const switchClick = () => {
-  //   if (p.sexCheck) {
-  //     p.sexCheck(!p.sexToggle);
-  //   } else if (p.ownerTypeCheck) {
-  //     p.ownerTypeCheck(!p.ownerTypeToggle);
-  //   } else if (p.tagCheck) {
-  //     p.tagCheck(!p.tagToggle);
-  //   }
-  // };
-
+const Slider2 = (props) => {
+  const { valueCheck, handleToggle, data } = props;
+  React.useEffect(() => {
+    if (data === '가져온 정보') {
+      handleToggle(valueCheck);
+    } else if (data === 'F') {
+      handleToggle(valueCheck);
+    } else if (data === '보호소') {
+      handleToggle(valueCheck);
+    }
+  }, []);
   return (
     <React.Fragment>
       <SwitchBox>
-        <CheckBox type='checkbox' onClick={_onClick} />
+        <CheckBox
+          type='checkbox'
+          checked={valueCheck}
+          onChange={() => {
+            handleToggle();
+          }}
+        />
 
         <Switch />
       </SwitchBox>
@@ -73,4 +77,4 @@ const CheckBox = styled.input`
   }
 `;
 
-export default Slider;
+export default Slider2;
