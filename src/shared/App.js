@@ -32,6 +32,7 @@ import EssentialQuiz4 from '../components/Tutorial/EssentialQuiz4';
 import EssentialQuiz5 from '../components/Tutorial/EssentialQuiz5';
 import FosterKnowledge from '../pages/FosterKnowledge';
 import EditPost from '../components/EditPost';
+import Timer from '../components/Timer';
 
 import { actionCreators as userAction } from '../redux/modules/user';
 
@@ -83,6 +84,7 @@ function App() {
         <Route path='/setting' exact component={Setting} />
         <Route path='/takeapply' exact component={TakeAdoptionApply} />
         <Route path='/editpost' exact component={EditPost} />
+        <Route path='/timer' exact component={Timer} />
       </ConnectedRouter>
     </React.Fragment>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ import { faHouseUser } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
+import { sample } from 'lodash';
 
 const Footer = (props) => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Footer = (props) => {
   const CardCoverInitialization = () => {
     dispatch(postActions.changeCardCover(false));
   };
+
   return (
     <React.Fragment>
       <Grid
@@ -37,7 +39,7 @@ const Footer = (props) => {
           alignItems='center'
           justifyContent='center'
           _onClick={() => {
-            history.push('/fosterknowledge');
+            history.push('/tutorial');
           }}>
           <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>

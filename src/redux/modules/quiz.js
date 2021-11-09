@@ -29,8 +29,8 @@ const sendEduSuccessDB = (classNumber) => {
     apis
       .education(classNumber)
       .then((res) => {
-        // console.log(res.data.status, '성공 or 실패');
-        // console.log(res.data.data.msg, '메세지');
+        console.log(res.data.status, '성공');
+        console.log(res.data.data.msg, '메세지');
       })
       .catch((err) => {
         console.log(err);
