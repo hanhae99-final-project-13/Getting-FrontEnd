@@ -107,7 +107,7 @@ const Detail = (props) => {
             </Grid>
           </Grid>
           <Grid
-            width='280px'
+            width='283px'
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'

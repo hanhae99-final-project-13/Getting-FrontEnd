@@ -31,7 +31,7 @@ const CommentWrite = (props) => {
       {props.comment ? (
         <Grid
           bg='rgba(235, 235, 235)'
-          width='283px'
+          width='305px'
           height='40px'
           borderRadius='10px'
           margin='0 auto 10px auto'
@@ -62,7 +62,7 @@ const CommentWrite = (props) => {
       ) : (
         <Grid
           bg='rgba(235, 235, 235)'
-          width='283px'
+          width='305px'
           height='40px'
           borderRadius='10px'
           margin='0 auto 10px auto'
@@ -97,7 +97,7 @@ const CommentWrite = (props) => {
 
 const CommentBox = styled.input`
   background-color: rgba(235, 235, 235);
-  width: 200px;
+  width: 230px;
   height: 35px;
   margin: auto;
   display: flex;

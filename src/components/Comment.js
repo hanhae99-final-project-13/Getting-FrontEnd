@@ -35,7 +35,7 @@ const Comment = (props) => {
           <React.Fragment>
             <Grid
               height='70px'
-              width='283px'
+              width='305px'
               margin='0 auto 10px'
               borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
               borderRadius='10px'
@@ -64,8 +64,8 @@ const Comment = (props) => {
         ) : (
           <Grid
             height='70px'
-            width='auto'
-            padding='0 46px'
+            width='305px'
+            margin='0 auto'
             borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
             borderRadius='10px'
             display='flex'
@@ -100,7 +100,7 @@ const Comment = (props) => {
                     </div>
                     {comment.nickname === userInfo.nickname ? (
                       <div
-                        style={{ fontSize: '12px', margin: '0 0 0 8px' }}
+                        style={{ fontSize: '12px', margin: '0 8px' }}
                         onClick={onModal}
                       >
                         💛
