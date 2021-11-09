@@ -20,6 +20,7 @@ const Main = () => {
   React.useEffect(() => {
     dispatch(postActions.getMainPostMW());
   }, []);
+
   return (
     <Grid width='375px' margin='0 auto'>
       <Grid width='auto' padding='38px' overflow='auto' margin='80px 0 0 0'>

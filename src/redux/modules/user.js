@@ -65,9 +65,11 @@ const GetUserDB = (user) => {
         console.log('서버에서 받은 로그인 정보', res.data.data);
         console.log('서버 로그인 status정보', res.data.status);
         const USER_TOKEN = res.data.data.token;
+
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         const user = {
           userInfo: {
+            userId: res.data.data.userId,
             email: res.data.data.email,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl,
@@ -79,10 +81,10 @@ const GetUserDB = (user) => {
           },
           isLogin: true,
         };
+
         dispatch(SetUser(user));
         history.push('/main');
         // window.location.reload();
-        localStorage.getItem('USER_TOKEN');
       })
       .catch((error) => {
         ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
@@ -127,6 +129,7 @@ const LoginCheck = () => {
         console.log('로그인체크 정보', res.data.data);
         const user = {
           userInfo: {
+            userId: res.data.data.userId,
             email: res.data.data.email,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl,

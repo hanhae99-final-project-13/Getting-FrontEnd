@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as useActions } from '../redux/modules/apply';
 import styled from 'styled-components';
 
-const AdoptionApply2 = () => {
+const AdoptionApply2 = (props) => {
+  const { history } = props;
   const postId = useParams().id;
   console.log(postId, '입양신청서2번 id');
 
@@ -76,6 +77,7 @@ const AdoptionApply2 = () => {
             'success',
           );
         }
+        history.push('/main');
       });
     }
   };
