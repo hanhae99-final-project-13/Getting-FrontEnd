@@ -15,6 +15,7 @@ instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('USER_TOKEN');
     if (!token) {
+      console.log(token);
       return config;
     }
     config.headers = {
