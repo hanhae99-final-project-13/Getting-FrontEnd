@@ -18,6 +18,7 @@ const Upload = (props) => {
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
+      console.log(nowImgUrl);
       const fileName = selectImg[i].name.split('.')[0];
       const fileType = selectImg[i].name.split('.')[1];
 
@@ -50,6 +51,22 @@ const Upload = (props) => {
 
   const deleteImg = (e) => {
     console.log(e);
+    console.log(props.img[e]);
+    console.log(props.files[e]);
+  };
+  const unload = () => {
+    new AWS.s3.deleteObject(
+      {
+        Bucket: 'docking',
+        Key: `https://docking.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210524_211649496_07.jpg`,
+      },
+      (err, data) => {
+        if (err) {
+          throw err;
+        }
+        console.log(data);
+      },
+    );
   };
   return (
     <>
@@ -117,7 +134,10 @@ const Upload = (props) => {
                       left: '140px',
                       fontSize: '20px',
                     }}
-                    onClick={deleteImg}
+                    onClick={() => {
+                      // deleteImg(i);
+                      unload();
+                    }}
                   >
                     x
                   </button>
