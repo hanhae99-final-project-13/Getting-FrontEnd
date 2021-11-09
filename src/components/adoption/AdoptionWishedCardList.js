@@ -11,7 +11,6 @@ const AdoptionWishedCardList = (props) => {
   const goDetail = () => {
     history.push('/');
   };
-
   return (
     <Grid width='calc(100% + 1rem)'>
       <Grid
@@ -25,9 +24,9 @@ const AdoptionWishedCardList = (props) => {
         <Image size='12' />
       </Grid>
       <SliderBox>
-        <InnerSlider>
-          {wishPostList &&
-            wishPostList.map((p) => {
+        <InnerSlider width={wishPostList.length}>
+          {wishPostList.map((p) => {
+            return (
               <Card
                 key={p.postId}
                 breed={p.breed}
@@ -37,11 +36,12 @@ const AdoptionWishedCardList = (props) => {
                 modifiedAt={p.modifiedAt}
                 ownerType={p.ownerType}
                 address={p.address}
-                img={p.img[0]}
+                img={p.img.split(' ##'[0])}
                 postId={p.postId}
                 isAdopted={p.isAdopted}
-              />;
-            })}
+              />
+            );
+          })}
         </InnerSlider>
       </SliderBox>
     </Grid>
@@ -71,7 +71,7 @@ const SliderBox = styled.div`
 const InnerSlider = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 800vw;
+  width: ${(props) => props.width * 63}%;
   padding-left: 1rem;
   padding-top: 1rem;
 `;

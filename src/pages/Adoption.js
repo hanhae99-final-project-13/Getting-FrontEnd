@@ -19,6 +19,7 @@ const Adoption = () => {
   const searchSetting = useSelector((state) => state.post.searchSetting);
   const totalPage = useSelector((state) => state.post.totalPage);
   const isLoading = useSelector((state) => state.post.isLoading);
+  const isToken = localStorage.getItem('USER_TOKEN');
   const cur = React.useRef();
   const old = React.useRef();
 
@@ -41,8 +42,14 @@ const Adoption = () => {
 
   useEffect(() => {
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0 }));
-    dispatch(postActions.getWishPostMW(userInfo.email));
+    if (userInfo.userId) {
+      dispatch(postActions.getWishPostMW(userInfo.userId));
+    }
   }, []);
+  if (isToken && !userInfo.userId) {
+    return <div>로딩중</div>;
+  }
+
   return (
     <Grid>
       <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>

@@ -19,6 +19,12 @@ const Card = (props) => {
     address,
     img,
     isAdopted,
+    name,
+    gender,
+    fosterAge,
+    phone,
+    fosterAddress,
+    isShowApply,
   } = props;
   const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
@@ -79,7 +85,7 @@ const Card = (props) => {
         </ImageBox>
         <Grid display='flex' width='auto' margin='5px 0 5px 0'>
           <Text margin='0 10px 0 0' size='14px' bold>
-            {breed ? breed.split('[개]').reverse()[0] : '말이 되는 소리를 해!'}
+            {breed ? breed.split('[개]').reverse()[0] : ''}
           </Text>
           <Text margin='0' size='14px'>
             {sex ? sex : '남아'}/{age ? age : '2018년생'}
@@ -94,7 +100,7 @@ const Card = (props) => {
           <ElP>{address ? address : '경기도 수원'}</ElP>
         </Grid>
       </Grid>
-      {/* <ReceivedAdoptionList /> */}
+      {isShowApply && <ReceivedAdoptionList />}
     </React.Fragment>
   );
 };

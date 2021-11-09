@@ -9,10 +9,10 @@ import {
   MypageCategory,
   MypageDockingCheck,
 } from '../components/mypage';
-import { postActions } from '../redux/modules/post';
-
 import Footer from '../components/Footer';
 import { history } from '../redux/configureStore';
+import { postActions } from '../redux/modules/post';
+import { applyActions } from '../redux/modules/apply';
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const Mypage = () => {
   const [adoptionCheckDisplay, setAdoptionCheckDisplay] =
     React.useState('none');
   const [dockingCheck, setDockingCheck] = React.useState('none');
+  const isToken = localStorage.getItem('USER_TOKEN');
   const showWishedList = (a) => {
     setAdoptionCheckDisplay('none');
     setDockingCheck('none');
@@ -49,10 +50,17 @@ const Mypage = () => {
     dispatch(postActions.changeCardCover(false));
     dispatch(postActions.changeDockingDeleteMode(false));
   };
-  
+
   React.useEffect(() => {
-    dispatch(postActions.getWishPostMW(userInfo.email))
-  }, [])
+    dispatch(postActions.getWishPostMW(userInfo.userId));
+    dispatch(applyActions.getMyApplyMW());
+    dispatch(postActions.getMyPostsMW(userInfo.userId));
+  }, []);
+
+  if (!isToken) {
+    window.alert('로그인이 필요한 페이지입니다!');
+    history.goBack();
+  }
 
   return (
     <Grid>

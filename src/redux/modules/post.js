@@ -13,9 +13,11 @@ const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
 const GET_DETAILPOST = 'GET_DETAILPOST';
 const GET_WISHPOST = 'GET_WISHPOST';
+const GET_MYPOSTS = 'GET_MYPOSTS';
 const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
+const CHANGE_SHOWAPPLY = 'CHANGE_SHOWAPPLY';
 const UPDATE_DETAIL = 'UPDATE_DETAIL';
 const SET_SEARCH = 'SET_SEARCH';
 const SET_SEARCHPREV = 'SET_SEARCHPREV';
@@ -34,6 +36,7 @@ const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
 const getMainPost = createAction(GET_MAINPOST, (postList) => ({ postList }));
 const getDetailPost = createAction(GET_DETAILPOST, (post) => ({ post }));
 const getWishPost = createAction(GET_WISHPOST, (postList) => ({ postList }));
+const getMyPosts = createAction(GET_MYPOSTS, (postList) => ({ postList }));
 const changeDockingDeleteMode = createAction(
   CHANGE_DOCKINGDELETEMODE,
   (value) => ({
@@ -47,6 +50,7 @@ const changeAdoptionDeleteMode = createAction(
   }),
 );
 const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
+const changeShowApply = createAction(CHANGE_SHOWAPPLY, (value) => ({ value }));
 //댓글
 const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
   commentInfo,
@@ -73,9 +77,11 @@ const initialState = {
   mainPostList: [],
   detailPost: [],
   wishPostList: [],
+  myPostList: [],
   isDockingDeleteMode: false,
   isAdoptionDeleteMode: false,
   isAdoptionWait: false,
+  isShowApply: false,
   isLoading: false,
   totalPage: null,
   searchSetting: {
@@ -160,12 +166,28 @@ const getDetailPostMW = (postId) => {
 };
 
 const getWishPostMW = (userId) => {
+  console.log(userId);
   return (dispatch) => {
     apis
       .getWishPost(userId)
       .then((res) => {
         console.log(res.data);
-        dispatch(getWishPost(res.data.postList));
+        console.log(res.data.data.wishList);
+        dispatch(getWishPost(res.data.data.wishList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMyPostsMW = (userId) => {
+  return (dispatch) => {
+    apis
+      .getMyPosts(userId)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getMyPosts(res.data.data.formsInPostsPreview));
       })
       .catch((err) => {
         console.log(err);
@@ -307,6 +329,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.wishPostList = action.payload.postList;
       }),
+    [GET_MYPOSTS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myPostList = action.payload.postList;
+      }),
     [CHANGE_DOCKINGDELETEMODE]: (state, action) =>
       produce(state, (draft) => {
         draft.isDockingDeleteMode = action.payload.value;
@@ -318,6 +344,10 @@ export default handleActions(
     [CHANGE_CARDCOVER]: (state, action) =>
       produce(state, (draft) => {
         draft.isAdoptionWait = action.payload.value;
+      }),
+    [CHANGE_SHOWAPPLY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isShowApply = action.payload.value;
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -374,10 +404,12 @@ const postActions = {
   getMorePostMW,
   getMainPostMW,
   addPostToAxios,
+  getDetailPostMW,
+  getMyPostsMW,
   changeCardCover,
   changeDockingDeleteMode,
   changeAdoptionDeleteMode,
-  getDetailPostMW,
+  changeShowApply,
   addCommentToAxios,
   updateCommentToAxios,
   deleteCommentToAxios,

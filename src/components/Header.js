@@ -16,8 +16,9 @@ const Header = (props) => {
   const path = useParams();
   // console.log(path, '경로');
   const isLogin = useSelector((state) => state.user.user.isLogin);
+  const isToken = localStorage.getItem('USER_TOKEN');
   const alarmCount = useSelector(
-    (state) => state.user.user.userInfo.alarmCount,
+    (state) => state.user.user.userInfo?.alarmCount,
   );
   return (
     <React.Fragment>
@@ -103,7 +104,7 @@ const Header = (props) => {
                 bg='red'
                 fontSize='10px'
               >
-                {alarmCount}
+                {alarmCount ? alarmCount : ''}
               </Grid>
             </Grid>
           </Grid>

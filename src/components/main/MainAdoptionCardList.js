@@ -13,7 +13,7 @@ const MainAdoptionCardList = (props) => {
   };
 
   return (
-    <Grid width='calc(100% + 1rem)' margin='0 0 20px 0'>
+    <Grid width='calc(100% + 38px)' margin='0 0 40px 0'>
       <Grid
         display='flex'
         justifyContent='space-between'
@@ -59,7 +59,7 @@ const Title = styled.p`
 
 const SliderBox = styled.div`
   height: 220px;
-  margin-left: -1rem;
+  margin-left: -38px;
   margin-top: -1rem;
   overflow: visible;
   overflow-x: scroll;
