@@ -46,6 +46,7 @@ const initialState = {
       alarmCount: null,
       applyList: [],
       alarmContent: [],
+      userId: null,
     },
     isLogin: false,
   },
@@ -74,6 +75,7 @@ const GetUserDB = (user) => {
             phone: res.data.data.phone,
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
+            userId: res.data.data.userId,
           },
           isLogin: true,
         };
@@ -132,6 +134,7 @@ const LoginCheck = () => {
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
             applyList: res.data.data.applyList,
+            userId: res.data.data.userId,
             alarmContent: [],
           },
           isLogin: true,

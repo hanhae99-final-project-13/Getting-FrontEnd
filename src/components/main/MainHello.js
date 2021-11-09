@@ -7,12 +7,12 @@ import { history } from '../../redux/configureStore';
 
 const MainHello = (props) => {
   const userInfo = useSelector((state) => state.user.user.userInfo);
+  const isLogin = useSelector((state) => state.user.user.isLogin);
+
   return (
     <Grid>
-      <Image src={userInfo ? userInfo.userImgUrl : ''} />
-      <ElP>
-        안녕하세요 {userInfo.nickname ? userInfo.nickname + '님!' : '!'}
-      </ElP>
+      <Image src={isLogin ? userInfo.userImgUrl : ''} />
+      <ElP>안녕하세요 {isLogin ? userInfo.nickname + '님!' : '!'}</ElP>
       <ElP>귀여운 가족을 찾으러 오셨나요?</ElP>
       <Grid display='flex' justifyContent='space-between' width='100%'>
         <Grid display='flex' width='auto'>

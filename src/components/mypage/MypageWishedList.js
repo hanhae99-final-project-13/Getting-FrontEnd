@@ -19,22 +19,24 @@ const MypageWishedList = (props) => {
       </Grid>
       {wishPostList &&
         wishPostList.map((p) => {
-          <Card
-            width='auto'
-            imageHeight='150px'
-            margin='0 0 20px 0'
-            key={p.postId}
-            breed={p.breed}
-            sex={p.sex}
-            age={p.age}
-            createAt={p.createAt}
-            modifiedAt={p.modifiedAt}
-            ownerType={p.ownerType}
-            address={p.address}
-            img={p.img[0]}
-            postId={p.postId}
-            isAdopted={p.isAdopted}
-          />;
+          return (
+            <Card
+              width='auto'
+              imageHeight='150px'
+              margin='0 0 20px 0'
+              key={p.postId}
+              breed={p.breed}
+              sex={p.sex}
+              age={p.age}
+              createAt={p.createAt}
+              modifiedAt={p.modifiedAt}
+              ownerType={p.ownerType}
+              address={p.address}
+              img={p.img.split(' ##'[0])}
+              postId={p.postId}
+              isAdopted={p.isAdopted}
+            />
+          );
         })}
     </Grid>
   );

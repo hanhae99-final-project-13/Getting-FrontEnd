@@ -47,6 +47,7 @@ const Detail = (props) => {
   if (!post.post) {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
+
   return (
     <React.Fragment>
       {edit ? (
