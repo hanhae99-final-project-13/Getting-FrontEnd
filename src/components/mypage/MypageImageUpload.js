@@ -48,6 +48,7 @@ const MypageImageUpload = (props) => {
             userImgUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
+        window.alert('이미지가 변경되었습니다!');
       });
   };
 

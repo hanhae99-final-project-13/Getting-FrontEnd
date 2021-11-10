@@ -58,7 +58,6 @@ const Header = (props) => {
           alignItems='center'
           _onClick={() => {
             histroy.push('/main');
-            dispatch(postActions.changeCardCover(false));
           }}
         >
           <TEXT size='20px' bold margin='0'>

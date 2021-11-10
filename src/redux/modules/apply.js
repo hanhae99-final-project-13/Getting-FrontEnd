@@ -9,8 +9,8 @@ const GET_MYAPPLY = 'GET_MYAPPLY';
 
 //액션 생성함수
 const addApply = createAction(ADD_APPLY, (data) => ({ data }));
-const getApply = createAction(GET_APPLY, (data) => ({ data }));
-const getMyApply = createAction(GET_MYAPPLY, (ApplyList) => ({ ApplyList }));
+const getApply = createAction(GET_APPLY, (fosterForm) => ({ fosterForm }));
+const getMyApply = createAction(GET_MYAPPLY, (applyList) => ({ applyList }));
 
 //초기값
 const initialState = {
@@ -32,7 +32,7 @@ const initialState = {
     phone: '',
     // code: '',
   },
-  MyApplyList: [],
+  myApplyList: [],
 };
 
 //미들웨어
@@ -46,6 +46,20 @@ const addApplyDB = (postId, data) => {
       .then((res) => {
         console.log(res.data);
         //  dispatch(addApply(res.data.FosterForm));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getApplyMW = (fosterFormId) => {
+  console.log(fosterFormId);
+  return (dispatch) => {
+    apis
+      .getDetailfosterForm(fosterFormId)
+      .then((res) => {
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +93,7 @@ export default handleActions(
       }),
     [GET_MYAPPLY]: (state, action) =>
       produce(state, (draft) => {
-        draft.MyApplyList = action.payload.ApplyList;
+        draft.myApplyList = action.payload.applyList;
       }),
   },
   initialState,

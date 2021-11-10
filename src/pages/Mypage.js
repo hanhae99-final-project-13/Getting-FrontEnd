@@ -55,6 +55,8 @@ const Mypage = () => {
     dispatch(postActions.getWishPostMW(userInfo.userId));
     dispatch(applyActions.getMyApplyMW());
     dispatch(postActions.getMyPostsMW(userInfo.userId));
+
+    return () => dispatch(postActions.changeCardCover(false));
   }, []);
 
   if (!isToken) {

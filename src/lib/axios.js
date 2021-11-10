@@ -14,16 +14,14 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('USER_TOKEN');
-    if (!token) {
-      console.log(token);
+    if (token === '') {
       return config;
     }
     config.headers = {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
       accept: 'application/json',
       Authorization: `Bearer ${token}`,
     };
-
     return config;
   },
   (err) => {
@@ -84,9 +82,11 @@ export const apis = {
   getAlarmList: () => instance.get('/alarms'),
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
-  //입양신청 등록 관련api
+  //입양신청 관련api
   applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
   getMyApplyList: () => instance.get(`/requests`),
+  getDetailfosterForm: (fosterFormId) =>
+    instance.get(`/foster_forms/${fosterFormId}`),
   //관심친구 등록
   addWish: (postId) => instance.post('/wishes/', postId),
   //교육자료 api

@@ -21,7 +21,7 @@ const ReceivedAdoption = (props) => {
   }, []);
   return (
     <Grid display={props.display}>
-      {myPostList.map((p) => {
+      {myPostList.map((p, i) => {
         if (p.formPreviews.length === 0) {
           return;
         }
@@ -40,11 +40,7 @@ const ReceivedAdoption = (props) => {
             img={p.postPreview.img.split(' ##'[0])}
             postId={p.postPreview.postId}
             isAdopted={p.postPreview.isAdopted}
-            name={p.formPreviews.name}
-            gender={p.formPreviews.gender}
-            fosterAge={p.formPreviews.fosterAge}
-            phone={p.formPreviews.phone}
-            fosterAddress={p.formPreviews.fosterAddress}
+            index={i}
             isShowApply={isShowApply}
           />
         );
