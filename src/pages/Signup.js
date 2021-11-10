@@ -11,6 +11,7 @@ import {
   ErrorAlert2,
 } from '../shared/Alerts';
 import { emailCheck } from '../shared/emailCheck';
+import Timer from '../components/Timer';
 
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -375,6 +376,9 @@ const Signup = (props) => {
 
           {openCodeInput ? (
             <Grid position='relative'>
+              <Grid position='absolute' left='160px' width='auto'>
+                <Timer />
+              </Grid>
               <Text
                 _onClick={() => {
                   sendPhoneAuthCode(phoneAuthCode);
@@ -383,9 +387,9 @@ const Signup = (props) => {
                 position='absolute'
                 right='10px'
                 width='auto'
-                top='15px'
+                top='19px'
                 size='12px'
-                bold
+                weight='800'
                 margin='0'
               >
                 코드인증하기
@@ -417,9 +421,9 @@ const Signup = (props) => {
                 position='absolute'
                 right='10px'
                 width='auto'
-                top='15px'
+                top='19px'
                 size='12px'
-                bold
+                weight='800'
                 margin='0'
               >
                 인증하기

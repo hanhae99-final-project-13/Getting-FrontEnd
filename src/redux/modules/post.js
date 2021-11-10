@@ -1,22 +1,26 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import { apis } from '../../lib/axios';
 import {
   SuccessAlert,
   WarningAlert,
   ErrorAlert,
   imageSuccessAlert,
 } from '../../shared/Alerts';
+import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
 const GET_MOREPOST = 'GET_MOREPOST';
 const GET_MAINPOST = 'GET_MAINPOST';
 const GET_DETAILPOST = 'GET_DETAILPOST';
 const GET_WISHPOST = 'GET_WISHPOST';
+const GET_MYPOSTS = 'GET_MYPOSTS';
 const CHANGE_DOCKINGDELETEMODE = 'CHANGE_DOCKINGDELETEMODE';
 const CHANGE_ADOPTIONDELETEMODE = 'CHANGE_ADOPTIONDELETEMODE';
 const CHANGE_CARDCOVER = 'CHANGE_CARDCOVER';
+const CHANGE_SHOWAPPLY = 'CHANGE_SHOWAPPLY';
 const UPDATE_DETAIL = 'UPDATE_DETAIL';
+const SET_SEARCH = 'SET_SEARCH';
+const SET_SEARCHPREV = 'SET_SEARCHPREV';
 
 //댓글
 const ADD_COMMENT = 'ADD_COMMENT';
@@ -32,6 +36,7 @@ const getMorePost = createAction(GET_MOREPOST, (postList) => ({ postList }));
 const getMainPost = createAction(GET_MAINPOST, (postList) => ({ postList }));
 const getDetailPost = createAction(GET_DETAILPOST, (post) => ({ post }));
 const getWishPost = createAction(GET_WISHPOST, (postList) => ({ postList }));
+const getMyPosts = createAction(GET_MYPOSTS, (postList) => ({ postList }));
 const changeDockingDeleteMode = createAction(
   CHANGE_DOCKINGDELETEMODE,
   (value) => ({
@@ -45,6 +50,7 @@ const changeAdoptionDeleteMode = createAction(
   }),
 );
 const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
+const changeShowApply = createAction(CHANGE_SHOWAPPLY, (value) => ({ value }));
 //댓글
 const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
   commentInfo,
@@ -61,22 +67,38 @@ const setLoading = createAction(LOADING, (crrLoading) => ({ crrLoading }));
 const setTotalPage = createAction(SET_TOTALPAGE, (totalPage) => ({
   totalPage,
 }));
+const setSearch = createAction(SET_SEARCH, (searchSetting) => ({
+  searchSetting,
+}));
+const setSearchPrev = createAction(SET_SEARCHPREV, (prev) => ({ prev }));
 
 const initialState = {
   postList: [],
   mainPostList: [],
   detailPost: [],
   wishPostList: [],
+  myPostList: [],
   isDockingDeleteMode: false,
   isAdoptionDeleteMode: false,
   isAdoptionWait: false,
+  isShowApply: false,
   isLoading: false,
   totalPage: null,
+  searchSetting: {
+    page: 0,
+    startDt: undefined,
+    endDt: undefined,
+    ownerType: undefined,
+    city: undefined,
+    district: undefined,
+    sort: 'new',
+  },
+  prevSearchSetting: {},
 };
 
 const getPostMW = (searchData) => {
   console.log(searchData);
-  return function (dispatch) {
+  return function (dispatch, getState) {
     dispatch(setLoading(true));
     apis
       .getPots(searchData)
@@ -84,6 +106,7 @@ const getPostMW = (searchData) => {
         console.log(res.data);
         if (res.data.data.postList.length === 0) {
           ErrorAlert('해당 조건 맞는 친구들이 없습니다!');
+          dispatch(setSearchPrev());
           dispatch(setLoading(false));
           return;
         }
@@ -143,12 +166,28 @@ const getDetailPostMW = (postId) => {
 };
 
 const getWishPostMW = (userId) => {
+  console.log(userId);
   return (dispatch) => {
     apis
       .getWishPost(userId)
       .then((res) => {
         console.log(res.data);
-        dispatch(getWishPost(res.data.postList));
+        console.log(res.data.data.wishList);
+        dispatch(getWishPost(res.data.data.wishList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMyPostsMW = (userId) => {
+  return (dispatch) => {
+    apis
+      .getMyPosts(userId)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getMyPosts(res.data.data.formsInPostsPreview));
       })
       .catch((err) => {
         console.log(err);
@@ -290,6 +329,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.wishPostList = action.payload.postList;
       }),
+    [GET_MYPOSTS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myPostList = action.payload.postList;
+      }),
     [CHANGE_DOCKINGDELETEMODE]: (state, action) =>
       produce(state, (draft) => {
         draft.isDockingDeleteMode = action.payload.value;
@@ -301,6 +344,10 @@ export default handleActions(
     [CHANGE_CARDCOVER]: (state, action) =>
       produce(state, (draft) => {
         draft.isAdoptionWait = action.payload.value;
+      }),
+    [CHANGE_SHOWAPPLY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isShowApply = action.payload.value;
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -336,6 +383,18 @@ export default handleActions(
       produce(state, (draft) => {
         draft.totalPage = action.payload.totalPage;
       }),
+    [SET_SEARCH]: (state, action) =>
+      produce(state, (draft) => {
+        draft.prevSearchSetting = draft.searchSetting;
+        draft.searchSetting = {
+          ...draft.searchSetting,
+          ...action.payload.searchSetting,
+        };
+      }),
+    [SET_SEARCHPREV]: (state, action) =>
+      produce(state, (draft) => {
+        draft.searchSetting = draft.prevSearchSetting;
+      }),
   },
   initialState,
 );
@@ -345,10 +404,12 @@ const postActions = {
   getMorePostMW,
   getMainPostMW,
   addPostToAxios,
+  getDetailPostMW,
+  getMyPostsMW,
   changeCardCover,
   changeDockingDeleteMode,
   changeAdoptionDeleteMode,
-  getDetailPostMW,
+  changeShowApply,
   addCommentToAxios,
   updateCommentToAxios,
   deleteCommentToAxios,
@@ -356,6 +417,7 @@ const postActions = {
   heartToAxios,
   updateDetailToAxios,
   getWishPostMW,
+  setSearch,
 };
 
 export { postActions };

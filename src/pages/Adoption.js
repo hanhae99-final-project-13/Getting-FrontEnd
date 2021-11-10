@@ -12,28 +12,28 @@ import { history } from '../redux/configureStore';
 import Footer from '../components/Footer';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
-import { searchActions } from '../redux/modules/search';
 
 const Adoption = () => {
   const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.user.user.userInfo)    
-  const searchSetting = useSelector((state) => state.search.searchSetting);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
+  const searchSetting = useSelector((state) => state.post.searchSetting);
   const totalPage = useSelector((state) => state.post.totalPage);
-  const isLoading = useSelector(state => state.post.isLoading)
+  const isLoading = useSelector((state) => state.post.isLoading);
+  const isToken = localStorage.getItem('USER_TOKEN');
   const cur = React.useRef();
-  const old = React.useRef();  
+  const old = React.useRef();
 
   const activeCurButton = () => {
     old.current.style.backgroundColor = 'white';
     cur.current.style.backgroundColor = 'steelblue';
-    dispatch(searchActions.setSearch({ page: 0, sort: 'new' }));
-    dispatch(postActions.getPostMW({...searchSetting, page: 0, sort: 'new'}));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
+    dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
   };
   const activeOldButton = () => {
     cur.current.style.backgroundColor = 'white';
     old.current.style.backgroundColor = 'steelblue';
-    dispatch(searchActions.setSearch({ page: 0, sort: 'old' }));
-    dispatch(postActions.getPostMW({...searchSetting, page: 0, sort: 'old'}));
+    dispatch(postActions.setSearch({ page: 0, sort: 'old' }));
+    dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'old' }));
   };
 
   const goAddPost = () => {
@@ -42,8 +42,14 @@ const Adoption = () => {
 
   useEffect(() => {
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0 }));
-    dispatch(postActions.getWishPostMW(userInfo.email))
-  }, []);  
+    if (userInfo.userId) {
+      dispatch(postActions.getWishPostMW(userInfo.userId));
+    }
+  }, []);
+  if (isToken && !userInfo.userId) {
+    return <div>로딩중</div>;
+  }
+
   return (
     <Grid>
       <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>
@@ -64,7 +70,11 @@ const Adoption = () => {
         </Grid>
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
-      {isLoading || totalPage <= searchSetting.page || totalPage === 1? '' : <InfinityScroll page={searchSetting.page} />}      
+      {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
+        ''
+      ) : (
+        <InfinityScroll page={searchSetting.page} />
+      )}
       <Footer></Footer>
     </Grid>
   );
@@ -95,8 +105,6 @@ const AddButton = styled.button`
   border: none;
   border-radius: 50px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-  
 `;
 
 export default Adoption;

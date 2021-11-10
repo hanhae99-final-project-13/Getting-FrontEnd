@@ -7,13 +7,22 @@ const instance = axios.create({
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('USER_TOKEN')}`,
   },
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
 
 instance.interceptors.request.use(
   (config) => {
+    const token = localStorage.getItem('USER_TOKEN');
+    console.log(token);
+    if (token === '') {
+      return config;
+    }
+    config.headers = {
+      'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
+      accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
     return config;
   },
   (err) => {
@@ -58,6 +67,7 @@ export const apis = {
     ),
   getDetailPost: (postId) => instance.get(`/posts/${postId}`),
   getWishPost: (userId) => instance.get(`/${userId}/wishes`),
+  getMyPosts: (userId) => instance.get(`/${userId}/myposts`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
   updatePost: (postId, postInfo) =>
     instance.patch(`/posts/${postId}`, postInfo),
@@ -75,6 +85,7 @@ export const apis = {
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 등록 관련api
   applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
+  getMyApplyList: () => instance.get(`/requests`),
   //관심친구 등록
   addWish: (postId) => instance.post('/wishes/', postId),
   //교육자료 api

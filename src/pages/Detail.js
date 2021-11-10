@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
+import { actionCreators as userAction } from '../redux/modules/user';
+
 import { Link } from 'react-router-dom';
 
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
+import Swal from 'sweetalert2';
 import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
 import EditPost from '../components/EditPost';
 
@@ -14,9 +17,11 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const { history } = props;
   const postId = props.match.params.id;
   const post = useSelector((state) => state.post?.detailPost);
   const user = useSelector((state) => state.user?.user.userInfo);
+
   console.log(post);
 
   // console.log(imgs);
@@ -48,12 +53,13 @@ const Detail = (props) => {
   if (!post.post) {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
+
   return (
     <React.Fragment>
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='0 auto'>
+        <Grid width='375px' margin='0 auto 80px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p>저와 친구하실래요?😁</p>
@@ -70,23 +76,20 @@ const Detail = (props) => {
               top='20px'
               right='5px'
               display='flex'
-              flexDirection='row-reverse'
-            >
+              flexDirection='row-reverse'>
               <button
                 style={{ all: 'unset' }}
                 onClick={() => {
                   // wish();
                   dispatch(postActions.heartToAxios({ postId: postId }));
-                }}
-              >
+                }}>
                 {post.post.heart === true ? '🔴' : '⚪'}
               </button>
             </Grid>
             <Grid
               display='flex'
               overflowX='auto'
-              justifyContent='space-between'
-            >
+              justifyContent='space-between'>
               {post.post.img &&
                 post.post.img.map((m, i) => {
                   return (
@@ -112,14 +115,12 @@ const Detail = (props) => {
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-            borderRadius='10px'
-          >
+            borderRadius='10px'>
             <Grid
               display='flex'
               margin='10px 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid width='50%'>
                 견종
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -137,8 +138,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid width='50%'>
                 체중
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -158,8 +158,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 발견 장소
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -172,8 +171,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 보호 장소
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -186,8 +184,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 주소
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -200,8 +197,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 출처
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
@@ -211,8 +207,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 웹사이트
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -220,8 +215,9 @@ const Detail = (props) => {
                     icon={faLink}
                     color='black'
                     fontSize='1x'
-                    onClick={() => window.open(`${post.post.url}`, '_blank')}
-                  ></FontAwesomeIcon>
+                    onClick={() =>
+                      window.open(`${post.post.url}`, '_blank')
+                    }></FontAwesomeIcon>
                 </span>
               </Grid>
             </Grid>
@@ -230,8 +226,7 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 연락처
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -247,7 +242,8 @@ const Detail = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {post.post.tag !== '직접등록' ? null : (
+          {user.eduList !== null && post.post.tag !== '직접등록' ? null : user
+              .eduList[0].필수지식 === true ? (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'
@@ -261,8 +257,28 @@ const Detail = (props) => {
                 alignItems='center'
                 bottom='50px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={openModal}
-              >
+                _onClick={openModal}>
+                <Text color='white'>입양 신청하기</Text>
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Grid
+                position='fixed'
+                margin='auto'
+                bg='#FF6666'
+                width='144px'
+                height='50px'
+                borderRadius='25px'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                bottom='30px'
+                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                _onClick={() => {
+                  alert('안돼');
+                  history.push('/tutorial');
+                }}>
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -275,8 +291,7 @@ const Detail = (props) => {
           {modalOpen ? (
             <AdoptionModal
               postId={postId}
-              closeModal={closeModal}
-            ></AdoptionModal>
+              closeModal={closeModal}></AdoptionModal>
           ) : (
             ' '
           )}
@@ -295,8 +310,7 @@ const Detail = (props) => {
                 borderTopLeftRadius: '15px',
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
-              }}
-            >
+              }}>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <button
                   style={{
@@ -311,8 +325,7 @@ const Detail = (props) => {
                   onClick={() => {
                     editMode();
                     // history.push('/editpost');
-                  }}
-                >
+                  }}>
                   수정
                 </button>
               </Grid>
@@ -333,8 +346,7 @@ const Detail = (props) => {
                     if (window.confirm('정말 삭제하시겠습니까?')) {
                       detailDelete();
                     }
-                  }}
-                >
+                  }}>
                   삭제
                 </button>
               </Grid>
@@ -351,8 +363,7 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
-                  }}
-                >
+                  }}>
                   취소
                 </button>
               </Grid>

@@ -87,7 +87,7 @@ const MypageDockingCheck = (props) => {
           style={{ display: adoptionWaitDisplay }}
           onClick={changeDeleteMode}
         >
-          {isDeleteMode ? '완료' : '삭제하기'}
+          {/* {isDeleteMode ? '완료' : '삭제하기'} */}
         </span>
       </CategoryBox>
       <AdoptionWait display={adoptionWaitDisplay} />

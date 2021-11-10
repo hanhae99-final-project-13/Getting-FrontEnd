@@ -5,10 +5,12 @@ import { apis } from '../../lib/axios';
 //액션
 const ADD_APPLY = 'ADD_APPLY';
 const GET_APPLY = 'GET_APPLY';
+const GET_MYAPPLY = 'GET_MYAPPLY';
 
 //액션 생성함수
 const addApply = createAction(ADD_APPLY, (data) => ({ data }));
 const getApply = createAction(GET_APPLY, (data) => ({ data }));
+const getMyApply = createAction(GET_MYAPPLY, (ApplyList) => ({ ApplyList }));
 
 //초기값
 const initialState = {
@@ -30,6 +32,7 @@ const initialState = {
     phone: '',
     // code: '',
   },
+  MyApplyList: [],
 };
 
 //미들웨어
@@ -50,6 +53,20 @@ const addApplyDB = (postId, data) => {
   };
 };
 
+const getMyApplyMW = () => {
+  return (dispatch) => {
+    apis
+      .getMyApplyList()
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getMyApply(res.data.data.fosterFormPreviewList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [ADD_APPLY]: (state, action) =>
@@ -60,6 +77,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.apply = action.payload.data;
       }),
+    [GET_MYAPPLY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.MyApplyList = action.payload.ApplyList;
+      }),
   },
   initialState,
 );
@@ -67,7 +88,7 @@ export default handleActions(
 const applyActions = {
   addApply,
   getApply,
-
+  getMyApplyMW,
   addApplyDB,
 };
 
