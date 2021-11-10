@@ -27,7 +27,7 @@ const Header = (props) => {
         bg='white'
         boxSizing='border-box'
         // padding='0 20px'
-        // position='fixed'
+        position='fixed'
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
@@ -74,7 +74,7 @@ const Header = (props) => {
             justifyContent='flex-end'
             width='375px'
           >
-            {/* <Grid
+            <Grid
               borderRadius='3px'
               width='45px'
               height='45px'
@@ -107,17 +107,6 @@ const Header = (props) => {
               >
                 {alarmCount}
               </Grid>
-            </Grid> */}
-            <Grid
-              margin='0 0 0 35px'
-              height='45px'
-              bg='white'
-              display='flex'
-              alignItems='center'
-              justifyContent='center'
-              color='#FE7968'
-            >
-              등록완료
             </Grid>
           </Grid>
         ) : (

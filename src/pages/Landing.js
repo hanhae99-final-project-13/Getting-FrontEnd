@@ -19,12 +19,17 @@ const Landing = () => {
   return (
     <React.Fragment>
       <Grid width='375px' margin='0 auto' overflowX='hidden'>
-        <Grid width='375px' margin='0 auto' height='0'>
+        <Grid
+          width='375px'
+          margin='0 auto'
+          height='0'
+          display='flex'
+          justifyContent='space-between'
+        >
           <button
             style={{
               all: 'unset',
               position: 'relative',
-              left: '0px',
               height: '300px',
               padding: '0 75px',
             }}
@@ -34,7 +39,6 @@ const Landing = () => {
             style={{
               all: 'unset',
               position: 'relative',
-              left: '40px',
               height: '300px',
               padding: '0 75px',
             }}

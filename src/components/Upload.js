@@ -1,7 +1,12 @@
 import React from 'react';
 import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
+
+// import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+// import { s3Client } from './libs/s3Client.js'; // Helper function that creates Amazon S3 service client module.
 const Upload = (props) => {
+  const [fileName, setFileName] = React.useState();
+  const [fileType, setFileType] = React.useState();
   console.log(props.img);
   // console.log('수정 프롭스', props.img.length > 0);
   //다중이미지 aws s3 업로드
@@ -19,10 +24,12 @@ const Upload = (props) => {
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
-      console.log(imgUrlList);
+      //삭제에서 사용할 키 값
+      setFileName(selectImg[i].name.split('.')[0]);
+      setFileType(selectImg[i].name.split('.')[1]);
       const fileName = selectImg[i].name.split('.')[0];
       const fileType = selectImg[i].name.split('.')[1];
-
+      console.log(fileName, fileType);
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'docking',
@@ -49,8 +56,21 @@ const Upload = (props) => {
     props.setImg(newImg);
     props.setFiles(imgUrlList);
   };
-
   const deleteImg = (e) => {
+    const s3 = new AWS.S3();
+    s3.deleteObject(
+      {
+        Bucket: 'docking',
+        Key: `${fileName}.${fileType}`,
+      },
+      (err, data) => {
+        if (err) {
+          throw err;
+        }
+        //삭제버튼을 누르면 등록하는 이미지도 사라지게 설정
+        props.setImg(props.img.filter((img) => img !== props.img[e]));
+      },
+    );
     props.setFiles(props.files.filter((prevImg) => prevImg !== props.files[e]));
   };
 

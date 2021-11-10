@@ -77,12 +77,18 @@ const EditPost = (props) => {
     setAddressModal(!addressModal);
   };
   const editPost = () => {
-    dispatch(postActions.updateDetailToAxios(postId, postInfo));
+    const nullCheck =
+      Object.values(postInfo).filter((check) => check === '').length === 0;
+    if (nullCheck === true) {
+      dispatch(postActions.updateDetailToAxios(postId, postInfo));
+    } else {
+      alert('모든 값을 입력해주세요!');
+    }
   };
 
   return (
     <React.Fragment>
-      <Grid width='375px' margin='0 auto'>
+      <Grid width='375px' margin='25px auto 0'>
         <Grid padding='35px' boxSizing='border-box'>
           <p>이미지</p>
           <Upload
@@ -91,14 +97,37 @@ const EditPost = (props) => {
             img={data.img}
             setImg={setImg}
           />
-          <button onClick={editPost}>수정완료</button>
-          <button
-            onClick={() => {
-              setEdit(false);
-            }}
+          <Grid
+            position='fixed'
+            top='0'
+            right='0'
+            width='130px'
+            height='60px'
+            bg='white'
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+            color='#FE7968'
+            zIndex='1000'
           >
-            취소
-          </button>
+            <button
+              style={{ all: 'unset', color: '#FE7968' }}
+              onClick={() => {
+                console.log('s');
+                setEdit(false);
+              }}
+            >
+              취소
+            </button>
+            <button
+              style={{ all: 'unset', color: '#FE7968', marginLeft: '10px' }}
+              onClick={editPost}
+            >
+              수정완료
+            </button>
+          </Grid>
+          {/* <button onClick={editPost}>수정완료</button> */}
+
           <p>상세 정보</p>
           <Grid
             display='flex'
