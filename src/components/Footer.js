@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,6 +15,13 @@ import { sample } from 'lodash';
 
 const Footer = (props) => {
   const history = useHistory();
+  const userInfo = useSelector((state) => state.user?.user.userInfo);
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
+
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
 
   return (
     <React.Fragment>
@@ -27,23 +34,38 @@ const Footer = (props) => {
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'
-      >
-        <Grid
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-          justifyContent='center'
-          _onClick={() => {
-            history.push('/tutorial');
-          }}
-        >
-          <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
-          <TEXT size='14px' bold margin='7px 0 0 0'>
-            입양지식
-          </TEXT>
-        </Grid>
-
+        height='80px'>
+        {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
+          <Grid
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            _onClick={() => {
+              history.push('/fosterknowledge');
+              window.sessionStorage.clear();
+            }}>
+            <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
+            <TEXT size='14px' bold margin='7px 0 0 0'>
+              입양지식
+            </TEXT>
+          </Grid>
+        ) : (
+          <Grid
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            _onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}>
+            <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
+            <TEXT size='14px' bold margin='7px 0 0 0'>
+              입양지식
+            </TEXT>
+          </Grid>
+        )}
         <Grid
           display='flex'
           flexDirection='column'
@@ -51,8 +73,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faPen} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             입양하기
@@ -66,8 +87,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faHouseUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             홈
@@ -81,8 +101,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             마이페이지
@@ -96,8 +115,7 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/setting');
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faHammer} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             설정하기

@@ -44,7 +44,7 @@ const addApplyDB = (postId, data) => {
     apis
       .applyFoster(postId, data)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data, '서버통신 성공');
         //  dispatch(addApply(res.data.FosterForm));
       })
       .catch((err) => {

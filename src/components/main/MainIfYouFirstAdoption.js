@@ -2,8 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 import { Grid, Image, Text } from '../../elements';
+import { useSelector } from 'react-redux';
 
 const MainIfYouFirstAdoption = (props) => {
+  const userInfo = useSelector((state) => state.user?.user.userInfo);
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
+
+  // console.log(isLogin);
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
+
   return (
     <Grid
       display='flex'
@@ -13,14 +23,12 @@ const MainIfYouFirstAdoption = (props) => {
       padding='1em'
       borderRadius='10px'
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      height='125px'
-    >
+      height='125px'>
       <Grid
         display='flex'
         alignItems='center'
         justifyContent='space-between'
-        height='auto'
-      >
+        height='auto'>
         <Image />
         <Text margin='0' size='18px'>
           입양이
@@ -30,21 +38,31 @@ const MainIfYouFirstAdoption = (props) => {
           이라면?
         </Text>
       </Grid>
-
-      <Grid display='flex' justifyContent='flex-end' height='auto'>
-        <BePerfect
-          onClick={() => {
-            history.push('/tutorial');
-          }}
-        >
-          <Text margin='0' color='white' size='14px' weight='700'>
-            완벽한 견주되기
-          </Text>
-          <div />
-          <div />
-          <div />
-        </BePerfect>
-      </Grid>
+      {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
+        <Grid display='flex' justifyContent='flex-end' height='auto'>
+          <BePerfect
+            onClick={() => {
+              history.push('/fosterknowledge');
+              window.sessionStorage.clear();
+            }}>
+            <Text margin='0' color='white' size='14px' weight='700'>
+              완벽한 견주되기
+            </Text>
+          </BePerfect>
+        </Grid>
+      ) : (
+        <Grid display='flex' justifyContent='flex-end' height='auto'>
+          <BePerfect
+            onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}>
+            <Text margin='0' color='white' size='14px' weight='700'>
+              완벽한 견주되기
+            </Text>
+          </BePerfect>
+        </Grid>
+      )}
     </Grid>
   );
 };

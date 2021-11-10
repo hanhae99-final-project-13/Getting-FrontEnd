@@ -7,22 +7,33 @@ import {
   ErrorAlert,
   imageSuccessAlert,
 } from '../../shared/Alerts';
+import { faBullseye } from '@fortawesome/free-solid-svg-icons';
 
-//액션타입
+//유저정보 액션
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';
 const UPDATE_USERINFO = 'UPDATE_USERINFO';
+const ADD_EDUSUCCESS = 'ADD_EDUSUCCESS';
+
+//에러 Alert 액션
+const CHECK_ERROR = 'CHECK_ERROR';
+
 //알림 액션
 const LOAD_ALARMLIST = 'LOAD_ALARMLIST';
 const LOAD_ALARM = 'LOAD_ALARM';
 const DELETE_ALARMLIST = 'DELETE_ALARMLIST';
 
-//액션 생성함수
+//유저 액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
 const LogOut = createAction(LOG_OUT, () => {});
 const updateUserInfo = createAction(UPDATE_USERINFO, (userInfo) => ({
   userInfo,
 }));
+const addEduSuccess = createAction(ADD_EDUSUCCESS, (data) => ({ data }));
+
+//에러 액션 생성함수
+const checkError = createAction(CHECK_ERROR, (data) => ({ data }));
+
 //알림 액션생성함수
 const loadAlarmList = createAction(LOAD_ALARMLIST, (alarm) => ({
   alarm,
@@ -42,13 +53,15 @@ const initialState = {
       userImgUrl:
         'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
       phone: null,
-      eduList: null,
+      eduList: [],
       alarmCount: null,
-      applyList: [],
       alarmContent: [],
       userId: null,
     },
     isLogin: false,
+  },
+  error: {
+    errorAlert: false,
   },
 };
 
@@ -76,8 +89,6 @@ const GetUserDB = (user) => {
             eduList: res.data.data.eduList,
             phone: res.data.data.phone,
             alarmCount: res.data.data.alarmCount,
-            applyList: res.data.data.applyList,
-            userId: res.data.data.userId,
           },
           isLogin: true,
         };
@@ -87,7 +98,10 @@ const GetUserDB = (user) => {
         // window.location.reload();
       })
       .catch((error) => {
-        ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
+        const data = { errorAlert: true };
+        dispatch(checkError(data));
+        window.scrollTo(0, 1000);
+        // ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
       });
   };
 };
@@ -136,9 +150,6 @@ const LoginCheck = () => {
             phone: res.data.data.phone,
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
-            applyList: res.data.data.applyList,
-            userId: res.data.data.userId,
-            alarmContent: [],
           },
           isLogin: true,
         };
@@ -165,12 +176,12 @@ const KakaoLogin = (code) => {
         const user = {
           userInfo: {
             email: res.data.data.email,
+            userId: res.data.data.userId,
             nickname: res.data.data.nickname,
             userImgUrl: res.data.data.userImgUrl, // 기본값 넣어달라하기
             phone: res.data.data.phone,
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
-            applyList: res.data.data.applyList,
           },
           isLogin: true,
         };
@@ -184,6 +195,23 @@ const KakaoLogin = (code) => {
       });
   };
 };
+// 입양지식완료
+const addEduSuccessDB = (classNumber) => {
+  console.log(classNumber, '서버에 넘어가는 클래스넘버값');
+  return (dispatch, getState, { history }) => {
+    apis
+      .education(classNumber)
+      .then((res) => {
+        console.log(res.data.status, '성공');
+        console.log(res.data.data.msg, '메세지');
+        dispatch(addEduSuccess(res.data.data.eduList));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 // 유저정보수정
 const updateUserInfoMW = (userInfo) => {
   console.log(userInfo);
@@ -249,13 +277,33 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        draft.user.userInfo = null;
+        draft.user.userInfo = {
+          nickname: null,
+          email: null,
+          userImgUrl:
+            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
+          phone: null,
+          eduList: null,
+          alarmCount: null,
+          applyList: [],
+          alarmContent: [],
+          userId: null,
+        };
         draft.user.isLogin = null;
       }),
     [UPDATE_USERINFO]: (state, action) =>
       produce(state, (draft) => {
         draft.user.userInfo = action.payload.userInfo;
       }),
+    [ADD_EDUSUCCESS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user.userInfo.eduList = action.payload.data;
+      }),
+    [CHECK_ERROR]: (state, action) =>
+      produce(state, (draft) => {
+        draft.error = action.payload.data;
+      }),
+
     [LOAD_ALARMLIST]: (state, action) =>
       produce(state, (draft) => {
         draft.user.userInfo.alarmCount = action.payload.alarm.data.alarmCount;
@@ -289,6 +337,8 @@ const actionCreators = {
   loadAlarmListToAxios,
   loadAlarmToAxios,
   deleteAlarmToAxios,
+  addEduSuccessDB,
+  checkError,
 };
 
 export { actionCreators };
