@@ -53,7 +53,7 @@ const Adoption = () => {
 
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>
+      <Grid width='auto' padding='20px' overflow='auto'>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>
@@ -69,14 +69,14 @@ const Adoption = () => {
           </Tag>
           <AdoptionCardList />
         </Grid>
-        <CategoryBox>
+        {/* <CategoryBox>
           <span className='category active' ref={cur} onClick={activeCurButton}>
             입양 대기중
           </span>
           <span className='category' ref={old} onClick={activeOldButton}>
             입양 승락
           </span>
-        </CategoryBox>
+        </CategoryBox> */}
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
