@@ -11,7 +11,7 @@ const Intro = () => {
   return (
     <>
       <Grid width='375px' margin='0 auto'>
-        <Grid margin='10px 0 0 0 ' padding='35px 0' width='auto'>
+        <Grid width='auto'>
           <Grid
             display='flex'
             justifyContent='center'

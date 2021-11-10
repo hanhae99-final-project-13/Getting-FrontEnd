@@ -86,26 +86,28 @@ const AddPost = () => {
   };
   return (
     <React.Fragment>
-      <Grid width='375px' margin='25px auto 0'>
-        <Grid padding='35px' boxSizing='border-box'>
+      <Grid width='375px' margin='0 auto '>
+        <Grid
+          position='sticky'
+          top='0'
+          margin='-60px 0 0 auto'
+          left='305px'
+          width='100px'
+          height='60px'
+          bg='white'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          color='#FE7968'
+          zIndex='1000'
+          _onClick={addPostCard}
+        >
+          등록완료
+        </Grid>
+        <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
-          <Grid
-            position='fixed'
-            top='0'
-            right='0'
-            width='100px'
-            height='60px'
-            bg='white'
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-            color='#FE7968'
-            zIndex='1000'
-            _onClick={addPostCard}
-          >
-            등록완료
-          </Grid>
+
           {/* <button onClick={addPostCard}>등록완료</button> */}
           <p>상세 정보</p>
           <Grid
