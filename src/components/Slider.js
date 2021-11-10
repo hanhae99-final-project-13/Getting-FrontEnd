@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Slider2 = (props) => {
+const Slider = (props) => {
   const { valueCheck, handleToggle, data } = props;
   React.useEffect(() => {
     if (data === '가져온 정보') {
@@ -22,7 +22,6 @@ const Slider2 = (props) => {
             handleToggle();
           }}
         />
-
         <Switch />
       </SwitchBox>
     </React.Fragment>
@@ -77,4 +76,4 @@ const CheckBox = styled.input`
   }
 `;
 
-export default Slider2;
+export default Slider;

@@ -19,6 +19,8 @@ const Header = (props) => {
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo.alarmCount,
   );
+
+  if (window.location.pathname === '/') return null;
   return (
     <React.Fragment>
       <Grid
@@ -72,7 +74,7 @@ const Header = (props) => {
             justifyContent='flex-end'
             width='375px'
           >
-            <Grid
+            {/* <Grid
               borderRadius='3px'
               width='45px'
               height='45px'
@@ -105,6 +107,17 @@ const Header = (props) => {
               >
                 {alarmCount}
               </Grid>
+            </Grid> */}
+            <Grid
+              margin='0 0 0 35px'
+              height='45px'
+              bg='white'
+              display='flex'
+              alignItems='center'
+              justifyContent='center'
+              color='#FE7968'
+            >
+              등록완료
             </Grid>
           </Grid>
         ) : (

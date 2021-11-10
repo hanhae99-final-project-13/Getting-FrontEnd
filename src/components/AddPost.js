@@ -36,6 +36,7 @@ const AddPost = () => {
       setSex('F');
     }
   };
+
   const ownerTypeCheck = () => {
     setOwnerTypeToggle(!ownerTypeToggle);
     if (ownerTypeToggle === true) {
@@ -101,7 +102,7 @@ const AddPost = () => {
             />
             <Grid display='flex' alignItems='center'>
               남아
-              <Slider _onClick={sexCheck} sexToggle={sexToggle} />
+              <Slider handleToggle={sexCheck} valueCheck={sexToggle} />
               여아
             </Grid>
           </Grid>
@@ -159,8 +160,8 @@ const AddPost = () => {
             <Grid display='flex' alignItems='center'>
               개인
               <Slider
-                _onClick={ownerTypeCheck}
-                ownerTypeToggle={ownerTypeToggle}
+                handleToggle={ownerTypeCheck}
+                valueCheck={ownerTypeToggle}
               />
               보호소
             </Grid>
@@ -195,7 +196,7 @@ const AddPost = () => {
             />
             <Grid display='flex' alignItems='center'>
               직접등록
-              <Slider _onClick={tagCheck} tagToggle={tagToggle} />
+              <Slider handleToggle={tagCheck} valueCheck={tagToggle} />
               가져온정보
             </Grid>
           </Grid>
