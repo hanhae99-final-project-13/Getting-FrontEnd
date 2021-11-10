@@ -28,27 +28,26 @@ const CommentWrite = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid
-        bg='rgba(235, 235, 235)'
-        padding='0 8px'
-        width='283px'
-        height='40px'
-        borderRadius='10px'
-        margin='0 auto 10px auto'
-        display='flex'
-        alignItems='center'
-        justifyContent='space-between'
-      >
-        <CommentBox
-          value={comment}
-          onChange={(e) => {
-            setComment(e.target.value);
-          }}
-        />
-        {props.comment ? (
+      {props.comment ? (
+        <Grid
+          bg='rgba(235, 235, 235)'
+          width='305px'
+          height='40px'
+          borderRadius='10px'
+          margin='0 auto 10px auto'
+          display='flex'
+          alignItems='center'
+          justifyContent='space-between'
+        >
+          <CommentBox
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          />
           <button
             style={{
-              marginRight: '4px',
+              marginRight: '6px',
               padding: '4px 10px',
               border: 'none',
               color: 'white',
@@ -59,10 +58,27 @@ const CommentWrite = (props) => {
           >
             입력
           </button>
-        ) : (
+        </Grid>
+      ) : (
+        <Grid
+          bg='rgba(235, 235, 235)'
+          width='305px'
+          height='40px'
+          borderRadius='10px'
+          margin='0 auto 10px auto'
+          display='flex'
+          alignItems='center'
+          justifyContent='space-between'
+        >
+          <CommentBox
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          />
           <button
             style={{
-              marginRight: '4px',
+              marginRight: '6px',
               padding: '4px 10px',
               border: 'none',
               color: 'white',
@@ -73,15 +89,15 @@ const CommentWrite = (props) => {
           >
             입력
           </button>
-        )}
-      </Grid>
+        </Grid>
+      )}
     </React.Fragment>
   );
 };
 
 const CommentBox = styled.input`
   background-color: rgba(235, 235, 235);
-  width: 200px;
+  width: 230px;
   height: 35px;
   margin: auto;
   display: flex;

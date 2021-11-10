@@ -1,8 +1,14 @@
 import React from 'react';
 import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
+
+// import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+// import { s3Client } from './libs/s3Client.js'; // Helper function that creates Amazon S3 service client module.
 const Upload = (props) => {
-  console.log('수정 프롭스', props.img.length > 0);
+  const [fileName, setFileName] = React.useState();
+  const [fileType, setFileType] = React.useState();
+  console.log(props.img);
+  // console.log('수정 프롭스', props.img.length > 0);
   //다중이미지 aws s3 업로드
   AWS.config.update({
     region: 'ap-northeast-2',
@@ -18,9 +24,12 @@ const Upload = (props) => {
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
+      //삭제에서 사용할 키 값
+      setFileName(selectImg[i].name.split('.')[0]);
+      setFileType(selectImg[i].name.split('.')[1]);
       const fileName = selectImg[i].name.split('.')[0];
       const fileType = selectImg[i].name.split('.')[1];
-
+      console.log(fileName, fileType);
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'docking',
@@ -29,7 +38,7 @@ const Upload = (props) => {
           ACL: 'public-read',
         },
       });
-
+      console.log(upload);
       const promise = upload.promise();
 
       promise
@@ -47,10 +56,24 @@ const Upload = (props) => {
     props.setImg(newImg);
     props.setFiles(imgUrlList);
   };
-
   const deleteImg = (e) => {
-    console.log(e);
+    const s3 = new AWS.S3();
+    s3.deleteObject(
+      {
+        Bucket: 'docking',
+        Key: `${fileName}.${fileType}`,
+      },
+      (err, data) => {
+        if (err) {
+          throw err;
+        }
+        //삭제버튼을 누르면 등록하는 이미지도 사라지게 설정
+        props.setImg(props.img.filter((img) => img !== props.img[e]));
+      },
+    );
+    props.setFiles(props.files.filter((prevImg) => prevImg !== props.files[e]));
   };
+
   return (
     <>
       {props.files.length === 0 ? (
@@ -93,46 +116,6 @@ const Upload = (props) => {
         </Grid>
       ) : (
         <Grid display='flex' overflowX='auto'>
-          {props.files &&
-            props.files.map((a, i) => {
-              return (
-                <Grid
-                  key={i}
-                  width='150px'
-                  height='150px'
-                  bg='white'
-                  borderRadius='10px'
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                  margin='0 10px 40px 0'
-                  boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
-                  boxSizing='border-box'
-                >
-                  <button
-                    style={{
-                      all: 'unset',
-                      position: 'relative',
-                      top: '-55px',
-                      left: '140px',
-                      fontSize: '20px',
-                    }}
-                    onClick={deleteImg}
-                  >
-                    x
-                  </button>
-                  <img
-                    alt='sample'
-                    src={a}
-                    style={{
-                      padding: '0px 15px 0px 5px',
-                      width: '150px',
-                      objectFit: 'scale-down',
-                    }}
-                  />
-                </Grid>
-              );
-            })}
           {props.files.length >= 4 ? null : (
             <Grid
               width='150px'
@@ -170,6 +153,48 @@ const Upload = (props) => {
               </label>
             </Grid>
           )}
+          {props.files &&
+            props.files.map((a, i) => {
+              return (
+                <Grid
+                  key={i}
+                  width='150px'
+                  height='150px'
+                  bg='white'
+                  borderRadius='10px'
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
+                  margin='0 10px 40px 0'
+                  boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
+                  boxSizing='border-box'
+                >
+                  <button
+                    style={{
+                      all: 'unset',
+                      position: 'relative',
+                      top: '-55px',
+                      left: '140px',
+                      fontSize: '20px',
+                    }}
+                    onClick={() => {
+                      deleteImg(i);
+                    }}
+                  >
+                    x
+                  </button>
+                  <img
+                    alt='sample'
+                    src={a}
+                    style={{
+                      padding: '0px 15px 0px 5px',
+                      width: '150px',
+                      objectFit: 'scale-down',
+                    }}
+                  />
+                </Grid>
+              );
+            })}
         </Grid>
       )}
     </>

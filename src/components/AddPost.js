@@ -36,6 +36,7 @@ const AddPost = () => {
       setSex('F');
     }
   };
+
   const ownerTypeCheck = () => {
     setOwnerTypeToggle(!ownerTypeToggle);
     if (ownerTypeToggle === true) {
@@ -69,22 +70,45 @@ const AddPost = () => {
     isAdopted: '보호중',
   };
 
-  console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
 
   const addPostCard = () => {
-    dispatch(postActions.addPostToAxios(postInfo));
+    const nullCheck =
+      Object.values(postInfo).filter((check) => check === '').length === 0;
+    if (nullCheck === true) {
+      dispatch(postActions.addPostToAxios(postInfo));
+    } else {
+      alert('모든 값을 입력해주세요!');
+    }
   };
   return (
     <React.Fragment>
-      <Grid width='375px' margin='0 auto'>
-        <Grid padding='35px' boxSizing='border-box'>
+      <Grid width='375px' margin='0 auto '>
+        <Grid
+          position='sticky'
+          top='0'
+          margin='-60px 0 0 auto'
+          left='305px'
+          width='100px'
+          height='60px'
+          bg='white'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          color='#FE7968'
+          zIndex='1000'
+          _onClick={addPostCard}
+        >
+          등록완료
+        </Grid>
+        <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
-          <button onClick={addPostCard}>등록완료</button>
+
+          {/* <button onClick={addPostCard}>등록완료</button> */}
           <p>상세 정보</p>
           <Grid
             display='flex'
@@ -101,7 +125,7 @@ const AddPost = () => {
             />
             <Grid display='flex' alignItems='center'>
               남아
-              <Slider _onClick={sexCheck} sexToggle={sexToggle} />
+              <Slider handleToggle={sexCheck} valueCheck={sexToggle} />
               여아
             </Grid>
           </Grid>
@@ -159,8 +183,8 @@ const AddPost = () => {
             <Grid display='flex' alignItems='center'>
               개인
               <Slider
-                _onClick={ownerTypeCheck}
-                ownerTypeToggle={ownerTypeToggle}
+                handleToggle={ownerTypeCheck}
+                valueCheck={ownerTypeToggle}
               />
               보호소
             </Grid>
@@ -195,7 +219,7 @@ const AddPost = () => {
             />
             <Grid display='flex' alignItems='center'>
               직접등록
-              <Slider _onClick={tagCheck} tagToggle={tagToggle} />
+              <Slider handleToggle={tagCheck} valueCheck={tagToggle} />
               가져온정보
             </Grid>
           </Grid>
