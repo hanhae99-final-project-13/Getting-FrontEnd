@@ -19,12 +19,17 @@ const Landing = () => {
   return (
     <React.Fragment>
       <Grid width='375px' margin='0 auto' overflowX='hidden'>
-        <Grid width='375px' margin='0 auto' height='0'>
+        <Grid
+          width='375px'
+          margin='0 auto'
+          height='0'
+          display='flex'
+          justifyContent='space-between'
+        >
           <button
             style={{
               all: 'unset',
               position: 'relative',
-              left: '0px',
               height: '300px',
               padding: '0 75px',
             }}
@@ -34,7 +39,6 @@ const Landing = () => {
             style={{
               all: 'unset',
               position: 'relative',
-              left: '40px',
               height: '300px',
               padding: '0 75px',
             }}
@@ -84,24 +88,54 @@ const Landing = () => {
             }}
           />
         </div>
-        <div
-          style={{
-            backgroundColor: 'white',
-            height: '300px',
-            marginBottom: '40px',
-          }}
-        >
-          <p style={{ width: '305px', margin: '10px auto' }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos esse
-            velit odit, exercitationem animi, dicta ex voluptates consequatur
-            commodi, beatae sint labore odio? Ducimus omnis ratione harum
-            explicabo laudantium. Nulla officia fuga enim sapiente dicta illum
-            ipsa atque nam pariatur accusantium consequuntur voluptate, incidunt
-            itaque aspernatur. Ipsum ratione impedit corporis iste. Aut sint
-            laborum nisi obcaecati officia suscipit reiciendis fugiat, eos
-            expedita delectus? Unde adipisci aliquid, harum vero veniam eligendi
+        <Grid bg='white' height='305px' margin='0 0 20px'>
+          <p
+            style={{
+              width: '305px',
+              margin: '20px auto 5px',
+              fontWeight: '800',
+            }}
+          >
+            입양 <span style={{ color: '#FE7968', fontWeight: '800' }}>전</span>
+            부터{' '}
+            <span style={{ color: '#FE7968', fontWeight: '800' }}>
+              입양 절차
+            </span>
+            ,<br />
           </p>
-        </div>
+          <p style={{ width: '305px', margin: ' auto', fontWeight: '800' }}>
+            그리고 입양{' '}
+            <span style={{ color: '#FE7968', fontWeight: '800' }}>후 케어</span>
+            까지! <br />
+          </p>
+          <p
+            style={{
+              width: '305px',
+              margin: '20px auto 5px',
+              fontSize: '12px',
+              lineHeight: '150%',
+            }}
+          >
+            도킹은 반려견 입양의{' '}
+            <span style={{ fontWeight: '800', fontSize: '12px' }}>
+              전반적 과정
+            </span>
+            을 함께합니다. <br />
+            사용자가 반려견과 더욱 건강하고 친밀한 관계를 맺도록{' '}
+            <span style={{ fontWeight: '800', fontSize: '12px' }}>
+              사전 교육 서비스 제공
+            </span>
+            ,<br />
+            <span style={{ fontWeight: '800', fontSize: '12px' }}>
+              투명하고 원활한 입양절차
+            </span>{' '}
+            그리고{' '}
+            <span style={{ fontWeight: '800', fontSize: '12px' }}>
+              입양 후 반려견 관리
+            </span>
+            까지를 함께하며 완전한 가족이 될 수 있도록 노력합니다.
+          </p>
+        </Grid>
         <ButtonBox
           onClick={() => {
             history.push('/signup');

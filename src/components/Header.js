@@ -20,18 +20,20 @@ const Header = (props) => {
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
   );
+
+  if (window.location.pathname === '/') return null;
   return (
     <React.Fragment>
       <Grid
         bg='white'
         boxSizing='border-box'
         // padding='0 20px'
-        // position='fixed'
+        position='sticky'
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        width='100%'
+        width='375px'
         height='60px'
         margin='0 auto'
         zIndex='1'

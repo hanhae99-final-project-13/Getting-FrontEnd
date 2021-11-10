@@ -98,7 +98,8 @@ const AdoptionApply = (props) => {
       boxSizing='border-box'
       width='375px'
       margin='135px auto 0'
-      padding='0 35px'>
+      padding='0 35px'
+    >
       <Grid>
         <Grid margin='0 0 15px 0 '>
           <Text margin='0' weight='700' size='20px'>
@@ -147,18 +148,21 @@ const AdoptionApply = (props) => {
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+        >
           <SelectBox
             options={AGEOPTION}
             _onChange={handleAgeChange}
-            defaultValue={fosterAge}></SelectBox>
+            defaultValue={fosterAge}
+          ></SelectBox>
           <Text margin='0' bold margin='0 11px 0 8px'>
             살
           </Text>
           <SelectBox
             options={GENDEROPTION}
             _onChange={handleGenderChange}
-            defaultValue={gender}></SelectBox>
+            defaultValue={gender}
+          ></SelectBox>
         </Grid>
         {/* 
         <Grid>
@@ -185,7 +189,8 @@ const AdoptionApply = (props) => {
           border='none'
           borderBottom='1px solid rgba(225, 225, 225, 0.5) '
           boxSizing='border-box'
-          height='auto'>
+          height='auto'
+        >
           <input
             placeholder='거주지를 입력해주세요'
             type='text'
@@ -227,7 +232,8 @@ const AdoptionApply = (props) => {
           padding='16px 0px'
           boxSizing='border-box'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+        >
           <Grid>
             <Text margin='0' bold>
               반려동물 여부
@@ -237,14 +243,16 @@ const AdoptionApply = (props) => {
             <Text
               color={currentPet === '있음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0 10px 0 0'>
+              margin='0 10px 0 0'
+            >
               있음
             </Text>
-            <Slider _onClick={handleCurrentPet} />
+            <Slider handleToggle={handleCurrentPet} />
             <Text
               color={currentPet === '없음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0  0 0 10px'>
+              margin='0  0 0 10px'
+            >
               없음
             </Text>
           </Grid>
@@ -257,7 +265,8 @@ const AdoptionApply = (props) => {
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+        >
           <Input
             bg='#ECECEC'
             width='52px'
@@ -298,7 +307,8 @@ const AdoptionApply = (props) => {
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+        >
           <Grid width='60px' margin='0 6px 0 0'>
             <FontAwesomeIcon icon={faStopwatch} color='#00B412' fontSize='1x' />
           </Grid>
@@ -346,7 +356,8 @@ const AdoptionApply = (props) => {
             }}
             cols='40'
             rows='13'
-            placeholder='500자 이하로 적어주세요'></Textarea>
+            placeholder='500자 이하로 적어주세요'
+          ></Textarea>
         </Grid>
 
         <Grid height='auto' margin='23px auto'>
@@ -364,7 +375,8 @@ const AdoptionApply = (props) => {
               dispatch(userActions.addApply(data));
               history.push(`/apply2/${postID}`);
               window.scrollTo(0, 0);
-            }}>
+            }}
+          >
             <Text margin='0' color='white'>
               다음 페이지로
             </Text>
