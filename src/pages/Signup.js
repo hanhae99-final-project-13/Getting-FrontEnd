@@ -206,7 +206,7 @@ const Signup = (props) => {
 
   return (
     <Grid>
-      <Grid width='305px' margin='60px auto 0px'>
+      <Grid width='305px' margin='120px auto 0px'>
         <Grid>
           <Text size='24px' weight='700' align='center'>
             회원가입
@@ -220,11 +220,10 @@ const Signup = (props) => {
               position='absolute'
               right='10px'
               width='auto'
-              top='15px'
+              top='19px'
               size='12px'
               bold
-              margin='0'
-            >
+              margin='0'>
               중복확인
             </Text>
 
@@ -232,12 +231,11 @@ const Signup = (props) => {
               <Grid
                 position='absolute'
                 right='57px'
-                top='11px'
+                top='15px'
                 width='20px'
                 height='20px'
                 borderRadius='10px'
-                bg={'#00B412'}
-              >
+                bg='#FE7968'>
                 <Grid margin='2px 0 0 2px'>
                   <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
                 </Grid>
@@ -281,18 +279,29 @@ const Signup = (props) => {
 
           <Grid position='relative'>
             <Grid
+              boxSizing='boder-box'
+              border={
+                password !== '' && password === pwcheck
+                  ? 'none'
+                  : '1px solid #070606'
+              }
               position='absolute'
               right='10px'
-              top='15px'
+              top='19px'
               width='20px'
               height='20px'
-              borderRadius='10px'
+              borderRadius='15px'
               bg={
-                password !== '' && password === pwcheck ? '#00B412' : '#DFDFDF'
-              }
-            >
+                password !== '' && password === pwcheck ? '#FE7968' : 'white'
+              }>
               <Grid margin='2px 0 0 2px'>
-                <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  color={
+                    password !== '' && password === pwcheck ? 'white' : 'black'
+                  }
+                  fontSize='1x'
+                />
               </Grid>
             </Grid>
             <Input
@@ -317,11 +326,10 @@ const Signup = (props) => {
               position='absolute'
               right='10px'
               width='auto'
-              top='15px'
+              top='19px'
               size='12px'
               bold
-              margin='0'
-            >
+              margin='0'>
               중복확인
             </Text>
 
@@ -329,12 +337,11 @@ const Signup = (props) => {
               <Grid
                 position='absolute'
                 right='57px'
-                top='11px'
+                top='15px'
                 width='20px'
                 height='20px'
                 borderRadius='10px'
-                bg={'#00B412'}
-              >
+                bg='#FE7968'>
                 <Grid margin='2px 0 0 2px'>
                   <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
                 </Grid>
@@ -383,15 +390,14 @@ const Signup = (props) => {
                 _onClick={() => {
                   sendPhoneAuthCode(phoneAuthCode);
                 }}
-                color='#00B412'
+                color='#FF6666'
                 position='absolute'
                 right='10px'
                 width='auto'
                 top='19px'
                 size='12px'
                 weight='800'
-                margin='0'
-              >
+                margin='0'>
                 코드인증하기
               </Text>
               <Input
@@ -417,15 +423,14 @@ const Signup = (props) => {
                 _onClick={() => {
                   sendPhoneNumber(phoneNumberInfo);
                 }}
-                color='#00B412'
+                color='#FF6666'
                 position='absolute'
                 right='10px'
                 width='auto'
                 top='19px'
                 size='12px'
                 weight='800'
-                margin='0'
-              >
+                margin='0'>
                 인증하기
               </Text>
               <Input
@@ -455,14 +460,18 @@ const Signup = (props) => {
             bold
             size='10px'
             margin='0px'
-            line_height='18px'
-          >
+            line_height='18px'>
             회원가입시,
-            <Span style={{ fontWeight: '600' }}> 개인정보 처리방침</Span>을
-            읽었으며
+            <Span style={{ fontWeight: '600', fontSize: '10px' }}>
+              {' '}
+              개인정보 처리방침
+            </Span>
+            을 읽었으며
             <br />
-            <Span style={{ fontWeight: '600' }}>이용약관</Span>에 동의하신
-            것으로 간주합니다.
+            <Span style={{ fontWeight: '600', fontSize: '10px' }}>
+              이용약관
+            </Span>
+            에 동의하신 것으로 간주합니다.
           </Text>
         </Grid>
 
@@ -475,8 +484,7 @@ const Signup = (props) => {
             bg='#FF6666'
             border='none'
             border_radius='25px'
-            onClick={registerClick}
-          >
+            onClick={registerClick}>
             가입하기
           </Button>
         </Grid>

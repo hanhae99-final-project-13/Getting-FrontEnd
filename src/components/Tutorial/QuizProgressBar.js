@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '../../elements';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-const ProgressBar = () => {
+const QuizProgressBar = () => {
   const data = useSelector((state) => state.quiz.totalAnswer);
   const totalQuizLength = Object.values(data);
   // // console.log(length);
@@ -36,4 +36,4 @@ const Bar = styled.div`
   border-radius: 3px;
 `;
 
-export default ProgressBar;
+export default QuizProgressBar;

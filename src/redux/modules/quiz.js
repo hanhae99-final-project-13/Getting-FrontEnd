@@ -4,13 +4,9 @@ import { apis } from '../../lib/axios';
 
 const ADD_QUIZANSWER = 'ADD_QUIZANSWER';
 const GET_QUIZANSWER = 'GET_QUIZANSWER';
-const ADD_EDUSUCCESS = 'ADD_EDUSUCCESS';
 
 const addQuizAnswer = createAction(ADD_QUIZANSWER, (answer) => ({ answer }));
 const getQuizAnswer = createAction(GET_QUIZANSWER, (answer) => ({ answer }));
-const addEduSuccess = createAction(ADD_EDUSUCCESS, (classNumber) => ({
-  classNumber,
-}));
 
 const initialState = {
   totalAnswer: {
@@ -20,22 +16,6 @@ const initialState = {
     answer4: '',
     answer5: '',
   },
-};
-
-//미들웨어
-const sendEduSuccessDB = (classNumber) => {
-  console.log(classNumber, '서버에 넘어가는 클래스넘버값');
-  return (dispatch, getState, { history }) => {
-    apis
-      .education(classNumber)
-      .then((res) => {
-        console.log(res.data.status, '성공');
-        console.log(res.data.data.msg, '메세지');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 };
 
 export default handleActions(
@@ -57,7 +37,6 @@ export default handleActions(
 const quizActions = {
   addQuizAnswer,
   getQuizAnswer,
-  sendEduSuccessDB,
 };
 
 export { quizActions };

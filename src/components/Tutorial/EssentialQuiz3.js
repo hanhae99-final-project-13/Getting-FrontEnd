@@ -3,7 +3,7 @@ import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { quizActions as userAction } from '../../redux/modules/quiz';
-import ProgressBar from './ProgressBar';
+import QuizProgressBar from './QuizProgressBar';
 
 const EssentialQuiz3 = (props) => {
   const dispatch = useDispatch();
@@ -22,8 +22,8 @@ const EssentialQuiz3 = (props) => {
   console.log(answer);
   window.sessionStorage.setItem('answer3', answer.answer3);
   return (
-    <Grid width='375px' margin='0 auto'>
-      <ProgressBar></ProgressBar>
+    <Grid width='375px' margin='70px auto'>
+      <QuizProgressBar></QuizProgressBar>
       <Text
         width='300px'
         margin='37px 0 0 0'
@@ -52,6 +52,7 @@ const EssentialQuiz3 = (props) => {
       </Text>
       <form>
         <Grid
+          position='relative'
           width='300px'
           margin='42px 0 0 0'
           padding='0 35px'
@@ -68,10 +69,28 @@ const EssentialQuiz3 = (props) => {
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='3true'>
+            <Grid
+              position='absolute'
+              left='38px'
+              width='18px'
+              height='18px'
+              borderRadius='15px'
+              bg='#FFFFFF'
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              <Grid
+                position='absolute'
+                top='4px'
+                left='4px'
+                bg={answer.answer3 === 'true' ? '#FE7968' : ''}
+                width='10px'
+                height='10px'
+                borderRadius='10px'></Grid>
+            </Grid>
             맞습니다
           </label>
         </Grid>
         <Grid
+          position='relative'
           width='300px'
           margin='42px 0 0 0'
           padding='0 35px'
@@ -88,6 +107,23 @@ const EssentialQuiz3 = (props) => {
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='3false'>
+            <Grid
+              position='absolute'
+              left='38px'
+              width='18px'
+              height='18px'
+              borderRadius='15px'
+              bg='#FFFFFF'
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              <Grid
+                position='absolute'
+                top='4px'
+                left='4px'
+                bg={answer.answer3 === 'false' ? '#FE7968' : ''}
+                width='10px'
+                height='10px'
+                borderRadius='10px'></Grid>
+            </Grid>
             아닙니다
           </label>
         </Grid>

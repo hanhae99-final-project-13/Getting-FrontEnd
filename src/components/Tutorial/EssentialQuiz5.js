@@ -4,7 +4,8 @@ import { Grid, Text } from '../../elements';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { quizActions as userAction } from '../../redux/modules/quiz';
-import ProgressBar from './ProgressBar';
+import { actionCreators as eduAction } from '../../redux/modules/user';
+import QuizProgressBar from './QuizProgressBar';
 
 const EssentialQuiz5 = (props) => {
   const classNumber = '1';
@@ -37,8 +38,8 @@ const EssentialQuiz5 = (props) => {
   };
 
   return (
-    <Grid width='375px' margin='0 auto'>
-      <ProgressBar></ProgressBar>
+    <Grid width='375px' margin='70px auto'>
+      <QuizProgressBar></QuizProgressBar>
       <Text
         width='300px'
         margin='37px 0 0 0'
@@ -67,6 +68,7 @@ const EssentialQuiz5 = (props) => {
       </Text>
       <form>
         <Grid
+          position='relative'
           width='300px'
           margin='42px 0 0 0'
           padding='0 35px'
@@ -83,10 +85,28 @@ const EssentialQuiz5 = (props) => {
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='5true'>
+            <Grid
+              position='absolute'
+              left='38px'
+              width='18px'
+              height='18px'
+              borderRadius='15px'
+              bg='#FFFFFF'
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              <Grid
+                position='absolute'
+                top='4px'
+                left='4px'
+                bg={answer.answer5 === 'true' ? '#FE7968' : ''}
+                width='10px'
+                height='10px'
+                borderRadius='10px'></Grid>
+            </Grid>
             맞습니다
           </label>
         </Grid>
         <Grid
+          position='relative'
           width='300px'
           margin='42px 0 0 0'
           padding='0 35px'
@@ -103,6 +123,23 @@ const EssentialQuiz5 = (props) => {
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='5false'>
+            <Grid
+              position='absolute'
+              left='38px'
+              width='18px'
+              height='18px'
+              borderRadius='15px'
+              bg='#FFFFFF'
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              <Grid
+                position='absolute'
+                top='4px'
+                left='4px'
+                bg={answer.answer5 === 'false' ? '#FE7968' : ''}
+                width='10px'
+                height='10px'
+                borderRadius='10px'></Grid>
+            </Grid>
             아닙니다
           </label>
         </Grid>
@@ -120,7 +157,8 @@ const EssentialQuiz5 = (props) => {
               console.log(totalAnswer, '유저의답');
               console.log(answerSheet, '퀴즈 정답');
               if (JSON.stringify(totalAnswer) === JSON.stringify(answerSheet)) {
-                dispatch(userAction.sendEduSuccessDB(classNumber));
+                dispatch(eduAction.addEduSuccessDB(classNumber));
+
                 SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
                 window.sessionStorage.clear();
                 history.push('/main');

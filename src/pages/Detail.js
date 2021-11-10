@@ -3,15 +3,13 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 import { actionCreators as userAction } from '../redux/modules/user';
-
-import { Link } from 'react-router-dom';
+import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
 import Swal from 'sweetalert2';
-import AdoptionModal from '../components/adoptionApplycation/AdoptionModal';
+import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,11 +19,18 @@ const Detail = (props) => {
   const postId = props.match.params.id;
   const post = useSelector((state) => state.post?.detailPost);
   const user = useSelector((state) => state.user?.user.userInfo);
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   console.log(post);
 
-  // console.log(imgs);
-  //입양신청하기 modal
+  // 필수지식 수료요청 모달
+  const [eduCheck, setEduCheck] = useState(false);
+  const eduCheckopenModal = () => {
+    setEduCheck(!eduCheck);
+  };
+
+  //입양신청시 주의하기 modal
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -52,6 +57,9 @@ const Detail = (props) => {
 
   if (!post.post) {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
+  }
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
   }
 
   return (
@@ -242,8 +250,8 @@ const Detail = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {user.eduList !== null && post.post.tag !== '직접등록' ? null : user
-              .eduList[0].필수지식 === true ? (
+          {post.post.tag !== '직접등록' ? null : user.eduList &&
+            user.eduList[0].필수지식 === true ? (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'
@@ -257,7 +265,10 @@ const Detail = (props) => {
                 alignItems='center'
                 bottom='50px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={openModal}>
+                _onClick={() => {
+                  openModal();
+                  window.sessionStorage.clear();
+                }}>
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -276,8 +287,7 @@ const Detail = (props) => {
                 bottom='30px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
-                  alert('안돼');
-                  history.push('/tutorial');
+                  eduCheckopenModal();
                 }}>
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
@@ -287,14 +297,21 @@ const Detail = (props) => {
           <p style={{ padding: '0 46px' }}>댓글😁</p>
 
           <CommentList postId={postId} />
-
+          {/* 입양시 주의사항 모달 */}
           {modalOpen ? (
-            <AdoptionModal
+            <AdoptionNoticeModal
               postId={postId}
-              closeModal={closeModal}></AdoptionModal>
+              closeModal={closeModal}></AdoptionNoticeModal>
           ) : (
             ' '
           )}
+          {/* 필수지식 먼저 숙지 모달 */}
+          {eduCheck ? (
+            <EduCheckAlert closeModal={eduCheckopenModal}></EduCheckAlert>
+          ) : (
+            ''
+          )}
+
           {/* 글 수정 삭제 모달 */}
           {detailModal ? (
             <div

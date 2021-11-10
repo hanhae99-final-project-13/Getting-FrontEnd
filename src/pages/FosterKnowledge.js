@@ -5,12 +5,17 @@ import { useSelector } from 'react-redux';
 
 const FosterKnowledge = (props) => {
   const { history } = props;
-  // const checkEduSuccess = useSelector((state) => state.user.user.userInfo.eduList);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
 
-  const [complete, setcomplete] = React.useState(false);
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
+
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
 
   return (
-    <Grid width='375px' margin='10px auto 0'>
+    <Grid width='375px' margin='80px auto 0'>
       <Grid width='150px' margin='0 auto'>
         <Text margin='0' weight='800' align='center'>
           튜토리얼 필수 현황
@@ -26,12 +31,12 @@ const FosterKnowledge = (props) => {
           display='flex'
           flexDirection='column'
           alignItems='center'>
-          {complete ? (
+          {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
             <Grid
               left='15px'
               width='37px'
               height='37px'
-              bg='#FF6666'
+              bg='#FFBE5B'
               position='absolute'
               borderRadius='18px'
               display='flex'
@@ -60,20 +65,24 @@ const FosterKnowledge = (props) => {
           display='flex'
           flexDirection='column'
           alignItems='center'>
-          <Grid
-            left='15px'
-            width='37px'
-            height='37px'
-            bg='#FF6666'
-            position='absolute'
-            borderRadius='18px'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'>
-            <Text color='white' margin='0' size='12px'>
-              완료
-            </Text>
-          </Grid>
+          {userInfo.eduList && userInfo.eduList[0].심화지식 === true ? (
+            <Grid
+              left='15px'
+              width='37px'
+              height='37px'
+              bg='#FFBE5B'
+              position='absolute'
+              borderRadius='18px'
+              display='flex'
+              justifyContent='center'
+              alignItems='center'>
+              <Text color='white' margin='0' size='12px'>
+                완료
+              </Text>
+            </Grid>
+          ) : (
+            ''
+          )}
 
           <Image
             size='128'
@@ -90,20 +99,24 @@ const FosterKnowledge = (props) => {
           display='flex'
           flexDirection='column'
           alignItems='center'>
-          <Grid
-            left='15px'
-            width='37px'
-            height='37px'
-            bg='#FF6666'
-            position='absolute'
-            borderRadius='18px'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'>
-            <Text color='white' margin='0' size='12px'>
-              완료
-            </Text>
-          </Grid>
+          {userInfo.eduList && userInfo.eduList[0].심화지식2 === true ? (
+            <Grid
+              left='15px'
+              width='37px'
+              height='37px'
+              bg='#FFBE5B'
+              position='absolute'
+              borderRadius='18px'
+              display='flex'
+              justifyContent='center'
+              alignItems='center'>
+              <Text color='white' margin='0' size='12px'>
+                완료
+              </Text>
+            </Grid>
+          ) : (
+            ''
+          )}
 
           <Image
             size='128'

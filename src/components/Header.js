@@ -36,8 +36,7 @@ const Header = (props) => {
         width='375px'
         height='60px'
         margin='0 auto'
-        zIndex='1'
-      >
+        zIndex='1'>
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -49,8 +48,7 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}
-          >
+            }}>
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -60,8 +58,7 @@ const Header = (props) => {
           alignItems='center'
           _onClick={() => {
             histroy.push('/main');
-          }}
-        >
+          }}>
           <TEXT size='20px' bold margin='0'>
             도킹
           </TEXT>
@@ -72,8 +69,7 @@ const Header = (props) => {
             display='flex'
             alignItems='center'
             justifyContent='flex-end'
-            width='375px'
-          >
+            width='375px'>
             <Grid
               borderRadius='3px'
               width='45px'
@@ -81,8 +77,7 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'
-            >
+              justifyContent='center'>
               <FontAwesomeIcon
                 onClick={() => {
                   history.push('/alarm');
@@ -103,8 +98,7 @@ const Header = (props) => {
                 top='-10%'
                 color='white'
                 bg='red'
-                fontSize='10px'
-              >
+                fontSize='10px'>
                 {alarmCount ? alarmCount : ''}
               </Grid>
             </Grid>
@@ -121,8 +115,7 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'
-            >
+              justifyContent='center'>
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>

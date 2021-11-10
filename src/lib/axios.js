@@ -14,6 +14,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('USER_TOKEN');
+    // console.log(token);
     if (token === '') {
       return config;
     }
@@ -33,7 +34,15 @@ instance.interceptors.request.use(
 //   (success) => {
 //     return success;
 //   },
-//   (error) => {},
+//   (error) => {
+//     if (
+//       error.response.data.statusCode === 400 &&
+//       error.response.data.responseMessage === '아이디 또는 패스워가 맞지않아요!'
+//     ) {
+//       return window.alert('비밀번호를 입력해주세요');
+//     }
+//     return error;
+//   },
 // );
 
 export const apis = {
