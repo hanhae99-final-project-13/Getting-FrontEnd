@@ -82,7 +82,7 @@ function App() {
         <Route path='/intro' exact component={Intro} />
         <Route path='/alarm' exact component={Alarm} />
         <Route path='/setting' exact component={Setting} />
-        <Route path='/takeapply' exact component={TakeAdoptionApply} />
+        <Route path='/takeapply/:id' exact component={TakeAdoptionApply} />
         <Route path='/editpost' exact component={EditPost} />
         <Route path='/timer' exact component={Timer} />
       </ConnectedRouter>

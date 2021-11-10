@@ -14,12 +14,7 @@ import { postActions } from '../redux/modules/post';
 import { sample } from 'lodash';
 
 const Footer = (props) => {
-  const dispatch = useDispatch();
   const history = useHistory();
-
-  const CardCoverInitialization = () => {
-    dispatch(postActions.changeCardCover(false));
-  };
 
   return (
     <React.Fragment>
@@ -32,7 +27,8 @@ const Footer = (props) => {
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'>
+        height='80px'
+      >
         <Grid
           display='flex'
           flexDirection='column'
@@ -40,7 +36,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/tutorial');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             입양지식
@@ -54,8 +51,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-            CardCoverInitialization();
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faPen} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             입양하기
@@ -69,8 +66,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-            CardCoverInitialization();
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHouseUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             홈
@@ -84,7 +81,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             마이페이지
@@ -98,7 +96,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/setting');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHammer} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             설정하기

@@ -64,7 +64,7 @@ const Detail = (props) => {
             <Grid display='flex' justifyContent='space-between'>
               <p>저와 친구하실래요?😁</p>
 
-              {user.nickname === post.post.nickname ? (
+              {user && user.nickname === post.post.nickname ? (
                 <button style={{ all: 'unset' }} onClick={onModal}>
                   🛠
                 </button>

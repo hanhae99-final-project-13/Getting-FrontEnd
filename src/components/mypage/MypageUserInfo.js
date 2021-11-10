@@ -44,7 +44,7 @@ const MypageUserInfo = (props) => {
             }}
           />
         ) : (
-          <Text margin='0' bold size='20'>
+          <Text margin='0' weight='800' size='20px'>
             {userInfo.nickname}
           </Text>
         )}

@@ -19,12 +19,8 @@ const Card = (props) => {
     address,
     img,
     isAdopted,
-    name,
-    gender,
-    fosterAge,
-    phone,
-    fosterAddress,
     isShowApply,
+    index,
   } = props;
   const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
@@ -94,13 +90,14 @@ const Card = (props) => {
         <Grid display='flex' width='auto'>
           <Image size='8' />
           <ElP>
-            {createdAt ? createdAt : '2021.10.24'} &nbsp;&nbsp;&nbsp;&nbsp;
+            {modifiedAt ? modifiedAt.split('T')[0] : createdAt}{' '}
+            &nbsp;&nbsp;&nbsp;&nbsp;
           </ElP>
           <Image size='8' />
           <ElP>{address ? address : '경기도 수원'}</ElP>
         </Grid>
       </Grid>
-      {isShowApply && <ReceivedAdoptionList />}
+      {isShowApply && <ReceivedAdoptionList index={index} />}
     </React.Fragment>
   );
 };

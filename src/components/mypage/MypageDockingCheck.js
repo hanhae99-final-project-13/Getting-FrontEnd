@@ -23,12 +23,7 @@ const MypageDockingCheck = (props) => {
     dispatch(postActions.changeCardCover(false));
   }
 
-  // if (adoptionOkDisplay || adoptionNoDisplay === 'block') {
-  //   dispatch(postActions.changeCardCover(false));
-  // }
-
   const showAdoptionWait = () => {
-    dispatch(postActions.changeCardCover(true));
     adoptionOk.current.classList.remove('active');
     adoptionNo.current.classList.remove('active');
     adoptionWait.current.classList.add('active');
@@ -44,8 +39,8 @@ const MypageDockingCheck = (props) => {
     setAdoptionNoDisplay('none');
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('block');
-    dispatch(postActions.changeDockingDeleteMode(false));
     dispatch(postActions.changeCardCover(false));
+    dispatch(postActions.changeDockingDeleteMode(false));
   };
   const showAdoptionNo = () => {
     adoptionWait.current.classList.remove('active');
@@ -54,8 +49,8 @@ const MypageDockingCheck = (props) => {
     setAdoptionWaitDisplay('none');
     setAdoptionOkDisplay('none');
     setAdoptionNoDisplay('block');
-    dispatch(postActions.changeDockingDeleteMode(false));
     dispatch(postActions.changeCardCover(false));
+    dispatch(postActions.changeDockingDeleteMode(false));
   };
 
   const changeDeleteMode = () => {

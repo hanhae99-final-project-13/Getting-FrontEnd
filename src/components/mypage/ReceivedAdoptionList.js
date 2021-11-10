@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { Grid, Text } from '../../elements';
-import ReceiveCard from './ReceiveCard';
+import { Grid, Text, Image } from '../../elements';
+import { history } from '../../redux/configureStore';
 
-const ReceivedAdoptionList = (props) => {
+const ReceivedAdoptionList = ({ index }) => {
+  const myPostList = useSelector((state) => state.post.myPostList);
+
   return (
     <React.Fragment>
       <Grid
@@ -14,9 +17,29 @@ const ReceivedAdoptionList = (props) => {
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
         borderRadius='20px'
       >
-        <ReceiveCard />
-        <ReceiveCard />
-        <ReceiveCard />
+        {myPostList[index].formPreviews.map((preview) => {
+          return (
+            <Grid
+              display='flex'
+              justifyContent='space-evenly'
+              width='auto'
+              height='auto'
+              margin='13px'
+              _onClick={() => {
+                history.push(`/takeapply/${preview.fosterFormId}`);
+              }}
+            >
+              <Text margin='0' bold>
+                {preview.name}
+              </Text>
+              <Text margin='0'>
+                ({preview.gender}, {preview.fosterAge})
+              </Text>
+              <Text margin='0'>{preview.phone}</Text>
+              <Image margin='0' size='21' />
+            </Grid>
+          );
+        })}
       </Grid>
     </React.Fragment>
   );

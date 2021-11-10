@@ -6,10 +6,10 @@ import { Grid, Text } from '../../elements';
 import Card from '../Card';
 
 const AdoptionOk = (props) => {
-  const MyApplyList = useSelector((state) => state.apply.MyApplyList);
+  const myApplyList = useSelector((state) => state.apply.myApplyList);
   return (
     <Grid display={props.display}>
-      {MyApplyList.map((p) => {
+      {myApplyList.map((p) => {
         if (p.postPreview.isAdopted !== '입양 완료') {
           return;
         }
@@ -31,6 +31,7 @@ const AdoptionOk = (props) => {
           />
         );
       })}
+      <Card width='auto' imageHeight='150px' />
     </Grid>
   );
 };

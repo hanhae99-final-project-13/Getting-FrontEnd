@@ -41,7 +41,8 @@ const Adoption = () => {
   };
 
   useEffect(() => {
-    dispatch(postActions.getPostMW({ ...searchSetting, page: 0 }));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
+    dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
     if (userInfo.userId) {
       dispatch(postActions.getWishPostMW(userInfo.userId));
     }
@@ -52,7 +53,7 @@ const Adoption = () => {
 
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto' margin='80px 0'>
+      <Grid width='auto' padding='20px' overflow='auto'>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>
@@ -68,6 +69,14 @@ const Adoption = () => {
           </Tag>
           <AdoptionCardList />
         </Grid>
+        {/* <CategoryBox>
+          <span className='category active' ref={cur} onClick={activeCurButton}>
+            입양 대기중
+          </span>
+          <span className='category' ref={old} onClick={activeOldButton}>
+            입양 승락
+          </span>
+        </CategoryBox> */}
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
@@ -105,6 +114,30 @@ const AddButton = styled.button`
   border: none;
   border-radius: 50px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+`;
+
+const CategoryBox = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 0 22px 0;
+
+  .category {
+    margin-right: 15px;
+    font-size: 12px;
+    color: #c5c5c5;
+  }
+  .active {
+    color: #000;
+    font-weight: 800;
+    border-bottom: 2px solid #ff8888;
+  }
+  .deleteMyRequest {
+    position: absolute;
+    right: 0;
+    color: #4a4a4a;
+    font-size: 12px;
+    font-weight: 800;
+  }
 `;
 
 export default Adoption;
