@@ -2,8 +2,6 @@ import React from 'react';
 import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
 
-// import { DeleteObjectCommand } from '@aws-sdk/client-s3';
-// import { s3Client } from './libs/s3Client.js'; // Helper function that creates Amazon S3 service client module.
 const Upload = (props) => {
   const [fileName, setFileName] = React.useState();
   const [fileType, setFileType] = React.useState();
@@ -165,30 +163,34 @@ const Upload = (props) => {
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
-                  margin='0 10px 40px 0'
+                  margin='0 10px 40px 0px'
                   boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
                   boxSizing='border-box'
                 >
-                  <button
-                    style={{
-                      all: 'unset',
-                      position: 'relative',
-                      top: '-55px',
-                      left: '140px',
-                      fontSize: '20px',
-                    }}
-                    onClick={() => {
-                      deleteImg(i);
-                    }}
-                  >
-                    x
-                  </button>
+                  <Grid position='relative'>
+                    <img
+                      style={{
+                        position: 'absolute',
+                        width: '15px',
+                        height: '15px',
+                        top: '10px',
+                        left: '125px',
+                      }}
+                      src={
+                        process.env.PUBLIC_URL + '../img/icon/cancel_icon.svg'
+                      }
+                      onClick={() => {
+                        deleteImg(i);
+                      }}
+                    />
+                  </Grid>
                   <img
                     alt='sample'
                     src={a}
                     style={{
-                      padding: '0px 15px 0px 5px',
+                      padding: '0px auto',
                       width: '150px',
+                      height: '150px',
                       objectFit: 'scale-down',
                     }}
                   />
