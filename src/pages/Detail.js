@@ -68,7 +68,19 @@ const Detail = (props) => {
         <Grid width='375px' margin='0 auto 140px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
-              <p>저와 친구하실래요?😁</p>
+              <p
+                style={{
+                  fontWeight: '800',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                저와 친구하실래요?
+                <img
+                  src={process.env.PUBLIC_URL + '/img/icon/smile.svg'}
+                  style={{ width: '18px', height: '18px' }}
+                />
+              </p>
 
               {user && user.nickname === post.post.nickname ? (
                 <button style={{ all: 'unset' }} onClick={onModal}>
@@ -395,7 +407,7 @@ const Detail = (props) => {
                   ) : (
                     <img
                       src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
-                      style={{ width: '20px' }}
+                      style={{ width: '30px' }}
                       onClick={() =>
                         window.open(`http://${post.post.url}`, '_blank')
                       }
@@ -429,7 +441,7 @@ const Detail = (props) => {
             </Grid>
           </Grid>
 
-          <p style={{ padding: '0 46px' }}>댓글😁</p>
+          <p style={{ padding: '0 46px', fontWeight: '800' }}>댓글</p>
 
           <CommentList postId={postId} />
           {/* 입양시 주의사항 모달 */}
@@ -499,9 +511,19 @@ const Detail = (props) => {
                     borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
                   }}
                   onClick={() => {
-                    if (window.confirm('정말 삭제하시겠습니까?')) {
-                      detailDelete();
-                    }
+                    Swal.fire({
+                      title: '정말 삭제하시겠습니까?',
+                      showCancelButton: true,
+                      confirmButtonColor: '#FE7968',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: '승인',
+                      cancelButtonText: '취소',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        detailDelete();
+                      }
+                      setDetailModal(!detailModal);
+                    });
                   }}
                 >
                   삭제

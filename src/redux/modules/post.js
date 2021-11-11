@@ -215,7 +215,6 @@ const deleteDetailToAxios = (postId) => {
     apis
       .deleteDetail(postId)
       .then((res) => {
-        alert('삭제 완료');
         history.push('/main');
       })
       .catch((err) => {
