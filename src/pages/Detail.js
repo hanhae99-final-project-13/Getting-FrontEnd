@@ -377,6 +377,7 @@ const Detail = (props) => {
                 borderTopLeftRadius: '15px',
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
+                zIndex: '5',
               }}
             >
               <Grid display='flex' justifyContent='center' alignItems='center'>
