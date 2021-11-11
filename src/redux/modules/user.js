@@ -293,7 +293,10 @@ export default handleActions(
       }),
     [UPDATE_USERINFO]: (state, action) =>
       produce(state, (draft) => {
-        draft.user.userInfo = action.payload.userInfo;
+        draft.user.userInfo = {
+          ...draft.user.userInfo,
+          ...action.payload.userInfo,
+        };
       }),
     [ADD_EDUSUCCESS]: (state, action) =>
       produce(state, (draft) => {

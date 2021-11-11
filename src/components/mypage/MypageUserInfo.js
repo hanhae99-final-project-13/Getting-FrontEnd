@@ -48,7 +48,7 @@ const MypageUserInfo = (props) => {
             {userInfo.nickname}
           </Text>
         )}
-        {editMode ? (
+        {/* {editMode ? (
           <Image
             size='20'
             src='https://static.thenounproject.com/png/1727505-200.png'
@@ -65,7 +65,7 @@ const MypageUserInfo = (props) => {
               setEditMode(!editMode);
             }}
           />
-        )}
+        )} */}
       </Grid>
     </Container>
   );
