@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -40,13 +40,17 @@ const Adoption = () => {
     history.push('/addpost');
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
+  }, []);
+
+  React.useEffect(() => {
     if (userInfo.userId) {
       dispatch(postActions.getWishPostMW(userInfo.userId));
     }
-  }, []);
+  });
+
   if (isToken && !userInfo.userId) {
     return <div>로딩중</div>;
   }
