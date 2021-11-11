@@ -51,7 +51,6 @@ const TakeAdoptionApply = (props) => {
         </Grid>
       </Grid>
       {showModal && <AcceptCheckModal setShowModal={setShowModal} />}
-      <Footer />
     </React.Fragment>
   );
 };

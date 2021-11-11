@@ -19,10 +19,6 @@ const AdoptionReason = (props) => {
     } else setAllergy('있음');
   };
 
-  const showSurveyToggle = () => {
-    setShowSurvey(!showSurvey);
-  };
-
   React.useEffect(() => {
     return () => setShowSurvey(false);
   }, []);
@@ -35,14 +31,21 @@ const AdoptionReason = (props) => {
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
       >
         <Grid
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           width='auto'
           height='auto'
-          bg='95% 50% / contain no-repeat url(https://img.favpng.com/22/6/16/menu-arrow-icon-png-favpng-2GXTGtbaeyDpB41Kwnus43bEC_t.jpg) '
-          _onClick={showSurveyToggle}
+          _onClick={() => setShowSurvey(!showSurvey)}
         >
           <Text margin='0' weight='700' size='20px'>
             입양 설문
           </Text>
+          <img
+            width='16px'
+            height='12px'
+            src={process.env.PUBLIC_URL + '/img/icon/downarrow.svg'}
+          />
         </Grid>
       </Grid>
       {showSurvey ? (
@@ -55,7 +58,7 @@ const AdoptionReason = (props) => {
               borderTop='1px solid rgba(225, 225, 225, 0.5) '
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             >
-              <Grid height='auto'>
+              <Grid height='auto' margin='0 0 12px 0'>
                 <Text margin='0' bold line_height='24px'>
                   가족 구성원 중
                   <span style={{ fontWeight: '800' }}> 동물 알레르기 증상</span>
@@ -66,17 +69,15 @@ const AdoptionReason = (props) => {
               </Grid>
               <Grid
                 display='flex'
-                justifyContent='space-between'
                 alignItems='center'
-                margin='12px 0 0 0'
-                width='50%'
-                height='auto'
+                justifyContent='center'
+                width='70px'
+                height='30px'
+                bg='#FE7968'
+                borderRadius='15px'
               >
-                <Text bold margin='0 7px 0 0'>
+                <Text color='white' weight='700'>
                   있음
-                </Text>
-                <Text bold margin='0 7px 0 0'>
-                  없음
                 </Text>
               </Grid>
             </Grid>

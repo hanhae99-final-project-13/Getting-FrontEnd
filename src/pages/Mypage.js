@@ -77,9 +77,7 @@ const Mypage = () => {
         <MypageDockingCheck display={dockingCheck} />
         <MypageAdoptionCheck display={adoptionCheckDisplay} />
       </Grid>
-      <Grid>
-        <Footer></Footer>
-      </Grid>
+      <Grid></Grid>
     </Grid>
   );
 };

@@ -17,19 +17,23 @@ const MainIfYouFirstAdoption = (props) => {
   return (
     <Grid
       display='flex'
-      flexDirection='column'
       justifyContent='space-evenly'
       width='auto'
-      padding='1em'
+      height='152px'
+      padding='12px 12px 12px 16px'
       borderRadius='10px'
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      height='125px'>
+      height='125px'
+    >
+      <Image size='128' />
       <Grid
         display='flex'
+        flexDirection='column'
         alignItems='center'
-        justifyContent='space-between'
-        height='auto'>
-        <Image />
+        justifyContent='center'
+        width='auto'
+        height='auto'
+      >
         <Text margin='0' size='18px'>
           입양이
           <ElSpan margin='0' size='18px' weight='800'>
@@ -37,32 +41,45 @@ const MainIfYouFirstAdoption = (props) => {
           </ElSpan>
           이라면?
         </Text>
+
+        {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
+          <Grid
+            display='flex'
+            justifyContent='flex-end'
+            width='auto'
+            height='auto'
+          >
+            <BePerfect
+              onClick={() => {
+                history.push('/fosterknowledge');
+                window.sessionStorage.clear();
+              }}
+            >
+              <Text margin='0' color='white' size='14px' weight='700'>
+                완벽한 견주되기
+              </Text>
+            </BePerfect>
+          </Grid>
+        ) : (
+          <Grid
+            display='flex'
+            justifyContent='flex-end'
+            width='auto'
+            height='auto'
+          >
+            <BePerfect
+              onClick={() => {
+                history.push('/tutorial');
+                window.sessionStorage.clear();
+              }}
+            >
+              <Text margin='0' color='white' size='14px' weight='700'>
+                완벽한 견주되기
+              </Text>
+            </BePerfect>
+          </Grid>
+        )}
       </Grid>
-      {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
-        <Grid display='flex' justifyContent='flex-end' height='auto'>
-          <BePerfect
-            onClick={() => {
-              history.push('/fosterknowledge');
-              window.sessionStorage.clear();
-            }}>
-            <Text margin='0' color='white' size='14px' weight='700'>
-              완벽한 견주되기
-            </Text>
-          </BePerfect>
-        </Grid>
-      ) : (
-        <Grid display='flex' justifyContent='flex-end' height='auto'>
-          <BePerfect
-            onClick={() => {
-              history.push('/tutorial');
-              window.sessionStorage.clear();
-            }}>
-            <Text margin='0' color='white' size='14px' weight='700'>
-              완벽한 견주되기
-            </Text>
-          </BePerfect>
-        </Grid>
-      )}
     </Grid>
   );
 };
@@ -84,16 +101,6 @@ const BePerfect = styled.div`
   border-radius: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: #fe7968;
-
-  div:nth-child(1) {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    background-color: white;
-  }
 `;
 
 export default MainIfYouFirstAdoption;

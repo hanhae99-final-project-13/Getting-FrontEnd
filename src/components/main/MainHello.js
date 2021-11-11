@@ -12,22 +12,20 @@ const MainHello = (props) => {
   return (
     <Grid>
       <Image
-        // src={
-        //   isLogin
-        //     ? userInfo.userImgUrl
-        //     : process.env.PUBLIC_URL +
-        //       '/public/img/GUI 아이콘/profile_default_icon.svg'
-        // }
-        src={process.env.PUBLIC_URL + '/img/아이콘/add_icon.svg'}
+        src={
+          isLogin
+            ? userInfo.userImgUrl
+            : process.env.PUBLIC_URL + '/img/GUIicon/profile_default_icon.svg'
+        }
         size='78'
       />
-      <Grid display='flex' width='auto'>
+      <Grid display='flex' width='auto' margin='18.5px 0 0 0'>
         <Text size='18px' weight='700' margin='0'>
           안녕하세요{isLogin && ','} <Bold>{isLogin && userInfo.nickname}</Bold>
           {isLogin && '님'}!
         </Text>
       </Grid>
-      <Text size='18px' weight='700' margin='0'>
+      <Text size='18px' weight='700' margin='0 0 12px 0'>
         귀여운 가족을 찾으러 오셨나요?
       </Text>
       <Grid
@@ -36,11 +34,13 @@ const MainHello = (props) => {
         alignItems='center'
         width='100%'
       >
-        <Grid display='flex' width='auto'>
-          <Text margin='4px 0 0 0' size='12px' weight='700' color='#5c5c5c'>
-            저희가 함께 도와 드릴게요! 😉
+        <Grid display='flex' alignItems='center' width='auto'>
+          <Text margin='0' size='12px' weight='700' color='#5c5c5c'>
+            저희가 함께 도와 드릴게요!
           </Text>
-          <Image size='16' />
+          <Text margin='0' size='12px'>
+            &nbsp;😉
+          </Text>
         </Grid>
         <ElA
           onClick={() => {

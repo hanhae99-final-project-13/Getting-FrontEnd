@@ -25,8 +25,14 @@ const AcceptCheckModal = ({ setShowModal }) => {
         borderRadius='30px 30px 0 0'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
       >
-        <Image size='50' />
-        <Text>님의 입양신청을 승인합니다</Text>
+        <img
+          src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+          width='62'
+          height='92'
+        />
+        <Text margin='18px 0 26px 0' weight='700'>
+          님의 입양신청을 승인합니다
+        </Text>
         <Grid display='flex' justifyContent='center' height='auto'>
           <Grid
             display='flex'

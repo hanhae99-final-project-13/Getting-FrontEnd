@@ -34,7 +34,9 @@ const Footer = (props) => {
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'>
+        height='80px'
+        boxShadow='0px -10px 50px 5px rgba(47, 47, 47, 0.06)'
+      >
         {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
           <Grid
             display='flex'
@@ -44,7 +46,8 @@ const Footer = (props) => {
             _onClick={() => {
               history.push('/fosterknowledge');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
             <TEXT size='14px' bold margin='7px 0 0 0'>
               입양지식
@@ -59,7 +62,8 @@ const Footer = (props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
             <TEXT size='14px' bold margin='7px 0 0 0'>
               입양지식
@@ -73,7 +77,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faPen} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             입양하기
@@ -87,7 +92,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHouseUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             홈
@@ -101,7 +107,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             마이페이지
@@ -115,7 +122,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/setting');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHammer} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             설정하기
