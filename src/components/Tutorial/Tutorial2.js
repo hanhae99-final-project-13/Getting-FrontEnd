@@ -6,52 +6,92 @@ const Tutorial2 = (props) => {
   const { history } = props;
 
   return (
-    <Grid width='375px' margin='177px auto 0'>
-      {/* <hr
-        style={{
-          position: 'relative',
-          width: '230px',
-          bottom: '-83px',
-          border: '2px solid #CDCDCD',
-          zIndex: 1,
-        }}
-      /> */}
+    <Grid width='375px' margin='0 auto'>
       <Grid
-        zIndex='2'
-        position='relative'
-        width='310px'
-        margin='0 auto 47px'
-        display='flex'
-        justifyContent='space-between'>
-        <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='800'>
-            필수지식
-          </Text>
-          <Image
-            size='80'
-            src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
-        </Grid>
-        <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='800'>
-            심화지식1
-          </Text>
-          <Image
-            size='80'
-            src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
-        </Grid>
-        <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='800'>
-            심화지식2
-          </Text>
-          <Image
-            size='80'
-            src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='absolute'
+        top='65px'
+        left='36px'
+        width='25px'
+        height='25px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
-      <Grid margin='0 auto 49px' display='flex' justifyContent='center'>
+      <Grid margin='231px auto 36px' display='flex' width='315px'>
+        <Grid display='flex' flexDirection='column' alignItems='center'>
+          <Text margin='0 0 16px 0' weight='800'>
+            필수지식
+          </Text>
+
+          <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            width='80px'
+            height='80px'
+            borderRadius='40px'
+            bg='#FFFFFF'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            <img
+              width='57.11px'
+              height='53px'
+              src={
+                process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'
+              }></img>
+          </Grid>
+        </Grid>
+        <Grid
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          margin='0 0 0 6px'>
+          <Text margin='0 0 16px 0' weight='800'>
+            심화지식1
+          </Text>
+          <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            width='80px'
+            height='80px'
+            borderRadius='40px'
+            bg='#FFFFFF'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            <img
+              width='61px'
+              height='53px'
+              src={
+                process.env.PUBLIC_URL + '/img/GUIicon/badge_2_icon.svg'
+              }></img>
+          </Grid>
+        </Grid>
+        <Grid display='flex' flexDirection='column' alignItems='center'>
+          <Text margin='0 0 16px 0' weight='800'>
+            심화지식2
+          </Text>
+          <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            width='80px'
+            height='80px'
+            borderRadius='40px'
+            bg='#FFFFFF'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            <img
+              width='60px'
+              height='54px'
+              src={
+                process.env.PUBLIC_URL + '/img/GUIicon/badge_3_icon.svg'
+              }></img>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid margin='0 auto 30px' display='flex' justifyContent='center'>
         <Text margin='0' weight='700' align='center' line_height='24px'>
           튜토리얼은 총 세단계로 나눠져있습니다. <br />
           아직 <span style={{ fontWeight: '800' }}>필수지식</span>을 이수하지
