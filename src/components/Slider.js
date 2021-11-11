@@ -44,7 +44,7 @@ const Switch = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ff6666;
+  background-color: #fe7968;
   &::after {
     content: '';
     display: block;
@@ -63,7 +63,7 @@ const CheckBox = styled.input`
   width: 0;
   height: 0;
   &:checked + ${Switch} {
-    background-color: #ff6666;
+    background-color: #fe7968;
     &::after {
       content: '';
       display: block;

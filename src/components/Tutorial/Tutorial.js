@@ -15,7 +15,8 @@ const Tutorial = (props) => {
         top='65px'
         left='36px'
         width='25px'
-        height='25px'>
+        height='25px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -47,7 +48,8 @@ const Tutorial = (props) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
+        boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+      >
         <Text color='white' margin='0' weight='800'>
           네, 시작할래요!
         </Text>

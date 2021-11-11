@@ -260,7 +260,6 @@ const AddPost = () => {
             />
           </Grid>
         </Grid>
-        <Footer></Footer>
       </Grid>
     </React.Fragment>
   );

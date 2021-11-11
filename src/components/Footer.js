@@ -22,19 +22,22 @@ const Footer = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
+  if (window.location.pathname === '/') return null;
   return (
     <React.Fragment>
       <Grid
-        width='375px'
+        maxWidth='375px'
         margin='0 auto'
+        left='0'
+        right='0'
         bg='white'
         position='fixed'
         bottom='0px'
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'>
+        height='80px'
+      >
         {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
           <Grid
             display='flex'
@@ -44,7 +47,8 @@ const Footer = (props) => {
             _onClick={() => {
               history.push('/fosterknowledge');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
             <TEXT size='14px' bold margin='7px 0 0 0'>
               입양지식
@@ -59,7 +63,8 @@ const Footer = (props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faList} color='black' fontSize='1x' />
             <TEXT size='14px' bold margin='7px 0 0 0'>
               입양지식
@@ -73,7 +78,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faPen} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             입양하기
@@ -87,7 +93,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHouseUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             홈
@@ -101,7 +108,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faUser} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             마이페이지
@@ -115,7 +123,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/setting');
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faHammer} color='black' fontSize='1x' />
           <TEXT size='14px' bold margin='7px 0 0 0'>
             설정하기

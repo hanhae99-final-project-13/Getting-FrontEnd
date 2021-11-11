@@ -48,7 +48,6 @@ const Landing = () => {
         <div
           style={{
             display: 'flex',
-            backgroundColor: 'skyblue',
             height: '300px',
             marginLeft: `${imgPosition}px`,
             transition: '1s',
@@ -175,13 +174,13 @@ const ButtonBox2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ff6666;
+  background-color: #fe7968;
   cursor: pointer;
   border-radius: 25px;
 `;
 const Button = styled.button`
   all: unset;
-  color: #ff6666;
+  color: #fe7968;
 `;
 const Button2 = styled.button`
   all: unset;
