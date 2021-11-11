@@ -22,7 +22,7 @@ const Intro = () => {
               <Grid
                 display='flex'
                 width='305px'
-                margin='0 auto'
+                margin='0 auto 30px'
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
@@ -116,9 +116,19 @@ const StyledSlider = styled(Slider)`
     width: 375px;
     margin: 0 auto;
   }
-
+  .slick-dots li {
+    margin: 0 0rem;
+  }
   .slick-dots {
-    bottom: 0px;
+    bottom: 10px;
+    .slick-active {
+      button::before {
+        color: #fe7968;
+      }
+    }
+    button::before {
+      color: #b6b1b0;
+    }
   }
 `;
 
