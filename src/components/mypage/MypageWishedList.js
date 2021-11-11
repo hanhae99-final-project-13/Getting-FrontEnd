@@ -13,7 +13,7 @@ const MypageWishedList = (props) => {
       <Grid
         display='flex'
         alignItems='center'
-        margin='0 0 22px 0'
+        margin='0 0 66px 0'
         width='auto'
         height='auto'
       >
@@ -31,7 +31,7 @@ const MypageWishedList = (props) => {
             <Card
               width='auto'
               imageHeight='150px'
-              margin='0 0 20px 0'
+              margin='0 0 66px 0'
               key={p.postId}
               breed={p.breed}
               sex={p.sex}

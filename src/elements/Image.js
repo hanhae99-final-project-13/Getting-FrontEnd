@@ -16,6 +16,7 @@ const Image = (props) => {
     display,
     zIndex,
     boxShadow,
+    bg,
   } = props;
 
   const styles = {
@@ -27,6 +28,7 @@ const Image = (props) => {
     display: display,
     zIndex,
     boxShadow,
+    bg,
   };
 
   if (shape === 'circle') {
@@ -99,6 +101,7 @@ Image.defaultProps = {
   display: null,
   zIndex: null,
   boxShadow: null,
+  bg: null,
 };
 
 const ImageCircle = styled.div`
@@ -106,6 +109,7 @@ const ImageCircle = styled.div`
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
+  background: ${(props) => props.bg};
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: ${(props) => props.backgroundPosition};
@@ -127,6 +131,7 @@ const InnerRect = styled.div`
   position: relative;
   padding-top: 75%;
   overflow: hidden;
+  background: ${(props) => props.bg};
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: ${(props) => props.backgroundPosition};
@@ -140,6 +145,7 @@ const MainInner = styled.div`
   width: 300px;
   padding-top: 22%;
   overflow: hidden;
+  background: ${(props) => props.bg};
   background-image: url(${(props) => props.src});
   background-position: left;
   background-size: cover;

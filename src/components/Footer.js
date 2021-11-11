@@ -29,7 +29,7 @@ const Footer = (props) => {
         width='375px'
         margin='0 auto'
         bg='white'
-        position='fixed'
+        position='sticky'
         bottom='0px'
         borderRadius='15px 15px 0 0'
         display='flex'

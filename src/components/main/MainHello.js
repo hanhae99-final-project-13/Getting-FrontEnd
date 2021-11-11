@@ -18,6 +18,7 @@ const MainHello = (props) => {
             : process.env.PUBLIC_URL + '/img/GUIicon/profile_default_icon.svg'
         }
         size='78'
+        margin='0 0 0 12px'
       />
       <Grid display='flex' width='auto' margin='18.5px 0 0 0'>
         <Text size='18px' weight='700' margin='0'>

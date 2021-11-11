@@ -47,6 +47,7 @@ const MypageCategory = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
+        justifyContent='center'
         width='80px'
         height='60px'
         bg={WLBG}
@@ -56,8 +57,8 @@ const MypageCategory = (props) => {
           showWishedList(changeWL);
         }}
       >
-        <Image size='28' />
-        <Text margin='0' size='14px' weight='800' color={WLFC}>
+        <Image size='28' margin='0' />
+        <Text margin='3px 0 0 0' size='12px' weight='800' color={WLFC}>
           관심친구
         </Text>
       </Grid>
@@ -65,6 +66,7 @@ const MypageCategory = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
+        justifyContent='center'
         width='80px'
         height='60px'
         bg={DCBG}
@@ -72,8 +74,8 @@ const MypageCategory = (props) => {
         borderRadius='14px'
         _onClick={() => showaDockingCheck(changeDC)}
       >
-        <Image size='28' />
-        <Text margin='0' size='14px' weight='800' color={DCFC}>
+        <Image size='28' margin='0' />
+        <Text margin='3px 0 0 0' size='12px' weight='800' color={DCFC}>
           도킹 확인
         </Text>
       </Grid>
@@ -81,6 +83,7 @@ const MypageCategory = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
+        justifyContent='center'
         width='80px'
         height='60px'
         bg={ACBG}
@@ -88,8 +91,8 @@ const MypageCategory = (props) => {
         borderRadius='14px'
         _onClick={() => showadoptionCheck(changeAC)}
       >
-        <Image size='28' />
-        <Text margin='0' size='14px' weight='800' color={ACFC}>
+        <Image size='28' margin='0' />
+        <Text margin='3px 0 0 0' size='12px' weight='800' color={ACFC}>
           입양 관리
         </Text>
       </Grid>
