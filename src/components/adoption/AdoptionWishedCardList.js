@@ -58,7 +58,7 @@ const Title = styled.p`
 
 const SliderBox = styled.div`
   height: 220px;
-  margin-left: -1rem;
+  margin-left: -35px;
   margin-top: -1rem;
   overflow: visible;
   overflow-x: scroll;
