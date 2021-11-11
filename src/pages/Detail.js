@@ -65,7 +65,7 @@ const Detail = (props) => {
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='0 auto 80px auto'>
+        <Grid width='375px' margin='0 auto 140px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p>저와 친구하실래요?😁</p>
@@ -139,6 +139,51 @@ const Detail = (props) => {
                 })}
             </Grid>
           </Grid>
+          {post.post.tag !== '직접등록' ? null : user.eduList &&
+            user.eduList[0].필수지식 === true ? (
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Grid
+                position='fixed'
+                margin='auto'
+                bg='#FE7968'
+                width='144px'
+                height='40px'
+                borderRadius='25px'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                bottom='90px'
+                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                _onClick={() => {
+                  openModal();
+                  window.sessionStorage.clear();
+                }}
+              >
+                <Text color='white'>입양 신청하기</Text>
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Grid
+                position='fixed'
+                margin='auto'
+                bg='#FE7968'
+                width='144px'
+                height='40px'
+                borderRadius='25px'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                bottom='90px'
+                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                _onClick={() => {
+                  eduCheckopenModal();
+                }}
+              >
+                <Text color='white'>입양 신청하기</Text>
+              </Grid>
+            </Grid>
+          )}
           <Grid
             width='283px'
             margin='0 auto'
@@ -261,15 +306,48 @@ const Detail = (props) => {
               padding='0 0 15px 0'
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
-              <Grid display='flex' justifyContent='space-between'>
+              <Grid
+                display='flex'
+                justifyContent='space-between'
+                alignItems='center'
+              >
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  <img
-                    src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
-                    style={{ width: '15px' }}
-                  />
+                  {post.post.url.includes('instagram.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/img/GUIicon/instagram_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                    />
+                  ) : post.post.url.includes('facebook.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/img/GUIicon/facebook_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                    />
+                  ) : post.post.url.includes('twitter.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/GUIicon/twitter_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                    />
+                  ) : (
+                    <img
+                      src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
+                      style={{ width: '20px' }}
+                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                    />
+                  )}
                 </span>
               </Grid>
             </Grid>
@@ -297,51 +375,6 @@ const Detail = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {post.post.tag !== '직접등록' ? null : user.eduList &&
-            user.eduList[0].필수지식 === true ? (
-            <Grid display='flex' justifyContent='center' alignItems='center'>
-              <Grid
-                position='fixed'
-                margin='auto'
-                bg='#FF6666'
-                width='144px'
-                height='50px'
-                borderRadius='25px'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                bottom='50px'
-                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={() => {
-                  openModal();
-                  window.sessionStorage.clear();
-                }}
-              >
-                <Text color='white'>입양 신청하기</Text>
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid display='flex' justifyContent='center' alignItems='center'>
-              <Grid
-                position='fixed'
-                margin='auto'
-                bg='#FF6666'
-                width='144px'
-                height='50px'
-                borderRadius='25px'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                bottom='30px'
-                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={() => {
-                  eduCheckopenModal();
-                }}
-              >
-                <Text color='white'>입양 신청하기</Text>
-              </Grid>
-            </Grid>
-          )}
 
           <p style={{ padding: '0 46px' }}>댓글😁</p>
 
