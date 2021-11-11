@@ -24,14 +24,14 @@ const Adoption = () => {
   const old = React.useRef();
 
   const activeCurButton = () => {
-    old.current.style.backgroundColor = 'white';
-    cur.current.style.backgroundColor = 'steelblue';
+    old.current.classList.remove('active');
+    cur.current.classList.add('active');
     dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
   };
   const activeOldButton = () => {
-    cur.current.style.backgroundColor = 'white';
-    old.current.style.backgroundColor = 'steelblue';
+    cur.current.classList.remove('active');
+    old.current.classList.add('active');
     dispatch(postActions.setSearch({ page: 0, sort: 'old' }));
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'old' }));
   };
@@ -53,30 +53,22 @@ const Adoption = () => {
 
   return (
     <Grid>
-      <Grid width='auto' padding='20px' overflow='auto'>
+      <Grid width='auto' padding='35px' overflow='auto'>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>
         <Grid width='auto' margin='0 0 20px 0'>
           <AdoptionSearchInput />
         </Grid>
-        <Grid>
-          <Tag ref={cur} onClick={activeCurButton}>
-            최신순
-          </Tag>
-          <Tag ref={old} onClick={activeOldButton}>
-            등록순
-          </Tag>
-          <AdoptionCardList />
-        </Grid>
-        {/* <CategoryBox>
+        <CategoryBox>
           <span className='category active' ref={cur} onClick={activeCurButton}>
-            입양 대기중
+            최신순
           </span>
           <span className='category' ref={old} onClick={activeOldButton}>
-            입양 승락
+            등록순
           </span>
-        </CategoryBox> */}
+        </CategoryBox>
+        <AdoptionCardList />
         <AddButton onClick={goAddPost}>+</AddButton>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
@@ -117,13 +109,13 @@ const AddButton = styled.button`
 `;
 
 const CategoryBox = styled.div`
-  position: relative;
   display: flex;
   margin: 0 0 22px 0;
 
   .category {
     margin-right: 15px;
     font-size: 12px;
+    font-weight: 700;
     color: #c5c5c5;
   }
   .active {
