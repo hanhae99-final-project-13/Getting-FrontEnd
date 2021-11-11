@@ -59,7 +59,7 @@ const Detail = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
+  console.log(!post.post.url.includes('http://'));
   return (
     <React.Fragment>
       {edit ? (
@@ -315,14 +315,61 @@ const Detail = (props) => {
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  {post.post.url.includes('instagram.com') ? (
+                  {post.post.url.includes('http://') ? (
+                    // http:// 가 주소에 있다면
+                    post.post.url.includes('instagram.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/instagram_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : post.post.url.includes('facebook.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/facebook_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : post.post.url.includes('twitter.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/twitter_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : (
+                      <img
+                        src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
+                        style={{ width: '20px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    )
+                  ) : // http:// 가 주소에 없다면
+                  post.post.url.includes('instagram.com') ? (
                     <img
                       src={
                         process.env.PUBLIC_URL +
                         '/img/GUIicon/instagram_icon.svg'
                       }
                       style={{ width: '30px' }}
-                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
                     />
                   ) : post.post.url.includes('facebook.com') ? (
                     <img
@@ -331,7 +378,9 @@ const Detail = (props) => {
                         '/img/GUIicon/facebook_icon.svg'
                       }
                       style={{ width: '30px' }}
-                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
                     />
                   ) : post.post.url.includes('twitter.com') ? (
                     <img
@@ -339,13 +388,17 @@ const Detail = (props) => {
                         process.env.PUBLIC_URL + '/img/GUIicon/twitter_icon.svg'
                       }
                       style={{ width: '30px' }}
-                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
                     />
                   ) : (
                     <img
                       src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
                       style={{ width: '20px' }}
-                      onClick={() => window.open(`${post.post.url}`, '_blank')}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
                     />
                   )}
                 </span>
