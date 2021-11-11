@@ -6,10 +6,10 @@ import CommentWrite from './CommentWrite';
 
 const Comment = (props) => {
   const { comment } = props;
-  console.log('코멘트 하나의 정보', comment);
+  // console.log('코멘트 하나의 정보', comment);
 
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  console.log('유저인포', userInfo);
+  // console.log('유저인포', userInfo);
   const dispatch = useDispatch();
 
   const commentDelete = () => {
