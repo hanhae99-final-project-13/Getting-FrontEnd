@@ -22,6 +22,8 @@ const Header = (props) => {
   );
 
   if (window.location.pathname === '/') return null;
+  if (window.location.pathname === '/tutorial') return null;
+
   return (
     <React.Fragment>
       <Grid

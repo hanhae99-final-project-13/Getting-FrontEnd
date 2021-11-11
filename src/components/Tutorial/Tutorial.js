@@ -6,7 +6,7 @@ const Tutorial = (props) => {
   const { history } = props;
 
   return (
-    <Grid width='375px' margin='177px auto 0'>
+    <Grid width='375px' margin='196px auto 0'>
       <Image
         margin='0 auto 20px'
         size='155'
@@ -17,7 +17,7 @@ const Tutorial = (props) => {
         <Text margin='0' weight='700' align='center' line_height='24px'>
           안녕하세요 , 항해님
           <br /> 입양 지식은 처음이시네요! <br />
-          튜토리얼을 시작할까요?
+          <span style={{ fontWeight: '800' }}>튜토리얼</span>을 시작할까요?
         </Text>
       </Grid>
 
