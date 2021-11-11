@@ -34,8 +34,8 @@ const Tutorial = (props) => {
         justifyContent='center'
         alignItems='center'
         boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-        <Text color='white' margin='0'>
-          네. 시작하겠습니다.
+        <Text color='white' margin='0' weight='800'>
+          네, 시작하겠습니다.
         </Text>
       </Grid>
       <Footer></Footer>

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as userActions } from '../redux/modules/apply';
 import { useParams } from 'react-router-dom';
 
 import { Grid, Text, Input } from '../elements';
 import Slider from '../components/Slider';
 import SelectBox from '../components/adoptionApplycation/SelectBox';
+import ApplyProgressBar from '../components/adoptionApplycation/ApplyProgressBar';
 import AddressSelector from '../components/AddressSelector';
 import AgeData from '../components/Data/AgeData';
 
@@ -15,7 +16,12 @@ import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
 
 const AdoptionApply = (props) => {
   const postID = useParams().id;
-  console.log(postID, '입양신청서 1번 id');
+  // console.log(postID, '입양신청서 1번 id');
+  const userInfo = useSelector((state) => state.user?.user.userInfo);
+  console.log(userInfo.phone, '미리받은 번호1');
+
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   const dispatch = useDispatch();
   const { history } = props;
@@ -34,13 +40,19 @@ const AdoptionApply = (props) => {
   // const [anxiety, setAnxiety] = React.useState('');
   // const [bark, setBark] = React.useState('');
   // const [roomUrl, setRoomUrl] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [code, setCode] = React.useState('');
+  const [phone, setPhone] = React.useState();
 
+  useEffect(() => {
+    if (userInfo && userInfo.phone !== '') {
+      setPhone(userInfo.phone);
+    } else {
+      setPhone('');
+    }
+  }, []);
   // 성별 option, handleChange함수
   const GENDEROPTION = [
-    { value: 'M', name: '남자' },
-    { value: 'F', name: '여자' },
+    { value: 'M', name: '남성' },
+    { value: 'F', name: '여성' },
   ];
   const handleGenderChange = (e) => {
     setGender(e.target.value);
@@ -65,7 +77,6 @@ const AdoptionApply = (props) => {
     family: family,
     currentPet: currentPet,
     phone: phone,
-    // code: code,
     reason: reason,
     allergy: '',
     experience: '',
@@ -93,15 +104,22 @@ const AdoptionApply = (props) => {
     setAddressModal(!addressModal);
   };
 
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
+
+  console.log(userInfo.phone, '미리받은 번호2');
+
   return (
     <Grid
       boxSizing='border-box'
       width='375px'
-      margin='135px auto 0'
-      padding='0 35px'
-    >
+      margin='80px auto 0'
+      padding='0 35px'>
       <Grid>
-        <Grid margin='0 0 15px 0 '>
+        <ApplyProgressBar />
+
+        <Grid margin='30px 0 15px 0 '>
           <Text margin='0' weight='700' size='20px'>
             기본정보
           </Text>
@@ -144,44 +162,24 @@ const AdoptionApply = (props) => {
         <Grid
           display='flex'
           justtifyContent='flex-start'
-          padding='16px 0px'
+          padding='5px 0px'
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <SelectBox
             options={AGEOPTION}
             _onChange={handleAgeChange}
-            defaultValue={fosterAge}
-          ></SelectBox>
-          <Text margin='0' bold margin='0 11px 0 8px'>
+            defaultValue={fosterAge}></SelectBox>
+
+          <Text bold margin='10px 11px 0 8px'>
             살
           </Text>
           <SelectBox
             options={GENDEROPTION}
             _onChange={handleGenderChange}
-            defaultValue={gender}
-          ></SelectBox>
+            defaultValue={gender}></SelectBox>
         </Grid>
-        {/* 
-        <Grid>
-          <Input
-            bg='#FFFFFF'
-            width='100%'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px 0px'
-            box-sizing
-            placeholder='거주지를 기입해주세요.'
-            placeholder_color='#DFDFDF'
-            name='name'
-            // value={name}
-            _onChange={(e) => {
-              // setName(e.target.value);
-            }}
-          />
-        </Grid> */}
 
         <Grid
           bg='#FFFFFF'
@@ -189,8 +187,7 @@ const AdoptionApply = (props) => {
           border='none'
           borderBottom='1px solid rgba(225, 225, 225, 0.5) '
           boxSizing='border-box'
-          height='auto'
-        >
+          height='auto'>
           <input
             placeholder='거주지를 입력해주세요'
             type='text'
@@ -232,8 +229,7 @@ const AdoptionApply = (props) => {
           padding='16px 0px'
           boxSizing='border-box'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <Grid>
             <Text margin='0' bold>
               반려동물 여부
@@ -243,55 +239,28 @@ const AdoptionApply = (props) => {
             <Text
               color={currentPet === '있음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0 10px 0 0'
-            >
+              margin='0 10px 0 0'>
               있음
             </Text>
             <Slider handleToggle={handleCurrentPet} />
             <Text
               color={currentPet === '없음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0  0 0 10px'
-            >
+              margin='0  0 0 10px'>
               없음
             </Text>
           </Grid>
         </Grid>
 
-        <Grid
-          alignItems='center'
-          is_flex
-          padding='16px 0px'
-          boxSizing='border-box'
-          bg='#FFFFFF'
-          height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+        <Grid>
           <Input
-            bg='#ECECEC'
-            width='52px'
+            bg='#FFFFFF'
+            width='100%'
             border='none'
             border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='8px'
+            padding='16px 0px'
             box-sizing
-            placeholder='SKT'
-            placeholder_color='#DFDFDF'
-            name='reason'
-            // value={reason}
-            _onChange={(e) => {
-              // setReason(e.target.value);
-            }}
-          />
-
-          <Input
-            bg='#ECECEC'
-            width='220px'
-            border_radius='5px'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='8px'
-            box-sizing
-            placeholder='-빼고 입력하세요.'
+            placeholder='핸드폰 번호를 입력해주세요'
             placeholder_color='#DFDFDF'
             name='phone'
             value={phone}
@@ -299,46 +268,6 @@ const AdoptionApply = (props) => {
               setPhone(e.target.value);
             }}
           />
-        </Grid>
-        <Grid
-          display='flex'
-          alignItems='center'
-          padding='16px 0px'
-          boxSizing='border-box'
-          bg='#FFFFFF'
-          height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
-          <Grid width='60px' margin='0 6px 0 0'>
-            <FontAwesomeIcon icon={faStopwatch} color='#00B412' fontSize='1x' />
-          </Grid>
-          <Grid>
-            <Text color='#00B412' margin='0' weight='800'>
-              5:00
-            </Text>
-          </Grid>
-
-          <Input
-            bg='#ECECEC'
-            width='147px'
-            border_radius='5px'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='8px'
-            box-sizing
-            placeholder=''
-            placeholder_color='#DFDFDF'
-            name='code'
-            value={code}
-            _onChange={(e) => {
-              setCode(e.target.value);
-            }}
-          />
-          <Grid margin='0 0 0 15px'>
-            <Text margin='0' weight='800' color='#00B412'>
-              인증하기
-            </Text>
-          </Grid>
         </Grid>
 
         <Grid margin='30px 0 18px 0 '>
@@ -356,8 +285,7 @@ const AdoptionApply = (props) => {
             }}
             cols='40'
             rows='13'
-            placeholder='500자 이하로 적어주세요'
-          ></Textarea>
+            placeholder='500자 이하로 적어주세요'></Textarea>
         </Grid>
 
         <Grid height='auto' margin='23px auto'>
@@ -375,8 +303,8 @@ const AdoptionApply = (props) => {
               dispatch(userActions.addApply(data));
               history.push(`/apply2/${postID}`);
               window.scrollTo(0, 0);
-            }}
-          >
+              window.sessionStorage.setItem('length2', 'length2'); //프로그래스 바용
+            }}>
             <Text margin='0' color='white'>
               다음 페이지로
             </Text>

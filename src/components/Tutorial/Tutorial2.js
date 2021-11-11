@@ -7,7 +7,7 @@ const Tutorial2 = (props) => {
 
   return (
     <Grid width='375px' margin='177px auto 0'>
-      <hr
+      {/* <hr
         style={{
           position: 'relative',
           width: '230px',
@@ -15,7 +15,7 @@ const Tutorial2 = (props) => {
           border: '2px solid #CDCDCD',
           zIndex: 1,
         }}
-      />
+      /> */}
       <Grid
         zIndex='2'
         position='relative'
@@ -24,7 +24,7 @@ const Tutorial2 = (props) => {
         display='flex'
         justifyContent='space-between'>
         <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='700'>
+          <Text margin='0 0 8px 0' weight='800'>
             필수지식
           </Text>
           <Image
@@ -33,7 +33,7 @@ const Tutorial2 = (props) => {
             boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
         </Grid>
         <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='700'>
+          <Text margin='0 0 8px 0' weight='800'>
             심화지식1
           </Text>
           <Image
@@ -42,7 +42,7 @@ const Tutorial2 = (props) => {
             boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
         </Grid>
         <Grid display='flex' flexDirection='column' alignItems='center'>
-          <Text margin='0 0 8px 0' weight='700'>
+          <Text margin='0 0 8px 0' weight='800'>
             심화지식2
           </Text>
           <Image
@@ -73,8 +73,8 @@ const Tutorial2 = (props) => {
         justifyContent='center'
         alignItems='center'
         boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-        <Text color='white' margin='0'>
-          가보자고
+        <Text color='white' margin='0' weight='800'>
+          시작할래요!
         </Text>
       </Grid>
       <Footer></Footer>

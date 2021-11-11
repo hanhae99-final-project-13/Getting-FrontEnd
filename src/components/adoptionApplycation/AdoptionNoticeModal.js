@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
-const AdoptionModal = (props) => {
+const AdoptionNoticeModal = (props) => {
   const { postId } = props;
   console.log(postId, '모달id');
   return (
@@ -250,6 +250,7 @@ const AdoptionModal = (props) => {
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
               history.push(`/apply/${postId}`);
+              window.sessionStorage.setItem('length', 'length'); //프로그래스 바용
             }}>
             <Text margin='0' color='white'>
               확인했습니다
@@ -274,4 +275,4 @@ const ModalParent = styled.div`
   z-index: 999;
 `;
 
-export default AdoptionModal;
+export default AdoptionNoticeModal;

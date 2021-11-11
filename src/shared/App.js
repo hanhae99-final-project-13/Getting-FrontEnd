@@ -52,10 +52,10 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Header></Header>
-
+        <Route path='/login' exact component={Login} />
         <Route path='/' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />
-        <Route path='/login' exact component={Login} />
+
         <Route path='/signup' exact component={Signup} />
         <Route path='/main' exact component={Main} />
         <Route path='/tutorial' exact component={Tutorial} />
