@@ -6,12 +6,26 @@ const Tutorial = (props) => {
   const { history } = props;
 
   return (
-    <Grid width='375px' margin='196px auto 0'>
-      <Image
-        margin='0 auto 20px'
-        size='155'
-        src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
+    <Grid width='375px' margin='0 auto'>
+      <Grid
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='sticky'
+        top='65px'
+        left='36px'
+        width='25px'
+        height='25px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+        </Grid>
+      </Grid>
+
+      <Grid width='200px' margin='196px auto 0'>
+        <img
+          src={process.env.PUBLIC_URL + '/img/GUIicon/tutorial_1_icon.svg.svg'}
+        />
+      </Grid>
 
       <Grid margin='0 auto 49px' display='flex' justifyContent='center'>
         <Text margin='0' weight='700' align='center' line_height='24px'>
@@ -22,10 +36,10 @@ const Tutorial = (props) => {
       </Grid>
 
       <Grid
+        margin='0 auto'
         _onClick={() => {
           history.push('/tutorial2');
         }}
-        margin=' 0 auto'
         bg='#FF6666'
         width='157px'
         height='52px'
@@ -35,10 +49,9 @@ const Tutorial = (props) => {
         alignItems='center'
         boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
         <Text color='white' margin='0' weight='800'>
-          네, 시작하겠습니다.
+          네, 시작할래요!
         </Text>
       </Grid>
-      <Footer></Footer>
     </Grid>
   );
 };

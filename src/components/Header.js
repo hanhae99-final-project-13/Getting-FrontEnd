@@ -23,6 +23,8 @@ const Header = (props) => {
 
   if (window.location.pathname === '/') return null;
   if (window.location.pathname === '/tutorial') return null;
+  if (window.location.pathname === '/tutorial2') return null;
+  if (window.location.pathname === '/fosterknowledge') return null;
 
   return (
     <React.Fragment>
