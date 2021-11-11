@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Image } from '../elements/';
 import { postActions } from '../redux/modules/post';
 import CommentWrite from './CommentWrite';
-
+import Swal from 'sweetalert2';
 const Comment = (props) => {
   const { comment } = props;
   // console.log('코멘트 하나의 정보', comment);
@@ -190,7 +190,7 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#ff6666',
+                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
                 }}
@@ -206,16 +206,26 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#ff6666',
+                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
                   borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                   borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
                 }}
                 onClick={() => {
-                  if (window.confirm('정말 삭제하시겠습니까?')) {
-                    commentDelete();
-                  }
+                  Swal.fire({
+                    title: '정말 삭제하시겠습니까?',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FE7968',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '승인',
+                    cancelButtonText: '취소',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      commentDelete();
+                    }
+                    setCommentModal(!commentModal);
+                  });
                 }}
               >
                 삭제
@@ -228,7 +238,7 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#ff6666',
+                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
                 }}

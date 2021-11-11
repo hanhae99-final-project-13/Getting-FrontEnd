@@ -146,6 +146,7 @@ const Alarm = () => {
               borderTopRightRadius: '15px',
               height: '265px',
               boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)',
+              zIndex: '2',
             }}
           >
             <Grid
@@ -165,7 +166,6 @@ const Alarm = () => {
               alignItems='center'
               height='10px'
             >
-              {' '}
               모든 알림이 삭제됩니다. 그래도 괜찮으신가요?
             </Grid>
             <Grid
