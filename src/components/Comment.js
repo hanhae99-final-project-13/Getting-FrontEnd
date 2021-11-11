@@ -51,8 +51,23 @@ const Comment = (props) => {
                   alignItems: 'center',
                 }}
               >
-                <Image src={userInfo ? userInfo.userImgUrl : ''} />
-                <div style={{ fontSize: '12px' }}>{comment.nickname}</div>
+                <Image
+                  src={
+                    comment ? (
+                      comment.userImgUrl
+                    ) : (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/GUIicon/profile_defalut_icon.svg'
+                        }
+                      />
+                    )
+                  }
+                />
+                <div style={{ fontSize: '12px', color: '#FE7968' }}>
+                  {comment.nickname}
+                </div>
               </div>
               <CommentWrite
                 key={comment.commentId}
@@ -78,7 +93,20 @@ const Comment = (props) => {
                 display: 'flex',
               }}
             >
-              <Image src={userInfo ? userInfo.userImgUrl : ''} />
+              <Image
+                src={
+                  comment ? (
+                    comment.userImgUrl
+                  ) : (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/GUIicon/profile_defalut_icon.svg'
+                      }
+                    />
+                  )
+                }
+              />
               <Grid margin='0 0 0 5px'>
                 <div
                   style={{
@@ -87,10 +115,12 @@ const Comment = (props) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <div style={{ fontSize: '12px' }}>{comment.nickname}</div>
+                  <div style={{ fontSize: '12px', color: '#FE7968' }}>
+                    {comment.nickname}
+                  </div>
                   <div
                     style={{
-                      display: 'flex',
+                      // display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-around',
                     }}
@@ -100,17 +130,29 @@ const Comment = (props) => {
                     </div>
                     {comment.nickname === userInfo.nickname ? (
                       <div
-                        style={{ fontSize: '12px', margin: '0 8px' }}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'flex-end',
+                          position: 'relative',
+                          top: '7px',
+                          margin: '0 0 -30px 0',
+                        }}
                         onClick={onModal}
                       >
-                        💛
+                        <img
+                          src={
+                            process.env.PUBLIC_URL +
+                            '/img/icon/setting_vertical_icon.svg'
+                          }
+                          style={{ width: '10px', height: '10px' }}
+                        />
                       </div>
                     ) : null}
                   </div>
                 </div>
                 <div
                   style={{
-                    width: '230px',
+                    width: '220px',
                     paddingBottom: '8px',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -138,6 +180,7 @@ const Comment = (props) => {
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',
               boxSizing: 'border-box',
+              zIndex: '10',
             }}
           >
             <Grid display='flex' justifyContent='center' alignItems='center'>

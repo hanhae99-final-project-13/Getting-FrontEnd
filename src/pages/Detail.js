@@ -10,8 +10,6 @@ import { Grid, Image, Text } from '../elements/index';
 import Swal from 'sweetalert2';
 import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -74,7 +72,13 @@ const Detail = (props) => {
 
               {user && user.nickname === post.post.nickname ? (
                 <button style={{ all: 'unset' }} onClick={onModal}>
-                  🛠
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/img/icon/setting_horizontal_icon.svg'
+                    }
+                    style={{ width: '12px', height: '12px' }}
+                  />
                 </button>
               ) : null}
             </Grid>
@@ -82,22 +86,39 @@ const Detail = (props) => {
               height='0'
               position='relative'
               top='20px'
-              right='5px'
+              right='10px'
               display='flex'
-              flexDirection='row-reverse'>
+              flexDirection='row-reverse'
+            >
               <button
                 style={{ all: 'unset' }}
                 onClick={() => {
                   // wish();
                   dispatch(postActions.heartToAxios({ postId: postId }));
-                }}>
-                {post.post.heart === true ? '🔴' : '⚪'}
+                }}
+              >
+                {post.post.heart === true ? (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                    }
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                ) : (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
+                    }
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                )}
               </button>
             </Grid>
             <Grid
               display='flex'
               overflowX='auto'
-              justifyContent='space-between'>
+              justifyContent='space-between'
+            >
               {post.post.img &&
                 post.post.img.map((m, i) => {
                   return (
@@ -123,21 +144,27 @@ const Detail = (props) => {
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-            borderRadius='10px'>
+            borderRadius='10px'
+          >
             <Grid
               display='flex'
               margin='10px 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
-                견종
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  견종
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.breed.split('[개]').reverse()[0]}
                 </span>
               </Grid>
 
               <Grid width='50%'>
-                성별
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  성별
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
               </Grid>
             </Grid>
@@ -146,16 +173,21 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
-                체중
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  체중
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.weight} kg
                 </span>
               </Grid>
 
               <Grid width='50%'>
-                나이
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  나이
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.age} 년생
                 </span>
@@ -166,9 +198,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                발견 장소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  발견 장소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.lostLocation}
                 </span>
@@ -179,9 +214,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                보호 장소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  보호 장소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.ownerType}
                 </span>
@@ -192,9 +230,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                주소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  주소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.address}
                 </span>
@@ -205,9 +246,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                출처
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  출처
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
               </Grid>
             </Grid>
@@ -215,17 +259,17 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
-              <Grid>
-                웹사이트
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
+              <Grid display='flex' justifyContent='space-between'>
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  웹사이트
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  <FontAwesomeIcon
-                    icon={faLink}
-                    color='black'
-                    fontSize='1x'
-                    onClick={() =>
-                      window.open(`${post.post.url}`, '_blank')
-                    }></FontAwesomeIcon>
+                  <img
+                    src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
+                    style={{ width: '15px' }}
+                  />
                 </span>
               </Grid>
             </Grid>
@@ -234,9 +278,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                연락처
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  연락처
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.phone}
                 </span>
@@ -245,7 +292,7 @@ const Detail = (props) => {
 
             <Grid display='flex' margin='5px 0 0 0'>
               <Grid>
-                <p>특이사항</p>
+                <p style={{ fontWeight: '800', color: '#6B6462' }}>특이사항</p>
                 <span>{post.post.extra}</span>
               </Grid>
             </Grid>
@@ -268,7 +315,8 @@ const Detail = (props) => {
                 _onClick={() => {
                   openModal();
                   window.sessionStorage.clear();
-                }}>
+                }}
+              >
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -288,7 +336,8 @@ const Detail = (props) => {
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   eduCheckopenModal();
-                }}>
+                }}
+              >
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -301,7 +350,8 @@ const Detail = (props) => {
           {modalOpen ? (
             <AdoptionNoticeModal
               postId={postId}
-              closeModal={closeModal}></AdoptionNoticeModal>
+              closeModal={closeModal}
+            ></AdoptionNoticeModal>
           ) : (
             ' '
           )}
@@ -327,7 +377,8 @@ const Detail = (props) => {
                 borderTopLeftRadius: '15px',
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
-              }}>
+              }}
+            >
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <button
                   style={{
@@ -342,7 +393,8 @@ const Detail = (props) => {
                   onClick={() => {
                     editMode();
                     // history.push('/editpost');
-                  }}>
+                  }}
+                >
                   수정
                 </button>
               </Grid>
@@ -363,7 +415,8 @@ const Detail = (props) => {
                     if (window.confirm('정말 삭제하시겠습니까?')) {
                       detailDelete();
                     }
-                  }}>
+                  }}
+                >
                   삭제
                 </button>
               </Grid>
@@ -380,7 +433,8 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
-                  }}>
+                  }}
+                >
                   취소
                 </button>
               </Grid>
