@@ -187,7 +187,7 @@ const getMyPostsMW = () => {
       .getMyPosts()
       .then((res) => {
         console.log(res.data);
-        dispatch(getMyPosts(res.data.data.formsInPostsPreview));
+        dispatch(getMyPosts(res.data.data.fosterFormsInMyPosts));
       })
       .catch((err) => {
         console.log(err);

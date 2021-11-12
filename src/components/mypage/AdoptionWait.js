@@ -1,21 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Grid } from '../../elements';
 import Card from '../Card';
 import HaveNothing from '../HaveNothing';
-import { postActions } from '../../redux/modules/post';
 
 const AdoptionWait = (props) => {
-  const dispatch = useDispatch();
   const myApplyList = useSelector((state) => state.apply.myApplyList);
-  console.log(myApplyList);
-
   return (
     <Grid display={props.display}>
       {myApplyList.length !== 0 ? (
         myApplyList.map((p) => {
-          if (p.postPreview.isAdopted !== 'abandoned') {
+          if (p.acceptance !== 'waiting') {
             return;
           }
           return (
@@ -30,9 +26,10 @@ const AdoptionWait = (props) => {
               modifiedAt={p.postPreview.modifiedAt}
               ownerType={p.postPreview.ownerType}
               address={p.postPreview.address}
-              img={p.postPreview.img.split(' ##'[0])}
+              img={p.postPreview.img.split(' ##')[0]}
               postId={p.postPreview.postId}
               isAdopted={p.postPreview.isAdopted}
+              ApplyDt={p.modifiedAt.split('T')[0].replace(/-/g, '.')}
             />
           );
         })

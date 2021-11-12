@@ -16,7 +16,7 @@ const AddPost = () => {
   const [ownerType, setOwnerType] = React.useState('개인');
   const [address, setAddress] = React.useState('');
   const [siAddress, setSiAddress] = React.useState('');
-  const [url, setUrl] = React.useState('');
+  const [url, setUrl] = React.useState(null);
   const [tag, setTag] = React.useState('직접등록');
   const [phone, setPhone] = React.useState('');
   const [extra, setExtra] = React.useState('');

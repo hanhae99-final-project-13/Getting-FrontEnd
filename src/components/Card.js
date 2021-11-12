@@ -21,6 +21,7 @@ const Card = (props) => {
     isAdopted,
     isShowApply,
     index,
+    ApplyDt,
   } = props;
   const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
@@ -72,7 +73,7 @@ const Card = (props) => {
             borderRadius='15px'
           >
             <Text margin='0' size='14px' weight='700'>
-              {isAdopted === 'abandoned' ? '보호중' : '보호종료'}
+              {isAdopted === 'ABANDONED' ? '보호중' : '보호종료'}
             </Text>
           </Grid>
         </Grid>
@@ -94,12 +95,22 @@ const Card = (props) => {
                 width='auto'
                 height='auto'
               >
-                <Image size='12' margin='0' />
-                <Text margin='0' size='12px' weight='700' color='white'>
+                <img
+                  width='10'
+                  height='11'
+                  style={{ background: 'white' }}
+                  src={process.env.PUBLIC_URL + '/img/icon/document_icon.svg'}
+                />
+                <Text
+                  margin='0 6px 0 5px'
+                  size='12px'
+                  weight='700'
+                  color='white'
+                >
                   신청날짜
                 </Text>
                 <Text margin='0' size='12px' weight='700' color='white'>
-                  2021.10.27
+                  {ApplyDt}
                 </Text>
               </Grid>
             </CardCover>
