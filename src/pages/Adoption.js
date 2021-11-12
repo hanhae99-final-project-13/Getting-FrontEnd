@@ -9,6 +9,7 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';

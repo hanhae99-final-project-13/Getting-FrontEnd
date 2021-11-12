@@ -13,27 +13,12 @@ import { postActions } from '../redux/modules/post';
 const Header = (props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
-  const path = useParams();
-  // console.log(path, '경로');
+
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const isToken = localStorage.getItem('USER_TOKEN');
   // const alarmCount = useSelector(
   //   (state) => state.user.user.userInfo?.alarmCount,
   // );
-
-  if (window.location.pathname === '/') return null;
-  if (window.location.pathname === '/login') return null;
-  if (window.location.pathname === '/signup') return null;
-  if (window.location.pathname === '/tutorial') return null;
-  if (window.location.pathname === '/tutorial2') return null;
-  if (window.location.pathname === '/essentialknowledge') return null;
-  if (window.location.pathname === '/fosterknowledge') return null;
-  if (window.location.pathname === '/essentialquiz') return null;
-  if (window.location.pathname === '/essentialquiz2') return null;
-  if (window.location.pathname === '/essentialquiz3') return null;
-  if (window.location.pathname === '/essentialquiz4') return null;
-  if (window.location.pathname === '/essentialquiz5') return null;
-  if (window.location.pathname.includes('/apply')) return null;
 
   return (
     <React.Fragment>
@@ -49,8 +34,7 @@ const Header = (props) => {
         width='375px'
         height='60px'
         margin='0 auto'
-        zIndex='1'
-      >
+        zIndex='1'>
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -62,8 +46,7 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}
-          >
+            }}>
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -74,8 +57,7 @@ const Header = (props) => {
           justifyContent='center'
           _onClick={() => {
             histroy.push('/main');
-          }}
-        >
+          }}>
           <img
             width='50'
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
@@ -85,8 +67,7 @@ const Header = (props) => {
           display='flex'
           alignItems='center'
           justifyContent='flex-end'
-          width='375px'
-        ></Grid>
+          width='375px'></Grid>
         {/* {isLogin ? (
           <Grid
             display='flex'
