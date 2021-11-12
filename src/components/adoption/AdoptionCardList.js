@@ -19,13 +19,13 @@ const AdoptionCardList = () => {
         display='flex'
         justifyContent='space-around'
         flexWrap='wrap'
-        margin='20px 0 0 0'
+        margin='45px 0 0 0'
       >
         {postList &&
           postList.map((p) => {
             return (
               <AdoptionCard
-                margin='0 9.5px 20px 0'
+                margin='0 9.5px 53px 0'
                 key={p.postId}
                 breed={p.breed}
                 sex={p.sex}

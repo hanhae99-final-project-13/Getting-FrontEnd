@@ -39,7 +39,7 @@ const Card = (props) => {
       <Grid
         position='relative'
         width={width ? width : '180px'}
-        padding='1rem'
+        padding='12px 10px'
         bg='white'
         borderRadius='10px'
         margin={margin}
@@ -48,7 +48,8 @@ const Card = (props) => {
       >
         <Grid
           position='absolute'
-          top='-41px'
+          top='-29px'
+          left='0'
           display='flex'
           width='auto'
           height='auto'
@@ -57,22 +58,22 @@ const Card = (props) => {
             width='auto'
             height='auto'
             margin='0 4px 0 0'
-            padding='7px 16px'
+            padding='4px 9px'
             boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
             borderRadius='15px'
           >
-            <Text margin='0' size='14px' weight='700'>
+            <Text margin='0' size='12px' weight='700'>
               {ownerType ? ownerType : '임시보호중'}
             </Text>
           </Grid>
           <Grid
             width='auto'
             height='auto'
-            padding='7px 16px'
+            padding='4px 9px'
             boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
             borderRadius='15px'
           >
-            <Text margin='0' size='14px' weight='700'>
+            <Text margin='0' size='12px' weight='700'>
               {isAdopted === 'ABANDONED' ? '보호중' : '보호종료'}
             </Text>
           </Grid>
@@ -126,19 +127,16 @@ const Card = (props) => {
             <Text margin='0 5px 0 0' size='14px' weight='800'>
               {breed ? breed.split('[개]').reverse()[0] : ''}
             </Text>
-            <img
-              width='9'
-              height='15'
-              src={
-                sex === 'M'
-                  ? process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
-                  : process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
-              }
-            />
           </Grid>
-          <Text margin='0' size='14px' weight='700'>
-            {age}년생
-          </Text>
+          <img
+            width='9'
+            height='15'
+            src={
+              sex === 'M'
+                ? process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
+                : process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
+            }
+          />
         </Grid>
         <Grid
           display='flex'
@@ -146,9 +144,14 @@ const Card = (props) => {
           alignItems='center'
           width='auto'
         >
-          <Grid display='flex' alignItems='center' width='auto'>
+          <Grid
+            display='flex'
+            alignItems='center'
+            width='auto'
+            margin='0 0 6px 0'
+          >
             <img
-              width='12'
+              width='10'
               height='12'
               src={process.env.PUBLIC_URL + '/img/icon/clock_icon.svg'}
             />
@@ -158,14 +161,14 @@ const Card = (props) => {
                 : createdAt}{' '}
             </ElP>
           </Grid>
-          <Grid display='flex' alignItems='center' width='auto'>
-            <img
-              width='9'
-              height='12'
-              src={process.env.PUBLIC_URL + '/img/icon/location_icon.svg'}
-            />
-            <ElP>{address}</ElP>
-          </Grid>
+        </Grid>
+        <Grid display='flex' alignItems='center' width='auto'>
+          <img
+            width='10'
+            height='12'
+            src={process.env.PUBLIC_URL + '/img/icon/location_icon.svg'}
+          />
+          <ElP>{address}</ElP>
         </Grid>
       </Grid>
       {isShowApply && <ReceivedAdoptionList index={index} />}

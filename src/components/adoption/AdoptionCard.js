@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Grid, Image, Text } from '../../elements';
+import { Grid, Text } from '../../elements';
 import { postActions } from '../../redux/modules/post';
 
 const AdoptionCard = (props) => {
@@ -31,33 +31,75 @@ const AdoptionCard = (props) => {
     <Grid
       position='relative'
       width='36%'
-      padding='1rem'
+      padding='12px 8px'
       borderRadius='10px'
       margin={margin}
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
       _onClick={goDetail}
     >
-      <Tag>
-        <ElP>{ownerType}</ElP>
-      </Tag>
-      <Tag2>
-        <ElP>{isAdopted === 'ABANDONED' ? '보호중' : '입양 완료'}</ElP>
-      </Tag2>
+      <Grid
+        position='absolute'
+        top='-25px'
+        left='0px'
+        display='flex'
+        width='auto'
+        height='auto'
+      >
+        <Tag>
+          <ElP>{ownerType.includes('보호소') ? '보호소' : ownerType}</ElP>
+        </Tag>
+        <Tag2>
+          <ElP>{isAdopted === 'ABANDONED' ? '보호중' : '입양 완료'}</ElP>
+        </Tag2>
+      </Grid>
       <ImageBox img={img} />
-      <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-        <Text margin='0' size='14px' bold>
+      <Grid
+        display='flex'
+        justifyContent='space-between'
+        width='auto'
+        margin='5px 0 5px 0'
+      >
+        <Text margin='0' size='14px' weight='800 '>
           {breed.split('[개]').reverse()[0]}
         </Text>
-        <Image size='8' />
+        {sex === 'F' ? (
+          <img
+            width='10'
+            height='12'
+            src={process.env.PUBLIC_URL + '/img/icon/female_icon.svg'}
+          />
+        ) : (
+          <img
+            width='10'
+            height='12'
+            src={process.env.PUBLIC_URL + '/img/icon/male_icon.svg'}
+          />
+        )}
       </Grid>
-      <Grid display='flex' alignItems='center' width='auto' height='auto'>
-        <Image size='8' margin='0' />
-        <ElP>
+      <Grid
+        display='flex'
+        alignItems='center'
+        margin='0 0 6px 0'
+        width='auto'
+        height='auto'
+      >
+        <img
+          width='10'
+          src={process.env.PUBLIC_URL + '/img/icon/clock_icon.svg'}
+        />
+        <Text margin='0 0 0 5px' size='10px'>
           {modifiedAt ? modifiedAt.split('T')[0].replace(/-/g, '.') : createAt}{' '}
           &nbsp;&nbsp;
-        </ElP>
-        <Image size='8' margin='0' />
-        <ElP>{address}</ElP>
+        </Text>
+      </Grid>
+      <Grid display='flex' alignItems='center' width='auto'>
+        <img
+          width='10'
+          src={process.env.PUBLIC_URL + '/img/icon/location_icon.svg'}
+        />
+        <Text margin='0 0 0 5px' size='10px'>
+          {address}
+        </Text>
       </Grid>
     </Grid>
   );
@@ -75,9 +117,6 @@ const ElP = styled.p`
 `;
 
 const Tag = styled.div`
-  position: absolute;
-  top: -10px;
-  left: 0;
   height: auto;
   padding: 3px 6px;
   background-color: white;
@@ -86,9 +125,6 @@ const Tag = styled.div`
 `;
 
 const Tag2 = styled.div`
-  position: absolute;
-  top: -10px;
-  left: 100px;
   height: auto;
   padding: 3px 6px;
   background-color: white;
