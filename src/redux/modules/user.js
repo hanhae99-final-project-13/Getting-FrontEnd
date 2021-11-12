@@ -94,7 +94,8 @@ const GetUserDB = (user) => {
         };
 
         dispatch(SetUser(user));
-        history.push('/main');
+        window.location.href = '/main';
+        // history.push('/main');
         // window.location.reload();
       })
       .catch((error) => {

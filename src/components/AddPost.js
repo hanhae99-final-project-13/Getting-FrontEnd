@@ -5,8 +5,8 @@ import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
 import Upload from './Upload';
-import Footer from './Footer';
 import Header from './Header';
+import { history } from '../redux/configureStore';
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
@@ -87,7 +87,27 @@ const AddPost = () => {
   };
   return (
     <React.Fragment>
+      <Header></Header>
       <Grid width='375px' margin='0 auto '>
+        <Grid
+          position='sticky'
+          top='0'
+          margin='-60px auto 0 0'
+          left='0px'
+          width='100px'
+          height='60px'
+          bg='white'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          color='#6B6462'
+          zIndex='1000'
+          _onClick={() => {
+            history.goBack();
+          }}
+        >
+          닫기
+        </Grid>
         <Grid
           position='sticky'
           top='0'
@@ -101,7 +121,8 @@ const AddPost = () => {
           justifyContent='center'
           color='#FE7968'
           zIndex='1000'
-          _onClick={addPostCard}>
+          _onClick={addPostCard}
+        >
           등록완료
         </Grid>
         <Grid padding='0 35px' boxSizing='border-box'>
@@ -113,7 +134,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='견종'
               value={breed}
@@ -132,7 +154,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <Grid display='flex' justifyContent='space-between'>
               <input
                 type='number'
@@ -171,7 +194,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='보호장소'
               value={ownerType}
@@ -207,7 +231,8 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='정보출처'
               value={tag}

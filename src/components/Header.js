@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faBell } from '@fortawesome/free-solid-svg-icons';
 // import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
@@ -19,7 +18,6 @@ const Header = (props) => {
   // const alarmCount = useSelector(
   //   (state) => state.user.user.userInfo?.alarmCount,
   // );
-
   return (
     <React.Fragment>
       <Grid
@@ -34,10 +32,10 @@ const Header = (props) => {
         width='375px'
         height='60px'
         margin='0 auto'
-        zIndex='1'>
+        zIndex='1'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
-            borderRadius='3px'
             width='45px'
             height='45px'
             bg='white'
@@ -46,8 +44,12 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}>
-            <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
+            }}
+          >
+            <img
+              style={{ width: '10px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
+            />
           </Grid>
         </Grid>
 
@@ -57,7 +59,8 @@ const Header = (props) => {
           justifyContent='center'
           _onClick={() => {
             histroy.push('/main');
-          }}>
+          }}
+        >
           <img
             width='50'
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
@@ -67,7 +70,8 @@ const Header = (props) => {
           display='flex'
           alignItems='center'
           justifyContent='flex-end'
-          width='375px'></Grid>
+          width='375px'
+        ></Grid>
         {/* {isLogin ? (
           <Grid
             display='flex'
