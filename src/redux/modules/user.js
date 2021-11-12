@@ -290,7 +290,7 @@ export default handleActions(
           alarmContent: [],
           userId: null,
         };
-        draft.user.isLogin = null;
+        draft.user.isLogin = false;
       }),
     [UPDATE_USERINFO]: (state, action) =>
       produce(state, (draft) => {

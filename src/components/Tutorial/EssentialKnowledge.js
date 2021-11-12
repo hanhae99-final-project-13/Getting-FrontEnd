@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Text, Image } from '../../elements';
-import EssentialComponent from './EssentialComponent';
+import { ErrorAlert } from '../../shared/Alerts';
 import EssentialKnowledgeData from '../Data/EssentialKnowledgeData';
 import { history } from '../../redux/configureStore';
 
 const EssentialKnowledge = () => {
   const data = EssentialKnowledgeData;
+  const token = localStorage.getItem('USER_TOKEN');
 
   return (
     <>
@@ -61,6 +62,11 @@ const EssentialKnowledge = () => {
           left='0'
           right='0'
           _onClick={() => {
+            if (!token) {
+              ErrorAlert('로그인 후 진행해주세요!');
+              return;
+            }
+
             history.push('/essentialquiz');
           }}
           margin='0 auto'
