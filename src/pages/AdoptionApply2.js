@@ -20,6 +20,9 @@ const AdoptionApply2 = (props) => {
   // console.log(postId, '입양신청서2번 id');
   const [openApplyAlert, setOpenApplyAlert] = useState(false);
 
+  const [onMouse, setOnmouset] = useState(false);
+  console.log(onMouse);
+
   const dispatch = useDispatch();
   const applyData = useSelector((state) => state.apply);
   // console.log(applyData, '입양신청 1번페이지 정보');
@@ -82,11 +85,25 @@ const AdoptionApply2 = (props) => {
   };
 
   return (
-    <Grid width='375px' margin='80px auto 0'>
+    <Grid width='375px' margin='0 auto'>
+      <Grid
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='relative'
+        top='65px'
+        left='36px'
+        width='25px'
+        height='25px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+        </Grid>
+      </Grid>
+
       <Grid
         boxSizing='border-box'
         width='375px'
-        margin='20px auto 0'
+        margin='100px auto 0'
         padding='0 35px'>
         <ApplyProgressBar />
         <Grid>
@@ -234,11 +251,8 @@ const AdoptionApply2 = (props) => {
             </Grid>
           </Grid>
 
-          <Grid
-            boxSizing='border-box'
-            height='370px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
-            <Grid margin='18px 0 21px 0 ' height='auto'>
+          <Grid boxSizing='border-box' height='330px'>
+            <Grid margin='18px 0 18px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
                 사진 찍어 첨부해주세요.
@@ -250,7 +264,7 @@ const AdoptionApply2 = (props) => {
           <Grid height='auto' margin='23px auto'>
             <Grid
               margin='auto'
-              bg='#FF6666'
+              bg='#FE7968'
               width='157px'
               height='52px'
               borderRadius='26px'
@@ -259,8 +273,8 @@ const AdoptionApply2 = (props) => {
               alignItems='center'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
               _onClick={applyClick}>
-              <Text margin='0' color='white'>
-                입양신청하기
+              <Text margin='0' color='white' weight='800'>
+                입양 신청 보내기
               </Text>
             </Grid>
           </Grid>
@@ -283,13 +297,11 @@ const AdoptionApply2 = (props) => {
           flexDirection='column'
           alignItems='center'
           zIndex='9999'>
-          <Grid
-            margin='40.25px 0 0 0'
-            width='60px'
-            height='120px'
-            bgisize='cover'
-            bgiposition='center'
-            bgi={dokking_logo}></Grid>
+          <Grid width='62px' height='85px' margin='24px auto 8px '>
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+            />
+          </Grid>
           <Text
             margin='14.25px 0 0 0'
             align='center'
@@ -308,7 +320,7 @@ const AdoptionApply2 = (props) => {
               weight='600'
               height='40px'
               padding='12px 0px'
-              bg='#FE7968'
+              bg='#FFD3D3'
               border='none'
               border_radius='34px'
               onClick={() => {
@@ -331,7 +343,7 @@ const AdoptionApply2 = (props) => {
                 realApply();
                 setOpenApplyAlert(!openApplyAlert);
               }}>
-              확인했습니다.
+              확인했습니다
             </Button>
           </Grid>
         </Grid>

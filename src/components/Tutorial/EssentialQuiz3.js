@@ -22,39 +22,58 @@ const EssentialQuiz3 = (props) => {
   console.log(answer);
   window.sessionStorage.setItem('answer3', answer.answer3);
   return (
-    <Grid width='375px' margin='70px auto'>
-      <QuizProgressBar></QuizProgressBar>
-      <Text
-        width='300px'
-        margin='37px 0 0 0'
-        weight='700'
-        padding='0 35px'
-        size='18px'>
+    <Grid width='375px' margin='0 auto'>
+      <Grid
+        zIndex='9999'
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='sticky'
+        width='20px' //width, height를 안주면 sticky left가 안먹음..
+        height='20px'
+        top='65px'
+        left='36px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+        </Grid>
+      </Grid>
+
+      <Grid position='fixed' top='67px' left='0' right='0'>
+        <Text size='12px' margin='0' weight='700' align='center'>
+          2문제 남았어요
+        </Text>
+      </Grid>
+
+      {/* 프로그래스바 */}
+      <Grid margin='88px auto 0 '>
+        <QuizProgressBar></QuizProgressBar>
+      </Grid>
+
+      {/* 문제 */}
+      <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
         Q3.
       </Text>
-      <Text width='300px' margin='12px 0 0 0' padding='0 35px' size='18px'>
+      <Text margin='20px 0 0 0' padding='0 35px' size='16px' line_height='24px'>
         입양이 확정되면 아이의
-        <span style={{ weight: '800', fontSize: '18px' }}>
-          내장칩 삽입
-        </span>은 <br />
-        필수이며,{' '}
-        <span style={{ weight: '800', fontSize: '18px' }}>
+        <span style={{ weight: '700', fontSize: '16px' }}> 내장칩 삽입은</span>
+        <br />
+        <span style={{ weight: '700', fontSize: '16px' }}>필수이며, </span>
+        <span style={{ weight: '700', fontSize: '16px' }}>
           내장칩 보호자 등록변경
         </span>
         은
         <br />
-        <span style={{ weight: '800', fontSize: '18px' }}>
-          입양일 기준 6개월 이후에 변경
+        입양일 기준&nbsp;
+        <span style={{ weight: '700', fontSize: '16px' }}>
+          6개월 이후에 변경
         </span>
-        해드립
-        <br />
-        니다.
+        해드립니다.
       </Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='42px 0 0 0'
+          margin='31px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
@@ -63,12 +82,11 @@ const EssentialQuiz3 = (props) => {
             id='3true'
             name='answer3'
             value='true'
-            onClick={handleClickRadioButton}
-            // checked={answer.answer1 === 'true'}
-          ></input>
+            onClick={handleClickRadioButton}></input>
           <label
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='3true'>
+            {/* 빨간색 체크 */}
             <Grid
               position='absolute'
               left='38px'
@@ -129,30 +147,32 @@ const EssentialQuiz3 = (props) => {
         </Grid>
       </form>
 
-      <Grid width='300px' margin='281px 0 0 0' padding='0 35px'>
-        <Grid
-          _onClick={() => {
-            if (answer.answer3 === '') {
-              WarningAlert('정답을 선택해주세요!');
-              return;
-            } else {
-              dispatch(userAction.addQuizAnswer(answer));
-              history.push('/essentialquiz4');
-            }
-          }}
-          margin=' 0 auto'
-          bg='#FF6666'
-          width='109px'
-          height='52px'
-          borderRadius='26px'
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-          <Text color='white' margin='0'>
-            다음퀴즈
-          </Text>
-        </Grid>
+      <Grid
+        position='fixed'
+        top='650px'
+        left='0px'
+        right='0px'
+        margin='0 auto'
+        _onClick={() => {
+          if (answer.answer3 === '') {
+            WarningAlert('정답을 선택해주세요!');
+            return;
+          } else {
+            dispatch(userAction.addQuizAnswer(answer));
+            history.push('/essentialquiz4');
+          }
+        }}
+        bg='#FFBE5B'
+        width='109px'
+        height='52px'
+        borderRadius='26px'
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
+        <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
+          다음퀴즈
+        </Text>
       </Grid>
     </Grid>
   );

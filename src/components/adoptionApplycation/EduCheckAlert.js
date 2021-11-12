@@ -25,13 +25,11 @@ const EduCheckAlert = (props) => {
       flexDirection='column'
       alignItems='center'
       zIndex='9999'>
-      <Grid
-        margin='40.25px 0 0 0'
-        width='60px'
-        height='120px'
-        bgisize='cover'
-        bgiposition='center'
-        bgi={dokking_logo}></Grid>
+      <Grid margin='25px 0 0 0' width='60px' height='120px'>
+        <img
+          src={process.env.PUBLIC_URL + '/img/GUIicon/warning_dog_icon.svg'}
+        />
+      </Grid>
       <Text
         margin='14.25px 0 0 0'
         align='center'
@@ -41,7 +39,7 @@ const EduCheckAlert = (props) => {
         <br />
         수료하셔야합니다!
         <br />
-        튜토리얼 페이지로 이동합니다.
+        튜토리얼 페이지로 이동합니다
       </Text>
       <Grid display='flex' justifyContent='center'>
         <Button

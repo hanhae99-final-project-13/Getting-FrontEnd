@@ -28,8 +28,8 @@ const Timer = (props) => {
 
   return (
     <Grid display='flex' alignItems='center'>
-      <FontAwesomeIcon icon={faStopwatch} color='#FF6666' fontSize='1x' />
-      <Text size='14px' weight='800' color='#FF6666' margin='1px 0 0 6px'>
+      <FontAwesomeIcon icon={faStopwatch} color='#FE7968' fontSize='1x' />
+      <Text size='14px' weight='800' color='#FE7968' margin='1px 0 0 6px'>
         {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
       </Text>
     </Grid>

@@ -13,15 +13,10 @@ const AdoptionWishedCardList = (props) => {
   };
   return (
     <Grid width='calc(100% + 1rem)'>
-      <Grid
-        display='flex'
-        justifyContent='space-between'
-        width='calc(100% - 1rem)'
-      >
+      <Grid display='flex' width='calc(100% - 1rem)'>
         <Title>
-          저에게 <span>관심</span>있으시죠?
+          저에게 <span>관심</span>있으시죠?😊
         </Title>
-        <Image size='12' />
       </Grid>
       <SliderBox>
         <InnerSlider width={wishPostList.length}>
@@ -57,7 +52,7 @@ const Title = styled.p`
 `;
 
 const SliderBox = styled.div`
-  height: 220px;
+  height: 260px;
   margin-left: -35px;
   margin-top: -1rem;
   overflow: visible;
@@ -73,7 +68,7 @@ const InnerSlider = styled.div`
   justify-content: space-between;
   width: ${(props) => props.width * 63}%;
   padding-left: 1rem;
-  padding-top: 1rem;
+  padding-top: 50px;
 `;
 
 export default AdoptionWishedCardList;

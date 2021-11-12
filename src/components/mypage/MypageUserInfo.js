@@ -23,14 +23,29 @@ const MypageUserInfo = (props) => {
 
   return (
     <Container>
-      <Grid display='flex' width='auto' height='auto'>
+      <Grid
+        position='absolute'
+        top='-98px'
+        left='36px'
+        width='auto'
+        height='auto'
+      >
         <Image
           margin='0'
           size='119'
+          bg='white'
           backgroundPosition='center'
           src={userInfo.userImgUrl}
           boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         />
+      </Grid>
+      <Grid
+        position='absolute'
+        top='-19px'
+        left='120px'
+        width='auto'
+        height='auto'
+      >
         <MypageImageUpload />
       </Grid>
       <Grid display='flex' alignItems='center' width='auto' height='auto'>
@@ -77,11 +92,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin: 0 0 18px -36px;
-  width: calc(100% + 72px);
-  height: 202px;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+  height: 96px;
+  border-radius: 40px 40px 0 0;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
 `;
 

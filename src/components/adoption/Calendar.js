@@ -34,12 +34,12 @@ const Calendar = (props) => {
 
 const ElButton = styled.button`
   margin: 0;
-  padding: 8px 6px;
+  padding: 6px 12px;
   border: none;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: white;
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 const ElP = styled.p`

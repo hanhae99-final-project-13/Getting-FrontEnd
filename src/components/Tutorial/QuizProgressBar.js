@@ -8,7 +8,7 @@ const QuizProgressBar = () => {
   // // console.log(length);
   // let count = 1;
   const progressLength = window.sessionStorage.length;
-  console.log(progressLength);
+  // console.log(progressLength);
 
   // length.map((i) => {
   //   if (i !== '') {
@@ -18,10 +18,10 @@ const QuizProgressBar = () => {
 
   return (
     <Grid
-      width='300px'
+      width='305px'
       height='5px'
       bg='#EEEEEE'
-      margin='10px auto 0'
+      margin='0 auto'
       borderRadius='3px'>
       <Bar width={(progressLength / totalQuizLength.length) * 100 + '%'}></Bar>
     </Grid>

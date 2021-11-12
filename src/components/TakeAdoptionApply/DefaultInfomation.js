@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Grid, Text } from '../../elements';
-import Slider from '../../components/Slider';
 
 const DefaultInfomation = (props) => {
-  const [currentPet, setCurrentPet] = React.useState('있음');
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
   const [showDefaultInfo, setShowDefaultInfo] = React.useState(false);
-
-  // 반려동물 체크함수
-  const [click, setClick] = useState(true);
-  const handleCurrentPet = () => {
-    setClick(!click);
-    if (click === true) {
-      setCurrentPet('없음');
-    } else setCurrentPet('있음');
-  };
-
-  const showDefaultInfoToggle = () => {
-    setShowDefaultInfo(!showDefaultInfo);
-  };
 
   React.useEffect(() => {
     return () => setShowDefaultInfo(false);
@@ -33,14 +19,21 @@ const DefaultInfomation = (props) => {
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
       >
         <Grid
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           width='auto'
           height='auto'
-          bg='95% 50% / contain no-repeat url(https://img.favpng.com/22/6/16/menu-arrow-icon-png-favpng-2GXTGtbaeyDpB41Kwnus43bEC_t.jpg) '
-          _onClick={showDefaultInfoToggle}
+          _onClick={() => setShowDefaultInfo(!showDefaultInfo)}
         >
           <Text margin='0' weight='700' size='20px'>
             기본 정보
           </Text>
+          <img
+            width='16px'
+            height='12px'
+            src={process.env.PUBLIC_URL + '/img/icon/downarrow.svg'}
+          />
         </Grid>
       </Grid>
       {showDefaultInfo ? (
@@ -53,9 +46,9 @@ const DefaultInfomation = (props) => {
               border='none'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
               padding='16px 0px'
-              color='#DFDFDF'
+              weight='700'
             >
-              이름
+              {detailFosterForm.name}
             </Text>
             <Text
               margin='0'
@@ -64,9 +57,9 @@ const DefaultInfomation = (props) => {
               border='none'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
               padding='16px 0px'
-              color='#DFDFDF'
+              weight='700'
             >
-              직업
+              {detailFosterForm.job}
             </Text>
             <Text
               margin='0'
@@ -75,9 +68,10 @@ const DefaultInfomation = (props) => {
               border='none'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
               padding='16px 0px'
-              color='#DFDFDF'
+              weight='700'
             >
-              나이/성별
+              {detailFosterForm.fosterAge}/
+              {detailFosterForm.gender === 'F' ? '여자' : '남자'}
             </Text>
             <Text
               margin='0'
@@ -86,9 +80,9 @@ const DefaultInfomation = (props) => {
               border='none'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
               padding='16px 0px'
-              color='#DFDFDF'
+              weight='700'
             >
-              거주지
+              {detailFosterForm.fosterAddress}
             </Text>
 
             <Text
@@ -98,26 +92,37 @@ const DefaultInfomation = (props) => {
               border='none'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
               padding='16px 0px'
-              color='#DFDFDF'
+              weight='700'
             >
-              가족 구성원
+              {detailFosterForm.family}명
             </Text>
 
             <Grid
               display='flex'
               justifyContent='space-between'
+              alignItems='center'
               padding='16px 15px 16px 0'
               boxSizing='border-box'
               height='49px'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             >
-              <Text margin='0' color='#DFDFDF'>
+              <Text margin='0' weight='700'>
                 반려동물 여부
               </Text>
 
-              <Text bold margin='0'>
-                있음
-              </Text>
+              <Grid
+                display='flex'
+                alignItems='center'
+                justifyContent='center'
+                width='70px'
+                height='30px'
+                bg='#f66'
+                borderRadius='15px'
+              >
+                <Text color='white' weight='700'>
+                  {detailFosterForm.currentPet}
+                </Text>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

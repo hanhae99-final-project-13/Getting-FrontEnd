@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { Grid } from '../../elements';
+import { Grid, Text } from '../../elements';
 import { Calendar } from '.';
 import SearchAddressSelector from './SearchAddressSelector';
 import { postActions } from '../../redux/modules/post';
@@ -28,10 +28,10 @@ const AdoptionModal = (props) => {
   const toggleOwnerType = () => {
     if (ownerType === '개인') {
       setOwnerType('보호소');
-      document.querySelector('#toggleCircle').style.marginLeft = '27px';
+      document.querySelector('#toggleCircle').style.marginLeft = '36px';
     } else {
       setOwnerType('개인');
-      document.querySelector('#toggleCircle').style.marginLeft = '0';
+      document.querySelector('#toggleCircle').style.marginLeft = '-1.5px';
     }
   };
 
@@ -85,44 +85,98 @@ const AdoptionModal = (props) => {
         position='absolute'
         top='0'
         left='0'
-        width='100%'
-        height='100%'
-        bg='rgba(0, 0, 0, 0.7)'
+        bg='rgba(30, 30, 30, 0.8)'
         _onClick={hideModal}
       ></Grid>
-      <ModalBox>
-        <p>검색 조건</p>
-        <hr />
-        <Grid>
-          <Grid display='flex' width='auto' height='auto'>
+      <Grid
+        position='relative'
+        padding='20px 0'
+        width='305px'
+        height='361px'
+        bg='white'
+        borderRadius='16px'
+        boxSizing='border-box'
+      >
+        <Grid
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          margin='0 0 20px 0'
+          height='auto'
+        >
+          <Text margin='0' size='16px' weight='700'>
+            검색 조건
+          </Text>
+        </Grid>
+        <Grid
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='space-evenly'
+          height='calc(100% - 40px)'
+          borderTop='0.5px solid #e7e5e5'
+        >
+          <Grid
+            display='flex'
+            justifyContent='flex-start'
+            margin='0 0 0 24px'
+            height='auto'
+          >
             {termCheck ? (
               <CheckBoxOn onClick={() => setTermCheck(!termCheck)} />
             ) : (
               <CheckBoxOff onClick={() => setTermCheck(!termCheck)} />
             )}
-            <span>기간</span>
+            <Text margin='0 0 0 10px' size='14px' weight='700'>
+              기간
+            </Text>
           </Grid>
           <Grid
             display='flex'
-            justifyContent='space-around'
+            justifyContent='space-evenly'
             alignItems='center'
             height='auto'
           >
-            <Calendar changeDate={changeStartDate} termCheck={termCheck} />
-            <span className='between'>~</span>
-            <Calendar
-              changeDate={changeEndDate}
-              startDate={startDate}
-              termCheck={termCheck}
-            />
+            <Grid display='flex' alignItems='center' width='auto'>
+              <Calendar changeDate={changeStartDate} termCheck={termCheck} />
+              <img
+                width='18'
+                height='19'
+                style={{ marginLeft: '8px' }}
+                src={process.env.PUBLIC_URL + '/img/icon/calender_icon.svg'}
+              />
+            </Grid>
+            <Text margin='0' weight='700' color='#6b6462'>
+              ~
+            </Text>
+            <Grid display='flex' alignItems='center' width='auto'>
+              <Calendar
+                changeDate={changeEndDate}
+                startDate={startDate}
+                termCheck={termCheck}
+              />
+              <img
+                width='18'
+                height='19'
+                style={{ marginLeft: '8px' }}
+                src={process.env.PUBLIC_URL + '/img/icon/calender_icon.svg'}
+              />
+            </Grid>
           </Grid>
-          <Grid display='flex' width='auto' height='auto'>
+          <Grid
+            display='flex'
+            justifyContent='flex-start'
+            margin='0 0 0 24px'
+            height='auto'
+          >
             {ownerTypeCheck ? (
               <CheckBoxOn onClick={() => setOwnerTypeCheck(!ownerTypeCheck)} />
             ) : (
               <CheckBoxOff onClick={() => setOwnerTypeCheck(!ownerTypeCheck)} />
             )}
-            <span>장소</span>
+            <Text margin='0 0 0 10px' size='14px' weight='700'>
+              장소
+            </Text>
           </Grid>
           <Grid
             display='flex'
@@ -131,7 +185,9 @@ const AdoptionModal = (props) => {
             width='auto'
             height='auto'
           >
-            <p className='toggleText'>개인</p>
+            <Text margin='0' size='12px' weight='700'>
+              개인
+            </Text>
             <Grid
               position='relative'
               display='flex'
@@ -144,88 +200,61 @@ const AdoptionModal = (props) => {
                 <div id='toggleCircle' />
               </ToggleButton>
             </Grid>
-            <p className='toggleText'>보호소</p>
+            <Text margin='0' size='12px' weight='700'>
+              보호소
+            </Text>
           </Grid>
-          <Grid display='flex' width='auto' height='auto'>
+          <Grid
+            display='flex'
+            justifyContent='flex-start'
+            margin='0 0 0 24px'
+            height='auto'
+          >
             {locationCheck ? (
               <CheckBoxOn onClick={() => setLocationCheck(!locationCheck)} />
             ) : (
               <CheckBoxOff onClick={() => setLocationCheck(!locationCheck)} />
             )}
-            <span>지역</span>
+            <Text margin='0 0 0 10px' size='14px' weight='700'>
+              지역
+            </Text>
           </Grid>
-          <Grid width='auto' height='auto'></Grid>
           <SearchAddressSelector
             setCity={setCity}
             setDistrict={setDistrict}
             locationCheck={locationCheck}
           />
+          <Grid
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+            width='128px'
+            height='40px'
+            bg='#fe7968'
+            borderRadius='26px'
+            _onClick={doSearch}
+          >
+            <Text margin='0' color='white' size='16px' weight='800'>
+              찾아보기
+            </Text>
+          </Grid>
         </Grid>
-        <button id='submit' onClick={doSearch}>
-          찾아보기
-        </button>
-      </ModalBox>
+      </Grid>
     </Grid>
   );
 };
 
-const ModalBox = styled.div`
-  position: relative;
-  width: 169px;
-  height: 201px;
-  padding: 12px;
-  border-radius: 20px;
-  background-color: white;
-  z-index: 100;
-
-  p {
-    height: auto;
-    margin: 0 0 12px 0;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-  }
-  p.toggleText {
-    margin: 0;
-  }
-  hr {
-    border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.4);
-  }
-  span {
-    height: auto;
-    font-size: 7px;
-  }
-  span.between {
-    color: #a7a7a7;
-  }
-
-  button#submit {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 42px;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    color: white;
-    border: none;
-    background-color: #504b4b;
-    font-size: 12px;
-  }
-`;
-
 const ToggleButton = styled.div`
   margin: 0 10px;
-  width: 50px;
-  height: 23px;
-  background-color: #ececec;
+  width: 59px;
+  height: 24px;
+  background-color: #fe7968;
   border-radius: 50px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   div#toggleCircle {
-    width: 23px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
     background-color: #fff;
     border-radius: 50px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -235,20 +264,19 @@ const ToggleButton = styled.div`
 
 const CheckBoxOn = styled.div`
   margin-right: 4px;
-  width: 11px;
-  height: 11px;
-  background: url(https://toppng.com/uploads/preview/checked-checkbox-icon-checkbox-ico-115632629493xkxpf63d8.png)
+  width: 16px;
+  height: 16px;
+  background: url(${process.env.PUBLIC_URL}/img/icon/check_on_icon.svg)
     no-repeat;
-  background-size: cover;
+
   background-position: center;
 `;
 
 const CheckBoxOff = styled.div`
   margin-right: 4px;
-  width: 11px;
-  height: 11px;
-  background: url(http://download.seaicons.com/icons/icons8/windows-8/512/User-Interface-Unchecked-Checkbox-icon.png)
-    no-repeat;
+  width: 16px;
+  height: 16px;
+  background: url(${process.env.PUBLIC_URL}/img/icon/check_icon.svg) no-repeat;
   background-size: cover;
   background-position: center;
 `;
@@ -256,7 +284,7 @@ const CheckBoxOff = styled.div`
 const Cover = styled.div`
   position: absolute;
   top: 0;
-  width: 50px;
+  width: 59px;
   height: 100%;
   background-color: white;
   opacity: 0.6;

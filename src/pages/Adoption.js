@@ -56,7 +56,7 @@ const Adoption = () => {
   }
 
   return (
-    <Grid>
+    <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
       <Grid width='auto' padding='35px' overflow='auto'>
         <Grid>
           <AdoptionWishedCardList />
@@ -80,7 +80,6 @@ const Adoption = () => {
       ) : (
         <InfinityScroll page={searchSetting.page} />
       )}
-      <Footer></Footer>
     </Grid>
   );
 };
@@ -100,7 +99,7 @@ const Tag = styled.button`
 
 const AddButton = styled.button`
   position: fixed;
-  bottom: 10%;
+  bottom: 15%;
   right: 10%;
   width: 50px;
   height: 50px;

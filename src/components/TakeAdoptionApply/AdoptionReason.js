@@ -1,18 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Grid, Text } from '../../elements';
 
 const AdoptionSurvey = () => {
-  const [reason, setReason] = React.useState('');
-  const [showSurvey, setShowSurvey] = React.useState(false);
-
-  const showSurveyToggle = () => {
-    setShowSurvey(!showSurvey);
-  };
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
+  const [showReason, setShowReason] = React.useState(false);
 
   React.useEffect(() => {
-    return () => setShowSurvey(false);
+    return () => setShowReason(false);
   }, []);
 
   return (
@@ -23,17 +20,24 @@ const AdoptionSurvey = () => {
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
       >
         <Grid
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           width='auto'
           height='auto'
-          bg='95% 50% / contain no-repeat url(https://img.favpng.com/22/6/16/menu-arrow-icon-png-favpng-2GXTGtbaeyDpB41Kwnus43bEC_t.jpg) '
-          _onClick={showSurveyToggle}
+          _onClick={() => setShowReason(!showReason)}
         >
           <Text margin='0' weight='700' size='20px'>
             입양 사유
           </Text>
+          <img
+            width='16px'
+            height='12px'
+            src={process.env.PUBLIC_URL + '/img/icon/downarrow.svg'}
+          />
         </Grid>
       </Grid>
-      {showSurvey ? <Textarea>입양사유</Textarea> : ''}
+      {showReason ? <Textarea>{detailFosterForm.reason}</Textarea> : ''}
     </React.Fragment>
   );
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { Grid, Image, Text } from '../../elements';
+import { Grid, Text } from '../../elements';
 import AcceptComplete from './AcceptComplete';
+import { apis } from '../../lib/axios';
+import { history } from '../../redux/configureStore';
 
-const AcceptCheckModal = ({ setShowModal }) => {
+const AcceptCheckModal = ({ setShowModal, fosterFormId }) => {
   const [showAcceptComplete, setShowAcceptComplete] = React.useState(false);
 
   React.useEffect(() => {
@@ -25,8 +27,14 @@ const AcceptCheckModal = ({ setShowModal }) => {
         borderRadius='30px 30px 0 0'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
       >
-        <Image size='50' />
-        <Text>님의 입양신청을 승인합니다</Text>
+        <img
+          src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+          width='62'
+          height='92'
+        />
+        <Text margin='18px 0 26px 0' weight='700'>
+          님의 입양신청을 승인합니다
+        </Text>
         <Grid display='flex' justifyContent='center' height='auto'>
           <Grid
             display='flex'
@@ -51,7 +59,18 @@ const AcceptCheckModal = ({ setShowModal }) => {
             height='40px'
             bg='#FE7968'
             borderRadius='34px'
-            _onClick={() => setShowAcceptComplete(true)}
+            _onClick={() => {
+              setShowAcceptComplete(true);
+              apis
+                .applyDecision(fosterFormId, { acceptance: 'accepted' })
+                .applyDecision(fosterFormId, { acceptance: 'rejected' })
+                .then((res) => {
+                  console.log(res.data);
+                  window.alert('입양 신청을 수락하셨습니다');
+                  history.push('/mypage');
+                })
+                .catch((err) => console.log(err));
+            }}
           >
             <Text margin='0' color='white' size='14px' weight='800'>
               확인했습니다
