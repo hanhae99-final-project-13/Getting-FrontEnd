@@ -7,6 +7,7 @@ import AddressSelector from './AddressSelector';
 import Upload from './Upload';
 import Header from './Header';
 import { history } from '../redux/configureStore';
+import { WarningAlert } from '../shared/Alerts';
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
@@ -82,7 +83,7 @@ const AddPost = () => {
     if (nullCheck === true) {
       dispatch(postActions.addPostToAxios(postInfo));
     } else {
-      alert('모든 값을 입력해주세요!');
+      WarningAlert('모든 값을 입력해주세요!');
     }
   };
   return (
@@ -104,8 +105,7 @@ const AddPost = () => {
           zIndex='1000'
           _onClick={() => {
             history.goBack();
-          }}
-        >
+          }}>
           닫기
         </Grid>
         <Grid
@@ -121,8 +121,7 @@ const AddPost = () => {
           justifyContent='center'
           color='#FE7968'
           zIndex='1000'
-          _onClick={addPostCard}
-        >
+          _onClick={addPostCard}>
           등록완료
         </Grid>
         <Grid padding='0 35px' boxSizing='border-box'>
@@ -134,8 +133,7 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input
               placeholder='견종'
               value={breed}
@@ -154,8 +152,7 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <Grid display='flex' justifyContent='space-between'>
               <input
                 type='number'
@@ -194,8 +191,7 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input
               placeholder='보호장소'
               value={ownerType}
@@ -231,8 +227,7 @@ const AddPost = () => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input
               placeholder='정보출처'
               value={tag}

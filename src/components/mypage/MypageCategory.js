@@ -41,8 +41,7 @@ const MypageCategory = (props) => {
       display='flex'
       justifyContent='space-evenly'
       width='auto'
-      height='auto'
-    >
+      height='auto'>
       <Grid
         display='flex'
         flexDirection='column'
@@ -55,8 +54,7 @@ const MypageCategory = (props) => {
         borderRadius='14px'
         _onClick={() => {
           showWishedList(changeWL);
-        }}
-      >
+        }}>
         <img
           width='30'
           height='27'
@@ -76,15 +74,14 @@ const MypageCategory = (props) => {
         bg={DCBG}
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='14px'
-        _onClick={() => showaDockingCheck(changeDC)}
-      >
+        _onClick={() => showaDockingCheck(changeDC)}>
         <img
           width='26'
           height='27'
           src={process.env.PUBLIC_URL + '/img/GUIicon/letter_icon.svg'}
         />
         <Text margin='3px 0 0 0' size='12px' weight='800' color={DCFC}>
-          도킹 확인
+          나의 신청 확인
         </Text>
       </Grid>
       <Grid
@@ -97,8 +94,7 @@ const MypageCategory = (props) => {
         bg={ACBG}
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='14px'
-        _onClick={() => showadoptionCheck(changeAC)}
-      >
+        _onClick={() => showadoptionCheck(changeAC)}>
         <img
           width='23'
           height='27'

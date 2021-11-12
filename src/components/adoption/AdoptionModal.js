@@ -79,15 +79,13 @@ const AdoptionModal = (props) => {
       alignItems='center'
       id='searchModal'
       overflow='hidden'
-      zIndex='100'
-    >
+      zIndex='100'>
       <Grid
         position='absolute'
         top='0'
         left='0'
         bg='rgba(30, 30, 30, 0.8)'
-        _onClick={hideModal}
-      ></Grid>
+        _onClick={hideModal}></Grid>
       <Grid
         position='relative'
         padding='20px 0'
@@ -95,15 +93,13 @@ const AdoptionModal = (props) => {
         height='361px'
         bg='white'
         borderRadius='16px'
-        boxSizing='border-box'
-      >
+        boxSizing='border-box'>
         <Grid
           display='flex'
           alignItems='center'
           justifyContent='center'
           margin='0 0 20px 0'
-          height='auto'
-        >
+          height='auto'>
           <Text margin='0' size='16px' weight='700'>
             검색 조건
           </Text>
@@ -114,14 +110,12 @@ const AdoptionModal = (props) => {
           alignItems='center'
           justifyContent='space-evenly'
           height='calc(100% - 40px)'
-          borderTop='0.5px solid #e7e5e5'
-        >
+          borderTop='0.5px solid #e7e5e5'>
           <Grid
             display='flex'
             justifyContent='flex-start'
             margin='0 0 0 24px'
-            height='auto'
-          >
+            height='auto'>
             {termCheck ? (
               <CheckBoxOn onClick={() => setTermCheck(!termCheck)} />
             ) : (
@@ -136,7 +130,7 @@ const AdoptionModal = (props) => {
             justifyContent='space-evenly'
             alignItems='center'
             height='auto'
-          >
+            zIndex='2'>
             <Grid display='flex' alignItems='center' width='auto'>
               <Calendar changeDate={changeStartDate} termCheck={termCheck} />
               <img
@@ -167,8 +161,7 @@ const AdoptionModal = (props) => {
             display='flex'
             justifyContent='flex-start'
             margin='0 0 0 24px'
-            height='auto'
-          >
+            height='auto'>
             {ownerTypeCheck ? (
               <CheckBoxOn onClick={() => setOwnerTypeCheck(!ownerTypeCheck)} />
             ) : (
@@ -183,8 +176,7 @@ const AdoptionModal = (props) => {
             justifyContent='center'
             alignItems='center'
             width='auto'
-            height='auto'
-          >
+            height='auto'>
             <Text margin='0' size='12px' weight='700'>
               개인
             </Text>
@@ -193,8 +185,7 @@ const AdoptionModal = (props) => {
               display='flex'
               justifyContent='center'
               width='auto'
-              height='auto'
-            >
+              height='auto'>
               {ownerTypeCheck ? null : <Cover />}
               <ToggleButton onClick={toggleOwnerType}>
                 <div id='toggleCircle' />
@@ -208,8 +199,7 @@ const AdoptionModal = (props) => {
             display='flex'
             justifyContent='flex-start'
             margin='0 0 0 24px'
-            height='auto'
-          >
+            height='auto'>
             {locationCheck ? (
               <CheckBoxOn onClick={() => setLocationCheck(!locationCheck)} />
             ) : (
@@ -232,8 +222,7 @@ const AdoptionModal = (props) => {
             height='40px'
             bg='#fe7968'
             borderRadius='26px'
-            _onClick={doSearch}
-          >
+            _onClick={doSearch}>
             <Text margin='0' color='white' size='16px' weight='800'>
               찾아보기
             </Text>
