@@ -63,7 +63,7 @@ const Card = (props) => {
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
-              {ownerType ? ownerType : '임시보호중'}
+              {ownerType.includes('보호소') ? '보호소' : ownerType}
             </Text>
           </Grid>
           <Grid

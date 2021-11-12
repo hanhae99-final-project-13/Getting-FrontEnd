@@ -55,13 +55,13 @@ const MypageAdoptionCheck = (props) => {
         >
           받은 입양 신청
         </span>
-        <span
+        {/* <span
           className='deleteMyRequest'
           style={{ display: myWriteListDisplay }}
           onClick={changeDeleteMode}
         >
           {isDeleteMode ? '완료' : '수정하기'}
-        </span>
+        </span> */}
       </CategoryBox>
       <MyWriteList display={myWriteListDisplay} />
       <ReceivedAdoption display={rceivedAdoptionDisplay} />

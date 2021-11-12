@@ -136,6 +136,7 @@ const AdoptionModal = (props) => {
             justifyContent='space-evenly'
             alignItems='center'
             height='auto'
+            zIndex='2'
           >
             <Grid display='flex' alignItems='center' width='auto'>
               <Calendar changeDate={changeStartDate} termCheck={termCheck} />
