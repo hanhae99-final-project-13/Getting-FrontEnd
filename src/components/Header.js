@@ -6,8 +6,8 @@ import { Grid } from '../elements';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+// import { faBell } from '@fortawesome/free-solid-svg-icons';
+// import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
 
 const Header = (props) => {
@@ -17,9 +17,9 @@ const Header = (props) => {
   // console.log(path, '경로');
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const isToken = localStorage.getItem('USER_TOKEN');
-  const alarmCount = useSelector(
-    (state) => state.user.user.userInfo?.alarmCount,
-  );
+  // const alarmCount = useSelector(
+  //   (state) => state.user.user.userInfo?.alarmCount,
+  // );
 
   if (window.location.pathname === '/') return null;
   if (window.location.pathname === '/login') return null;
@@ -49,7 +49,8 @@ const Header = (props) => {
         width='375px'
         height='60px'
         margin='0 auto'
-        zIndex='1'>
+        zIndex='1'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             borderRadius='3px'
@@ -61,7 +62,8 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
           </Grid>
         </Grid>
@@ -69,20 +71,29 @@ const Header = (props) => {
         <Grid
           display='flex'
           alignItems='center'
+          justifyContent='center'
           _onClick={() => {
             histroy.push('/main');
-          }}>
-          <TEXT size='20px' bold margin='0'>
-            도킹
-          </TEXT>
+          }}
+        >
+          <img
+            width='50'
+            src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
+          />
         </Grid>
-
-        {isLogin ? (
+        <Grid
+          display='flex'
+          alignItems='center'
+          justifyContent='flex-end'
+          width='375px'
+        ></Grid>
+        {/* {isLogin ? (
           <Grid
             display='flex'
             alignItems='center'
             justifyContent='flex-end'
-            width='375px'>
+            width='375px'
+          >
             <Grid
               borderRadius='3px'
               width='45px'
@@ -90,7 +101,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon
                 onClick={() => {
                   history.push('/alarm');
@@ -111,7 +123,8 @@ const Header = (props) => {
                 top='-10%'
                 color='white'
                 bg='red'
-                fontSize='10px'>
+                fontSize='10px'
+              >
                 {alarmCount ? alarmCount : ''}
               </Grid>
             </Grid>
@@ -128,11 +141,12 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>
-        )}
+        )} */}
       </Grid>
     </React.Fragment>
   );
