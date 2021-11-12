@@ -9,8 +9,7 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { BackButton, Logo } from '../components';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
 
@@ -58,7 +57,17 @@ const Adoption = () => {
 
   return (
     <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
-      <Grid width='auto' padding='35px' overflow='auto'>
+      <Grid width='auto' padding='0 35px' overflow='auto'>
+        <Grid position='relative' height='100px' margin='0 0 16px 0'>
+          <BackButton position='absolute' top='75px' left='0' />
+          <Logo
+            position='absolute'
+            top='59px'
+            left='0'
+            right='0'
+            margin='0 auto'
+          />
+        </Grid>
         <Grid>
           <AdoptionWishedCardList />
         </Grid>

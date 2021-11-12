@@ -53,7 +53,8 @@ const AdoptionCard = (props) => {
       <Grid display='flex' alignItems='center' width='auto' height='auto'>
         <Image size='8' margin='0' />
         <ElP>
-          {modifiedAt ? modifiedAt.split('T')[0] : createAt} &nbsp;&nbsp;
+          {modifiedAt ? modifiedAt.split('T')[0].replace(/-/g, '.') : createAt}{' '}
+          &nbsp;&nbsp;
         </ElP>
         <Image size='8' margin='0' />
         <ElP>{address}</ElP>

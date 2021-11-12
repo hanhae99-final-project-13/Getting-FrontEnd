@@ -9,8 +9,7 @@ import {
   MypageCategory,
   MypageDockingCheck,
 } from '../components/mypage';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import { BackButton, Logo } from '../components';
 import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { applyActions } from '../redux/modules/apply';
@@ -67,14 +66,18 @@ const Mypage = () => {
 
   return (
     <Grid width='375px' margin='0 auto'>
-      <Grid margin='142px 0 0 0' width='auto'>
+      <Grid position='relative' height='100px' margin='0 0 16px 0'>
+        <BackButton position='absolute' top='65px' left='36px' />
+      </Grid>
+      <Grid margin='107px 0 0 0' width='auto'>
         <MypageUserInfo />
       </Grid>
       <Grid height='9px' bg='#F6F6F6' />
       <Grid
         padding='30px 36px'
         width='auto'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+      >
         <MypageCategory
           showWishedList={showWishedList}
           showaDockingCheck={showaDockingCheck}
