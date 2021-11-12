@@ -44,15 +44,13 @@ const MypageAdoptionCheck = (props) => {
         <span
           className='category active'
           ref={myWriteList}
-          onClick={showMyWriteList}
-        >
+          onClick={showMyWriteList}>
           작성한 공고
         </span>
         <span
           className='category'
           ref={receivedAdoption}
-          onClick={showReceivedAdoption}
-        >
+          onClick={showReceivedAdoption}>
           받은 입양 신청
         </span>
         {/* <span

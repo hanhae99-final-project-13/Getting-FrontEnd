@@ -20,8 +20,7 @@ const MainAdoptionCardList = (props) => {
         alignItems='center'
         margin='0 0 5px 0'
         width='calc(100% - 36px)'
-        height='auto'
-      >
+        height='auto'>
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
         </Title>
@@ -78,7 +77,7 @@ const SliderBox = styled.div`
 const InnerSlider = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 400%;
+  width: 350%;
   height: auto;
   overflow: visible;
   padding-left: 1rem;

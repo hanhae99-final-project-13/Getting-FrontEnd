@@ -39,8 +39,6 @@ import { actionCreators as userAction } from '../redux/modules/user';
 
 function App() {
   const dispatch = useDispatch();
-
-  // const isLogin = useSelector((state) => state.user?.user.isLogin);
   const isToken = window.localStorage.getItem('USER_TOKEN') ? true : false;
   console.log(isToken, '로그인 토큰 체크');
 
@@ -50,9 +48,6 @@ function App() {
     }
   }, [dispatch, isToken]);
 
-  // if (isToken && !isLogin) {
-  //   return <div>로딩중~</div>;
-  // }
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
