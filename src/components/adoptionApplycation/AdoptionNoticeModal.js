@@ -20,14 +20,11 @@ const AdoptionNoticeModal = (props) => {
         height='740px'
         margin='0 auto'
         padding='0 20px'
-        position='fixed'
+        position='stiky'
         top='43px'
         left='20px'
         zIndex='999'>
-        <Grid margin='40px 0 0 0' position='relative' height='auto'>
-          <Grid position='absolute' left='225px' bottom='16px'>
-            <FontAwesomeIcon icon={faComment} color='red' fontSize='2x' />
-          </Grid>
+        <Grid margin='36px 0 0 0' position='relative' height='auto'>
           <Text align='center' size='18px' margin='0'>
             <span
               style={{
@@ -57,11 +54,22 @@ const AdoptionNoticeModal = (props) => {
           height='auto'
           justifyContent='center'
           alignItems='center'>
-          <Image
-            margin='0'
-            size='60'
-            src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
+          {/* <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            margin='0 5px 0 0px'
+            width='65px'
+            height='60px'
+            borderRadius='60px'
+            bg='#FFFFFF'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'> */}
+          <img
+            width='37px'
+            height='44px'
+            src={process.env.PUBLIC_URL + '/img/GUIicon/warning_dog_icon.svg'}
+          />
+          {/* </Grid> */}
 
           <Grid
             margin='0 0 0 10px'
@@ -186,15 +194,21 @@ const AdoptionNoticeModal = (props) => {
                   fontSize: '18px',
                   color: '#FF0000',
                 }}>
-                가족으로 데려올 수 없습니다!
+                가족으로 <br />
+                데려올 수 없습니다!
               </span>
             </Text>
           </Grid>
-          <Image
+          {/* <Image
             margin='0'
             size='60'
             src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image> */}
+          <img
+            width='37px'
+            height='44px'
+            src={process.env.PUBLIC_URL + '/img/GUIicon/warning_dog_icon.svg'}
+          />
         </Grid>
 
         <Grid margin='20px 0 0 0' height='auto'>
@@ -240,8 +254,8 @@ const AdoptionNoticeModal = (props) => {
         <Grid height='auto' margin='20px auto'>
           <Grid
             margin='auto'
-            bg='#FF6666'
-            width='157px'
+            bg='#FE7968'
+            width='158px'
             height='52px'
             borderRadius='26px'
             display='flex'
@@ -252,7 +266,7 @@ const AdoptionNoticeModal = (props) => {
               history.push(`/apply/${postId}`);
               window.sessionStorage.setItem('length', 'length'); //프로그래스 바용
             }}>
-            <Text margin='0' color='white'>
+            <Text margin='0' color='#F9F9F9' weight='800'>
               확인했습니다
             </Text>
           </Grid>

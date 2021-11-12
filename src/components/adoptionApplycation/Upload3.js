@@ -87,26 +87,27 @@ const Upload3 = forwardRef((props, ref) => {
       />
       <label htmlFor='file'>
         <Grid
+          weight='800'
           display='flex'
           justifyContent='center'
           alignItems='center'
           width='305px'
           height='58px'
-          bg='#C8C8C8'
+          bg='#FE7968'
           borderRadius='11px'
-          color='white'>
+          color='#FFFFFF'>
           사진 첨부하기
         </Grid>
       </label>
 
       {previewImage ? (
         <Grid
-          position='realtive'
+          position='relative'
           bg='white'
-          width='200px'
-          height='200px'
+          width='305px'
+          height='168px'
           borderRadius='10px'
-          margin='20px auto'
+          margin='20px auto 0px'
           boxSizing='border-box'
           boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
           display='flex'
@@ -116,9 +117,9 @@ const Upload3 = forwardRef((props, ref) => {
             onClick={deletePrevieImage}
             style={{
               all: 'unset',
-              position: 'relative',
-              bottom: '80px',
-              left: '180px',
+              position: 'absolute',
+              top: '0px',
+              right: '10px',
               fontSize: '20px',
             }}>
             x
@@ -127,31 +128,36 @@ const Upload3 = forwardRef((props, ref) => {
             src={previewImage}
             style={{
               padding: '0 10px 0 0',
-              width: '180px',
-              height: '180px',
+              width: '300px',
+              height: '160px',
               objectFit: 'contain',
             }}></img>
         </Grid>
       ) : (
         <Grid
-          position='realtive'
-          bg='white'
-          width='200px'
-          height='200px'
-          borderRadius='10px'
-          margin='20px auto'
+          position='relative'
+          bg=' rgba(255, 102, 102, 0.3);'
+          width='305px'
+          height='168px'
+          borderRadius='12px'
+          margin='20px auto 0px'
           boxSizing='border-box'
-          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
-          display='flex'
-          justifyContent='center'
-          alignItems='center'>
-          <img
-            src='https://w7.pngwing.com/pngs/469/94/png-transparent-camera-logo-graphy-camera-text-camera-lens-rectangle.png'
-            style={{
-              width: '180px',
-              height: '180px',
-              objectFit: 'contain',
-            }}></img>
+          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'>
+          <Grid position='absolute' top='15px' left='15px'>
+            <Text margin='0px' color='#FFFFFF' weight='700'>
+              사진첨부 미리보기
+            </Text>
+          </Grid>
+
+          <Grid position='absolute' top='60px' left='135px'>
+            <img
+              src={process.env.PUBLIC_URL + '/img/icon/camera_icon_white.svg'}
+              style={{
+                width: '42px',
+                height: '35px',
+                objectFit: 'contain',
+              }}></img>
+          </Grid>
         </Grid>
       )}
     </Grid>

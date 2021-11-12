@@ -20,6 +20,9 @@ const AdoptionApply2 = (props) => {
   // console.log(postId, '입양신청서2번 id');
   const [openApplyAlert, setOpenApplyAlert] = useState(false);
 
+  const [onMouse, setOnmouset] = useState(false);
+  console.log(onMouse);
+
   const dispatch = useDispatch();
   const applyData = useSelector((state) => state.apply);
   // console.log(applyData, '입양신청 1번페이지 정보');
@@ -82,13 +85,26 @@ const AdoptionApply2 = (props) => {
   };
 
   return (
-    <Grid width='375px' margin='80px auto 90px auto'>
+    <Grid width='375px' margin='0 auto'>
+      <Grid
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='relative'
+        top='65px'
+        left='36px'
+        width='25px'
+        height='25px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+        </Grid>
+      </Grid>
+
       <Grid
         boxSizing='border-box'
         width='375px'
-        margin='20px auto 0'
-        padding='0 35px'
-      >
+        margin='100px auto 0'
+        padding='0 35px'>
         <ApplyProgressBar />
         <Grid>
           <Grid margin='30px 0 15px 0 '>
@@ -102,8 +118,7 @@ const AdoptionApply2 = (props) => {
             boxSizing='border-box'
             height='118px'
             borderTop='1px solid rgba(225, 225, 225, 0.5) '
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid height='auto'>
               <Text margin='0' bold line_height='24px'>
                 가족 구성원 중
@@ -116,21 +131,18 @@ const AdoptionApply2 = (props) => {
               display='flex'
               alignItems='center'
               height='auto'
-              margin='12px 0 0 0'
-            >
+              margin='12px 0 0 0'>
               <Text
                 color={allergy === '있음' ? '#000000' : '#E1E1E1'}
                 bold
-                margin='0 7px 0 0'
-              >
+                margin='0 7px 0 0'>
                 있음
               </Text>
               <Slider handleToggle={handleallergy} />
               <Text
                 color={allergy === '없음' ? '#000000' : '#E1E1E1'}
                 bold
-                margin='0  0 0 7px'
-              >
+                margin='0  0 0 7px'>
                 없음
               </Text>
             </Grid>
@@ -139,8 +151,7 @@ const AdoptionApply2 = (props) => {
           <Grid
             boxSizing='border-box'
             height='352px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 만약 <span style={{ fontWeight: '800' }}> 과거</span>에
@@ -158,16 +169,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='375px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 반려동물과
@@ -187,16 +196,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='362px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한 반려동물이
@@ -215,16 +222,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한{' '}
@@ -242,17 +247,12 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
-          <Grid
-            boxSizing='border-box'
-            height='370px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
-            <Grid margin='18px 0 21px 0 ' height='auto'>
+          <Grid boxSizing='border-box' height='330px'>
+            <Grid margin='18px 0 18px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
                 사진 찍어 첨부해주세요.
@@ -264,7 +264,7 @@ const AdoptionApply2 = (props) => {
           <Grid height='auto' margin='23px auto'>
             <Grid
               margin='auto'
-              bg='#FF6666'
+              bg='#FE7968'
               width='157px'
               height='52px'
               borderRadius='26px'
@@ -272,10 +272,9 @@ const AdoptionApply2 = (props) => {
               justifyContent='center'
               alignItems='center'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-              _onClick={applyClick}
-            >
-              <Text margin='0' color='white'>
-                입양신청하기
+              _onClick={applyClick}>
+              <Text margin='0' color='white' weight='800'>
+                입양 신청 보내기
               </Text>
             </Grid>
           </Grid>
@@ -297,22 +296,17 @@ const AdoptionApply2 = (props) => {
           display='flex'
           flexDirection='column'
           alignItems='center'
-          zIndex='9999'
-        >
-          <Grid
-            margin='40.25px 0 0 0'
-            width='60px'
-            height='120px'
-            bgisize='cover'
-            bgiposition='center'
-            bgi={dokking_logo}
-          ></Grid>
+          zIndex='9999'>
+          <Grid width='62px' height='85px' margin='24px auto 8px '>
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+            />
+          </Grid>
           <Text
             margin='14.25px 0 0 0'
             align='center'
             line_height='21px'
-            weight='600'
-          >
+            weight='600'>
             작성한 입양신청서는
             <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
             <br />
@@ -326,13 +320,12 @@ const AdoptionApply2 = (props) => {
               weight='600'
               height='40px'
               padding='12px 0px'
-              bg='#FE7968'
+              bg='#FFD3D3'
               border='none'
               border_radius='34px'
               onClick={() => {
                 setOpenApplyAlert(!openApplyAlert);
-              }}
-            >
+              }}>
               다시 생각해볼게요
             </Button>
 
@@ -349,9 +342,8 @@ const AdoptionApply2 = (props) => {
               onClick={() => {
                 realApply();
                 setOpenApplyAlert(!openApplyAlert);
-              }}
-            >
-              확인했습니다.
+              }}>
+              확인했습니다
             </Button>
           </Grid>
         </Grid>

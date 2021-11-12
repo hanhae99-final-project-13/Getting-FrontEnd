@@ -22,9 +22,18 @@ const Header = (props) => {
   );
 
   if (window.location.pathname === '/') return null;
+  if (window.location.pathname === '/login') return null;
+  if (window.location.pathname === '/signup') return null;
   if (window.location.pathname === '/tutorial') return null;
   if (window.location.pathname === '/tutorial2') return null;
+  if (window.location.pathname === '/essentialknowledge') return null;
   if (window.location.pathname === '/fosterknowledge') return null;
+  if (window.location.pathname === '/essentialquiz') return null;
+  if (window.location.pathname === '/essentialquiz2') return null;
+  if (window.location.pathname === '/essentialquiz3') return null;
+  if (window.location.pathname === '/essentialquiz4') return null;
+  if (window.location.pathname === '/essentialquiz5') return null;
+  if (window.location.pathname.includes('/apply')) return null;
 
   return (
     <React.Fragment>
