@@ -5,7 +5,8 @@ import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
 import Upload from './Upload';
-import Footer from './Footer';
+import Header from './Header';
+import { history } from '../redux/configureStore';
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
@@ -86,7 +87,27 @@ const AddPost = () => {
   };
   return (
     <React.Fragment>
+      <Header></Header>
       <Grid width='375px' margin='0 auto '>
+        <Grid
+          position='sticky'
+          top='0'
+          margin='-60px auto 0 0'
+          left='0px'
+          width='100px'
+          height='60px'
+          bg='white'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          color='#6B6462'
+          zIndex='1000'
+          _onClick={() => {
+            history.goBack();
+          }}
+        >
+          닫기
+        </Grid>
         <Grid
           position='sticky'
           top='0'

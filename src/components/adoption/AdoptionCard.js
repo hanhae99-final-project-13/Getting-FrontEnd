@@ -41,7 +41,7 @@ const AdoptionCard = (props) => {
         <ElP>{ownerType}</ElP>
       </Tag>
       <Tag2>
-        <ElP>{isAdopted}</ElP>
+        <ElP>{isAdopted === 'ABANDONED' ? '보호중' : '입양 완료'}</ElP>
       </Tag2>
       <ImageBox img={img} />
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>

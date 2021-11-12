@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faBell } from '@fortawesome/free-solid-svg-icons';
 // import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
@@ -13,28 +12,12 @@ import { postActions } from '../redux/modules/post';
 const Header = (props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
-  const path = useParams();
-  // console.log(path, '경로');
+
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const isToken = localStorage.getItem('USER_TOKEN');
   // const alarmCount = useSelector(
   //   (state) => state.user.user.userInfo?.alarmCount,
   // );
-
-  if (window.location.pathname === '/') return null;
-  if (window.location.pathname === '/login') return null;
-  if (window.location.pathname === '/signup') return null;
-  if (window.location.pathname === '/tutorial') return null;
-  if (window.location.pathname === '/tutorial2') return null;
-  if (window.location.pathname === '/essentialknowledge') return null;
-  if (window.location.pathname === '/fosterknowledge') return null;
-  if (window.location.pathname === '/essentialquiz') return null;
-  if (window.location.pathname === '/essentialquiz2') return null;
-  if (window.location.pathname === '/essentialquiz3') return null;
-  if (window.location.pathname === '/essentialquiz4') return null;
-  if (window.location.pathname === '/essentialquiz5') return null;
-  if (window.location.pathname.includes('/apply')) return null;
-
   return (
     <React.Fragment>
       <Grid
@@ -53,7 +36,6 @@ const Header = (props) => {
       >
         <Grid display='flex' alignItems='center'>
           <Grid
-            borderRadius='3px'
             width='45px'
             height='45px'
             bg='white'
@@ -64,7 +46,10 @@ const Header = (props) => {
               histroy.goBack();
             }}
           >
-            <FontAwesomeIcon icon={faChevronLeft} color='black' fontSize='1x' />
+            <img
+              style={{ width: '10px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
+            />
           </Grid>
         </Grid>
 

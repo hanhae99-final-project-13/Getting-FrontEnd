@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import { Grid } from '../elements';
@@ -11,7 +12,7 @@ import {
 } from '../components/main';
 import { postActions } from '../redux/modules/post';
 
-const Main = () => {
+const Main = (props) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {

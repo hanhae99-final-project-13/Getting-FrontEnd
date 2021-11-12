@@ -31,6 +31,7 @@ const TakeAdoptionApply = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
+        margin='0 0 160px 0'
         padding='0 35px'
         width='auto'
       >
@@ -53,7 +54,7 @@ const TakeAdoptionApply = (props) => {
             alignItems='center'
             width='130px'
             height='40px'
-            bg='rgba(254, 121, 104, 0.5)'
+            bg='#FFBE5B'
             borderRadius='26px'
             _onClick={() => {
               setShowModal(true);

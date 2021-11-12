@@ -10,6 +10,7 @@ import {
   MypageDockingCheck,
 } from '../components/mypage';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { applyActions } from '../redux/modules/apply';
@@ -52,9 +53,9 @@ const Mypage = () => {
   };
 
   React.useEffect(() => {
-    dispatch(postActions.getWishPostMW(userInfo.userId));
+    dispatch(postActions.getWishPostMW());
     dispatch(applyActions.getMyApplyMW());
-    dispatch(postActions.getMyPostsMW(userInfo.userId));
+    dispatch(postActions.getMyPostsMW());
 
     return () => dispatch(postActions.changeCardCover(false));
   }, []);
@@ -73,8 +74,7 @@ const Mypage = () => {
       <Grid
         padding='30px 36px'
         width='auto'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
-      >
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
         <MypageCategory
           showWishedList={showWishedList}
           showaDockingCheck={showaDockingCheck}

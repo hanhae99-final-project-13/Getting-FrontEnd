@@ -56,7 +56,6 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Header></Header>
         <Route path='/login' exact component={Login} />
         <Route path='/' exact component={Landing} />
         <Route path='/oauth/callback/kakao' component={Kakao} />

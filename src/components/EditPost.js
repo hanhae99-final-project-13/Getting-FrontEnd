@@ -6,7 +6,6 @@ import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
 import Upload from './Upload';
 import Footer from './Footer';
-import { history } from '../redux/configureStore';
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
   // console.log(data.img.length > 0);
@@ -92,6 +91,28 @@ const EditPost = (props) => {
         <Grid
           position='sticky'
           top='0'
+          margin='-60px auto 0 0'
+          left='0px'
+          width='45px'
+          height='60px'
+          bg='white'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          color='#FE7968'
+          zIndex='1000'
+        >
+          <img
+            style={{ width: '10px' }}
+            src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
+            onClick={() => {
+              setEdit(false);
+            }}
+          />
+        </Grid>
+        <Grid
+          position='sticky'
+          top='0'
           margin='-60px 0 0 auto'
           left='305px'
           width='100px'
@@ -103,15 +124,6 @@ const EditPost = (props) => {
           color='#FE7968'
           zIndex='1000'
         >
-          <button
-            style={{ all: 'unset', color: '#FE7968' }}
-            onClick={() => {
-              console.log('s');
-              setEdit(false);
-            }}
-          >
-            취소
-          </button>
           <button
             style={{ all: 'unset', color: '#FE7968', marginLeft: '10px' }}
             onClick={editPost}

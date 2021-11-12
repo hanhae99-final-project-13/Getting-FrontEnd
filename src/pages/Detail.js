@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 import { actionCreators as userAction } from '../redux/modules/user';
 import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
+import Header from '../components/Header';
 
 import CommentList from '../components/CommentList';
 import { Grid, Image, Text } from '../elements/index';
@@ -62,6 +63,7 @@ const Detail = (props) => {
 
   return (
     <React.Fragment>
+      <Header></Header>
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (

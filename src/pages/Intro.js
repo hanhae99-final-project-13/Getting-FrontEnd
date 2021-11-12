@@ -2,21 +2,22 @@ import React from 'react';
 
 import { Grid, Text } from '../elements/index';
 import styled from 'styled-components';
+import Header from '../components/Header';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 const Intro = () => {
   return (
     <>
+      <Header></Header>
       <Grid width='375px' margin='0 auto'>
         <Grid width='auto'>
           <Grid
             display='flex'
             justifyContent='center'
             alignItems='center'
-            height='30px'
+            height='45px'
           ></Grid>
-          {/* 이미지 */}
           <Grid display='flex' height='560px' overflowX='hidden'>
             <StyledSlider {...settings}>
               <Grid
