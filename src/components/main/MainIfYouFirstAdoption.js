@@ -23,8 +23,7 @@ const MainIfYouFirstAdoption = (props) => {
       padding='12px 12px 12px 16px'
       borderRadius='10px'
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      height='125px'
-    >
+      height='125px'>
       <img
         width='128'
         height='128'
@@ -36,8 +35,7 @@ const MainIfYouFirstAdoption = (props) => {
         alignItems='center'
         justifyContent='center'
         width='auto'
-        height='auto'
-      >
+        height='auto'>
         <Text margin='0 0 12px 0' size='18px'>
           입양이
           <ElSpan margin='0' size='18px' weight='800'>
@@ -51,14 +49,12 @@ const MainIfYouFirstAdoption = (props) => {
             display='flex'
             justifyContent='flex-end'
             width='auto'
-            height='auto'
-          >
+            height='auto'>
             <BePerfect
               onClick={() => {
                 history.push('/tutorial');
                 window.sessionStorage.clear();
-              }}
-            >
+              }}>
               <Text margin='0' color='white' size='14px' weight='700'>
                 필수 지식 듣기
               </Text>
@@ -69,14 +65,12 @@ const MainIfYouFirstAdoption = (props) => {
             display='flex'
             justifyContent='flex-end'
             width='auto'
-            height='auto'
-          >
+            height='auto'>
             <BePerfect
               onClick={() => {
                 history.push('/fosterknowledge');
                 window.sessionStorage.clear();
-              }}
-            >
+              }}>
               <Text margin='0' color='white' size='14px' weight='700'>
                 완벽한 견주되기
               </Text>
@@ -87,14 +81,12 @@ const MainIfYouFirstAdoption = (props) => {
             display='flex'
             justifyContent='flex-end'
             width='auto'
-            height='auto'
-          >
+            height='auto'>
             <BePerfect
               onClick={() => {
                 history.push('/tutorial');
                 window.sessionStorage.clear();
-              }}
-            >
+              }}>
               <Text margin='0' color='white' size='14px' weight='700'>
                 필수 지식 듣기
               </Text>
