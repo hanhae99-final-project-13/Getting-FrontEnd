@@ -69,7 +69,7 @@ const EditPost = (props) => {
     phone: phone,
     extra: extra,
     img: img,
-    isAdopted: '보호중',
+    isAdopted: 'abandoned',
   };
   console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);

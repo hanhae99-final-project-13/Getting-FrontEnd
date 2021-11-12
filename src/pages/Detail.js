@@ -59,7 +59,6 @@ const Detail = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-  console.log(post.post.url === null);
 
   return (
     <React.Fragment>
@@ -152,7 +151,8 @@ const Detail = (props) => {
                 })}
             </Grid>
           </Grid>
-          {post.post.tag !== '직접등록' ? null : user.eduList &&
+          {user && user.nickname === post.post.nickname ? null : post.post
+              .tag !== '직접등록' ? null : user.eduList &&
             user.eduList[0].필수지식 === true ? (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid

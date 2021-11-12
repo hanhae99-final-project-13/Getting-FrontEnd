@@ -274,7 +274,8 @@ const AdoptionNoticeModal = (props) => {
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
-              window.location.replace(`/apply/${postId}`);
+              // window.location.href = `/apply/${postId}`;
+              history.push(`/apply/${postId}`);
               window.sessionStorage.setItem('length', 'length'); //프로그래스 바용
             }}
           >
