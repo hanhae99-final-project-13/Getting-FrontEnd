@@ -6,7 +6,7 @@ export const WarningAlert = (warning_text, footer, title) => {
     title: title,
     text: warning_text,
     icon: 'warning',
-    confirmButtonColor: '#999cda',
+    confirmButtonColor: '#FE7968',
     footer: footer,
   });
 };
@@ -15,7 +15,7 @@ export const SuccessAlert = (success_text) => {
   Swal.fire({
     text: success_text,
     icon: 'success',
-    confirmButtonColor: '#999cda',
+    confirmButtonColor: '#FE7968',
   });
 };
 
@@ -24,7 +24,7 @@ export const SuccessAlert2 = (html_text) => {
   Swal.fire({
     html: html_text,
     icon: 'success',
-    confirmButtonColor: '#999cda',
+    confirmButtonColor: '#FE7968',
   });
 };
 
@@ -34,7 +34,8 @@ export const ErrorAlert = (error_text, position_text) => {
     text: error_text,
     position: position_text,
     icon: 'error',
-    confirmButtonColor: '#999cda',
+    confirmButtonColor: '#FE7968',
+    confirmButtonBorder: 'none',
   });
 };
 //에러 alert (줄바꿈가능)
@@ -44,7 +45,7 @@ export const ErrorAlert2 = (html_text) => {
     // text: error_text,
     // position: position_text,
     icon: 'error',
-    confirmButtonColor: '#999cda',
+    confirmButtonColor: '#FE7968',
   });
 };
 // 이미지 추가 alert
@@ -56,6 +57,7 @@ export const imageSuccessAlert = (success_text) => {
     imageWidth: 400,
     imageHeight: 200,
     imageAlt: 'Custom image',
+    confirmButtonColor: '#FE7968',
   });
 };
 

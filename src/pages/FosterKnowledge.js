@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Image, Text } from '../elements';
 import Footer from '../components/Footer';
 import { useSelector } from 'react-redux';
+import { WarningAlert } from '../shared/Alerts';
 
 const FosterKnowledge = (props) => {
   const { history } = props;
@@ -85,7 +86,7 @@ const FosterKnowledge = (props) => {
       <Grid
         position='relative'
         _onClick={() => {
-          alert('아직 준비중~');
+          WarningAlert('서비스 준비 중 입니다!');
           // history.push('/essentialknowledge');
         }}
         display='flex'
@@ -130,7 +131,7 @@ const FosterKnowledge = (props) => {
       <Grid
         position='relative'
         _onClick={() => {
-          alert('아직 준비중~');
+          WarningAlert('서비스 준비 중 입니다!');
           // history.push('/essentialknowledge');
         }}
         display='flex'

@@ -46,7 +46,25 @@ const MainIfYouFirstAdoption = (props) => {
           이라면?
         </Text>
 
-        {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
+        {userInfo.eduList === null ? (
+          <Grid
+            display='flex'
+            justifyContent='flex-end'
+            width='auto'
+            height='auto'
+          >
+            <BePerfect
+              onClick={() => {
+                history.push('/tutorial');
+                window.sessionStorage.clear();
+              }}
+            >
+              <Text margin='0' color='white' size='14px' weight='700'>
+                필수 지식 듣기
+              </Text>
+            </BePerfect>
+          </Grid>
+        ) : userInfo.eduList[0] && userInfo.eduList[0].필수지식 === true ? (
           <Grid
             display='flex'
             justifyContent='flex-end'
