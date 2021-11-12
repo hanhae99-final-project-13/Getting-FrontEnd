@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { Grid } from '../elements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
@@ -12,24 +11,21 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
 import { sample } from 'lodash';
-
 const Footer = (props) => {
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const path = window.location.pathname;
   // if (token && !isLogin) {
   //   return <div>로딩중~</div>;
   // }
-  React.useEffect(() => {}, [path]);
+  if (window.location.pathname === '/') return null;
+  if (window.location.pathname === '/login') return null;
+  if (window.location.pathname === '/signup') return null;
+  if (window.location.pathname.includes('/apply')) return null;
+  // React.useEffect(()=>{
 
-  if (path === '/') return null;
-  if (path === '/login') return null;
-  if (path === '/signup') return null;
-
-  if (path.includes('/apply')) return null;
-
+  // }, [window.location.pathname]);
   return (
     <React.Fragment>
       <Grid
@@ -97,12 +93,10 @@ const Footer = (props) => {
               src={process.env.PUBLIC_URL + '/img/icon/dog_adoption_icon.svg'}
             />
           </Grid>
-
           <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
             입양하기
           </TEXT>
         </Grid>
-
         <Grid
           display='flex'
           flexDirection='column'
@@ -119,7 +113,6 @@ const Footer = (props) => {
             홈
           </TEXT>
         </Grid>
-
         <Grid
           display='flex'
           flexDirection='column'
@@ -136,7 +129,6 @@ const Footer = (props) => {
             마이페이지
           </TEXT>
         </Grid>
-
         <Grid
           display='flex'
           flexDirection='column'
@@ -157,7 +149,6 @@ const Footer = (props) => {
     </React.Fragment>
   );
 };
-
 const TEXT = styled.p`
   text-align: center;
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
@@ -166,5 +157,4 @@ const TEXT = styled.p`
   ${(props) => (props.color ? `color: ${props.color};` : '')}
   ${(props) => (props.size ? `font-size: ${props.size};` : '')}
 `;
-
 export default Footer;

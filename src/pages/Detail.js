@@ -59,7 +59,8 @@ const Detail = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-  // console.log(!post.post.url.includes('http://'));
+  console.log(post.post.url === null);
+
   return (
     <React.Fragment>
       {edit ? (
@@ -327,7 +328,9 @@ const Detail = (props) => {
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  {post.post.url.includes('http://') ? (
+                  {post.post.url === null ? (
+                    '없음'
+                  ) : post.post.url.includes('http://') ? (
                     // http:// 가 주소에 있다면
                     post.post.url.includes('instagram.com') ? (
                       <img
@@ -404,6 +407,8 @@ const Detail = (props) => {
                         window.open(`http://${post.post.url}`, '_blank')
                       }
                     />
+                  ) : post.post.url === null ? (
+                    '없음'
                   ) : (
                     <img
                       src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
