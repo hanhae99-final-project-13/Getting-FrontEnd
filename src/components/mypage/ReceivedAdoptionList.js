@@ -36,7 +36,6 @@ const ReceivedAdoptionList = ({ index }) => {
                 ({preview.gender}, {preview.fosterAge})
               </Text>
               <Text margin='0'>{preview.phone}</Text>
-              <Image margin='0' size='21' />
             </Grid>
           );
         })}

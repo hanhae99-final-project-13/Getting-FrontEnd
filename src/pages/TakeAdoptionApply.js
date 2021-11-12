@@ -31,6 +31,7 @@ const TakeAdoptionApply = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
+        margin='0 0 160px 0'
         padding='0 35px'
         width='auto'
       >

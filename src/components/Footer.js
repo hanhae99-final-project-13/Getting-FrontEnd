@@ -16,16 +16,32 @@ const Footer = (props) => {
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
+  const path = window.location.pathname;
+
   // if (token && !isLogin) {
   //   return <div>로딩중~</div>;
   // }
-  if (window.location.pathname === '/') return null;
-  if (window.location.pathname === '/login') return null;
-  if (window.location.pathname === '/signup') return null;
-  if (window.location.pathname.includes('/apply')) return null;
-  // React.useEffect(()=>{
-
-  // }, [window.location.pathname]);
+  console.log(path);
+  React.useEffect(() => {
+    console.log(path);
+  }, [path]);
+  if (path === '/') {
+    console.log('/입니다');
+    return null;
+  }
+  if (path === '/login') {
+    console.log('/login입니다');
+    return null;
+  }
+  if (path === '/signup') {
+    console.log('/signup입니다');
+    return null;
+  }
+  if (path.includes('/apply')) {
+    console.log('/apply입니다');
+    return null;
+  }
+  console.log('다 통과했습니다');
   return (
     <React.Fragment>
       <Grid

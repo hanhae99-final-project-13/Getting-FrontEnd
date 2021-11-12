@@ -48,6 +48,7 @@ function App() {
     if (isToken) {
       dispatch(userAction.LoginCheck());
     }
+    console.log('랜더링');
   }, [dispatch, isToken]);
 
   // if (isToken && !isLogin) {
