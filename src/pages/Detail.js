@@ -153,8 +153,9 @@ const Detail = (props) => {
                 })}
             </Grid>
           </Grid>
-          {user && user.nickname === post.post.nickname ? null : post.post
-              .tag !== '직접등록' ? null : user.eduList &&
+          {user.eduList === null ? null : user &&
+            user.nickname === post.post.nickname ? null : post.post.tag !==
+            '직접등록' ? null : user.eduList[0] &&
             user.eduList[0].필수지식 === true ? (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
@@ -177,7 +178,7 @@ const Detail = (props) => {
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
-          ) : (
+          ) : token ? (
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'
@@ -198,7 +199,7 @@ const Detail = (props) => {
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
-          )}
+          ) : null}
           <Grid
             width='283px'
             margin='0 auto'
