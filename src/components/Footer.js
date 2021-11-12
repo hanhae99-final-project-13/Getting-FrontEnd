@@ -18,15 +18,17 @@ const Footer = (props) => {
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
-
+  const path = window.location.pathname;
   // if (token && !isLogin) {
   //   return <div>로딩중~</div>;
   // }
+  React.useEffect(() => {}, [path]);
 
-  if (window.location.pathname === '/login') return null;
-  if (window.location.pathname === '/signup') return null;
+  if (path === '/') return null;
+  if (path === '/login') return null;
+  if (path === '/signup') return null;
 
-  if (window.location.pathname.includes('/apply')) return null;
+  if (path.includes('/apply')) return null;
 
   return (
     <React.Fragment>
@@ -42,7 +44,8 @@ const Footer = (props) => {
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'>
+        height='80px'
+      >
         {/* {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
           <Grid
             display='flex'
@@ -68,7 +71,8 @@ const Footer = (props) => {
           _onClick={() => {
             history.push('/tutorial');
             window.sessionStorage.clear();
-          }}>
+          }}
+        >
           <Grid width='36px' height='28px'>
             <img
               src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
@@ -86,7 +90,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}>
+          }}
+        >
           <Grid width='32px' height='28px'>
             <img
               src={process.env.PUBLIC_URL + '/img/icon/dog_adoption_icon.svg'}
@@ -105,7 +110,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}>
+          }}
+        >
           <Grid width='29px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/home_icon.svg'} />
           </Grid>
@@ -121,7 +127,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <Grid width='28px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon.svg'} />
           </Grid>
@@ -137,7 +144,8 @@ const Footer = (props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/setting');
-          }}>
+          }}
+        >
           <Grid width='29px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
           </Grid>

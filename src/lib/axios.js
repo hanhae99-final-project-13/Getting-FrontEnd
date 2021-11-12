@@ -74,7 +74,7 @@ export const apis = {
       &sort=${defaultSearch.sort}`,
     ),
   getDetailPost: (postId) => instance.get(`/posts/${postId}`),
-  getWishPost: () => instance.get(`/$user/wishes`),
+  getWishPost: () => instance.get(`/user/wishes`),
   getMyPosts: () => instance.get(`/user/posts`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
   updatePost: (postId, postInfo) =>

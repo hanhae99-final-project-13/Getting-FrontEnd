@@ -59,7 +59,7 @@ const Detail = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-  console.log(!post.post.url.includes('http://'));
+  // console.log(!post.post.url.includes('http://'));
   return (
     <React.Fragment>
       {edit ? (
