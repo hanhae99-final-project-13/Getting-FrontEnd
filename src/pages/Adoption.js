@@ -46,8 +46,8 @@ const Adoption = () => {
   }, []);
 
   React.useEffect(() => {
-    if (userInfo.userId) {
-      dispatch(postActions.getWishPostMW(userInfo.userId));
+    if (isToken) {
+      dispatch(postActions.getWishPostMW());
     }
   });
 
