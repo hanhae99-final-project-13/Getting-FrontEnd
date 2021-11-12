@@ -21,7 +21,7 @@ const Main = (props) => {
   return (
     <Grid width='375px' margin='0 auto 50px auto'>
       <Grid position='relative' height='100px'>
-        <BackButton position='absolute' top='75px' left='36px' right='0' />
+        <BackButton position='absolute' top='63px' left='36px' right='0' />
         <Logo
           position='absolute'
           top='59px'

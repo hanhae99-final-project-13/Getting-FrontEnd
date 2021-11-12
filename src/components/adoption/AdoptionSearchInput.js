@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { Grid, Image, Text } from '../../elements';
 import { AdoptionModal } from '.';
 
-const AdoptionSearchInput = () => {  
-  const showModal = () => {    
+const AdoptionSearchInput = () => {
+  const showModal = () => {
     document.querySelector('#searchModal').style.display = 'flex';
   };
   return (
@@ -23,7 +23,10 @@ const AdoptionSearchInput = () => {
         <Text margin='0' size='0.85rem' color='#BBBBBB'>
           조건에 맞는 반려친구들을 찾아보세요!
         </Text>
-        <Image size='12' margin='0'/>
+        <img
+          width='12'
+          src={process.env.PUBLIC_URL + '/img/icon/search_icon.svg'}
+        />
       </Grid>
       <AdoptionModal />
     </Container>
