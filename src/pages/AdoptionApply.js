@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as userActions } from '../redux/modules/apply';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 import { Grid, Text, Input } from '../elements';
 import Slider from '../components/Slider';
@@ -111,13 +112,22 @@ const AdoptionApply = (props) => {
   console.log(userInfo.phone, '미리받은 번호2');
 
   return (
-    <Grid
-      boxSizing='border-box'
-      width='375px'
-      margin='80px auto 90px auto'
-      padding='0 35px'
-    >
-      <Grid>
+    <Grid boxSizing='border-box' width='375px' margin='0 auto' padding='0 35px'>
+      <Grid
+        _onClick={() => {
+          history.goBack();
+        }}
+        position='relative'
+        top='65px'
+        left='0px'
+        width='25px'
+        height='25px'>
+        <Grid width='12px' height='7px'>
+          <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+        </Grid>
+      </Grid>
+
+      <Grid margin='103px 0 0 0'>
         <ApplyProgressBar />
 
         <Grid margin='30px 0 15px 0 '>
@@ -167,13 +177,11 @@ const AdoptionApply = (props) => {
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <SelectBox
             options={AGEOPTION}
             _onChange={handleAgeChange}
-            defaultValue={fosterAge}
-          ></SelectBox>
+            defaultValue={fosterAge}></SelectBox>
 
           <Text bold margin='10px 11px 0 8px'>
             살
@@ -181,8 +189,7 @@ const AdoptionApply = (props) => {
           <SelectBox
             options={GENDEROPTION}
             _onChange={handleGenderChange}
-            defaultValue={gender}
-          ></SelectBox>
+            defaultValue={gender}></SelectBox>
         </Grid>
 
         <Grid
@@ -191,8 +198,7 @@ const AdoptionApply = (props) => {
           border='none'
           borderBottom='1px solid rgba(225, 225, 225, 0.5) '
           boxSizing='border-box'
-          height='auto'
-        >
+          height='auto'>
           <input
             placeholder='거주지를 입력해주세요'
             type='text'
@@ -234,8 +240,7 @@ const AdoptionApply = (props) => {
           padding='16px 0px'
           boxSizing='border-box'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <Grid>
             <Text margin='0' bold>
               반려동물 여부
@@ -245,16 +250,14 @@ const AdoptionApply = (props) => {
             <Text
               color={currentPet === '있음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0 10px 0 0'
-            >
+              margin='0 10px 0 0'>
               있음
             </Text>
             <Slider handleToggle={handleCurrentPet} />
             <Text
               color={currentPet === '없음' ? '#000000' : '#E1E1E1'}
               bold
-              margin='0  0 0 10px'
-            >
+              margin='0  0 0 10px'>
               없음
             </Text>
           </Grid>
@@ -293,14 +296,13 @@ const AdoptionApply = (props) => {
             }}
             cols='40'
             rows='13'
-            placeholder='500자 이하로 적어주세요'
-          ></Textarea>
+            placeholder='500자 이하로 적어주세요'></Textarea>
         </Grid>
 
         <Grid height='auto' margin='23px auto'>
           <Grid
             margin='auto'
-            bg='#FF6666'
+            bg='#FFBE5B'
             width='157px'
             height='52px'
             borderRadius='26px'
@@ -313,9 +315,8 @@ const AdoptionApply = (props) => {
               history.push(`/apply2/${postID}`);
               window.scrollTo(0, 0);
               window.sessionStorage.setItem('length2', 'length2'); //프로그래스 바용
-            }}
-          >
-            <Text margin='0' color='white'>
+            }}>
+            <Text margin='0' color='#FFFFFF' weight='800'>
               다음 페이지로
             </Text>
           </Grid>

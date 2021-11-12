@@ -41,8 +41,7 @@ const Image = (props) => {
           id={id}
           onMouseEnter={_onMouseEnter}
           onMouseLeave={_onMouseLeave}
-          onClick={_onClick}
-        ></ImageCircle>
+          onClick={_onClick}></ImageCircle>
       </React.Fragment>
     );
   }
@@ -54,8 +53,7 @@ const Image = (props) => {
         id={id}
         onMouseEnter={_onMouseEnter}
         onMouseLeave={_onMouseLeave}
-        onClick={_onClick}
-      ></MainInner>
+        onClick={_onClick}></MainInner>
     );
   }
 
@@ -68,8 +66,7 @@ const Image = (props) => {
             id={id}
             onMouseEnter={_onMouseEnter}
             onMouseLeave={_onMouseLeave}
-            onClick={_onClick}
-          ></InnerRect>
+            onClick={_onClick}></InnerRect>
         </OuterRect>
       </React.Fragment>
     );
@@ -83,8 +80,7 @@ const Image = (props) => {
           id={id}
           onMouseEnter={_onMouseEnter}
           onMouseLeave={_onMouseLeave}
-          onClick={_onClick}
-        ></InnerRect>
+          onClick={_onClick}></InnerRect>
       </OuterRect>
     </React.Fragment>
   );

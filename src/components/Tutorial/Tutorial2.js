@@ -11,7 +11,7 @@ const Tutorial2 = (props) => {
         _onClick={() => {
           history.goBack();
         }}
-        position='absolute'
+        position='sticky'
         top='65px'
         left='36px'
         width='25px'
@@ -20,6 +20,7 @@ const Tutorial2 = (props) => {
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
+
       <Grid margin='231px auto 36px' display='flex' width='315px'>
         <Grid display='flex' flexDirection='column' alignItems='center'>
           <Text margin='0 0 16px 0' weight='800'>
@@ -105,19 +106,18 @@ const Tutorial2 = (props) => {
           history.push('/essentialknowledge');
         }}
         margin=' 0 auto'
-        bg='#FF6666'
+        bg='#FE7968'
         width='157px'
         height='52px'
         borderRadius='26px'
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-        <Text color='white' margin='0' weight='800'>
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
+        <Text color='white' margin='0' weight='800' size='16px'>
           시작할래요!
         </Text>
       </Grid>
-      <Footer></Footer>
     </Grid>
   );
 };

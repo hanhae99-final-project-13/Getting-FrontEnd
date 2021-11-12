@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 import {
   SuccessAlert,
   WarningAlert,
@@ -153,7 +152,7 @@ const Signup = (props) => {
     apis
       .sendPhoneAuthCode(phoneAuthCode)
       .then((res) => {
-        console.log(res.data.status, '코드전송 성공');
+        console.log(res.data.status, '코드인증 성공');
         setClickCodeAuthButton(!clickCodeAuthButton);
 
         SuccessAlert2('휴대폰 인증 성공!');
@@ -206,8 +205,23 @@ const Signup = (props) => {
 
   return (
     <Grid>
-      <Grid width='305px' margin='120px auto 0px'>
-        <Grid>
+      <Grid width='305px' margin='0 auto'>
+        <Grid
+          zIndex='9999'
+          _onClick={() => {
+            history.goBack();
+          }}
+          position='sticky'
+          width='20px' //width, height를 안주면 sticky left가 안먹음..
+          height='20px'
+          top='65px'
+          left='36px'>
+          <Grid width='12px' height='7px'>
+            <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
+          </Grid>
+        </Grid>
+
+        <Grid margin='110px 0 0 0'>
           <Text size='24px' weight='700' align='center'>
             회원가입
           </Text>
@@ -216,29 +230,31 @@ const Signup = (props) => {
         <Grid width='305px' margin='70px auto 0px'>
           <Grid position='relative'>
             <Text
+              color='#FE7968'
               _onClick={idCheckButton}
               position='absolute'
               right='10px'
               width='auto'
               top='19px'
               size='12px'
-              bold
+              weight='800'
               margin='0'>
               중복확인
             </Text>
 
             {checkId ? (
               <Grid
+                margin='0 4px 0 0'
                 position='absolute'
                 right='57px'
                 top='15px'
                 width='20px'
-                height='20px'
-                borderRadius='10px'
-                bg='#FE7968'>
-                <Grid margin='2px 0 0 2px'>
-                  <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
-                </Grid>
+                height='20px'>
+                <img
+                  width='20px'
+                  height='20px'
+                  src={process.env.PUBLIC_URL + '/img/icon/check_icon_pink.svg'}
+                />
               </Grid>
             ) : (
               ' '
@@ -279,30 +295,26 @@ const Signup = (props) => {
 
           <Grid position='relative'>
             <Grid
-              boxSizing='boder-box'
-              border={
-                password !== '' && password === pwcheck
-                  ? 'none'
-                  : '1px solid #070606'
-              }
               position='absolute'
               right='10px'
               top='19px'
               width='20px'
-              height='20px'
-              borderRadius='15px'
-              bg={
-                password !== '' && password === pwcheck ? '#FE7968' : 'white'
-              }>
-              <Grid margin='2px 0 0 2px'>
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  color={
-                    password !== '' && password === pwcheck ? 'white' : 'black'
-                  }
-                  fontSize='1x'
+              height='20px'>
+              {password !== '' && password === pwcheck ? (
+                <img
+                  width='20px'
+                  height='20px'
+                  src={process.env.PUBLIC_URL + '/img/icon/check_icon_pink.svg'}
                 />
-              </Grid>
+              ) : (
+                <img
+                  width='20px'
+                  height='20px'
+                  src={
+                    process.env.PUBLIC_URL + '/img/icon/check_icon_black.svg'
+                  }
+                />
+              )}
             </Grid>
             <Input
               bg='#FFFFFF'
@@ -322,29 +334,31 @@ const Signup = (props) => {
 
           <Grid position='relative'>
             <Text
+              color='#FE7968'
               _onClick={nicknameCheckButton}
               position='absolute'
               right='10px'
               width='auto'
               top='19px'
               size='12px'
-              bold
+              weight='800'
               margin='0'>
               중복확인
             </Text>
 
             {checknickName ? (
               <Grid
+                margin='0 4px 0 0'
                 position='absolute'
                 right='57px'
                 top='15px'
                 width='20px'
-                height='20px'
-                borderRadius='10px'
-                bg='#FE7968'>
-                <Grid margin='2px 0 0 2px'>
-                  <FontAwesomeIcon icon={faCheck} color='white' fontSize='1x' />
-                </Grid>
+                height='20px'>
+                <img
+                  width='20px'
+                  height='20px'
+                  src={process.env.PUBLIC_URL + '/img/icon/check_icon_pink.svg'}
+                />
               </Grid>
             ) : (
               ''
@@ -384,13 +398,17 @@ const Signup = (props) => {
           {openCodeInput ? (
             <Grid position='relative'>
               <Grid position='absolute' left='160px' width='auto'>
-                <Timer />
+                {clickCodeAuthButton === true ? '' : <Timer />}
               </Grid>
               <Text
                 _onClick={() => {
+                  // if (clickCodeAuthButton === true) {
+                  //   SuccessAlert2('이미 휴대폰 인증을 완료하셨습니다')
+                  //   return
+                  // }
                   sendPhoneAuthCode(phoneAuthCode);
                 }}
-                color='#FF6666'
+                color='#FE7968'
                 position='absolute'
                 right='10px'
                 width='auto'
@@ -423,7 +441,7 @@ const Signup = (props) => {
                 _onClick={() => {
                   sendPhoneNumber(phoneNumberInfo);
                 }}
-                color='#FF6666'
+                color='#FE7968'
                 position='absolute'
                 right='10px'
                 width='auto'
@@ -481,7 +499,7 @@ const Signup = (props) => {
             weight='700'
             height='50px'
             padding='16px'
-            bg='#FF6666'
+            bg='#FE7968'
             border='none'
             border_radius='25px'
             onClick={registerClick}>
