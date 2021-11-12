@@ -1,27 +1,14 @@
-import React, { useState } from 'react';
-import { Grid, Text } from '../../elements';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Grid, Image, Text } from '../../elements';
 import Slider from '../../components/Slider';
 import styled from 'styled-components';
 
 const AdoptionReason = (props) => {
-  const [allergy, setAllergy] = React.useState('있음');
-  const [timeTogether, setTimeTogether] = React.useState('');
-  const [anxiety, setAnxiety] = React.useState('');
-  const [bark, setBark] = React.useState('');
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
   const [showSurvey, setShowSurvey] = React.useState(false);
 
   // 알러지 체크함수
-  const [check, setCheck] = useState(true);
-  const handleallergy = () => {
-    setCheck(!check);
-    if (check === true) {
-      setAllergy('없음');
-    } else setAllergy('있음');
-  };
-
-  const showSurveyToggle = () => {
-    setShowSurvey(!showSurvey);
-  };
 
   React.useEffect(() => {
     return () => setShowSurvey(false);
@@ -35,18 +22,25 @@ const AdoptionReason = (props) => {
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
       >
         <Grid
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           width='auto'
           height='auto'
-          bg='95% 50% / contain no-repeat url(https://img.favpng.com/22/6/16/menu-arrow-icon-png-favpng-2GXTGtbaeyDpB41Kwnus43bEC_t.jpg) '
-          _onClick={showSurveyToggle}
+          _onClick={() => setShowSurvey(!showSurvey)}
         >
           <Text margin='0' weight='700' size='20px'>
             입양 설문
           </Text>
+          <img
+            width='16px'
+            height='12px'
+            src={process.env.PUBLIC_URL + '/img/icon/downarrow.svg'}
+          />
         </Grid>
       </Grid>
       {showSurvey ? (
-        <Grid boxSizing='border-box'>
+        <Grid boxSizing='border-box' margin='0 0 100px 0'>
           <Grid>
             <Grid
               padding='13px 0px'
@@ -55,7 +49,7 @@ const AdoptionReason = (props) => {
               borderTop='1px solid rgba(225, 225, 225, 0.5) '
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             >
-              <Grid height='auto'>
+              <Grid height='auto' margin='0 0 12px 0'>
                 <Text margin='0' bold line_height='24px'>
                   가족 구성원 중
                   <span style={{ fontWeight: '800' }}> 동물 알레르기 증상</span>
@@ -66,17 +60,15 @@ const AdoptionReason = (props) => {
               </Grid>
               <Grid
                 display='flex'
-                justifyContent='space-between'
                 alignItems='center'
-                margin='12px 0 0 0'
-                width='50%'
-                height='auto'
+                justifyContent='center'
+                width='70px'
+                height='30px'
+                bg='#FE7968'
+                borderRadius='15px'
               >
-                <Text bold margin='0 7px 0 0'>
-                  있음
-                </Text>
-                <Text bold margin='0 7px 0 0'>
-                  없음
+                <Text color='white' weight='700'>
+                  {detailFosterForm.allergy}
                 </Text>
               </Grid>
             </Grid>
@@ -94,7 +86,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.experience}</Textarea>
             </Grid>
 
             <Grid
@@ -114,7 +106,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.timeTogether}</Textarea>
             </Grid>
 
             <Grid
@@ -131,7 +123,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.anxiety}</Textarea>
             </Grid>
 
             <Grid
@@ -147,7 +139,19 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.bark}</Textarea>
+            </Grid>
+            <Grid margin='18px 0 21px 0 ' height='auto'>
+              <Text margin='0 0 8px 0' bold line_height='24px'>
+                아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
+                사진 찍어 첨부해주세요.
+              </Text>
+              <Image
+                shape='square'
+                src={detailFosterForm.roomUrl}
+                borderRadius='10px'
+                backgroundPosition='center'
+              />
             </Grid>
           </Grid>
         </Grid>

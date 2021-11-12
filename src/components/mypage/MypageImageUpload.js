@@ -48,13 +48,16 @@ const MypageImageUpload = (props) => {
             userImgUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
-        window.alert('이미지가 변경되었습니다!');
+        window.alert('프로필 이미지가 변경되었습니다!');
       });
   };
 
   return (
     <Grid>
-      <CameraIcon for='imageSelect' />
+      <CameraIcon
+        for='imageSelect'
+        src={process.env.PUBLIC_URL + '/img/icon/camera_icon.svg'}
+      />
       <input
         id='fileSelect'
         type='file'
@@ -71,15 +74,13 @@ const MypageImageUpload = (props) => {
 
 const CameraIcon = styled.label`
   position: absolute;
-  top: 95px;
-  right: 130px;
   margin: 0;
   width: 45px;
   height: 45px;
   background-color: white;
   border-radius: 45px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
-  background-image: url(http://simpleicon.com/wp-content/uploads/camera.png);
+  background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
   background-size: 24px 24px;
   background-position: center;

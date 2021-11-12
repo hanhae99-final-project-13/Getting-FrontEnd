@@ -13,16 +13,24 @@ const MainAdoptionCardList = (props) => {
   };
 
   return (
-    <Grid width='calc(100% + 38px)' margin='0 0 40px 0'>
+    <Grid width='calc(100% + 36px)' margin='0 0 40px 0'>
       <Grid
         display='flex'
         justifyContent='space-between'
-        width='calc(100% - 1rem)'
+        alignItems='center'
+        margin='0 0 5px 0'
+        width='calc(100% - 36px)'
+        height='auto'
       >
         <Title onClick={goAdoptionPage}>
           저랑 <span>가족</span>하실래요?
         </Title>
-        <Image size='12' _onClick={goAdoptionPage} />
+        <img
+          width='13'
+          height='4'
+          src={process.env.PUBLIC_URL + '/img/icon/setting_horizontal_icon.svg'}
+          onClick={() => history.push('/adoption')}
+        />
       </Grid>
       <SliderBox>
         <InnerSlider>
@@ -50,7 +58,7 @@ const MainAdoptionCardList = (props) => {
 };
 
 const Title = styled.p`
-  margin: 0 0 20px 0;
+  margin: 0;
 
   span {
     font-weight: bold;
@@ -58,9 +66,8 @@ const Title = styled.p`
 `;
 
 const SliderBox = styled.div`
-  height: 220px;
+  height: 250px;
   margin-left: -38px;
-  margin-top: -1rem;
   overflow: visible;
   overflow-x: scroll;
   ::-webkit-scrollbar {
@@ -71,9 +78,11 @@ const SliderBox = styled.div`
 const InnerSlider = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 400vw;
+  width: 400%;
+  height: auto;
+  overflow: visible;
   padding-left: 1rem;
-  padding-top: 1rem;
+  padding-top: 50px;
 `;
 
 export default MainAdoptionCardList;

@@ -65,9 +65,16 @@ const Mypage = () => {
   }
 
   return (
-    <Grid>
-      <Grid margin='40px 0 0 0' padding='36px' width='auto'>
+    <Grid width='375px' margin='0 auto'>
+      <Grid margin='142px 0 0 0' width='auto'>
         <MypageUserInfo />
+      </Grid>
+      <Grid height='9px' bg='#F6F6F6' />
+      <Grid
+        padding='30px 36px'
+        width='auto'
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+      >
         <MypageCategory
           showWishedList={showWishedList}
           showaDockingCheck={showaDockingCheck}
@@ -76,9 +83,6 @@ const Mypage = () => {
         <MypageWishedList display={wishedListDisplay} />
         <MypageDockingCheck display={dockingCheck} />
         <MypageAdoptionCheck display={adoptionCheckDisplay} />
-      </Grid>
-      <Grid>
-        <Footer></Footer>
       </Grid>
     </Grid>
   );

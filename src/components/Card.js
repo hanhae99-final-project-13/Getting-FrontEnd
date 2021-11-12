@@ -39,17 +39,43 @@ const Card = (props) => {
         position='relative'
         width={width ? width : '180px'}
         padding='1rem'
+        bg='white'
         borderRadius='10px'
         margin={margin}
         boxShadow='10px 10px 20px rgba(0, 0, 0, 0.1)'
         _onClick={goDetail}
       >
-        <Tag>
-          <ElP>{ownerType ? ownerType : '임시보호중'}</ElP>
-        </Tag>
-        <Tag2>
-          <ElP>{isAdopted ? isAdopted : '임시보호중'}</ElP>
-        </Tag2>
+        <Grid
+          position='absolute'
+          top='-41px'
+          display='flex'
+          width='auto'
+          height='auto'
+        >
+          <Grid
+            width='auto'
+            height='auto'
+            margin='0 4px 0 0'
+            padding='7px 16px'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+            borderRadius='15px'
+          >
+            <Text margin='0' size='14px' weight='700'>
+              {ownerType ? ownerType : '임시보호중'}
+            </Text>
+          </Grid>
+          <Grid
+            width='auto'
+            height='auto'
+            padding='7px 16px'
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+            borderRadius='15px'
+          >
+            <Text margin='0' size='14px' weight='700'>
+              {isAdopted === 'abandoned' ? '보호중' : '보호종료'}
+            </Text>
+          </Grid>
+        </Grid>
         {isDockingDeleteMode && <DeleteButton />}
         {isAdoptionDeleteMode && <EditButton />}
         {isAdoptionDeleteMode && <DeleteButton />}
@@ -79,22 +105,56 @@ const Card = (props) => {
             </CardCover>
           )}
         </ImageBox>
-        <Grid display='flex' width='auto' margin='5px 0 5px 0'>
-          <Text margin='0 10px 0 0' size='14px' bold>
-            {breed ? breed.split('[개]').reverse()[0] : ''}
-          </Text>
-          <Text margin='0' size='14px'>
-            {sex ? sex : '남아'}/{age ? age : '2018년생'}
+        <Grid
+          display='flex'
+          justifyContent='space-between'
+          width='auto'
+          margin='5px 0 5px 0'
+        >
+          <Grid display='flex' width='auto' height='auto'>
+            <Text margin='0 5px 0 0' size='14px' weight='800'>
+              {breed ? breed.split('[개]').reverse()[0] : ''}
+            </Text>
+            <img
+              width='9'
+              height='15'
+              src={
+                sex === 'M'
+                  ? process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
+                  : process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
+              }
+            />
+          </Grid>
+          <Text margin='0' size='14px' weight='700'>
+            {age}년생
           </Text>
         </Grid>
-        <Grid display='flex' width='auto'>
-          <Image size='8' />
-          <ElP>
-            {modifiedAt ? modifiedAt.split('T')[0] : createdAt}{' '}
-            &nbsp;&nbsp;&nbsp;&nbsp;
-          </ElP>
-          <Image size='8' />
-          <ElP>{address ? address : '경기도 수원'}</ElP>
+        <Grid
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          width='auto'
+        >
+          <Grid display='flex' alignItems='center' width='auto'>
+            <img
+              width='12'
+              height='12'
+              src={process.env.PUBLIC_URL + '/img/icon/clock_icon.svg'}
+            />
+            <ElP>
+              {modifiedAt
+                ? modifiedAt.split('T')[0].replace(/-/g, '.')
+                : createdAt}{' '}
+            </ElP>
+          </Grid>
+          <Grid display='flex' alignItems='center' width='auto'>
+            <img
+              width='9'
+              height='12'
+              src={process.env.PUBLIC_URL + '/img/icon/location_icon.svg'}
+            />
+            <ElP>{address}</ElP>
+          </Grid>
         </Grid>
       </Grid>
       {isShowApply && <ReceivedAdoptionList index={index} />}
@@ -107,30 +167,11 @@ Card.defaultProps = {
 };
 const ElP = styled.p`
   width: auto;
-  margin: 0;
-  font-size: 8px;
+  margin: 0 0 0 4px;
+  font-size: 12px;
   text-align: center;
 `;
-const Tag = styled.div`
-  position: absolute;
-  top: -10px;
-  left: 0;
-  height: auto;
-  padding: 3px 6px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`;
-const Tag2 = styled.div`
-  position: absolute;
-  top: -10px;
-  left: 100px;
-  height: auto;
-  padding: 3px 6px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`;
+
 const ImageBox = styled.div`
   position: relative;
   width: 100%;

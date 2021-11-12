@@ -15,14 +15,14 @@ import { sample } from 'lodash';
 
 const Footer = (props) => {
   const history = useHistory();
-  const userInfo = useSelector((state) => state.user?.user.userInfo);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
-  const isLogin = useSelector((state) => state.user?.user.isLogin);
+  const isLogin = useSelector((state) => state.user.user.isLogin);
 
+  if (window.location.pathname === '/') return null;
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-  if (window.location.pathname === '/') return null;
   return (
     <React.Fragment>
       <Grid
@@ -37,6 +37,7 @@ const Footer = (props) => {
         display='flex'
         justifyContent='space-around'
         height='80px'
+        boxShadow='0px -10px 50px 5px rgba(47, 47, 47, 0.06)'
       >
         {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
           <Grid

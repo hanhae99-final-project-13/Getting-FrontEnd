@@ -20,7 +20,7 @@ const Main = () => {
 
   return (
     <Grid width='375px' margin='0 auto'>
-      <Grid width='auto' padding='0 38px' overflow='auto'>
+      <Grid width='auto' padding='0 36px' overflow='auto'>
         <Grid margin='0 0 40px 0'>
           <MainHello />
         </Grid>
@@ -31,7 +31,6 @@ const Main = () => {
           <MainAdoptionCardList />
         </Grid>
       </Grid>
-      <Footer></Footer>
     </Grid>
   );
 };

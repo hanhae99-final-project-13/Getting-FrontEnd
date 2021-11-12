@@ -9,12 +9,13 @@ import { postActions } from '../../redux/modules/post';
 const AdoptionWait = (props) => {
   const dispatch = useDispatch();
   const myApplyList = useSelector((state) => state.apply.myApplyList);
+  console.log(myApplyList);
 
   return (
     <Grid display={props.display}>
       {myApplyList.length !== 0 ? (
         myApplyList.map((p) => {
-          if (p.postPreview.isAdopted !== '보호중') {
+          if (p.postPreview.isAdopted !== 'abandoned') {
             return;
           }
           return (

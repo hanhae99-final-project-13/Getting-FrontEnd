@@ -95,7 +95,7 @@ const MypageDockingCheck = (props) => {
 const CategoryBox = styled.div`
   position: relative;
   display: flex;
-  margin: 0 0 22px 0;
+  margin: 0 0 66px 0;
 
   .category {
     margin-right: 15px;

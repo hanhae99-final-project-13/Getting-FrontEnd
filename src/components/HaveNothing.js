@@ -14,7 +14,11 @@ const HaveNothing = ({ it, state, ment, goThere }) => {
         justifyContent='space-evenly'
         height='300px'
       >
-        <Image margin='0' size='198' />
+        <img
+          width='198'
+          height='193'
+          src={process.env.PUBLIC_URL + '/img/illust/nopost.svg'}
+        />
         <Text margin='0' weight='700' size='20px' color='#6b6462'>
           <ElSpan>{it}</ElSpan>
           {state}
