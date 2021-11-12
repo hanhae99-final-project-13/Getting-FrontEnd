@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -8,9 +9,11 @@ import {
   DefaultInfomation,
 } from '../components/TakeAdoptionApply';
 import { Grid, Text } from '../elements';
+import { BackButton, Logo } from '../components';
 import { applyActions } from '../redux/modules/apply';
 import { apis } from '../lib/axios';
 import { history } from '../redux/configureStore';
+import { ErrorAlert } from '../shared/Alerts';
 
 const TakeAdoptionApply = (props) => {
   const dispatch = useDispatch();
@@ -35,9 +38,11 @@ const TakeAdoptionApply = (props) => {
         padding='0 35px'
         width='auto'
       >
-        <Text margin='0' weight='800' size='20px'>
-          입양 신청서
-        </Text>
+        <Grid position='relative' height='100px' margin='0 0 16px 0'>
+          <BackButton position='absolute' top='65px' left='0' />
+
+          <Title>입양 신청서</Title>
+        </Grid>
         <DefaultInfomation />
         <AdoptionReason />
         <AdoptionSurvey />
@@ -62,7 +67,7 @@ const TakeAdoptionApply = (props) => {
                 .applyDecision(fosterFormId, { acceptance: 'rejected' })
                 .then((res) => {
                   console.log(res.data);
-                  window.alert('입양 신청을 거절하셨습니다');
+                  ErrorAlert('입양 신청을 거절하셨습니다');
                   history.push('/mypage');
                 })
                 .catch((err) => console.log(err));
@@ -94,10 +99,23 @@ const TakeAdoptionApply = (props) => {
         <AcceptCheckModal
           setShowModal={setShowModal}
           fosterFormId={fosterFormId}
+          name={detailFosterForm.name}
         />
       )}
     </React.Fragment>
   );
 };
+
+const Title = styled.span`
+  position: absolute;
+  top: 61px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+`;
 
 export default TakeAdoptionApply;

@@ -35,12 +35,7 @@ instance.interceptors.request.use(
 //     return success;
 //   },
 //   (error) => {
-//     if (
-//       error.response.data.statusCode === 400 &&
-//       error.response.data.responseMessage === '아이디 또는 패스워가 맞지않아요!'
-//     ) {
-//       return window.alert('비밀번호를 입력해주세요');
-//     }
+//
 //     return error;
 //   },
 // );

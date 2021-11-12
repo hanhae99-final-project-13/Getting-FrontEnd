@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Grid, Image, Text } from '../../elements';
 import { history } from '../../redux/configureStore';
 
-const AcceptComplete = () => {
+const AcceptComplete = ({ name }) => {
   return (
     <React.Fragment>
       <Grid
@@ -18,9 +18,12 @@ const AcceptComplete = () => {
         height='calc(100% - 80px)'
         bg='white'
       >
-        <Image size='179' margin='0' />
+        <img
+          width='179'
+          src={process.env.PUBLIC_URL + '/img/illust/doghugperson.svg'}
+        />
         <Text margin='39px 0 7px 0' weight='700' size='14px'>
-          님께
+          <Bold>{name}</Bold> 님께
         </Text>
         <Text margin='0 0 28px 0' weight='700' size='14px'>
           입양을 승인했습니다!
@@ -50,6 +53,11 @@ const AcceptComplete = () => {
     </React.Fragment>
   );
 };
+
+const Bold = styled.span`
+  font-size: 14px;
+  font-weight: 800;
+`;
 
 const Red = styled.span`
   color: red;

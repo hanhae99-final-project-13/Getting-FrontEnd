@@ -3,9 +3,9 @@ import React from 'react';
 import { Grid, Text } from '../../elements';
 import AcceptComplete from './AcceptComplete';
 import { apis } from '../../lib/axios';
-import { history } from '../../redux/configureStore';
+import { SuccessAlert } from '../../shared/Alerts';
 
-const AcceptCheckModal = ({ setShowModal, fosterFormId }) => {
+const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
   const [showAcceptComplete, setShowAcceptComplete] = React.useState(false);
 
   React.useEffect(() => {
@@ -65,8 +65,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId }) => {
                 .applyDecision(fosterFormId, { acceptance: 'accepted' })
                 .then((res) => {
                   console.log(res.data);
-                  window.alert('입양 신청을 수락하셨습니다');
-                  history.push('/mypage');
+                  SuccessAlert('입양 신청을 수락하셨습니다');
                 })
                 .catch((err) => console.log(err));
             }}
@@ -77,7 +76,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId }) => {
           </Grid>
         </Grid>
       </Grid>
-      {showAcceptComplete && <AcceptComplete />}
+      {showAcceptComplete && <AcceptComplete name={name} />}
     </React.Fragment>
   );
 };

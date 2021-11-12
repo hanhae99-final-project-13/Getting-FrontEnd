@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Grid, Image } from '../../elements';
+import { Grid } from '../../elements';
 import { Card } from '../';
 import { history } from '../../redux/configureStore';
 import { useSelector } from 'react-redux';
+import HaveNothing from '../HaveNothing';
 
 const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
-  const goDetail = () => {
-    history.push('/');
-  };
+  console.log(wishPostList);
   return (
     <Grid width='calc(100% + 1rem)'>
       <Grid display='flex' width='calc(100% - 1rem)'>
@@ -18,6 +17,7 @@ const AdoptionWishedCardList = (props) => {
           저에게 <span>관심</span>있으시죠?😊
         </Title>
       </Grid>
+      {/* {wishPostList.length === 0 ? <HaveNothing /> : ''} */}
       <SliderBox>
         <InnerSlider width={wishPostList.length}>
           {wishPostList.map((p) => {

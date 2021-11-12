@@ -13,7 +13,9 @@ const MainHello = (props) => {
     <Grid padding='0 12px'>
       <Image
         src={
-          isLogin
+          isLogin &&
+          userInfo.userImgUrl !==
+            'https://gorokke.shop/image/profileDefaultImg.jpg'
             ? userInfo.userImgUrl
             : process.env.PUBLIC_URL + '/img/GUIicon/profile_default_icon.svg'
         }
