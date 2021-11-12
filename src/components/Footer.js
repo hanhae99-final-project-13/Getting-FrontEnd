@@ -15,9 +15,9 @@ import { sample } from 'lodash';
 
 const Footer = (props) => {
   const history = useHistory();
-  const userInfo = useSelector((state) => state.user?.user.userInfo);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
-  const isLogin = useSelector((state) => state.user?.user.isLogin);
+  const isLogin = useSelector((state) => state.user.user.isLogin);
 
   if (window.location.pathname === '/') return null;
   if (token && !isLogin) {
