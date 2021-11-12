@@ -12,6 +12,7 @@ import { history } from '../redux/configureStore';
 import { BackButton, Logo } from '../components';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
+import { ErrorAlert } from '../shared/Alerts';
 
 const Adoption = () => {
   const dispatch = useDispatch();
@@ -83,7 +84,17 @@ const Adoption = () => {
           </span>
         </CategoryBox>
         <AdoptionCardList />
-        <AddButton onClick={goAddPost}>+</AddButton>
+        <AddButton
+          onClick={() => {
+            if (!isToken) {
+              ErrorAlert('로그인이 필요한 서비스입니다!');
+              return;
+            }
+            goAddPost();
+          }}
+        >
+          +
+        </AddButton>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
