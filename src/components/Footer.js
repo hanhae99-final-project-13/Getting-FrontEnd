@@ -147,25 +147,40 @@ const Footer = withRouter((props) => {
             마이페이지
           </TEXT>
         </Grid>
-        <Grid
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-          justifyContent='center'
-          _onClick={() => {
-            if (!token) {
-              ErrorAlert('로그인 먼저 해주세요!');
-              return;
-            }
-            dispatch(userAction.LogOutDB());
-          }}>
-          <Grid width='29px' height='28px'>
-            <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
+
+        {token ? (
+          <Grid
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            _onClick={() => {
+              dispatch(userAction.LogOutDB());
+            }}>
+            <Grid width='29px' height='28px'>
+              <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
+            </Grid>
+            <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
+              로그아웃
+            </TEXT>
           </Grid>
-          <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
-            로그아웃
-          </TEXT>
-        </Grid>
+        ) : (
+          <Grid
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            _onClick={() => {
+              history.push('/login');
+            }}>
+            <Grid width='29px' height='28px'>
+              <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
+            </Grid>
+            <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
+              로그인
+            </TEXT>
+          </Grid>
+        )}
       </Grid>
     </React.Fragment>
   );
