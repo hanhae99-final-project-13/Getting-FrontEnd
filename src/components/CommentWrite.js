@@ -4,7 +4,9 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Image } from '../elements/';
 import { postActions } from '../redux/modules/post';
+import { ErrorAlert } from '../shared/Alerts';
 const CommentWrite = (props) => {
+  const token = localStorage.getItem('USER_TOKEN');
   // console.log('코멘트', props);
   const postId = props.postId;
   if (props.comment) {
@@ -21,10 +23,14 @@ const CommentWrite = (props) => {
   const [comment, setComment] = useState('');
   // 임시로 id값 지정
   const commentSubmit = () => {
-    dispatch(
-      postActions.addCommentToAxios({ postId: postId, comment: comment }),
-    );
-    setComment('');
+    if (!token) {
+      ErrorAlert('로그인 후 이용해주세요');
+    } else {
+      dispatch(
+        postActions.addCommentToAxios({ postId: postId, comment: comment }),
+      );
+      setComment('');
+    }
   };
   return (
     <React.Fragment>

@@ -11,6 +11,7 @@ import { Grid, Image, Text } from '../elements/index';
 import Swal from 'sweetalert2';
 import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
+import { ErrorAlert } from '../shared/Alerts';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -107,8 +108,11 @@ const Detail = (props) => {
               <button
                 style={{ all: 'unset' }}
                 onClick={() => {
-                  // wish();
-                  dispatch(postActions.heartToAxios({ postId: postId }));
+                  if (!token) {
+                    ErrorAlert('로그인 후 이용해주세요');
+                  } else {
+                    dispatch(postActions.heartToAxios({ postId: postId }));
+                  }
                 }}
               >
                 {post.post.heart === true ? (
