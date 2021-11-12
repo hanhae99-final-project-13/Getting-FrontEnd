@@ -67,7 +67,7 @@ const AddPost = () => {
     phone: phone,
     extra: extra,
     img: img,
-    isAdopted: '보호중',
+    isAdopted: 'abandoned',
   };
 
   const [addressModal, setAddressModal] = React.useState(false);
