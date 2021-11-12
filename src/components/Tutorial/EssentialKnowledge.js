@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Grid, Text, Image } from '../../elements';
 import EssentialComponent from './EssentialComponent';
 import EssentialKnowledgeData from '../Data/EssentialKnowledgeData';
-import Footer from '../Footer';
 import { history } from '../../redux/configureStore';
 
 const EssentialKnowledge = () => {
@@ -78,8 +77,6 @@ const EssentialKnowledge = () => {
           </Text>
         </Grid>
       </Grid>
-
-      <Footer></Footer>
     </>
   );
 };
