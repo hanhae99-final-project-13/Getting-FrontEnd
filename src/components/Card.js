@@ -72,7 +72,7 @@ const Card = (props) => {
             borderRadius='15px'
           >
             <Text margin='0' size='14px' weight='700'>
-              {isAdopted ? isAdopted : '임시보호중'}
+              {isAdopted === 'abandoned' ? '보호중' : '보호종료'}
             </Text>
           </Grid>
         </Grid>
@@ -141,7 +141,11 @@ const Card = (props) => {
               height='12'
               src={process.env.PUBLIC_URL + '/img/icon/clock_icon.svg'}
             />
-            <ElP>{modifiedAt ? modifiedAt.split('T')[0] : createdAt} </ElP>
+            <ElP>
+              {modifiedAt
+                ? modifiedAt.split('T')[0].replace(/-/g, '.')
+                : createdAt}{' '}
+            </ElP>
           </Grid>
           <Grid display='flex' alignItems='center' width='auto'>
             <img

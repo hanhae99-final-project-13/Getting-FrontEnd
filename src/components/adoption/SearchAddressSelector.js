@@ -33,7 +33,7 @@ const SearchAddressSelector = (props) => {
 
   return (
     <Grid display='flex' justifyContent='center' width='auto' height='auto'>
-      <SelectBoxGroup>
+      <SelectBoxGroup margin='0 0 24px 0'>
         {locationCheck ? null : <Cover />}
         <select id='citySelectBox' onChange={changeDistrict}>
           <option selected value='지역선택'>
@@ -75,53 +75,43 @@ const SearchAddressSelector = (props) => {
 
 const SelectBoxGroup = styled.div`
   position: relative;
-  margin: 0;
+  margin: 0 12px;
   padding: 0;
-  width: auto;
-  height: auto;
+  width: 93px;
+  height: 30px;
 
   select {
     position: relative;
-    margin: 0;
-    padding: 5px 10px;
+    padding: 0px 7px;
+    width: 93px;
+    height: 30px;
     background-color: #ebebeb;
-    font-size: 10px;
-    -webkit-transform: scale(0.7);
+    font-size: 12px;
+    font-weight: 700px;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.06);
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.06);
-
-    ::after {
-      position: absolute;
-      top: 50%;
-      content: '왜 안되냐';
-      width: 100px;
-      height: 100px;
-      background-color: gray;
-      opacity: 0.5;
-    }
   }
 
   select option {
     margin: 0;
     font-size: 10px;
     text-align: left;
-    -webkit-transform: scale(0.1);
   }
 `;
 
 const Cover = styled.div`
   position: absolute;
-  top: 3.4px;
-  left: 12.5px;
-  width: 61px;
-  height: 15px;
+  top: 0;
+  left: 0;
+  width: 93px;
+  height: 30px;
   background-color: white;
   opacity: 0.9;
-  border-radius: 10px;
+  border-radius: 6px;
   z-index: 1;
 `;
 

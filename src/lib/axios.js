@@ -95,7 +95,9 @@ export const apis = {
   applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
   getMyApplyList: () => instance.get(`/requests`),
   getDetailfosterForm: (fosterFormId) =>
-    instance.get(`/foster_forms/${fosterFormId}`),
+    instance.get(`/requests/${fosterFormId}`),
+  applyDecision: (fosterFormId, data) =>
+    instance.patch(`/foster_forms/${fosterFormId}/acceptance`, data),
   //관심친구 등록
   addWish: (postId) => instance.post('/wishes/', postId),
   //교육자료 api

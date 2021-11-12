@@ -25,7 +25,11 @@ const MainIfYouFirstAdoption = (props) => {
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
       height='125px'
     >
-      <Image size='128' />
+      <img
+        width='128'
+        height='128'
+        src={process.env.PUBLIC_URL + '/img/illust/mainillust.svg'}
+      />
       <Grid
         display='flex'
         flexDirection='column'
@@ -34,7 +38,7 @@ const MainIfYouFirstAdoption = (props) => {
         width='auto'
         height='auto'
       >
-        <Text margin='0' size='18px'>
+        <Text margin='0 0 12px 0' size='18px'>
           입양이
           <ElSpan margin='0' size='18px' weight='800'>
             처음
@@ -74,7 +78,7 @@ const MainIfYouFirstAdoption = (props) => {
               }}
             >
               <Text margin='0' color='white' size='14px' weight='700'>
-                완벽한 견주되기
+                필수 지식 듣기
               </Text>
             </BePerfect>
           </Grid>

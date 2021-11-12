@@ -10,7 +10,7 @@ const MainHello = (props) => {
   const isLogin = useSelector((state) => state.user.user.isLogin);
 
   return (
-    <Grid>
+    <Grid padding='0 12px'>
       <Image
         src={
           isLogin
@@ -18,7 +18,6 @@ const MainHello = (props) => {
             : process.env.PUBLIC_URL + '/img/GUIicon/profile_default_icon.svg'
         }
         size='78'
-        margin='0 0 0 12px'
       />
       <Grid display='flex' width='auto' margin='18.5px 0 0 0'>
         <Text size='18px' weight='700' margin='0'>
@@ -33,7 +32,7 @@ const MainHello = (props) => {
         display='flex'
         justifyContent='space-between'
         alignItems='center'
-        width='100%'
+        width='calc(100% - 24px)'
       >
         <Grid display='flex' alignItems='center' width='auto'>
           <Text margin='0' size='12px' weight='700' color='#5c5c5c'>

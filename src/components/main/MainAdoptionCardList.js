@@ -29,6 +29,7 @@ const MainAdoptionCardList = (props) => {
           width='13'
           height='4'
           src={process.env.PUBLIC_URL + '/img/icon/setting_horizontal_icon.svg'}
+          onClick={() => history.push('/adoption')}
         />
       </Grid>
       <SliderBox>

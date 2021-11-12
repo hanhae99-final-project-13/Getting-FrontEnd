@@ -10,8 +10,6 @@ import { Grid, Image, Text } from '../elements/index';
 import Swal from 'sweetalert2';
 import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -61,20 +59,26 @@ const Detail = (props) => {
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
+  console.log(!post.post.url.includes('http://'));
   return (
     <React.Fragment>
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='0 auto 80px auto'>
+        <Grid width='375px' margin='0 auto 140px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p>저와 친구하실래요?😁</p>
 
               {user && user.nickname === post.post.nickname ? (
                 <button style={{ all: 'unset' }} onClick={onModal}>
-                  🛠
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/img/icon/setting_horizontal_icon.svg'
+                    }
+                    style={{ width: '12px', height: '12px' }}
+                  />
                 </button>
               ) : null}
             </Grid>
@@ -82,22 +86,39 @@ const Detail = (props) => {
               height='0'
               position='relative'
               top='20px'
-              right='5px'
+              right='10px'
               display='flex'
-              flexDirection='row-reverse'>
+              flexDirection='row-reverse'
+            >
               <button
                 style={{ all: 'unset' }}
                 onClick={() => {
                   // wish();
                   dispatch(postActions.heartToAxios({ postId: postId }));
-                }}>
-                {post.post.heart === true ? '🔴' : '⚪'}
+                }}
+              >
+                {post.post.heart === true ? (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                    }
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                ) : (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
+                    }
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                )}
               </button>
             </Grid>
             <Grid
               display='flex'
               overflowX='auto'
-              justifyContent='space-between'>
+              justifyContent='space-between'
+            >
               {post.post.img &&
                 post.post.img.map((m, i) => {
                   return (
@@ -118,26 +139,77 @@ const Detail = (props) => {
                 })}
             </Grid>
           </Grid>
+          {post.post.tag !== '직접등록' ? null : user.eduList &&
+            user.eduList[0].필수지식 === true ? (
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Grid
+                position='fixed'
+                margin='auto'
+                bg='#FE7968'
+                width='144px'
+                height='40px'
+                borderRadius='25px'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                bottom='90px'
+                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                _onClick={() => {
+                  openModal();
+                  window.sessionStorage.clear();
+                }}
+              >
+                <Text color='white'>입양 신청하기</Text>
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Grid
+                position='fixed'
+                margin='auto'
+                bg='#FE7968'
+                width='144px'
+                height='40px'
+                borderRadius='25px'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                bottom='90px'
+                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                _onClick={() => {
+                  eduCheckopenModal();
+                }}
+              >
+                <Text color='white'>입양 신청하기</Text>
+              </Grid>
+            </Grid>
+          )}
           <Grid
             width='283px'
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-            borderRadius='10px'>
+            borderRadius='10px'
+          >
             <Grid
               display='flex'
               margin='10px 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
-                견종
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  견종
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.breed.split('[개]').reverse()[0]}
                 </span>
               </Grid>
 
               <Grid width='50%'>
-                성별
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  성별
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
               </Grid>
             </Grid>
@@ -146,16 +218,21 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
-                체중
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  체중
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.weight} kg
                 </span>
               </Grid>
 
               <Grid width='50%'>
-                나이
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  나이
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.age} 년생
                 </span>
@@ -166,9 +243,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                발견 장소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  발견 장소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.lostLocation}
                 </span>
@@ -179,9 +259,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                보호 장소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  보호 장소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.ownerType}
                 </span>
@@ -192,9 +275,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                주소
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  주소
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.address}
                 </span>
@@ -205,9 +291,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                출처
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  출처
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
               </Grid>
             </Grid>
@@ -215,17 +304,103 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
-              <Grid>
-                웹사이트
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
+              <Grid
+                display='flex'
+                justifyContent='space-between'
+                alignItems='center'
+              >
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  웹사이트
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  <FontAwesomeIcon
-                    icon={faLink}
-                    color='black'
-                    fontSize='1x'
-                    onClick={() =>
-                      window.open(`${post.post.url}`, '_blank')
-                    }></FontAwesomeIcon>
+                  {post.post.url.includes('http://') ? (
+                    // http:// 가 주소에 있다면
+                    post.post.url.includes('instagram.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/instagram_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : post.post.url.includes('facebook.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/facebook_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : post.post.url.includes('twitter.com') ? (
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/img/GUIicon/twitter_icon.svg'
+                        }
+                        style={{ width: '30px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    ) : (
+                      <img
+                        src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
+                        style={{ width: '20px' }}
+                        onClick={() =>
+                          window.open(`${post.post.url}`, '_blank')
+                        }
+                      />
+                    )
+                  ) : // http:// 가 주소에 없다면
+                  post.post.url.includes('instagram.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/img/GUIicon/instagram_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
+                    />
+                  ) : post.post.url.includes('facebook.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/img/GUIicon/facebook_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
+                    />
+                  ) : post.post.url.includes('twitter.com') ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/GUIicon/twitter_icon.svg'
+                      }
+                      style={{ width: '30px' }}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
+                    />
+                  ) : (
+                    <img
+                      src={process.env.PUBLIC_URL + '/img/icon/link_icon.svg'}
+                      style={{ width: '20px' }}
+                      onClick={() =>
+                        window.open(`http://${post.post.url}`, '_blank')
+                      }
+                    />
+                  )}
                 </span>
               </Grid>
             </Grid>
@@ -234,9 +409,12 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
-                연락처
+                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                  연락처
+                </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.phone}
                 </span>
@@ -245,54 +423,11 @@ const Detail = (props) => {
 
             <Grid display='flex' margin='5px 0 0 0'>
               <Grid>
-                <p>특이사항</p>
+                <p style={{ fontWeight: '800', color: '#6B6462' }}>특이사항</p>
                 <span>{post.post.extra}</span>
               </Grid>
             </Grid>
           </Grid>
-          {post.post.tag !== '직접등록' ? null : user.eduList &&
-            user.eduList[0].필수지식 === true ? (
-            <Grid display='flex' justifyContent='center' alignItems='center'>
-              <Grid
-                position='fixed'
-                margin='auto'
-                bg='#FF6666'
-                width='144px'
-                height='50px'
-                borderRadius='25px'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                bottom='50px'
-                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={() => {
-                  openModal();
-                  window.sessionStorage.clear();
-                }}>
-                <Text color='white'>입양 신청하기</Text>
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid display='flex' justifyContent='center' alignItems='center'>
-              <Grid
-                position='fixed'
-                margin='auto'
-                bg='#FF6666'
-                width='144px'
-                height='50px'
-                borderRadius='25px'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                bottom='30px'
-                boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-                _onClick={() => {
-                  eduCheckopenModal();
-                }}>
-                <Text color='white'>입양 신청하기</Text>
-              </Grid>
-            </Grid>
-          )}
 
           <p style={{ padding: '0 46px' }}>댓글😁</p>
 
@@ -301,7 +436,8 @@ const Detail = (props) => {
           {modalOpen ? (
             <AdoptionNoticeModal
               postId={postId}
-              closeModal={closeModal}></AdoptionNoticeModal>
+              closeModal={closeModal}
+            ></AdoptionNoticeModal>
           ) : (
             ' '
           )}
@@ -327,7 +463,9 @@ const Detail = (props) => {
                 borderTopLeftRadius: '15px',
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
-              }}>
+                zIndex: '5',
+              }}
+            >
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <button
                   style={{
@@ -342,7 +480,8 @@ const Detail = (props) => {
                   onClick={() => {
                     editMode();
                     // history.push('/editpost');
-                  }}>
+                  }}
+                >
                   수정
                 </button>
               </Grid>
@@ -363,7 +502,8 @@ const Detail = (props) => {
                     if (window.confirm('정말 삭제하시겠습니까?')) {
                       detailDelete();
                     }
-                  }}>
+                  }}
+                >
                   삭제
                 </button>
               </Grid>
@@ -380,7 +520,8 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
-                  }}>
+                  }}
+                >
                   취소
                 </button>
               </Grid>

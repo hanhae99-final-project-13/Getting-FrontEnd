@@ -1,10 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Grid, Text } from '../../elements';
 
 const AdoptionSurvey = () => {
-  const [reason, setReason] = React.useState('');
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
   const [showReason, setShowReason] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,7 +37,7 @@ const AdoptionSurvey = () => {
           />
         </Grid>
       </Grid>
-      {showReason ? <Textarea>입양사유</Textarea> : ''}
+      {showReason ? <Textarea>{detailFosterForm.reason}</Textarea> : ''}
     </React.Fragment>
   );
 };

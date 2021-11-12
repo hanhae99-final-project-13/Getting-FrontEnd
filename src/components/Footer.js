@@ -19,17 +19,19 @@ const Footer = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
+  if (window.location.pathname === '/') return null;
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
   return (
     <React.Fragment>
       <Grid
-        width='375px'
+        maxWidth='375px'
         margin='0 auto'
+        left='0'
+        right='0'
         bg='white'
-        position='sticky'
+        position='fixed'
         bottom='0px'
         borderRadius='15px 15px 0 0'
         display='flex'

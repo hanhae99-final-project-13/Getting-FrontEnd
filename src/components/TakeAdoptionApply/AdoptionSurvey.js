@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
-import { Grid, Text } from '../../elements';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Grid, Image, Text } from '../../elements';
 import Slider from '../../components/Slider';
 import styled from 'styled-components';
 
 const AdoptionReason = (props) => {
-  const [allergy, setAllergy] = React.useState('있음');
-  const [timeTogether, setTimeTogether] = React.useState('');
-  const [anxiety, setAnxiety] = React.useState('');
-  const [bark, setBark] = React.useState('');
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
   const [showSurvey, setShowSurvey] = React.useState(false);
 
   // 알러지 체크함수
-  const [check, setCheck] = useState(true);
-  const handleallergy = () => {
-    setCheck(!check);
-    if (check === true) {
-      setAllergy('없음');
-    } else setAllergy('있음');
-  };
 
   React.useEffect(() => {
     return () => setShowSurvey(false);
@@ -49,7 +40,7 @@ const AdoptionReason = (props) => {
         </Grid>
       </Grid>
       {showSurvey ? (
-        <Grid boxSizing='border-box'>
+        <Grid boxSizing='border-box' margin='0 0 100px 0'>
           <Grid>
             <Grid
               padding='13px 0px'
@@ -77,7 +68,7 @@ const AdoptionReason = (props) => {
                 borderRadius='15px'
               >
                 <Text color='white' weight='700'>
-                  있음
+                  {detailFosterForm.allergy}
                 </Text>
               </Grid>
             </Grid>
@@ -95,7 +86,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.experience}</Textarea>
             </Grid>
 
             <Grid
@@ -115,7 +106,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.timeTogether}</Textarea>
             </Grid>
 
             <Grid
@@ -132,7 +123,7 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.anxiety}</Textarea>
             </Grid>
 
             <Grid
@@ -148,7 +139,19 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>입양사유</Textarea>
+              <Textarea>{detailFosterForm.bark}</Textarea>
+            </Grid>
+            <Grid margin='18px 0 21px 0 ' height='auto'>
+              <Text margin='0 0 8px 0' bold line_height='24px'>
+                아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
+                사진 찍어 첨부해주세요.
+              </Text>
+              <Image
+                shape='square'
+                src={detailFosterForm.roomUrl}
+                borderRadius='10px'
+                backgroundPosition='center'
+              />
             </Grid>
           </Grid>
         </Grid>

@@ -25,7 +25,7 @@ const Alarm = () => {
   return (
     <>
       <Grid width='375px' margin='0 auto'>
-        <Grid padding='35px' boxSizing='border-box' margin='10px 0'>
+        <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
               알림
@@ -58,26 +58,25 @@ const Alarm = () => {
               전체삭제{' '}
             </button>
           </Grid>
-          {userInfo.alarmContent.length === 0 ? (
+          {userInfo.alarmCount === 0 ? (
             <>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <Grid
-                  width='260px'
-                  height='260px'
+                  width='250px'
+                  height='250px'
                   margin='70px 0 30px 0'
                   bg='white'
                   borderRadius='200px'
                   color='black'
                   boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
                 >
-                  <img
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      borderRadius: '200px',
-                      objectFit: 'cover',
-                    }}
-                    src='https://w.namu.la/s/4c9edd1a4c1cf019e364ad3b684c8e6537f834527ee6fb94dd9853b506a7163d1a0150c52864ef19d322cf5fa17bd5b1dd7e7db063889d4a832cb4c8784712fdaa65557a38e9eac3afa50a862472f273df9b2906cfbc0f84d324476519b424d7'
+                  <Image
+                    style={{}}
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/img/GUIicon/warning_dog_icon.svg'
+                    }
+                    size='250'
                   />
                 </Grid>
               </Grid>
@@ -92,7 +91,7 @@ const Alarm = () => {
             </>
           ) : (
             <>
-              {userInfo.alarmContent.map((a) => {
+              {/* {userInfo.alarmContent.map((a) => {
                 console.log(a);
                 return (
                   <Grid
@@ -128,7 +127,7 @@ const Alarm = () => {
                     </Grid>
                   </Grid>
                 );
-              })}
+              })} */}
             </>
           )}
         </Grid>
@@ -153,9 +152,12 @@ const Alarm = () => {
               display='flex'
               justifyContent='center'
               alignItems='center'
-              height='120px'
+              height='150px'
             >
-              이미지 넣을 곳
+              <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+                style={{ width: '75px' }}
+              />
             </Grid>
             <Grid
               display='flex'
@@ -170,7 +172,7 @@ const Alarm = () => {
               display='flex'
               alignItems='center'
               justifyContent='center'
-              height='150px'
+              height='100px'
             >
               <button
                 style={{

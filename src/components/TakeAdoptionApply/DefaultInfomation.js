@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Grid, Text } from '../../elements';
 
 const DefaultInfomation = (props) => {
+  const detailFosterForm = useSelector((state) => state.apply.detailFosterForm);
   const [showDefaultInfo, setShowDefaultInfo] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,7 +48,7 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
-              이름
+              {detailFosterForm.name}
             </Text>
             <Text
               margin='0'
@@ -57,7 +59,7 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
-              직업
+              {detailFosterForm.job}
             </Text>
             <Text
               margin='0'
@@ -68,7 +70,8 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
-              나이/성별
+              {detailFosterForm.fosterAge}/
+              {detailFosterForm.gender === 'F' ? '여자' : '남자'}
             </Text>
             <Text
               margin='0'
@@ -79,7 +82,7 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
-              거주지
+              {detailFosterForm.fosterAddress}
             </Text>
 
             <Text
@@ -91,7 +94,7 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
-              가족 구성원
+              {detailFosterForm.family}명
             </Text>
 
             <Grid
@@ -117,7 +120,7 @@ const DefaultInfomation = (props) => {
                 borderRadius='15px'
               >
                 <Text color='white' weight='700'>
-                  있음
+                  {detailFosterForm.currentPet}
                 </Text>
               </Grid>
             </Grid>

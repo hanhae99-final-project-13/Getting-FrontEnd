@@ -10,6 +10,7 @@ import AdoptionWait from './AdoptionWait';
 import AdoptionOk from './AdoptionOk';
 import AdoptionNo from './AdoptionNo';
 import ReceivedAdoptionList from './ReceivedAdoptionList';
+import MiniCard from './MiniCard';
 
 export {
   MypageUserInfo,
@@ -24,4 +25,5 @@ export {
   AdoptionOk,
   AdoptionNo,
   ReceivedAdoptionList,
+  MiniCard,
 };

@@ -30,9 +30,10 @@ const CommentWrite = (props) => {
     <React.Fragment>
       {props.comment ? (
         <Grid
-          bg='rgba(235, 235, 235)'
+          bg='white'
           width='305px'
           height='40px'
+          border='1.5px solid rgb(235, 235, 235)'
           borderRadius='10px'
           margin='0 auto 10px auto'
           display='flex'
@@ -51,7 +52,7 @@ const CommentWrite = (props) => {
               padding: '4px 10px',
               border: 'none',
               color: 'white',
-              backgroundColor: '#3FCC66',
+              backgroundColor: '#FE7968',
               borderRadius: '10px',
             }}
             onClick={editSubmit}
@@ -61,9 +62,10 @@ const CommentWrite = (props) => {
         </Grid>
       ) : (
         <Grid
-          bg='rgba(235, 235, 235)'
+          bg='white'
           width='305px'
           height='40px'
+          border='1.5px solid rgb(235, 235, 235)'
           borderRadius='10px'
           margin='0 auto 10px auto'
           display='flex'
@@ -82,7 +84,7 @@ const CommentWrite = (props) => {
               padding: '4px 10px',
               border: 'none',
               color: 'white',
-              backgroundColor: '#3FCC66',
+              backgroundColor: '#FE7968',
               borderRadius: '10px',
             }}
             onClick={commentSubmit}
@@ -96,7 +98,7 @@ const CommentWrite = (props) => {
 };
 
 const CommentBox = styled.input`
-  background-color: rgba(235, 235, 235);
+  background-color: white;
   width: 230px;
   height: 35px;
   margin: auto;

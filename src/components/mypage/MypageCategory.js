@@ -57,7 +57,11 @@ const MypageCategory = (props) => {
           showWishedList(changeWL);
         }}
       >
-        <Image size='28' margin='0' />
+        <img
+          width='30'
+          height='27'
+          src={process.env.PUBLIC_URL + '/img/GUIicon/like_dog_icon.svg'}
+        />
         <Text margin='3px 0 0 0' size='12px' weight='800' color={WLFC}>
           관심친구
         </Text>
@@ -74,7 +78,11 @@ const MypageCategory = (props) => {
         borderRadius='14px'
         _onClick={() => showaDockingCheck(changeDC)}
       >
-        <Image size='28' margin='0' />
+        <img
+          width='26'
+          height='27'
+          src={process.env.PUBLIC_URL + '/img/GUIicon/letter_icon.svg'}
+        />
         <Text margin='3px 0 0 0' size='12px' weight='800' color={DCFC}>
           도킹 확인
         </Text>
@@ -91,7 +99,11 @@ const MypageCategory = (props) => {
         borderRadius='14px'
         _onClick={() => showadoptionCheck(changeAC)}
       >
-        <Image size='28' margin='0' />
+        <img
+          width='23'
+          height='27'
+          src={process.env.PUBLIC_URL + '/img/GUIicon/document_dog_icon.svg'}
+        />
         <Text margin='3px 0 0 0' size='12px' weight='800' color={ACFC}>
           입양 관리
         </Text>

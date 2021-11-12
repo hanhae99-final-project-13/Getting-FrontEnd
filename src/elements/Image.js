@@ -8,6 +8,7 @@ const Image = (props) => {
     size,
     margin,
     border,
+    borderRadius,
     backgroundPosition,
     id,
     _onClick,
@@ -24,6 +25,7 @@ const Image = (props) => {
     size: size,
     margin: margin,
     border: border,
+    borderRadius,
     backgroundPosition: backgroundPosition,
     display: display,
     zIndex,
@@ -94,6 +96,7 @@ Image.defaultProps = {
   size: 36,
   margin: false,
   border: false,
+  borderRadius: null,
   backgroundPosition: false,
   _onMouseEnter: () => {},
   _onMouseLeave: () => {},
@@ -139,6 +142,7 @@ const InnerRect = styled.div`
   display: ${(props) => props.display};
   z-index: ${(props) => props.zIndex};
   box-shadow: ${(props) => props.boxShadow};
+  border-radius: ${(props) => props.borderRadius};
 `;
 
 const MainInner = styled.div`
