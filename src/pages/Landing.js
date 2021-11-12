@@ -1,140 +1,43 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
+import Slider from 'react-slick';
 import { Grid } from '../elements/index';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const Landing = () => {
-  const [imgPosition, setImgPosition] = React.useState(0);
-  const next = () => {
-    setImgPosition(imgPosition - 375);
-    if (imgPosition === -1125) {
-      setImgPosition(-1125);
-    }
-  };
-  const prev = () => {
-    setImgPosition(imgPosition + 375);
-    if (imgPosition === 0) {
-      setImgPosition(0);
-    }
-  };
   return (
     <React.Fragment>
-      <Grid width='375px' margin='0 auto' overflowX='hidden'>
-        <Grid
-          width='375px'
-          margin='0 auto'
-          height='0'
-          display='flex'
-          justifyContent='space-between'
-        >
-          <button
-            style={{
-              all: 'unset',
-              position: 'relative',
-              height: '300px',
-              padding: '0 75px',
-            }}
-            onClick={prev}
-          ></button>
-          <button
-            style={{
-              all: 'unset',
-              position: 'relative',
-              height: '300px',
-              padding: '0 75px',
-            }}
-            onClick={next}
-          ></button>
+      <Grid width='375px' margin='0 auto' height='80vh'>
+        <Grid>
+          <StyledSlider {...settings}>
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              style={{
+                width: '375px',
+              }}
+            />
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/landing2.svg'}
+              style={{
+                width: '375px',
+              }}
+            />
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/landing3.svg'}
+              style={{
+                width: '375px',
+              }}
+            />
+            <img
+              src={process.env.PUBLIC_URL + '/img/GUIicon/landing4.svg'}
+              style={{
+                width: '375px',
+              }}
+            />
+          </StyledSlider>
         </Grid>
-        <div
-          style={{
-            display: 'flex',
-            height: '300px',
-            marginLeft: `${imgPosition}px`,
-            transition: '1s',
-          }}
-        >
-          <img
-            src='https://cdn.royalcanin-weshare-online.io/UCImMmgBaxEApS7LuQnZ/v2/eukanuba-market-image-puppy-beagle?w=5596&h=2317&rect=574,77,1850,1045&auto=compress,enhance '
-            style={{
-              width: '375px',
-              height: '300px',
-              objectFit: 'cover',
-            }}
-          />
 
-          <img
-            src='https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg'
-            style={{
-              width: '375px',
-              height: '300px',
-              objectFit: 'cover',
-            }}
-          />
-          <img
-            src='https://blog.kakaocdn.net/dn/Z1F5v/btqLNsEwNKZ/eDuSRnRxoIHnpyrO4uX570/img.jpg'
-            style={{
-              width: '375px',
-              height: '300px',
-              objectFit: 'cover',
-            }}
-          />
-          <img
-            src='https://blog.hmgjournal.com/images_n/contents/170421_dog01.png'
-            style={{
-              width: '375px',
-              height: '300px',
-              objectFit: 'cover',
-            }}
-          />
-        </div>
-        <Grid bg='white' height='305px' margin='0 0 20px'>
-          <p
-            style={{
-              width: '305px',
-              margin: '20px auto 5px',
-              fontWeight: '800',
-            }}
-          >
-            입양 <span style={{ color: '#FE7968', fontWeight: '800' }}>전</span>
-            부터{' '}
-            <span style={{ color: '#FE7968', fontWeight: '800' }}>
-              입양 절차
-            </span>
-            ,<br />
-          </p>
-          <p style={{ width: '305px', margin: ' auto', fontWeight: '800' }}>
-            그리고 입양{' '}
-            <span style={{ color: '#FE7968', fontWeight: '800' }}>후 케어</span>
-            까지! <br />
-          </p>
-          <p
-            style={{
-              width: '305px',
-              margin: '20px auto 5px',
-              fontSize: '12px',
-              lineHeight: '150%',
-            }}
-          >
-            도킹은 반려견 입양의{' '}
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              전반적 과정
-            </span>
-            을 함께합니다. <br />
-            사용자가 반려견과 더욱 건강하고 친밀한 관계를 맺도록{' '}
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              사전 교육 서비스 제공
-            </span>
-            ,<br />
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              투명하고 원활한 입양절차
-            </span>{' '}
-            그리고{' '}
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              입양 후 반려견 관리
-            </span>
-            까지를 함께하며 완전한 가족이 될 수 있도록 노력합니다.
-          </p>
-        </Grid>
         <ButtonBox
           onClick={() => {
             history.push('/signup');
@@ -185,5 +88,37 @@ const Button = styled.button`
 const Button2 = styled.button`
   all: unset;
   color: white;
+`;
+const settings = {
+  dots: true, // 슬라이드 밑에 점 보이게
+  infinite: false, // 무한으로 반복
+  arrows: false, // 화살표 안보임
+  speed: 500,
+  autoplay: false,
+  autoplaySpeed: 500, // 넘어가는 속도
+  slidesToShow: 1, // 1장씩 보이게
+  slidesToScroll: 1, // 1장씩 뒤로 넘어가게
+  centerMode: true,
+  centerPadding: '0px', // 0px 하면 슬라이드 끝쪽 이미지가 안잘림
+};
+const StyledSlider = styled(Slider)`
+  .slick-list {
+    width: 375px;
+    margin: 0 auto;
+  }
+  .slick-dots li {
+    margin: 0 0rem;
+  }
+  .slick-dots {
+    bottom: 195px;
+    .slick-active {
+      button::before {
+        color: #fe7968;
+      }
+    }
+    button::before {
+      color: #b6b1b0;
+    }
+  }
 `;
 export default Landing;
