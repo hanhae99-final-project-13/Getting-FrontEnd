@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 import { Grid } from '../../elements';
 import { actionCreators as userActions } from '../../redux/modules/user';
+import { SuccessAlert, ErrorAlert } from '../../shared/Alerts';
 
 const MypageImageUpload = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const [userImage, setUserImage] = React.useState();
 
   AWS.config.update({
     region: 'ap-northeast-2',
@@ -39,7 +39,7 @@ const MypageImageUpload = (props) => {
     promise
       .then((data) => {})
       .catch((err) => {
-        window.alert('업로드 실패');
+        ErrorAlert('업로드 실패');
       })
       .then((data) => {
         dispatch(
@@ -48,7 +48,7 @@ const MypageImageUpload = (props) => {
             userImgUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${fileFullName}`,
           }),
         );
-        window.alert('프로필 이미지가 변경되었습니다!');
+        SuccessAlert('프로필 이미지가 변경되었습니다!');
       });
   };
 

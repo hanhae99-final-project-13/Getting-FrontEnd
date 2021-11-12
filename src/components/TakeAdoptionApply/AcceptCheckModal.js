@@ -3,7 +3,7 @@ import React from 'react';
 import { Grid, Text } from '../../elements';
 import AcceptComplete from './AcceptComplete';
 import { apis } from '../../lib/axios';
-import { history } from '../../redux/configureStore';
+import { SuccessAlert } from '../../shared/Alerts';
 
 const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
   const [showAcceptComplete, setShowAcceptComplete] = React.useState(false);
@@ -65,7 +65,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
                 .applyDecision(fosterFormId, { acceptance: 'accepted' })
                 .then((res) => {
                   console.log(res.data);
-                  window.alert('입양 신청을 수락하셨습니다');
+                  SuccessAlert('입양 신청을 수락하셨습니다');
                 })
                 .catch((err) => console.log(err));
             }}

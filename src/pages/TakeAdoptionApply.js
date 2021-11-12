@@ -13,6 +13,7 @@ import { BackButton, Logo } from '../components';
 import { applyActions } from '../redux/modules/apply';
 import { apis } from '../lib/axios';
 import { history } from '../redux/configureStore';
+import { ErrorAlert } from '../shared/Alerts';
 
 const TakeAdoptionApply = (props) => {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const TakeAdoptionApply = (props) => {
                 .applyDecision(fosterFormId, { acceptance: 'rejected' })
                 .then((res) => {
                   console.log(res.data);
-                  window.alert('입양 신청을 거절하셨습니다');
+                  ErrorAlert('입양 신청을 거절하셨습니다');
                   history.push('/mypage');
                 })
                 .catch((err) => console.log(err));

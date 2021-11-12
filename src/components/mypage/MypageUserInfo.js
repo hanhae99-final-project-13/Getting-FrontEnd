@@ -35,7 +35,12 @@ const MypageUserInfo = (props) => {
           size='119'
           bg='white'
           backgroundPosition='center'
-          src={userInfo.userImgUrl}
+          src={
+            userInfo.userImgUrl !==
+            'https://gorokke.shop/image/profileDefaultImg.jpg'
+              ? userInfo.userImgUrl
+              : process.env.PUBLIC_URL + '/img/GUIicon/profile_default_icon.svg'
+          }
           boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         />
       </Grid>

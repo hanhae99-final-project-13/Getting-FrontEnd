@@ -13,6 +13,7 @@ import { BackButton, Logo } from '../components';
 import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { applyActions } from '../redux/modules/apply';
+import { ErrorAlert } from '../shared/Alerts';
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Mypage = () => {
   }, []);
 
   if (!isToken) {
-    window.alert('로그인이 필요한 페이지입니다!');
+    ErrorAlert('로그인이 필요한 페이지입니다!');
     history.goBack();
   }
 
