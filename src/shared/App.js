@@ -18,7 +18,7 @@ import Header from '../components/Header';
 import Detail from '../pages/Detail';
 import Intro from '../pages/Intro';
 import Alarm from '../pages/Alarm';
-import Setting from '../components/Setting';
+
 import AdoptionApply from '../pages/AdoptionApply';
 import AdoptionApply2 from '../pages/AdoptionApply2';
 import TakeAdoptionApply from '../pages/TakeAdoptionApply';
@@ -85,7 +85,7 @@ function App() {
         <Route path='/mypage' exact component={Mypage} />
         <Route path='/intro' exact component={Intro} />
         <Route path='/alarm' exact component={Alarm} />
-        <Route path='/setting' exact component={Setting} />
+
         <Route path='/takeapply/:id' exact component={TakeAdoptionApply} />
         <Route path='/editpost' exact component={EditPost} />
         <Route path='/timer' exact component={Timer} />

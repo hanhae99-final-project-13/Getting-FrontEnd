@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, dispatch } from 'react-redux';
 import { useHistory, useParams, withRouter } from 'react-router-dom';
+import { actionCreators as userAction } from '../redux/modules/user';
+import { ErrorAlert } from '../shared/Alerts';
 import styled from 'styled-components';
 import { Grid } from '../elements';
 import { sample } from 'lodash';
 
 const Footer = withRouter((props) => {
+  const dispatch = useDispatch();
   const a = props;
   console.log(a.history.location.pathname);
+
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
@@ -38,7 +42,7 @@ const Footer = withRouter((props) => {
         display='flex'
         justifyContent='space-around'
         height='80px'>
-        {/* {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
+        {userInfo.eduList && userInfo.eduList[0].필수지식 === true ? (
           <Grid
             display='flex'
             flexDirection='column'
@@ -57,26 +61,26 @@ const Footer = withRouter((props) => {
               입양지식
             </TEXT>
           </Grid>
-        ) : ( */}
-        <Grid
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-          justifyContent='center'
-          _onClick={() => {
-            history.push('/tutorial');
-            window.sessionStorage.clear();
-          }}>
-          <Grid width='36px' height='28px'>
-            <img
-              src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
-            />
+        ) : (
+          <Grid
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            _onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}>
+            <Grid width='36px' height='28px'>
+              <img
+                src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
+              />
+            </Grid>
+            <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
+              입양지식
+            </TEXT>
           </Grid>
-          <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
-            입양지식
-          </TEXT>
-        </Grid>
-        {/* )} */}
+        )}
         <Grid
           display='flex'
           flexDirection='column'
@@ -130,13 +134,17 @@ const Footer = withRouter((props) => {
           alignItems='center'
           justifyContent='center'
           _onClick={() => {
-            history.push('/setting');
+            if (!token) {
+              ErrorAlert('로그인 먼저 해주세요!');
+              return;
+            }
+            dispatch(userAction.LogOutDB());
           }}>
           <Grid width='29px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
           </Grid>
           <TEXT color='#6B6462' size='14px' bold margin='7px 0 0 0'>
-            설정하기
+            로그아웃
           </TEXT>
         </Grid>
       </Grid>

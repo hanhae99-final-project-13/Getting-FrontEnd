@@ -195,10 +195,10 @@ const Signup = (props) => {
       return;
     }
 
-    // if (!clickCodeAuthButton) {
-    //   ErrorAlert('휴대폰 인증을 진행해 주세요.');
-    //   return;
-    // }
+    if (!clickCodeAuthButton) {
+      ErrorAlert('휴대폰 인증을 진행해 주세요.');
+      return;
+    }
 
     dispatch(userAction.SignupDB({ ...form, ...phone }));
   };
@@ -402,10 +402,10 @@ const Signup = (props) => {
               </Grid>
               <Text
                 _onClick={() => {
-                  // if (clickCodeAuthButton === true) {
-                  //   SuccessAlert2('이미 휴대폰 인증을 완료하셨습니다')
-                  //   return
-                  // }
+                  if (clickCodeAuthButton === true) {
+                    SuccessAlert2('이미 휴대폰 인증을 완료하셨습니다');
+                    return;
+                  }
                   sendPhoneAuthCode(phoneAuthCode);
                 }}
                 color='#FE7968'
