@@ -10,7 +10,7 @@ const AdoptionNo = (props) => {
   return (
     <Grid display={props.display}>
       {myApplyList.map((p) => {
-        if (p.postPreview.isAdopted !== '입양 거절') {
+        if (p.acceptance !== 'rejected') {
           return;
         }
         return (
@@ -31,7 +31,6 @@ const AdoptionNo = (props) => {
           />
         );
       })}
-      <Card width='auto' imageHeight='150px' />
     </Grid>
   );
 };

@@ -81,7 +81,7 @@ const getMyApplyMW = () => {
       .getMyApplyList()
       .then((res) => {
         console.log(res.data);
-        dispatch(getMyApply(res.data.data.fosterFormPreviewList));
+        dispatch(getMyApply(res.data.data.myRequestList));
       })
       .catch((err) => {
         console.log(err);
@@ -95,7 +95,7 @@ const getDetailPostForm = (fosterFormId) => {
       .getDetailfosterForm(fosterFormId)
       .then((res) => {
         console.log(res.data);
-        dispatch(getDetailFosterForm(res.data.data.FosterForm));
+        dispatch(getDetailFosterForm(res.data.data.fosterForm));
       })
       .catch((err) => {
         console.log(err);

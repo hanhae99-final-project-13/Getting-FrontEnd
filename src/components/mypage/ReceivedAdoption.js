@@ -13,11 +13,7 @@ const ReceivedAdoption = (props) => {
 
   React.useEffect(() => {
     dispatch(postActions.changeShowApply(true));
-    return () =>
-      window.addEventListener(
-        'beforeunload',
-        dispatch(postActions.changeShowApply(false)),
-      );
+    return () => dispatch(postActions.changeShowApply(false));
   }, []);
   return (
     <Grid display={props.display}>

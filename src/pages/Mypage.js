@@ -52,9 +52,9 @@ const Mypage = () => {
   };
 
   React.useEffect(() => {
-    dispatch(postActions.getWishPostMW(userInfo.userId));
+    dispatch(postActions.getWishPostMW());
     dispatch(applyActions.getMyApplyMW());
-    dispatch(postActions.getMyPostsMW(userInfo.userId));
+    dispatch(postActions.getMyPostsMW());
 
     return () => dispatch(postActions.changeCardCover(false));
   }, []);

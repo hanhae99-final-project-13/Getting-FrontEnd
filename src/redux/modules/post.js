@@ -165,11 +165,11 @@ const getDetailPostMW = (postId) => {
   };
 };
 
-const getWishPostMW = (userId) => {
-  console.log(userId);
+const getWishPostMW = () => {
+  console.log();
   return (dispatch) => {
     apis
-      .getWishPost(userId)
+      .getWishPost()
       .then((res) => {
         console.log(res.data);
         console.log(res.data.data.wishList);
@@ -181,13 +181,13 @@ const getWishPostMW = (userId) => {
   };
 };
 
-const getMyPostsMW = (userId) => {
+const getMyPostsMW = () => {
   return (dispatch) => {
     apis
-      .getMyPosts(userId)
+      .getMyPosts()
       .then((res) => {
         console.log(res.data);
-        dispatch(getMyPosts(res.data.data.formsInPostsPreview));
+        dispatch(getMyPosts(res.data.data.fosterFormsInMyPosts));
       })
       .catch((err) => {
         console.log(err);

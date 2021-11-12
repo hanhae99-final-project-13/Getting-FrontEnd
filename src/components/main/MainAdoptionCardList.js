@@ -45,7 +45,7 @@ const MainAdoptionCardList = (props) => {
                 modifiedAt={p.modifiedAt}
                 ownerType={p.ownerType}
                 address={p.address}
-                img={p.img[0]}
+                img={p.img.split(' ##')[0]}
                 postId={p.postId}
                 isAdopted={p.isAdopted}
               />

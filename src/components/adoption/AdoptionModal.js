@@ -266,9 +266,8 @@ const CheckBoxOn = styled.div`
   margin-right: 4px;
   width: 16px;
   height: 16px;
-  background: url(${process.env.PUBLIC_URL}/img/icon/check_on_icon.svg)
-    no-repeat;
-
+  background: url(${process.env.PUBLIC_URL}/img/icon/check_icon_pink.svg);
+  background-size: cover;
   background-position: center;
 `;
 
@@ -276,7 +275,7 @@ const CheckBoxOff = styled.div`
   margin-right: 4px;
   width: 16px;
   height: 16px;
-  background: url(${process.env.PUBLIC_URL}/img/icon/check_icon.svg) no-repeat;
+  background: url(${process.env.PUBLIC_URL}/img/icon/check_icon_black.svg);
   background-size: cover;
   background-position: center;
 `;

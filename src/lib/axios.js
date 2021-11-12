@@ -74,8 +74,8 @@ export const apis = {
       &sort=${defaultSearch.sort}`,
     ),
   getDetailPost: (postId) => instance.get(`/posts/${postId}`),
-  getWishPost: (userId) => instance.get(`/${userId}/wishes`),
-  getMyPosts: (userId) => instance.get(`/${userId}/myposts`),
+  getWishPost: () => instance.get(`/user/wishes`),
+  getMyPosts: () => instance.get(`/user/posts`),
   addPost: (postInfo) => instance.post(`/posts`, postInfo),
   updatePost: (postId, postInfo) =>
     instance.patch(`/posts/${postId}`, postInfo),
@@ -92,10 +92,11 @@ export const apis = {
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
   //입양신청 관련api
-  applyFoster: (postId, data) => instance.post(`/${postId}/adoptions`, data),
-  getMyApplyList: () => instance.get(`/requests`),
+  applyFoster: (postId, data) =>
+    instance.post(`posts/${postId}/adoptions`, data),
+  getMyApplyList: () => instance.get(`/user/requests`),
   getDetailfosterForm: (fosterFormId) =>
-    instance.get(`/requests/${fosterFormId}`),
+    instance.get(`/foster_forms/${fosterFormId}`),
   applyDecision: (fosterFormId, data) =>
     instance.patch(`/foster_forms/${fosterFormId}/acceptance`, data),
   //관심친구 등록
