@@ -38,18 +38,9 @@ const Login = (props) => {
     <Grid width='375px' margin='0 auto'>
       <Grid width='305px' margin='122px auto 0' position='relative'>
         <Grid>
-          <Grid
-            position='absolute'
-            left='180px'
-            top='-5px'
-            width='8px'
-            height='8px'
-            bg='#FF6666'
-            borderRadius='4px'></Grid>
-
-          <Text weight='800' align='center' size='35px' margin='0 0 12px 0'>
-            도킹
-          </Text>
+          <Grid width='78px' height='35px' margin='0 auto 20px'>
+            <img src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'} />
+          </Grid>
 
           <Text
             align='center'
@@ -69,7 +60,7 @@ const Login = (props) => {
           </Text>
         </Grid>
 
-        <Grid margin='37px 0 0px 0'>
+        <Grid margin='29px 0 0px 0'>
           <Grid margin='0 0 0 8px'>
             <Text size='18px' weight='800' margin='0'>
               개팅하기
@@ -111,7 +102,7 @@ const Login = (props) => {
               weight='600'
               height='50px'
               padding='16px'
-              bg='#FF6666'
+              bg='#FE7968'
               border='none'
               border_radius='25px'
               onClick={onClickLogin}>
@@ -164,7 +155,7 @@ const Login = (props) => {
                 weight='700'
                 height='50px'
                 padding='16px'
-                bg='#DDDDDD'
+                bg='#CECBCA'
                 border='none'
                 border_radius='25px'
                 onClick={() => {

@@ -12,35 +12,32 @@ const LoginErrorAlert = () => {
     <Grid
       position='absolute'
       bg='#FFFFFF'
-      top='584px'
+      top='548px'
       boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
       height='264px'
       width='375px'
-      margin='35px auto'
+      margin='0 auto'
       borderRadius='30px 30px 0 0'
       boxSizing='border-box'
       display='flex'
       flexDirection='column'
       alignItems='center'
       zIndex='9999'>
-      <Grid
-        margin='21px 0 0 0'
-        width='150px'
-        height='100px'
-        bgisize='cover'
-        bgiposition='center'
-        bgi={dokking_logo}></Grid>
-      <Text margin='6.5px 0 0 0' align='center' line_height='21px' weight='800'>
+      <Grid width='62px' height='85px' margin='24px auto 8px '>
+        <img src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'} />
+      </Grid>
+
+      <Text margin='8px 0 0 0' align='center' line_height='21px' weight='800'>
         아이디 또는 패스워드가
         <br />
         일치하지 않습니다.
       </Text>
 
       <Button
-        margin='17px 0 0 0'
+        margin='20px 0 0 0'
         width='130px'
         size='14px'
-        weight='600'
+        weight='800'
         height='40px'
         padding='12px 0px'
         bg='#FE7968'
