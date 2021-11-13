@@ -6,6 +6,7 @@ import CommentWrite from './CommentWrite';
 import Swal from 'sweetalert2';
 const Comment = (props) => {
   const { comment } = props;
+  const [time, setTime] = React.useState('');
   // console.log('코멘트 하나의 정보', comment);
 
   const userInfo = useSelector((state) => state.user.user.userInfo);
@@ -27,6 +28,35 @@ const Comment = (props) => {
   const onModal = () => {
     // console.log(commentModal);
     setCommentModal(!commentModal);
+  };
+
+  //UTC 시간을 받아오므로 시간에 +9 시간을 해줌
+  const createdAt = new Date(comment.createdAt).setHours(
+    new Date(comment.createdAt).getHours() + 9,
+  );
+
+  const commentTime = (createdAt) => {
+    const milliSeconds = new Date() - createdAt;
+    const seconds = milliSeconds / 1000;
+    if (seconds < 60) return `방금 전`;
+
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+
+    const weeks = days / 7;
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`;
+
+    const months = days / 30;
+    if (months < 12) return `${Math.floor(months)}개월 전`;
+
+    const years = days / 365;
+    return `${Math.floor(years)}년 전`;
   };
   return (
     <React.Fragment>
@@ -125,8 +155,8 @@ const Comment = (props) => {
                       justifyContent: 'space-around',
                     }}
                   >
-                    <div style={{ fontSize: '12px' }}>
-                      {comment.createdAt.split('.')[0]}
+                    <div style={{ fontSize: '12px', color: '#B6B1B0' }}>
+                      {commentTime(createdAt)}
                     </div>
                     {comment.nickname === userInfo.nickname ? (
                       <div

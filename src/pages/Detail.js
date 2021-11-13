@@ -136,11 +136,7 @@ const Detail = (props) => {
                 )}
               </button>
             </Grid>
-            <Grid
-              display='flex'
-              overflowX='auto'
-              justifyContent='space-between'
-            >
+            <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img &&
                   post.post.img.map((m, i) => {
@@ -150,7 +146,6 @@ const Detail = (props) => {
                           key={i}
                           style={{
                             margin: '0 10px 15px 0',
-                            borderRadius: '10px',
                             width: '305px',
                             height: '200px',
                             objectFit: 'scale-down',
