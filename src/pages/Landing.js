@@ -37,22 +37,23 @@ const Landing = () => {
             />
           </StyledSlider>
         </Grid>
+        <div style={{ position: 'fixed', left: 0, right: 0 }}>
+          <ButtonBox
+            onClick={() => {
+              history.push('/signup');
+            }}
+          >
+            <Button>시작하기</Button>
+          </ButtonBox>
 
-        <ButtonBox
-          onClick={() => {
-            history.push('/signup');
-          }}
-        >
-          <Button>시작하기</Button>
-        </ButtonBox>
-
-        <ButtonBox2
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          <Button2>이미 계정이 있어요</Button2>
-        </ButtonBox2>
+          <ButtonBox2
+            onClick={() => {
+              history.push('/login');
+            }}
+          >
+            <Button2>이미 계정이 있어요</Button2>
+          </ButtonBox2>
+        </div>
       </Grid>
     </React.Fragment>
   );
