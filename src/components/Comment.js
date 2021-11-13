@@ -137,7 +137,6 @@ const Comment = (props) => {
                           top: '7px',
                           margin: '0 0 -30px 0',
                         }}
-                        onClick={onModal}
                       >
                         <img
                           src={
@@ -145,6 +144,7 @@ const Comment = (props) => {
                             '/img/icon/setting_vertical_icon.svg'
                           }
                           style={{ width: '10px', height: '10px' }}
+                          onClick={onModal}
                         />
                       </div>
                     ) : null}

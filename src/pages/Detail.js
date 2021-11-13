@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 import { actionCreators as userAction } from '../redux/modules/user';
@@ -76,7 +79,8 @@ const Detail = (props) => {
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
-                }}>
+                }}
+              >
                 저와 친구하실래요?
                 <img
                   src={process.env.PUBLIC_URL + '/img/icon/smile.svg'}
@@ -102,7 +106,9 @@ const Detail = (props) => {
               top='20px'
               right='10px'
               display='flex'
-              flexDirection='row-reverse'>
+              flexDirection='row-reverse'
+              zIndex='2'
+            >
               <button
                 style={{ all: 'unset' }}
                 onClick={() => {
@@ -111,7 +117,8 @@ const Detail = (props) => {
                   } else {
                     dispatch(postActions.heartToAxios({ postId: postId }));
                   }
-                }}>
+                }}
+              >
                 {post.post.heart === true ? (
                   <img
                     src={
@@ -132,25 +139,28 @@ const Detail = (props) => {
             <Grid
               display='flex'
               overflowX='auto'
-              justifyContent='space-between'>
-              {post.post.img &&
-                post.post.img.map((m, i) => {
-                  return (
-                    <>
-                      <img
-                        key={i}
-                        style={{
-                          margin: '0 10px 15px 0',
-                          borderRadius: '10px',
-                          width: '305px',
-                          height: '200px',
-                          objectFit: 'scale-down',
-                        }}
-                        src={m}
-                      />
-                    </>
-                  );
-                })}
+              justifyContent='space-between'
+            >
+              <StyledSlider {...settings}>
+                {post.post.img &&
+                  post.post.img.map((m, i) => {
+                    return (
+                      <>
+                        <img
+                          key={i}
+                          style={{
+                            margin: '0 10px 15px 0',
+                            borderRadius: '10px',
+                            width: '305px',
+                            height: '200px',
+                            objectFit: 'scale-down',
+                          }}
+                          src={m}
+                        />
+                      </>
+                    );
+                  })}
+              </StyledSlider>
             </Grid>
           </Grid>
           {user.eduList === null ? null : user &&
@@ -173,7 +183,8 @@ const Detail = (props) => {
                 _onClick={() => {
                   openModal();
                   window.sessionStorage.clear();
-                }}>
+                }}
+              >
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -193,7 +204,8 @@ const Detail = (props) => {
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   eduCheckopenModal();
-                }}>
+                }}
+              >
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -203,12 +215,14 @@ const Detail = (props) => {
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-            borderRadius='10px'>
+            borderRadius='10px'
+          >
             <Grid
               display='flex'
               margin='10px 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   견종
@@ -230,7 +244,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid width='50%'>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   체중
@@ -254,7 +269,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   발견 장소
@@ -269,7 +285,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   보호 장소
@@ -284,7 +301,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   주소
@@ -299,7 +317,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   출처
@@ -311,11 +330,13 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid
                 display='flex'
                 justifyContent='space-between'
-                alignItems='center'>
+                alignItems='center'
+              >
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   웹사이트
                 </span>
@@ -418,7 +439,8 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
+            >
               <Grid>
                 <span style={{ fontWeight: '800', color: '#6B6462' }}>
                   연락처
@@ -444,7 +466,8 @@ const Detail = (props) => {
           {modalOpen ? (
             <AdoptionNoticeModal
               postId={postId}
-              closeModal={closeModal}></AdoptionNoticeModal>
+              closeModal={closeModal}
+            ></AdoptionNoticeModal>
           ) : (
             ' '
           )}
@@ -471,7 +494,8 @@ const Detail = (props) => {
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
                 zIndex: '5',
-              }}>
+              }}
+            >
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <button
                   style={{
@@ -486,7 +510,8 @@ const Detail = (props) => {
                   onClick={() => {
                     editMode();
                     // history.push('/editpost');
-                  }}>
+                  }}
+                >
                   수정
                 </button>
               </Grid>
@@ -517,7 +542,8 @@ const Detail = (props) => {
                       }
                       setDetailModal(!detailModal);
                     });
-                  }}>
+                  }}
+                >
                   삭제
                 </button>
               </Grid>
@@ -534,7 +560,8 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
-                  }}>
+                  }}
+                >
                   취소
                 </button>
               </Grid>
@@ -545,5 +572,38 @@ const Detail = (props) => {
     </React.Fragment>
   );
 };
+const settings = {
+  dots: true, // 슬라이드 밑에 점 보이게
+  infinite: false, // 무한으로 반복
+  arrows: false, // 화살표 안보임
+  speed: 500,
+  autoplay: false,
+  autoplaySpeed: 500, // 넘어가는 속도
+  slidesToShow: 1, // 1장씩 보이게
+  slidesToScroll: 1, // 1장씩 뒤로 넘어가게
+  centerMode: true,
+  centerPadding: '0px', // 0px 하면 슬라이드 끝쪽 이미지가 안잘림
+};
+const StyledSlider = styled(Slider)`
+  .slick-list {
+    width: 375px;
+    margin: 0 auto;
+  }
+  .slick-dots li {
+    margin: 0 0rem;
+  }
+  .slick-dots {
+    width: 305px;
+    bottom: 20px;
+    .slick-active {
+      button::before {
+        color: #ffbe5b;
+      }
+    }
+    button::before {
+      color: #b6b1b0;
+    }
+  }
+`;
 
 export default Detail;
