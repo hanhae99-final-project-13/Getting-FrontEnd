@@ -25,6 +25,8 @@ const CommentWrite = (props) => {
   const commentSubmit = () => {
     if (!token) {
       ErrorAlert('로그인 후 이용해주세요');
+    } else if (comment === '') {
+      ErrorAlert('댓글을 입력해주세요!');
     } else {
       dispatch(
         postActions.addCommentToAxios({ postId: postId, comment: comment }),
