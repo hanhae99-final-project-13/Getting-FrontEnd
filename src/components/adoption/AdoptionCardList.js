@@ -17,7 +17,7 @@ const AdoptionCardList = () => {
     <Grid width='auto' height='auto'>
       <Grid
         display='flex'
-        justifyContent='space-around'
+        justifyContent='space-between'
         flexWrap='wrap'
         margin='45px 0 0 0'
       >
@@ -25,7 +25,7 @@ const AdoptionCardList = () => {
           postList.map((p) => {
             return (
               <AdoptionCard
-                margin='0 9.5px 53px 0'
+                margin='0 0 53px 0'
                 key={p.postId}
                 breed={p.breed}
                 sex={p.sex}

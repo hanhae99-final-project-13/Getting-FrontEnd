@@ -66,8 +66,8 @@ const SliderBox = styled.div`
 const InnerSlider = styled.div`
   display: flex;
   justify-content: space-between;
-  width: ${(props) => props.width * 63}%;
-  padding-left: 1rem;
+  width: ${(props) => props.width * 210}px;
+  padding-left: 30px;
   padding-top: 50px;
 `;
 

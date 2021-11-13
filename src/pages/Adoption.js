@@ -58,9 +58,9 @@ const Adoption = () => {
 
   return (
     <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
-      <Grid width='auto' padding='0 35px' overflow='auto'>
+      <Grid width='auto' padding='0 24px' overflow='auto'>
         <Grid position='relative' height='100px' margin='0 0 16px 0'>
-          <BackButton position='absolute' top='63px' left='0' />
+          <BackButton position='absolute' top='63px' left='12px' />
           <Logo
             position='absolute'
             top='59px'
@@ -134,8 +134,7 @@ const AddButton = styled.button`
 
 const CategoryBox = styled.div`
   display: flex;
-  margin: 0 0 22px 0;
-
+  padding-left: 12px;
   .category {
     margin-right: 15px;
     font-size: 12px;

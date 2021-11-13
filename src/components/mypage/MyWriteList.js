@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Grid } from '../../elements';
 import Card from '../Card';
+import MiniCard from './MiniCard';
 const MyWriteList = (props) => {
   const myPostList = useSelector((state) => state.post.myPostList);
   if (!myPostList) {
@@ -30,6 +31,7 @@ const MyWriteList = (props) => {
           />
         );
       })}
+      {/* <MiniCard /> */}
     </Grid>
   );
 };
