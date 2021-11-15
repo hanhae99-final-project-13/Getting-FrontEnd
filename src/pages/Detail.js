@@ -71,7 +71,7 @@ const Detail = (props) => {
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='0 auto 140px auto'>
+        <Grid width='375px' margin='50px auto 140px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p
@@ -479,7 +479,7 @@ const Detail = (props) => {
               style={{
                 backgroundColor: 'white',
                 boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-                width: '375px',
+                maxWidth: '414px',
                 height: '200px',
                 position: 'fixed',
                 bottom: '0',
@@ -489,6 +489,9 @@ const Detail = (props) => {
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
                 zIndex: '5',
+                margin: '0 auto',
+                left: 0,
+                right: 0,
               }}
             >
               <Grid display='flex' justifyContent='center' alignItems='center'>

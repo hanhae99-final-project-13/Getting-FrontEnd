@@ -201,7 +201,7 @@ const Comment = (props) => {
             style={{
               backgroundColor: 'white',
               boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-              width: '375px',
+              maxWidth: '414px',
               height: '200px',
               position: 'fixed',
               bottom: '0',
@@ -211,6 +211,9 @@ const Comment = (props) => {
               borderTopRightRadius: '15px',
               boxSizing: 'border-box',
               zIndex: '10',
+              margin: '0 auto',
+              left: 0,
+              right: 0,
             }}
           >
             <Grid display='flex' justifyContent='center' alignItems='center'>

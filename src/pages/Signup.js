@@ -204,8 +204,8 @@ const Signup = (props) => {
   };
 
   return (
-    <Grid>
-      <Grid width='305px' margin='0 auto'>
+    <Grid maxWidth='414px' margin='0 auto'>
+      <Grid maxWidth='414px' width='auto' margin='0 auto' padding='0 35px'>
         <Grid
           zIndex='9999'
           _onClick={() => {
@@ -215,7 +215,8 @@ const Signup = (props) => {
           width='20px' //width, height를 안주면 sticky left가 안먹음..
           height='20px'
           top='65px'
-          left='36px'>
+          left='36px'
+        >
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -227,7 +228,7 @@ const Signup = (props) => {
           </Text>
         </Grid>
 
-        <Grid width='305px' margin='70px auto 0px'>
+        <Grid width='auto' margin='70px auto 0px'>
           <Grid position='relative'>
             <Text
               color='#FE7968'
@@ -238,7 +239,8 @@ const Signup = (props) => {
               top='19px'
               size='12px'
               weight='800'
-              margin='0'>
+              margin='0'
+            >
               중복확인
             </Text>
 
@@ -249,7 +251,8 @@ const Signup = (props) => {
                 right='57px'
                 top='15px'
                 width='20px'
-                height='20px'>
+                height='20px'
+              >
                 <img
                   width='20px'
                   height='20px'
@@ -299,7 +302,8 @@ const Signup = (props) => {
               right='10px'
               top='19px'
               width='20px'
-              height='20px'>
+              height='20px'
+            >
               {password !== '' && password === pwcheck ? (
                 <img
                   width='20px'
@@ -342,7 +346,8 @@ const Signup = (props) => {
               top='19px'
               size='12px'
               weight='800'
-              margin='0'>
+              margin='0'
+            >
               중복확인
             </Text>
 
@@ -353,7 +358,8 @@ const Signup = (props) => {
                 right='57px'
                 top='15px'
                 width='20px'
-                height='20px'>
+                height='20px'
+              >
                 <img
                   width='20px'
                   height='20px'
@@ -415,7 +421,8 @@ const Signup = (props) => {
                 top='19px'
                 size='12px'
                 weight='800'
-                margin='0'>
+                margin='0'
+              >
                 코드인증하기
               </Text>
               <Input
@@ -448,7 +455,8 @@ const Signup = (props) => {
                 top='19px'
                 size='12px'
                 weight='800'
-                margin='0'>
+                margin='0'
+              >
                 인증하기
               </Text>
               <Input
@@ -478,7 +486,8 @@ const Signup = (props) => {
             bold
             size='10px'
             margin='0px'
-            line_height='18px'>
+            line_height='18px'
+          >
             회원가입시,
             <Span style={{ fontWeight: '600', fontSize: '10px' }}>
               {' '}
@@ -493,7 +502,7 @@ const Signup = (props) => {
           </Text>
         </Grid>
 
-        <Grid margin=' 12px 0 0 0' width='305px'>
+        <Grid maxWidth='305px' margin='0 auto'>
           <Button
             size='16px'
             weight='700'
@@ -502,7 +511,8 @@ const Signup = (props) => {
             bg='#FE7968'
             border='none'
             border_radius='25px'
-            onClick={registerClick}>
+            onClick={registerClick}
+          >
             가입하기
           </Button>
         </Grid>

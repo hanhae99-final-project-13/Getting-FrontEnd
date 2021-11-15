@@ -10,15 +10,14 @@ const Intro = () => {
   return (
     <>
       <Header></Header>
-      <Grid width='375px' margin='0 auto'>
+      <Grid width='375px' margin='60px auto'>
         <Grid width='auto'>
           <Grid
             display='flex'
             justifyContent='center'
             alignItems='center'
-            height='45px'
           ></Grid>
-          <Grid display='flex' height='560px' overflowX='hidden'>
+          <Grid display='flex' height='100%' overflowX='hidden'>
             <StyledSlider {...settings}>
               <Grid
                 display='flex'
@@ -121,7 +120,7 @@ const StyledSlider = styled(Slider)`
     margin: 0 0rem;
   }
   .slick-dots {
-    bottom: 10px;
+    bottom: 0;
     .slick-active {
       button::before {
         color: #fe7968;
