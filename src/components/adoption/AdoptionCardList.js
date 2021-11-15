@@ -9,9 +9,9 @@ import InfinityScroll from '../../shared/InfinityScroll';
 const AdoptionCardList = () => {
   const postList = useSelector((state) => state.post.postList);
 
-  if (postList === []) {
-    return <div>로우딩중</div>;
-  }
+  // if (postList === []) {
+  //   return <div>로우딩중</div>;
+  // }
 
   return (
     <Grid width='auto' height='auto'>

@@ -9,7 +9,7 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
-import { BackButton, Logo } from '../components';
+import { BackButton, Header, Logo } from '../components';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
@@ -52,12 +52,13 @@ const Adoption = () => {
     }
   });
 
-  if (isToken && !userInfo.userId) {
-    return <div>로딩중</div>;
-  }
+  // if (isToken && !userInfo.userId) {
+  //   return <div>로딩중</div>;
+  // }
 
   return (
-    <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
+    <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
+      <Header />
       <Grid width='auto' padding='0 24px' overflow='auto'>
         <Grid width='auto'>
           <AdoptionWishedCardList />

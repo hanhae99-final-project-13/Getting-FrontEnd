@@ -9,7 +9,7 @@ import {
   MypageCategory,
   MypageDockingCheck,
 } from '../components/mypage';
-import { BackButton, Logo } from '../components';
+import { BackButton, Header, Logo } from '../components';
 import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { applyActions } from '../redux/modules/apply';
@@ -66,10 +66,8 @@ const Mypage = () => {
   }
 
   return (
-    <Grid width='375px' margin='0 auto'>
-      <Grid position='relative' height='100px' margin='0 0 16px 0'>
-        <BackButton position='absolute' top='65px' left='36px' />
-      </Grid>
+    <Grid maxWidth='414px' margin='0 auto'>
+      <Header />
       <Grid margin='107px 0 0 0' width='auto'>
         <MypageUserInfo />
       </Grid>

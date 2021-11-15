@@ -11,7 +11,7 @@ const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
   console.log(wishPostList);
   return (
-    <Grid margin='106px 0 0 0' width='calc(100% + 1rem)'>
+    <Grid margin='16px 0 0 0' width='calc(100% + 1rem)'>
       <Grid display='flex' width='calc(100% - 1rem)'>
         <Title>
           저에게 <span>관심</span>있으시죠?😊
@@ -19,6 +19,7 @@ const AdoptionWishedCardList = (props) => {
       </Grid>
       {wishPostList.length === 0 ? (
         <HaveNothing
+          width='calc(100% - 1rem)'
           imgWidth='163'
           imgHeight='140'
           it='관심 친구'

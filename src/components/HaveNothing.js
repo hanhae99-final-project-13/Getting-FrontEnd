@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Grid, Text, Image } from '../elements';
 import { history } from '../redux/configureStore';
 
-const HaveNothing = ({ imgWidth, imgHeight, it, state, ment, goThere }) => {
+const HaveNothing = ({ imgWidth, width, it, state, ment, goThere }) => {
   return (
     <React.Fragment>
       <Grid
@@ -12,6 +12,7 @@ const HaveNothing = ({ imgWidth, imgHeight, it, state, ment, goThere }) => {
         flexDirection='column'
         alignItems='center'
         justifyContent='space-evenly'
+        width={width}
         height='auto'
       >
         <Text margin='0 0 12px 0' weight='700' size='20px' color='#6b6462'>

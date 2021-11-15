@@ -29,8 +29,9 @@ const Header = (props) => {
         borderRadius='0 0 15px 15px '
         display='flex'
         justifyContent='space-between'
-        width='375px'
+        maxWidth='414px'
         height='60px'
+        padding='0 12px'
         margin='0 auto'
         zIndex='1'
       >

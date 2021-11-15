@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
@@ -36,6 +36,7 @@ import Timer from '../components/Timer';
 import Footer from '../components/Footer';
 
 import { actionCreators as userAction } from '../redux/modules/user';
+import { Spinner } from '../elements';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function App() {
 
         <Route path='/signup' exact component={Signup} />
         <Route path='/main' exact component={Main} />
+        <React.Suspense fallback={<Spinner />}></React.Suspense>
         <Route path='/tutorial' exact component={Tutorial} />
         <Route path='/tutorial2' exact component={Tutorial2} />
         <Route
