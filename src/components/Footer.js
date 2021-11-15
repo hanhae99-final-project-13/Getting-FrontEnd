@@ -41,7 +41,8 @@ const Footer = withRouter((props) => {
         borderRadius='15px 15px 0 0'
         display='flex'
         justifyContent='space-around'
-        height='80px'>
+        height='80px'
+      >
         {userInfo.eduList === null ? (
           <Grid
             display='flex'
@@ -51,7 +52,8 @@ const Footer = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <Grid width='36px' height='28px'>
               <img
                 src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
@@ -70,7 +72,8 @@ const Footer = withRouter((props) => {
             _onClick={() => {
               history.push('/fosterknowledge');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <Grid width='36px' height='28px'>
               <img
                 src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
@@ -89,7 +92,8 @@ const Footer = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <Grid width='36px' height='28px'>
               <img
                 src={process.env.PUBLIC_URL + '/img/icon/graduation_icon.svg'}
@@ -107,7 +111,8 @@ const Footer = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}>
+          }}
+        >
           <Grid width='32px' height='28px'>
             <img
               src={process.env.PUBLIC_URL + '/img/icon/dog_adoption_icon.svg'}
@@ -124,7 +129,8 @@ const Footer = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}>
+          }}
+        >
           <Grid width='29px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/home_icon.svg'} />
           </Grid>
@@ -139,7 +145,8 @@ const Footer = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <Grid width='28px' height='28px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon.svg'} />
           </Grid>
@@ -156,7 +163,8 @@ const Footer = withRouter((props) => {
             justifyContent='center'
             _onClick={() => {
               dispatch(userAction.LogOutDB());
-            }}>
+            }}
+          >
             <Grid width='29px' height='28px'>
               <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
             </Grid>
@@ -172,7 +180,8 @@ const Footer = withRouter((props) => {
             justifyContent='center'
             _onClick={() => {
               history.push('/login');
-            }}>
+            }}
+          >
             <Grid width='29px' height='28px'>
               <img src={process.env.PUBLIC_URL + '/img/icon/logout_icon.svg'} />
             </Grid>
