@@ -87,7 +87,7 @@ const EditPost = (props) => {
 
   return (
     <React.Fragment>
-      <Grid width='375px' margin='0 auto'>
+      <Grid maxWidth='414px' margin='50px auto'>
         <Grid
           position='sticky'
           top='0'

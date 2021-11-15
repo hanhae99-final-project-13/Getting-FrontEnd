@@ -23,8 +23,7 @@ const Header = (props) => {
       <Grid
         bg='white'
         boxSizing='border-box'
-        // padding='0 20px'
-        position='sticky'
+        position='fixed'
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
@@ -34,6 +33,8 @@ const Header = (props) => {
         padding='0 12px'
         margin='0 auto'
         zIndex='1'
+        left='0'
+        right='0'
       >
         <Grid display='flex' alignItems='center'>
           <Grid
@@ -58,6 +59,7 @@ const Header = (props) => {
           display='flex'
           alignItems='center'
           justifyContent='center'
+          margin='0 auto'
           _onClick={() => {
             histroy.push('/main');
           }}

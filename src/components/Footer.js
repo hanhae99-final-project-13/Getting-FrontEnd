@@ -31,7 +31,7 @@ const Footer = withRouter((props) => {
     <React.Fragment>
       <Grid
         boxShadow='0px -10px 50px 5px rgba(47, 47, 47, 0.06)'
-        maxWidth='375px'
+        maxWidth='414px'
         margin='0 auto'
         left='0'
         right='0'

@@ -89,7 +89,7 @@ const AddPost = () => {
   return (
     <React.Fragment>
       <Header></Header>
-      <Grid width='375px' margin='0 auto '>
+      <Grid maxWidth='414px' margin='0 auto '>
         <Grid
           position='sticky'
           top='0'

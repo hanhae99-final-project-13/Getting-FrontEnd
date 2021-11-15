@@ -8,59 +8,68 @@ import 'slick-carousel/slick/slick-theme.css';
 const Landing = () => {
   return (
     <React.Fragment>
-      <Grid width='375px' margin='0 auto' height='80vh'>
+      <Grid maxWidth='414px' margin='0 auto' height='80vh'>
         <Grid>
           <StyledSlider {...settings}>
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
               style={{
-                width: '375px',
+                width: '100%',
               }}
             />
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing2.svg'}
               style={{
-                width: '375px',
+                width: '100%',
               }}
             />
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing3.svg'}
               style={{
-                width: '375px',
+                width: '100%',
               }}
             />
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing4.svg'}
               style={{
-                width: '375px',
+                width: '100%',
               }}
             />
           </StyledSlider>
-        </Grid>
-        <div style={{ position: 'fixed', left: 0, right: 0 }}>
-          <ButtonBox
-            onClick={() => {
-              history.push('/signup');
+          <div
+            style={{
+              // position: 'relative',
+              maxWidth: '305px',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              margin: '20px auto 0',
             }}
           >
-            <Button>시작하기</Button>
-          </ButtonBox>
+            <ButtonBox
+              onClick={() => {
+                history.push('/signup');
+              }}
+            >
+              <Button>시작하기</Button>
+            </ButtonBox>
 
-          <ButtonBox2
-            onClick={() => {
-              history.push('/login');
-            }}
-          >
-            <Button2>이미 계정이 있어요</Button2>
-          </ButtonBox2>
-        </div>
+            <ButtonBox2
+              onClick={() => {
+                history.push('/login');
+              }}
+            >
+              <Button2>이미 계정이 있어요</Button2>
+            </ButtonBox2>
+          </div>
+        </Grid>
       </Grid>
     </React.Fragment>
   );
 };
 
 const ButtonBox = styled.div`
-  width: 305px;
+  width: 100%;
   height: 50px;
   margin: 10px auto;
   display: flex;
@@ -72,7 +81,7 @@ const ButtonBox = styled.div`
   border: solid 0.5px #eee;
 `;
 const ButtonBox2 = styled.div`
-  width: 305px;
+  width: 100%;
   height: 50px;
   margin: 10px auto;
   display: flex;
@@ -104,14 +113,16 @@ const settings = {
 };
 const StyledSlider = styled(Slider)`
   .slick-list {
-    width: 375px;
+    max-width: 414px;
     margin: 0 auto;
   }
   .slick-dots li {
     margin: 0 0rem;
   }
   .slick-dots {
-    bottom: 195px;
+    position: sticky;
+    left: 0;
+    right: 0;
     .slick-active {
       button::before {
         color: #fe7968;
