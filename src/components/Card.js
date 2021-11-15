@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Image, Text } from '../elements';
+import styled from 'styled-components';
+
+import { history } from '../redux/configureStore';
+import { Grid, Text } from '../elements';
 import { ReceivedAdoptionList } from './mypage';
 const Card = (props) => {
   const {
@@ -133,8 +134,8 @@ const Card = (props) => {
             height='15'
             src={
               sex === 'M'
-                ? process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
-                : process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
+                ? process.env.PUBLIC_URL + '/img/icon/male_icon_blue.svg'
+                : process.env.PUBLIC_URL + '/img/icon/female_icon_pink.svg'
             }
           />
         </Grid>
@@ -188,6 +189,7 @@ const ElP = styled.p`
 
 const ImageBox = styled.div`
   position: relative;
+  margin-bottom: 8px;
   width: 100%;
   ${(props) =>
     props.imageHeight ? `height: ${props.imageHeight};` : `height: 100px;`}

@@ -64,6 +64,7 @@ function App() {
           exact
           component={EssentialKnowledge}
         />
+
         <Route path='/essentialquiz' exact component={EssentialQuiz} />
         <Route path='/essentialquiz2' exact component={EssentialQuiz2} />
         <Route path='/essentialquiz3' exact component={EssentialQuiz3} />

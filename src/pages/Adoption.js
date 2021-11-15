@@ -59,17 +59,7 @@ const Adoption = () => {
   return (
     <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
       <Grid width='auto' padding='0 24px' overflow='auto'>
-        <Grid position='relative' height='100px' margin='0 0 16px 0'>
-          <BackButton position='absolute' top='63px' left='12px' />
-          <Logo
-            position='absolute'
-            top='59px'
-            left='0'
-            right='0'
-            margin='0 auto'
-          />
-        </Grid>
-        <Grid>
+        <Grid width='auto'>
           <AdoptionWishedCardList />
         </Grid>
         <Grid width='auto' margin='0 0 20px 0'>

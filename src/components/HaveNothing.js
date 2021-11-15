@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Grid, Text, Image } from '../elements';
 import { history } from '../redux/configureStore';
 
-const HaveNothing = ({ it, state, ment, goThere }) => {
+const HaveNothing = ({ imgWidth, imgHeight, it, state, ment, goThere }) => {
   return (
     <React.Fragment>
       <Grid
@@ -12,18 +12,20 @@ const HaveNothing = ({ it, state, ment, goThere }) => {
         flexDirection='column'
         alignItems='center'
         justifyContent='space-evenly'
-        height='300px'
+        height='auto'
       >
-        <img
-          width='198'
-          height='193'
-          src={process.env.PUBLIC_URL + '/img/illust/nopost.svg'}
-        />
-        <Text margin='0' weight='700' size='20px' color='#6b6462'>
+        <Text margin='0 0 12px 0' weight='700' size='20px' color='#6b6462'>
           <ElSpan>{it}</ElSpan>
           {state}
         </Text>
-        <GoAdoption onClick={() => history.push(goThere)}>{ment}</GoAdoption>
+        <img
+          width={imgWidth ? imgWidth : '198'}
+          style={{ marginBottom: '10px' }}
+          src={process.env.PUBLIC_URL + '/img/illust/nopost.svg'}
+        />
+        {goThere && (
+          <GoAdoption onClick={() => history.push(goThere)}>{ment}</GoAdoption>
+        )}
       </Grid>
     </React.Fragment>
   );

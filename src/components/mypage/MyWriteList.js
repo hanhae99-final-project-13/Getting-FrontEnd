@@ -25,13 +25,12 @@ const MyWriteList = (props) => {
             modifiedAt={p.postPreview.modifiedAt}
             ownerType={p.postPreview.ownerType}
             address={p.postPreview.address}
-            img={p.postPreview.img.split(' ##'[0])}
+            img={p.postPreview.img.split(' ##')[0]}
             postId={p.postPreview.postId}
             isAdopted={p.postPreview.isAdopted}
           />
         );
       })}
-      {/* <MiniCard /> */}
     </Grid>
   );
 };
