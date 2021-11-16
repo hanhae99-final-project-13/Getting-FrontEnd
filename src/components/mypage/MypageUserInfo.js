@@ -25,7 +25,7 @@ const MypageUserInfo = (props) => {
     <Container>
       <Grid
         position='absolute'
-        top='-98px'
+        top='-108px'
         left='36px'
         width='auto'
         height='auto'
@@ -46,7 +46,7 @@ const MypageUserInfo = (props) => {
       </Grid>
       <Grid
         position='absolute'
-        top='-19px'
+        top='-29px'
         left='120px'
         width='auto'
         height='auto'
@@ -97,7 +97,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  height: 96px;
+  height: 70px;
   border-radius: 40px 40px 0 0;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
 `;

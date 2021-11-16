@@ -2,15 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
-const InfinityScroll = (props) => {
+const InfinityScroll = ({ page }) => {
   const dispatch = useDispatch();
   const searchSetting = useSelector((state) => state.post.searchSetting);
   const getMoreTrigger = React.useRef();
 
   const getMoreObserver = new IntersectionObserver((entry) => {
     if (entry[0].isIntersecting) {
-      console.log(props.page);
-      const newSearchSetting = { ...searchSetting, page: props.page + 1 };
+      const newSearchSetting = { ...searchSetting, page: page + 1 };
       console.log(newSearchSetting);
       dispatch(postActions.setSearch(newSearchSetting));
       dispatch(postActions.getMorePostMW(newSearchSetting));

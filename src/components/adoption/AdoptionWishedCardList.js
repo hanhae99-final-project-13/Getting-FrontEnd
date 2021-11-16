@@ -11,34 +11,50 @@ const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
   console.log(wishPostList);
   return (
-    <Grid width='calc(100% + 1rem)'>
+    <Grid margin='16px 0 0 0' width='calc(100% + 1rem)'>
       <Grid display='flex' width='calc(100% - 1rem)'>
         <Title>
           저에게 <span>관심</span>있으시죠?😊
         </Title>
       </Grid>
-      {/* {wishPostList.length === 0 ? <HaveNothing /> : ''} */}
-      <SliderBox>
-        <InnerSlider width={wishPostList.length}>
-          {wishPostList.map((p) => {
-            return (
-              <Card
-                key={p.postId}
-                breed={p.breed}
-                sex={p.sex}
-                age={p.age}
-                createAt={p.createAt}
-                modifiedAt={p.modifiedAt}
-                ownerType={p.ownerType}
-                address={p.address}
-                img={p.img.split(' ##'[0])}
-                postId={p.postId}
-                isAdopted={p.isAdopted}
-              />
-            );
-          })}
-        </InnerSlider>
-      </SliderBox>
+      {wishPostList.length === 0 ? (
+        <HaveNothing
+          width='calc(100% - 1rem)'
+          imgWidth='163'
+          imgHeight='140'
+          it='관심 친구'
+          state='가 없습니다'
+        />
+      ) : (
+        // <SliderBox>
+        //   <InnerSlider width={wishPostList.length}>
+        //     {wishPostList.map((p) => {
+        //       return (
+        //         <Card
+        //           key={p.postId}
+        //           breed={p.breed}
+        //           sex={p.sex}
+        //           age={p.age}
+        //           createAt={p.createAt}
+        //           modifiedAt={p.modifiedAt}
+        //           ownerType={p.ownerType}
+        //           address={p.address}
+        //           img={p.img.split(' ##'[0])}
+        //           postId={p.postId}
+        //           isAdopted={p.isAdopted}
+        //         />
+        //       );
+        //     })}
+        //   </InnerSlider>
+        // </SliderBox>
+        <SliderBox
+          list={wishPostList}
+          dots='false'
+          speed={600}
+          slidesToShow={1.5}
+          centerMode={false}
+        />
+      )}
     </Grid>
   );
 };
@@ -66,8 +82,8 @@ const SliderBox = styled.div`
 const InnerSlider = styled.div`
   display: flex;
   justify-content: space-between;
-  width: ${(props) => props.width * 63}%;
-  padding-left: 1rem;
+  width: ${(props) => props.width * 210}px;
+  padding-left: 30px;
   padding-top: 50px;
 `;
 

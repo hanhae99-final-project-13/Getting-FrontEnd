@@ -17,9 +17,9 @@ const Footer = withRouter((props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
 
-  if (token && !isLogin) {
-    return <div>로딩중~</div>;
-  }
+  // if (token && !isLogin) {
+  //   return <div>로딩중~</div>;
+  // }
 
   if (a.history.location.pathname === '/') return null;
   if (a.history.location.pathname === '/login') return null;

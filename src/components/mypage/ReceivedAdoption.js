@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 
-import { Grid, Text } from '../../elements';
-import Card from '../Card';
+import { Grid } from '../../elements';
+import { Card } from '../../components';
+import { MiniCard } from '.';
 import { postActions } from '../../redux/modules/post';
 
 const ReceivedAdoption = (props) => {
@@ -18,13 +18,10 @@ const ReceivedAdoption = (props) => {
   return (
     <Grid display={props.display}>
       {myPostList.map((p, i) => {
-        if (p.formPreviews.length === 0) {
-          return;
-        }
         return (
-          <Card
+          <MiniCard
+            margin='0 0 66px 0'
             width='auto'
-            imageHeight='150px'
             key={p.postPreview.postId}
             breed={p.postPreview.breed}
             sex={p.postPreview.sex}
@@ -33,7 +30,7 @@ const ReceivedAdoption = (props) => {
             modifiedAt={p.postPreview.modifiedAt}
             ownerType={p.postPreview.ownerType}
             address={p.postPreview.address}
-            img={p.postPreview.img.split(' ##'[0])}
+            img={p.postPreview.img.split(' ##')[0]}
             postId={p.postPreview.postId}
             isAdopted={p.postPreview.isAdopted}
             index={i}

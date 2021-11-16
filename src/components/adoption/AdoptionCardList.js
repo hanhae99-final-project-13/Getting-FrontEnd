@@ -9,15 +9,15 @@ import InfinityScroll from '../../shared/InfinityScroll';
 const AdoptionCardList = () => {
   const postList = useSelector((state) => state.post.postList);
 
-  if (postList === []) {
-    return <div>로우딩중</div>;
-  }
+  // if (postList === []) {
+  //   return <div>로우딩중</div>;
+  // }
 
   return (
     <Grid width='auto' height='auto'>
       <Grid
         display='flex'
-        justifyContent='space-around'
+        justifyContent='space-between'
         flexWrap='wrap'
         margin='45px 0 0 0'
       >
@@ -25,7 +25,7 @@ const AdoptionCardList = () => {
           postList.map((p) => {
             return (
               <AdoptionCard
-                margin='0 9.5px 53px 0'
+                margin='0 0 53px 0'
                 key={p.postId}
                 breed={p.breed}
                 sex={p.sex}

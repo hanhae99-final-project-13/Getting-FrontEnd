@@ -26,7 +26,7 @@ const TakeAdoptionApply = (props) => {
     return () => setShowModal(false);
   }, []);
 
-  if (!detailFosterForm) return <div>로딩중</div>;
+  // if (!detailFosterForm) return <div>로딩중</div>;
 
   return (
     <React.Fragment>
@@ -34,9 +34,9 @@ const TakeAdoptionApply = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
-        margin='0 0 160px 0'
+        margin='0 auto 160px auto'
         padding='0 35px'
-        width='auto'
+        maxWidth='414px'
       >
         <Grid position='relative' height='100px' margin='0 0 16px 0'>
           <BackButton position='absolute' top='65px' left='0' />
@@ -52,6 +52,7 @@ const TakeAdoptionApply = (props) => {
           display='flex'
           justifyContent='space-evenly'
           height='auto'
+          maxWidth='414px'
         >
           <Grid
             display='flex'

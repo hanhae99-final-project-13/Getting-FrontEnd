@@ -25,13 +25,14 @@ const AdoptionModal = (props) => {
   };
 
   const [ownerType, setOwnerType] = React.useState('개인');
+  const toggleCircle = React.useRef();
   const toggleOwnerType = () => {
     if (ownerType === '개인') {
       setOwnerType('보호소');
-      document.querySelector('#toggleCircle').style.marginLeft = '36px';
+      toggleCircle.current.style.marginLeft = '36px';
     } else {
       setOwnerType('개인');
-      document.querySelector('#toggleCircle').style.marginLeft = '-1.5px';
+      toggleCircle.current.style.marginLeft = '-1.5px';
     }
   };
 
@@ -198,7 +199,7 @@ const AdoptionModal = (props) => {
             >
               {ownerTypeCheck ? null : <Cover />}
               <ToggleButton onClick={toggleOwnerType}>
-                <div id='toggleCircle' />
+                <div ref={toggleCircle} />
               </ToggleButton>
             </Grid>
             <Text margin='0' size='12px' weight='700'>
@@ -253,7 +254,7 @@ const ToggleButton = styled.div`
   border-radius: 50px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-  div#toggleCircle {
+  div {
     width: 24px;
     height: 24px;
     background-color: #fff;

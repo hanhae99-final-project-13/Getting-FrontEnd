@@ -19,8 +19,8 @@ const AcceptComplete = ({ name }) => {
         bg='white'
       >
         <img
-          width='179'
-          src={process.env.PUBLIC_URL + '/img/illust/doghugperson.svg'}
+          width='250'
+          src={process.env.PUBLIC_URL + '/img/illust/flowerdoghugperson.svg'}
         />
         <Text margin='39px 0 7px 0' weight='700' size='14px'>
           <Bold>{name}</Bold> 님께

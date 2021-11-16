@@ -19,3 +19,7 @@ code {
 input[type='password'] {
   font-family: 'Malgun gothic', dotum, sans-serif;
 }
+
+input[type='password']::placeholder {
+  font-family: 'NanumSquareR';
+}
