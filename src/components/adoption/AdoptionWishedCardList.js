@@ -1,17 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Grid } from '../../elements';
 import { Card } from '../';
-import { history } from '../../redux/configureStore';
-import { useSelector } from 'react-redux';
+// import SliderBox from '../SliderBox';
+
 import HaveNothing from '../HaveNothing';
 
 const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
   console.log(wishPostList);
   return (
-    <Grid margin='16px 0 0 0' width='calc(100% + 1rem)'>
+    <Grid margin='16px 0 0 0'>
       <Grid display='flex' width='calc(100% - 1rem)'>
         <Title>
           저에게 <span>관심</span>있으시죠?😊
@@ -26,34 +27,35 @@ const AdoptionWishedCardList = (props) => {
           state='가 없습니다'
         />
       ) : (
-        // <SliderBox>
-        //   <InnerSlider width={wishPostList.length}>
-        //     {wishPostList.map((p) => {
-        //       return (
-        //         <Card
-        //           key={p.postId}
-        //           breed={p.breed}
-        //           sex={p.sex}
-        //           age={p.age}
-        //           createAt={p.createAt}
-        //           modifiedAt={p.modifiedAt}
-        //           ownerType={p.ownerType}
-        //           address={p.address}
-        //           img={p.img.split(' ##'[0])}
-        //           postId={p.postId}
-        //           isAdopted={p.isAdopted}
-        //         />
-        //       );
-        //     })}
-        //   </InnerSlider>
-        // </SliderBox>
-        <SliderBox
-          list={wishPostList}
-          dots='false'
-          speed={600}
-          slidesToShow={1.5}
-          centerMode={false}
-        />
+        <SliderBox>
+          <InnerSlider width={wishPostList.length}>
+            {wishPostList.map((p) => {
+              return (
+                <Card
+                  key={p.postId}
+                  breed={p.breed}
+                  sex={p.sex}
+                  age={p.age}
+                  createAt={p.createAt}
+                  modifiedAt={p.modifiedAt}
+                  ownerType={p.ownerType}
+                  address={p.address}
+                  img={p.img.split(' ##'[0])}
+                  postId={p.postId}
+                  isAdopted={p.isAdopted}
+                />
+              );
+            })}
+          </InnerSlider>
+        </SliderBox>
+        // <SliderBox
+        //   list={wishPostList}
+        //   height='300'
+        //   dots='false'
+        //   arrows={false}
+        //   speed={600}
+        //   slidesToShow={1.5}
+        // />
       )}
     </Grid>
   );
