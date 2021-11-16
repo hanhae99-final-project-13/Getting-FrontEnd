@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Grid, Text, Input } from '../elements';
+import React, { useState, useRef } from 'react';
+import { Grid, Text } from '../elements';
 
 import Slider from '../components/Slider';
 import Swal from 'sweetalert2';
@@ -12,16 +12,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as useActions } from '../redux/modules/apply';
 
 import styled from 'styled-components';
-import dokking_logo from '../images/doking_logo.jpg';
 
 const AdoptionApply2 = (props) => {
   const { history } = props;
   const postId = useParams().id;
   // console.log(postId, '입양신청서2번 id');
   const [openApplyAlert, setOpenApplyAlert] = useState(false);
-
-  const [onMouse, setOnmouset] = useState(false);
-  console.log(onMouse);
 
   const dispatch = useDispatch();
   const applyData = useSelector((state) => state.apply);
@@ -85,14 +81,20 @@ const AdoptionApply2 = (props) => {
   };
 
   return (
-    <Grid width='375px' margin='0 auto'>
+    <Grid
+      boxSizing='border-box'
+      maxWidth='414px'
+      width='auto'
+      margin='0 auto'
+      padding='0 35px'>
       <Grid
+        cusor='pointer'
         _onClick={() => {
           history.goBack();
         }}
         position='relative'
         top='65px'
-        left='36px'
+        left='0px'
         width='25px'
         height='25px'>
         <Grid width='12px' height='7px'>
@@ -100,11 +102,7 @@ const AdoptionApply2 = (props) => {
         </Grid>
       </Grid>
 
-      <Grid
-        boxSizing='border-box'
-        width='375px'
-        margin='100px auto 0'
-        padding='0 35px'>
+      <Grid boxSizing='border-box' margin='100px auto 0'>
         <ApplyProgressBar />
         <Grid>
           <Grid margin='30px 0 15px 0 '>
@@ -133,14 +131,14 @@ const AdoptionApply2 = (props) => {
               height='auto'
               margin='12px 0 0 0'>
               <Text
-                color={allergy === '있음' ? '#000000' : '#E1E1E1'}
+                color={allergy === '있음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0 7px 0 0'>
                 있음
               </Text>
               <Slider handleToggle={handleallergy} />
               <Text
-                color={allergy === '없음' ? '#000000' : '#E1E1E1'}
+                color={allergy === '없음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0  0 0 7px'>
                 없음
@@ -261,7 +259,7 @@ const AdoptionApply2 = (props) => {
             <Upload3 ref={imageRef} setRoomUrl={setRoomUrl}></Upload3>
           </Grid>
 
-          <Grid height='auto' margin='23px auto'>
+          <Grid height='auto' margin='23px auto' cusor='pointer'>
             <Grid
               margin='auto'
               bg='#FE7968'
@@ -285,11 +283,14 @@ const AdoptionApply2 = (props) => {
       {openApplyAlert ? (
         <Grid
           position='fixed'
+          left='0'
+          right='0'
           bg='#FFFFFF'
           bottom='250px'
           boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
           height='264px'
-          width='375px'
+          maxWidth='414px'
+          width='auto'
           margin='35px auto'
           borderRadius='30px 30px 0 0'
           boxSizing='border-box'
@@ -317,10 +318,10 @@ const AdoptionApply2 = (props) => {
               margin='17px 10px 0 0'
               width='130px'
               size='14px'
-              weight='600'
+              weight='800'
               height='40px'
               padding='12px 0px'
-              bg='#FFD3D3'
+              bg='#FFBE5B'
               border='none'
               border_radius='34px'
               onClick={() => {
@@ -333,7 +334,7 @@ const AdoptionApply2 = (props) => {
               margin='17px 0 0 10px'
               width='130px'
               size='14px'
-              weight='600'
+              weight='800'
               height='40px'
               padding='12px 0px'
               bg='#FE7968'
@@ -361,7 +362,13 @@ const Textarea = styled.textarea`
   padding: 19px;
   box-sizing: border-box;
   ::placeholder {
-    color: '#DFDFDF';
+    color: #e7e5e5;
+    font-weight: 700;
+  }
+
+  :focus {
+    outline: 0;
+    box-shadow: 0 0 4px #fe7968;
   }
 `;
 

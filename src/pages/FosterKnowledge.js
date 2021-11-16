@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid, Image, Text } from '../elements';
-import Footer from '../components/Footer';
+import { Grid, Text } from '../elements';
 import { useSelector } from 'react-redux';
 import { WarningAlert } from '../shared/Alerts';
 
@@ -16,23 +15,28 @@ const FosterKnowledge = (props) => {
   }
 
   return (
-    <Grid width='375px' margin='0 auto'>
+    <Grid
+      maxWidth='414px'
+      width='auto'
+      margin='0 auto 150px'
+      position='relative'>
       <Grid
+        cusor='pointer'
         zIndex='9999'
         _onClick={() => {
           history.goBack();
         }}
-        position='sticky'
-        width='20px' //width, height를 안주면 sticky left가 안먹음..
+        position='absolute'
+        width='20px'
         height='20px'
-        top='65px'
+        top='-58px'
         left='36px'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
 
-      <Grid position='fixed' top='66px' left='0' right='0'>
+      <Grid position='absolute' top='-58px' left='0' right='0'>
         <Text size='18px' margin='0' weight='800' align='center'>
           튜토리얼 이수 현황
         </Text>
@@ -40,6 +44,7 @@ const FosterKnowledge = (props) => {
 
       {/* 필수지식 */}
       <Grid
+        cusor='pointer'
         position='relative'
         _onClick={() => {
           history.push('/essentialknowledge');
@@ -84,6 +89,7 @@ const FosterKnowledge = (props) => {
 
       {/* 심화지식 */}
       <Grid
+        cusor='pointer'
         position='relative'
         _onClick={() => {
           WarningAlert('서비스 준비 중 입니다!');
@@ -129,6 +135,7 @@ const FosterKnowledge = (props) => {
 
       {/* 심화지식2 */}
       <Grid
+        cusor='pointer'
         position='relative'
         _onClick={() => {
           WarningAlert('서비스 준비 중 입니다!');

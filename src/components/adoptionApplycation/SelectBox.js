@@ -6,6 +6,7 @@ const SelectBox = (props) => {
   // console.log(defaultValue);
 
   const style = {
+    color: '#B6B1B0',
     padding: '0 0 0 8px',
     width: '60px',
     height: '36px',

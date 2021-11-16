@@ -42,7 +42,14 @@ import {
 } from '../components/Tutorial';
 
 import { actionCreators as userAction } from '../redux/modules/user';
-import { withHeaderFooter } from '../components/hoc';
+
+import {
+  withHeaderMainFooter,
+  withKnowledgeFooter,
+  withHeaderAdoptionFooter,
+  withHeaderNomalFooter,
+  withMypageFooter,
+} from '../components/hoc';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,42 +71,81 @@ function App() {
           <Route path='/oauth/callback/kakao' component={Kakao} />
 
           <Route path='/signup' exact component={Signup} />
-          <Route path='/main' exact component={withHeaderFooter(Main)} />
+          <Route path='/main' exact component={withHeaderMainFooter(Main)} />
           <Route path='/tutorial' exact component={Tutorial} />
-          <Route path='/tutorial2' exact component={Tutorial2} />
+          <Route
+            path='/tutorial2'
+            exact
+            component={withKnowledgeFooter(Tutorial2)}
+          />
           <Route
             path='/essentialknowledge'
             exact
-            component={EssentialKnowledge}
+            component={withKnowledgeFooter(EssentialKnowledge)}
           />
 
-          <Route path='/essentialquiz' exact component={EssentialQuiz} />
-          <Route path='/essentialquiz2' exact component={EssentialQuiz2} />
-          <Route path='/essentialquiz3' exact component={EssentialQuiz3} />
-          <Route path='/essentialquiz4' exact component={EssentialQuiz4} />
-          <Route path='/essentialquiz5' exact component={EssentialQuiz5} />
-          <Route path='/fosterknowledge' exact component={FosterKnowledge} />
+          <Route
+            path='/essentialquiz'
+            exact
+            component={withKnowledgeFooter(EssentialQuiz)}
+          />
+          <Route
+            path='/essentialquiz2'
+            exact
+            component={withKnowledgeFooter(EssentialQuiz2)}
+          />
+          <Route
+            path='/essentialquiz3'
+            exact
+            component={withKnowledgeFooter(EssentialQuiz3)}
+          />
+          <Route
+            path='/essentialquiz4'
+            exact
+            component={withKnowledgeFooter(EssentialQuiz4)}
+          />
+          <Route
+            path='/essentialquiz5'
+            exact
+            component={withKnowledgeFooter(EssentialQuiz5)}
+          />
+          <Route
+            path='/fosterknowledge'
+            exact
+            component={withKnowledgeFooter(FosterKnowledge)}
+          />
 
           <Route
             path='/adoption'
             exact
-            component={withHeaderFooter(Adoption)}
+            component={withHeaderAdoptionFooter(Adoption)}
           />
 
-          <Route path='/detail/:id' exact component={Detail} />
+          <Route
+            path='/detail/:id'
+            exact
+            component={withHeaderAdoptionFooter(Detail)}
+          />
 
           <Route path='/apply/:id' exact component={AdoptionApply} />
           <Route path='/apply2/:id' exact component={AdoptionApply2} />
-          <Route path='/addpost' exact component={AddPost} />
+          <Route
+            path='/addpost'
+            exact
+            component={withHeaderAdoptionFooter(AddPost)}
+          />
           <Route path='/comment' exact component={CommentList} />
-          <Route path='/mypage' exact component={withHeaderFooter(Mypage)} />
-          <Route path='/intro' exact component={Intro} />
+          <Route path='/mypage' exact component={withMypageFooter(Mypage)} />
+          <Route path='/intro' exact component={withHeaderNomalFooter(Intro)} />
           <Route path='/alarm' exact component={Alarm} />
           <Route path='/takeapply/:id' exact component={TakeAdoptionApply} />
-          <Route path='/editpost' exact component={EditPost} />
-          <Route path='/timer' exact component={Timer} />
+          <Route
+            path='/editpost'
+            exact
+            component={withHeaderAdoptionFooter(EditPost)}
+          />
+
           <Route component={NotFound} />
-          {/* <Footer></Footer> */}
         </Switch>
       </ConnectedRouter>
     </React.Fragment>

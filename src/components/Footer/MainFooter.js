@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-import { actionCreators as userAction } from '../redux/modules/user';
-import styled from 'styled-components';
-import { Grid, Text } from '../elements';
+import { actionCreators as userAction } from '../../redux/modules/user';
+import { Grid, Text } from '../../elements';
 
-const Footer = withRouter((props) => {
+const MainFooter = withRouter((props) => {
   const dispatch = useDispatch();
   const a = props;
   console.log(a.history.location.pathname);
@@ -15,37 +14,9 @@ const Footer = withRouter((props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
 
-  // const data = {
-  //   adoptionknowledge: false,
-  //   adoption: false,
-  //   home: false,
-  //   mypage: false,
-  // };
-  // const [onClick, setOnClick] = useState(data);
-  // console.log(onClick);
-
-  // const clickAdoptionKnowledge = () => {
-  //   const newData = {
-  //     ...onClick,
-  //     adoptionknowledge: true,
-  //     adoption: false,
-  //     home: false,
-  //     mypage: false,
-  //   };
-  //   setOnClick(newData);
-  // };
-
-  // const { adoptionknowledge, adoption, home, mypage } = onClick;
-
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
-  if (a.history.location.pathname === '/') return null;
-  if (a.history.location.pathname === '/login') return null;
-  if (a.history.location.pathname === '/signup') return null;
-  if (a.history.location.pathname === '/tutorial') return null;
-  if (a.history.location.pathname.includes('/apply')) return null;
 
   return (
     <React.Fragment>
@@ -162,9 +133,11 @@ const Footer = withRouter((props) => {
           _onClick={() => {
             history.push('/main');
           }}>
-          <img src={process.env.PUBLIC_URL + '/img/icon/home_icon1.svg'} />
+          <img
+            src={process.env.PUBLIC_URL + '/img/icon/home_icon_orange.svg'}
+          />
 
-          <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+          <Text margin='10px 0 0 0' color='#FE7968' weight='800' size='12px'>
             홈
           </Text>
         </Grid>
@@ -234,4 +207,4 @@ const Footer = withRouter((props) => {
   );
 });
 
-export default Footer;
+export default MainFooter;

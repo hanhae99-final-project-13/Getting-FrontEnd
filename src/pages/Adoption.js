@@ -82,8 +82,7 @@ const Adoption = () => {
                 return;
               }
               goAddPost();
-            }}
-          >
+            }}>
             +
           </AddButton>
         </Grid>
