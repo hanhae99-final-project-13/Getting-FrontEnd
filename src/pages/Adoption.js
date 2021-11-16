@@ -9,7 +9,7 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
-import { BackButton, Logo } from '../components';
+import { BackButton, Header, Logo } from '../components';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
@@ -52,24 +52,14 @@ const Adoption = () => {
     }
   });
 
-  if (isToken && !userInfo.userId) {
-    return <div>로딩중</div>;
-  }
+  // if (isToken && !userInfo.userId) {
+  //   return <div>로딩중</div>;
+  // }
 
   return (
-    <Grid width='375px' margin='0 auto' padding='0 0 80px 0'>
-      <Grid width='auto' padding='0 35px' overflow='auto'>
-        <Grid position='relative' height='100px' margin='0 0 16px 0'>
-          <BackButton position='absolute' top='63px' left='0' />
-          <Logo
-            position='absolute'
-            top='59px'
-            left='0'
-            right='0'
-            margin='0 auto'
-          />
-        </Grid>
-        <Grid>
+    <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
+      <Grid width='auto' padding='0 24px' margin='12px 0 0 0' overflow='auto'>
+        <Grid width='auto'>
           <AdoptionWishedCardList />
         </Grid>
         <Grid width='auto' margin='0 0 20px 0'>
@@ -84,17 +74,19 @@ const Adoption = () => {
           </span>
         </CategoryBox>
         <AdoptionCardList />
-        <AddButton
-          onClick={() => {
-            if (!isToken) {
-              ErrorAlert('로그인이 필요한 서비스입니다!');
-              return;
-            }
-            goAddPost();
-          }}
-        >
-          +
-        </AddButton>
+        <Grid position='relative' height='auto'>
+          <AddButton
+            onClick={() => {
+              if (!isToken) {
+                ErrorAlert('로그인이 필요한 서비스입니다!');
+                return;
+              }
+              goAddPost();
+            }}
+          >
+            +
+          </AddButton>
+        </Grid>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
@@ -119,9 +111,9 @@ const Tag = styled.button`
 `;
 
 const AddButton = styled.button`
-  position: fixed;
-  bottom: 15%;
-  right: 10%;
+  position: absolute;
+  top: -50%;
+  right: 0;
   width: 50px;
   height: 50px;
   line-height: 50px;
@@ -134,8 +126,7 @@ const AddButton = styled.button`
 
 const CategoryBox = styled.div`
   display: flex;
-  margin: 0 0 22px 0;
-
+  padding-left: 12px;
   .category {
     margin-right: 15px;
     font-size: 12px;

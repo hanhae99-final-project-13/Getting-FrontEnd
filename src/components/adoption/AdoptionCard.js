@@ -30,7 +30,7 @@ const AdoptionCard = (props) => {
   return (
     <Grid
       position='relative'
-      width='36%'
+      width='43%'
       padding='12px 8px'
       borderRadius='10px'
       margin={margin}
@@ -112,7 +112,7 @@ AdoptionCard.defaultProps = {
 const ElP = styled.p`
   width: auto;
   margin: 0;
-  font-size: 6px;
+  font-size: 12px;
   text-align: center;
 `;
 

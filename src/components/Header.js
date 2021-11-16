@@ -30,6 +30,7 @@ const Header = (props) => {
         justifyContent='space-between'
         maxWidth='414px'
         height='60px'
+        padding='0 12px'
         margin='0 auto'
         zIndex='1'
         left='0'

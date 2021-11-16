@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Grid } from '../../elements';
 import Card from '../Card';
+import MiniCard from './MiniCard';
 const MyWriteList = (props) => {
   const myPostList = useSelector((state) => state.post.myPostList);
   if (!myPostList) {
@@ -24,7 +25,7 @@ const MyWriteList = (props) => {
             modifiedAt={p.postPreview.modifiedAt}
             ownerType={p.postPreview.ownerType}
             address={p.postPreview.address}
-            img={p.postPreview.img.split(' ##'[0])}
+            img={p.postPreview.img.split(' ##')[0]}
             postId={p.postPreview.postId}
             isAdopted={p.postPreview.isAdopted}
           />

@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 
 import { Card } from '../';
-import { Grid, Image } from '../../elements';
+import { Grid, Text } from '../../elements';
 import { useSelector } from 'react-redux';
+import SliderBox from '../SliderBox';
 
 const MainAdoptionCardList = (props) => {
   const mainPostList = useSelector((state) => state.post.mainPostList);
@@ -20,10 +21,11 @@ const MainAdoptionCardList = (props) => {
         alignItems='center'
         margin='0 0 5px 0'
         width='calc(100% - 36px)'
-        height='auto'>
-        <Title onClick={goAdoptionPage}>
-          저랑 <span>가족</span>하실래요?
-        </Title>
+        height='auto'
+      >
+        <Text margin='0' size='18px' weight='800' _onClick={goAdoptionPage}>
+          저랑 가족하실래요?
+        </Text>
         <img
           width='13'
           height='4'
@@ -31,9 +33,9 @@ const MainAdoptionCardList = (props) => {
           onClick={() => history.push('/adoption')}
         />
       </Grid>
-      <SliderBox>
+      {/* <SliderBox>
         <InnerSlider>
-          {mainPostList.map((p, idx) => {
+          {mainPostList.map((p) => {
             return (
               <Card
                 key={p.postId}
@@ -51,7 +53,14 @@ const MainAdoptionCardList = (props) => {
             );
           })}
         </InnerSlider>
-      </SliderBox>
+      </SliderBox> */}
+      <SliderBox
+        list={mainPostList}
+        dots='false'
+        speed={600}
+        slidesToShow={1.5}
+        centerMode={false}
+      />
     </Grid>
   );
 };
@@ -64,24 +73,24 @@ const Title = styled.p`
   }
 `;
 
-const SliderBox = styled.div`
-  height: 250px;
-  margin-left: -38px;
-  overflow: visible;
-  overflow-x: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const InnerSlider = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 350%;
-  height: auto;
-  overflow: visible;
-  padding-left: 1rem;
-  padding-top: 50px;
-`;
+// const SliderBox = styled.div`
+//   height: 300px;
+//   margin-left: -38px;
+//   overflow: visible;
+//   overflow-x: scroll;
+//   ::-webkit-scrollbar {
+//     display: none;
+//   }
+// `;
+// const InnerSlider = styled.div`
+//   margin-left: 0px;
+//   display: flex;
+//   justify-content: space-between;
+//   width: 350%;
+//   height: auto;
+//   overflow: visible;
+//   padding-left: 1rem;
+//   padding-top: 50px;
+// `;
 
 export default MainAdoptionCardList;
