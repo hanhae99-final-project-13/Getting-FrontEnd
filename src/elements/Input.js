@@ -19,9 +19,11 @@ const Input = (props) => {
     type,
     onSubmit,
     _onChange,
+    _onClick,
     value,
     name,
     placeholder_color,
+    placeholder_weight,
     id,
   } = props;
 
@@ -37,6 +39,7 @@ const Input = (props) => {
     padding,
     margin,
     placeholder_color,
+    placeholder_weight,
     id,
   };
 
@@ -44,6 +47,7 @@ const Input = (props) => {
     <React.Fragment>
       <DefaultInput
         {...styles}
+        onClick={_onClick}
         type={type}
         value={value}
         name={name}
@@ -72,11 +76,13 @@ Input.defaultProps = {
   value: '',
   onSubmit: () => {},
   _onChange: () => {},
+  _onClick: () => {},
   border_top: false,
   border_bottom: false,
   border_right: false,
   border_left: false,
   placeholder_color: false,
+  placeholder_weight: false,
 };
 
 const DefaultInput = styled.input`
@@ -96,6 +102,7 @@ const DefaultInput = styled.input`
   background-clip: padding-box;
   ::placeholder {
     color: ${(props) => props.placeholder_color};
+    font-weight: ${(props) => props.placeholder_weight};
   }
 
   /* opacity: 0.5; */

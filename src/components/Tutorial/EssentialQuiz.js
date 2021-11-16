@@ -30,7 +30,7 @@ const EssentialQuiz = (props) => {
   window.sessionStorage.setItem('answer1', answer.answer1);
 
   return (
-    <Grid width='375px' margin='0 auto'>
+    <Grid maxWidth='414px' width='auto' margin='0 auto'>
       <Grid
         zIndex='9999'
         _onClick={() => {
@@ -157,7 +157,7 @@ const EssentialQuiz = (props) => {
 
       <Grid
         position='fixed'
-        top='650px'
+        top='630px'
         left='0px'
         right='0px'
         margin='0 auto'

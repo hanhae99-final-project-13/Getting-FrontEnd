@@ -1,18 +1,18 @@
 import React from 'react';
-import { Grid, Image, Text } from '../../elements';
-import Footer from '../Footer';
+import { Grid, Text } from '../../elements';
 
 const Tutorial2 = (props) => {
   const { history } = props;
 
   return (
-    <Grid width='375px' margin='0 auto'>
+    <Grid maxWidth='414px' width='auto' margin='0 auto' position='relative'>
       <Grid
+        cusor='pointer'
         _onClick={() => {
           history.goBack();
         }}
-        position='sticky'
-        top='65px'
+        position='absolute'
+        top='-155px'
         left='36px'
         width='25px'
         height='25px'>
@@ -21,7 +21,7 @@ const Tutorial2 = (props) => {
         </Grid>
       </Grid>
 
-      <Grid margin='231px auto 36px' display='flex' width='315px'>
+      <Grid margin='221px auto 36px' display='flex' width='315px'>
         <Grid display='flex' flexDirection='column' alignItems='center'>
           <Text margin='0 0 16px 0' weight='800'>
             필수지식
@@ -102,6 +102,7 @@ const Tutorial2 = (props) => {
         </Text>
       </Grid>
       <Grid
+        cusor='pointer'
         _onClick={() => {
           history.push('/essentialknowledge');
         }}

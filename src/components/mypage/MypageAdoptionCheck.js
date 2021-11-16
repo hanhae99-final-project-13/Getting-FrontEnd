@@ -59,7 +59,7 @@ const MypageAdoptionCheck = (props) => {
           className='deleteMyRequest'
           style={{ display: myWriteListDisplay }}
           onClick={changeDeleteMode}
-        >
+        > 
           {isDeleteMode ? '완료' : '수정하기'}
         </span> */}
       </CategoryBox>
