@@ -17,12 +17,22 @@ const Landing = () => {
                 width: '100%',
               }}
             />
+            {/* <Grid> */}
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing2.svg'}
               style={{
                 width: '100%',
               }}
             />
+            {/* <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/2.png'}
+                style={{
+                  position: 'relative',
+                  width: '150%',
+                  top: '-450px',
+                }}
+              /> */}
+            {/* </Grid> */}
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing3.svg'}
               style={{
@@ -38,7 +48,6 @@ const Landing = () => {
           </StyledSlider>
           <div
             style={{
-              // position: 'relative',
               maxWidth: '305px',
               bottom: 0,
               left: 0,

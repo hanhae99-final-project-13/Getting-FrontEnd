@@ -69,49 +69,56 @@ const Upload = (props) => {
         props.setImg(props.img.filter((img) => img !== props.img[e]));
       },
     );
-    props.setFiles(props.files.filter((prevImg) => prevImg !== props.files[e]));
+    if (props.files.length !== 0) {
+      URL.revokeObjectURL(props.files);
+      props.setFiles(
+        props.files.filter((prevImg) => prevImg !== props.files[e]),
+      );
+    }
   };
-
+  console.log(props.files);
   return (
     <>
-      {props.files.length === 0 ? (
-        <Grid display='flex'>
-          <Grid
-            width='150px'
-            height='150px'
-            bg='white'
-            borderRadius='10px'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            margin='0 10px 40px 0'
-            boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
-            boxSizing='border-box'
-          >
-            <input
-              type='file'
-              multiple
-              accept='image/*'
-              onChange={onloadFile}
-              id='file'
-              style={{ display: 'none' }}
-            />
-            <label for='file' style={{ fontSize: '48px' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: '48px',
-                  width: '150px',
-                  height: '150px',
-                }}
-              >
-                +
-              </div>
-            </label>
+      {props.files && props.files.length === 0 ? (
+        <>
+          <Grid display='flex'>
+            <Grid
+              width='150px'
+              height='150px'
+              bg='white'
+              borderRadius='10px'
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              margin='0 10px 40px 0'
+              boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
+              boxSizing='border-box'
+            >
+              <input
+                type='file'
+                multiple
+                accept='image/*'
+                onChange={onloadFile}
+                id='file'
+                style={{ display: 'none' }}
+              />
+              <label for='file' style={{ fontSize: '48px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '48px',
+                    width: '150px',
+                    height: '150px',
+                  }}
+                >
+                  +
+                </div>
+              </label>
+            </Grid>
           </Grid>
-        </Grid>
+        </>
       ) : (
         <Grid display='flex' overflowX='auto'>
           {props.files.length >= 4 ? null : (
@@ -192,6 +199,7 @@ const Upload = (props) => {
                       width: '150px',
                       height: '150px',
                       objectFit: 'scale-down',
+                      borderRadius: '10px',
                     }}
                   />
                 </Grid>

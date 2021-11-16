@@ -4,8 +4,9 @@ import { Grid, Text } from '../elements/index';
 import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
-import Upload from './Upload';
+import EditUpload from './EditUpload';
 import Footer from './Footer';
+import { WarningAlert } from '../shared/Alerts';
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
   // console.log(data.img.length > 0);
@@ -76,12 +77,16 @@ const EditPost = (props) => {
     setAddressModal(!addressModal);
   };
   const editPost = () => {
+    console.log(img.length);
+    if (img.length === 0) {
+      return WarningAlert('이미지를 최소 한 장 올려주세요');
+    }
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
     if (nullCheck === true) {
       dispatch(postActions.updateDetailToAxios(postId, postInfo));
     } else {
-      alert('모든 값을 입력해주세요!');
+      WarningAlert('모든 값을 입력해주세요!');
     }
   };
 
@@ -133,14 +138,12 @@ const EditPost = (props) => {
         </Grid>
         <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
-          <Upload
+          <EditUpload
             files={files}
             setFiles={setFiles}
-            img={data.img}
+            img={img}
             setImg={setImg}
           />
-
-          {/* <button onClick={editPost}>수정완료</button> */}
 
           <p>상세 정보</p>
           <Grid
