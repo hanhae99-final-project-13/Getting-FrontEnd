@@ -58,8 +58,7 @@ const Adoption = () => {
 
   return (
     <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
-      <Header />
-      <Grid width='auto' padding='0 24px' overflow='auto'>
+      <Grid width='auto' padding='0 24px' margin='12px 0 0 0' overflow='auto'>
         <Grid width='auto'>
           <AdoptionWishedCardList />
         </Grid>
@@ -75,17 +74,19 @@ const Adoption = () => {
           </span>
         </CategoryBox>
         <AdoptionCardList />
-        <AddButton
-          onClick={() => {
-            if (!isToken) {
-              ErrorAlert('로그인이 필요한 서비스입니다!');
-              return;
-            }
-            goAddPost();
-          }}
-        >
-          +
-        </AddButton>
+        <Grid position='relative' height='auto'>
+          <AddButton
+            onClick={() => {
+              if (!isToken) {
+                ErrorAlert('로그인이 필요한 서비스입니다!');
+                return;
+              }
+              goAddPost();
+            }}
+          >
+            +
+          </AddButton>
+        </Grid>
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
@@ -110,9 +111,9 @@ const Tag = styled.button`
 `;
 
 const AddButton = styled.button`
-  position: fixed;
-  bottom: 15%;
-  right: 10%;
+  position: absolute;
+  top: -50%;
+  right: 0;
   width: 50px;
   height: 50px;
   line-height: 50px;

@@ -112,7 +112,7 @@ AdoptionCard.defaultProps = {
 const ElP = styled.p`
   width: auto;
   margin: 0;
-  font-size: 6px;
+  font-size: 12px;
   text-align: center;
 `;
 

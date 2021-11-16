@@ -39,8 +39,8 @@ const Card = (props) => {
     <React.Fragment>
       <Grid
         position='relative'
-        width={width ? width : '180px'}
         padding='12px 10px'
+        width={width ? width : '180px'}
         bg='white'
         borderRadius='10px'
         margin={margin}

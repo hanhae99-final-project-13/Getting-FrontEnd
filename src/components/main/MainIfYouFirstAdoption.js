@@ -9,10 +9,9 @@ const MainIfYouFirstAdoption = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  // console.log(isLogin);
-  if (token && !isLogin) {
-    return <div>로딩중~</div>;
-  }
+  // if (token && !isLogin) {
+  //   return <div>로딩중~</div>;
+  // }
 
   return (
     <Grid
@@ -20,6 +19,7 @@ const MainIfYouFirstAdoption = (props) => {
       justifyContent='space-evenly'
       width='auto'
       height='152px'
+      bg='white'
       padding='12px 12px 12px 16px'
       borderRadius='10px'
       boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'

@@ -26,27 +26,34 @@ const AdoptionWishedCardList = (props) => {
           state='가 없습니다'
         />
       ) : (
-        <SliderBox>
-          <InnerSlider width={wishPostList.length}>
-            {wishPostList.map((p) => {
-              return (
-                <Card
-                  key={p.postId}
-                  breed={p.breed}
-                  sex={p.sex}
-                  age={p.age}
-                  createAt={p.createAt}
-                  modifiedAt={p.modifiedAt}
-                  ownerType={p.ownerType}
-                  address={p.address}
-                  img={p.img.split(' ##'[0])}
-                  postId={p.postId}
-                  isAdopted={p.isAdopted}
-                />
-              );
-            })}
-          </InnerSlider>
-        </SliderBox>
+        // <SliderBox>
+        //   <InnerSlider width={wishPostList.length}>
+        //     {wishPostList.map((p) => {
+        //       return (
+        //         <Card
+        //           key={p.postId}
+        //           breed={p.breed}
+        //           sex={p.sex}
+        //           age={p.age}
+        //           createAt={p.createAt}
+        //           modifiedAt={p.modifiedAt}
+        //           ownerType={p.ownerType}
+        //           address={p.address}
+        //           img={p.img.split(' ##'[0])}
+        //           postId={p.postId}
+        //           isAdopted={p.isAdopted}
+        //         />
+        //       );
+        //     })}
+        //   </InnerSlider>
+        // </SliderBox>
+        <SliderBox
+          list={wishPostList}
+          dots='false'
+          speed={600}
+          slidesToShow={1.5}
+          centerMode={false}
+        />
       )}
     </Grid>
   );
