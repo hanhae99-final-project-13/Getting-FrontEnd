@@ -49,6 +49,7 @@ const Grid = (props) => {
     bgisize,
     bgiposition,
     bgirepeat,
+    cusor,
   } = props;
 
   const styles = {
@@ -96,6 +97,7 @@ const Grid = (props) => {
     bgisize,
     bgiposition,
     bgirepeat,
+    cusor,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -148,6 +150,7 @@ Grid.defaultProps = {
   bgisize: null,
   bgiposition: null,
   bgirepeat: null,
+  cusor: null,
 };
 
 const GridBox = styled.div`
@@ -185,6 +188,7 @@ const GridBox = styled.div`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
+  cursor: ${(props) => props.cusor};
   ${(props) => (props.bgi ? `background-image:url(${props.bgi})` : '')};
   z-index: ${(props) => props.zIndex};
   ${(props) => (props.bgisize ? `background-size:${props.bgisize}` : '')};

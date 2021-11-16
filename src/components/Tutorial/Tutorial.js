@@ -1,18 +1,18 @@
 import React from 'react';
-import { Grid, Image, Text } from '../../elements';
-import Footer from '../Footer';
+import { Grid, Text } from '../../elements';
 
 const Tutorial = (props) => {
   const { history } = props;
 
   return (
-    <Grid width='375px' margin='0 auto'>
+    <Grid maxWidth='414px' width='auto' margin='0 auto' position='relative'>
       <Grid
+        cusor='pointer'
         _onClick={() => {
           history.goBack();
         }}
-        position='sticky'
-        top='65px'
+        position='absolute'
+        top='-130px'
         left='36px'
         width='25px'
         height='25px'>
@@ -21,13 +21,13 @@ const Tutorial = (props) => {
         </Grid>
       </Grid>
 
-      <Grid width='200px' margin='196px auto 0'>
+      <Grid maxWidth='200px' width='auto' margin='196px auto 0'>
         <img
           src={process.env.PUBLIC_URL + '/img/GUIicon/tutorial_1_icon.svg'}
         />
       </Grid>
 
-      <Grid margin='0 auto 49px' display='flex' justifyContent='center'>
+      <Grid margin='0 auto 32px' display='flex' justifyContent='center'>
         <Text margin='0' weight='700' align='center' line_height='24px'>
           안녕하세요 , 항해님
           <br /> 입양 지식은 처음이시네요! <br />
@@ -36,12 +36,14 @@ const Tutorial = (props) => {
       </Grid>
 
       <Grid
+        cusor='pointer'
         margin='0 auto'
         _onClick={() => {
           history.push('/tutorial2');
         }}
         bg='#FE7968'
-        width='157px'
+        maxWidth='157px'
+        width='auto'
         height='52px'
         borderRadius='26px'
         display='flex'

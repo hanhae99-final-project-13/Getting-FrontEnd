@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-import { actionCreators as userAction } from '../redux/modules/user';
-import styled from 'styled-components';
-import { Grid, Text } from '../elements';
+import { actionCreators as userAction } from '../../redux/modules/user';
+import { Grid, Text } from '../../elements';
 
-const Footer = withRouter((props) => {
+const NomalFooter = withRouter((props) => {
   const dispatch = useDispatch();
   const a = props;
   console.log(a.history.location.pathname);
@@ -234,4 +233,4 @@ const Footer = withRouter((props) => {
   );
 });
 
-export default Footer;
+export default NomalFooter;

@@ -173,7 +173,7 @@ const Detail = (props) => {
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
-                bottom='90px'
+                bottom='130px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   openModal();
