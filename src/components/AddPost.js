@@ -78,6 +78,9 @@ const AddPost = () => {
   };
 
   const addPostCard = () => {
+    if (img.length === 0) {
+      return WarningAlert('이미지를 최소 한 장 올려주세요');
+    }
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
     if (nullCheck === true) {
@@ -89,7 +92,7 @@ const AddPost = () => {
   return (
     <React.Fragment>
       <Header></Header>
-      <Grid maxWidth='414px' margin='0 auto '>
+      <Grid maxWidth='414px' margin='50px auto '>
         <Grid
           position='sticky'
           top='0'
@@ -129,8 +132,6 @@ const AddPost = () => {
         <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
-
-          {/* <button onClick={addPostCard}>등록완료</button> */}
           <p>상세 정보</p>
           <Grid
             display='flex'
@@ -175,6 +176,9 @@ const AddPost = () => {
                 placeholder='체중'
                 value={weight}
                 onChange={(e) => {
+                  if (e.keyCode < 48 || e.keyCode > 57) {
+                    return false;
+                  }
                   setWeight(e.target.value);
                 }}
                 style={{ border: 'none', width: '60%' }}
@@ -277,6 +281,7 @@ const AddPost = () => {
                 height: '200px',
                 border: 'none',
                 resize: 'none',
+                marginBottom: '20px',
                 boxSizing: 'border-box',
               }}
             />

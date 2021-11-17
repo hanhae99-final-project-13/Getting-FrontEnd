@@ -82,7 +82,8 @@ const Adoption = () => {
                 return;
               }
               goAddPost();
-            }}>
+            }}
+          >
             +
           </AddButton>
         </Grid>
@@ -110,8 +111,8 @@ const Tag = styled.button`
 `;
 
 const AddButton = styled.button`
-  position: absolute;
-  top: -50%;
+  position: fixed;
+  top: 50%;
   right: 0;
   width: 50px;
   height: 50px;

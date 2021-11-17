@@ -15,9 +15,16 @@ const CommentWrite = (props) => {
 
   const editSubmit = () => {
     const commentId = props.comment.commentId;
-    console.log('수정코멘트', comment);
-    dispatch(postActions.updateCommentToAxios(commentId, { comment: comment }));
-    props.setEdit(false);
+    if (!token) {
+      ErrorAlert('로그인 후 이용해주세요');
+    } else if (comment === '') {
+      ErrorAlert('댓글을 입력해주세요!');
+    } else {
+      dispatch(
+        postActions.updateCommentToAxios(commentId, { comment: comment }),
+      );
+      props.setEdit(false);
+    }
   };
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
@@ -39,7 +46,7 @@ const CommentWrite = (props) => {
       {props.comment ? (
         <Grid
           bg='white'
-          width='305px'
+          width='333px'
           height='40px'
           border='1.5px solid rgb(235, 235, 235)'
           borderRadius='10px'
@@ -71,7 +78,7 @@ const CommentWrite = (props) => {
       ) : (
         <Grid
           bg='white'
-          width='305px'
+          width='333px'
           height='40px'
           border='1.5px solid rgb(235, 235, 235)'
           borderRadius='10px'
@@ -107,7 +114,7 @@ const CommentWrite = (props) => {
 
 const CommentBox = styled.input`
   background-color: white;
-  width: 230px;
+  width: 250px;
   height: 35px;
   margin: auto;
   display: flex;

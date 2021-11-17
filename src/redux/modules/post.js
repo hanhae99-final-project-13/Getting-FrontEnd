@@ -21,6 +21,8 @@ const CHANGE_SHOWAPPLY = 'CHANGE_SHOWAPPLY';
 const UPDATE_DETAIL = 'UPDATE_DETAIL';
 const SET_SEARCH = 'SET_SEARCH';
 const SET_SEARCHPREV = 'SET_SEARCHPREV';
+const DELETE_IMG = 'DELETE_IMG';
+const UPDATE_IMG = 'UPDATE_IMG';
 
 //댓글
 const ADD_COMMENT = 'ADD_COMMENT';
@@ -51,6 +53,8 @@ const changeAdoptionDeleteMode = createAction(
 );
 const changeCardCover = createAction(CHANGE_CARDCOVER, (value) => ({ value }));
 const changeShowApply = createAction(CHANGE_SHOWAPPLY, (value) => ({ value }));
+const deleteImg = createAction(DELETE_IMG, (img) => ({ img }));
+const updateImg = createAction(UPDATE_IMG, (img) => ({ img }));
 //댓글
 const addComment = createAction(ADD_COMMENT, (commentInfo) => ({
   commentInfo,
@@ -394,6 +398,25 @@ export default handleActions(
       produce(state, (draft) => {
         draft.searchSetting = draft.prevSearchSetting;
       }),
+
+    [DELETE_IMG]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload);
+        // const idx = state.detailPost.post.img.indexOf(action.payload.img);
+        // console.log(idx);
+        // draft.detailPost.post.img.splice(idx, 1);
+        const newImg = draft.detailPost.post.img.filter(
+          (a) => a !== action.payload.img,
+        );
+        console.log(newImg);
+        draft.detailPost.post.img = [...newImg];
+      }),
+    [UPDATE_IMG]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.img);
+        console.log(state.detailPost.post.img);
+        draft.detailPost.post.img.push(action.payload.img);
+      }),
   },
   initialState,
 );
@@ -417,6 +440,8 @@ const postActions = {
   updateDetailToAxios,
   getWishPostMW,
   setSearch,
+  deleteImg,
+  updateImg,
 };
 
 export { postActions };

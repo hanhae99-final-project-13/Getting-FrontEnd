@@ -4,8 +4,9 @@ import { Grid, Text } from '../elements/index';
 import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
-import Upload from './Upload';
+import EditUpload from './EditUpload';
 import Footer from './Footer';
+import { WarningAlert } from '../shared/Alerts';
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
   // console.log(data.img.length > 0);
@@ -76,12 +77,17 @@ const EditPost = (props) => {
     setAddressModal(!addressModal);
   };
   const editPost = () => {
+    console.log('이미지', img);
+    console.log(img.length);
+    if (img.length === 0) {
+      return WarningAlert('이미지를 최소 한 장 올려주세요');
+    }
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
     if (nullCheck === true) {
       dispatch(postActions.updateDetailToAxios(postId, postInfo));
     } else {
-      alert('모든 값을 입력해주세요!');
+      WarningAlert('모든 값을 입력해주세요!');
     }
   };
 
@@ -100,7 +106,8 @@ const EditPost = (props) => {
           alignItems='center'
           justifyContent='center'
           color='#FE7968'
-          zIndex='1000'>
+          zIndex='1000'
+        >
           <img
             style={{ width: '10px' }}
             src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
@@ -121,29 +128,30 @@ const EditPost = (props) => {
           alignItems='center'
           justifyContent='center'
           color='#FE7968'
-          zIndex='1000'>
+          zIndex='1000'
+        >
           <button
             style={{ all: 'unset', color: '#FE7968', marginLeft: '10px' }}
-            onClick={editPost}>
+            onClick={editPost}
+          >
             수정완료
           </button>
         </Grid>
         <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
-          <Upload
+          <EditUpload
             files={files}
             setFiles={setFiles}
-            img={data.img}
+            img={img}
             setImg={setImg}
           />
-
-          {/* <button onClick={editPost}>수정완료</button> */}
 
           <p>상세 정보</p>
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='견종'
               value={breed}
@@ -166,7 +174,8 @@ const EditPost = (props) => {
           <Grid
             display='flex'
             padding='15px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <Grid display='flex' justifyContent='space-between'>
               <input
                 type='number'
@@ -205,7 +214,8 @@ const EditPost = (props) => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='보호장소'
               value={ownerType}
@@ -242,7 +252,8 @@ const EditPost = (props) => {
           <Grid
             display='flex'
             padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'>
+            borderTop='1px solid rgba(225, 225, 225, 0.5)'
+          >
             <input
               placeholder='정보출처'
               value={tag}
