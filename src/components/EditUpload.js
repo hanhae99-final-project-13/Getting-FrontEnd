@@ -104,6 +104,7 @@ const EditUpload = (props) => {
                   fontSize: '48px',
                   width: '150px',
                   height: '150px',
+                  color: '#fe7968',
                 }}
               >
                 +
@@ -137,7 +138,10 @@ const EditUpload = (props) => {
                       top: '10px',
                       left: '125px',
                     }}
-                    src={process.env.PUBLIC_URL + '../img/icon/cancel_icon.svg'}
+                    src={
+                      process.env.PUBLIC_URL +
+                      '../img/icon/cancel_filled_icon.svg'
+                    }
                     onClick={() => {
                       deleteImg(a);
                     }}
