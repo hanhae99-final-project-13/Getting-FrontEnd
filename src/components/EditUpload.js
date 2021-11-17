@@ -18,6 +18,7 @@ const EditUpload = (props) => {
   let newImg = [...post.post.img];
   //이미지 여러개 미리보기
   const onloadFile = (e) => {
+    const date = new Date();
     const selectImg = e.target.files;
     for (let i = 0; i < selectImg.length; i++) {
       const fileName = selectImg[i].name.split('.')[0];
@@ -29,7 +30,7 @@ const EditUpload = (props) => {
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'docking',
-          Key: `${fileName}.${fileType}`,
+          Key: `${fileName}` + date.getTime() + `.${fileType}`,
           Body: selectImg[i],
           ACL: 'public-read',
         },

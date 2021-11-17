@@ -18,10 +18,12 @@ const Upload = (props) => {
   let newImg = [];
   //이미지 여러개 미리보기
   const onloadFile = (e) => {
+    const date = new Date();
     const selectImg = e.target.files;
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
+      console.log(selectImg[i]);
       //삭제에서 사용할 키 값
       setFileName(selectImg[i].name.split('.')[0]);
       setFileType(selectImg[i].name.split('.')[1]);
@@ -31,16 +33,16 @@ const Upload = (props) => {
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'docking',
-          Key: `${fileName}.${fileType}`,
+          Key: `${fileName}` + date.getTime() + `.${fileType}`,
           Body: selectImg[i],
           ACL: 'public-read',
         },
       });
-      console.log(upload);
       const promise = upload.promise();
 
       promise
         .then((data) => {
+          console.log(newImg);
           newImg.push(data.Location);
         })
         .catch((err) => {
@@ -55,11 +57,12 @@ const Upload = (props) => {
     props.setFiles(imgUrlList);
   };
   const deleteImg = (e) => {
+    const file = props.img[e].split('/')[3];
     const s3 = new AWS.S3();
     s3.deleteObject(
       {
         Bucket: 'docking',
-        Key: `${fileName}.${fileType}`,
+        Key: `${file}`,
       },
       (err, data) => {
         if (err) {
