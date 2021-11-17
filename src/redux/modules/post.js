@@ -415,7 +415,7 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.img);
         console.log(state.detailPost.post.img);
-        // draft.detailPost.post.img = [...state, ...action.payload.img];
+        draft.detailPost.post.img.push(action.payload.img);
       }),
   },
   initialState,
