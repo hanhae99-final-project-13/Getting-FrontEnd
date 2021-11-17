@@ -36,162 +36,168 @@ const Login = (props) => {
   };
 
   return (
-    <Grid width='375px' margin='0 auto'>
-      <Grid width='305px' margin='122px auto 0' position='relative'>
-        <Grid>
-          <Grid
-            width='78px'
-            height='35px'
-            margin='0 auto 20px'
-            _onClick={() => {
-              history.push('/main');
-            }}>
-            <img src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'} />
-          </Grid>
-
-          <Text
-            align='center'
-            weight='700'
-            size='12px'
-            margin='0px'
-            line_height='18px'>
-            반려친구와 내가
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              이어지는 순간,
-            </span>{' '}
-            <br />내 손 안에
-            <span style={{ fontWeight: '800', fontSize: '12px' }}>
-              가장 믿음직스러운
-            </span>{' '}
-            입양 서비스
-          </Text>
-        </Grid>
-
-        <Grid margin='29px 0 0px 0'>
-          <Grid margin='0 0 0 8px'>
-            <Text size='18px' weight='800' margin='0'>
-              개팅하기
-            </Text>
-          </Grid>
-
-          <Grid margin=' 22px 0px 0px 0px'>
-            <Input
-              bg='#FFFFFF'
-              border='0.3px solid rgba(0, 0, 0, 0.05)'
-              border_radius='25px'
-              padding='16px'
-              box-sizing
-              value={id}
-              _onChange={handleChangeID}
-              placeholder='아이디를 입력해주세요'
-              placeholder_color='#DFDFDF'
-            />
-          </Grid>
-
-          <Grid margin=' 12px 0 0 0'>
-            <Input
-              bg='#FFFFFF'
-              type='password'
-              border=' 0.3px solid rgba(0, 0, 0, 0.05)'
-              border_radius='25px'
-              padding='16px'
-              box-sizing
-              value={pw}
-              _onChange={handleChangePW}
-              placeholder='비밀번호를 입력해주세요'
-              placeholder_color='#DFDFDF'
-            />
-          </Grid>
-
-          <Grid margin=' 12px 0 0 0'>
-            <Button
-              size='16px'
-              weight='600'
-              height='50px'
-              padding='16px'
-              bg='#FE7968'
-              border='none'
-              border_radius='25px'
-              onClick={onClickLogin}>
-              로그인하기
-            </Button>
-          </Grid>
-
-          <Grid display='flex' justifyContent='flex-end' margin='14px 0 0 0'>
-            <Text
-              size='12px'
-              bold
-              margin='0'
-              color='#DFDFDF'
+    <>
+      <Grid maxWidth='414px' width='auto' margin='0 auto' padding='0 35px'>
+        <Grid width='auto' margin='122px auto 0'>
+          <Grid>
+            <Grid
+              hover='white'
+              maxWidth='78px'
+              width='auto'
+              height='35px'
+              margin='0 auto 20px'
               _onClick={() => {
-                WarningAlert('서비스 준비중 입니다');
+                history.push('/main');
               }}>
-              아이디찾기
-            </Text>
+              <img src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'} />
+            </Grid>
+
             <Text
+              align='center'
+              weight='700'
               size='12px'
-              bold
-              margin='0 0 0 14px'
-              color='#DFDFDF'
-              _onClick={() => {
-                WarningAlert('서비스 준비중 입니다');
-              }}>
-              비밀번호 찾기
+              margin='0px'
+              line_height='18px'>
+              반려친구와 내가
+              <span style={{ fontWeight: '800', fontSize: '12px' }}>
+                이어지는 순간,
+              </span>{' '}
+              <br />내 손 안에
+              <span style={{ fontWeight: '800', fontSize: '12px' }}>
+                가장 믿음직스러운
+              </span>{' '}
+              입양 서비스
             </Text>
           </Grid>
 
-          <Hr margin='14px 0 0 0' />
-        </Grid>
+          <Grid margin='30px 0 0 0'>
+            <Grid margin='0 0 0 8px'>
+              <Text size='18px' weight='800' margin='0'>
+                개팅하기
+              </Text>
+            </Grid>
 
-        <Grid margin='22px 0 0px 0' position='relative'>
-          <Grid margin='0px'>
-            <Text size='14px' bold margin='0' color='#DFDFDF'>
-              더 빠르게
-              <Span weight='700' size='14px'>
-                개팅
-              </Span>
-              하기
-              <Grid position='absolute' top='-1px' left='107px' width='auto'>
-                <img src={process.env.PUBLIC_URL + '/img/icon/fire.svg'} />
-              </Grid>
-            </Text>
-          </Grid>
+            <Grid margin=' 28px 0px 0px 0px'>
+              <Input
+                bg='#FFFFFF'
+                border='0.3px solid rgba(0, 0, 0, 0.05)'
+                border_radius='25px'
+                padding='16px'
+                box-sizing
+                value={id}
+                _onChange={handleChangeID}
+                placeholder='아이디를 입력해주세요'
+                placeholder_color='#DFDFDF'
+                placeholder_weight='bold'
+              />
+            </Grid>
 
-          <Grid margin='16px 0 0 0'>
-            <Button
-              size='16px'
-              weight='600'
-              height='50px'
-              padding='16px'
-              bg='#FFDA7C'
-              border='none'
-              border_radius='25px'
-              onClick={() => {
-                window.location.href = KAKAO_AUTH_URL;
-              }}>
-              카카오톡으로 시작하기
-            </Button>
+            <Grid margin=' 12px 0 0 0'>
+              <Input
+                bg='#FFFFFF'
+                type='password'
+                border=' 0.3px solid rgba(0, 0, 0, 0.05)'
+                border_radius='25px'
+                padding='16px'
+                box-sizing
+                value={pw}
+                _onChange={handleChangePW}
+                placeholder='비밀번호를 입력해주세요'
+                placeholder_color='#DFDFDF'
+                placeholder_weight='bold'
+              />
+            </Grid>
 
-            <Grid margin='12px 0 0 0'>
+            <Grid margin=' 12px 0 0 0'>
               <Button
                 size='16px'
-                weight='700'
+                weight='600'
                 height='50px'
                 padding='16px'
-                bg='#CECBCA'
+                bg='#FE7968'
+                border='none'
+                border_radius='25px'
+                onClick={onClickLogin}>
+                로그인하기
+              </Button>
+            </Grid>
+
+            <Grid display='flex' justifyContent='flex-end' margin='12px 0 0 0'>
+              <Text
+                size='12px'
+                bold
+                margin='0'
+                color='#DFDFDF'
+                _onClick={() => {
+                  WarningAlert('서비스 준비중 입니다');
+                }}>
+                아이디찾기
+              </Text>
+              <Text
+                size='12px'
+                bold
+                margin='0 0 0 14px'
+                color='#DFDFDF'
+                _onClick={() => {
+                  WarningAlert('서비스 준비중 입니다');
+                }}>
+                비밀번호 찾기
+              </Text>
+            </Grid>
+
+            <Hr margin='12px 0 0 0' />
+          </Grid>
+
+          <Grid margin='24px 0 0 0' position='relative'>
+            <Grid margin='0 0 0 8px'>
+              <Text size='14px' bold margin='0' color='#DFDFDF'>
+                더 빠르게
+                <Span weight='700' size='14px'>
+                  개팅
+                </Span>
+                하기
+                <Grid position='absolute' top='-1px' left='115px' width='auto'>
+                  <img src={process.env.PUBLIC_URL + '/img/icon/fire.svg'} />
+                </Grid>
+              </Text>
+            </Grid>
+
+            <Grid margin='24px 0 0 0'>
+              <Button
+                size='16px'
+                weight='600'
+                height='50px'
+                padding='16px'
+                bg='#FFDA7C'
                 border='none'
                 border_radius='25px'
                 onClick={() => {
-                  history.push('/signup');
+                  window.location.href = KAKAO_AUTH_URL;
                 }}>
-                메일로 회원가입하기
+                카카오톡으로 시작하기
               </Button>
+
+              <Grid margin='12px 0 0 0'>
+                <Button
+                  size='16px'
+                  weight='700'
+                  height='50px'
+                  padding='16px'
+                  bg='#CECBCA'
+                  border='none'
+                  border_radius='25px'
+                  onClick={() => {
+                    history.push('/signup');
+                  }}>
+                  메일로 회원가입하기
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
       {error.errorAlert ? <LoginErrorAlert></LoginErrorAlert> : ''}
-    </Grid>
+    </>
   );
 };
 
@@ -206,6 +212,7 @@ const Button = styled.button`
   color: white;
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
+  cursor: pointer;
 `;
 
 const Hr = styled.hr`

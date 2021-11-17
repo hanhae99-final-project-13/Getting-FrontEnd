@@ -9,14 +9,12 @@ import 'slick-carousel/slick/slick-theme.css';
 const Intro = () => {
   return (
     <>
-      <Header></Header>
       <Grid width='375px' margin='60px auto'>
         <Grid width='auto'>
           <Grid
             display='flex'
             justifyContent='center'
-            alignItems='center'
-          ></Grid>
+            alignItems='center'></Grid>
           <Grid display='flex' height='100%' overflowX='hidden'>
             <StyledSlider {...settings}>
               <Grid
@@ -26,8 +24,7 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'
-              >
+                border='solid 0.5px #DFDFDF'>
                 <img
                   style={{
                     width: '305px',
@@ -44,8 +41,7 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'
-              >
+                border='solid 0.5px #DFDFDF'>
                 <img
                   style={{
                     width: '305px',
@@ -62,8 +58,7 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'
-              >
+                border='solid 0.5px #DFDFDF'>
                 <img
                   style={{
                     width: '305px',
@@ -80,8 +75,7 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'
-              >
+                border='solid 0.5px #DFDFDF'>
                 <img
                   style={{
                     width: '305px',

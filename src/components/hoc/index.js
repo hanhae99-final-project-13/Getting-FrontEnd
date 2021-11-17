@@ -1,5 +1,13 @@
-import withFooter from './withFooter';
-import withHeader from './withHeader';
-import withHeaderFooter from './withHeaderFooter';
+import withHeaderMainFooter from './withHeaderMainFooter';
+import withHeaderAdoptionFooter from './withHeaderAdoptionFooter';
+import withKnowledgeFooter from './withKnowledgeFooter';
+import withHeaderNomalFooter from './withHeaderNomalFooter';
+import withMypageFooter from './withMypageFooter';
 
-export { withFooter, withHeader, withHeaderFooter };
+export {
+  withHeaderMainFooter,
+  withKnowledgeFooter,
+  withHeaderAdoptionFooter,
+  withHeaderNomalFooter,
+  withMypageFooter,
+};

@@ -75,11 +75,12 @@ const GetUserDB = (user) => {
     apis
       .login(user)
       .then((res) => {
-        console.log('서버에서 받은 로그인 정보', res.data.data);
-        console.log('서버 로그인 status정보', res.data.status);
+        console.log(res);
+        console.log(res.data);
         const USER_TOKEN = res.data.data.token;
 
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        localStorage.setItem('REFRESH_TOKEN', res.data.data.refreshToken);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -94,8 +95,8 @@ const GetUserDB = (user) => {
         };
 
         dispatch(SetUser(user));
-        window.location.href = '/main';
-        // history.push('/main');
+        // window.location.href = '/main';
+        history.replace('/main');
         // window.location.reload();
       })
       .catch((error) => {

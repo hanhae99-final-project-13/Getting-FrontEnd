@@ -59,13 +59,15 @@ const Upload3 = forwardRef((props, ref) => {
     }
     const imagefile = e.target.files[0];
     setUploadImage(imagefile);
+
     const imagefullname = e.target.files[0].name;
     setUploadImageFullname(imagefullname);
 
+    // 파일리더에 이미지파일객체 넣어주면 이미지태그 src에 넣을 수 잇는 엄청 긴 값 받음
     const reader = new FileReader();
     reader.readAsDataURL(imagefile);
     reader.onloadend = () => {
-      // console.log(reader.result);
+      console.log(reader.result);
       //미리보기이미지
       setPreviewImage(reader.result);
     };
@@ -81,17 +83,18 @@ const Upload3 = forwardRef((props, ref) => {
         type='file'
         id='file'
         style={{ display: 'none' }}
-        capture='camera'
         accept='image/*'
         onChange={handleImage}
       />
       <label htmlFor='file'>
         <Grid
+          cusor='pointer'
           weight='800'
           display='flex'
           justifyContent='center'
           alignItems='center'
-          width='305px'
+          maxWidth='414px'
+          width='auto'
           height='58px'
           bg='#FE7968'
           borderRadius='11px'
@@ -104,7 +107,8 @@ const Upload3 = forwardRef((props, ref) => {
         <Grid
           position='relative'
           bg='white'
-          width='305px'
+          maxWidth='414px'
+          width='auto'
           height='168px'
           borderRadius='10px'
           margin='20px auto 0px'
@@ -121,14 +125,15 @@ const Upload3 = forwardRef((props, ref) => {
               top: '0px',
               right: '10px',
               fontSize: '20px',
+              cursor: 'pointer',
             }}>
             x
           </button>
           <img
             src={previewImage}
             style={{
-              padding: '0 10px 0 0',
-              width: '300px',
+              maxWidth: '414px',
+              width: '100%',
               height: '160px',
               objectFit: 'contain',
             }}></img>
@@ -137,19 +142,24 @@ const Upload3 = forwardRef((props, ref) => {
         <Grid
           position='relative'
           bg=' rgba(255, 102, 102, 0.3);'
-          width='305px'
+          maxWidth='414px'
+          width='auto'
           height='168px'
           borderRadius='12px'
           margin='20px auto 0px'
           boxSizing='border-box'
           boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'>
-          <Grid position='absolute' top='15px' left='15px'>
-            <Text margin='0px' color='#FFFFFF' weight='700'>
+          <Grid position='absolute' top='0'>
+            <Text margin='10px 0 0 10px' color='#FFFFFF' weight='700'>
               사진첨부 미리보기
             </Text>
           </Grid>
 
-          <Grid position='absolute' top='60px' left='135px'>
+          <Grid
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            width='auto'>
             <img
               src={process.env.PUBLIC_URL + '/img/icon/camera_icon_white.svg'}
               style={{

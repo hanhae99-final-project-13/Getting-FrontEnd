@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, Text } from '../../elements';
 import styled from 'styled-components';
-import dokking_logo from '../../images/doking_logo.jpg';
+
 import { useDispatch } from 'react-redux';
 import { history } from '../../redux/configureStore';
 
@@ -13,11 +13,14 @@ const EduCheckAlert = (props) => {
     <Grid
       padding='0 50px'
       position='fixed'
+      right='0'
+      left='0'
       bg='#FFFFFF'
       bottom='250px'
       boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
       height='264px'
-      width='375px'
+      maxWidth='414px'
+      width='auto'
       margin='35px auto'
       borderRadius='30px 30px 0 0'
       boxSizing='border-box'

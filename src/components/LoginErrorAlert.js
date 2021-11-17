@@ -11,11 +11,13 @@ const LoginErrorAlert = () => {
   return (
     <Grid
       position='absolute'
+      left='0'
+      right='0'
       bg='#FFFFFF'
-      top='548px'
+      top='555px'
       boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
       height='264px'
-      width='375px'
+      maxWidth='414px'
       margin='0 auto'
       borderRadius='30px 30px 0 0'
       boxSizing='border-box'

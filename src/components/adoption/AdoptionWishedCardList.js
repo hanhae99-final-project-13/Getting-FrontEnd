@@ -10,7 +10,46 @@ import HaveNothing from '../HaveNothing';
 
 const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
-  console.log(wishPostList);
+  const sliderBox = React.useRef();
+  const innerBox = React.useRef();
+
+  console.log(sliderBox.current);
+  console.log(innerBox.current);
+  let isPress = false;
+  let startX;
+  let x;
+
+  const checkBoundary = () => {
+    let outer = sliderBox.current.getBoundingClientRect();
+    let inner = innerBox.current.getBoundingClientRect();
+    if (parseInt(innerBox.current.style.left) > 0) {
+      innerBox.current.style.left = '0px';
+    } else if (inner.right - outer.right < -35) {
+      innerBox.current.style.left = `-${inner.width - outer.width}px`;
+    }
+  };
+  const sliderMouseDown = (e) => {
+    console.log(sliderBox.current.getBoundingClientRect());
+    console.log(innerBox.current.getBoundingClientRect());
+    isPress = true;
+    startX = e.nativeEvent.offsetX - innerBox.current.offsetLeft;
+    console.log(startX);
+  };
+  const sliderMouseUp = (e) => {
+    isPress = false;
+  };
+  const sliderMouseLeave = () => {
+    isPress = false;
+  };
+  const sliderMouseMove = (e) => {
+    if (!isPress) return;
+    // e.defaultPrevented();
+    x = e.nativeEvent.offsetX;
+
+    innerBox.current.style.left = `${x - startX}px`;
+    checkBoundary();
+  };
+
   return (
     <Grid margin='16px 0 0 0'>
       <Grid display='flex' width='calc(100% - 1rem)'>
@@ -27,8 +66,14 @@ const AdoptionWishedCardList = (props) => {
           state='가 없습니다'
         />
       ) : (
-        <SliderBox>
-          <InnerSlider width={wishPostList.length}>
+        <SliderBox
+          ref={sliderBox}
+          onMouseDown={sliderMouseDown}
+          onMouseMove={sliderMouseMove}
+          onMouseUp={sliderMouseUp}
+          onMouseLeave={sliderMouseLeave}
+        >
+          <InnerSlider width={wishPostList.length} ref={innerBox}>
             {wishPostList.map((p) => {
               return (
                 <Card
@@ -70,6 +115,7 @@ const Title = styled.p`
 `;
 
 const SliderBox = styled.div`
+  position: relative;
   height: 260px;
   margin-left: -35px;
   margin-top: -1rem;
@@ -82,11 +128,14 @@ const SliderBox = styled.div`
 `;
 
 const InnerSlider = styled.div`
+  position: absolute;
+  left: 0;
   display: flex;
   justify-content: space-between;
   width: ${(props) => props.width * 210}px;
   padding-left: 30px;
   padding-top: 50px;
+  pointer-events: none;
 `;
 
 export default AdoptionWishedCardList;

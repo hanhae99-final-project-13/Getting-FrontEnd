@@ -49,6 +49,8 @@ const Grid = (props) => {
     bgisize,
     bgiposition,
     bgirepeat,
+    cusor,
+    pointerEvents,
   } = props;
 
   const styles = {
@@ -96,6 +98,8 @@ const Grid = (props) => {
     bgisize,
     bgiposition,
     bgirepeat,
+    cusor,
+    pointerEvents,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -148,6 +152,8 @@ Grid.defaultProps = {
   bgisize: null,
   bgiposition: null,
   bgirepeat: null,
+  cusor: null,
+  pointerEvents: null,
 };
 
 const GridBox = styled.div`
@@ -185,6 +191,7 @@ const GridBox = styled.div`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
+  cursor: ${(props) => props.cusor};
   ${(props) => (props.bgi ? `background-image:url(${props.bgi})` : '')};
   z-index: ${(props) => props.zIndex};
   ${(props) => (props.bgisize ? `background-size:${props.bgisize}` : '')};
@@ -198,6 +205,8 @@ const GridBox = styled.div`
   font-family: 'NanumSquareR';
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}
+
+  pointer-events: ${(props) => props.pointerEvents};
 
   :hover {
     ${(props) =>
