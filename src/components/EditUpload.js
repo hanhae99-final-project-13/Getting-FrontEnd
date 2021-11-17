@@ -19,15 +19,21 @@ const EditUpload = (props) => {
     }),
   });
 
-  let newImg = [...props.img];
+  let newImg = [...post.post.img];
   console.log(newImg);
   //이미지 여러개 미리보기
   const onloadFile = (e) => {
+    console.log(e);
     const selectImg = e.target.files;
     console.log(selectImg);
     const imgUrlList = [...props.files];
+    console.log(props.files);
+    // blob파일
+    console.log(imgUrlList);
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
+      // blob파일 여러개
+      console.log(nowImgUrl);
       //삭제에서 사용할 키 값
       setFileName(selectImg[i].name.split('.')[0]);
       setFileType(selectImg[i].name.split('.')[1]);
@@ -42,27 +48,32 @@ const EditUpload = (props) => {
           ACL: 'public-read',
         },
       });
-      console.log(upload);
       const promise = upload.promise();
-
+      console.log('뉴이미지1 ', newImg);
       promise
         .then((data) => {
+          console.log(data.Location);
+          // dispatch(postActions.updateImg(data.Location));
           newImg.push(data.Location);
+          console.log('뉴이미지2', newImg);
         })
         .catch((err) => {
           return alert('오류가 발생했습니다: ', err.message);
         });
+
+      console.log('뉴이미지3', newImg);
       imgUrlList.push(nowImgUrl);
       if (imgUrlList.length >= 4) {
         break;
       }
     }
-
-    props.setImg(newImg, ...post.post.img);
+    props.setImg(newImg);
     props.setFiles(imgUrlList);
   };
+  console.log(props.img);
   const deleteImg = (e) => {
-    dispatch(postActions.deleteImg(post.post.img[e]));
+    console.log(e);
+    dispatch(postActions.deleteImg(e));
     const s3 = new AWS.S3();
 
     s3.deleteObject(
@@ -78,17 +89,19 @@ const EditUpload = (props) => {
     );
 
     //삭제버튼을 누르면 등록하는 이미지도 사라지게 설정
-    props.setImg(post.post.img.filter((img) => img !== post.post.img[e]));
+    props.setImg(
+      post.post.img.filter((img) => img !== e),
+      ...props.img,
+    );
     // 이 코드를 주석처리하면 새로운 이미지를 올렸을 때의 미리보기 삭제가 불가.
+    // blob객체
     if (props.files.length !== 0) {
-      console.log(props.files);
       URL.revokeObjectURL(props.files);
-      props.setFiles(
-        props.files.filter((prevImg) => prevImg !== props.files[e]),
-      );
+      console.log(props.files);
+      props.setFiles(props.files.filter((prevImg) => prevImg !== e));
     }
+    console.log(props.files);
   };
-
   return (
     <>
       <Grid display='flex' overflowX='auto'>
@@ -158,7 +171,7 @@ const EditUpload = (props) => {
                     }}
                     src={process.env.PUBLIC_URL + '../img/icon/cancel_icon.svg'}
                     onClick={() => {
-                      deleteImg(i);
+                      deleteImg(a);
                     }}
                   />
                 </Grid>
@@ -203,7 +216,7 @@ const EditUpload = (props) => {
                     }}
                     src={process.env.PUBLIC_URL + '../img/icon/cancel_icon.svg'}
                     onClick={() => {
-                      deleteImg(i);
+                      deleteImg(a);
                     }}
                   />
                 </Grid>
