@@ -48,6 +48,7 @@ const FosterKnowledge = (props) => {
         position='relative'
         _onClick={() => {
           history.push('/essentialknowledge');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'
@@ -94,6 +95,7 @@ const FosterKnowledge = (props) => {
         _onClick={() => {
           WarningAlert('서비스 준비 중 입니다!');
           // history.push('/essentialknowledge');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'
@@ -140,6 +142,7 @@ const FosterKnowledge = (props) => {
         _onClick={() => {
           WarningAlert('서비스 준비 중 입니다!');
           // history.push('/essentialknowledge');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'

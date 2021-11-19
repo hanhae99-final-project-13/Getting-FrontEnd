@@ -74,7 +74,11 @@ function App() {
 
           <Route path='/signup' exact component={Signup} />
           <Route path='/main' exact component={withHeaderMainFooter(Main)} />
-          <Route path='/tutorial' exact component={Tutorial} />
+          <Route
+            path='/tutorial'
+            exact
+            component={withKnowledgeFooter(Tutorial)}
+          />
           <Route
             path='/tutorial2'
             exact

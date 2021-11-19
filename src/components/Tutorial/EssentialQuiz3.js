@@ -24,6 +24,7 @@ const EssentialQuiz3 = (props) => {
   return (
     <Grid maxWidth='414px' width='auto' margin='0 auto'>
       <Grid
+        cusor='pointer'
         zIndex='9999'
         _onClick={() => {
           history.goBack();
@@ -53,27 +54,21 @@ const EssentialQuiz3 = (props) => {
       <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
         Q3.
       </Text>
-      <Text margin='20px 0 0 0' padding='0 35px' size='16px' line_height='24px'>
-        입양이 확정되면 아이의
-        <span style={{ weight: '700', fontSize: '16px' }}> 내장칩 삽입은</span>
-        <br />
-        <span style={{ weight: '700', fontSize: '16px' }}>필수이며, </span>
-        <span style={{ weight: '700', fontSize: '16px' }}>
-          내장칩 보호자 등록변경
-        </span>
-        은
-        <br />
-        입양일 기준&nbsp;
-        <span style={{ weight: '700', fontSize: '16px' }}>
-          6개월 이후에 변경
-        </span>
-        해드립니다.
+      <Text
+        margin='20px 0 0 0'
+        padding='0 35px'
+        size='16px'
+        line_height='24px'
+        weight='700'>
+        노령견일 경우, <br />
+        나이가 들어 다리와 허리가 약해졌기 때문에
+        <br /> 산책은 가급적 피하도록한다.
       </Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='31px 0 0 0'
+          margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
@@ -148,8 +143,9 @@ const EssentialQuiz3 = (props) => {
       </form>
 
       <Grid
+        cusor='pointer'
         position='fixed'
-        top='630px'
+        top='570px'
         left='0px'
         right='0px'
         margin='0 auto'

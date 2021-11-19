@@ -215,7 +215,7 @@ const Signup = (props) => {
           history.goBack();
         }}
         position='absolute'
-        width='20px' //width, height를 안주면 sticky left가 안먹음..
+        width='20px'
         height='20px'
         top='-45px'
         left='33px'
@@ -235,7 +235,6 @@ const Signup = (props) => {
         <Grid position='relative'>
           {checkId ? (
             <Grid
-              // display='flex'
               margin='0 4px 0 0'
               position='absolute'
               right='6px'
@@ -250,17 +249,6 @@ const Signup = (props) => {
                   process.env.PUBLIC_URL + '/img/icon/check_icon_lightblue.svg'
                 }
               />
-              {/* <Text
-                color='#FE7968'
-                position='absolute'
-                right='0px'
-                width='auto'
-                top='5px'
-                size='12px'
-                weight='800'
-                margin='0'>
-                사용가능한 아이디입니다
-              </Text> */}
             </Grid>
           ) : checkId === false ? (
             <Grid
@@ -269,6 +257,7 @@ const Signup = (props) => {
               right='0px'
               top='15px'
               width='150px'
+<<<<<<< HEAD
               height='20px'
             >
               {/* <img
@@ -276,6 +265,9 @@ const Signup = (props) => {
                   height='20px'
                   src={process.env.PUBLIC_URL + '/img/icon/check_icon_pink.svg'}
                 /> */}
+=======
+              height='20px'>
+>>>>>>> 1718ba5 ((김기철) [style] footer 수정)
               <Text
                 color='#FF1D00'
                 position='absolute'
@@ -386,17 +378,6 @@ const Signup = (props) => {
                   process.env.PUBLIC_URL + '/img/icon/check_icon_lightblue.svg'
                 }
               />
-              {/* <Text
-                color='#FE7968'
-                position='absolute'
-                right='0px'
-                width='auto'
-                top='5px'
-                size='12px'
-                weight='800'
-                margin='0'>
-                사용가능한 닉네임입니다
-              </Text> */}
             </Grid>
           ) : checknickName === false ? (
             <Grid
@@ -405,6 +386,7 @@ const Signup = (props) => {
               right='0px'
               top='15px'
               width='150px'
+<<<<<<< HEAD
               height='20px'
             >
               {/* <img
@@ -412,6 +394,9 @@ const Signup = (props) => {
                   height='20px'
                   src={process.env.PUBLIC_URL + '/img/icon/check_icon_pink.svg'}
                 /> */}
+=======
+              height='20px'>
+>>>>>>> 1718ba5 ((김기철) [style] footer 수정)
               <Text
                 color='#FF1D00'
                 position='absolute'
@@ -483,7 +468,7 @@ const Signup = (props) => {
             <Timer />
 
             <Input
-              type='number'
+              type='text'
               bg='#FFFFFF'
               border='black'
               padding='16px'
@@ -534,7 +519,7 @@ const Signup = (props) => {
               인증하기
             </Text>
             <Input
-              type='number'
+              type='text'
               bg='#FFFFFF'
               width='100%'
               border='none'
@@ -549,79 +534,6 @@ const Signup = (props) => {
             />
           </Grid>
         )}
-
-        {/* {clickPhoneNumberAuthButton ? (
-          <Grid position='relative'>
-            <Grid position='absolute' right='90px' width='auto'>
-              {clickCodeAuthButton === true ? '' : <Timer />}
-            </Grid>
-            <Text
-              _onClick={() => {
-                if (clickCodeAuthButton === true) {
-                  SuccessAlert2('이미 휴대폰 인증을 완료하셨습니다');
-                  return;
-                }
-                sendPhoneAuthCode(phoneAuthCode);
-              }}
-              color='#A4B8FF'
-              position='absolute'
-              right='10px'
-              width='auto'
-              top='19px'
-              size='12px'
-              weight='800'
-              margin='0'>
-              코드인증하기
-            </Text>
-            <Input
-              type='number'
-              bg='#FFFFFF'
-              width='100%'
-              border='none'
-              border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-              padding='16px'
-              box-sizing
-              placeholder='인증코드'
-              placeholder_color='#DFDFDF'
-              name='phoneCode'
-              value={phoneCode}
-              _onChange={(e) => {
-                setPhoneCode(e.target.value);
-              }}
-            />
-          </Grid>
-        ) : (
-          <Grid position='relative'>
-            <Text
-              _onClick={() => {
-                sendPhoneNumber(phoneNumberInfo);
-              }}
-              color='#A4B8FF'
-              position='absolute'
-              right='10px'
-              width='auto'
-              top='19px'
-              size='12px'
-              weight='800'
-              margin='0'>
-              인증하기
-            </Text>
-            <Input
-              type='number'
-              bg='#FFFFFF'
-              width='100%'
-              border='none'
-              border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-              padding='16px'
-              box-sizing
-              placeholder='휴대폰번호(- 없이입력해주세요)'
-              placeholder_color='#DFDFDF'
-              name='phoneNumber'
-              value={phoneNumber}
-              _onChange={handleForm}
-            />
-          </Grid>
-        )} */}
       </Grid>
 
       <Grid margin='81px 0 50px 0'>

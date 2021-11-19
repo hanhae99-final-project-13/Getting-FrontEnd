@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ErrorAlert } from '../shared/Alerts';
 import Upload3 from '../components/adoptionApplycation/Upload3';
 import ApplyProgressBar from '../components/adoptionApplycation/ApplyProgressBar';
+import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
 
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,6 +65,11 @@ const AdoptionApply2 = (props) => {
       ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
       return;
     }
+    setOpenApplyAlert(!openApplyAlert);
+  };
+
+  // 모달 전달용
+  const closeApplyAlert = () => {
     setOpenApplyAlert(!openApplyAlert);
   };
 
@@ -281,74 +287,80 @@ const AdoptionApply2 = (props) => {
 
       {/* apply 신청 정말 할꺼니?  */}
       {openApplyAlert ? (
-        <Grid
-          position='fixed'
-          left='0'
-          right='0'
-          bg='#FFFFFF'
-          bottom='250px'
-          boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
-          height='264px'
-          maxWidth='414px'
-          width='auto'
-          margin='35px auto'
-          borderRadius='30px 30px 0 0'
-          boxSizing='border-box'
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-          zIndex='9999'>
-          <Grid width='62px' height='85px' margin='24px auto 8px '>
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
-            />
-          </Grid>
-          <Text
-            margin='14.25px 0 0 0'
-            align='center'
-            line_height='21px'
-            weight='600'>
-            작성한 입양신청서는
-            <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
-            <br />
-            정말 이대로 제출하시겠습니까?
-          </Text>
-          <Grid display='flex' justifyContent='center'>
-            <Button
-              margin='17px 10px 0 0'
-              width='130px'
-              size='14px'
-              weight='800'
-              height='40px'
-              padding='12px 0px'
-              bg='#FFBE5B'
-              border='none'
-              border_radius='34px'
-              onClick={() => {
-                setOpenApplyAlert(!openApplyAlert);
-              }}>
-              다시 생각해볼게요
-            </Button>
-
-            <Button
-              margin='17px 0 0 10px'
-              width='130px'
-              size='14px'
-              weight='800'
-              height='40px'
-              padding='12px 0px'
-              bg='#FE7968'
-              border='none'
-              border_radius='34px'
-              onClick={() => {
-                realApply();
-                setOpenApplyAlert(!openApplyAlert);
-              }}>
-              확인했습니다
-            </Button>
-          </Grid>
-        </Grid>
+        <AdoptionApplyCheckModal
+          closeModal={closeApplyAlert}
+          realApply={realApply}
+        />
       ) : (
+        //   (
+        //   <Grid
+        //     position='fixed'
+        //     left='0'
+        //     right='0'
+        //     bg='#FFFFFF'
+        //     bottom='250px'
+        //     boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
+        //     height='264px'
+        //     maxWidth='414px'
+        //     width='auto'
+        //     margin='35px auto'
+        //     borderRadius='30px 30px 0 0'
+        //     boxSizing='border-box'
+        //     display='flex'
+        //     flexDirection='column'
+        //     alignItems='center'
+        //     zIndex='9999'>
+        //     <Grid width='62px' height='85px' margin='24px auto 8px '>
+        //       <img
+        //         src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
+        //       />
+        //     </Grid>
+        //     <Text
+        //       margin='14.25px 0 0 0'
+        //       align='center'
+        //       line_height='21px'
+        //       weight='600'>
+        //       작성한 입양신청서는
+        //       <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
+        //       <br />
+        //       정말 이대로 제출하시겠습니까?
+        //     </Text>
+        //     <Grid display='flex' justifyContent='center'>
+        //       <Button
+        //         margin='17px 10px 0 0'
+        //         width='130px'
+        //         size='14px'
+        //         weight='800'
+        //         height='40px'
+        //         padding='12px 0px'
+        //         bg='#FFBE5B'
+        //         border='none'
+        //         border_radius='34px'
+        //         onClick={() => {
+        //           setOpenApplyAlert(!openApplyAlert);
+        //         }}>
+        //         다시 생각해볼게요
+        //       </Button>
+
+        //       <Button
+        //         margin='17px 0 0 10px'
+        //         width='130px'
+        //         size='14px'
+        //         weight='800'
+        //         height='40px'
+        //         padding='12px 0px'
+        //         bg='#FE7968'
+        //         border='none'
+        //         border_radius='34px'
+        //         onClick={() => {
+        //           realApply();
+        //           setOpenApplyAlert(!openApplyAlert);
+        //         }}>
+        //         확인했습니다
+        //       </Button>
+        //     </Grid>
+        //   </Grid>
+        // )
         ''
       )}
     </Grid>
