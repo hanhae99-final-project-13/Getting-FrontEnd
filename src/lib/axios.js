@@ -1,9 +1,8 @@
 import axios from 'axios';
-import jwt_Decode from 'jwt-decode';
 
 const instance = axios.create({
-  baseURL: 'http://52.78.159.191', // 선강 님
-  // baseURL: 'http://3.38.107.59', // 지은님
+  // baseURL: 'http://52.78.159.191', // 선강 님
+  baseURL: 'http://3.38.107.59', // 지은님
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -17,7 +16,7 @@ instance.interceptors.request.use(
     if (token === '') {
       return config;
     }
-    // console.log(jwt_Decode(token));
+
     config.headers = {
       'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
       accept: 'application/json',
@@ -44,6 +43,7 @@ export const apis = {
   //회원가입 및 로그인 관련 api
   login: (loginInfo) => instance.post('/user/login', loginInfo),
   loginCheck: () => instance.get('/user/check'),
+  refresh: (tokens) => instance.post(`/reissue`, tokens),
   kakaoLogin: (code) => instance.get(`/oauth/callback/kakao?code=${code}`),
   signup: (registerInfo) => instance.post('/signup', registerInfo),
   checkId: (username) => instance.get(`/signup/checkid?username=${username}`),

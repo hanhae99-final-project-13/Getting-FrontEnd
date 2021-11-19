@@ -6,7 +6,6 @@ import CommentWrite from './CommentWrite';
 import Swal from 'sweetalert2';
 const Comment = (props) => {
   const { comment } = props;
-  const [time, setTime] = React.useState('');
   // console.log('코멘트 하나의 정보', comment);
 
   const userInfo = useSelector((state) => state.user.user.userInfo);
@@ -31,10 +30,7 @@ const Comment = (props) => {
   };
 
   //UTC 시간을 받아오므로 시간에 +9 시간을 해줌
-  const createdAt = new Date(comment.createdAt).setHours(
-    new Date(comment.createdAt).getHours() + 9,
-  );
-
+  const createdAt = new Date(comment.createdAt);
   const commentTime = (createdAt) => {
     const milliSeconds = new Date() - createdAt;
     const seconds = milliSeconds / 1000;
@@ -65,7 +61,7 @@ const Comment = (props) => {
           <React.Fragment>
             <Grid
               height='70px'
-              width='305px'
+              width='333px'
               margin='0 auto 10px'
               borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
               borderRadius='10px'
@@ -109,7 +105,7 @@ const Comment = (props) => {
         ) : (
           <Grid
             height='70px'
-            width='305px'
+            width='333px'
             margin='0 auto'
             borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
             borderRadius='10px'
@@ -182,7 +178,7 @@ const Comment = (props) => {
                 </div>
                 <div
                   style={{
-                    width: '220px',
+                    width: '250px',
                     paddingBottom: '8px',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',

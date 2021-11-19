@@ -46,7 +46,13 @@ const AdoptionCard = (props) => {
         height='auto'
       >
         <Tag>
-          <ElP>{ownerType.includes('보호소') ? '보호소' : ownerType}</ElP>
+          <ElP>
+            {ownerType.includes('보호') ||
+            ownerType.includes('병원') ||
+            ownerType.includes('동물')
+              ? '보호소'
+              : ownerType}
+          </ElP>
         </Tag>
         <Tag2>
           <ElP>{isAdopted === 'ABANDONED' ? '보호중' : '입양 완료'}</ElP>

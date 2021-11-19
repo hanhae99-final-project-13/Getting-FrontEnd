@@ -206,7 +206,7 @@ const GridBox = styled.div`
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}
 
-  pointer-events: ${(props) => props.pointerEvents};
+  cursor: pointer;
 
   :hover {
     ${(props) =>

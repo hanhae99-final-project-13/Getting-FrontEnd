@@ -138,23 +138,24 @@ const Detail = (props) => {
             </Grid>
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
-                {post.post.img &&
-                  post.post.img.map((m, i) => {
-                    return (
-                      <>
-                        <img
-                          key={i}
-                          style={{
-                            margin: '0 10px 15px 0',
-                            width: '305px',
-                            height: '200px',
-                            objectFit: 'scale-down',
-                          }}
-                          src={m}
-                        />
-                      </>
-                    );
-                  })}
+                {post.post.img === null
+                  ? null
+                  : post.post.img.map((m, i) => {
+                      return (
+                        <>
+                          <img
+                            key={i}
+                            style={{
+                              margin: '0 10px 15px 0',
+                              width: '305px',
+                              borderRadius: '10px',
+                              objectFit: 'scale-down',
+                            }}
+                            src={m}
+                          />
+                        </>
+                      );
+                    })}
               </StyledSlider>
             </Grid>
           </Grid>

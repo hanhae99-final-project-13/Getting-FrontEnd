@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { Grid } from '../../elements';
 import { Card } from '../';
-// import SliderBox from '../SliderBox';
 
 import HaveNothing from '../HaveNothing';
 
@@ -12,9 +11,6 @@ const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
   const sliderBox = React.useRef();
   const innerBox = React.useRef();
-
-  console.log(sliderBox.current);
-  console.log(innerBox.current);
   let isPress = false;
   let startX;
   let x;
@@ -24,29 +20,35 @@ const AdoptionWishedCardList = (props) => {
     let inner = innerBox.current.getBoundingClientRect();
     if (parseInt(innerBox.current.style.left) > 0) {
       innerBox.current.style.left = '0px';
-    } else if (inner.right - outer.right < -35) {
-      innerBox.current.style.left = `-${inner.width - outer.width}px`;
+    } else if (inner.right - outer.right < -24) {
+      innerBox.current.style.left = `-${inner.width - outer.width + 24}px`;
     }
   };
   const sliderMouseDown = (e) => {
-    console.log(sliderBox.current.getBoundingClientRect());
-    console.log(innerBox.current.getBoundingClientRect());
+    e.preventDefault();
+
+    // e.stopPropagation();
     isPress = true;
     startX = e.nativeEvent.offsetX - innerBox.current.offsetLeft;
-    console.log(startX);
   };
   const sliderMouseUp = (e) => {
+    e.preventDefault();
+    // e.stopPropagation();
     isPress = false;
   };
-  const sliderMouseLeave = () => {
+  const sliderMouseLeave = (e) => {
+    e.preventDefault();
+    // e.stopPropagation();
     isPress = false;
   };
   const sliderMouseMove = (e) => {
     if (!isPress) return;
-    // e.defaultPrevented();
+    e.preventDefault();
+    // e.stopPropagation();
+    // e.persist();
     x = e.nativeEvent.offsetX;
-
     innerBox.current.style.left = `${x - startX}px`;
+    console.log(x - startX, e);
     checkBoundary();
   };
 
@@ -72,6 +74,7 @@ const AdoptionWishedCardList = (props) => {
           onMouseMove={sliderMouseMove}
           onMouseUp={sliderMouseUp}
           onMouseLeave={sliderMouseLeave}
+          // onDrag={(e) => console.log(e)}
         >
           <InnerSlider width={wishPostList.length} ref={innerBox}>
             {wishPostList.map((p) => {
@@ -93,14 +96,6 @@ const AdoptionWishedCardList = (props) => {
             })}
           </InnerSlider>
         </SliderBox>
-        // <SliderBox
-        //   list={wishPostList}
-        //   height='300'
-        //   dots='false'
-        //   arrows={false}
-        //   speed={600}
-        //   slidesToShow={1.5}
-        // />
       )}
     </Grid>
   );
@@ -116,11 +111,11 @@ const Title = styled.p`
 
 const SliderBox = styled.div`
   position: relative;
+  width: calc(100% + 48px);
   height: 260px;
   margin-left: -35px;
   margin-top: -1rem;
-  overflow: visible;
-  overflow-x: scroll;
+  overflow: hidden;
 
   :: -webkit-scrollbar {
     display: none;

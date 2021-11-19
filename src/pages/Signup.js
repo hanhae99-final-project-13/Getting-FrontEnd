@@ -193,10 +193,10 @@ const Signup = (props) => {
       return;
     }
 
-    if (!clickCodeAuthButton) {
-      ErrorAlert('휴대폰 인증을 진행해 주세요.');
-      return;
-    }
+    // if (!clickCodeAuthButton) {
+    //   ErrorAlert('휴대폰 인증을 진행해 주세요.');
+    //   return;
+    // }
 
     dispatch(userAction.SignupDB(form));
   };
