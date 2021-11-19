@@ -32,7 +32,8 @@ const Card = (props) => {
     (state) => state.post.isAdoptionDeleteMode,
   );
   const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
-  const goDetail = () => {
+  const goDetail = (e) => {
+    e.stopPropagation();
     history.push(`/detail/${postId}`);
   };
   return (
@@ -75,7 +76,7 @@ const Card = (props) => {
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
-              {isAdopted === 'ABANDONED' ? '보호중' : '보호종료'}
+              {isAdopted === 'ABANDONED' ? '보호중' : '입양완료'}
             </Text>
           </Grid>
         </Grid>

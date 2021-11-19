@@ -77,6 +77,7 @@ const Signup = (props) => {
       })
       .catch((error) => {
         setCheckId(false);
+        console.log(error);
         console.log('아이디중복 : ', error.response.data.errorMessage);
         return;
       });
@@ -192,10 +193,10 @@ const Signup = (props) => {
       return;
     }
 
-    if (!clickCodeAuthButton) {
-      ErrorAlert('휴대폰 인증을 진행해 주세요.');
-      return;
-    }
+    // if (!clickCodeAuthButton) {
+    //   ErrorAlert('휴대폰 인증을 진행해 주세요.');
+    //   return;
+    // }
 
     dispatch(userAction.SignupDB(form));
   };
@@ -206,7 +207,8 @@ const Signup = (props) => {
       width='auto'
       margin='0 auto'
       position='relative'
-      padding='0 35px'>
+      padding='0 35px'
+    >
       <Grid
         zIndex='9999'
         _onClick={() => {
@@ -216,7 +218,8 @@ const Signup = (props) => {
         width='20px' //width, height를 안주면 sticky left가 안먹음..
         height='20px'
         top='-45px'
-        left='33px'>
+        left='33px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -238,7 +241,8 @@ const Signup = (props) => {
               right='6px'
               top='15px'
               width='20px'
-              height='20px'>
+              height='20px'
+            >
               <img
                 width='20px'
                 height='20px'
@@ -265,7 +269,8 @@ const Signup = (props) => {
               right='0px'
               top='15px'
               width='150px'
-              height='20px'>
+              height='20px'
+            >
               {/* <img
                   width='20px'
                   height='20px'
@@ -279,7 +284,8 @@ const Signup = (props) => {
                 top='5px'
                 size='12px'
                 weight='800'
-                margin='0'>
+                margin='0'
+              >
                 이미 존재하는 아이디입니다.
               </Text>
             </Grid>
@@ -329,7 +335,8 @@ const Signup = (props) => {
             right='10px'
             top='19px'
             width='20px'
-            height='20px'>
+            height='20px'
+          >
             {password !== '' && password === pwcheck ? (
               <img
                 width='20px'
@@ -370,7 +377,8 @@ const Signup = (props) => {
               right='6px'
               top='15px'
               width='20px'
-              height='20px'>
+              height='20px'
+            >
               <img
                 width='20px'
                 height='20px'
@@ -397,7 +405,8 @@ const Signup = (props) => {
               right='0px'
               top='15px'
               width='150px'
-              height='20px'>
+              height='20px'
+            >
               {/* <img
                   width='20px'
                   height='20px'
@@ -411,7 +420,8 @@ const Signup = (props) => {
                 top='5px'
                 size='12px'
                 weight='800'
-                margin='0'>
+                margin='0'
+              >
                 이미 존재하는 닉네입입니다.
               </Text>
             </Grid>
@@ -462,7 +472,8 @@ const Signup = (props) => {
             height='48px'
             borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             boxSizing
-            padding='1px 16px'>
+            padding='1px 16px'
+          >
             <img
               width='20px'
               height='20px'
@@ -500,7 +511,8 @@ const Signup = (props) => {
               top='19px'
               size='12px'
               weight='800'
-              margin='0'>
+              margin='0'
+            >
               코드확인
             </Text>
           </Grid>
@@ -517,7 +529,8 @@ const Signup = (props) => {
               top='19px'
               size='12px'
               weight='800'
-              margin='0'>
+              margin='0'
+            >
               인증하기
             </Text>
             <Input
@@ -618,7 +631,8 @@ const Signup = (props) => {
           bold
           size='10px'
           margin='0px'
-          line_height='18px'>
+          line_height='18px'
+        >
           회원가입시,
           <Span style={{ fontWeight: '600', fontSize: '10px' }}>
             {' '}
@@ -640,7 +654,8 @@ const Signup = (props) => {
           bg='#FE7968'
           border='none'
           border_radius='25px'
-          onClick={registerClick}>
+          onClick={registerClick}
+        >
           가입하기
         </Button>
       </Grid>

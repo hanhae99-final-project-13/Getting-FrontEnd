@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import jwt_Decode from 'jwt-decode';
 import { apis } from '../../lib/axios';
 import {
   SuccessAlert,
@@ -69,17 +70,15 @@ const initialState = {
 
 // 로그인
 const GetUserDB = (user) => {
-  // console.log(user,'서버에 보내는 값')
-
   return (dispatch, getState, { history }) => {
     apis
       .login(user)
       .then((res) => {
-        console.log('서버에서 받은 로그인 정보', res.data.data);
-        console.log('서버 로그인 status정보', res.data.status);
-        const USER_TOKEN = res.data.data.token;
-
+        console.log(res.data);
+        const USER_TOKEN = res.data.data.token.accessToken;
+        const REFRESH_TOKEN = res.data.data.token.refreshToken;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -94,8 +93,8 @@ const GetUserDB = (user) => {
         };
 
         dispatch(SetUser(user));
-        window.location.href = '/main';
-        // history.push('/main');
+        // window.location.href = '/main';
+        history.replace('/main');
         // window.location.reload();
       })
       .catch((error) => {
@@ -138,6 +137,29 @@ const SignupDB = (form) => {
 //로그인체크
 const LoginCheck = () => {
   return (dispatch, getState, { history }) => {
+    const aToken = localStorage.getItem('USER_TOKEN');
+    const rToken = localStorage.getItem('REFRESH_TOKEN');
+    const aTokenExp = jwt_Decode(aToken).exp * 1000;
+    const nowDt = Date.now();
+    console.log(aTokenExp);
+    console.log(Date.now());
+    if (aTokenExp - 30000 < Date.now()) {
+      console.log('리프래쉬 토큰 사용');
+      apis
+        .refresh({
+          accessToken: encodeURI(aToken),
+          refreshToken: encodeURI(rToken),
+        })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem('USER_TOKEN', res.data.accessToken);
+          localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
+        })
+        .catch((err) => {
+          console.log(err);
+          return;
+        });
+    }
     apis
       .loginCheck()
       .then((res) => {
@@ -172,8 +194,10 @@ const KakaoLogin = (code) => {
 
       .then((res) => {
         console.log('카카오 로그인정보', res.data.data);
-        const USER_TOKEN = res.data.data.token;
+        const USER_TOKEN = res.data.data.token.accessToken;
+        const REFRESH_TOKEN = res.data.data.token.refreshToken;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
         const user = {
           userInfo: {
             email: res.data.data.email,
