@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  // baseURL: 'http://52.78.159.191', // 선강 님
-  baseURL: 'http://3.38.107.59', // 지은님
+  baseURL: 'http://52.78.159.191', // 선강 님
+  // baseURL: 'http://3.38.107.59', // 지은님
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -10,17 +10,46 @@ const instance = axios.create({
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
 
+const aToken = localStorage.getItem('USER_TOKEN');
+const rToken = localStorage.getItem('REFRESH_TOKEN');
+const aTokenExp = localStorage.getItem('USER_TOKEN_EXP');
+const userId = localStorage.getItem('USER_ID');
+const now = Date.now();
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('USER_TOKEN');
-    if (token === '') {
+    if (!aToken) {
       return config;
     }
-
+    // console.log(now);
+    // console.log(aTokenExp);
+    // if (aTokenExp - 30000 < Date.now()) {
+    //   console.log('리프래쉬 토큰 사용');
+    //   apis
+    //     .refresh({
+    //       accessToken: encodeURI(aToken),
+    //       refreshToken: encodeURI(rToken),
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //       localStorage.setItem('USER_TOKEN', res.data.accessToken);
+    //       localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     })
+    //     .then(() => {
+    //       config.headers = {
+    //         'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
+    //         accept: 'application/json',
+    //         Authorization: `Bearer ${aToken}`,
+    //       };
+    //       return config;
+    //     });
+    // }
     config.headers = {
       'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
       accept: 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${aToken}`,
     };
     return config;
   },
@@ -29,15 +58,16 @@ instance.interceptors.request.use(
   },
 );
 
-// instance.interceptors.response.use(
-//   (success) => {
-//     return success;
-//   },
-//   (error) => {
-//
-//     return error;
-//   },
-// );
+instance.interceptors.response.use(
+  (success) => {
+    return success;
+  },
+  (err) => {
+    console.log(err);
+    console.log(err.response);
+    return err;
+  },
+);
 
 export const apis = {
   //회원가입 및 로그인 관련 api

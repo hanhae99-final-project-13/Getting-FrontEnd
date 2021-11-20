@@ -38,12 +38,10 @@ const MainHello = (props) => {
         width='calc(100% - 24px)'
       >
         <Grid display='flex' alignItems='center' width='auto'>
-          <Text margin='0' size='12px' weight='700' color='#5c5c5c'>
+          <Text margin='0 3px 0 0' size='12px' weight='700' color='#5C5C5C'>
             저희가 함께 도와 드릴게요!
           </Text>
-          <Text margin='0' size='12px'>
-            &nbsp;😉
-          </Text>
+          <img src={process.env.PUBLIC_URL + '/img/icon/wink.svg'} />
         </Grid>
         <ElA
           onClick={() => {

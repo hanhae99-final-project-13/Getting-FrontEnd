@@ -73,17 +73,29 @@ const Adoption = () => {
             등록순
           </span>
         </CategoryBox>
-        <AddButton
-          src={process.env.PUBLIC_URL + '/img/icon/add_icon_pink.svg'}
-          onClick={() => {
-            if (!isToken) {
-              ErrorAlert('로그인이 필요한 서비스입니다!');
-              return;
-            }
-            goAddPost();
-          }}
-        />
-        <ToTop onClick={() => window.scrollTo(0, 0)} />
+        <Grid
+          position='fixed'
+          bottom='100px'
+          margin='0 auto'
+          maxWidth='414px'
+          height='124px'
+          zIndex='2'
+        >
+          <ToTop
+            src={process.env.PUBLIC_URL + '/img/icon/totop_icon.svg'}
+            onClick={() => window.scrollTo(0, 0)}
+          />
+          <AddButton
+            src={process.env.PUBLIC_URL + '/img/icon/add_icon_pink.svg'}
+            onClick={() => {
+              if (!isToken) {
+                ErrorAlert('로그인이 필요한 서비스입니다!');
+                return;
+              }
+              goAddPost();
+            }}
+          />
+        </Grid>
         <AdoptionCardList />
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
@@ -108,28 +120,27 @@ const Tag = styled.button`
   }
 `;
 
-const AddButton = styled.img`
-  position: sticky;
-  top: calc(1% + 68px);
-  right: 0;
+const ToTop = styled.img`
+  position: absolute;
+  top: 0;
+  right: 48px;
   width: 56px;
   height: 56px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  z-index: 2;
+  border-radius: 28px;
+  box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
 `;
 
-const ToTop = styled.img`
-  position: sticky;
-  top: 1%;
-  right: 0;
+const AddButton = styled.img`
+  position: absolute;
+  bottom: 0;
+  right: 48px;
   width: 56px;
   height: 56px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  z-index: 2;
+  border-radius: 28px;
+  box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
 `;
 
 const CategoryBox = styled.div`
-  position: relative;
   display: flex;
   padding-left: 12px;
   .category {
