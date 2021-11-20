@@ -230,7 +230,7 @@ const Detail = (props) => {
                 >
                   견종
                 </span>
-                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
+                <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.breed.split('[개]').reverse()[0]}
                 </span>
               </Grid>
@@ -245,9 +245,7 @@ const Detail = (props) => {
                 >
                   성별
                 </span>
-                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
-                  {post.post.sex}
-                </span>
+                <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
               </Grid>
             </Grid>
 
@@ -348,7 +346,7 @@ const Detail = (props) => {
                 >
                   주소
                 </span>
-                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
+                <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.address}
                 </span>
               </Grid>
@@ -370,9 +368,7 @@ const Detail = (props) => {
                 >
                   출처
                 </span>
-                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
-                  {post.post.tag}
-                </span>
+                <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
               </Grid>
             </Grid>
             <Grid
