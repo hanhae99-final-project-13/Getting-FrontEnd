@@ -77,7 +77,7 @@ const GetUserDB = (user) => {
       .then((res) => {
         console.log('서버에서 받은 로그인 정보', res.data.data);
         console.log('서버 로그인 status정보', res.data.status);
-        const USER_TOKEN = res.data.data.token;
+        const USER_TOKEN = res.data.data.token.accessToken;
 
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         const user = {

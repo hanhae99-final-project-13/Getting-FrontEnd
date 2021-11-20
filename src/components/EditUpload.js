@@ -48,7 +48,6 @@ const EditUpload = (props) => {
     props.setImg(newImg);
   };
   const deleteImg = (e) => {
-    console.log(e.split('/')[3]);
     dispatch(postActions.deleteImg(e));
     const file = e.split('/')[3];
     const s3 = new AWS.S3();

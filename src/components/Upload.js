@@ -45,7 +45,7 @@ const Upload = (props) => {
         });
       imgUrlList.push(nowImgUrl);
 
-      if (imgUrlList.length >= 4) {
+      if (imgUrlList.length > 4) {
         WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
         break;
       }

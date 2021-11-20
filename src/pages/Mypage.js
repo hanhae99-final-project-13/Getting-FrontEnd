@@ -14,7 +14,7 @@ import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { applyActions } from '../redux/modules/apply';
 import { ErrorAlert } from '../shared/Alerts';
-
+import WebSocket from './WebSocket';
 const Mypage = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user.userInfo);
@@ -67,6 +67,7 @@ const Mypage = () => {
 
   return (
     <Grid maxWidth='414px' margin='0 auto'>
+      <WebSocket />
       <Grid margin='107px 0 0 0' width='auto'>
         <MypageUserInfo />
       </Grid>

@@ -148,6 +148,7 @@ const Detail = (props) => {
                             style={{
                               margin: '0 10px 15px 0',
                               width: '305px',
+                              height: '305px',
                               borderRadius: '10px',
                               objectFit: 'scale-down',
                             }}
@@ -220,19 +221,33 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid width='50%'>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   견종
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>
+                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
                   {post.post.breed.split('[개]').reverse()[0]}
                 </span>
               </Grid>
 
               <Grid width='50%'>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   성별
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
+                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
+                  {post.post.sex}
+                </span>
               </Grid>
             </Grid>
 
@@ -243,7 +258,13 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid width='50%'>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   체중
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -252,7 +273,13 @@ const Detail = (props) => {
               </Grid>
 
               <Grid width='50%'>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   나이
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -268,7 +295,13 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   발견 장소
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -284,7 +317,13 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   보호 장소
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -300,10 +339,16 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   주소
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>
+                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
                   {post.post.address}
                 </span>
               </Grid>
@@ -316,10 +361,18 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   출처
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
+                <span style={{ margin: '0 5px 0 10px', fontWeight: '400' }}>
+                  {post.post.tag}
+                </span>
               </Grid>
             </Grid>
             <Grid
@@ -333,7 +386,13 @@ const Detail = (props) => {
                 justifyContent='space-between'
                 alignItems='center'
               >
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -438,7 +497,13 @@ const Detail = (props) => {
               borderBottom='1px solid rgba(225, 225, 225, 0.8)'
             >
               <Grid>
-                <span style={{ fontWeight: '800', color: '#6B6462' }}>
+                <span
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
                   연락처
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -449,7 +514,15 @@ const Detail = (props) => {
 
             <Grid display='flex' margin='5px 0 0 0'>
               <Grid>
-                <p style={{ fontWeight: '800', color: '#6B6462' }}>특이사항</p>
+                <p
+                  style={{
+                    fontWeight: '800',
+                    color: '#6B6462',
+                    fontSize: '14px',
+                  }}
+                >
+                  특이사항
+                </p>
                 <span>{post.post.extra}</span>
               </Grid>
             </Grid>
