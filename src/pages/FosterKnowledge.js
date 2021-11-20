@@ -18,7 +18,7 @@ const FosterKnowledge = (props) => {
     <Grid
       maxWidth='414px'
       width='auto'
-      margin='0 auto 150px'
+      margin='0 auto 90px'
       position='relative'>
       <Grid
         cusor='pointer'
@@ -93,8 +93,7 @@ const FosterKnowledge = (props) => {
         cusor='pointer'
         position='relative'
         _onClick={() => {
-          WarningAlert('서비스 준비 중 입니다!');
-          // history.push('/essentialknowledge');
+          history.push('/advancedknowledge1');
           window.sessionStorage.clear();
         }}
         display='flex'
@@ -140,8 +139,7 @@ const FosterKnowledge = (props) => {
         cusor='pointer'
         position='relative'
         _onClick={() => {
-          WarningAlert('서비스 준비 중 입니다!');
-          // history.push('/essentialknowledge');
+          history.push('/advancedknowledge2');
           window.sessionStorage.clear();
         }}
         display='flex'

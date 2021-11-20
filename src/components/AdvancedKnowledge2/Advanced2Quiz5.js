@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { Grid, Text } from '../../elements';
-import { WarningAlert } from '../../shared/Alerts';
-import QuizProgressBar from './QuizProgressBar';
+import { useDispatch } from 'react-redux';
+import { actionCreators as eduAction } from '../../redux/modules/user';
 
-const EssentialQuiz2 = (props) => {
+import { Grid, Text } from '../../elements';
+import { SuccessAlert, WarningAlert } from '../../shared/Alerts';
+import QuizProgressBar from '../Tutorial/QuizProgressBar';
+
+const Advanced2Quiz5 = (props) => {
+  const dispatch = useDispatch();
   const { history } = props;
-  window.sessionStorage.setItem('answer2', '');
+
+  const classNumber = '3';
+  const answerSheet = ['true', 'true', 'true', 'true', 'true'];
+
+  window.sessionStorage.setItem('answer5', '');
 
   const [selectAnswer, setSelectAnswer] = useState('');
   const trueClick = () => {
@@ -16,7 +24,19 @@ const EssentialQuiz2 = (props) => {
   };
 
   const handleClickRadioButton = (e) => {
-    window.sessionStorage.setItem('answer2', e.target.value);
+    window.sessionStorage.setItem('answer5', e.target.value);
+  };
+
+  let userTotalAnswer = [];
+
+  const getSessiondata = () => {
+    const answer1 = window.sessionStorage.getItem('answer1');
+    const answer2 = window.sessionStorage.getItem('answer2');
+    const answer3 = window.sessionStorage.getItem('answer3');
+    const answer4 = window.sessionStorage.getItem('answer4');
+    const answer5 = window.sessionStorage.getItem('answer5');
+
+    userTotalAnswer = [answer1, answer2, answer3, answer4, answer5];
   };
 
   return (
@@ -25,7 +45,7 @@ const EssentialQuiz2 = (props) => {
         cusor='pointer'
         zIndex='9999'
         _onClick={() => {
-          window.sessionStorage.removeItem('answer2');
+          window.sessionStorage.removeItem('answer5');
           history.goBack();
         }}
         position='sticky'
@@ -40,18 +60,18 @@ const EssentialQuiz2 = (props) => {
 
       <Grid position='fixed' top='67px' left='0' right='0'>
         <Text size='12px' margin='0' weight='700' align='center'>
-          3문제 남았어요
+          마지막 문제에요
         </Text>
       </Grid>
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar totalQuizLength={5} />
+        <QuizProgressBar totalQuizLength={5}></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
       <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
-        Q2.
+        Q5.
       </Text>
       <Text
         margin='20px 0 0 0'
@@ -59,26 +79,26 @@ const EssentialQuiz2 = (props) => {
         size='16px'
         line_height='24px'
         weight='700'>
-        집 앞에 산책을 나가더라도 목줄은 꼭 해야한다.
+        심화2문제
       </Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='102px 0 0 0'
+          margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
           <input
             type='radio'
-            id='2true'
-            name='answer2'
+            id='5true'
+            name='answer5'
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
             onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='2true'>
+            htmlFor='5true'>
             {/* 빨간색원 div */}
             <Grid
               position='absolute'
@@ -109,14 +129,16 @@ const EssentialQuiz2 = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='2false'
-            name='answer2'
+            id='5false'
+            name='answer5'
             value='false'
             onClick={handleClickRadioButton}></input>
+
           <label
             onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='2false'>
+            htmlFor='5false'>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -151,7 +173,23 @@ const EssentialQuiz2 = (props) => {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            history.push('/essentialquiz3');
+            getSessiondata();
+            if (
+              JSON.stringify(userTotalAnswer) === JSON.stringify(answerSheet)
+            ) {
+              dispatch(eduAction.addEduSuccessDB(classNumber));
+
+              SuccessAlert('축하합니다! 심화지식2를 완료하셨습니다.');
+              window.sessionStorage.clear();
+              history.push('/main');
+            } else {
+              WarningAlert(
+                '안타깝게도 틀린부분이 있네요!',
+                '심화지식2를 다시 진행해 주세요!',
+              );
+              window.sessionStorage.clear();
+              history.push('/advancedknowledge2');
+            }
           }
         }}
         bg='#FFBE5B'
@@ -163,11 +201,11 @@ const EssentialQuiz2 = (props) => {
         alignItems='center'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
-          다음퀴즈
+          채점하기
         </Text>
       </Grid>
     </Grid>
   );
 };
 
-export default EssentialQuiz2;
+export default Advanced2Quiz5;

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
-import QuizProgressBar from './QuizProgressBar';
+import QuizProgressBar from '../Tutorial/QuizProgressBar';
 
-const EssentialQuiz2 = (props) => {
+const Advanced2Quiz2 = (props) => {
   const { history } = props;
+
   window.sessionStorage.setItem('answer2', '');
 
   const [selectAnswer, setSelectAnswer] = useState('');
@@ -46,7 +47,7 @@ const EssentialQuiz2 = (props) => {
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar totalQuizLength={5} />
+        <QuizProgressBar totalQuizLength={5}></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
@@ -59,13 +60,13 @@ const EssentialQuiz2 = (props) => {
         size='16px'
         line_height='24px'
         weight='700'>
-        집 앞에 산책을 나가더라도 목줄은 꼭 해야한다.
+        심화2문제
       </Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='102px 0 0 0'
+          margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
@@ -113,10 +114,12 @@ const EssentialQuiz2 = (props) => {
             name='answer2'
             value='false'
             onClick={handleClickRadioButton}></input>
+
           <label
             onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='2false'>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -151,7 +154,7 @@ const EssentialQuiz2 = (props) => {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            history.push('/essentialquiz3');
+            history.push('/advanced2quiz3');
           }
         }}
         bg='#FFBE5B'
@@ -170,4 +173,4 @@ const EssentialQuiz2 = (props) => {
   );
 };
 
-export default EssentialQuiz2;
+export default Advanced2Quiz2;

@@ -1,33 +1,23 @@
 import React, { useState } from 'react';
 import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
-import { useDispatch } from 'react-redux';
-import { quizActions as userAction } from '../../redux/modules/quiz';
 import QuizProgressBar from './QuizProgressBar';
 
 const EssentialQuiz = (props) => {
-  const dispatch = useDispatch();
   const { history } = props;
+  window.sessionStorage.setItem('answer1', '');
 
-  const totalUserAnswer = {
-    answer1: '',
-    answer2: '',
-    answer3: '',
-    answer4: '',
-    answer5: '',
+  const [selectAnswer, setSelectAnswer] = useState('');
+  const trueClick = () => {
+    setSelectAnswer('true');
   };
-
-  const [answer, setAnswer] = useState(totalUserAnswer);
+  const falseClick = () => {
+    setSelectAnswer('false');
+  };
 
   const handleClickRadioButton = (e) => {
-    const newAnswer = { ...answer, [e.target.name]: e.target.value };
-
-    setAnswer(newAnswer);
+    window.sessionStorage.setItem('answer1', e.target.value);
   };
-
-  console.log(answer);
-
-  window.sessionStorage.setItem('answer1', answer.answer1);
 
   return (
     <Grid maxWidth='414px' width='auto' margin='0 auto'>
@@ -55,7 +45,7 @@ const EssentialQuiz = (props) => {
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar></QuizProgressBar>
+        <QuizProgressBar totalQuizLength={5} />
       </Grid>
 
       {/* 문제 */}
@@ -80,16 +70,16 @@ const EssentialQuiz = (props) => {
           display='flex'
           alignItems='center'>
           <input
-            // style={{ display: 'none' }}
             type='radio'
             id='1true'
             name='answer1'
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
+            onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='1true'>
-            {/* 빨간색 체크 */}
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -102,7 +92,7 @@ const EssentialQuiz = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer1 === 'true' ? '#FE7968' : ''}
+                bg={selectAnswer === 'true' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -125,8 +115,10 @@ const EssentialQuiz = (props) => {
             onClick={handleClickRadioButton}></input>
 
           <label
+            onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='1false'>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -139,7 +131,7 @@ const EssentialQuiz = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer1 === 'false' ? '#FE7968' : ''}
+                bg={selectAnswer === 'false' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -157,11 +149,10 @@ const EssentialQuiz = (props) => {
         right='0px'
         margin='0 auto'
         _onClick={() => {
-          if (answer.answer1 === '') {
+          if (selectAnswer === '') {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            dispatch(userAction.addQuizAnswer(answer));
             history.push('/essentialquiz2');
           }
         }}

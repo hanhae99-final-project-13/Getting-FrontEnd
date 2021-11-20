@@ -41,6 +41,24 @@ import {
   Tutorial2,
 } from '../components/Tutorial';
 
+import {
+  AdvancedKnowledge1,
+  AdvancedQuiz,
+  AdvancedQuiz2,
+  AdvancedQuiz3,
+  AdvancedQuiz4,
+  AdvancedQuiz5,
+} from '../components/AdvancedKnowledge1';
+
+import {
+  AdvancedKnowledge2,
+  Advanced2Quiz,
+  Advanced2Quiz2,
+  Advanced2Quiz3,
+  Advanced2Quiz4,
+  Advanced2Quiz5,
+} from '../components/AdvancedKnowledge2';
+
 import { actionCreators as userAction } from '../redux/modules/user';
 
 import {
@@ -115,6 +133,70 @@ function App() {
             exact
             component={withKnowledgeFooter(EssentialQuiz5)}
           />
+          <Route
+            path='/advancedknowledge1'
+            exact
+            component={withKnowledgeFooter(AdvancedKnowledge1)}
+          />
+
+          <Route
+            path='/advancedquiz'
+            exact
+            component={withKnowledgeFooter(AdvancedQuiz)}
+          />
+          <Route
+            path='/advancedquiz2'
+            exact
+            component={withKnowledgeFooter(AdvancedQuiz2)}
+          />
+          <Route
+            path='/advancedquiz3'
+            exact
+            component={withKnowledgeFooter(AdvancedQuiz3)}
+          />
+          <Route
+            path='/advancedquiz4'
+            exact
+            component={withKnowledgeFooter(AdvancedQuiz4)}
+          />
+          <Route
+            path='/advancedquiz5'
+            exact
+            component={withKnowledgeFooter(AdvancedQuiz5)}
+          />
+
+          <Route
+            path='/advancedknowledge2'
+            exact
+            component={withKnowledgeFooter(AdvancedKnowledge2)}
+          />
+
+          <Route
+            path='/advanced2quiz'
+            exact
+            component={withKnowledgeFooter(Advanced2Quiz)}
+          />
+          <Route
+            path='/advanced2quiz2'
+            exact
+            component={withKnowledgeFooter(Advanced2Quiz2)}
+          />
+          <Route
+            path='/advanced2quiz3'
+            exact
+            component={withKnowledgeFooter(Advanced2Quiz3)}
+          />
+          <Route
+            path='/advanced2quiz4'
+            exact
+            component={withKnowledgeFooter(Advanced2Quiz4)}
+          />
+          <Route
+            path='/advanced2quiz5'
+            exact
+            component={withKnowledgeFooter(Advanced2Quiz5)}
+          />
+
           <Route
             path='/fosterknowledge'
             exact

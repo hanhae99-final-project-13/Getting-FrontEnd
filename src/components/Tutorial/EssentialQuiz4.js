@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
-import { useDispatch, useSelector } from 'react-redux';
-import { quizActions as userAction } from '../../redux/modules/quiz';
 import QuizProgressBar from './QuizProgressBar';
 
 const EssentialQuiz4 = (props) => {
-  const dispatch = useDispatch();
   const { history } = props;
+  window.sessionStorage.setItem('answer4', '');
 
-  const beforeQuizAnswerData = useSelector((state) => state.quiz.totalAnswer);
-  console.log(beforeQuizAnswerData, '리덕스에서 불러온 앤서');
-
-  const [answer, setAnswer] = useState(beforeQuizAnswerData);
+  const [selectAnswer, setSelectAnswer] = useState('');
+  const trueClick = () => {
+    setSelectAnswer('true');
+  };
+  const falseClick = () => {
+    setSelectAnswer('false');
+  };
 
   const handleClickRadioButton = (e) => {
-    const newAnswer = { ...answer, [e.target.name]: e.target.value };
-
-    setAnswer(newAnswer);
+    window.sessionStorage.setItem('answer4', e.target.value);
   };
-  console.log(answer);
-  window.sessionStorage.setItem('answer4', answer.answer4);
   return (
     <Grid maxWidth='414px' width='auto' margin='0px auto'>
       <Grid
         cusor='pointer'
         zIndex='9999'
         _onClick={() => {
+          window.sessionStorage.removeItem('answer4');
           history.goBack();
         }}
         position='sticky'
@@ -47,7 +45,7 @@ const EssentialQuiz4 = (props) => {
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar></QuizProgressBar>
+        <QuizProgressBar totalQuizLength={5} />
       </Grid>
 
       <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
@@ -77,9 +75,10 @@ const EssentialQuiz4 = (props) => {
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
+            onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='4true'>
-            {/* 빨간색 체크 */}
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -92,7 +91,7 @@ const EssentialQuiz4 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer4 === 'true' ? '#FE7968' : ''}
+                bg={selectAnswer === 'true' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -116,6 +115,7 @@ const EssentialQuiz4 = (props) => {
             // checked={answer.answer1 === 'false'}
           ></input>
           <label
+            onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='4false'>
             <Grid
@@ -130,7 +130,7 @@ const EssentialQuiz4 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer4 === 'false' ? '#FE7968' : ''}
+                bg={selectAnswer === 'false' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -148,11 +148,10 @@ const EssentialQuiz4 = (props) => {
         right='0px'
         margin='0 auto'
         _onClick={() => {
-          if (answer.answer4 === '') {
+          if (selectAnswer === '') {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            dispatch(userAction.addQuizAnswer(answer));
             history.push('/essentialquiz5');
           }
         }}

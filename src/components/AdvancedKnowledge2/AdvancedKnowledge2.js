@@ -4,7 +4,7 @@ import { Grid, Text } from '../../elements';
 import { ErrorAlert } from '../../shared/Alerts';
 import { history } from '../../redux/configureStore';
 
-const EssentialKnowledge = () => {
+const AdvancedKnowledge2 = () => {
   const token = localStorage.getItem('USER_TOKEN');
 
   return (
@@ -33,7 +33,7 @@ const EssentialKnowledge = () => {
 
         <Grid position='absolute' top='-52px' left='0' right='0'>
           <Text size='18px' margin='0' weight='800' align='center'>
-            필수지식 리스트
+            심화지식 리스트2
           </Text>
         </Grid>
 
@@ -195,7 +195,7 @@ const EssentialKnowledge = () => {
               return;
             }
 
-            history.push('/essentialquiz');
+            history.push('/advanced2quiz');
           }}
           margin='0 auto'
           bg='#FE7968'
@@ -215,4 +215,4 @@ const EssentialKnowledge = () => {
   );
 };
 
-export default EssentialKnowledge;
+export default AdvancedKnowledge2;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Grid, Text } from '../../elements';
 import { WarningAlert } from '../../shared/Alerts';
-import QuizProgressBar from './QuizProgressBar';
+import QuizProgressBar from '../Tutorial/QuizProgressBar';
 
-const EssentialQuiz2 = (props) => {
+const AdvancedQuiz = (props) => {
   const { history } = props;
-  window.sessionStorage.setItem('answer2', '');
+
+  window.sessionStorage.setItem('answer1', '');
 
   const [selectAnswer, setSelectAnswer] = useState('');
   const trueClick = () => {
@@ -16,7 +17,7 @@ const EssentialQuiz2 = (props) => {
   };
 
   const handleClickRadioButton = (e) => {
-    window.sessionStorage.setItem('answer2', e.target.value);
+    window.sessionStorage.setItem('answer1', e.target.value);
   };
 
   return (
@@ -25,7 +26,6 @@ const EssentialQuiz2 = (props) => {
         cusor='pointer'
         zIndex='9999'
         _onClick={() => {
-          window.sessionStorage.removeItem('answer2');
           history.goBack();
         }}
         position='sticky'
@@ -40,18 +40,18 @@ const EssentialQuiz2 = (props) => {
 
       <Grid position='fixed' top='67px' left='0' right='0'>
         <Text size='12px' margin='0' weight='700' align='center'>
-          3문제 남았어요
+          4문제 남았어요
         </Text>
       </Grid>
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar totalQuizLength={5} />
+        <QuizProgressBar totalQuizLength={5}></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
       <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
-        Q2.
+        Q1.
       </Text>
       <Text
         margin='20px 0 0 0'
@@ -59,26 +59,26 @@ const EssentialQuiz2 = (props) => {
         size='16px'
         line_height='24px'
         weight='700'>
-        집 앞에 산책을 나가더라도 목줄은 꼭 해야한다.
+        심화문제
       </Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='102px 0 0 0'
+          margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
           <input
             type='radio'
-            id='2true'
-            name='answer2'
+            id='1true'
+            name='answer1'
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
             onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='2true'>
+            htmlFor='1true'>
             {/* 빨간색원 div */}
             <Grid
               position='absolute'
@@ -109,14 +109,16 @@ const EssentialQuiz2 = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='2false'
-            name='answer2'
+            id='1false'
+            name='answer1'
             value='false'
             onClick={handleClickRadioButton}></input>
+
           <label
             onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='2false'>
+            htmlFor='1false'>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -151,7 +153,7 @@ const EssentialQuiz2 = (props) => {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            history.push('/essentialquiz3');
+            history.push('/AdvancedQuiz2');
           }
         }}
         bg='#FFBE5B'
@@ -170,4 +172,4 @@ const EssentialQuiz2 = (props) => {
   );
 };
 
-export default EssentialQuiz2;
+export default AdvancedQuiz;

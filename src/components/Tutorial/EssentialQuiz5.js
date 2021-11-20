@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as eduAction } from '../../redux/modules/user';
+
 import { SuccessAlert, WarningAlert } from '../../shared/Alerts';
 import { Grid, Text } from '../../elements';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { quizActions as userAction } from '../../redux/modules/quiz';
-import { actionCreators as eduAction } from '../../redux/modules/user';
 import QuizProgressBar from './QuizProgressBar';
 
 const EssentialQuiz5 = (props) => {
-  const classNumber = '1';
-  const answerSheet = ['false', 'true', 'false', 'false', 'true'];
   const dispatch = useDispatch();
   const { history } = props;
 
-  const beforeQuizAnswerData = useSelector((state) => state.quiz.totalAnswer);
-  console.log(beforeQuizAnswerData, '리덕스에서 불러온 앤서');
+  const classNumber = '1';
+  const answerSheet = ['false', 'true', 'false', 'false', 'true'];
 
-  const [answer, setAnswer] = useState(beforeQuizAnswerData);
+  window.sessionStorage.setItem('answer5', '');
+
+  const [selectAnswer, setSelectAnswer] = useState('');
+  const trueClick = () => {
+    setSelectAnswer('true');
+  };
+  const falseClick = () => {
+    setSelectAnswer('false');
+  };
 
   const handleClickRadioButton = (e) => {
-    const newAnswer = { ...answer, [e.target.name]: e.target.value };
-
-    setAnswer(newAnswer);
+    window.sessionStorage.setItem('answer5', e.target.value);
   };
-  console.log(answer);
-  window.sessionStorage.setItem('answer5', answer.answer5);
 
-  let totalAnswer = [];
+  let userTotalAnswer = [];
+
   const getSessiondata = () => {
     const answer1 = window.sessionStorage.getItem('answer1');
     const answer2 = window.sessionStorage.getItem('answer2');
@@ -34,7 +36,7 @@ const EssentialQuiz5 = (props) => {
     const answer4 = window.sessionStorage.getItem('answer4');
     const answer5 = window.sessionStorage.getItem('answer5');
 
-    totalAnswer = [answer1, answer2, answer3, answer4, answer5];
+    userTotalAnswer = [answer1, answer2, answer3, answer4, answer5];
   };
 
   return (
@@ -43,6 +45,7 @@ const EssentialQuiz5 = (props) => {
         cusor='pointer'
         zIndex='9999'
         _onClick={() => {
+          window.sessionStorage.removeItem('answer5');
           history.goBack();
         }}
         position='sticky'
@@ -63,7 +66,7 @@ const EssentialQuiz5 = (props) => {
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar></QuizProgressBar>
+        <QuizProgressBar totalQuizLength={5} />
       </Grid>
 
       {/* 문제 */}
@@ -95,9 +98,10 @@ const EssentialQuiz5 = (props) => {
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
+            onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='5true'>
-            {/* 빨간색 체크 */}
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -110,7 +114,7 @@ const EssentialQuiz5 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer5 === 'true' ? '#FE7968' : ''}
+                bg={selectAnswer === 'true' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -134,6 +138,7 @@ const EssentialQuiz5 = (props) => {
             // checked={answer.answer1 === 'false'}
           ></input>
           <label
+            onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
             htmlFor='5false'>
             <Grid
@@ -148,7 +153,7 @@ const EssentialQuiz5 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer5 === 'false' ? '#FE7968' : ''}
+                bg={selectAnswer === 'false' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -166,17 +171,15 @@ const EssentialQuiz5 = (props) => {
         right='0px'
         margin='0 auto'
         _onClick={() => {
-          if (answer.answer5 === '') {
+          if (selectAnswer === '') {
             WarningAlert('정답을 선택해주세요!');
             return;
           } else {
-            dispatch(userAction.addQuizAnswer(answer));
             getSessiondata();
-            console.log(totalAnswer, '유저의답');
-            console.log(answerSheet, '퀴즈 정답');
-            if (JSON.stringify(totalAnswer) === JSON.stringify(answerSheet)) {
+            if (
+              JSON.stringify(userTotalAnswer) === JSON.stringify(answerSheet)
+            ) {
               dispatch(eduAction.addEduSuccessDB(classNumber));
-
               SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
               window.sessionStorage.clear();
               history.push('/main');
