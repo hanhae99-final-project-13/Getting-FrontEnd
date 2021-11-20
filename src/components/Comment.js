@@ -70,31 +70,50 @@ const Comment = (props) => {
             >
               <div
                 style={{
+                  display: 'flex',
                   width: '100%',
                   height: '40px',
-                  display: 'flex',
                   padding: '5px 0',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
               >
-                <Image
-                  src={
-                    comment ? (
-                      comment.userImgUrl
-                    ) : (
-                      <img
-                        src={
-                          process.env.PUBLIC_URL +
-                          '/GUIicon/profile_defalut_icon.svg'
-                        }
-                      />
-                    )
-                  }
-                />
-                <div style={{ fontSize: '12px', color: '#FE7968' }}>
-                  {comment.nickname}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Image
+                    src={
+                      comment ? (
+                        comment.userImgUrl
+                      ) : (
+                        <img
+                          src={
+                            process.env.PUBLIC_URL +
+                            '/GUIicon/profile_defalut_icon.svg'
+                          }
+                        />
+                      )
+                    }
+                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      fontSize: '12px',
+                      color: '#FE7968',
+                    }}
+                  >
+                    {comment.nickname}
+                  </div>
                 </div>
+                <img
+                  src={
+                    process.env.PUBLIC_URL + '/img/icon/cancel_filled_icon.svg'
+                  }
+                  style={{ width: '18px', height: '18px' }}
+                  onClick={() => {
+                    setEdit(false);
+                  }}
+                />
               </div>
+
               <CommentWrite
                 key={comment.commentId}
                 comment={comment}

@@ -65,6 +65,7 @@ const CommentWrite = (props) => {
               setComment(e.target.value);
             }}
           />
+
           <button
             style={{
               marginRight: '6px',

@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
-import { actionCreators as userAction } from '../redux/modules/user';
 import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 import Header from '../components/Header';
 
@@ -18,7 +17,6 @@ import { ErrorAlert } from '../shared/Alerts';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
-  const { history } = props;
   const postId = props.match.params.id;
   const post = useSelector((state) => state.post?.detailPost);
   const user = useSelector((state) => state.user?.user.userInfo);
