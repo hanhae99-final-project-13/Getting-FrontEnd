@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { Grid } from '../../elements';
+import { Grid, Text } from '../../elements';
 import { Card } from '../';
 
 import HaveNothing from '../HaveNothing';
@@ -53,20 +53,33 @@ const AdoptionWishedCardList = (props) => {
   };
 
   return (
-    <Grid margin='16px 0 0 0'>
+    <Grid margin='80px 0 0 0'>
       <Grid display='flex' width='calc(100% - 1rem)'>
-        <Title>
-          저에게 <span>관심</span>있으시죠?😊
-        </Title>
+        <Text margin='0' size='18px' weight='700'>
+          나의 관심친구
+        </Text>
       </Grid>
       {wishPostList.length === 0 ? (
-        <HaveNothing
-          width='calc(100% - 1rem)'
-          imgWidth='163'
-          imgHeight='140'
-          it='관심 친구'
-          state='가 없습니다'
-        />
+        <>
+          <Grid
+            display='flex'
+            alignItems='center'
+            margin='8px 0'
+            width='auto'
+            height='auto'
+          >
+            <Text margin='0' color='#b6b1b0' weight='700' size='12px'>
+              아직 관심친구가 없어요..
+            </Text>
+            <Text margin='0' size='12px'>
+              😓
+            </Text>
+          </Grid>
+          <img
+            width='100%'
+            src={process.env.PUBLIC_URL + '/img/illust/no_wish.svg'}
+          />
+        </>
       ) : (
         <SliderBox
           ref={sliderBox}

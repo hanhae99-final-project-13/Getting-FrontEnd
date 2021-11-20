@@ -206,17 +206,6 @@ const GridBox = styled.div`
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}
 
-  cursor: pointer;
-
-  :hover {
-    ${(props) =>
-      props.hover
-        ? `background-color:${props.hover};
-  cursor: pointer;`
-        : ''}
-    ${(props) => (props.hover_font ? `color : ${props.hover_font}` : null)}
-  }
-
   ::-webkit-scrollbar {
     display: none;
   }
