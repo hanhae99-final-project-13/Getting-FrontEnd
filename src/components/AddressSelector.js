@@ -7,11 +7,12 @@ const AddressSelector = (props) => {
   const closeModal = () => {
     props.visible(!props.addressModal);
   };
+  const [DoVisible, setDoVisible] = React.useState('block');
   const [modalOpen, setModalOpen] = React.useState(false);
   const [localDo, setLocalDo] = React.useState('');
   const open = (e) => {
     if (e) {
-      document.querySelector('#do').style.display = 'none';
+      setDoVisible('none');
       setModalOpen(!modalOpen);
     }
   };
@@ -19,10 +20,9 @@ const AddressSelector = (props) => {
   return (
     <>
       <Grid
-        // width='375px'
         display='flex'
-        zindex='5'
         position='fixed'
+        zIndex='10000'
         top='0'
         left='0'
         rigth='0'
@@ -38,18 +38,18 @@ const AddressSelector = (props) => {
           alignItems='center'
           _onClick={closeModal}
         ></Grid>
-        <ModalBox id='do'>
-          {Object.keys(local).map((a, i) => {
+        <ModalBox style={{ display: `${DoVisible}` }}>
+          {Object.keys(local).map((Do, i) => {
             return (
               <DoBox
                 key={i}
                 onClick={() => {
-                  setLocalDo(a);
-                  props.setAddress(a);
-                  open(a);
+                  setLocalDo(Do);
+                  props.setAddress(Do);
+                  open(Do);
                 }}
               >
-                {a}
+                {Do}
               </DoBox>
             );
           })}

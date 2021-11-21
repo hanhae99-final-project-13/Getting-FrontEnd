@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Grid, Image } from '../elements/';
+import { Grid } from '../elements/';
 import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
 const CommentWrite = (props) => {
@@ -10,9 +9,8 @@ const CommentWrite = (props) => {
   // console.log('코멘트', props);
   const postId = props.postId;
   if (props.comment) {
-    console.log('수정버튼시 활성화', props.comment.commentId);
+    console.log('수정버튼시 활성화', props.comment);
   }
-
   const editSubmit = () => {
     const commentId = props.comment.commentId;
     if (!token) {
@@ -27,7 +25,7 @@ const CommentWrite = (props) => {
     }
   };
   const dispatch = useDispatch();
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState();
   // 임시로 id값 지정
   const commentSubmit = () => {
     if (!token) {
@@ -41,6 +39,12 @@ const CommentWrite = (props) => {
       setComment('');
     }
   };
+  React.useEffect(() => {
+    if (props.comment) {
+      setComment(props.comment.comment);
+    }
+    return;
+  }, [props.comment]);
   return (
     <React.Fragment>
       {props.comment ? (
@@ -61,6 +65,7 @@ const CommentWrite = (props) => {
               setComment(e.target.value);
             }}
           />
+
           <button
             style={{
               marginRight: '6px',
