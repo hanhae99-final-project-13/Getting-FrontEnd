@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
 import styled from 'styled-components';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBell } from '@fortawesome/free-solid-svg-icons';
-// import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
 
 const Header = (props) => {
@@ -15,9 +15,9 @@ const Header = (props) => {
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const isToken = localStorage.getItem('USER_TOKEN');
-  // const alarmCount = useSelector(
-  //   (state) => state.user.user.userInfo?.alarmCount,
-  // );
+  const alarmCount = useSelector(
+    (state) => state.user.user.userInfo?.alarmCount,
+  );
   return (
     <React.Fragment>
       <Grid
@@ -75,7 +75,7 @@ const Header = (props) => {
           justifyContent='flex-end'
           width='375px'
         ></Grid>
-        {/* {isLogin ? (
+        {isLogin ? (
           <Grid
             display='flex'
             alignItems='center'
@@ -134,7 +134,7 @@ const Header = (props) => {
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>
-        )} */}
+        )}
       </Grid>
     </React.Fragment>
   );

@@ -1,36 +1,104 @@
-import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import SockJsClient from 'react-stomp';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import StompJs from 'stompjs';
+import SockJS from 'sockjs-client';
+import { actionCreators } from '../redux/modules/user';
+// const baseURL = process.env.REACT_APP_SERVER_URI;
 
 const WebSocket = () => {
-  const $websocket = useRef(null);
+  const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
   console.log(userId);
-  let topics = ['/topic/' + userId];
-  const handleMsg = (msg) => {
-    console.log(msg);
-  };
-  const handleClickSendTo = () => {
-    $websocket.current.sendMessage('/sendTo');
-  };
-  const handleClickSendTemplate = () => {
-    $websocket.current.sendMessage('/Template');
-  };
+  const token = localStorage.getItem('USER_TOKEN');
+  // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
-  return (
-    <>
-      <SockJsClient
-        url='http://localhost:8080/ws-stomp'
-        topics={topics}
-        onMessage={(msg) => {
-          console.log(msg);
-        }}
-        ref={$websocket}
-      />
-      <button onClick={handleClickSendTo}>sendTo</button>
-      <button onClick={handleClickSendTemplate}>sendTemplate</button>
-    </>
-  );
+  const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
+  const ws = StompJs.over(sock);
+  ws.connect({}, () => {
+    if (!token) {
+      console.log('토큰없음');
+      return null;
+    }
+    console.log('됨');
+    ws.subscribe(
+      `/sub/${userId}`,
+      async (msg) => {
+        const alarmData = JSON.parse(msg.body);
+        console.log(msg);
+        console.log(alarmData.alarmCount);
+        await dispatch(actionCreators.updateAlarm(alarmData.alarmCount));
+      },
+      { token },
+    );
+  });
+
+  // console.log('현재 페이지 =====>', window.location.pathname);
+  // const history = useHistory();
+
+  return <></>;
+  // const wsConnectSubscribe = React.useCallback(async () => {
+  //   if (!isToken) {
+  //     return null;
+  //   }
+  //   try {
+  //     // const { data } = await T.GET('/auth');
+  //     ws.connect({}, () => {
+  //       ws.subscribe(
+  //         `/sub/${userId}`,
+  //         async (noti) => {
+  // if (!isChatNoti) {
+  //   const newNoti = JSON.parse(noti.body);
+  //   // chat 보냈을 때 채팅방에 둘다 있을 때 타입 0
+  //   // chat 보냈을 때 채팅방에 한명만 있고 상대방은 로그인 했을 때 타입 1
+  //   // chat 보냈을 때 상대방이 로그아웃 타입 2
+  //   // tap 요청 받았을 때 타입 3
+  //   // tap 요청 거절한게 타입 4
+  //   // tap 요청 수락한게 타입 5
+  //   if (newNoti.type === 1) {
+  //     if (history.location.pathname === '/grabtalk') {
+  //       console.log('디패 로드 톡룸');
+  //       await dispatch(loadTalkRoomListToAxios());
+  //     }
+  //     dispatch(setChatNoti(true));
+  //   }
+  //   if (newNoti.type === 3) {
+  //     console.log('tap 요청 받았어!');
+  //     dispatch(setTapReceiveNoti(true));
+  //   }
+  //   if (newNoti.type === 4) {
+  //     console.log('거절 되었어!');
+  //     dispatch(setTapRefuseNoti(true));
+  //   }
+  //   if (newNoti.type === 5) {
+  //     console.log('그랩되었어!');
+  //     dispatch(setTapAcceptNoti(true));
+  //   }
+  // }
+  // },
+  // {
+  //   isToken,
+  //   userEmail: data.email
+  // },
+  //       );
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   return null;
+  // }, []);
+
+  // const wsDisConnectUnsubscribe = React.useCallback(() => {
+  //   try {
+  //     ws.disconnect(() => {
+  //       ws.unsubscribe('sub-0');
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
+
+  // return [wsConnectSubscribe, wsDisConnectUnsubscribe, token, isChatNoti];
 };
 
 export default WebSocket;
