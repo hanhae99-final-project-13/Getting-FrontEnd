@@ -77,6 +77,7 @@ const Signup = (props) => {
       })
       .catch((error) => {
         setCheckId(false);
+        console.log(error);
         console.log('아이디중복 : ', error.response.data.errorMessage);
         return;
       });

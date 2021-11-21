@@ -14,13 +14,14 @@ const AdoptionSearchInput = () => {
         display='flex'
         justifyContent='space-between'
         width='auto'
-        padding='10px 10px'
+        padding='13px'
+        border='0.5px solid #E7E5E5'
         borderRadius='7px'
-        boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-        bg='#ebebeb'
+        boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'
+        bg='white'
         _onClick={showModal}
       >
-        <Text margin='0' size='0.85rem' color='#BBBBBB'>
+        <Text margin='0' size='14px' wiehgt='700' color='#cecbca'>
           조건에 맞는 반려친구들을 찾아보세요!
         </Text>
         <img

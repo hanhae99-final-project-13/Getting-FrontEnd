@@ -16,6 +16,7 @@ const SliderBox = ({
   slidesToScroll,
   centerMode,
   centerPadding,
+  arrows,
 }) => {
   const settings = {
     dots: dots ? dots : true, // 슬라이드 밑에 점 보이게
@@ -27,6 +28,7 @@ const SliderBox = ({
     slidesToScroll: slidesToScroll ? slidesToScroll : 1, // 1장씩 뒤로 넘어가게
     centerMode: centerMode ? centerMode : true,
     centerPadding: centerPadding ? centerPadding : '0px', // 0px 하면 슬라이드 끝쪽 이미지가 안잘림
+    arrows: arrows ? arrows : true,
   };
 
   return (
@@ -63,7 +65,7 @@ const StyledSlider = styled(Slider)`
     height: ${(props) => (props.height ? props.height : `270`)}px;
   }
   .slick-list {
-    width: 375px;
+    width: auto;
     margin: 0 auto;
   }
   .slick-dots li {

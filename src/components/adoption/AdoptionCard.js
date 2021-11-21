@@ -34,7 +34,8 @@ const AdoptionCard = (props) => {
       padding='12px 8px'
       borderRadius='10px'
       margin={margin}
-      boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
+      border='0.5px solid #e7e5e5'
+      boxShadow='4px 4px 20px rgba(164, 184, 255, 0.3)'
       _onClick={goDetail}
     >
       <Grid
@@ -46,22 +47,20 @@ const AdoptionCard = (props) => {
         height='auto'
       >
         <Tag>
-          <ElP>{ownerType.includes('보호소') ? '보호소' : ownerType}</ElP>
+          <ElP>
+            {ownerType.includes('보호') ||
+            ownerType.includes('병원') ||
+            ownerType.includes('동물')
+              ? '보호소'
+              : ownerType}
+          </ElP>
         </Tag>
         <Tag2>
           <ElP>{isAdopted === 'ABANDONED' ? '보호중' : '입양 완료'}</ElP>
         </Tag2>
       </Grid>
       <ImageBox img={img} />
-      <Grid
-        display='flex'
-        justifyContent='space-between'
-        width='auto'
-        margin='5px 0 5px 0'
-      >
-        <Text margin='0' size='14px' weight='800 '>
-          {breed.split('[개]').reverse()[0]}
-        </Text>
+      <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         {sex === 'F' ? (
           <img
             width='10'
@@ -75,6 +74,9 @@ const AdoptionCard = (props) => {
             src={process.env.PUBLIC_URL + '/img/icon/male_icon.svg'}
           />
         )}
+        <Text margin='0 0 0 6px' size='12px' color='#1a0300' weight='800 '>
+          {breed.split('[개]').reverse()[0]}
+        </Text>
       </Grid>
       <Grid
         display='flex'
@@ -87,7 +89,7 @@ const AdoptionCard = (props) => {
           width='10'
           src={process.env.PUBLIC_URL + '/img/icon/clock_icon.svg'}
         />
-        <Text margin='0 0 0 5px' size='10px'>
+        <Text margin='0 0 0 5px' size='12px'>
           {modifiedAt ? modifiedAt.split('T')[0].replace(/-/g, '.') : createAt}{' '}
           &nbsp;&nbsp;
         </Text>
@@ -97,7 +99,7 @@ const AdoptionCard = (props) => {
           width='10'
           src={process.env.PUBLIC_URL + '/img/icon/location_icon.svg'}
         />
-        <Text margin='0 0 0 5px' size='10px'>
+        <Text margin='0 0 0 5px' size='12px'>
           {address}
         </Text>
       </Grid>
@@ -120,16 +122,18 @@ const Tag = styled.div`
   height: auto;
   padding: 3px 6px;
   background-color: white;
+  border: 0.5px solid #e7e5e5;
   border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 4px 4px 20px rgba(164, 184, 255, 0.3);
 `;
 
 const Tag2 = styled.div`
   height: auto;
   padding: 3px 6px;
   background-color: white;
+  border: 0.5px solid #e7e5e5;
   border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 4px 4px 20px rgba(164, 184, 255, 0.3);
 `;
 
 const ImageBox = styled.div`

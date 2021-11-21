@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import jwt_Decode from 'jwt-decode';
 import { apis } from '../../lib/axios';
 import {
   SuccessAlert,
@@ -8,6 +9,7 @@ import {
   imageSuccessAlert,
 } from '../../shared/Alerts';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons';
+import { SignalCellularConnectedNoInternet1Bar } from '@material-ui/icons';
 
 //유저정보 액션
 const SET_USER = 'SET_USER';
@@ -72,17 +74,18 @@ const initialState = {
 
 // 로그인
 const GetUserDB = (user) => {
-  // console.log(user,'서버에 보내는 값')
-
   return (dispatch, getState, { history }) => {
     apis
       .login(user)
       .then((res) => {
-        console.log('서버에서 받은 로그인 정보', res.data.data);
-        console.log('서버 로그인 status정보', res.data.status);
+        console.log(res.data);
         const USER_TOKEN = res.data.data.token.accessToken;
-
+        const REFRESH_TOKEN = res.data.data.token.refreshToken;
+        const rTokenExp = jwt_Decode(USER_TOKEN).exp * 1000;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+        window.localStorage.setItem('USER_TOKEN_EXP', rTokenExp);
+        window.localStorage.setItem('USER_ID', res.data.data.userId);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -97,8 +100,8 @@ const GetUserDB = (user) => {
         };
 
         dispatch(SetUser(user));
-        window.location.href = '/main';
-        // history.push('/main');
+        // window.location.href = '/main';
+        history.replace('/main');
         // window.location.reload();
       })
       .catch((error) => {
@@ -113,7 +116,7 @@ const GetUserDB = (user) => {
 // 로그아웃
 const LogOutDB = () => {
   return function (dispatch, getState, { history }) {
-    localStorage.removeItem('USER_TOKEN');
+    localStorage.clear();
     dispatch(LogOut());
     imageSuccessAlert('로그아웃 되셨습니다');
     history.push('/main');
@@ -160,8 +163,7 @@ const LoginCheck = () => {
         dispatch(SetUser(user));
       })
       .catch((error) => {
-        // error.response.data.data.message
-        console.log(error, '로그인체크 실패');
+        console.log(error);
       });
   };
 };
@@ -175,8 +177,10 @@ const KakaoLogin = (code) => {
 
       .then((res) => {
         console.log('카카오 로그인정보', res.data.data);
-        const USER_TOKEN = res.data.data.token;
+        const USER_TOKEN = res.data.data.token.accessToken;
+        const REFRESH_TOKEN = res.data.data.token.refreshToken;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
         const user = {
           userInfo: {
             email: res.data.data.email,

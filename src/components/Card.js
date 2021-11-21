@@ -32,7 +32,8 @@ const Card = (props) => {
     (state) => state.post.isAdoptionDeleteMode,
   );
   const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
-  const goDetail = () => {
+  const goDetail = (e) => {
+    e.stopPropagation();
     history.push(`/detail/${postId}`);
   };
   return (
@@ -42,9 +43,10 @@ const Card = (props) => {
         padding='12px 10px'
         width={width ? width : '180px'}
         bg='white'
+        border='0.5px solid #E7E5E5'
         borderRadius='10px'
         margin={margin}
-        boxShadow='10px 10px 20px rgba(0, 0, 0, 0.1)'
+        boxShadow='4px 4px 12px rgba(254, 121, 104, 0.1)'
         _onClick={goDetail}
       >
         <Grid
@@ -60,22 +62,28 @@ const Card = (props) => {
             height='auto'
             margin='0 4px 0 0'
             padding='4px 9px'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+            border=' 0.5px solid #E7E5E5'
+            boxShadow='4px 4px 12px rgba(255, 164, 175, 0.2)'
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
-              {ownerType.includes('보호소') ? '보호소' : ownerType}
+              {ownerType.includes('보호') ||
+              ownerType.includes('병원') ||
+              ownerType.includes('동물')
+                ? '보호소'
+                : ownerType}
             </Text>
           </Grid>
           <Grid
             width='auto'
             height='auto'
             padding='4px 9px'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+            border=' 0.5px solid #E7E5E5'
+            boxShadow='4px 4px 12px rgba(255, 164, 175, 0.2)'
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
-              {isAdopted === 'ABANDONED' ? '보호중' : '보호종료'}
+              {isAdopted === 'ABANDONED' ? '보호중' : '입양완료'}
             </Text>
           </Grid>
         </Grid>

@@ -50,6 +50,7 @@ const Grid = (props) => {
     bgiposition,
     bgirepeat,
     cusor,
+    pointerEvents,
   } = props;
 
   const styles = {
@@ -98,6 +99,7 @@ const Grid = (props) => {
     bgiposition,
     bgirepeat,
     cusor,
+    pointerEvents,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -151,6 +153,7 @@ Grid.defaultProps = {
   bgiposition: null,
   bgirepeat: null,
   cusor: null,
+  pointerEvents: null,
 };
 
 const GridBox = styled.div`
@@ -202,15 +205,6 @@ const GridBox = styled.div`
   font-family: 'NanumSquareR';
   ${(props) =>
     props.is_flex ? `display: flex;  justify-content: space-between;` : ''}
-
-  :hover {
-    ${(props) =>
-      props.hover
-        ? `background-color:${props.hover};
-  cursor: pointer;`
-        : ''}
-    ${(props) => (props.hover_font ? `color : ${props.hover_font}` : null)}
-  }
 
   ::-webkit-scrollbar {
     display: none;

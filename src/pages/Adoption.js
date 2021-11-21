@@ -73,9 +73,20 @@ const Adoption = () => {
             등록순
           </span>
         </CategoryBox>
-        <AdoptionCardList />
-        <Grid position='relative' height='auto'>
+        <Grid
+          position='fixed'
+          bottom='100px'
+          margin='0 auto'
+          maxWidth='414px'
+          height='124px'
+          zIndex='2'
+        >
+          <ToTop
+            src={process.env.PUBLIC_URL + '/img/icon/totop_icon.svg'}
+            onClick={() => window.scrollTo(0, 0)}
+          />
           <AddButton
+            src={process.env.PUBLIC_URL + '/img/icon/add_icon_pink.svg'}
             onClick={() => {
               if (!isToken) {
                 ErrorAlert('로그인이 필요한 서비스입니다!');
@@ -83,10 +94,9 @@ const Adoption = () => {
               }
               goAddPost();
             }}
-          >
-            +
-          </AddButton>
+          />
         </Grid>
+        <AdoptionCardList />
       </Grid>
       {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
@@ -110,18 +120,24 @@ const Tag = styled.button`
   }
 `;
 
-const AddButton = styled.button`
-  position: fixed;
-  top: 50%;
-  right: 0;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  background-color: white;
-  text-align: center;
-  border: none;
-  border-radius: 50px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+const ToTop = styled.img`
+  position: absolute;
+  top: 0;
+  right: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
+`;
+
+const AddButton = styled.img`
+  position: absolute;
+  bottom: 0;
+  right: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
 `;
 
 const CategoryBox = styled.div`
@@ -129,7 +145,7 @@ const CategoryBox = styled.div`
   padding-left: 12px;
   .category {
     margin-right: 15px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #c5c5c5;
   }

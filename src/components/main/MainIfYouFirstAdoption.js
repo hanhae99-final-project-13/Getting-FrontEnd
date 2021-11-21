@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 import { Grid, Image, Text } from '../../elements';
 import { useSelector } from 'react-redux';
+import { transform } from 'lodash';
 
 const MainIfYouFirstAdoption = (props) => {
   const userInfo = useSelector((state) => state.user?.user.userInfo);
@@ -15,19 +16,25 @@ const MainIfYouFirstAdoption = (props) => {
 
   return (
     <Grid
+      position='relative'
       display='flex'
-      justifyContent='space-evenly'
+      justifyContent='space-between'
       width='auto'
-      height='152px'
+      height='138px'
       bg='white'
-      padding='12px 12px 12px 16px'
+      border='0.5px solid #E7E5E5'
       borderRadius='10px'
-      boxShadow='rgba(149, 157, 165, 0.2) 0px 8px 24px'
-      height='125px'
+      boxShadow='5px 5px 12px rgba(227, 177, 171, 0.3)'
+      boxSizing='border-box'
     >
       <img
-        width='128'
-        height='128'
+        width='164'
+        height='164'
+        style={{
+          position: 'relative',
+          left: '0px',
+          bottom: '23px',
+        }}
         src={process.env.PUBLIC_URL + '/img/illust/mainillust.svg'}
       />
       <Grid
@@ -35,71 +42,94 @@ const MainIfYouFirstAdoption = (props) => {
         flexDirection='column'
         alignItems='center'
         justifyContent='center'
+        padding='0 6px 0 0 '
         width='auto'
-        height='auto'
       >
         <Text margin='0 0 12px 0' size='18px'>
           입양이
-          <ElSpan margin='0' size='18px' weight='800'>
+          <ElSpan>
             처음
+            <img
+              style={{ position: 'absolute', top: '-5px', right: '25px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_pink.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '-5px', right: '7px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_pink.svg'}
+            />
           </ElSpan>
           이라면?
         </Text>
 
         {userInfo.eduList === null ? (
-          <Grid
-            display='flex'
-            justifyContent='flex-end'
-            width='auto'
-            height='auto'
+          <BePerfect
+            onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}
           >
-            <BePerfect
-              onClick={() => {
-                history.push('/tutorial');
-                window.sessionStorage.clear();
-              }}
-            >
-              <Text margin='0' color='white' size='14px' weight='700'>
-                필수 지식 듣기
-              </Text>
-            </BePerfect>
-          </Grid>
+            <Text margin='0' color='white' size='14px' weight='700'>
+              완벽한 견주되기
+            </Text>
+            <img
+              style={{ position: 'absolute', top: '7px', left: '18px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '31px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '42px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+          </BePerfect>
         ) : userInfo.eduList[0] && userInfo.eduList[0].필수지식 === true ? (
-          <Grid
-            display='flex'
-            justifyContent='flex-end'
-            width='auto'
-            height='auto'
+          <BePerfect
+            onClick={() => {
+              history.push('/fosterknowledge');
+              window.sessionStorage.clear();
+            }}
           >
-            <BePerfect
-              onClick={() => {
-                history.push('/fosterknowledge');
-                window.sessionStorage.clear();
-              }}
-            >
-              <Text margin='0' color='white' size='14px' weight='700'>
-                완벽한 견주되기
-              </Text>
-            </BePerfect>
-          </Grid>
+            <Text margin='0' color='white' size='14px' weight='700'>
+              완벽한 견주되기
+            </Text>
+            <img
+              style={{ position: 'absolute', top: '7px', left: '18px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '31px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '42px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+          </BePerfect>
         ) : (
-          <Grid
-            display='flex'
-            justifyContent='flex-end'
-            width='auto'
-            height='auto'
+          <BePerfect
+            onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}
           >
-            <BePerfect
-              onClick={() => {
-                history.push('/tutorial');
-                window.sessionStorage.clear();
-              }}
-            >
-              <Text margin='0' color='white' size='14px' weight='700'>
-                필수 지식 듣기
-              </Text>
-            </BePerfect>
-          </Grid>
+            <Text margin='0' color='white' size='14px' weight='700'>
+              완벽한 견주되기
+            </Text>
+            <img
+              style={{ position: 'absolute', top: '7px', left: '18px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '31px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+            <img
+              style={{ position: 'absolute', top: '7px', left: '42px' }}
+              src={process.env.PUBLIC_URL + '/img/icon/dot_white.svg'}
+            />
+          </BePerfect>
         )}
       </Grid>
     </Grid>
@@ -107,6 +137,7 @@ const MainIfYouFirstAdoption = (props) => {
 };
 
 const ElSpan = styled.span`
+  position: relative;
   font-size: 18px;
   font-weight: 800;
 `;

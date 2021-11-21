@@ -23,9 +23,17 @@ const MainAdoptionCardList = (props) => {
         width='calc(100% - 36px)'
         height='auto'
       >
-        <Text margin='0' size='18px' weight='800' _onClick={goAdoptionPage}>
-          저랑 가족하실래요?
-        </Text>
+        <Grid display='flex'>
+          <Text
+            margin='0 8px 0 0'
+            size='18px'
+            weight='800'
+            _onClick={goAdoptionPage}
+          >
+            저랑 <ElSpan>가족 </ElSpan>하실래요?
+          </Text>
+          <img src={process.env.PUBLIC_URL + '/img/icon/eye_heart.svg'} />
+        </Grid>
         <img
           width='13'
           height='4'
@@ -65,12 +73,10 @@ const MainAdoptionCardList = (props) => {
   );
 };
 
-const Title = styled.p`
-  margin: 0;
-
-  span {
-    font-weight: bold;
-  }
+const ElSpan = styled.span`
+  color: #fe7968;
+  font-size: 18px;
+  font-weight: 800;
 `;
 
 // const SliderBox = styled.div`
