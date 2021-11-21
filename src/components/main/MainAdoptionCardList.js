@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 
-import { Card } from '../';
+import { Card, Carousel2 } from '../';
 import { Grid, Text } from '../../elements';
 import { useSelector } from 'react-redux';
 import SliderBox from '../SliderBox';
@@ -14,7 +14,7 @@ const MainAdoptionCardList = (props) => {
   };
 
   return (
-    <Grid width='calc(100% + 36px)' margin='0 0 40px 0'>
+    <Grid margin='0 0 40px 0'>
       <Grid
         display='flex'
         justifyContent='space-between'
@@ -41,34 +41,26 @@ const MainAdoptionCardList = (props) => {
           onClick={() => history.push('/adoption')}
         />
       </Grid>
-      {/* <SliderBox>
-        <InnerSlider>
-          {mainPostList.map((p) => {
-            return (
-              <Card
-                key={p.postId}
-                breed={p.breed}
-                sex={p.sex}
-                age={p.age}
-                createAt={p.createAt}
-                modifiedAt={p.modifiedAt}
-                ownerType={p.ownerType}
-                address={p.address}
-                img={p.img.split(' ##')[0]}
-                postId={p.postId}
-                isAdopted={p.isAdopted}
-              />
-            );
-          })}
-        </InnerSlider>
-      </SliderBox> */}
-      <SliderBox
-        list={mainPostList}
-        dots='false'
-        speed={600}
-        slidesToShow={1.5}
-        centerMode={false}
-      />
+      <Carousel2 width={mainPostList.length}>
+        {mainPostList.map((p) => {
+          return (
+            <Card
+              key={p.postId}
+              breed={p.breed}
+              sex={p.sex}
+              age={p.age}
+              createAt={p.createAt}
+              modifiedAt={p.modifiedAt}
+              ownerType={p.ownerType}
+              address={p.address}
+              img={p.img.split(' ##')[0]}
+              postId={p.postId}
+              isAdopted={p.isAdopted}
+              margin='0 20px 0 0'
+            />
+          );
+        })}
+      </Carousel2>
     </Grid>
   );
 };
@@ -78,25 +70,5 @@ const ElSpan = styled.span`
   font-size: 18px;
   font-weight: 800;
 `;
-
-// const SliderBox = styled.div`
-//   height: 300px;
-//   margin-left: -38px;
-//   overflow: visible;
-//   overflow-x: scroll;
-//   ::-webkit-scrollbar {
-//     display: none;
-//   }
-// `;
-// const InnerSlider = styled.div`
-//   margin-left: 0px;
-//   display: flex;
-//   justify-content: space-between;
-//   width: 350%;
-//   height: auto;
-//   overflow: visible;
-//   padding-left: 1rem;
-//   padding-top: 50px;
-// `;
 
 export default MainAdoptionCardList;

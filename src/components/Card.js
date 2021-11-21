@@ -33,7 +33,6 @@ const Card = (props) => {
   );
   const isAdoptionWait = useSelector((state) => state.post.isAdoptionWait);
   const goDetail = (e) => {
-    e.stopPropagation();
     history.push(`/detail/${postId}`);
   };
   return (
@@ -126,26 +125,19 @@ const Card = (props) => {
             </CardCover>
           )}
         </ImageBox>
-        <Grid
-          display='flex'
-          justifyContent='space-between'
-          width='auto'
-          margin='5px 0 5px 0'
-        >
-          <Grid display='flex' width='auto' height='auto'>
-            <Text margin='0 5px 0 0' size='14px' weight='800'>
-              {breed ? breed.split('[개]').reverse()[0] : ''}
-            </Text>
-          </Grid>
+        <Grid display='flex' width='auto' margin='5px 0 5px 0'>
           <img
-            width='9'
-            height='15'
+            width='14'
+            height='14'
             src={
               sex === 'M'
-                ? process.env.PUBLIC_URL + '/img/icon/male_icon_blue.svg'
-                : process.env.PUBLIC_URL + '/img/icon/female_icon_pink.svg'
+                ? process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
+                : process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
             }
           />
+          <Text margin='0 0 0 4px' size='14px' weight='800'>
+            {breed ? breed.split('[개]').reverse()[0] : ''}
+          </Text>
         </Grid>
         <Grid
           display='flex'

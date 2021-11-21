@@ -19,6 +19,7 @@ import Slider from './Slider';
 import Timer from './Timer';
 import Upload from './Upload';
 import SliderBox from './SliderBox';
+import Carousel2 from './Carousel2';
 
 export {
   AddPost,
@@ -30,6 +31,7 @@ export {
   Comment,
   CommentList,
   CommentWrite,
+  Carousel2,
   EditPost,
   Footer,
   HaveNothing,

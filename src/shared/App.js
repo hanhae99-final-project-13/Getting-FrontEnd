@@ -50,6 +50,7 @@ import {
   withHeaderNomalFooter,
   withMypageFooter,
 } from '../components/hoc';
+import Test from '../pages/Test';
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path='/login' exact component={Login} />
+          <Route path='/test' exact component={Test} />
           <Route path='/' exact component={Landing} />
           <Route path='/oauth/callback/kakao' component={Kakao} />
 
