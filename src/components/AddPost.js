@@ -71,7 +71,7 @@ const AddPost = () => {
     img: img,
     isAdopted: 'abandoned',
   };
-
+  console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
@@ -188,7 +188,7 @@ const AddPost = () => {
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input
-              placeholder='발견장소'
+              placeholder='발견장소를 입력해주세요'
               value={lostLocation}
               onChange={(e) => {
                 setLostLocation(e.target.value);
@@ -203,7 +203,6 @@ const AddPost = () => {
           >
             <input
               placeholder='보호장소'
-              value={ownerType}
               style={{ border: 'none', width: '80%' }}
             />
             <Grid display='flex' alignItems='center'>
@@ -240,24 +239,45 @@ const AddPost = () => {
           >
             <input
               placeholder='정보출처'
-              value={tag}
-              style={{ border: 'none', width: '50%' }}
+              value={'정보출처'}
+              style={{ border: 'none', width: '50%', color: 'gray' }}
             />
             <Grid display='flex' alignItems='center'>
               직접등록
               <Slider handleToggle={tagCheck} valueCheck={tagToggle} />
-              가져온정보
+              가져온 정보
             </Grid>
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='SNS주소나 URL주소를 입력해주세요'
-              value={url}
-              onChange={(e) => {
-                setUrl(e.target.value);
-              }}
-              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
-            />
+            {tag === '직접등록' ? (
+              <input
+                placeholder='유기견 정보를 참고할 수 있는 링크를 남겨주세요'
+                value={url}
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+                style={{
+                  border: 'none',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  fontSize: '16px',
+                }}
+              />
+            ) : (
+              <input
+                placeholder='유기견 정보를 가져오신 링크를 남겨주세요'
+                value={url}
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+                style={{
+                  border: 'none',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  fontSize: '16px',
+                }}
+              />
+            )}
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <input

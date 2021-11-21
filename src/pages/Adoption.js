@@ -52,10 +52,6 @@ const Adoption = () => {
     }
   });
 
-  // if (isToken && !userInfo.userId) {
-  //   return <div>로딩중</div>;
-  // }
-
   return (
     <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
       <Grid width='auto' padding='0 24px' margin='12px 0 0 0' overflow='auto'>

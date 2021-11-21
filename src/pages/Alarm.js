@@ -91,7 +91,7 @@ const Alarm = () => {
             </>
           ) : (
             <>
-              {/* {userInfo.alarmContent.map((a) => {
+              {userInfo.alarmContent.map((a) => {
                 console.log(a);
                 return (
                   <Grid
@@ -127,7 +127,7 @@ const Alarm = () => {
                     </Grid>
                   </Grid>
                 );
-              })} */}
+              })}
             </>
           )}
         </Grid>

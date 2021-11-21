@@ -24,7 +24,7 @@ const CHECK_ERROR = 'CHECK_ERROR';
 const LOAD_ALARMLIST = 'LOAD_ALARMLIST';
 const LOAD_ALARM = 'LOAD_ALARM';
 const DELETE_ALARMLIST = 'DELETE_ALARMLIST';
-
+const UPDATE_ALARMCOUNT = 'UPDATE_ALARMCOUNT';
 //유저 액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
 const LogOut = createAction(LOG_OUT, () => {});
@@ -45,6 +45,9 @@ const loadAlarm = createAction(LOAD_ALARM, (alarm) => ({
 }));
 const deleteAlarm = createAction(DELETE_ALARMLIST, (alarm) => ({
   alarm,
+}));
+const updateAlarm = createAction(UPDATE_ALARMCOUNT, (alarmCount) => ({
+  alarmCount,
 }));
 //초기값
 const initialState = {
@@ -330,6 +333,12 @@ export default handleActions(
         draft.user.userInfo.alarmContent = [];
         console.log(draft.user.userInfo.alarmContent);
       }),
+    [UPDATE_ALARMCOUNT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.alarmCount);
+        console.log(state.user.userInfo.alarmCount);
+        draft.user.userInfo.alarmCount = action.payload.alarmCount;
+      }),
   },
   initialState,
 );
@@ -347,6 +356,7 @@ const actionCreators = {
   deleteAlarmToAxios,
   addEduSuccessDB,
   checkError,
+  updateAlarm,
 };
 
 export { actionCreators };

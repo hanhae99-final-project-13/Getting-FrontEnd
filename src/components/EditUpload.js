@@ -48,7 +48,6 @@ const EditUpload = (props) => {
     props.setImg(newImg);
   };
   const deleteImg = (e) => {
-    console.log(e.split('/')[3]);
     dispatch(postActions.deleteImg(e));
     const file = e.split('/')[3];
     const s3 = new AWS.S3();
@@ -104,6 +103,7 @@ const EditUpload = (props) => {
                   fontSize: '48px',
                   width: '150px',
                   height: '150px',
+                  color: '#fe7968',
                 }}
               >
                 +
@@ -137,7 +137,10 @@ const EditUpload = (props) => {
                       top: '10px',
                       left: '125px',
                     }}
-                    src={process.env.PUBLIC_URL + '../img/icon/cancel_icon.svg'}
+                    src={
+                      process.env.PUBLIC_URL +
+                      '../img/icon/cancel_filled_icon.svg'
+                    }
                     onClick={() => {
                       deleteImg(a);
                     }}
