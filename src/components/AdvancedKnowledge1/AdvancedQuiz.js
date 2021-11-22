@@ -1,47 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { SuccessAlert, WarningAlert } from '../../shared/Alerts';
-import { Grid, Text } from '../../elements';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { quizActions as userAction } from '../../redux/modules/quiz';
+import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { actionCreators as eduAction } from '../../redux/modules/user';
-import QuizProgressBar from './QuizProgressBar';
 
-const EssentialQuiz5 = (props) => {
-  const classNumber = '1';
-  const answerSheet = ['true', 'true', 'true', 'true', 'true'];
-  const dispatch = useDispatch();
+import { Grid, Text } from '../../elements';
+import { WarningAlert, SuccessAlert } from '../../shared/Alerts';
+import QuizProgressBar from '../Tutorial/QuizProgressBar';
+import AdvancedQuizData from '../Data/AdvancedQuizData';
+
+const AdvancedQuiz = (props) => {
   const { history } = props;
+  const dispatch = useDispatch();
+  const QuizText = useRef(null);
 
-  const beforeQuizAnswerData = useSelector((state) => state.quiz.totalAnswer);
-  console.log(beforeQuizAnswerData, '리덕스에서 불러온 앤서');
+  const QuizTotalAnswer = AdvancedQuizData.map((quiz) => quiz.answer);
+  const QuizId = useParams().id;
 
-  const [answer, setAnswer] = useState(beforeQuizAnswerData);
+  const CurrentQuizData = AdvancedQuizData.filter(
+    (quiz) => parseInt(QuizId) === quiz.id,
+  );
+  console.log(CurrentQuizData);
+
+  const { id, QuizContent, classNumber } = CurrentQuizData[0];
+  console.log(id, QuizContent, classNumber);
+  window.sessionStorage.setItem(`answer${id}`, '');
+
+  const [selectAnswer, setSelectAnswer] = useState('');
+
+  const trueClick = () => {
+    setSelectAnswer('true');
+  };
+  const falseClick = () => {
+    setSelectAnswer('false');
+  };
 
   const handleClickRadioButton = (e) => {
-    const newAnswer = { ...answer, [e.target.name]: e.target.value };
-
-    setAnswer(newAnswer);
+    window.sessionStorage.setItem(`answer${id}`, e.target.value);
   };
-  console.log(answer);
-  window.sessionStorage.setItem('answer5', answer.answer5);
 
-  let totalAnswer = [];
+  let userTotalAnswer = [];
   const getSessiondata = () => {
     const answer1 = window.sessionStorage.getItem('answer1');
     const answer2 = window.sessionStorage.getItem('answer2');
     const answer3 = window.sessionStorage.getItem('answer3');
     const answer4 = window.sessionStorage.getItem('answer4');
     const answer5 = window.sessionStorage.getItem('answer5');
-
-    totalAnswer = [answer1, answer2, answer3, answer4, answer5];
+    userTotalAnswer = [answer1, answer2, answer3, answer4, answer5];
   };
+
+  const checkAnswer = () => {
+    getSessiondata();
+    if (JSON.stringify(userTotalAnswer) === JSON.stringify(QuizTotalAnswer)) {
+      dispatch(eduAction.addEduSuccessDB(classNumber));
+      SuccessAlert('축하합니다! 심화지식1을 완료하셨습니다.');
+      window.sessionStorage.clear();
+      history.push('/main');
+    } else {
+      WarningAlert(
+        '안타깝게도 틀린부분이 있네요!',
+        '심화지식1을 다시 진행해 주세요!',
+      );
+      window.sessionStorage.clear();
+      history.push('/advancedknowledge1');
+    }
+  };
+
+  const makeQuiz = () => {
+    QuizText.current.innerHTML = QuizContent;
+  };
+  useEffect(() => {
+    makeQuiz();
+  }, [QuizContent]);
 
   return (
     <Grid maxWidth='414px' width='auto' margin='0 auto'>
       <Grid
+        cusor='pointer'
         zIndex='9999'
         _onClick={() => {
+          window.sessionStorage.removeItem(`answer${id}`);
           history.goBack();
         }}
         position='sticky'
@@ -56,54 +93,48 @@ const EssentialQuiz5 = (props) => {
 
       <Grid position='fixed' top='67px' left='0' right='0'>
         <Text size='12px' margin='0' weight='700' align='center'>
-          마지막 문제에요
+          {AdvancedQuizData.length !== id
+            ? `${AdvancedQuizData.length - id}문제 남았어요`
+            : '마지막 문제에요'}
         </Text>
       </Grid>
 
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
-        <QuizProgressBar></QuizProgressBar>
+        <QuizProgressBar
+          totalQuizLength={AdvancedQuizData.length}></QuizProgressBar>
       </Grid>
 
+      {/* 문제 */}
       <Text margin='36px 0 0 0' weight='700' size='18px' padding='0 35px'>
-        Q5.
+        Q{id}.
       </Text>
-
-      <Text margin='20px 0 0 0' padding='0 35px' size='16px' line_height='24px'>
-        입양이 확정되면 아이의
-        <span style={{ weight: '700', fontSize: '16px' }}> 내장칩 삽입은</span>
-        <br />
-        <span style={{ weight: '700', fontSize: '16px' }}>필수이며, </span>
-        <span style={{ weight: '700', fontSize: '16px' }}>
-          내장칩 보호자 등록변경
-        </span>
-        은
-        <br />
-        입양일 기준&nbsp;
-        <span style={{ weight: '700', fontSize: '16px' }}>
-          6개월 이후에 변경
-        </span>
-        해드립니다.
-      </Text>
-
+      <Text
+        _ref={QuizText}
+        margin='20px 0 0 0'
+        padding='0 35px'
+        size='16px'
+        line_height='24px'
+        weight='700'></Text>
       <form>
         <Grid
           position='relative'
           width='300px'
-          margin='31px 0 0 0'
+          margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
           alignItems='center'>
           <input
             type='radio'
-            id='5true'
-            name='answer5'
+            id={`${id}true`}
+            name={`answer${id}`}
             value='true'
             onClick={handleClickRadioButton}></input>
           <label
+            onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='5true'>
-            {/* 빨간색 체크 */}
+            htmlFor={`${id}true`}>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -116,7 +147,7 @@ const EssentialQuiz5 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer5 === 'true' ? '#FE7968' : ''}
+                bg={selectAnswer === 'true' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -133,15 +164,16 @@ const EssentialQuiz5 = (props) => {
           alignItems='center'>
           <input
             type='radio'
-            id='5false'
-            name='answer5'
+            id={`${id}false`}
+            name={`answer${id}`}
             value='false'
-            onClick={handleClickRadioButton}
-            // checked={answer.answer1 === 'false'}
-          ></input>
+            onClick={handleClickRadioButton}></input>
+
           <label
+            onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor='5false'>
+            htmlFor={`${id}false`}>
+            {/* 빨간색원 div */}
             <Grid
               position='absolute'
               left='38px'
@@ -154,7 +186,7 @@ const EssentialQuiz5 = (props) => {
                 position='absolute'
                 top='4px'
                 left='4px'
-                bg={answer.answer5 === 'false' ? '#FE7968' : ''}
+                bg={selectAnswer === 'false' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
                 borderRadius='10px'></Grid>
@@ -165,37 +197,24 @@ const EssentialQuiz5 = (props) => {
       </form>
 
       <Grid
+        cusor='pointer'
         position='fixed'
-        top='630px'
+        top='570px'
         left='0px'
         right='0px'
         margin='0 auto'
         _onClick={() => {
-          if (answer.answer5 === '') {
+          if (selectAnswer === '') {
             WarningAlert('정답을 선택해주세요!');
             return;
+          } else if (AdvancedQuizData.length !== id) {
+            history.push(`/advancedquiz/${id + 1}`);
+            setSelectAnswer('');
           } else {
-            dispatch(userAction.addQuizAnswer(answer));
-            getSessiondata();
-            console.log(totalAnswer, '유저의답');
-            console.log(answerSheet, '퀴즈 정답');
-            if (JSON.stringify(totalAnswer) === JSON.stringify(answerSheet)) {
-              dispatch(eduAction.addEduSuccessDB(classNumber));
-
-              SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
-              window.sessionStorage.clear();
-              history.push('/main');
-            } else {
-              WarningAlert(
-                '안타깝게도 틀린부분이 있네요!',
-                '필수지식을 다시 진행해 주세요!',
-              );
-              window.sessionStorage.clear();
-              history.push('/essentialknowledge');
-            }
+            checkAnswer();
           }
         }}
-        bg='#FE7968'
+        bg={AdvancedQuizData.length !== id ? '#FFBE5B' : '#FE7968'}
         width='109px'
         height='52px'
         borderRadius='26px'
@@ -204,11 +223,11 @@ const EssentialQuiz5 = (props) => {
         alignItems='center'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
-          채점하기
+          {AdvancedQuizData.length !== id ? '다음퀴즈' : '채점하기'}
         </Text>
       </Grid>
     </Grid>
   );
 };
 
-export default EssentialQuiz5;
+export default AdvancedQuiz;

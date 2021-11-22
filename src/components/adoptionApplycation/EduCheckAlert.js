@@ -57,6 +57,7 @@ const EduCheckAlert = (props) => {
           border_radius='34px'
           onClick={() => {
             closeModal();
+            window.sessionStorage.clear();
             history.push('/tutorial');
           }}>
           튜토리얼로 이동!

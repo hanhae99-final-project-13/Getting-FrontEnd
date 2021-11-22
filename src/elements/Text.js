@@ -24,6 +24,7 @@ const Text = (props) => {
     id,
     display,
     borderBottom,
+    _ref,
   } = props;
 
   const styles = {
@@ -51,7 +52,7 @@ const Text = (props) => {
 
   return (
     <React.Fragment>
-      <TextBox {...styles} onClick={_onClick}>
+      <TextBox ref={_ref} {...styles} onClick={_onClick}>
         {children}
       </TextBox>
     </React.Fragment>

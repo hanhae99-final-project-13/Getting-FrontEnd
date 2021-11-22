@@ -54,7 +54,10 @@ instance.interceptors.response.use(
     console.log(err.response);
     console.log(err.config);
     const originalReq = err.config;
-    if (err.response.status === 400) {
+    if (
+      err.response.status === 400 &&
+      err.response.data.errorMessage !== '해당 입양신청서를 찾을 수 없습니다.'
+    ) {
       ErrorAlert(err.response.data.errorMessage);
     }
     // if (err.response.status === 401) {
