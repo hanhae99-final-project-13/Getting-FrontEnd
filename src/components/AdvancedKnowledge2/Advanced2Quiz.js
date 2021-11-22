@@ -6,17 +6,17 @@ import { actionCreators as eduAction } from '../../redux/modules/user';
 import { Grid, Text } from '../../elements';
 import { WarningAlert, SuccessAlert } from '../../shared/Alerts';
 import QuizProgressBar from '../Tutorial/QuizProgressBar';
-import EssentialQuizData from '../Data/EssentialQuizData';
+import Advanced2QuizData from '../Data/Advanced2QuizData';
 
-const EssentialQuiz = (props) => {
+const Advanced2Quiz = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
-  const QuizText = useRef('');
+  const QuizText = useRef(null);
 
-  const QuizTotalAnswer = EssentialQuizData.map((quiz) => quiz.answer);
+  const QuizTotalAnswer = Advanced2QuizData.map((quiz) => quiz.answer);
   const QuizId = useParams().id;
 
-  const CurrentQuizData = EssentialQuizData.filter(
+  const CurrentQuizData = Advanced2QuizData.filter(
     (quiz) => parseInt(QuizId) === quiz.id,
   );
   console.log(CurrentQuizData);
@@ -39,7 +39,7 @@ const EssentialQuiz = (props) => {
   };
 
   let userTotalAnswer = [];
-  const getSessionData = () => {
+  const getSessiondata = () => {
     const answer1 = window.sessionStorage.getItem('answer1');
     const answer2 = window.sessionStorage.getItem('answer2');
     const answer3 = window.sessionStorage.getItem('answer3');
@@ -49,26 +49,25 @@ const EssentialQuiz = (props) => {
   };
 
   const checkAnswer = () => {
-    getSessionData();
+    getSessiondata();
     if (JSON.stringify(userTotalAnswer) === JSON.stringify(QuizTotalAnswer)) {
       dispatch(eduAction.addEduSuccessDB(classNumber));
-      SuccessAlert('축하합니다! 필수지식을 완료하셨습니다.');
+      SuccessAlert('축하합니다! 심화지식2를 완료하셨습니다.');
       window.sessionStorage.clear();
       history.push('/main');
     } else {
       WarningAlert(
         '안타깝게도 틀린부분이 있네요!',
-        '필수지식을 다시 진행해 주세요!',
+        '심화지식2를 다시 진행해 주세요!',
       );
       window.sessionStorage.clear();
-      history.push('/essentialknowledge');
+      history.push('/advancedknowledge2');
     }
   };
 
   const makeQuiz = () => {
     QuizText.current.innerHTML = QuizContent;
   };
-
   useEffect(() => {
     makeQuiz();
   }, [QuizContent]);
@@ -94,8 +93,8 @@ const EssentialQuiz = (props) => {
 
       <Grid position='fixed' top='67px' left='0' right='0'>
         <Text size='12px' margin='0' weight='700' align='center'>
-          {EssentialQuizData.length !== id
-            ? `${EssentialQuizData.length - id}문제 남았어요`
+          {Advanced2QuizData.length !== id
+            ? `${Advanced2QuizData.length - id}문제 남았어요`
             : '마지막 문제에요'}
         </Text>
       </Grid>
@@ -103,7 +102,7 @@ const EssentialQuiz = (props) => {
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
         <QuizProgressBar
-          totalQuizLength={EssentialQuizData.length}></QuizProgressBar>
+          totalQuizLength={Advanced2QuizData.length}></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
@@ -117,7 +116,6 @@ const EssentialQuiz = (props) => {
         size='16px'
         line_height='24px'
         weight='700'></Text>
-
       <form>
         <Grid
           position='relative'
@@ -209,14 +207,14 @@ const EssentialQuiz = (props) => {
           if (selectAnswer === '') {
             WarningAlert('정답을 선택해주세요!');
             return;
-          } else if (EssentialQuizData.length !== id) {
-            history.push(`/essentialquiz/${id + 1}`);
+          } else if (Advanced2QuizData.length !== id) {
+            history.push(`/advanced2quiz/${id + 1}`);
             setSelectAnswer('');
           } else {
             checkAnswer();
           }
         }}
-        bg={EssentialQuizData.length !== id ? '#FFBE5B' : '#FE7968'}
+        bg={Advanced2QuizData.length !== id ? '#FFBE5B' : '#FE7968'}
         width='109px'
         height='52px'
         borderRadius='26px'
@@ -225,11 +223,11 @@ const EssentialQuiz = (props) => {
         alignItems='center'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
-          {EssentialQuizData.length !== id ? '다음퀴즈' : '채점하기'}
+          {Advanced2QuizData.length !== id ? '다음퀴즈' : '채점하기'}
         </Text>
       </Grid>
     </Grid>
   );
 };
 
-export default EssentialQuiz;
+export default Advanced2Quiz;

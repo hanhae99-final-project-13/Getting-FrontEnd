@@ -7,7 +7,7 @@ import { Grid, Text } from '../../elements';
 const KnowledgeFooter = withRouter((props) => {
   const dispatch = useDispatch();
   const a = props;
-  console.log(a.history.location.pathname);
+  // console.log(a.history.location.pathname);
 
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
@@ -21,7 +21,7 @@ const KnowledgeFooter = withRouter((props) => {
   return (
     <React.Fragment>
       <Grid
-        boxShadow='0px -10px 50px 5px rgba(47, 47, 47, 0.06)'
+        boxShadow='0px -8px 50px 5px rgba(47, 47, 47, 0.06)'
         maxWidth='414px'
         margin='0 auto'
         left='0'
@@ -29,10 +29,10 @@ const KnowledgeFooter = withRouter((props) => {
         bg='white'
         position='fixed'
         bottom='0'
-        borderRadius='30px 30px 0px 0px'
+        borderRadius='11px 11px 0px 0px;'
         display='flex'
         justifyContent='space-evenly'
-        height='119px'>
+        height='84px'>
         {/* 데이터 안불러져왓을 때 null */}
         {userInfo.eduList === null ? (
           <Grid
@@ -54,7 +54,7 @@ const KnowledgeFooter = withRouter((props) => {
               }
             />
 
-            <Text margin='10px 0 0 0' color='#FE7968' weight='800' size='12px'>
+            <Text margin='8px 0 0 0' color='#FE7968' weight='800' size='12px'>
               입양지식
             </Text>
           </Grid>
@@ -78,7 +78,7 @@ const KnowledgeFooter = withRouter((props) => {
               }
             />
 
-            <Text margin='10px 0 0 0' color='#FE7968' weight='800' size='12px'>
+            <Text margin='8px 0 0 0' color='#FE7968' weight='800' size='12px'>
               입양지식
             </Text>
           </Grid>
@@ -102,7 +102,7 @@ const KnowledgeFooter = withRouter((props) => {
               }
             />
 
-            <Text margin='10px 0 0 0' color='#FE7968' weight='800' size='12px'>
+            <Text margin='8px 0 0 0' color='#FE7968' weight='800' size='12px'>
               입양지식
             </Text>
           </Grid>
@@ -124,7 +124,7 @@ const KnowledgeFooter = withRouter((props) => {
             src={process.env.PUBLIC_URL + '/img/icon/dog_adoption_icon1.svg'}
           />
 
-          <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+          <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
             입양하기
           </Text>
         </Grid>
@@ -141,7 +141,7 @@ const KnowledgeFooter = withRouter((props) => {
           }}>
           <img src={process.env.PUBLIC_URL + '/img/icon/home_icon1.svg'} />
 
-          <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+          <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
             홈
           </Text>
         </Grid>
@@ -158,7 +158,7 @@ const KnowledgeFooter = withRouter((props) => {
           }}>
           <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon1.svg'} />
 
-          <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+          <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
             마이페이지
           </Text>
         </Grid>
@@ -180,7 +180,7 @@ const KnowledgeFooter = withRouter((props) => {
               src={process.env.PUBLIC_URL + '/img/icon/logout_icon1.svg'}
             />
 
-            <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+            <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
               로그아웃
             </Text>
           </Grid>
@@ -201,7 +201,7 @@ const KnowledgeFooter = withRouter((props) => {
               src={process.env.PUBLIC_URL + '/img/icon/logout_icon1.svg'}
             />
 
-            <Text margin='10px 0 0 0' color='#6B6462' weight='800' size='12px'>
+            <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
               로그인
             </Text>
           </Grid>

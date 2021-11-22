@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Grid, Text } from '../elements';
 
 import Slider from '../components/Slider';
 import Swal from 'sweetalert2';
-import { ErrorAlert } from '../shared/Alerts';
+import { ErrorAlert2 } from '../shared/Alerts';
 import Upload3 from '../components/adoptionApplycation/Upload3';
 import ApplyProgressBar from '../components/adoptionApplycation/ApplyProgressBar';
+import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
 
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +15,8 @@ import { applyActions as useActions } from '../redux/modules/apply';
 import styled from 'styled-components';
 
 const AdoptionApply2 = (props) => {
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
   const { history } = props;
   const postId = useParams().id;
   // console.log(postId, '입양신청서2번 id');
@@ -27,7 +30,7 @@ const AdoptionApply2 = (props) => {
   const imageRef = useRef();
   // console.log(imageRef.current);
 
-  const [allergy, setAllergy] = React.useState('있음');
+  const [allergy, setAllergy] = React.useState('증상있음');
   const [experience, setExperience] = React.useState('');
   const [timeTogether, setTimeTogether] = React.useState('');
   const [anxiety, setAnxiety] = React.useState('');
@@ -44,33 +47,62 @@ const AdoptionApply2 = (props) => {
     bark: bark,
     roomUrl: roomUrl,
   };
-  console.log(data);
+  // console.log(data);
+
+  const applyData1 = JSON.parse(sessionStorage.getItem('length'));
+  // console.log(applyData1);
+
+  const data2 = {
+    ...applyData1,
+    allergy: allergy,
+    experience: experience,
+    timeTogether: timeTogether,
+    anxiety: anxiety,
+    bark: bark,
+    roomUrl: roomUrl,
+    preview: '',
+    check: '',
+  };
+  // console.log(data2);
 
   // 알러지 체크함수
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(false);
   const handleallergy = () => {
     setCheck(!check);
-    if (check === true) {
-      setAllergy('없음');
-    } else setAllergy('있음');
+    if (check === false) {
+      setAllergy('증상없음');
+    } else setAllergy('증상있음');
   };
 
   //입양 신청버튼
   const applyClick = () => {
-    const info = Object.values(data);
-    // console.log(data, '서버에 넘어갈데이터');
-    // console.log(info, 'object value');
+    const sessionData = JSON.parse(window.sessionStorage.getItem('length'));
+    const DbData = (({ check, click, preview, ...o }) => o)(sessionData);
+    console.log(DbData, '서버 전달 데이터');
+    const info = Object.values(DbData);
+    console.log(info, '입력안된 질문');
+
     if (info.includes('') === true) {
-      ErrorAlert('정보를 모두 입력해주셔야합니다.!', 'bottom');
+      ErrorAlert2(
+        '정보를 모두 입력해주셔야합니다. <br/>(사진첨부 필수)',
+        'bottom',
+      );
       return;
     }
     setOpenApplyAlert(!openApplyAlert);
   };
 
+  // applycheck 모달 전달용
+  const closeApplyAlert = () => {
+    setOpenApplyAlert(!openApplyAlert);
+  };
+
   //real 신청버튼
   const realApply = () => {
+    const sessionData = JSON.parse(window.sessionStorage.getItem('length'));
+    const DbData = (({ check, click, preview, ...o }) => o)(sessionData);
     imageRef.current.upload();
-    dispatch(useActions.addApplyDB(postId, data));
+    dispatch(useActions.addApplyDB(postId, DbData));
     Swal.fire(
       '입양신청이 완료되었습니다.',
       '임보자님의 연락을 기다려주세요!',
@@ -79,6 +111,49 @@ const AdoptionApply2 = (props) => {
     history.push('/main');
     window.sessionStorage.clear();
   };
+
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('length'));
+    console.log(data);
+
+    const { allergy, experience, timeTogether, anxiety, bark, check, roomUrl } =
+      data;
+    setAllergy(allergy);
+    setExperience(experience);
+    setTimeTogether(timeTogether);
+    setAnxiety(anxiety);
+    setBark(bark);
+    setRoomUrl(roomUrl);
+    // setCheck(check);
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data2, allergy: allergy }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data2, experience: experience }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data2, timeTogether: timeTogether }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data2, anxiety: anxiety }),
+    );
+    sessionStorage.setItem('length', JSON.stringify({ ...data2, bark: bark }));
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data2, check: check }),
+    );
+  }, [allergy, experience, timeTogether, anxiety, bark, check]);
+
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
 
   return (
     <Grid
@@ -90,7 +165,9 @@ const AdoptionApply2 = (props) => {
       <Grid
         cusor='pointer'
         _onClick={() => {
+          window.sessionStorage.removeItem('length2');
           history.goBack();
+          window.scrollTo(0, 0);
         }}
         position='relative'
         top='65px'
@@ -131,17 +208,21 @@ const AdoptionApply2 = (props) => {
               height='auto'
               margin='12px 0 0 0'>
               <Text
-                color={allergy === '있음' ? '#000000' : '#E7E5E5'}
+                color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0 7px 0 0'>
-                있음
+                증상있음
               </Text>
-              <Slider handleToggle={handleallergy} />
+              <Slider
+                data={allergy}
+                valueCheck={check}
+                handleToggle={handleallergy}
+              />
               <Text
-                color={allergy === '없음' ? '#000000' : '#E7E5E5'}
+                color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0  0 0 7px'>
-                없음
+                증상없음
               </Text>
             </Grid>
           </Grid>
@@ -256,7 +337,11 @@ const AdoptionApply2 = (props) => {
                 사진 찍어 첨부해주세요.
               </Text>
             </Grid>
-            <Upload3 ref={imageRef} setRoomUrl={setRoomUrl}></Upload3>
+            <Upload3
+              ref={imageRef}
+              roomUrl={roomUrl}
+              setRoomUrl={setRoomUrl}
+              data2={data2}></Upload3>
           </Grid>
 
           <Grid height='auto' margin='23px auto' cusor='pointer'>
@@ -281,73 +366,10 @@ const AdoptionApply2 = (props) => {
 
       {/* apply 신청 정말 할꺼니?  */}
       {openApplyAlert ? (
-        <Grid
-          position='fixed'
-          left='0'
-          right='0'
-          bg='#FFFFFF'
-          bottom='250px'
-          boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
-          height='264px'
-          maxWidth='414px'
-          width='auto'
-          margin='35px auto'
-          borderRadius='30px 30px 0 0'
-          boxSizing='border-box'
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-          zIndex='9999'>
-          <Grid width='62px' height='85px' margin='24px auto 8px '>
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
-            />
-          </Grid>
-          <Text
-            margin='14.25px 0 0 0'
-            align='center'
-            line_height='21px'
-            weight='600'>
-            작성한 입양신청서는
-            <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
-            <br />
-            정말 이대로 제출하시겠습니까?
-          </Text>
-          <Grid display='flex' justifyContent='center'>
-            <Button
-              margin='17px 10px 0 0'
-              width='130px'
-              size='14px'
-              weight='800'
-              height='40px'
-              padding='12px 0px'
-              bg='#FFBE5B'
-              border='none'
-              border_radius='34px'
-              onClick={() => {
-                setOpenApplyAlert(!openApplyAlert);
-              }}>
-              다시 생각해볼게요
-            </Button>
-
-            <Button
-              margin='17px 0 0 10px'
-              width='130px'
-              size='14px'
-              weight='800'
-              height='40px'
-              padding='12px 0px'
-              bg='#FE7968'
-              border='none'
-              border_radius='34px'
-              onClick={() => {
-                realApply();
-                setOpenApplyAlert(!openApplyAlert);
-              }}>
-              확인했습니다
-            </Button>
-          </Grid>
-        </Grid>
+        <AdoptionApplyCheckModal
+          closeModal={closeApplyAlert}
+          realApply={realApply}
+        />
       ) : (
         ''
       )}
@@ -370,19 +392,6 @@ const Textarea = styled.textarea`
     outline: 0;
     box-shadow: 0 0 4px #fe7968;
   }
-`;
-
-const Button = styled.button`
-  border: ${(props) => props.border};
-  border-radius: ${(props) => props.border_radius};
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
-  padding: ${(props) => props.padding};
-  margin: ${(props) => props.margin};
-  background-color: ${(props) => props.bg};
-  color: white;
-  font-size: ${(props) => props.size};
-  font-weight: ${(props) => props.weight};
 `;
 
 export default AdoptionApply2;

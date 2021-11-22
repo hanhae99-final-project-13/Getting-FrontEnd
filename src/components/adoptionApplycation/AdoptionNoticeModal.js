@@ -51,28 +51,17 @@ const AdoptionNoticeModal = (props) => {
           height='auto'
           justifyContent='center'
           alignItems='center'>
-          {/* <Grid
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            margin='0 5px 0 0px'
-            width='65px'
-            height='60px'
-            borderRadius='60px'
-            bg='#FFFFFF'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'> */}
           <img
             width='37px'
             height='44px'
             src={process.env.PUBLIC_URL + '/img/GUIicon/warning_dog_icon.svg'}
           />
-          {/* </Grid> */}
 
           <Grid
             margin='0 0 0 10px'
             boxSizing='border-box'
             borderRadius='14px'
-            boxShadow=' 10px 10px 20px rgba(0, 0, 0, 0.1);'
+            boxShadow=' 4px 4px 20px rgba(0, 0, 0, 0.15);'
             display='flex'
             justifyContent='center'
             alignItems='center'>
@@ -172,7 +161,7 @@ const AdoptionNoticeModal = (props) => {
             margin='0 10px 0 0px'
             boxSizing='border-box'
             borderRadius='14px'
-            boxShadow=' 10px 10px 20px rgba(0, 0, 0, 0.1);'
+            boxShadow=' 4px 4px 20px rgba(0, 0, 0, 0.15);'
             display='flex'
             justifyContent='center'
             alignItems='center'>
@@ -196,11 +185,7 @@ const AdoptionNoticeModal = (props) => {
               </span>
             </Text>
           </Grid>
-          {/* <Image
-            margin='0'
-            size='60'
-            src='https://image.shutterstock.com/image-vector/happy-woman-little-doghand-drawn-600w-1942348717.jpg'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'></Image> */}
+
           <img
             width='37px'
             height='44px'
@@ -261,7 +246,30 @@ const AdoptionNoticeModal = (props) => {
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
               history.push(`/apply/${postId}`);
-              window.sessionStorage.setItem('length', 'length'); //프로그래스 바용
+              window.sessionStorage.setItem(
+                'length',
+                JSON.stringify({
+                  name: '',
+                  job: '',
+                  fosterAge: '20',
+                  gender: 'F',
+                  fosterAddress: '',
+                  family: '',
+                  currentPet: '있음',
+                  phone: '',
+                  reason: '',
+                  click: false,
+                  allergy: '',
+                  experience: '',
+                  timeTogether: '',
+                  anxiety: '',
+                  bark: '',
+                  roomUrl: '',
+                  check: '',
+                  preview: '',
+                }),
+              ); //프로그래스 바용
+              window.scrollTo(0, 0);
             }}>
             <Text margin='0' color='#F9F9F9' weight='800'>
               확인했습니다

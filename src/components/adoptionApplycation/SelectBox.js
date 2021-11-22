@@ -6,6 +6,7 @@ const SelectBox = (props) => {
   // console.log(defaultValue);
 
   const style = {
+    fontWeight: '700',
     color: '#B6B1B0',
     padding: '0 0 0 8px',
     width: '60px',
@@ -13,6 +14,8 @@ const SelectBox = (props) => {
     borderRadius: '5px',
     backgroundColor: '#ECECEC',
     border: 'none',
+    outline: '0',
+
     // background: url('arrow.jpg'),
     // // webkitAppearance: 'none',
     // mozAppearance: 'none',
