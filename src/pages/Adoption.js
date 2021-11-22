@@ -9,7 +9,6 @@ import {
   AdoptionWishedCardList,
 } from '../components/adoption';
 import { history } from '../redux/configureStore';
-import { BackButton, Header, Logo } from '../components';
 import InfinityScroll from '../shared/InfinityScroll';
 import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
@@ -42,6 +41,7 @@ const Adoption = () => {
   };
 
   React.useEffect(() => {
+    if (searchSetting.page !== 0) return;
     dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
   }, []);
@@ -51,10 +51,6 @@ const Adoption = () => {
       dispatch(postActions.getWishPostMW());
     }
   });
-
-  // if (isToken && !userInfo.userId) {
-  //   return <div>로딩중</div>;
-  // }
 
   return (
     <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>

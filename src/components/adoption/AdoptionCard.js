@@ -63,14 +63,14 @@ const AdoptionCard = (props) => {
       <Grid display='flex' width='auto' margin='5px 0 5px 0'>
         {sex === 'F' ? (
           <img
-            width='10'
-            height='12'
+            width='11'
+            height='11'
             src={process.env.PUBLIC_URL + '/img/icon/female_icon.svg'}
           />
         ) : (
           <img
-            width='10'
-            height='12'
+            width='11'
+            height='11'
             src={process.env.PUBLIC_URL + '/img/icon/male_icon.svg'}
           />
         )}
