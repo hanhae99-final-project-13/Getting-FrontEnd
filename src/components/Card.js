@@ -23,6 +23,7 @@ const Card = (props) => {
     isShowApply,
     index,
     ApplyDt,
+    boxShadow,
   } = props;
   const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
@@ -45,7 +46,7 @@ const Card = (props) => {
         border='0.5px solid #E7E5E5'
         borderRadius='10px'
         margin={margin}
-        boxShadow='4px 4px 12px rgba(254, 121, 104, 0.1)'
+        boxShadow={boxShadow}
         _onClick={goDetail}
       >
         <Grid
@@ -62,7 +63,7 @@ const Card = (props) => {
             margin='0 4px 0 0'
             padding='4px 9px'
             border=' 0.5px solid #E7E5E5'
-            boxShadow='4px 4px 12px rgba(255, 164, 175, 0.2)'
+            boxShadow={boxShadow}
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
@@ -78,7 +79,7 @@ const Card = (props) => {
             height='auto'
             padding='4px 9px'
             border=' 0.5px solid #E7E5E5'
-            boxShadow='4px 4px 12px rgba(255, 164, 175, 0.2)'
+            boxShadow={boxShadow}
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>

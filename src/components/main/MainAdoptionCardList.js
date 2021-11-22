@@ -57,6 +57,7 @@ const MainAdoptionCardList = (props) => {
               postId={p.postId}
               isAdopted={p.isAdopted}
               margin='0 20px 0 0'
+              boxShadow='4px 4px 12px rgba(254, 121, 104, 0.1)'
             />
           );
         })}
