@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Text } from '../elements';
 import { useSelector } from 'react-redux';
-import { WarningAlert } from '../shared/Alerts';
 
 const FosterKnowledge = (props) => {
   const { history } = props;
@@ -131,7 +130,7 @@ const FosterKnowledge = (props) => {
       </Grid>
 
       <Text width='auto' size='18px' weight='800' align='center'>
-        심화지식1
+        심화지식 1
       </Text>
 
       {/* 심화지식2 */}
@@ -177,7 +176,7 @@ const FosterKnowledge = (props) => {
       </Grid>
 
       <Text width='auto' size='18px' weight='800' align='center'>
-        심화지식2
+        심화지식 2
       </Text>
     </Grid>
   );

@@ -9,6 +9,7 @@ import SelectBox from '../components/adoptionApplycation/SelectBox';
 import ApplyProgressBar from '../components/adoptionApplycation/ApplyProgressBar';
 import AddressSelector from '../components/AddressSelector';
 import AgeData from '../components/Data/AgeData';
+import { ErrorAlert2 } from '../shared/Alerts';
 
 import styled from 'styled-components';
 
@@ -40,14 +41,6 @@ const AdoptionApply = (props) => {
   // const [roomUrl, setRoomUrl] = React.useState('');
   const [phone, setPhone] = React.useState();
 
-  useEffect(() => {
-    if (userInfo && userInfo.phone !== '') {
-      setPhone(userInfo.phone);
-    } else {
-      setPhone('');
-    }
-  }, []);
-
   // 성별 option, handleChange함수
   const GENDEROPTION = [
     { value: 'M', name: '남성' },
@@ -77,25 +70,25 @@ const AdoptionApply = (props) => {
     currentPet: currentPet,
     phone: phone,
     reason: reason,
-    allergy: '',
-    experience: '',
-    timeTogether: '',
-    anxiety: '',
-    bark: '',
-    roomUrl: '',
+    // allergy: '',
+    // experience: '',
+    // timeTogether: '',
+    // anxiety: '',
+    // bark: '',
+    // roomUrl: '',
   };
   console.log(data);
 
   // 반려동물 체크함수
-  const [click, setClick] = useState(true);
+  const [click, setClick] = useState(false);
   const handleCurrentPet = () => {
     setClick(!click);
-    // console.log(click);
-    if (click === true) {
+    console.log(click);
+    if (click === false) {
       setCurrentPet('없음');
     } else setCurrentPet('있음');
   };
-  // console.log(click);
+  console.log(click);
 
   // 주소 입력 오픈 모달
   const [addressModal, setAddressModal] = React.useState(false);
@@ -103,11 +96,98 @@ const AdoptionApply = (props) => {
     setAddressModal(!addressModal);
   };
 
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('length'));
+    console.log(data);
+    const {
+      name,
+      job,
+      fosterAge,
+      gender,
+      fosterAddress,
+      family,
+      currentPet,
+      phone,
+      reason,
+      click,
+    } = data;
+
+    let totalAdress = fosterAddress.split(' ');
+
+    if (totalAdress.length === 3) {
+      let adress = totalAdress[0];
+      let siAdress1 = ` ${totalAdress[1]} ${totalAdress[2]}`;
+      setAddress(adress);
+      setSiAddress(siAdress1);
+    } else if (totalAdress.length === 2) {
+      let adress = totalAdress[0];
+      let siAdress2 = ` ${totalAdress[1]}`;
+      setAddress(adress);
+      setSiAddress(siAdress2);
+    } else {
+      setAddress('');
+      setSiAddress('');
+    }
+
+    setName(name);
+    setJob(job);
+    setFosterAge(fosterAge);
+    setGender(gender);
+
+    setFamily(family);
+    setClick(click);
+    setCurrentPet(currentPet);
+    setPhone(phone);
+    setReason(reason);
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem('length', JSON.stringify({ ...data, name: name }));
+    sessionStorage.setItem('length', JSON.stringify({ ...data, job: job }));
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, fosterAge: fosterAge }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, gender: gender }),
+    );
+
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, fosterAddress: address + siAddress }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, family: family }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, currentPet: currentPet }),
+    );
+    sessionStorage.setItem('length', JSON.stringify({ ...data, phone: phone }));
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({ ...data, reason: reason }),
+    );
+    sessionStorage.setItem('length', JSON.stringify({ ...data, click: click }));
+  }, [
+    name,
+    job,
+    fosterAge,
+    gender,
+    address,
+    siAddress,
+    family,
+    currentPet,
+    phone,
+    reason,
+    click,
+  ]);
+
   if (token && !isLogin) {
     return <div>로딩중~</div>;
   }
-
-  // console.log(userInfo.phone, '미리받은 번호2');
 
   return (
     <Grid
@@ -262,7 +342,11 @@ const AdoptionApply = (props) => {
               margin='0 10px 0 0'>
               있음
             </Text>
-            <Slider handleToggle={handleCurrentPet} />
+            <Slider
+              data={currentPet}
+              valueCheck={click}
+              handleToggle={handleCurrentPet}
+            />
             <Text
               color={currentPet === '없음' ? '#000000' : '#E7E5E5'}
               bold
@@ -322,6 +406,18 @@ const AdoptionApply = (props) => {
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
+              const sessionData = JSON.parse(
+                window.sessionStorage.getItem('length'),
+              );
+              const DbData = (({ click, ...o }) => o)(sessionData);
+
+              const info = Object.values(DbData);
+              console.log(info, '입력안된 질문 확인용');
+
+              if (info.includes('') === true) {
+                ErrorAlert2('정보를 모두 입력해주셔야합니다.', 'bottom');
+                return;
+              }
               dispatch(userActions.addApply(data));
               history.push(`/apply2/${postID}`);
               window.scrollTo(0, 0);

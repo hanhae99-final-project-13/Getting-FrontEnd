@@ -3,9 +3,13 @@ import React from 'react';
 import { Grid, Text } from '../../elements';
 import { ErrorAlert } from '../../shared/Alerts';
 import { history } from '../../redux/configureStore';
+import EssentialQuizData from '../Data/EssentialQuizData';
 
 const EssentialKnowledge = () => {
   const token = localStorage.getItem('USER_TOKEN');
+
+  const quizId = EssentialQuizData[0].id;
+  console.log(quizId);
 
   return (
     <>
@@ -195,7 +199,7 @@ const EssentialKnowledge = () => {
               return;
             }
 
-            history.push('/essentialquiz');
+            history.push(`/essentialquiz/${quizId}`);
           }}
           margin='0 auto'
           bg='#FE7968'

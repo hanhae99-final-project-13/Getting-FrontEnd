@@ -246,7 +246,29 @@ const AdoptionNoticeModal = (props) => {
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
               history.push(`/apply/${postId}`);
-              window.sessionStorage.setItem('length', 'length'); //프로그래스 바용
+              window.sessionStorage.setItem(
+                'length',
+                JSON.stringify({
+                  name: '',
+                  job: '',
+                  fosterAge: '20',
+                  gender: 'F',
+                  fosterAddress: '',
+                  family: '',
+                  currentPet: '있음',
+                  phone: '',
+                  reason: '',
+                  click: false,
+                  allergy: '',
+                  experience: '',
+                  timeTogether: '',
+                  anxiety: '',
+                  bark: '',
+                  roomUrl: '',
+                  check: '',
+                  preview: '',
+                }),
+              ); //프로그래스 바용
               window.scrollTo(0, 0);
             }}>
             <Text margin='0' color='#F9F9F9' weight='800'>

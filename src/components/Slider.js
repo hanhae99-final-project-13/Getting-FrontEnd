@@ -10,6 +10,10 @@ const Slider = (props) => {
       handleToggle(valueCheck);
     } else if (data === '보호소') {
       handleToggle(valueCheck);
+    } else if (data === '없음') {
+      handleToggle();
+    } else if (data === '증상없음') {
+      handleToggle();
     }
   }, []);
   return (
@@ -17,6 +21,7 @@ const Slider = (props) => {
       <SwitchBox>
         <CheckBox
           type='checkbox'
+          // checked가 true여야 오른쪽으로 이동함
           checked={valueCheck}
           onChange={() => {
             handleToggle();
