@@ -43,7 +43,7 @@ const TakeAdoptionApply = (props) => {
         <BackButton position='absolute' top='21px' left='35px' />
         <Text
           position='absolute'
-          top='21px'
+          top='17px'
           right='calc(50% - 48px)'
           margin='0'
           size='20px'
