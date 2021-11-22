@@ -11,13 +11,13 @@ const instance = axios.create({
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
 
-const aToken = localStorage.getItem('USER_TOKEN');
-const rToken = localStorage.getItem('REFRESH_TOKEN');
-const aTokenExp = localStorage.getItem('USER_TOKEN_EXP');
-const userId = localStorage.getItem('USER_ID');
-const now = Date.now();
 instance.interceptors.request.use(
   (config) => {
+    const aToken = localStorage.getItem('USER_TOKEN');
+    const rToken = localStorage.getItem('REFRESH_TOKEN');
+    const aTokenExp = localStorage.getItem('USER_TOKEN_EXP');
+    const userId = localStorage.getItem('USER_ID');
+    const now = Date.now();
     if (!aToken) {
       return config;
     }

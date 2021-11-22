@@ -26,8 +26,9 @@ const WebSocket = () => {
       async (msg) => {
         const alarmData = JSON.parse(msg.body);
         console.log(msg);
-        console.log(alarmData.alarmCount);
-        await dispatch(actionCreators.updateAlarm(alarmData.alarmCount));
+        console.log(alarmData);
+        await dispatch(actionCreators.readAlarm(false));
+        dispatch(actionCreators.updateAlarm(alarmData));
       },
       { token },
     );

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
+import { actionCreators } from '../redux/modules/user';
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Header = (props) => {
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
   const isToken = localStorage.getItem('USER_TOKEN');
+  const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
   );
@@ -32,7 +34,7 @@ const Header = (props) => {
         height='60px'
         padding='0 12px'
         margin='0 auto'
-        zIndex='1'
+        zIndex='3'
         left='0'
         right='0'
       >
@@ -62,6 +64,7 @@ const Header = (props) => {
           margin='0 auto'
           _onClick={() => {
             histroy.push('/main');
+            // dispatch(actionCreators.updateAlarm(0));
           }}
         >
           <img
@@ -93,28 +96,32 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
+                  // dispatch(actionCreators.updateAlarm(0));
+                  dispatch(actionCreators.readAlarm(true));
                   history.push('/alarm');
                 }}
                 icon={faBell}
                 color='black'
                 fontSize='1x'
               />
-              <Grid
-                display='flex'
-                alignItems='center'
-                justifyContent='center'
-                width='12px'
-                height='12px'
-                borderRadius='20px'
-                position='relative '
-                right='15%'
-                top='-10%'
-                color='white'
-                bg='red'
-                fontSize='10px'
-              >
-                {alarmCount ? alarmCount : ''}
-              </Grid>
+              {isRead === true ? null : (
+                <Grid
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='center'
+                  width='12px'
+                  height='12px'
+                  borderRadius='20px'
+                  position='relative '
+                  right='15%'
+                  top='-10%'
+                  color='white'
+                  bg='red'
+                  fontSize='10px'
+                >
+                  {alarmCount}
+                </Grid>
+              )}
             </Grid>
           </Grid>
         ) : (

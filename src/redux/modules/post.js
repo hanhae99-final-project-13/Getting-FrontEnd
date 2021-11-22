@@ -402,9 +402,6 @@ export default handleActions(
     [DELETE_IMG]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload);
-        // const idx = state.detailPost.post.img.indexOf(action.payload.img);
-        // console.log(idx);
-        // draft.detailPost.post.img.splice(idx, 1);
         const newImg = draft.detailPost.post.img.filter(
           (a) => a !== action.payload.img,
         );
