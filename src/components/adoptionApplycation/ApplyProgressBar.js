@@ -3,8 +3,8 @@ import { Grid } from '../../elements';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 const ApplyProgressBar = () => {
-  const data = useSelector((state) => state.quiz.totalAnswer);
-  const totalQuizLength = Object.values(data);
+  // const data = useSelector((state) => state.quiz.totalAnswer);
+  // const totalQuizLength = Object.values(data);
   // // console.log(length);
   // let count = 1;
   const progressLength = window.sessionStorage.length;

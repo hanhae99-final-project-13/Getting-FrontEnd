@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Text } from '../elements';
 import { useSelector } from 'react-redux';
-import { WarningAlert } from '../shared/Alerts';
 
 const FosterKnowledge = (props) => {
   const { history } = props;
@@ -18,7 +17,7 @@ const FosterKnowledge = (props) => {
     <Grid
       maxWidth='414px'
       width='auto'
-      margin='0 auto 150px'
+      margin='0 auto 90px'
       position='relative'>
       <Grid
         cusor='pointer'
@@ -48,6 +47,7 @@ const FosterKnowledge = (props) => {
         position='relative'
         _onClick={() => {
           history.push('/essentialknowledge');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'
@@ -92,8 +92,8 @@ const FosterKnowledge = (props) => {
         cusor='pointer'
         position='relative'
         _onClick={() => {
-          WarningAlert('서비스 준비 중 입니다!');
-          // history.push('/essentialknowledge');
+          history.push('/advancedknowledge1');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'
@@ -130,7 +130,7 @@ const FosterKnowledge = (props) => {
       </Grid>
 
       <Text width='auto' size='18px' weight='800' align='center'>
-        심화지식1
+        심화지식 1
       </Text>
 
       {/* 심화지식2 */}
@@ -138,8 +138,8 @@ const FosterKnowledge = (props) => {
         cusor='pointer'
         position='relative'
         _onClick={() => {
-          WarningAlert('서비스 준비 중 입니다!');
-          // history.push('/essentialknowledge');
+          history.push('/advancedknowledge2');
+          window.sessionStorage.clear();
         }}
         display='flex'
         justifyContent='center'
@@ -176,7 +176,7 @@ const FosterKnowledge = (props) => {
       </Grid>
 
       <Text width='auto' size='18px' weight='800' align='center'>
-        심화지식2
+        심화지식 2
       </Text>
     </Grid>
   );

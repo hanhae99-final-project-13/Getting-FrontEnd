@@ -1,4 +1,10 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useState,
+  useEffect,
+} from 'react';
+import { useSelector } from 'react-redux';
 import { Grid, Text } from '../../elements';
 
 import '../../shared/App.css';
@@ -9,7 +15,10 @@ const Upload3 = forwardRef((props, ref) => {
     upload,
   }));
 
-  const { setRoomUrl } = props;
+  const { setRoomUrl, roomUrl, data2 } = props;
+
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   // s3 연결
   AWS.config.update({
@@ -76,6 +85,35 @@ const Upload3 = forwardRef((props, ref) => {
       `https://docking.s3.ap-northeast-2.amazonaws.com/${imagefullname}`,
     );
   };
+
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('length'));
+    const { roomUrl, preview } = data;
+
+    setRoomUrl(roomUrl);
+    setPreviewImage(preview);
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({
+        ...data2,
+        roomUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${uploadImageFullname}`,
+      }),
+    );
+    sessionStorage.setItem(
+      'length',
+      JSON.stringify({
+        ...data2,
+        preview: previewImage,
+      }),
+    );
+  }, [roomUrl, previewImage]);
+
+  if (token && !isLogin) {
+    return <div>로딩중~</div>;
+  }
 
   return (
     <Grid>
