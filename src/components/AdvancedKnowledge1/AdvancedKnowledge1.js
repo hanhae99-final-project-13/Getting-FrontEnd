@@ -18,7 +18,8 @@ const AdvancedKnowledge1 = () => {
         width='auto'
         margin='0 auto 200px'
         position='relative'
-        padding='0 35px'>
+        padding='0 35px'
+      >
         <Grid
           cusor='pointer'
           zIndex='9999'
@@ -29,7 +30,8 @@ const AdvancedKnowledge1 = () => {
           width='20px'
           height='20px'
           top='-51px'
-          left='36px'>
+          left='36px'
+        >
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -81,7 +83,8 @@ const AdvancedKnowledge1 = () => {
               bgi={process.env.PUBLIC_URL + '/img/QuizImg/AdvancedQuizImg1.svg'}
               bgisize='contain'
               bgiposition='center'
-              bgirepeat='no-repeat'></Grid>
+              bgirepeat='no-repeat'
+            ></Grid>
           </Grid>
         </Grid>
 
@@ -141,7 +144,8 @@ const AdvancedKnowledge1 = () => {
               bgi={process.env.PUBLIC_URL + '/img/QuizImg/AdvancedQuizImg2.svg'}
               bgisize='contain'
               bgiposition='center'
-              bgirepeat='no-repeat'></Grid>
+              bgirepeat='no-repeat'
+            ></Grid>
           </Grid>
         </Grid>
 
@@ -185,7 +189,8 @@ const AdvancedKnowledge1 = () => {
               bgi={process.env.PUBLIC_URL + '/img/QuizImg/AdvancedQuizImg3.svg'}
               bgisize='contain'
               bgiposition='center'
-              bgirepeat='no-repeat'></Grid>
+              bgirepeat='no-repeat'
+            ></Grid>
           </Grid>
         </Grid>
 
@@ -231,7 +236,8 @@ const AdvancedKnowledge1 = () => {
               bgi={process.env.PUBLIC_URL + '/img/QuizImg/AdvancedQuizImg4.svg'}
               bgisize='contain'
               bgiposition='center'
-              bgirepeat='no-repeat'></Grid>
+              bgirepeat='no-repeat'
+            ></Grid>
           </Grid>
         </Grid>
 
@@ -299,17 +305,17 @@ const AdvancedKnowledge1 = () => {
               bgi={process.env.PUBLIC_URL + '/img/QuizImg/AdvancedQuizImg5.svg'}
               bgisize='contain'
               bgiposition='center'
-              bgirepeat='no-repeat'></Grid>
+              bgirepeat='no-repeat'
+            ></Grid>
           </Grid>
         </Grid>
 
         <Grid
           cusor='pointer'
           position='fixed'
-          top='600px'
           left='0'
           right='0'
-          bottom='144px'
+          bottom='130px'
           _onClick={() => {
             if (!token) {
               ErrorAlert('로그인 후 진행해주세요!');
@@ -326,7 +332,8 @@ const AdvancedKnowledge1 = () => {
           display='flex'
           justifyContent='center'
           alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
+          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+        >
           <Text color='white' margin='0' weight='700'>
             퀴즈로 검증하기
           </Text>
