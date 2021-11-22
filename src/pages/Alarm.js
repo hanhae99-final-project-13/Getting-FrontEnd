@@ -11,7 +11,7 @@ const Alarm = () => {
     (state) => state.user.user.userInfo.alarmCount,
   );
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const foster = useSelector((state) => state.post.myPostList[0].formPreviews);
+  // const foster = useSelector((state) => state.post.myPostList[0].formPreviews);
   const token = localStorage.getItem('USER_TOKEN');
   console.log(userInfo);
   const [deleteModal, setDeleteModal] = React.useState(false);
@@ -30,7 +30,7 @@ const Alarm = () => {
     dispatch(actionCreators.loadAlarmListToAxios());
   }, []);
   console.log(userInfo.alarmContent.length);
-  console.log(foster);
+  // console.log(foster);
   console.log(userInfo.alarmContent);
   // console.log(foster.fil);
   return (

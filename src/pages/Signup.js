@@ -78,7 +78,7 @@ const Signup = (props) => {
       .catch((error) => {
         setCheckId(false);
         console.log(error);
-        console.log('아이디중복 : ', error.response.data.errorMessage);
+        console.log('아이디중복 : ', error);
         return;
       });
   }, []);
@@ -107,7 +107,7 @@ const Signup = (props) => {
       })
       .catch((error) => {
         setChecknickName(false);
-        console.log('닉네임 중복 :', error.response.data.errorMessage);
+        console.log('닉네임 중복 :', error);
       });
   }, []);
 

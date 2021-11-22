@@ -29,6 +29,7 @@ const MiniCard = ({
         width='auto'
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='10px'
+        boxSizing='border-box'
       >
         <Grid
           margin='0 10px 0 0'
@@ -43,23 +44,18 @@ const MiniCard = ({
           width='61%'
           _onClick={goDetail}
         >
-          <Grid
-            display='flex'
-            justifyContent='space-between'
-            alignItems='center'
-            height='auto'
-          >
-            <Text margin='0' size='12px' weight='800'>
-              {breed}
-            </Text>
+          <Grid display='flex' alignItems='center' height='auto'>
             <img
-              width='7'
+              width='12'
               src={
                 sex === 'F'
-                  ? process.env.PUBLIC_URL + '/img/icon/female_icon_pink.svg'
-                  : process.env.PUBLIC_URL + '/img/icon/male_icon_blue.svg'
+                  ? process.env.PUBLIC_URL + '/img/icon/female_icon.svg'
+                  : process.env.PUBLIC_URL + '/img/icon/male_icon.svg'
               }
             />
+            <Text margin='0 0 0 4px' size='12px' weight='800'>
+              {breed}
+            </Text>
           </Grid>
           <Grid display='flex' alignItems='center' height='auto'>
             <img

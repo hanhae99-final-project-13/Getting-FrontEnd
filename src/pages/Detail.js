@@ -69,7 +69,7 @@ const Detail = (props) => {
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (
-        <Grid width='375px' margin='50px auto 140px auto'>
+        <Grid width='375px' margin='50px auto 180px auto'>
           <Grid width='auto' padding='0 35px'>
             <Grid display='flex' justifyContent='space-between'>
               <p
@@ -195,7 +195,7 @@ const Detail = (props) => {
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
-                bottom='90px'
+                bottom='130px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   eduCheckopenModal();
@@ -279,7 +279,7 @@ const Detail = (props) => {
                   나이
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  {post.post.age} 년생
+                  {post.post.age} 살
                 </span>
               </Grid>
             </Grid>
@@ -522,7 +522,7 @@ const Detail = (props) => {
             </Grid>
           </Grid>
 
-          <p style={{ padding: '0 46px', fontWeight: '800' }}>댓글</p>
+          <p style={{ padding: '0 30px', fontWeight: '800' }}>댓글</p>
 
           <CommentList postId={postId} />
           {/* 입양시 주의사항 모달 */}

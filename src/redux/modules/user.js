@@ -74,7 +74,6 @@ const initialState = {
 };
 
 // 미들웨어
-
 // 로그인
 const GetUserDB = (user) => {
   return (dispatch, getState, { history }) => {
@@ -84,11 +83,25 @@ const GetUserDB = (user) => {
         console.log(res.data);
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
-        const rTokenExp = jwt_Decode(USER_TOKEN).exp * 1000;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-        window.localStorage.setItem('USER_TOKEN_EXP', rTokenExp);
-        window.localStorage.setItem('USER_ID', res.data.data.userId);
+        // setTimeout(() => {
+        //   const accessToken = localStorage.getItem('USER_TOKEN');
+        //   const refreshToken = localStorage.getItem('REFRESH_TOKEN');
+        //   apis
+        //     .refresh({
+        //       accessToken,
+        //       refreshToken,
+        //     })
+        //     .then((res) => {
+        //       console.log(res.data);
+        //       localStorage.setItem('USER_TOKEN', res.data.accessToken);
+        //       localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
+        //     })
+        //     .catch((err) => {
+        //       console.log(err);
+        //     });
+        // }, 10000);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -140,7 +153,9 @@ const SignupDB = (form) => {
         history.push('/login');
       })
       .catch((error) => {
-        ErrorAlert(error.response.data.errorMessage);
+        console.log(error);
+        console.log(error.response);
+        // ErrorAlert(error.response.data.errorMessage);
       });
   };
 };

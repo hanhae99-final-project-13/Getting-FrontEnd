@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ErrorAlert } from '../shared/Alerts';
 
 const instance = axios.create({
   baseURL: 'http://52.78.159.191', // 선강 님
@@ -13,40 +14,12 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
+    console.log(config);
     const aToken = localStorage.getItem('USER_TOKEN');
-    const rToken = localStorage.getItem('REFRESH_TOKEN');
-    const aTokenExp = localStorage.getItem('USER_TOKEN_EXP');
-    const userId = localStorage.getItem('USER_ID');
-    const now = Date.now();
     if (!aToken) {
       return config;
     }
-    // console.log(now);
-    // console.log(aTokenExp);
-    // if (aTokenExp - 30000 < Date.now()) {
-    //   console.log('리프래쉬 토큰 사용');
-    //   apis
-    //     .refresh({
-    //       accessToken: encodeURI(aToken),
-    //       refreshToken: encodeURI(rToken),
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       localStorage.setItem('USER_TOKEN', res.data.accessToken);
-    //       localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     })
-    //     .then(() => {
-    //       config.headers = {
-    //         'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
-    //         accept: 'application/json',
-    //         Authorization: `Bearer ${aToken}`,
-    //       };
-    //       return config;
-    //     });
-    // }
+
     config.headers = {
       'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
       accept: 'application/json',
@@ -59,6 +32,19 @@ instance.interceptors.request.use(
   },
 );
 
+// let isTokenRefreshing = false;
+// let refreshSubscribers = [];
+
+// const onTokenRefreshed = (accessToken) => {
+//   refreshSubscribers.map((callback, idx) => {
+//     return callback(accessToken);
+//   });
+// };
+
+// const addRefreshSubscriber = (callback) => {
+//   refreshSubscribers.push(callback);
+// };
+
 instance.interceptors.response.use(
   (success) => {
     return success;
@@ -66,7 +52,37 @@ instance.interceptors.response.use(
   (err) => {
     console.log(err);
     console.log(err.response);
-    return err;
+    console.log(err.config);
+    const originalReq = err.config;
+    if (err.response.status === 400) {
+      ErrorAlert(err.response.data.errorMessage);
+    }
+    // if (err.response.status === 401) {
+    //   if (!isTokenRefreshing) {
+    //     isTokenRefreshing = true;
+    //     // const accessToken = localStorage.getItem('USER_TOKEN');
+    //     const refreshToken = localStorage.getItem('REFRESH_TOKEN');
+    //     const userId = localStorage.getItem('USER_ID');
+
+    //     apis
+    //       .refresh({ refreshToken: encodeURI(refreshToken), userId })
+    //       .then((res) => {
+    //         console.log(res);
+    //         console.log(res.data);
+    // localStorage.setItem('NEW_TOKEN', res.data.accessToken);
+    // localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
+    // });
+    // isTokenRefreshing = false;
+    // axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+    //   'USER_TOKEN',
+    // )}`;
+    // originalReq.headers.Authorization = `Bearer ${localStorage.getItem(
+    //   'USER_TOKEN',
+    // )}`;
+    // return axios(originalReq);
+    //   }
+    // }
+    // return err;
   },
 );
 

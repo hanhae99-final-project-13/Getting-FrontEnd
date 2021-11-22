@@ -72,12 +72,6 @@ const Header = (props) => {
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
           />
         </Grid>
-        <Grid
-          display='flex'
-          alignItems='center'
-          justifyContent='flex-end'
-          width='375px'
-        ></Grid>
         {isLogin ? (
           <Grid
             display='flex'
@@ -96,7 +90,6 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  // dispatch(actionCreators.updateAlarm(0));
                   dispatch(actionCreators.readAlarm(true));
                   history.push('/alarm');
                 }}
@@ -119,7 +112,7 @@ const Header = (props) => {
                   bg='red'
                   fontSize='10px'
                 >
-                  {alarmCount}
+                  {/* {alarmCount} */}
                 </Grid>
               )}
             </Grid>
