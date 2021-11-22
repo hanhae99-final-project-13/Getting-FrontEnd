@@ -77,16 +77,11 @@ const GetUserDB = (user) => {
     apis
       .login(user)
       .then((res) => {
-<<<<<<< HEAD
-        console.log(res.data);
-        const USER_TOKEN = res.data.data.token.accessToken;
-        const REFRESH_TOKEN = res.data.data.token.refreshToken;
-=======
         console.log('서버에서 받은 로그인 정보', res.data.data);
         console.log('서버 로그인 status정보', res.data.status);
         const USER_TOKEN = res.data.data.token.accessToken;
+        const REFRESH_TOKEN = res.data.data.token.refreshToken;
 
->>>>>>> 1718ba5 ((김기철) [style] footer 수정)
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
         // setTimeout(() => {

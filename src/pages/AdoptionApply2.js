@@ -116,12 +116,14 @@ const AdoptionApply2 = (props) => {
     const data = JSON.parse(sessionStorage.getItem('length'));
     console.log(data);
 
-    const { allergy, experience, timeTogether, anxiety, bark, check } = data;
+    const { allergy, experience, timeTogether, anxiety, bark, check, roomUrl } =
+      data;
     setAllergy(allergy);
     setExperience(experience);
     setTimeTogether(timeTogether);
     setAnxiety(anxiety);
     setBark(bark);
+    setRoomUrl(roomUrl);
     // setCheck(check);
   }, []);
 

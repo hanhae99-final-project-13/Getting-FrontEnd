@@ -358,6 +358,7 @@ const AdoptionApply = (props) => {
 
         <Grid>
           <Input
+            type='number'
             bg='#FFFFFF'
             width='100%'
             border='none'
@@ -406,6 +407,10 @@ const AdoptionApply = (props) => {
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
             _onClick={() => {
+              if (phone.length > 11 || phone.length < 9) {
+                ErrorAlert2('휴대폰번호를 9~11자리로 입력해주세요.', 'bottom');
+                return;
+              }
               const sessionData = JSON.parse(
                 window.sessionStorage.getItem('length'),
               );
