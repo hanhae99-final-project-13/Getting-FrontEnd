@@ -89,6 +89,7 @@ const AddPost = () => {
       }
       console.log(url);
       dispatch(postActions.addPostToAxios(postInfo));
+      dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     } else {
       WarningAlert('모든 값을 입력해주세요!');
     }

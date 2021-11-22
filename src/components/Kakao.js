@@ -16,7 +16,7 @@ const Kakao = (props) => {
     // history.push('/');
   }, [code, dispatch]);
 
-  return <h1>리다이렉션 페이지입니다.</h1>;
+  return <h1></h1>;
 };
 
 export default Kakao;
