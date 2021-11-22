@@ -86,7 +86,8 @@ const EssentialQuiz = (props) => {
         width='20px' //width, height를 안주면 sticky left가 안먹음..
         height='20px'
         top='65px'
-        left='36px'>
+        left='36px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -103,7 +104,8 @@ const EssentialQuiz = (props) => {
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
         <QuizProgressBar
-          totalQuizLength={EssentialQuizData.length}></QuizProgressBar>
+          totalQuizLength={EssentialQuizData.length}
+        ></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
@@ -116,7 +118,8 @@ const EssentialQuiz = (props) => {
         padding='0 35px'
         size='16px'
         line_height='24px'
-        weight='700'></Text>
+        weight='700'
+      ></Text>
 
       <form>
         <Grid
@@ -125,17 +128,20 @@ const EssentialQuiz = (props) => {
           margin='54px 0 0 0'
           padding='0 35px'
           display='flex'
-          alignItems='center'>
+          alignItems='center'
+        >
           <input
             type='radio'
             id={`${id}true`}
             name={`answer${id}`}
             value='true'
-            onClick={handleClickRadioButton}></input>
+            onClick={handleClickRadioButton}
+          ></input>
           <label
             onClick={trueClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor={`${id}true`}>
+            htmlFor={`${id}true`}
+          >
             {/* 빨간색원 div */}
             <Grid
               position='absolute'
@@ -144,7 +150,8 @@ const EssentialQuiz = (props) => {
               height='18px'
               borderRadius='15px'
               bg='#FFFFFF'
-              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
+            >
               <Grid
                 position='absolute'
                 top='4px'
@@ -152,7 +159,8 @@ const EssentialQuiz = (props) => {
                 bg={selectAnswer === 'true' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
-                borderRadius='10px'></Grid>
+                borderRadius='10px'
+              ></Grid>
             </Grid>
             맞습니다
           </label>
@@ -163,18 +171,21 @@ const EssentialQuiz = (props) => {
           margin='42px 0 0 0'
           padding='0 35px'
           display='flex'
-          alignItems='center'>
+          alignItems='center'
+        >
           <input
             type='radio'
             id={`${id}false`}
             name={`answer${id}`}
             value='false'
-            onClick={handleClickRadioButton}></input>
+            onClick={handleClickRadioButton}
+          ></input>
 
           <label
             onClick={falseClick}
             style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor={`${id}false`}>
+            htmlFor={`${id}false`}
+          >
             {/* 빨간색원 div */}
             <Grid
               position='absolute'
@@ -183,7 +194,8 @@ const EssentialQuiz = (props) => {
               height='18px'
               borderRadius='15px'
               bg='#FFFFFF'
-              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'>
+              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
+            >
               <Grid
                 position='absolute'
                 top='4px'
@@ -191,7 +203,8 @@ const EssentialQuiz = (props) => {
                 bg={selectAnswer === 'false' ? '#FE7968' : ''}
                 width='10px'
                 height='10px'
-                borderRadius='10px'></Grid>
+                borderRadius='10px'
+              ></Grid>
             </Grid>
             아닙니다
           </label>
@@ -201,7 +214,7 @@ const EssentialQuiz = (props) => {
       <Grid
         cusor='pointer'
         position='fixed'
-        top='570px'
+        bottom='130px'
         left='0px'
         right='0px'
         margin='0 auto'
@@ -223,7 +236,8 @@ const EssentialQuiz = (props) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'
+      >
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
           {EssentialQuizData.length !== id ? '다음퀴즈' : '채점하기'}
         </Text>

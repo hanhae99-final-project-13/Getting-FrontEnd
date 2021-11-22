@@ -39,6 +39,15 @@ const CommentWrite = (props) => {
       setComment('');
     }
   };
+  const enterKey = (e) => {
+    if (e.key === 'Enter') {
+      if (props.comment) {
+        editSubmit(e);
+      } else {
+        commentSubmit(e);
+      }
+    }
+  };
   React.useEffect(() => {
     if (props.comment) {
       setComment(props.comment.comment);
@@ -64,6 +73,7 @@ const CommentWrite = (props) => {
             onChange={(e) => {
               setComment(e.target.value);
             }}
+            onKeyUp={enterKey}
           />
 
           <button
@@ -97,6 +107,7 @@ const CommentWrite = (props) => {
             onChange={(e) => {
               setComment(e.target.value);
             }}
+            onKeyUp={enterKey}
           />
           <button
             style={{
@@ -108,6 +119,7 @@ const CommentWrite = (props) => {
               borderRadius: '10px',
             }}
             onClick={commentSubmit}
+            onKeyUp={enterKey}
           >
             입력
           </button>

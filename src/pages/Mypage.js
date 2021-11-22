@@ -67,7 +67,6 @@ const Mypage = () => {
 
   return (
     <Grid maxWidth='414px' margin='0 auto'>
-      <WebSocket />
       <Grid margin='107px 0 0 0' width='auto'>
         <MypageUserInfo />
       </Grid>

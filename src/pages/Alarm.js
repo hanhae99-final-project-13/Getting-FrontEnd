@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import { Grid, Text, Image } from '../elements/index';
+import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 const Alarm = () => {
@@ -10,21 +11,32 @@ const Alarm = () => {
     (state) => state.user.user.userInfo.alarmCount,
   );
   const userInfo = useSelector((state) => state.user.user.userInfo);
+  // const foster = useSelector((state) => state.post.myPostList[0].formPreviews);
+  const token = localStorage.getItem('USER_TOKEN');
   console.log(userInfo);
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);
   };
   const deleteList = () => {
-    dispatch(actionCreators.deleteAlarmToAxios());
+    if (token) {
+      dispatch(actionCreators.deleteAlarmToAxios());
+      setDeleteModal(!deleteModal);
+    }
+    return;
   };
   React.useEffect(() => {
+    dispatch(postActions.getMyPostsMW());
     dispatch(actionCreators.loadAlarmListToAxios());
   }, []);
-
+  console.log(userInfo.alarmContent.length);
+  // console.log(foster);
+  console.log(userInfo.alarmContent);
+  // console.log(foster.fil);
   return (
     <>
-      <Grid width='375px' margin='0 auto'>
+      <Header></Header>
+      <Grid width='375px' margin='50px auto 0'>
         <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
@@ -58,7 +70,7 @@ const Alarm = () => {
               전체삭제{' '}
             </button>
           </Grid>
-          {userInfo.alarmCount === 0 ? (
+          {userInfo.alarmContent.length === 0 ? (
             <>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <Grid
@@ -91,48 +103,44 @@ const Alarm = () => {
             </>
           ) : (
             <>
-              {userInfo.alarmContent.map((a) => {
-                console.log(a);
-                return (
-                  <Grid
-                    key={a.alarmId}
-                    bg='white'
-                    height='60px'
-                    padding='10px 5px'
-                    borderRadius='15px'
-                    width='auto'
-                    display='flex'
-                    alignItems='center'
-                    margin='15px 0'
-                    boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
-                    _onClick={() => {
-                      history.push(`/detail/${a.alarmId}`);
-                    }}
-                  >
-                    <Image margin='0 10px' size='50' />
+              {userInfo.alarmContent &&
+                userInfo.alarmContent.map((alarm, i) => {
+                  console.log(userInfo.alarmContent);
+                  return (
                     <Grid
+                      bg='white'
+                      height='60px'
+                      padding='10px 5px'
+                      borderRadius='15px'
+                      width='auto'
                       display='flex'
-                      flexDirection='column'
-                      boxSizing='border-box'
+                      alignItems='center'
+                      margin='15px 0'
+                      boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+                      _onClick={() => {
+                        history.push('/mypage', { from: 'alarm' });
+                      }}
                     >
-                      <Grid fontSize='12px' color='darkgrey'>
-                        {'30분'} 전
-                      </Grid>
-                      <Grid>
-                        {userInfo.nickname}님, {a.alarmContent}
-                      </Grid>
-                      <Grid fontSize='12px' color='darkgrey'>
-                        {'랜덤메세지 뭐시깽이'}
+                      <Image margin='0 10px' size='50' />
+                      <Grid
+                        display='flex'
+                        flexDirection='column'
+                        boxSizing='border-box'
+                      >
+                        <Grid fontSize='12px' color='darkgrey'>
+                          {' 분'} 전
+                        </Grid>
+                        <Grid>{alarm.alarmContent}</Grid>
+                        <Grid fontSize='12px' color='darkgrey'>
+                          {'부가 메세지'}
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                );
-              })}
+                  );
+                })}
             </>
           )}
         </Grid>
-
-        {/* 알람없을때 화면 */}
 
         {/* 전체삭제 모달 */}
         {deleteModal ? (

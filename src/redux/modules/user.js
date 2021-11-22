@@ -25,6 +25,7 @@ const LOAD_ALARMLIST = 'LOAD_ALARMLIST';
 const LOAD_ALARM = 'LOAD_ALARM';
 const DELETE_ALARMLIST = 'DELETE_ALARMLIST';
 const UPDATE_ALARMCOUNT = 'UPDATE_ALARMCOUNT';
+const READ_ALARM = 'READ_ALARM';
 //유저 액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
 const LogOut = createAction(LOG_OUT, () => {});
@@ -43,11 +44,12 @@ const loadAlarmList = createAction(LOAD_ALARMLIST, (alarm) => ({
 const loadAlarm = createAction(LOAD_ALARM, (alarm) => ({
   alarm,
 }));
-const deleteAlarm = createAction(DELETE_ALARMLIST, (alarm) => ({
-  alarm,
+const deleteAlarm = createAction(DELETE_ALARMLIST, () => ({}));
+const updateAlarm = createAction(UPDATE_ALARMCOUNT, (alarmData) => ({
+  alarmData,
 }));
-const updateAlarm = createAction(UPDATE_ALARMCOUNT, (alarmCount) => ({
-  alarmCount,
+const readAlarm = createAction(READ_ALARM, (isRead) => ({
+  isRead,
 }));
 //초기값
 const initialState = {
@@ -61,6 +63,7 @@ const initialState = {
       eduList: [],
       alarmCount: null,
       alarmContent: [],
+      isRead: null,
       userId: null,
     },
     isLogin: false,
@@ -110,6 +113,7 @@ const GetUserDB = (user) => {
             eduList: res.data.data.eduList,
             phone: res.data.data.phone,
             alarmCount: res.data.data.alarmCount,
+            alarmContent: res.data.data.alarmContents,
           },
           isLogin: true,
         };
@@ -174,6 +178,8 @@ const LoginCheck = () => {
             phone: res.data.data.phone,
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
+            alarmContent: /* res.data.data.alarmContent */ [],
+            isRead: null,
           },
           isLogin: true,
         };
@@ -257,7 +263,7 @@ const loadAlarmListToAxios = () => {
     apis
       .getAlarmList()
       .then((res) => {
-        console.log('알람리스트 ', res);
+        console.log('알람리스트 ', res.data);
         dispatch(loadAlarmList(res.data));
       })
       .catch((err) => {
@@ -284,8 +290,8 @@ const deleteAlarmToAxios = () => {
     apis
       .deleteAlarmList()
       .then((res) => {
-        console.log('알람리스트 삭제', res);
-        dispatch(deleteAlarm(res.data));
+        console.log('알람리스트 삭제', res.data.data.msg);
+        dispatch(deleteAlarm());
       })
       .catch((err) => {
         console.log('알람리스트 삭제 오류', err);
@@ -311,7 +317,7 @@ export default handleActions(
           eduList: null,
           alarmCount: null,
           applyList: [],
-          alarmContent: [],
+          alarmContent: null,
           userId: null,
         };
         draft.user.isLogin = false;
@@ -352,9 +358,16 @@ export default handleActions(
       }),
     [UPDATE_ALARMCOUNT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.alarmCount);
-        console.log(state.user.userInfo.alarmCount);
-        draft.user.userInfo.alarmCount = action.payload.alarmCount;
+        console.log(action.payload.alarmData);
+        console.log(state.user.userInfo.alarmContent);
+        draft.user.userInfo.alarmCount = action.payload.alarmData.alarmCount;
+      }),
+    [READ_ALARM]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.isRead);
+        console.log(state.user.userInfo);
+        draft.user.userInfo.isRead = action.payload.isRead;
+        console.log(state.user.userInfo.isRead);
       }),
   },
   initialState,
@@ -374,6 +387,7 @@ const actionCreators = {
   addEduSuccessDB,
   checkError,
   updateAlarm,
+  readAlarm,
 };
 
 export { actionCreators };
