@@ -31,24 +31,33 @@ const TakeAdoptionApply = (props) => {
   return (
     <React.Fragment>
       <Grid
+        position='relative'
         display='flex'
         flexDirection='column'
         alignItems='center'
         margin='0 auto 160px auto'
-        padding='0 35px'
+        padding='59px 35px 0 35px'
         maxWidth='414px'
+        width='auto'
       >
-        <Grid position='relative' height='100px' margin='0 0 16px 0'>
-          <BackButton position='absolute' top='65px' left='0' />
+        <BackButton position='absolute' top='21px' left='35px' />
+        <Text
+          position='absolute'
+          top='17px'
+          right='calc(50% - 48px)'
+          margin='0'
+          size='20px'
+          weight='800'
+        >
+          입양 신청서
+        </Text>
 
-          <Title>입양 신청서</Title>
-        </Grid>
         <DefaultInfomation />
         <AdoptionReason />
         <AdoptionSurvey />
         <Grid
           position='fixed'
-          bottom='91px'
+          bottom='116px'
           display='flex'
           justifyContent='space-evenly'
           height='auto'

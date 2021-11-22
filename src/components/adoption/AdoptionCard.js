@@ -50,7 +50,9 @@ const AdoptionCard = (props) => {
           <ElP>
             {ownerType.includes('보호') ||
             ownerType.includes('병원') ||
-            ownerType.includes('동물')
+            ownerType.includes('동물') ||
+            ownerType.includes('센터') ||
+            ownerType.includes('시청')
               ? '보호소'
               : ownerType}
           </ElP>
@@ -120,6 +122,7 @@ const ElP = styled.p`
 
 const Tag = styled.div`
   height: auto;
+  margin-right: 4px;
   padding: 3px 6px;
   background-color: white;
   border: 0.5px solid #e7e5e5;
