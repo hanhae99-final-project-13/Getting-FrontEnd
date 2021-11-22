@@ -84,6 +84,10 @@ const AddPost = () => {
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
     if (nullCheck === true) {
+      if (url.includes('https')) {
+        setUrl(url.replace('s', ''));
+      }
+      console.log(url);
       dispatch(postActions.addPostToAxios(postInfo));
     } else {
       WarningAlert('모든 값을 입력해주세요!');
@@ -168,7 +172,7 @@ const AddPost = () => {
                 }}
                 style={{ border: 'none', width: '60%' }}
               />
-              <strong style={{ paddingRight: '10px' }}>년생</strong>
+              <strong style={{ paddingRight: '10px' }}>살</strong>
             </Grid>
             <Grid display='flex' justifyContent='space-between'>
               <input
