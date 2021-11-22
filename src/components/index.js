@@ -41,6 +41,7 @@ export {
   Logo,
   Post,
   Slider,
+  SliderBox,
   Timer,
   Upload,
 };
