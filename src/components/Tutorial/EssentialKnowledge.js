@@ -150,7 +150,7 @@ const EssentialKnowledge = () => {
               maxWidth='226px'
               width='100%'
               height='152px'
-              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg4.svg'}
+              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg4.png'}
               bgisize='contain'
               bgiposition='center'
               bgirepeat='no-repeat'></Grid>
@@ -179,7 +179,7 @@ const EssentialKnowledge = () => {
               maxWidth='226px'
               width='100%'
               height='152px'
-              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg5.svg'}
+              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg5.png'}
               bgisize='contain'
               bgiposition='center'
               bgirepeat='no-repeat'></Grid>
