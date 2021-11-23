@@ -24,7 +24,7 @@ const ReceivedAdoptionList = ({ index }) => {
             <Grid
               display='flex'
               justifyContent='space-between'
-              margin='0 0 24px 0'
+              // margin='0 0 24px 0'
               width='auto'
               height='auto'
               _onClick={() => {
