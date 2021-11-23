@@ -60,7 +60,7 @@ const Detail = (props) => {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
   if (token && !isLogin) {
-    return <div>로딩중~</div>;
+    return <div></div>;
   }
 
   return (

@@ -7,7 +7,7 @@ import MiniCard from './MiniCard';
 const MyWriteList = (props) => {
   const myPostList = useSelector((state) => state.post.myPostList);
   if (!myPostList) {
-    return <div>로딩중</div>;
+    return <div></div>;
   }
   return (
     <Grid display={props.display}>
