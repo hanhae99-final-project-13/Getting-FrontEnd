@@ -18,3 +18,6 @@ input:focus {
   background: rgb(255, 255, 255);
   cursor: pointer;
 }
+.swal-font {
+  font-size: 15px;
+}
