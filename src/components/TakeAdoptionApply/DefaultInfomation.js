@@ -116,7 +116,7 @@ const DefaultInfomation = (props) => {
                 justifyContent='center'
                 width='70px'
                 height='30px'
-                bg='#f66'
+                bg='#FE7968'
                 borderRadius='15px'
               >
                 <Text color='white' weight='700'>

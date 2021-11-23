@@ -52,7 +52,12 @@ const Detail = (props) => {
     setEdit(true);
     setDetailModal(!detailModal);
   };
+  const toTop = () => {
+    window.scrollTo(0, 0);
+    console.log('스크롤 탑');
+  };
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(postActions.getDetailPostMW(postId));
   }, []);
 

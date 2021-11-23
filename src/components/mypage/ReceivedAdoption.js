@@ -18,7 +18,7 @@ const ReceivedAdoption = (props) => {
   return (
     <Grid display={props.display}>
       {myPostList.map((p, i) => {
-        return (
+        return p.formPreviews.length !== 0 ? (
           <MiniCard
             margin='0 0 66px 0'
             width='auto'
@@ -36,7 +36,7 @@ const ReceivedAdoption = (props) => {
             index={i}
             isShowApply={isShowApply}
           />
-        );
+        ) : null;
       })}
     </Grid>
   );
