@@ -97,43 +97,45 @@ const Detail = (props) => {
                   />
                 </button>
               ) : null}
-            </Grid>
-            <Grid
-              height='0'
-              position='relative'
-              top='20px'
-              right='10px'
-              display='flex'
-              flexDirection='row-reverse'
-              zIndex='2'
-            >
-              <button
-                style={{ all: 'unset' }}
-                onClick={() => {
-                  if (!token) {
-                    ErrorAlert('로그인 후 이용해주세요');
-                  } else {
-                    dispatch(postActions.heartToAxios({ postId: postId }));
-                  }
-                }}
+              <Grid
+                width='30px'
+                height='auto'
+                position='relative'
+                top='45px'
+                right='10px'
+                display='flex'
+                flexDirection='row-reverse'
+                zIndex='2'
               >
-                {post.post.heart === true ? (
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                <button
+                  style={{ all: 'unset' }}
+                  onClick={() => {
+                    if (!token) {
+                      ErrorAlert('로그인 후 이용해주세요');
+                    } else {
+                      dispatch(postActions.heartToAxios({ postId: postId }));
                     }
-                    style={{ width: '25px', height: '25px' }}
-                  />
-                ) : (
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
-                    }
-                    style={{ width: '25px', height: '25px' }}
-                  />
-                )}
-              </button>
+                  }}
+                >
+                  {post.post.heart === true ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                      }
+                      style={{ width: '25px', height: '25px' }}
+                    />
+                  ) : (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
+                      }
+                      style={{ width: '25px', height: '25px' }}
+                    />
+                  )}
+                </button>
+              </Grid>
             </Grid>
+
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null
