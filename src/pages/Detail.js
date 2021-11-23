@@ -392,7 +392,7 @@ const Detail = (props) => {
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.url === null ? (
                     '없음'
-                  ) : post.post.url.includes('http://') ? (
+                  ) : post.post.url.includes('http') ? (
                     // http:// 가 주소에 있다면
                     post.post.url.includes('instagram.com') ? (
                       <img
