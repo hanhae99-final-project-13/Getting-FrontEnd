@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import './App.css';
 
 //경고 alert
 export const WarningAlert = (warning_text, footer, title) => {
@@ -23,6 +24,7 @@ export const SuccessAlert = (success_text) => {
 export const SuccessAlert2 = (html_text) => {
   Swal.fire({
     html: html_text,
+
     icon: 'success',
     confirmButtonColor: '#FE7968',
   });
@@ -44,6 +46,7 @@ export const ErrorAlert2 = (html_text) => {
     html: html_text,
     // text: error_text,
     // position: position_text,
+    // customClass: 'swal-font',
     icon: 'error',
     confirmButtonColor: '#FE7968',
   });
