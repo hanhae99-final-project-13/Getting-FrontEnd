@@ -62,7 +62,9 @@ instance.interceptors.response.use(
       err.response.data.errorMessage !== '아이디를 입력해주세요.' &&
       err.response.data.errorMessage !== '비밀번호를 입력해주세요.' &&
       err.response.data.errorMessage !== '중복된 아이디가 존재합니다.' &&
-      err.response.data.errorMessage !== '중복된 닉네임이 존재합니다.'
+      err.response.data.errorMessage !== '중복된 닉네임이 존재합니다.' &&
+      err.response.data.errorMessage !== '아이디를 찾을 수 없습니다.' &&
+      err.response.data.errorMessage !== '비밀번호를 다시 입력해주세요'
     ) {
       ErrorAlert(err.response.data.errorMessage);
     }
