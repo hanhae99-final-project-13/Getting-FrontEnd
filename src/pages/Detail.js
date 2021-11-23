@@ -23,7 +23,7 @@ const Detail = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  console.log(post);
+  console.log('aa', post);
 
   // 필수지식 수료요청 모달
   const [eduCheck, setEduCheck] = useState(false);
@@ -97,43 +97,45 @@ const Detail = (props) => {
                   />
                 </button>
               ) : null}
-            </Grid>
-            <Grid
-              height='0'
-              position='relative'
-              top='20px'
-              right='10px'
-              display='flex'
-              flexDirection='row-reverse'
-              zIndex='2'
-            >
-              <button
-                style={{ all: 'unset' }}
-                onClick={() => {
-                  if (!token) {
-                    ErrorAlert('로그인 후 이용해주세요');
-                  } else {
-                    dispatch(postActions.heartToAxios({ postId: postId }));
-                  }
-                }}
+              <Grid
+                width='30px'
+                height='auto'
+                position='relative'
+                top='45px'
+                right='10px'
+                display='flex'
+                flexDirection='row-reverse'
+                zIndex='2'
               >
-                {post.post.heart === true ? (
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                <button
+                  style={{ all: 'unset' }}
+                  onClick={() => {
+                    if (!token) {
+                      ErrorAlert('로그인 후 이용해주세요');
+                    } else {
+                      dispatch(postActions.heartToAxios({ postId: postId }));
                     }
-                    style={{ width: '25px', height: '25px' }}
-                  />
-                ) : (
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
-                    }
-                    style={{ width: '25px', height: '25px' }}
-                  />
-                )}
-              </button>
+                  }}
+                >
+                  {post.post.heart === true ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/icon/heart_fill_icon.svg'
+                      }
+                      style={{ width: '25px', height: '25px' }}
+                    />
+                  ) : (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/icon/heart_line_icon.svg'
+                      }
+                      style={{ width: '25px', height: '25px' }}
+                    />
+                  )}
+                </button>
+              </Grid>
             </Grid>
+
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null
@@ -392,7 +394,7 @@ const Detail = (props) => {
                 <span style={{ margin: '0 5px 0 10px' }}>
                   {post.post.url === null ? (
                     '없음'
-                  ) : post.post.url.includes('http://') ? (
+                  ) : post.post.url.includes('http') ? (
                     // http:// 가 주소에 있다면
                     post.post.url.includes('instagram.com') ? (
                       <img
@@ -517,7 +519,9 @@ const Detail = (props) => {
                 >
                   특이사항
                 </p>
-                <span>{post.post.extra}</span>
+                <span style={{ whiteSpace: 'pre-line' }}>
+                  {post.post.extra}
+                </span>
               </Grid>
             </Grid>
           </Grid>

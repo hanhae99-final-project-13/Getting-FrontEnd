@@ -264,7 +264,7 @@ const AddPost = () => {
                   border: 'none',
                   width: '100%',
                   boxSizing: 'border-box',
-                  fontSize: '16px',
+                  fontSize: '14px',
                 }}
               />
             ) : (
@@ -278,7 +278,7 @@ const AddPost = () => {
                   border: 'none',
                   width: '100%',
                   boxSizing: 'border-box',
-                  fontSize: '16px',
+                  fontSize: '14px',
                 }}
               />
             )}
