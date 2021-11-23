@@ -83,7 +83,7 @@ const AddPost = () => {
     }
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true) {
+    if (nullCheck === true || url === '') {
       dispatch(postActions.addPostToAxios(postInfo));
     } else {
       WarningAlert('모든 값을 입력해주세요!');
