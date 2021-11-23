@@ -3,8 +3,6 @@ import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
 import { WarningAlert } from '../shared/Alerts';
 const Upload = (props) => {
-  console.log(props.img);
-  // console.log('수정 프롭스', props.img.length > 0);
   //다중이미지 aws s3 업로드
   AWS.config.update({
     region: 'ap-northeast-2',
@@ -12,16 +10,16 @@ const Upload = (props) => {
       IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff',
     }),
   });
-
-  let newImg = [];
   //이미지 여러개 미리보기
   const onloadFile = (e) => {
+    let newImg = [...props.img];
     const date = new Date();
     const selectImg = e.target.files;
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
       console.log(selectImg[i]);
+      console.log(nowImgUrl);
       const fileName = selectImg[i].name.split('.')[0];
       const fileType = selectImg[i].name.split('.')[1];
       console.log(fileName, fileType);
@@ -37,7 +35,6 @@ const Upload = (props) => {
 
       promise
         .then((data) => {
-          console.log(newImg);
           newImg.push(data.Location);
         })
         .catch((err) => {
@@ -45,7 +42,7 @@ const Upload = (props) => {
         });
       imgUrlList.push(nowImgUrl);
 
-      if (imgUrlList.length > 4) {
+      if (imgUrlList.length >= 4) {
         WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
         break;
       }
@@ -53,7 +50,10 @@ const Upload = (props) => {
     props.setImg(newImg);
     props.setFiles(imgUrlList);
   };
+  console.log('이미지파일', props.img);
   const deleteImg = (e) => {
+    console.log(e);
+    console.log(props.img);
     const file = props.img[e].split('/')[3];
     const s3 = new AWS.S3();
     s3.deleteObject(
@@ -76,7 +76,6 @@ const Upload = (props) => {
       );
     }
   };
-  console.log(props.files);
   return (
     <>
       <Grid display='flex' overflowX='auto'>
