@@ -31,7 +31,7 @@ const MypageWishedList = (props) => {
             <Card
               width='auto'
               imageHeight='150px'
-              margin='0 0 66px 0'
+              margin='0 0 48px 0'
               key={p.postId}
               breed={p.breed}
               sex={p.sex}

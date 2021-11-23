@@ -52,7 +52,12 @@ const Detail = (props) => {
     setEdit(true);
     setDetailModal(!detailModal);
   };
+  const toTop = () => {
+    window.scrollTo(0, 0);
+    console.log('스크롤 탑');
+  };
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(postActions.getDetailPostMW(postId));
   }, []);
 
@@ -60,7 +65,7 @@ const Detail = (props) => {
     return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
   }
   if (token && !isLogin) {
-    return <div>로딩중~</div>;
+    return <div></div>;
   }
 
   return (

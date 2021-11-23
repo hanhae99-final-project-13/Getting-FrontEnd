@@ -56,7 +56,9 @@ instance.interceptors.response.use(
     const originalReq = err.config;
     if (
       err.response.status === 400 &&
-      err.response.data.errorMessage !== '해당 입양신청서를 찾을 수 없습니다.'
+      err.response.data.errorMessage !==
+        '해당 입양신청서를 찾을 수 없습니다.' &&
+      err.response.data.errorMessage !== '회원 정보를 찾을 수 없습니다.'
     ) {
       ErrorAlert(err.response.data.errorMessage);
     }

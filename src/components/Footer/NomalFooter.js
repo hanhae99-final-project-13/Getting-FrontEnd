@@ -37,7 +37,7 @@ const NomalFooter = withRouter((props) => {
   // const { adoptionknowledge, adoption, home, mypage } = onClick;
 
   if (token && !isLogin) {
-    return <div>로딩중~</div>;
+    return <div></div>;
   }
 
   if (a.history.location.pathname === '/') return null;
@@ -60,7 +60,8 @@ const NomalFooter = withRouter((props) => {
         borderRadius='11px 11px 0px 0px;'
         display='flex'
         justifyContent='space-evenly'
-        height='84px'>
+        height='84px'
+      >
         {/* 데이터 안불러져왓을 때 null */}
         {userInfo.eduList === null ? (
           <Grid
@@ -73,7 +74,8 @@ const NomalFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <img
               width='30px'
               height='24px'
@@ -95,7 +97,8 @@ const NomalFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/fosterknowledge');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <img
               width='30px'
               height='24px'
@@ -117,7 +120,8 @@ const NomalFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}>
+            }}
+          >
             <img
               width='30px'
               height='24px'
@@ -139,7 +143,8 @@ const NomalFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}>
+          }}
+        >
           <img
             width='27.5px'
             height='24px'
@@ -160,7 +165,8 @@ const NomalFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}>
+          }}
+        >
           <img src={process.env.PUBLIC_URL + '/img/icon/home_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -177,7 +183,8 @@ const NomalFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}>
+          }}
+        >
           <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -195,7 +202,8 @@ const NomalFooter = withRouter((props) => {
             justifyContent='center'
             _onClick={() => {
               dispatch(userAction.LogOutDB());
-            }}>
+            }}
+          >
             <img
               width='24.86px'
               height='24px'
@@ -216,7 +224,8 @@ const NomalFooter = withRouter((props) => {
             justifyContent='center'
             _onClick={() => {
               history.push('/login');
-            }}>
+            }}
+          >
             <img
               width='24.86px'
               height='24px'

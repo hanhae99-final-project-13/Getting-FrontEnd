@@ -26,8 +26,6 @@ const TakeAdoptionApply = (props) => {
     return () => setShowModal(false);
   }, []);
 
-  // if (!detailFosterForm) return <div>로딩중</div>;
-
   return (
     <React.Fragment>
       <Grid
@@ -51,7 +49,26 @@ const TakeAdoptionApply = (props) => {
         >
           입양 신청서
         </Text>
-
+        <Grid
+          display='flex'
+          flexDirection='column'
+          justifyContent='center'
+          alignItems='center'
+          width='262px'
+          height='156px'
+          margin='0 auto 10px auto'
+          bg='white'
+          borderRadius='10px'
+          boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'
+        >
+          <Text margin='0 0 12px 0' size='16px' weight='700'>
+            '{detailFosterForm.name}'님의 이수현황
+          </Text>
+          <img
+            width='81.73'
+            src={process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'}
+          />
+        </Grid>
         <DefaultInfomation />
         <AdoptionReason />
         <AdoptionSurvey />
