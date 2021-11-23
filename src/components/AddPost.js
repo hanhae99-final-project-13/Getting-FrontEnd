@@ -83,11 +83,7 @@ const AddPost = () => {
     }
     const nullCheck =
       Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true) {
-      if (url.includes('https')) {
-        setUrl(url.replace('s', ''));
-      }
-      console.log(url);
+    if (nullCheck === true || url === '') {
       dispatch(postActions.addPostToAxios(postInfo));
       dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     } else {
@@ -207,8 +203,9 @@ const AddPost = () => {
             borderTop='1px solid rgba(225, 225, 225, 0.5)'
           >
             <input
+              value={'보호장소'}
               placeholder='보호장소'
-              style={{ border: 'none', width: '80%' }}
+              style={{ border: 'none', width: '80%', color: 'gray' }}
             />
             <Grid display='flex' alignItems='center'>
               개인

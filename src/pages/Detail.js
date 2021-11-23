@@ -90,24 +90,12 @@ const Detail = (props) => {
                   style={{ width: '18px', height: '18px' }}
                 />
               </p>
-
-              {user && user.nickname === post.post.nickname ? (
-                <button style={{ all: 'unset' }} onClick={onModal}>
-                  <img
-                    src={
-                      process.env.PUBLIC_URL +
-                      '/img/icon/setting_horizontal_icon.svg'
-                    }
-                    style={{ width: '12px', height: '12px' }}
-                  />
-                </button>
-              ) : null}
               <Grid
                 width='30px'
                 height='auto'
                 position='relative'
                 top='45px'
-                right='10px'
+                left='75px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
@@ -139,6 +127,22 @@ const Detail = (props) => {
                   )}
                 </button>
               </Grid>
+              {user && user.nickname === post.post.nickname ? (
+                <button style={{ all: 'unset' }} onClick={onModal}>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/img/icon/setting_horizontal_icon.svg'
+                    }
+                    style={{ width: '12px', height: '12px' }}
+                  />
+                </button>
+              ) : (
+                <button
+                  style={{ all: 'unset', width: '12px' }}
+                  onClick={onModal}
+                ></button>
+              )}
             </Grid>
 
             <Grid overflowX='hidden'>
@@ -397,7 +401,7 @@ const Detail = (props) => {
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
-                  {post.post.url === null ? (
+                  {post.post.url === null || post.post.url === '' ? (
                     '없음'
                   ) : post.post.url.includes('http') ? (
                     // http:// 가 주소에 있다면
@@ -611,6 +615,7 @@ const Detail = (props) => {
                       cancelButtonColor: '#d33',
                       confirmButtonText: '승인',
                       cancelButtonText: '취소',
+                      customClass: 'swal-font swal-borderRadius',
                     }).then((result) => {
                       if (result.isConfirmed) {
                         detailDelete();

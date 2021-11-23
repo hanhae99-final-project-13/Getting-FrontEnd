@@ -18,3 +18,9 @@ input:focus {
   background: rgb(255, 255, 255);
   cursor: pointer;
 }
+.swal-font {
+  font-size: 15px;
+}
+.swal-borderRadius {
+  border-radius:15px;
+}
