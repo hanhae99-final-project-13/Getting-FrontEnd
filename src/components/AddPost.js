@@ -22,7 +22,7 @@ const AddPost = () => {
   const [tag, setTag] = React.useState('직접등록');
   const [phone, setPhone] = React.useState('');
   const [extra, setExtra] = React.useState('');
-  const [img, setImg] = React.useState('');
+  const [img, setImg] = React.useState([]);
 
   const [sexToggle, setSexToggle] = React.useState(false);
   const [ownerTypeToggle, setOwnerTypeToggle] = React.useState(false);
