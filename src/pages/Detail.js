@@ -85,24 +85,12 @@ const Detail = (props) => {
                   style={{ width: '18px', height: '18px' }}
                 />
               </p>
-
-              {user && user.nickname === post.post.nickname ? (
-                <button style={{ all: 'unset' }} onClick={onModal}>
-                  <img
-                    src={
-                      process.env.PUBLIC_URL +
-                      '/img/icon/setting_horizontal_icon.svg'
-                    }
-                    style={{ width: '12px', height: '12px' }}
-                  />
-                </button>
-              ) : null}
               <Grid
                 width='30px'
                 height='auto'
                 position='relative'
                 top='45px'
-                right='10px'
+                left='75px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
@@ -134,6 +122,22 @@ const Detail = (props) => {
                   )}
                 </button>
               </Grid>
+              {user && user.nickname === post.post.nickname ? (
+                <button style={{ all: 'unset' }} onClick={onModal}>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/img/icon/setting_horizontal_icon.svg'
+                    }
+                    style={{ width: '12px', height: '12px' }}
+                  />
+                </button>
+              ) : (
+                <button
+                  style={{ all: 'unset', width: '12px' }}
+                  onClick={onModal}
+                ></button>
+              )}
             </Grid>
 
             <Grid overflowX='hidden'>
