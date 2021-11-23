@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
@@ -119,6 +119,15 @@ const Signup = (props) => {
     }, 900),
     [],
   );
+
+  useEffect(() => {
+    if (
+      localStorage.getItem('REFRESH_TOKEN') ||
+      localStorage.getItem('USER_TOKEN')
+    ) {
+      localStorage.clear();
+    }
+  }, []);
 
   // 휴대폰 번호전송 버튼 함수
   const sendPhoneNumber = (phoneNumberInfo) => {

@@ -35,6 +35,15 @@ const Login = (props) => {
     dispatch(userAction.GetUserDB(user));
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem('REFRESH_TOKEN') ||
+      localStorage.getItem('USER_TOKEN')
+    ) {
+      localStorage.clear();
+    }
+  }, []);
+
   return (
     <>
       <Grid maxWidth='414px' width='auto' margin='0 auto' padding='0 35px'>
