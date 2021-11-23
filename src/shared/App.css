@@ -21,3 +21,6 @@ input:focus {
 .swal-font {
   font-size: 15px;
 }
+.swal-borderRadius {
+  border-radius:15px;
+}

@@ -615,7 +615,7 @@ const Detail = (props) => {
                       cancelButtonColor: '#d33',
                       confirmButtonText: '승인',
                       cancelButtonText: '취소',
-                      customClass: 'swal-font',
+                      customClass: 'swal-font swal-borderRadius',
                     }).then((result) => {
                       if (result.isConfirmed) {
                         detailDelete();
