@@ -147,7 +147,11 @@ function App() {
           <Route path='/mypage' exact component={withMypageFooter(Mypage)} />
           <Route path='/intro' exact component={withHeaderNomalFooter(Intro)} />
           <Route path='/alarm' exact component={Alarm} />
-          <Route path='/takeapply/:id' exact component={TakeAdoptionApply} />
+          <Route
+            path='/takeapply/:id'
+            exact
+            component={withMypageFooter(TakeAdoptionApply)}
+          />
           <Route
             path='/editpost'
             exact
