@@ -23,7 +23,7 @@ const Detail = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  console.log(post);
+  console.log('aa', post);
 
   // 필수지식 수료요청 모달
   const [eduCheck, setEduCheck] = useState(false);
@@ -517,7 +517,9 @@ const Detail = (props) => {
                 >
                   특이사항
                 </p>
-                <span>{post.post.extra}</span>
+                <span style={{ whiteSpace: 'pre-line' }}>
+                  {post.post.extra}
+                </span>
               </Grid>
             </Grid>
           </Grid>
