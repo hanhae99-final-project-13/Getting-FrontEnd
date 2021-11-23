@@ -41,6 +41,7 @@ const Login = (props) => {
         <Grid width='auto' margin='122px auto 0'>
           <Grid>
             <Grid
+              cusor='pointer'
               hover='white'
               maxWidth='78px'
               width='auto'
