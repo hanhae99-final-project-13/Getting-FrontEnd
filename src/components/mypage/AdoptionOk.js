@@ -18,6 +18,8 @@ const AdoptionOk = (props) => {
           <Card
             width='auto'
             imageHeight='150px'
+            margin='0 0 33px 0'
+            noTag
             key={p.postPreview.postId}
             breed={p.postPreview.breed}
             sex={p.postPreview.sex}

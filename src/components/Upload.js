@@ -13,9 +13,9 @@ const Upload = (props) => {
     }),
   });
 
-  let newImg = [];
   //이미지 여러개 미리보기
   const onloadFile = (e) => {
+    let newImg = [...props.img];
     const date = new Date();
     const selectImg = e.target.files;
     const imgUrlList = [...props.files];
@@ -37,7 +37,6 @@ const Upload = (props) => {
 
       promise
         .then((data) => {
-          console.log(newImg);
           newImg.push(data.Location);
         })
         .catch((err) => {
@@ -77,6 +76,9 @@ const Upload = (props) => {
     }
   };
   console.log(props.files);
+
+  // React.useEffect(() => {}, [props.img]);
+
   return (
     <>
       <Grid display='flex' overflowX='auto'>

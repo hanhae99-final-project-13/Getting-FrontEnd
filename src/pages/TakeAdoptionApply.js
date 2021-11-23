@@ -26,6 +26,8 @@ const TakeAdoptionApply = (props) => {
     return () => setShowModal(false);
   }, []);
 
+  if (!detailFosterForm) return <div></div>;
+
   return (
     <React.Fragment>
       <Grid
