@@ -24,6 +24,7 @@ const Card = (props) => {
     index,
     ApplyDt,
     boxShadow,
+    noTag,
   } = props;
   const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
@@ -53,7 +54,7 @@ const Card = (props) => {
           position='absolute'
           top='-29px'
           left='0'
-          display='flex'
+          display={noTag ? 'none' : 'flex'}
           width='auto'
           height='auto'
         >

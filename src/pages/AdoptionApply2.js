@@ -152,7 +152,7 @@ const AdoptionApply2 = (props) => {
   }, [allergy, experience, timeTogether, anxiety, bark, check]);
 
   if (token && !isLogin) {
-    return <div>로딩중~</div>;
+    return <div></div>;
   }
 
   return (
@@ -161,7 +161,8 @@ const AdoptionApply2 = (props) => {
       maxWidth='414px'
       width='auto'
       margin='0 auto'
-      padding='0 35px'>
+      padding='0 35px'
+    >
       <Grid
         cusor='pointer'
         _onClick={() => {
@@ -173,7 +174,8 @@ const AdoptionApply2 = (props) => {
         top='65px'
         left='0px'
         width='25px'
-        height='25px'>
+        height='25px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -193,7 +195,8 @@ const AdoptionApply2 = (props) => {
             boxSizing='border-box'
             height='118px'
             borderTop='1px solid rgba(225, 225, 225, 0.5) '
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+          >
             <Grid height='auto'>
               <Text margin='0' bold line_height='24px'>
                 가족 구성원 중
@@ -206,11 +209,13 @@ const AdoptionApply2 = (props) => {
               display='flex'
               alignItems='center'
               height='auto'
-              margin='12px 0 0 0'>
+              margin='12px 0 0 0'
+            >
               <Text
                 color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
                 bold
-                margin='0 7px 0 0'>
+                margin='0 7px 0 0'
+              >
                 증상있음
               </Text>
               <Slider
@@ -221,7 +226,8 @@ const AdoptionApply2 = (props) => {
               <Text
                 color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
                 bold
-                margin='0  0 0 7px'>
+                margin='0  0 0 7px'
+              >
                 증상없음
               </Text>
             </Grid>
@@ -230,7 +236,8 @@ const AdoptionApply2 = (props) => {
           <Grid
             boxSizing='border-box'
             height='352px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+          >
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 만약 <span style={{ fontWeight: '800' }}> 과거</span>에
@@ -248,14 +255,16 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'></Textarea>
+                placeholder='500자 이하로 적어주세요'
+              ></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='375px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+          >
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 반려동물과
@@ -275,14 +284,16 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'></Textarea>
+                placeholder='500자 이하로 적어주세요'
+              ></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='362px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+          >
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한 반려동물이
@@ -301,14 +312,16 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'></Textarea>
+                placeholder='500자 이하로 적어주세요'
+              ></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+          >
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한{' '}
@@ -326,7 +339,8 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'></Textarea>
+                placeholder='500자 이하로 적어주세요'
+              ></Textarea>
             </Grid>
           </Grid>
 
@@ -341,7 +355,8 @@ const AdoptionApply2 = (props) => {
               ref={imageRef}
               roomUrl={roomUrl}
               setRoomUrl={setRoomUrl}
-              data2={data2}></Upload3>
+              data2={data2}
+            ></Upload3>
           </Grid>
 
           <Grid height='auto' margin='23px auto' cusor='pointer'>
@@ -355,7 +370,8 @@ const AdoptionApply2 = (props) => {
               justifyContent='center'
               alignItems='center'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-              _onClick={applyClick}>
+              _onClick={applyClick}
+            >
               <Text margin='0' color='white' weight='800'>
                 입양 신청 보내기
               </Text>

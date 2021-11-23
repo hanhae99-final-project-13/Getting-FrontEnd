@@ -5,10 +5,10 @@ import { Grid } from '../../elements';
 import Card from '../Card';
 import HaveNothing from '../HaveNothing';
 
-const AdoptionWait = (props) => {
+const AdoptionWait = ({ display }) => {
   const myApplyList = useSelector((state) => state.apply.myApplyList);
   return (
-    <Grid display={props.display}>
+    <Grid display={display}>
       {myApplyList.length !== 0 ? (
         myApplyList.map((p) => {
           if (p.acceptance !== 'waiting') {
@@ -18,6 +18,8 @@ const AdoptionWait = (props) => {
             <Card
               width='auto'
               imageHeight='150px'
+              margin='0 0 33px 0'
+              noTag
               key={p.postPreview.postId}
               breed={p.postPreview.breed}
               sex={p.postPreview.sex}

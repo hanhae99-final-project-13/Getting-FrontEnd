@@ -26,9 +26,6 @@ const Carousel2 = ({ children, innerWidth }) => {
     } else {
       startX = e.pageX - innerBox.current.offsetLeft;
     }
-    // startX =
-    //   (e.touches && e.touches[0].pageX) ||
-    //   e.pageX - innerBox.current.offsetLeft;
   };
   const sliderMouseUp = (e) => {
     isPress = false;
@@ -43,7 +40,6 @@ const Carousel2 = ({ children, innerWidth }) => {
     } else {
       x = e.pageX;
     }
-    // x = (e.touches && e.touches[0].pageX) || e.pageX;
     innerBox.current.style.left = `${x - startX}px`;
     checkBoundary();
   };

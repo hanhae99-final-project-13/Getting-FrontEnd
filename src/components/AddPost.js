@@ -85,6 +85,7 @@ const AddPost = () => {
       Object.values(postInfo).filter((check) => check === '').length === 0;
     if (nullCheck === true || url === '') {
       dispatch(postActions.addPostToAxios(postInfo));
+      dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
     } else {
       WarningAlert('모든 값을 입력해주세요!');
     }
