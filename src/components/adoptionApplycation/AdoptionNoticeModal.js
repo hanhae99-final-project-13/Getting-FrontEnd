@@ -259,16 +259,21 @@ const AdoptionNoticeModal = (props) => {
                   phone: '',
                   reason: '',
                   click: false,
-                  allergy: '',
+                }),
+              );
+              window.sessionStorage.setItem(
+                'length2',
+                JSON.stringify({
+                  allergy: '증상있음',
                   experience: '',
                   timeTogether: '',
                   anxiety: '',
                   bark: '',
                   roomUrl: '',
-                  check: '',
                   preview: '',
+                  check: false,
                 }),
-              ); //프로그래스 바용
+              );
               window.scrollTo(0, 0);
             }}>
             <Text margin='0' color='#F9F9F9' weight='800'>

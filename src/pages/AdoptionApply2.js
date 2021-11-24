@@ -1,69 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Grid, Text } from '../elements';
-
-import Slider from '../components/Slider';
-import Swal from 'sweetalert2';
-import { ErrorAlert2 } from '../shared/Alerts';
-import Upload3 from '../components/adoptionApplycation/Upload3';
-import ApplyProgressBar from '../components/adoptionApplycation/ApplyProgressBar';
-import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
-
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as useActions } from '../redux/modules/apply';
+import Slider from '../components/Slider';
+import Upload3 from '../components/adoptionApplycation/Upload3';
+import ApplyProgressBar2 from '../components/adoptionApplycation/ApplyProgressBar2';
+import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
 
 import styled from 'styled-components';
+import { Grid, Text } from '../elements';
+import Swal from 'sweetalert2';
+import { ErrorAlert2, SuccessAlert2 } from '../shared/Alerts';
 
 const AdoptionApply2 = (props) => {
-  const token = document.cookie.includes('USER_TOKEN');
-  const isLogin = useSelector((state) => state.user?.user.isLogin);
   const { history } = props;
+  const dispatch = useDispatch();
   const postId = useParams().id;
   // console.log(postId, '입양신청서2번 id');
-  const [openApplyAlert, setOpenApplyAlert] = useState(false);
+  const token = localStorage.getItem('USER_TOKEN');
+  const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  const dispatch = useDispatch();
-  const applyData = useSelector((state) => state.apply);
-  // console.log(applyData, '입양신청 1번페이지 정보');
+  // 입양신청 모달
+  const [openApplyAlert, setOpenApplyAlert] = useState(false);
+  const closeApplyAlert = () => {
+    setOpenApplyAlert(!openApplyAlert);
+  };
 
   //Upload3에 있는 s3업로드 함수 가져온것
   const imageRef = useRef();
   // console.log(imageRef.current);
 
+  // 입력 값 state
   const [allergy, setAllergy] = React.useState('증상있음');
   const [experience, setExperience] = React.useState('');
   const [timeTogether, setTimeTogether] = React.useState('');
   const [anxiety, setAnxiety] = React.useState('');
   const [bark, setBark] = React.useState('');
   const [roomUrl, setRoomUrl] = React.useState('');
-
-  // db에 전송할 데이터
-  const data = {
-    ...applyData.apply,
-    allergy: allergy,
-    experience: experience,
-    timeTogether: timeTogether,
-    anxiety: anxiety,
-    bark: bark,
-    roomUrl: roomUrl,
-  };
-  // console.log(data);
-
-  const applyData1 = JSON.parse(sessionStorage.getItem('length'));
-  // console.log(applyData1);
-
-  const data2 = {
-    ...applyData1,
-    allergy: allergy,
-    experience: experience,
-    timeTogether: timeTogether,
-    anxiety: anxiety,
-    bark: bark,
-    roomUrl: roomUrl,
-    preview: '',
-    check: '',
-  };
-  // console.log(data2);
+  const [previewImage, setPreviewImage] = useState('');
 
   // 알러지 체크함수
   const [check, setCheck] = useState(false);
@@ -76,11 +50,13 @@ const AdoptionApply2 = (props) => {
 
   //입양 신청버튼
   const applyClick = () => {
-    const sessionData = JSON.parse(window.sessionStorage.getItem('length'));
-    const DbData = (({ check, click, preview, ...o }) => o)(sessionData);
+    const apply1Data = JSON.parse(window.sessionStorage.getItem('length'));
+    const apply2Data = JSON.parse(window.sessionStorage.getItem('length2'));
+    const TotalData = { ...apply1Data, ...apply2Data };
+    const DbData = (({ check, click, preview, ...o }) => o)(TotalData);
     console.log(DbData, '서버 전달 데이터');
     const info = Object.values(DbData);
-    console.log(info, '입력안된 질문');
+    console.log(info, '입력안된 질문확인용');
 
     if (info.includes('') === true) {
       ErrorAlert2(
@@ -92,64 +68,69 @@ const AdoptionApply2 = (props) => {
     setOpenApplyAlert(!openApplyAlert);
   };
 
-  // applycheck 모달 전달용
-  const closeApplyAlert = () => {
-    setOpenApplyAlert(!openApplyAlert);
-  };
-
   //real 신청버튼
   const realApply = () => {
-    const sessionData = JSON.parse(window.sessionStorage.getItem('length'));
-    const DbData = (({ check, click, preview, ...o }) => o)(sessionData);
+    const apply1Data = JSON.parse(window.sessionStorage.getItem('length'));
+    const apply2Data = JSON.parse(window.sessionStorage.getItem('length2'));
+    const TotalData = { ...apply1Data, ...apply2Data };
+    const DbData = (({ check, click, preview, ...o }) => o)(TotalData);
     imageRef.current.upload();
     dispatch(useActions.addApplyDB(postId, DbData));
-    Swal.fire(
-      '입양신청이 완료되었습니다.',
-      '임보자님의 연락을 기다려주세요!',
-      'success',
+    SuccessAlert2(
+      '입양신청이 완료되었습니다!<br/>임보자님의 연락을 기다려주세요',
     );
     history.push('/main');
     window.sessionStorage.clear();
   };
 
   useEffect(() => {
-    const data = JSON.parse(sessionStorage.getItem('length'));
+    const data = JSON.parse(sessionStorage.getItem('length2'));
     console.log(data);
 
-    const { allergy, experience, timeTogether, anxiety, bark, check, roomUrl } =
-      data;
+    const {
+      allergy,
+      experience,
+      timeTogether,
+      anxiety,
+      bark,
+      check,
+      roomUrl,
+      preview,
+    } = data;
     setAllergy(allergy);
     setExperience(experience);
     setTimeTogether(timeTogether);
     setAnxiety(anxiety);
     setBark(bark);
     setRoomUrl(roomUrl);
-    // setCheck(check);
+    setCheck(check);
+    setPreviewImage(preview);
   }, []);
 
   useEffect(() => {
     sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data2, allergy: allergy }),
+      'length2',
+      JSON.stringify({
+        allergy: allergy,
+        experience: experience,
+        timeTogether: timeTogether,
+        anxiety: anxiety,
+        bark: bark,
+        check: check,
+        roomUrl: roomUrl,
+        preview: previewImage,
+      }),
     );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data2, experience: experience }),
-    );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data2, timeTogether: timeTogether }),
-    );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data2, anxiety: anxiety }),
-    );
-    sessionStorage.setItem('length', JSON.stringify({ ...data2, bark: bark }));
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data2, check: check }),
-    );
-  }, [allergy, experience, timeTogether, anxiety, bark, check]);
+  }, [
+    allergy,
+    experience,
+    timeTogether,
+    anxiety,
+    bark,
+    check,
+    roomUrl,
+    previewImage,
+  ]);
 
   if (token && !isLogin) {
     return <div></div>;
@@ -161,12 +142,10 @@ const AdoptionApply2 = (props) => {
       maxWidth='414px'
       width='auto'
       margin='0 auto'
-      padding='0 35px'
-    >
+      padding='0 35px'>
       <Grid
         cusor='pointer'
         _onClick={() => {
-          window.sessionStorage.removeItem('length2');
           history.goBack();
           window.scrollTo(0, 0);
         }}
@@ -174,15 +153,14 @@ const AdoptionApply2 = (props) => {
         top='65px'
         left='0px'
         width='25px'
-        height='25px'
-      >
+        height='25px'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
 
       <Grid boxSizing='border-box' margin='100px auto 0'>
-        <ApplyProgressBar />
+        <ApplyProgressBar2 />
         <Grid>
           <Grid margin='30px 0 15px 0 '>
             <Text margin='0' weight='700' size='20px'>
@@ -195,8 +173,7 @@ const AdoptionApply2 = (props) => {
             boxSizing='border-box'
             height='118px'
             borderTop='1px solid rgba(225, 225, 225, 0.5) '
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid height='auto'>
               <Text margin='0' bold line_height='24px'>
                 가족 구성원 중
@@ -209,13 +186,11 @@ const AdoptionApply2 = (props) => {
               display='flex'
               alignItems='center'
               height='auto'
-              margin='12px 0 0 0'
-            >
+              margin='12px 0 0 0'>
               <Text
                 color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
                 bold
-                margin='0 7px 0 0'
-              >
+                margin='0 7px 0 0'>
                 증상있음
               </Text>
               <Slider
@@ -226,8 +201,7 @@ const AdoptionApply2 = (props) => {
               <Text
                 color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
                 bold
-                margin='0  0 0 7px'
-              >
+                margin='0  0 0 7px'>
                 증상없음
               </Text>
             </Grid>
@@ -236,8 +210,7 @@ const AdoptionApply2 = (props) => {
           <Grid
             boxSizing='border-box'
             height='352px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 만약 <span style={{ fontWeight: '800' }}> 과거</span>에
@@ -255,16 +228,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='375px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 반려동물과
@@ -284,16 +255,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='362px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한 반려동물이
@@ -312,16 +281,14 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' bold line_height='24px'>
                 입양한{' '}
@@ -339,8 +306,7 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
@@ -355,8 +321,8 @@ const AdoptionApply2 = (props) => {
               ref={imageRef}
               roomUrl={roomUrl}
               setRoomUrl={setRoomUrl}
-              data2={data2}
-            ></Upload3>
+              preview={previewImage}
+              setPreview={setPreviewImage}></Upload3>
           </Grid>
 
           <Grid height='auto' margin='23px auto' cusor='pointer'>
@@ -370,8 +336,7 @@ const AdoptionApply2 = (props) => {
               justifyContent='center'
               alignItems='center'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-              _onClick={applyClick}
-            >
+              _onClick={applyClick}>
               <Text margin='0' color='white' weight='800'>
                 입양 신청 보내기
               </Text>

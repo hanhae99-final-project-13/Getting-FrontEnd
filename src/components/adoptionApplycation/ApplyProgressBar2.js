@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '../../elements';
 import styled from 'styled-components';
-const ApplyProgressBar = () => {
+const ApplyProgressBar2 = () => {
   return (
     <Grid
       width='100%'
@@ -9,7 +9,7 @@ const ApplyProgressBar = () => {
       bg='#EEEEEE'
       margin='10px auto 0'
       borderRadius='3px'>
-      <Bar width={(1 / 2) * 100 + '%'}></Bar>
+      <Bar width={(2 / 2) * 100 + '%'}></Bar>
     </Grid>
   );
 };
@@ -22,4 +22,4 @@ const Bar = styled.div`
   border-radius: 3px;
 `;
 
-export default ApplyProgressBar;
+export default ApplyProgressBar2;
