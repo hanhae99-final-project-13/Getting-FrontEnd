@@ -13,7 +13,7 @@ const WebSocket = () => {
   const token = document.cookie.includes('USER_TOKEN');
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
-  const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
+  const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
   const ws = StompJs.over(sock);
   ws.connect({}, () => {
     if (!token) {

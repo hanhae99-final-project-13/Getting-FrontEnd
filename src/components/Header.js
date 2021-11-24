@@ -16,7 +16,7 @@ const Header = (props) => {
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
@@ -38,7 +38,8 @@ const Header = (props) => {
         margin='0 auto'
         zIndex='3'
         left='0'
-        right='0'>
+        right='0'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             width='45px'
@@ -49,7 +50,8 @@ const Header = (props) => {
             justifyContent='center'
             _onClick={() => {
               histroy.goBack();
-            }}>
+            }}
+          >
             <img
               style={{ width: '10px' }}
               src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
@@ -65,7 +67,8 @@ const Header = (props) => {
           _onClick={() => {
             histroy.push('/main');
             // dispatch(actionCreators.updateAlarm(0));
-          }}>
+          }}
+        >
           <img
             width='50'
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
@@ -76,7 +79,8 @@ const Header = (props) => {
             display='flex'
             alignItems='center'
             justifyContent='flex-end'
-            width='375px'>
+            width='375px'
+          >
             <Grid
               borderRadius='3px'
               width='45px'
@@ -84,7 +88,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon
                 onClick={() => {
                   WarningAlert('서비스 준비중입니다');
@@ -108,7 +113,8 @@ const Header = (props) => {
                   top='-10%'
                   color='white'
                   bg='red'
-                  fontSize='10px'>
+                  fontSize='10px'
+                >
                   {/* {alarmCount} */}
                 </Grid>
               ) : null}
@@ -126,7 +132,8 @@ const Header = (props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>
