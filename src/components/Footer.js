@@ -12,9 +12,9 @@ const Footer = withRouter((props) => {
 
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
-
+  console.log(token);
   // const data = {
   //   adoptionknowledge: false,
   //   adoption: false,

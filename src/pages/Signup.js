@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { debounce } from 'lodash';
 
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
@@ -9,12 +10,12 @@ import {
   SuccessAlert2,
   ErrorAlert2,
 } from '../shared/Alerts';
+import { deleteCookie } from '../shared/Cookie';
 import { emailCheck } from '../shared/emailCheck';
 import Timer from '../components/Timer';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
 import { apis } from '../lib/axios';
-import { debounce } from 'lodash';
 
 const Signup = (props) => {
   const { history } = props;
@@ -120,6 +121,13 @@ const Signup = (props) => {
     [],
   );
 
+  useEffect(() => {
+    if (document.cookie.includes('REFRESH_TOKEN')) {
+      deleteCookie('USER_TOKEN');
+      deleteCookie('REFRESH_TOKEN');
+    }
+  }, []);
+
   // 휴대폰 번호전송 버튼 함수
   const sendPhoneNumber = (phoneNumberInfo) => {
     if (phoneNumber === '') {
@@ -193,10 +201,10 @@ const Signup = (props) => {
       return;
     }
 
-    // if (!clickCodeAuthButton) {
-    //   ErrorAlert('휴대폰 인증을 진행해 주세요.');
-    //   return;
-    // }
+    if (!clickCodeAuthButton) {
+      ErrorAlert('휴대폰 인증을 진행해 주세요.');
+      return;
+    }
 
     dispatch(userAction.SignupDB(form));
   };
@@ -210,6 +218,7 @@ const Signup = (props) => {
       padding='0 35px'
     >
       <Grid
+        cusor='pointer'
         zIndex='9999'
         _onClick={() => {
           history.goBack();

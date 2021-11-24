@@ -14,7 +14,7 @@ const MyWriteList = (props) => {
       {myPostList.map((p) => {
         return (
           <Card
-            margin='0 0 66px 0'
+            margin='0 0 49px 0'
             width='auto'
             imageHeight='150px'
             key={p.postPreview.postId}

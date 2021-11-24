@@ -6,7 +6,7 @@ import { history } from '../../redux/configureStore';
 import EssentialQuizData from '../Data/EssentialQuizData';
 
 const EssentialKnowledge = () => {
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
 
   const quizId = EssentialQuizData[0].id;
   console.log(quizId);
@@ -149,17 +149,24 @@ const EssentialKnowledge = () => {
               동물등록은 법적으로 의무사항이며, 미등록시 100만원 이하의 과태료가
               부과됩니다.
             </Text>
+
             <Grid
               borderRadius='15px'
               margin='36px auto 0'
               maxWidth='226px'
               width='100%'
               height='152px'
-              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg4.svg'}
-              bgisize='contain'
-              bgiposition='center'
-              bgirepeat='no-repeat'
-            ></Grid>
+              // bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg4.png'}
+              // bgisize='contain'
+              // bgiposition='center'
+              // bgirepeat='no-repeat'
+            >
+              <img
+                width='100%'
+                height='152px'
+                src='/img/QuizImg/QuizImg4.png'
+              />
+            </Grid>
           </Grid>
         </Grid>
 
@@ -179,17 +186,24 @@ const EssentialKnowledge = () => {
               </span>
               이 필요합니다.
             </Text>
+
             <Grid
               borderRadius='15px'
               margin='36px auto 0'
               maxWidth='226px'
               width='100%'
               height='152px'
-              bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg5.svg'}
-              bgisize='contain'
-              bgiposition='center'
-              bgirepeat='no-repeat'
-            ></Grid>
+              // bgi={process.env.PUBLIC_URL + '/img/QuizImg/QuizImg5.png'}
+              // bgisize='contain'
+              // bgiposition='center'
+              // bgirepeat='no-repeat'
+            >
+              <img
+                width='100%'
+                height='152px'
+                src='/img/QuizImg/QuizImg5.png'
+              />
+            </Grid>
           </Grid>
         </Grid>
 

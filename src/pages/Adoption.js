@@ -19,7 +19,7 @@ const Adoption = () => {
   const searchSetting = useSelector((state) => state.post.searchSetting);
   const totalPage = useSelector((state) => state.post.totalPage);
   const isLoading = useSelector((state) => state.post.isLoading);
-  const isToken = localStorage.getItem('USER_TOKEN');
+  const isToken = document.cookie.includes('USER_TOKEN');
   const cur = React.useRef();
   const old = React.useRef();
 
