@@ -69,7 +69,7 @@ const CommentWrite = (props) => {
           justifyContent='space-between'
         >
           <CommentBox
-            value={comment}
+            value={comment || ''}
             onChange={(e) => {
               setComment(e.target.value);
             }}
@@ -103,7 +103,7 @@ const CommentWrite = (props) => {
           justifyContent='space-between'
         >
           <CommentBox
-            value={comment}
+            value={comment || ''}
             onChange={(e) => {
               setComment(e.target.value);
             }}
