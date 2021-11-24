@@ -15,7 +15,7 @@ const Upload3 = forwardRef((props, ref) => {
     upload,
   }));
 
-  const { setRoomUrl, roomUrl, data2 } = props;
+  const { setRoomUrl, preview, setPreview } = props;
 
   const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
@@ -52,12 +52,12 @@ const Upload3 = forwardRef((props, ref) => {
   };
 
   //이미지 미리보기
-  const [previewImage, setPreviewImage] = useState('');
 
   //이미지 미리보기 삭제
   const deletePrevieImage = () => {
-    URL.revokeObjectURL(previewImage);
-    setPreviewImage('');
+    URL.revokeObjectURL(preview);
+    setPreview('');
+    setRoomUrl('');
   };
 
   // 이미지 핸들 함수
@@ -78,7 +78,7 @@ const Upload3 = forwardRef((props, ref) => {
     reader.onloadend = () => {
       console.log(reader.result);
       //미리보기이미지
-      setPreviewImage(reader.result);
+      setPreview(reader.result);
     };
     //우리서버에 보낼 데이터
     setRoomUrl(
@@ -86,30 +86,30 @@ const Upload3 = forwardRef((props, ref) => {
     );
   };
 
-  useEffect(() => {
-    const data = JSON.parse(sessionStorage.getItem('length'));
-    const { roomUrl, preview } = data;
+  // useEffect(() => {
+  //   const data = JSON.parse(sessionStorage.getItem('length'));
+  //   const { roomUrl, preview } = data;
 
-    setRoomUrl(roomUrl);
-    setPreviewImage(preview);
-  }, []);
+  //   setRoomUrl(roomUrl);
+  //   setPreview(preview);
+  // }, []);
 
-  useEffect(() => {
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({
-        ...data2,
-        roomUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${uploadImageFullname}`,
-      }),
-    );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({
-        ...data2,
-        preview: previewImage,
-      }),
-    );
-  }, [roomUrl, previewImage]);
+  // useEffect(() => {
+  //   sessionStorage.setItem(
+  //     'length',
+  //     JSON.stringify({
+  //       ...data2,
+  //       roomUrl: `https://docking.s3.ap-northeast-2.amazonaws.com/${uploadImageFullname}`,
+  //     }),
+  //   );
+  //   sessionStorage.setItem(
+  //     'length',
+  //     JSON.stringify({
+  //       ...data2,
+  //       preview: preview,
+  //     }),
+  //   );
+  // }, [roomUrl, preview]);
 
   if (token && !isLogin) {
     return <div></div>;
@@ -136,13 +136,12 @@ const Upload3 = forwardRef((props, ref) => {
           height='58px'
           bg='#FE7968'
           borderRadius='11px'
-          color='#FFFFFF'
-        >
+          color='#FFFFFF'>
           사진 첨부하기
         </Grid>
       </label>
 
-      {previewImage ? (
+      {preview ? (
         <Grid
           position='relative'
           bg='white'
@@ -155,8 +154,7 @@ const Upload3 = forwardRef((props, ref) => {
           boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
           display='flex'
           justifyContent='center'
-          alignItems='center'
-        >
+          alignItems='center'>
           <button
             onClick={deletePrevieImage}
             style={{
@@ -166,19 +164,17 @@ const Upload3 = forwardRef((props, ref) => {
               right: '10px',
               fontSize: '20px',
               cursor: 'pointer',
-            }}
-          >
+            }}>
             x
           </button>
           <img
-            src={previewImage}
+            src={preview}
             style={{
               maxWidth: '414px',
               width: '100%',
               height: '160px',
               objectFit: 'contain',
-            }}
-          ></img>
+            }}></img>
         </Grid>
       ) : (
         <Grid
@@ -190,8 +186,7 @@ const Upload3 = forwardRef((props, ref) => {
           borderRadius='12px'
           margin='20px auto 0px'
           boxSizing='border-box'
-          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
-        >
+          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'>
           <Grid position='absolute' top='0'>
             <Text margin='10px 0 0 10px' color='#FFFFFF' weight='700'>
               사진첨부 미리보기
@@ -202,16 +197,14 @@ const Upload3 = forwardRef((props, ref) => {
             display='flex'
             justifyContent='center'
             alignItems='center'
-            width='auto'
-          >
+            width='auto'>
             <img
               src={process.env.PUBLIC_URL + '/img/icon/camera_icon_white.svg'}
               style={{
                 width: '42px',
                 height: '35px',
                 objectFit: 'contain',
-              }}
-            ></img>
+              }}></img>
           </Grid>
         </Grid>
       )}
