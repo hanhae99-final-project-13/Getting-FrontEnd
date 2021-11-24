@@ -17,7 +17,7 @@ const WebSocket = () => {
   const ws = StompJs.over(sock);
   ws.connect({}, () => {
     if (!token) {
-      console.log('토큰없음');
+      // console.log('토큰없음');
       return null;
     }
     console.log('됨');
@@ -25,8 +25,8 @@ const WebSocket = () => {
       `/sub/${userId}`,
       async (msg) => {
         const alarmData = JSON.parse(msg.body);
-        console.log(msg);
-        console.log(alarmData);
+        // console.log(msg);
+        // console.log(alarmData);
         await dispatch(actionCreators.readAlarm(false));
         dispatch(actionCreators.updateAlarm(alarmData));
       },

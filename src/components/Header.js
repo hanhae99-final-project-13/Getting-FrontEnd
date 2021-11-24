@@ -10,7 +10,7 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
 import { WarningAlert } from '../shared/Alerts';
-
+import WebSocket from './WebSocket';
 const Header = (props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
@@ -24,6 +24,7 @@ const Header = (props) => {
   );
   return (
     <React.Fragment>
+      <WebSocket />
       <Grid
         bg='white'
         boxSizing='border-box'
@@ -92,9 +93,9 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  WarningAlert('서비스 준비중입니다');
-                  // dispatch(actionCreators.readAlarm(true));
-                  // history.push('/alarm');
+                  // WarningAlert('서비스 준비중입니다');
+                  dispatch(actionCreators.readAlarm(true));
+                  history.push('/alarm');
                 }}
                 icon={faBell}
                 color='black'

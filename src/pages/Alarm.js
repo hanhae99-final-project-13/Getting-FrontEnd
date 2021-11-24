@@ -11,9 +11,8 @@ const Alarm = () => {
     (state) => state.user.user.userInfo.alarmCount,
   );
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  // const foster = useSelector((state) => state.post.myPostList[0].formPreviews);
+  console.log(userInfo.nickname);
   const token = document.cookie.includes('USER_TOKEN');
-  console.log(userInfo);
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);
@@ -25,17 +24,41 @@ const Alarm = () => {
     }
     return;
   };
+  const createdAt = new Date();
+  const alarmTime = () => {
+    const milliSeconds = new Date() - createdAt;
+    const seconds = milliSeconds / 1000;
+    if (seconds < 60) return `방금 전`;
+
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+
+    const weeks = days / 7;
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`;
+
+    const months = days / 30;
+    if (months < 12) return `${Math.floor(months)}개월 전`;
+
+    const years = days / 365;
+    return `${Math.floor(years)}년 전`;
+  };
   React.useEffect(() => {
     dispatch(postActions.getMyPostsMW());
-    dispatch(actionCreators.loadAlarmListToAxios());
+    setTimeout(() => {
+      dispatch(actionCreators.loadAlarmListToAxios());
+    }, 10);
   }, []);
-  console.log(userInfo.alarmContent.length);
-  // console.log(foster);
-  console.log(userInfo.alarmContent);
+
   return (
     <>
       <Header></Header>
-      <Grid width='375px' margin='50px auto 0'>
+      <Grid maxWidth='414px' margin='50px auto 0'>
         <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
@@ -104,7 +127,7 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
-                  console.log(userInfo.alarmContent);
+                  console.log(alarm);
                   return (
                     <Grid
                       bg='white'
@@ -121,45 +144,43 @@ const Alarm = () => {
                           actionCreators.isReadAlarmToAxios(alarm.alarmId),
                         );
                         console.log(alarm);
-                        // history.push('/mypage')
+                        if (alarm.alarmType === 'COMMENT') {
+                          history.push(`/detail/${alarm.postId}`);
+                        }
+                        if (alarm.alarmType === 'FOSTER_FORM') {
+                          history.push(`/takeapply/${alarm.contentId}`);
+                        }
                       }}
                     >
                       <Grid
                         bg='#E8E8E8'
-                        width='50px'
-                        height='50px'
+                        width='36px'
+                        height='36px'
                         borderRadius='25px'
                         display='flex'
                         justifyContent='center'
                         alignItems='center'
                       >
-                        {alarm.alarmContent.includes(
-                          '회원가입을 축하합니다',
-                        ) ? (
+                        {alarm.alarmType === 'SIGN_UP' ? (
                           <img
                             src={
                               process.env.PUBLIC_URL +
-                              '/img/icon/welcome_icon.png'
+                              '/img/icon/signup_icon.svg'
                             }
-                            style={{ width: '25px' }}
                           />
-                        ) : alarm.alarmContent.includes(
-                            '게시글에 댓글을 등록',
-                          ) ? (
+                        ) : alarm.alarmType === 'COMMENT' ? (
                           <img
                             src={
                               process.env.PUBLIC_URL +
-                              '/img/icon/comment_icon.png'
+                              '/img/icon/comment_icon.svg'
                             }
-                            style={{ width: '25px' }}
                           />
                         ) : (
                           <img
                             src={
                               process.env.PUBLIC_URL +
-                              '/img/icon/tears_icon.png'
+                              '/img/icon/refuse_icon.svg'
                             }
-                            style={{ width: '25px' }}
                           />
                         )}
                       </Grid>
@@ -168,14 +189,58 @@ const Alarm = () => {
                         flexDirection='column'
                         boxSizing='border-box'
                         margin='0 0 0 10px'
-                        width='220px'
+                        width='78%'
                       >
-                        <Grid fontSize='12px' color='darkgrey'>
-                          {/* {' 분'} 전 */}
+                        <Grid fontSize='10px' color='darkgrey'>
+                          {/* {alarmTime(alarm.createdAt)} 전 */}
+                          {alarm.createdAt.split('.')[0]}
                         </Grid>
-                        <Grid>{alarm.alarmContent}</Grid>
-                        <Grid fontSize='12px' color='darkgrey'>
-                          {'부가 메세지'}
+                        <Grid fontSize='12px' fontWeight='800'>
+                          {alarm.alarmContent}
+                        </Grid>
+                        <Grid display='flex'>
+                          {alarm.alarmType === 'COMMENT' ? (
+                            <>
+                              <span
+                                style={{
+                                  fontSize: '10px',
+                                  color: 'darkgray',
+                                }}
+                              >
+                                "
+                              </span>
+                              <span
+                                style={{
+                                  fontSize: '10px',
+                                  height: '100%',
+                                  color: 'darkgray',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {alarm.comment}
+                              </span>
+                              <span
+                                style={{ fontSize: '10px', color: 'darkgray' }}
+                              >
+                                "
+                              </span>
+                            </>
+                          ) : alarm.alarmType === 'SIGN_UP' ? (
+                            <span
+                              style={{ fontSize: '10px', color: 'darkgray' }}
+                            >
+                              개팅에 오신 것을 환영합니다!
+                            </span>
+                          ) : alarm.alarmType === 'FOSTER_FORM' ? (
+                            <span
+                              style={{ fontSize: '10px', color: 'darkgray' }}
+                            >
+                              마이페이지 > 입양 관리 > 받은 입양 신청 탭에서
+                              확인하세요!
+                            </span>
+                          ) : null}
                         </Grid>
                       </Grid>
                     </Grid>
