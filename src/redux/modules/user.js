@@ -8,7 +8,7 @@ import {
   ErrorAlert,
   imageSuccessAlert,
 } from '../../shared/Alerts';
-import { setCookie, deleteCookie } from '../../shared/Cookie';
+import { setCookie, deleteCookie, deleteAllCookies } from '../../shared/Cookie';
 
 //유저정보 액션
 const SET_USER = 'SET_USER';
@@ -119,7 +119,7 @@ const GetUserDB = (user) => {
 // 로그아웃
 const LogOutDB = () => {
   return function (dispatch, getState, { history }) {
-    // localStorage.clear();
+    console.log('로그아웃 중');
     deleteCookie('USER_TOKEN');
     deleteCookie('REFRESH_TOKEN');
     dispatch(LogOut());
@@ -192,6 +192,8 @@ const KakaoLogin = (code) => {
         // window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
         setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
         setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
+        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
+        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
         const user = {
           userInfo: {
             email: res.data.data.email,
@@ -206,7 +208,8 @@ const KakaoLogin = (code) => {
         };
         dispatch(SetUser(user));
         // window.alert('성공적으로 로그인이 되었습니다!!');
-        history.push('/main');
+        console.log(document.cookie);
+        history.replace('/main');
       })
       .catch((error) => {
         // error.response.data.data.message

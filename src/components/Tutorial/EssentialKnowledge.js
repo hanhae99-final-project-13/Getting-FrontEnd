@@ -164,7 +164,7 @@ const EssentialKnowledge = () => {
               <img
                 width='100%'
                 height='152px'
-                src='/img/QuizImg/QuizImg4.png'
+                src={process.env.PUBLIC_URL + '/img/QuizImg/Quizimg4.png'}
               />
             </Grid>
           </Grid>
@@ -201,7 +201,7 @@ const EssentialKnowledge = () => {
               <img
                 width='100%'
                 height='152px'
-                src='/img/QuizImg/QuizImg5.png'
+                src={process.env.PUBLIC_URL + '/img/QuizImg/Quizimg5.png'}
               />
             </Grid>
           </Grid>
