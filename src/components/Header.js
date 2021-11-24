@@ -16,11 +16,8 @@ const Header = (props) => {
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-<<<<<<< HEAD
   const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
-=======
->>>>>>> 21c0a8ebbf0a19ba5e4973e350f482acd1c95649
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
