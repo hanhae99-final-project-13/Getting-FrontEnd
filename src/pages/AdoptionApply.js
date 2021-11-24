@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { applyActions as userActions } from '../redux/modules/apply';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import AdoptionApply2 from './AdoptionApply2';
 
 import { Grid, Text, Input } from '../elements';
 import Slider from '../components/Slider';
@@ -15,16 +13,13 @@ import { ErrorAlert2 } from '../shared/Alerts';
 import styled from 'styled-components';
 
 const AdoptionApply = (props) => {
+  const { history } = props;
   const postID = useParams().id;
   // console.log(postID, '입양신청서 1번 id');
-  const userInfo = useSelector((state) => state.user?.user.userInfo);
-  // console.log(userInfo.phone, '미리받은 번호1');
-
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  const dispatch = useDispatch();
-  const { history } = props;
+  //입력 값 state
   const [name, setName] = React.useState('');
   const [job, setJob] = React.useState('');
   const [fosterAge, setFosterAge] = React.useState('20');
@@ -34,12 +29,6 @@ const AdoptionApply = (props) => {
   const [family, setFamily] = React.useState('');
   const [currentPet, setCurrentPet] = React.useState('있음');
   const [reason, setReason] = React.useState('');
-  // const [allergy, setAllergy] = React.useState('있음');
-  // const [experience, setExperience] = React.useState('있음');
-  // const [timeTogether, setTimeTogether] = React.useState('');
-  // const [anxiety, setAnxiety] = React.useState('');
-  // const [bark, setBark] = React.useState('');
-  // const [roomUrl, setRoomUrl] = React.useState('');
   const [phone, setPhone] = React.useState();
 
   // 성별 option, handleChange함수
@@ -51,34 +40,12 @@ const AdoptionApply = (props) => {
     setGender(e.target.value);
   };
 
-  // 나이 option, handleChange함수
-  // AgeData는 type이 number인데 setAge로들어가면 string으로 나옴. 그래서 type string으로 서버에넘김
+  // 나이 data, handleChange함수
   const AGEOPTION = AgeData;
   const handleAgeChange = (e) => {
     setFosterAge(e.target.value);
     // console.log(typeof AGEOPTION[0].value);
   };
-
-  // 서버에 전달할 데이터
-
-  const data = {
-    name: name,
-    job: job,
-    fosterAge: fosterAge,
-    gender: gender,
-    fosterAddress: address + siAddress,
-    family: family,
-    currentPet: currentPet,
-    phone: phone,
-    reason: reason,
-    // allergy: '',
-    // experience: '',
-    // timeTogether: '',
-    // anxiety: '',
-    // bark: '',
-    // roomUrl: '',
-  };
-  console.log(data);
 
   // 반려동물 체크함수
   const [click, setClick] = useState(false);
@@ -91,10 +58,31 @@ const AdoptionApply = (props) => {
   };
   console.log(click);
 
-  // 주소 입력 오픈 모달
+  // 주소 입력 모달
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
+  };
+
+  // 다음페이지 버튼
+  const NextPage = () => {
+    const sessionData = JSON.parse(window.sessionStorage.getItem('length'));
+    const DbData = (({ click, ...o }) => o)(sessionData);
+
+    const info = Object.values(DbData);
+    console.log(info, '입력안된 질문 확인용');
+
+    if (info.includes('') === true) {
+      ErrorAlert2('정보를 모두 입력해주셔야합니다.', 'bottom');
+      return;
+    }
+
+    if (phone.length > 11 || phone.length < 9) {
+      ErrorAlert2('휴대폰번호를 9~11자리로<br/> 입력해주세요.', 'bottom');
+      return;
+    }
+    history.push(`/apply2/${postID}`);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
@@ -143,35 +131,21 @@ const AdoptionApply = (props) => {
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem('length', JSON.stringify({ ...data, name: name }));
-    sessionStorage.setItem('length', JSON.stringify({ ...data, job: job }));
     sessionStorage.setItem(
       'length',
-      JSON.stringify({ ...data, fosterAge: fosterAge }),
+      JSON.stringify({
+        name: name,
+        job: job,
+        fosterAge: fosterAge,
+        gender: gender,
+        fosterAddress: address + siAddress,
+        family: family,
+        currentPet: currentPet,
+        phone: phone,
+        reason: reason,
+        click: click,
+      }),
     );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data, gender: gender }),
-    );
-
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data, fosterAddress: address + siAddress }),
-    );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data, family: family }),
-    );
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data, currentPet: currentPet }),
-    );
-    sessionStorage.setItem('length', JSON.stringify({ ...data, phone: phone }));
-    sessionStorage.setItem(
-      'length',
-      JSON.stringify({ ...data, reason: reason }),
-    );
-    sessionStorage.setItem('length', JSON.stringify({ ...data, click: click }));
   }, [
     name,
     job,
@@ -407,28 +381,7 @@ const AdoptionApply = (props) => {
             justifyContent='center'
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={() => {
-              if (phone.length > 11 || phone.length < 9) {
-                ErrorAlert2('휴대폰번호를 9~11자리로 입력해주세요.', 'bottom');
-                return;
-              }
-              const sessionData = JSON.parse(
-                window.sessionStorage.getItem('length'),
-              );
-              const DbData = (({ click, ...o }) => o)(sessionData);
-
-              const info = Object.values(DbData);
-              console.log(info, '입력안된 질문 확인용');
-
-              if (info.includes('') === true) {
-                ErrorAlert2('정보를 모두 입력해주셔야합니다.', 'bottom');
-                return;
-              }
-              dispatch(userActions.addApply(data));
-              history.push(`/apply2/${postID}`);
-              window.scrollTo(0, 0);
-              window.sessionStorage.setItem('length2', 'length2'); //프로그래스 바용
-            }}>
+            _onClick={NextPage}>
             <Text margin='0' color='#FFFFFF' weight='800'>
               다음 페이지로
             </Text>
