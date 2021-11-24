@@ -20,7 +20,7 @@ const AdoptionApply = (props) => {
   const userInfo = useSelector((state) => state.user?.user.userInfo);
   // console.log(userInfo.phone, '미리받은 번호1');
 
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   const dispatch = useDispatch();

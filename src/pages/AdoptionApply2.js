@@ -15,7 +15,7 @@ import { applyActions as useActions } from '../redux/modules/apply';
 import styled from 'styled-components';
 
 const AdoptionApply2 = (props) => {
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
   const { history } = props;
   const postId = useParams().id;

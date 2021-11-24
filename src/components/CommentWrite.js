@@ -5,7 +5,7 @@ import { Grid } from '../elements/';
 import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
 const CommentWrite = (props) => {
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   // console.log('코멘트', props);
   const postId = props.postId;
   if (props.comment) {

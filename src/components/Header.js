@@ -16,7 +16,6 @@ const Header = (props) => {
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const isToken = localStorage.getItem('USER_TOKEN');
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,

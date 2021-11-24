@@ -29,7 +29,7 @@ const AcceptComplete = ({ name }) => {
           입양을 승인했습니다!
         </Text>
         <Text margin='0' weight='700' size='12px'>
-          님이 기재해놓은 연락처로
+          *{name}님이 기재해놓은 연락처로
         </Text>
         <Text margin='7px 0 43px 0' weight='700' size='12px'>
           꼭 <Red>개별연락</Red>을 취해주시길 바랍니다
