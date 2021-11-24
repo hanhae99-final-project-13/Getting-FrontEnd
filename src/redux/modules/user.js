@@ -290,6 +290,21 @@ const deleteAlarmToAxios = () => {
   };
 };
 
+const isReadAlarmToAxios = (alarmId) => {
+  console.log(alarmId);
+  return (dispatch) => {
+    apis
+      .isReadAlarm(alarmId)
+      .then((res) => {
+        // 받아오는 데이터 true이면 안읽음, false면 읽음처리하면 된다.
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
@@ -379,6 +394,7 @@ const actionCreators = {
   checkError,
   updateAlarm,
   readAlarm,
+  isReadAlarmToAxios,
 };
 
 export { actionCreators };

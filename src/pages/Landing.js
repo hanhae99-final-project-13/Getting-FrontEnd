@@ -11,40 +11,78 @@ const Landing = () => {
       <Grid maxWidth='414px' margin='0 auto' height='80vh'>
         <Grid>
           <StyledSlider {...settings}>
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
-              style={{
-                width: '100%',
-              }}
-            />
-            {/* <Grid> */}
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing2.svg'}
-              style={{
-                width: '100%',
-              }}
-            />
-            {/* <img
-                src={process.env.PUBLIC_URL + '/img/GUIicon/2.png'}
+            <Grid>
+              <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
                 style={{
-                  position: 'relative',
-                  width: '150%',
-                  top: '-450px',
+                  maxWidth: '100%',
+                  margin: '0 auto',
                 }}
-              /> */}
-            {/* </Grid> */}
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing3.svg'}
-              style={{
-                width: '100%',
-              }}
-            />
-            <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing4.svg'}
-              style={{
-                width: '100%',
-              }}
-            />
+              />
+            </Grid>
+            <Grid>
+              <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/landing2.svg'}
+                style={{
+                  maxWidth: '100%',
+                  margin: '0 auto',
+                }}
+              />
+              <Grid>
+                <img
+                  src={process.env.PUBLIC_URL + '/img/GUIicon/landing22.png'}
+                  style={{
+                    position: 'relative',
+                    width: '150px',
+                    top: '-479px',
+                    left: '62px',
+                    margin: '0 auto',
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid>
+              <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/landing3.svg'}
+                style={{
+                  maxWidth: '100%',
+                  margin: '0 auto',
+                }}
+              />
+              <Grid>
+                <img
+                  src={process.env.PUBLIC_URL + '/img/GUIicon/landing33.png'}
+                  style={{
+                    position: 'relative',
+                    width: '150px',
+                    top: '-457px',
+                    left: '-68px',
+                    margin: '0 auto',
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid>
+              <img
+                src={process.env.PUBLIC_URL + '/img/GUIicon/landing4.svg'}
+                style={{
+                  maxWidth: '100%',
+                  margin: '0 auto',
+                }}
+              />
+              <Grid>
+                <img
+                  src={process.env.PUBLIC_URL + '/img/GUIicon/landing44.png'}
+                  style={{
+                    position: 'relative',
+                    width: '150px',
+                    top: '-457px',
+                    left: '70px',
+                    margin: '0 auto',
+                  }}
+                />
+              </Grid>
+            </Grid>
           </StyledSlider>
           <div
             style={{
@@ -57,7 +95,7 @@ const Landing = () => {
           >
             <ButtonBox
               onClick={() => {
-                history.push('/signup');
+                history.push('/main');
               }}
             >
               <Button>시작하기</Button>
