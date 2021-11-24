@@ -16,7 +16,8 @@ const Header = (props) => {
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const isToken = localStorage.getItem('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
+  // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
@@ -73,7 +74,7 @@ const Header = (props) => {
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
           />
         </Grid>
-        {isLogin ? (
+        {token ? (
           <Grid
             display='flex'
             alignItems='center'
@@ -99,7 +100,7 @@ const Header = (props) => {
                 color='black'
                 fontSize='1x'
               />
-              {isRead === true ? null : (
+              {isRead === false ? (
                 <Grid
                   display='flex'
                   alignItems='center'
@@ -116,7 +117,7 @@ const Header = (props) => {
                 >
                   {/* {alarmCount} */}
                 </Grid>
-              )}
+              ) : null}
             </Grid>
           </Grid>
         ) : (

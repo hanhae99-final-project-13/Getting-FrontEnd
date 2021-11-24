@@ -32,7 +32,6 @@ const Alarm = () => {
   console.log(userInfo.alarmContent.length);
   // console.log(foster);
   console.log(userInfo.alarmContent);
-  // console.log(foster.fil);
   return (
     <>
       <Header></Header>
@@ -52,11 +51,11 @@ const Alarm = () => {
             alignItems='center'
           >
             <Text size='12px'>
-              새로운 알림{' '}
+              {/* 새로운 알림{' '}
               <span style={{ color: 'red', fontSize: '12px' }}>
                 {alarmCount}
               </span>
-              개
+              개 */}
             </Text>
             <button
               style={{
@@ -110,7 +109,7 @@ const Alarm = () => {
                     <Grid
                       bg='white'
                       height='60px'
-                      padding='10px 5px'
+                      padding='10px 10px'
                       borderRadius='15px'
                       width='auto'
                       display='flex'
@@ -118,17 +117,61 @@ const Alarm = () => {
                       margin='15px 0'
                       boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
                       _onClick={() => {
-                        history.push('/mypage', { from: 'alarm' });
+                        dispatch(
+                          actionCreators.isReadAlarmToAxios(alarm.alarmId),
+                        );
+                        console.log(alarm);
+                        // history.push('/mypage')
                       }}
                     >
-                      <Image margin='0 10px' size='50' />
+                      <Grid
+                        bg='#E8E8E8'
+                        width='50px'
+                        height='50px'
+                        borderRadius='25px'
+                        display='flex'
+                        justifyContent='center'
+                        alignItems='center'
+                      >
+                        {alarm.alarmContent.includes(
+                          '회원가입을 축하합니다',
+                        ) ? (
+                          <img
+                            src={
+                              process.env.PUBLIC_URL +
+                              '/img/icon/welcome_icon.png'
+                            }
+                            style={{ width: '25px' }}
+                          />
+                        ) : alarm.alarmContent.includes(
+                            '게시글에 댓글을 등록',
+                          ) ? (
+                          <img
+                            src={
+                              process.env.PUBLIC_URL +
+                              '/img/icon/comment_icon.png'
+                            }
+                            style={{ width: '25px' }}
+                          />
+                        ) : (
+                          <img
+                            src={
+                              process.env.PUBLIC_URL +
+                              '/img/icon/tears_icon.png'
+                            }
+                            style={{ width: '25px' }}
+                          />
+                        )}
+                      </Grid>
                       <Grid
                         display='flex'
                         flexDirection='column'
                         boxSizing='border-box'
+                        margin='0 0 0 10px'
+                        width='220px'
                       >
                         <Grid fontSize='12px' color='darkgrey'>
-                          {' 분'} 전
+                          {/* {' 분'} 전 */}
                         </Grid>
                         <Grid>{alarm.alarmContent}</Grid>
                         <Grid fontSize='12px' color='darkgrey'>
