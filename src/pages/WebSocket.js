@@ -10,7 +10,7 @@ const WebSocket = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
   console.log(userId);
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
   const sock = new SockJS(`http://52.78.159.191/ws-stomp`);

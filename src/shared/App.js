@@ -61,7 +61,8 @@ import Test from '../pages/Test';
 
 function App() {
   const dispatch = useDispatch();
-  const isToken = window.localStorage.getItem('USER_TOKEN') ? true : false;
+  const isToken = document.cookie.includes('USER_TOKEN');
+
   console.log(isToken, '로그인 토큰 체크');
 
   React.useEffect(() => {

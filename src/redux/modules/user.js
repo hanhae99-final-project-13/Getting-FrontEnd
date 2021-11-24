@@ -8,8 +8,7 @@ import {
   ErrorAlert,
   imageSuccessAlert,
 } from '../../shared/Alerts';
-import { faBullseye } from '@fortawesome/free-solid-svg-icons';
-import { SignalCellularConnectedNoInternet1Bar } from '@material-ui/icons';
+import { setCookie, deleteCookie } from '../../shared/Cookie';
 
 //유저정보 액션
 const SET_USER = 'SET_USER';
@@ -85,25 +84,10 @@ const GetUserDB = (user) => {
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
 
-        window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
-        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-        // setTimeout(() => {
-        //   const accessToken = localStorage.getItem('USER_TOKEN');
-        //   const refreshToken = localStorage.getItem('REFRESH_TOKEN');
-        //   apis
-        //     .refresh({
-        //       accessToken,
-        //       refreshToken,
-        //     })
-        //     .then((res) => {
-        //       console.log(res.data);
-        //       localStorage.setItem('USER_TOKEN', res.data.accessToken);
-        //       localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //     });
-        // }, 10000);
+        // window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        // window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
+        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -135,7 +119,9 @@ const GetUserDB = (user) => {
 // 로그아웃
 const LogOutDB = () => {
   return function (dispatch, getState, { history }) {
-    localStorage.clear();
+    // localStorage.clear();
+    deleteCookie('USER_TOKEN');
+    deleteCookie('REFRESH_TOKEN');
     dispatch(LogOut());
     imageSuccessAlert('로그아웃 되셨습니다');
     history.push('/main');
@@ -202,8 +188,10 @@ const KakaoLogin = (code) => {
         console.log('카카오 로그인정보', res.data.data);
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
-        window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
-        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+        // window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        // window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
+        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
         const user = {
           userInfo: {
             email: res.data.data.email,

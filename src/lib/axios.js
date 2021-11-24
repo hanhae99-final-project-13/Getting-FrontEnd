@@ -15,8 +15,15 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     console.log(config);
-    const aToken = localStorage.getItem('USER_TOKEN');
-    if (!aToken) {
+    const cookie = document.cookie;
+    const aToken = cookie.split(';')[0].split('=')[1];
+    const isAToken = cookie.includes('USER_TOKEN');
+    const isRToken = cookie.includes('REFRESH_TOKEN');
+    // if (!isAToken && isRToken) {
+    //   apis
+    //     .refresh({})
+    // }
+    if (!isAToken) {
       return config;
     }
 

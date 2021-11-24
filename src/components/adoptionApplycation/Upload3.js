@@ -17,7 +17,7 @@ const Upload3 = forwardRef((props, ref) => {
 
   const { setRoomUrl, roomUrl, data2 } = props;
 
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   // s3 연결
