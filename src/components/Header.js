@@ -10,23 +10,21 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
 import { WarningAlert } from '../shared/Alerts';
-
+import WebSocket from './WebSocket';
 const Header = (props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-<<<<<<< HEAD
   const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
-=======
->>>>>>> 21c0a8ebbf0a19ba5e4973e350f482acd1c95649
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
   );
   return (
     <React.Fragment>
+      <WebSocket />
       <Grid
         bg='white'
         boxSizing='border-box'
@@ -77,7 +75,7 @@ const Header = (props) => {
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
           />
         </Grid>
-        {token ? (
+        {isLogin ? (
           <Grid
             display='flex'
             alignItems='center'
@@ -95,9 +93,9 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  WarningAlert('서비스 준비중입니다');
-                  // dispatch(actionCreators.readAlarm(true));
-                  // history.push('/alarm');
+                  // WarningAlert('서비스 준비중입니다');
+                  dispatch(actionCreators.readAlarm(true));
+                  history.push('/alarm');
                 }}
                 icon={faBell}
                 color='black'

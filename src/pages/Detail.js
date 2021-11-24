@@ -169,7 +169,8 @@ const Detail = (props) => {
               </StyledSlider>
             </Grid>
           </Grid>
-          {user.eduList === null ? null : user &&
+          {post.post.isAdopted !== 'ABANDONED' ? null : user.eduList ===
+            null ? null : user &&
             user.nickname === post.post.nickname ? null : post.post.tag !==
             '직접등록' ? null : user.eduList[0] &&
             user.eduList[0].필수지식 === true ? (
