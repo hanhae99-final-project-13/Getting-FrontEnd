@@ -18,11 +18,8 @@ const Upload = (props) => {
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
       const nowImgUrl = URL.createObjectURL(selectImg[i]);
-      console.log(selectImg[i]);
-      console.log(nowImgUrl);
       const fileName = selectImg[i].name.split('.')[0];
       const fileType = selectImg[i].name.split('.')[1];
-      console.log(fileName, fileType);
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'docking',
