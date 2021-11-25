@@ -28,7 +28,7 @@ const Landing = () => {
                   margin: '0 auto',
                 }}
               />
-              <Grid>
+              <Grid height='10px'>
                 <img
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing22.png'}
                   style={{
@@ -49,7 +49,7 @@ const Landing = () => {
                   margin: '0 auto',
                 }}
               />
-              <Grid>
+              <Grid height='10px'>
                 <img
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing33.png'}
                   style={{
@@ -70,7 +70,7 @@ const Landing = () => {
                   margin: '0 auto',
                 }}
               />
-              <Grid>
+              <Grid height='10px'>
                 <img
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing44.png'}
                   style={{

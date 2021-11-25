@@ -10,6 +10,7 @@ import {
 } from '../components/main';
 import { postActions } from '../redux/modules/post';
 const Main = (props) => {
+  // const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
