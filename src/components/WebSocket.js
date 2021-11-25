@@ -113,7 +113,7 @@ export default function WebSocket() {
       console.log(err);
     }
     return null;
-  }, []);
+  }, [token]);
 
   // console.log('현재 페이지 =====>', window.location.pathname);
   // const history = useHistory();
