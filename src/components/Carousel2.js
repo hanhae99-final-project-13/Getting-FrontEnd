@@ -30,12 +30,10 @@ const Carousel2 = ({ children, innerWidth }) => {
   const sliderMouseUp = (e) => {
     if (!isPress) return;
     isPress = false;
-    console.log('손땜');
   };
   const sliderMouseLeave = (e) => {
     if (!isPress) return;
     isPress = false;
-    console.log('손땜');
   };
   const sliderMouseMove = (e) => {
     if (!isPress) return;
