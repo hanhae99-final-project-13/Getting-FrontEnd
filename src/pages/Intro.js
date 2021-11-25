@@ -14,8 +14,16 @@ const Intro = () => {
           <Grid
             display='flex'
             justifyContent='center'
-            alignItems='center'></Grid>
-          <Grid display='flex' height='100%' overflowX='hidden'>
+            alignItems='center'
+          ></Grid>
+          <Grid
+            display='flex'
+            height='100%'
+            margin='15px 0'
+            alignItems='center'
+            overflowX='hidden'
+            height='80vh'
+          >
             <StyledSlider {...settings}>
               <Grid
                 display='flex'
@@ -24,7 +32,8 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'>
+                border='solid 0.5px #DFDFDF'
+              >
                 <img
                   style={{
                     width: '305px',
@@ -41,7 +50,8 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'>
+                border='solid 0.5px #DFDFDF'
+              >
                 <img
                   style={{
                     width: '305px',
@@ -58,7 +68,8 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'>
+                border='solid 0.5px #DFDFDF'
+              >
                 <img
                   style={{
                     width: '305px',
@@ -75,7 +86,8 @@ const Intro = () => {
                 justifyContent='center'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'>
+                border='solid 0.5px #DFDFDF'
+              >
                 <img
                   style={{
                     width: '305px',
