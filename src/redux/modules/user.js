@@ -83,10 +83,10 @@ const GetUserDB = (user) => {
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
 
-        // window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
-        // window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
-        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
+        window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+        // setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
+        // setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -119,8 +119,9 @@ const GetUserDB = (user) => {
 const LogOutDB = () => {
   return function (dispatch, getState, { history }) {
     console.log('로그아웃 중');
-    deleteCookie('USER_TOKEN');
-    deleteCookie('REFRESH_TOKEN');
+    // deleteCookie('USER_TOKEN');
+    // deleteCookie('REFRESH_TOKEN');
+    localStorage.clear();
     dispatch(LogOut());
     imageSuccessAlert('로그아웃 되셨습니다');
     history.push('/main');
@@ -187,12 +188,11 @@ const KakaoLogin = (code) => {
         console.log('카카오 로그인정보', res.data.data);
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
-        // window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
-        // window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
-        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
-        setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
-        setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
+        window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
+        window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
+
+        // setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
+        // setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
         const user = {
           userInfo: {
             email: res.data.data.email,

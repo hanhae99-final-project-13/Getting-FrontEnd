@@ -21,7 +21,7 @@ const Mypage = () => {
   const [adoptionCheckDisplay, setAdoptionCheckDisplay] =
     React.useState('none');
   const [dockingCheck, setDockingCheck] = React.useState('none');
-  const isToken = document.cookie.includes('USER_TOKEN');
+  const isToken = localStorage.getItem('USER_TOKEN');
   const showWishedList = (a) => {
     setAdoptionCheckDisplay('none');
     setDockingCheck('none');

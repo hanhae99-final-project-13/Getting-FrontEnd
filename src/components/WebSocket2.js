@@ -19,26 +19,26 @@ export default function WebSocket() {
   const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
   const ws = StompJs.over(sock);
 
-  // React.useEffect(() => {
-  //   ws.connect({}, () => {
-  //     if (!isToken) {
-  //       // console.log('토큰없음');
-  //       return null;
-  //     }
-  //     console.log('됨');
-  //     ws.subscribe(
-  //       `/sub/${userId}`,
-  //       async (msg) => {
-  //         const alarmData = JSON.parse(msg.body);
-  //         // console.log(msg);
-  //         // console.log(alarmData);
-  //         await dispatch(actionCreators.readAlarm(false));
-  //         dispatch(actionCreators.updateAlarm(alarmData));
-  //       },
-  //       { token },
-  //     );
-  //   });
-  // }, []);
+  React.useEffect(() => {
+    ws.connect({}, () => {
+      if (!isToken) {
+        // console.log('토큰없음');
+        return null;
+      }
+      console.log('됨');
+      ws.subscribe(
+        `/sub/${userId}`,
+        async (msg) => {
+          const alarmData = JSON.parse(msg.body);
+          // console.log(msg);
+          // console.log(alarmData);
+          await dispatch(actionCreators.readAlarm(false));
+          dispatch(actionCreators.updateAlarm(alarmData));
+        },
+        { token },
+      );
+    });
+  }, []);
 
   // const connect = () => {
   //   client.current = new StompJs.Client({
@@ -86,39 +86,39 @@ export default function WebSocket() {
   //   if (!isToken) return null;
   //   connect();
   // }, []);
-  const wsConnectSubscribe = React.useCallback(async () => {
-    if (!token) {
-      return null;
-    }
-    try {
-      ws.connect({}, () => {
-        if (!token) {
-          // console.log('토큰없음');
-          return null;
-        }
-        console.log('됨');
-        ws.subscribe(
-          `/sub/${userId}`,
-          async (msg) => {
-            const alarmData = JSON.parse(msg.body);
-            // console.log(msg);
-            // console.log(alarmData);
-            await dispatch(actionCreators.readAlarm(false));
-            dispatch(actionCreators.updateAlarm(alarmData));
-          },
-          { token },
-        );
-      });
-    } catch (err) {
-      console.log(err);
-    }
-    return null;
-  }, [token]);
+  // const wsConnectSubscribe = React.useCallback(async () => {
+  //   if (!token) {
+  //     return null;
+  //   }
+  //   try {
+  //     ws.connect({}, () => {
+  //       if (!token) {
+  //         // console.log('토큰없음');
+  //         return null;
+  //       }
+  //       console.log('됨');
+  //       ws.subscribe(
+  //         `/sub/${userId}`,
+  //         async (msg) => {
+  //           const alarmData = JSON.parse(msg.body);
+  //           // console.log(msg);
+  //           // console.log(alarmData);
+  //           await dispatch(actionCreators.readAlarm(false));
+  //           dispatch(actionCreators.updateAlarm(alarmData));
+  //         },
+  //         { token },
+  //       );
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return null;
+  // }, []);
 
   // console.log('현재 페이지 =====>', window.location.pathname);
   // const history = useHistory();
 
-  return [wsConnectSubscribe];
+  return <div></div>;
 }
 // const wsConnectSubscribe = React.useCallback(async () => {
 //   if (!isToken) {

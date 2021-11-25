@@ -61,7 +61,7 @@ import Test from '../pages/Test';
 
 function App() {
   const dispatch = useDispatch();
-  const isToken = document.cookie.includes('USER_TOKEN');
+  const isToken = localStorage.getItem('USER_TOKEN');
 
   console.log(isToken, '로그인 토큰 체크');
 

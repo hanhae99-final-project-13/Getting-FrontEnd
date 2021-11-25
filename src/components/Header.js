@@ -11,25 +11,26 @@ import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
 import { WarningAlert } from '../shared/Alerts';
 import WebSocket from './WebSocket';
+import WebSocket2 from './WebSocket2';
 const Header = (props) => {
   // const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
   );
-  React.useEffect(() => {
-    if (!token) {
-      return null;
-    }
-    // wsConnectSubscribe();
-    // return null;
-  }, []);
+  // React.useEffect(() => {
+  //   if (!token) {
+  //     return null;
+  //   }
+  //   wsConnectSubscribe();
+  //   return null;
+  // }, []);
   return (
     <React.Fragment>
       <Grid
@@ -100,9 +101,9 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  // WarningAlert('서비스 준비중입니다');
-                  dispatch(actionCreators.readAlarm(true));
-                  history.push('/alarm');
+                  WarningAlert('서비스 준비중입니다');
+                  // dispatch(actionCreators.readAlarm(true));
+                  // history.push('/alarm');
                 }}
                 icon={faBell}
                 color='black'
