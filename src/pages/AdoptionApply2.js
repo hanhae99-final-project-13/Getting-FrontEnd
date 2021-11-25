@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyActions as useActions } from '../redux/modules/apply';
 import Slider from '../components/Slider';
+import Upload2 from '../components/adoptionApplycation/Upload2';
 import Upload3 from '../components/adoptionApplycation/Upload3';
 import ApplyProgressBar2 from '../components/adoptionApplycation/ApplyProgressBar2';
 import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
 
 import styled from 'styled-components';
-import { Grid, Text } from '../elements';
+import { Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { ErrorAlert2, SuccessAlert2 } from '../shared/Alerts';
 
@@ -26,7 +27,10 @@ const AdoptionApply2 = (props) => {
     setOpenApplyAlert(!openApplyAlert);
   };
 
-  //Upload3에 있는 s3업로드 함수 가져온것
+  //Upload2에 있는 s3업로드 함수 가져온것 (지내게 될 곳)
+  const imageRef2 = useRef();
+
+  //Upload3에 있는 s3업로드 함수 가져온것 (지내게 될 곳)
   const imageRef = useRef();
   // console.log(imageRef.current);
 
@@ -34,8 +38,14 @@ const AdoptionApply2 = (props) => {
   const [allergy, setAllergy] = React.useState('증상있음');
   const [experience, setExperience] = React.useState('');
   const [timeTogether, setTimeTogether] = React.useState('');
+  const [leaveHome, setLeaveHome] = React.useState('');
+  const [vaccinationPrice, setVaccinationPrice] = React.useState('');
+  const [oneMonthPrice, setOneMonthPrice] = React.useState('');
   const [anxiety, setAnxiety] = React.useState('');
   const [bark, setBark] = React.useState('');
+  const [etc, setEtc] = React.useState('');
+  const [signUrl, setSignUrl] = React.useState('');
+  const [signPreviewImage, setSignPreviewImage] = useState('');
   const [roomUrl, setRoomUrl] = React.useState('');
   const [previewImage, setPreviewImage] = useState('');
 
@@ -62,8 +72,10 @@ const AdoptionApply2 = (props) => {
     const apply1Data = JSON.parse(window.sessionStorage.getItem('length'));
     const apply2Data = JSON.parse(window.sessionStorage.getItem('length2'));
     const TotalData = { ...apply1Data, ...apply2Data };
-    const DbData = (({ check, click, preview, ...o }) => o)(TotalData);
-
+    const DbData = (({ check, click, roomPreview, signPreview, ...o }) => o)(
+      TotalData,
+    );
+    console.log(DbData, '서버 전달 데이터');
     const info = Object.values(DbData);
 
     if (info.includes('') === true) {
@@ -81,14 +93,17 @@ const AdoptionApply2 = (props) => {
     const apply1Data = JSON.parse(window.sessionStorage.getItem('length'));
     const apply2Data = JSON.parse(window.sessionStorage.getItem('length2'));
     const TotalData = { ...apply1Data, ...apply2Data };
-    const DbData = (({ check, click, preview, ...o }) => o)(TotalData);
-    imageRef.current.upload();
-    dispatch(useActions.addApplyDB(postId, DbData));
-    SuccessAlert2(
-      '입양신청이 완료되었습니다!<br/>임보자님의 연락을 기다려주세요',
+    const DbData = (({ check, click, roomPreview, signPreview, ...o }) => o)(
+      TotalData,
     );
-    history.push('/main');
-    window.sessionStorage.clear();
+    imageRef.current.upload();
+    imageRef2.current.upload();
+    // dispatch(useActions.addApplyDB(postId, DbData));
+    // SuccessAlert2(
+    //   '입양신청이 완료되었습니다!<br/>임보자님의 연락을 기다려주세요',
+    // );
+    // history.push('/main');
+    // window.sessionStorage.clear();
   };
 
   useEffect(() => {
@@ -98,20 +113,32 @@ const AdoptionApply2 = (props) => {
       allergy,
       experience,
       timeTogether,
+      leaveHome,
+      vaccinationPrice,
+      oneMonthPrice,
       anxiety,
       bark,
       check,
+      etc,
+      signPreview,
+      signUrl,
       roomUrl,
-      preview,
+      roomPreview,
     } = data;
     setAllergy(allergy);
     setExperience(experience);
     setTimeTogether(timeTogether);
+    setLeaveHome(leaveHome);
+    setVaccinationPrice(vaccinationPrice);
+    setOneMonthPrice(oneMonthPrice);
     setAnxiety(anxiety);
     setBark(bark);
+    setEtc(etc);
+    setSignPreviewImage(signPreview);
+    setSignUrl(signUrl);
+    setPreviewImage(roomPreview);
     setRoomUrl(roomUrl);
     setCheck(check);
-    setPreviewImage(preview);
   }, []);
 
   useEffect(() => {
@@ -121,19 +148,31 @@ const AdoptionApply2 = (props) => {
         allergy: allergy,
         experience: experience,
         timeTogether: timeTogether,
+        leaveHome: leaveHome,
+        vaccinationPrice: vaccinationPrice,
+        oneMonthPrice: oneMonthPrice,
         anxiety: anxiety,
         bark: bark,
-        check: check,
+        etc: etc,
+        signPreview: signPreviewImage,
+        signUrl: signUrl,
         roomUrl: roomUrl,
-        preview: previewImage,
+        roomPreview: previewImage,
+        check: check,
       }),
     );
   }, [
     allergy,
     experience,
     timeTogether,
+    leaveHome,
+    vaccinationPrice,
+    oneMonthPrice,
     anxiety,
     bark,
+    etc,
+    signPreviewImage,
+    signUrl,
     check,
     roomUrl,
     previewImage,
@@ -149,8 +188,7 @@ const AdoptionApply2 = (props) => {
       maxWidth='414px'
       width='auto'
       margin='0 auto'
-      padding='0 35px'
-    >
+      padding='0 35px'>
       <Grid
         cusor='pointer'
         _onClick={() => {
@@ -161,8 +199,7 @@ const AdoptionApply2 = (props) => {
         top='65px'
         left='0px'
         width='25px'
-        height='25px'
-      >
+        height='25px'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -182,10 +219,9 @@ const AdoptionApply2 = (props) => {
             boxSizing='border-box'
             height='118px'
             borderTop='1px solid rgba(225, 225, 225, 0.5) '
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 가족 구성원 중
                 <span style={{ fontWeight: '800' }}> 동물 알레르기 증상</span>이
                 <br />
@@ -196,15 +232,13 @@ const AdoptionApply2 = (props) => {
               display='flex'
               alignItems='center'
               height='auto'
-              margin='12px 0 0 0'
-            >
+              margin='12px 0 0 0'>
               <Text
+                cursor='pointer'
                 _onClick={handleallergyYes}
                 color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
-                bold
-                margin='0 7px 0 0'
-                cursor='pointer'
-              >
+                weight='700'
+                margin='0 7px 0 0'>
                 증상있음
               </Text>
               <Slider
@@ -213,12 +247,11 @@ const AdoptionApply2 = (props) => {
                 handleToggle={handleallergy}
               />
               <Text
+                cursor='pointer'
                 _onClick={handleallergyNo}
                 color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
-                bold
-                margin='0  0 0 7px'
-                cursor='pointer'
-              >
+                weight='700'
+                margin='0  0 0 7px'>
                 증상없음
               </Text>
             </Grid>
@@ -227,10 +260,9 @@ const AdoptionApply2 = (props) => {
           <Grid
             boxSizing='border-box'
             height='352px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 만약 <span style={{ fontWeight: '800' }}> 과거</span>에
                 반려동물을 키워본 적이 있다면 <br />
                 현재는 어떻게 되었나요?
@@ -246,18 +278,16 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='375px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 반려동물과
                 <span style={{ fontWeight: '800' }}>함께 할 수 있는 시간</span>
                 을 알려주세요. <br />
@@ -275,18 +305,126 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
+            </Grid>
+          </Grid>
+
+          <Grid
+            boxSizing='border-box'
+            height='350px'
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            <Grid margin='11px 0 26px 0 ' height='auto'>
+              <Text margin='0' weight='700' line_height='24px'>
+                하루동안 불가피하게 집을 비우는 경우
+                <br />
+                반려동물을 어떻게 할 것인지 말씀해주세요
+              </Text>
+            </Grid>
+
+            <Grid boxSizing='border-box' display='flex' height='250px'>
+              <Textarea
+                name='leaveHome'
+                value={leaveHome}
+                onChange={(e) => {
+                  setLeaveHome(e.target.value);
+                }}
+                cols='40'
+                rows='13'
+                placeholder='500자 이하로 적어주세요'></Textarea>
+            </Grid>
+          </Grid>
+
+          <Grid
+            boxSizing='border-box'
+            height='180px'
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            <Grid margin='30px 0 18px 0 ' height='auto'>
+              <Text margin='0' weight='700' line_height='24px'>
+                해당 카테고리의 예측되는 비용을 적어주세요.
+              </Text>
+            </Grid>
+
+            <Grid is_flex height='auto'>
+              <Grid
+                maxWidth='200px'
+                padding='13px 0 0 5px'
+                boxSizing='border-box'
+                height='auto'>
+                <Text margin='0' weight='700'>
+                  1년 동안의 예방접종 비용
+                </Text>
+              </Grid>
+
+              <Grid
+                display='flex'
+                alignItems='center'
+                boxSizing='border-box'
+                borderRadius='9px'
+                maxWidth='120px'
+                height='46px'
+                bg='#F7F7F7'
+                margin='0 0 0 8px'
+                padding='0 10px'>
+                <Input
+                  // type='number'
+                  bg='#F7F7F7'
+                  border='none'
+                  padding='5px'
+                  name='vaccinationPrice'
+                  value={vaccinationPrice}
+                  _onChange={(e) => {
+                    setVaccinationPrice(e.target.value);
+                  }}></Input>
+                <Text margin='0' weight='700'>
+                  원
+                </Text>
+              </Grid>
+            </Grid>
+
+            <Grid is_flex height='auto' margin='14px 0 0 0'>
+              <Grid
+                maxWidth='200px'
+                padding='13px 0 0 5px'
+                boxSizing='border-box'
+                height='auto'>
+                <Text margin='0' weight='700'>
+                  1개월 동안의 양육비용
+                </Text>
+              </Grid>
+
+              <Grid
+                display='flex'
+                alignItems='center'
+                boxSizing='border-box'
+                borderRadius='9px'
+                maxWidth='120px'
+                height='46px'
+                bg='#F7F7F7'
+                margin='0 0 0 8px'
+                padding='0 10px'>
+                <Input
+                  // type='number'
+                  bg='#F7F7F7'
+                  border='none'
+                  padding='5px'
+                  name='oneMonthPrice'
+                  value={oneMonthPrice}
+                  _onChange={(e) => {
+                    setOneMonthPrice(e.target.value);
+                  }}></Input>
+                <Text margin='0' weight='700'>
+                  원
+                </Text>
+              </Grid>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='362px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 입양한 반려동물이
                 <span style={{ fontWeight: '800' }}>분리불안</span>이 있다면
                 <br />
@@ -303,18 +441,16 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
           </Grid>
 
           <Grid
             boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-          >
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
             <Grid margin='11px 0 26px 0 ' height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 입양한{' '}
                 <span style={{ fontWeight: '800' }}>반려동물이 짖음</span>이
                 있어 주변에서 민원이 들어온다면 어떻게 하시겠어요?
@@ -330,25 +466,65 @@ const AdoptionApply2 = (props) => {
                 }}
                 cols='40'
                 rows='13'
-                placeholder='500자 이하로 적어주세요'
-              ></Textarea>
+                placeholder='500자 이하로 적어주세요'></Textarea>
             </Grid>
+          </Grid>
+
+          <Grid
+            boxSizing='border-box'
+            height='364px'
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            <Grid margin='11px 0 26px 0 ' height='auto'>
+              <Text margin='0' weight='700' line_height='24px'>
+                그 외, 하고 싶은 말씀이 있으시다면 적어주세요.
+              </Text>
+            </Grid>
+
+            <Grid boxSizing='border-box' display='flex' height='250px'>
+              <Textarea
+                name='bark'
+                value={etc}
+                onChange={(e) => {
+                  setEtc(e.target.value);
+                }}
+                cols='40'
+                rows='13'
+                placeholder='500자 이하로 적어주세요'></Textarea>
+            </Grid>
+          </Grid>
+
+          <Grid
+            boxSizing='border-box'
+            height='360px'
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            <Grid margin='18px 0 18px 0 ' height='auto'>
+              <Text margin='0' weight='700' line_height='24px'>
+                동거인들의 입양동의{' '}
+                <span style={{ fontWeight: '800' }}>서명</span>을 찍어
+                첨부해주세요.
+                <br />
+                (만약, 혼자 거주하신다면 입양 동의 서명을 찍어 첨부해주세요.)
+              </Text>
+            </Grid>
+            <Upload2
+              ref={imageRef2}
+              setSignUrl={setSignUrl}
+              signPreviewImage={signPreviewImage}
+              setSignPreviewImage={setSignPreviewImage}></Upload2>
           </Grid>
 
           <Grid boxSizing='border-box' height='330px'>
             <Grid margin='18px 0 18px 0 ' height='auto'>
-              <Text margin='0' bold line_height='24px'>
+              <Text margin='0' weight='700' line_height='24px'>
                 아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
                 사진 찍어 첨부해주세요.
               </Text>
             </Grid>
             <Upload3
               ref={imageRef}
-              roomUrl={roomUrl}
               setRoomUrl={setRoomUrl}
-              preview={previewImage}
-              setPreview={setPreviewImage}
-            ></Upload3>
+              previewImage={previewImage}
+              setPreviewImage={setPreviewImage}></Upload3>
           </Grid>
 
           <Grid height='auto' margin='23px auto' cusor='pointer'>
@@ -362,8 +538,7 @@ const AdoptionApply2 = (props) => {
               justifyContent='center'
               alignItems='center'
               boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-              _onClick={applyClick}
-            >
+              _onClick={applyClick}>
               <Text margin='0' color='white' weight='800'>
                 입양 신청 보내기
               </Text>
