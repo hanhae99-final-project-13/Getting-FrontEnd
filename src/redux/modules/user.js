@@ -9,7 +9,6 @@ import {
   imageSuccessAlert,
 } from '../../shared/Alerts';
 import { setCookie, deleteCookie, deleteAllCookies } from '../../shared/Cookie';
-
 //유저정보 액션
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';

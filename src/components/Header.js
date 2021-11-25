@@ -12,7 +12,7 @@ import { actionCreators } from '../redux/modules/user';
 import { WarningAlert } from '../shared/Alerts';
 import WebSocket from './WebSocket';
 const Header = (props) => {
-  const [wsConnectSubscribe] = WebSocket();
+  // const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
   const histroy = useHistory();
 
@@ -27,8 +27,8 @@ const Header = (props) => {
     if (!token) {
       return null;
     }
-    wsConnectSubscribe();
-    return null;
+    // wsConnectSubscribe();
+    // return null;
   }, []);
   return (
     <React.Fragment>
