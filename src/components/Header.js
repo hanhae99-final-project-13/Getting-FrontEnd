@@ -49,7 +49,6 @@ const Header = (props) => {
         left='0'
         right='0'
       >
-        {/* <WebSocket2 /> */}
         <Grid display='flex' alignItems='center'>
           <Grid
             width='45px'
@@ -102,9 +101,9 @@ const Header = (props) => {
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  // WarningAlert('서비스 준비중입니다');
-                  dispatch(actionCreators.readAlarm(true));
-                  history.push('/alarm');
+                  WarningAlert('서비스 준비중입니다');
+                  // dispatch(actionCreators.readAlarm(true));
+                  // history.push('/alarm');
                 }}
                 icon={faBell}
                 color='black'
