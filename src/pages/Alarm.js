@@ -11,6 +11,8 @@ const Alarm = () => {
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
+  const alarmCreatedAt = userInfo.alarmContent.map((a) => a.createdAt);
+  console.log(alarmCreatedAt);
   const token = document.cookie.includes('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
@@ -23,9 +25,12 @@ const Alarm = () => {
     }
     return;
   };
-  const createdAt = new Date();
-  const alarmTime = () => {
-    const milliSeconds = new Date() - createdAt;
+
+  const createdAt = new Date(alarmCreatedAt[0]);
+  console.log(createdAt);
+  const alarmTime = (e) => {
+    console.log(e);
+    const milliSeconds = new Date() - e;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return `방금 전`;
 
@@ -126,6 +131,7 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
+                  console.log(alarm.createdAt);
                   return (
                     <>
                       {alarm.checked === true ? (
@@ -205,7 +211,6 @@ const Alarm = () => {
                         >
                           <Grid fontSize='10px' color='darkgrey'>
                             {alarmTime(alarm.createdAt)}
-                            {/* {alarm.createdAt.split('.')[0]} */}
                           </Grid>
                           <Grid fontSize='12px' fontWeight='800'>
                             {alarm.alarmContent}
