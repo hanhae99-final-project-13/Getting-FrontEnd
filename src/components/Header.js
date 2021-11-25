@@ -12,6 +12,7 @@ import { actionCreators } from '../redux/modules/user';
 import { WarningAlert } from '../shared/Alerts';
 import WebSocket from './WebSocket';
 const Header = (props) => {
+  const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
   const histroy = useHistory();
 
@@ -22,9 +23,15 @@ const Header = (props) => {
   const alarmCount = useSelector(
     (state) => state.user.user.userInfo?.alarmCount,
   );
+  React.useEffect(() => {
+    if (!token) {
+      return null;
+    }
+    wsConnectSubscribe();
+    return null;
+  }, []);
   return (
     <React.Fragment>
-      <WebSocket />
       <Grid
         bg='white'
         boxSizing='border-box'

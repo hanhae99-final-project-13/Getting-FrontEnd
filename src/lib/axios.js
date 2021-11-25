@@ -2,7 +2,8 @@ import axios from 'axios';
 import { ErrorAlert } from '../shared/Alerts';
 
 const instance = axios.create({
-  baseURL: 'http://52.78.159.191', // 선강 님
+  // baseURL: 'http://52.78.159.191', // 선강 님
+  baseURL: 'https://seonkang.shop',
   // baseURL: 'http://3.38.107.59', // 지은님
   // baseURL: 'http://3.36.139.165',
   headers: {
@@ -151,7 +152,7 @@ export const apis = {
   getAlarmList: () => instance.get('/alarms'),
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
-  isReadAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
+  isReadAlarm: (alarmId) => instance.patch(`/alarms/${alarmId}`),
   //입양신청 관련api
   applyFoster: (postId, data) =>
     instance.post(`posts/${postId}/adoptions`, data),
