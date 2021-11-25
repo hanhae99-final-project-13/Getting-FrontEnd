@@ -29,9 +29,9 @@ const Comment = (props) => {
     setCommentModal(!commentModal);
   };
 
-  //UTC 시간을 받아오므로 시간에 +9 시간을 해줌
   const createdAt = new Date(comment.createdAt);
   const commentTime = (createdAt) => {
+    console.log('asd asdasd', createdAt);
     const milliSeconds = new Date() - createdAt;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return `방금 전`;

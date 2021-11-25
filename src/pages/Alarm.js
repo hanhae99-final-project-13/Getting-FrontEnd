@@ -26,11 +26,9 @@ const Alarm = () => {
     return;
   };
 
-  const createdAt = new Date(alarmCreatedAt[0]);
-  console.log(createdAt);
   const alarmTime = (e) => {
-    console.log(e);
-    const milliSeconds = new Date() - e;
+    const createdAt = new Date(e);
+    const milliSeconds = new Date() - createdAt;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return `방금 전`;
 

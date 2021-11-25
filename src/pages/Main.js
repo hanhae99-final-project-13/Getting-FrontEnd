@@ -15,9 +15,9 @@ const Main = (props) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem('USER_TOKEN');
   React.useEffect(() => {
-    if (token) {
-      wsConnectSubscribe();
-    }
+    // if (token) {
+    //   wsConnectSubscribe();
+    // }
     dispatch(postActions.getMainPostMW());
   }, []);
 

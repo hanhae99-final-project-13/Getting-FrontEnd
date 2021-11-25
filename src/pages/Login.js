@@ -9,8 +9,9 @@ import LoginErrorAlert from '../components/LoginErrorAlert';
 import { WarningAlert } from '../shared/Alerts';
 import { deleteCookie } from '../shared/Cookie';
 import WebSocket from '../components/WebSocket';
+import { reject } from 'lodash';
 const Login = (props) => {
-  // const [wsConnectSubscribe] = WebSocket();
+  const [wsConnectSubscribe] = WebSocket();
   const { history } = props;
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user?.error);
@@ -130,6 +131,7 @@ const Login = (props) => {
                 border='none'
                 border_radius='25px'
                 onClick={onClickLogin}
+                // onClick={test}
               >
                 로그인하기
               </Button>

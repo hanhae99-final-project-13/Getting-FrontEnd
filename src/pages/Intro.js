@@ -19,10 +19,9 @@ const Intro = () => {
           <Grid
             display='flex'
             height='100%'
-            margin='15px 0'
+            margin='30px 0'
             alignItems='center'
             overflowX='hidden'
-            height='80vh'
           >
             <StyledSlider {...settings}>
               <Grid

@@ -15,8 +15,8 @@ export default function WebSocket() {
   const client = React.useRef({});
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
-  // const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
-  const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
+  const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
+  // const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
   const ws = StompJs.over(sock);
 
   // React.useEffect(() => {
