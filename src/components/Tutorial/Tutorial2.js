@@ -5,7 +5,12 @@ const Tutorial2 = (props) => {
   const { history } = props;
 
   return (
-    <Grid maxWidth='414px' width='auto' margin='0 auto' position='relative'>
+    <Grid
+      maxWidth='414px'
+      width='auto'
+      margin='0 auto 120px auto'
+      position='relative'
+    >
       <Grid
         cusor='pointer'
         _onClick={() => {
@@ -15,7 +20,8 @@ const Tutorial2 = (props) => {
         top='-155px'
         left='36px'
         width='25px'
-        height='25px'>
+        height='25px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -35,20 +41,21 @@ const Tutorial2 = (props) => {
             height='80px'
             borderRadius='40px'
             bg='#FFFFFF'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+          >
             <img
               width='57.11px'
               height='53px'
-              src={
-                process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'
-              }></img>
+              src={process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'}
+            ></img>
           </Grid>
         </Grid>
         <Grid
           display='flex'
           flexDirection='column'
           alignItems='center'
-          margin='0 0 0 6px'>
+          margin='0 0 0 6px'
+        >
           <Text margin='0 0 16px 0' weight='800'>
             심화지식1
           </Text>
@@ -60,13 +67,13 @@ const Tutorial2 = (props) => {
             height='80px'
             borderRadius='40px'
             bg='#FFFFFF'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+          >
             <img
               width='61px'
               height='53px'
-              src={
-                process.env.PUBLIC_URL + '/img/GUIicon/badge_2_icon.svg'
-              }></img>
+              src={process.env.PUBLIC_URL + '/img/GUIicon/badge_2_icon.svg'}
+            ></img>
           </Grid>
         </Grid>
         <Grid display='flex' flexDirection='column' alignItems='center'>
@@ -81,13 +88,13 @@ const Tutorial2 = (props) => {
             height='80px'
             borderRadius='40px'
             bg='#FFFFFF'
-            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
+            boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
+          >
             <img
               width='60px'
               height='54px'
-              src={
-                process.env.PUBLIC_URL + '/img/GUIicon/badge_3_icon.svg'
-              }></img>
+              src={process.env.PUBLIC_URL + '/img/GUIicon/badge_3_icon.svg'}
+            ></img>
           </Grid>
         </Grid>
       </Grid>
@@ -114,7 +121,8 @@ const Tutorial2 = (props) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'
+      >
         <Text color='white' margin='0' weight='800' size='16px'>
           시작할래요!
         </Text>
