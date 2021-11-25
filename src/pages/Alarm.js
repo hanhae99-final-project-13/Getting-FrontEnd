@@ -11,7 +11,7 @@ const Alarm = () => {
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);
@@ -53,6 +53,8 @@ const Alarm = () => {
       dispatch(actionCreators.loadAlarmListToAxios());
     }, 10);
   }, []);
+
+  if (!userInfo.nickname) return <div></div>;
 
   return (
     <>

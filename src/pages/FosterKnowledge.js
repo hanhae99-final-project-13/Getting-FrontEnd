@@ -6,7 +6,7 @@ const FosterKnowledge = (props) => {
   const { history } = props;
   const userInfo = useSelector((state) => state.user.user.userInfo);
 
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   if (token && !isLogin) {

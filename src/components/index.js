@@ -20,6 +20,7 @@ import Timer from './Timer';
 import Upload from './Upload';
 import SliderBox from './SliderBox';
 import Carousel2 from './Carousel2';
+import WebSocket2 from './WebSocket2';
 
 export {
   AddPost,
@@ -44,4 +45,5 @@ export {
   SliderBox,
   Timer,
   Upload,
+  WebSocket2,
 };

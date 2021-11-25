@@ -9,7 +9,6 @@ import {
   MainAdoptionCardList,
 } from '../components/main';
 import { postActions } from '../redux/modules/post';
-import WebSocket from '../components/WebSocket';
 const Main = (props) => {
   // const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
