@@ -152,7 +152,7 @@ export const apis = {
   getAlarmList: () => instance.get('/alarms'),
   getAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   deleteAlarmList: () => instance.delete('/alarms'),
-  isReadAlarm: (alarmId) => instance.patch(`/alarms/${alarmId}`),
+  isReadAlarm: (alarmId) => instance.get(`/alarms/${alarmId}`),
   //입양신청 관련api
   applyFoster: (postId, data) =>
     instance.post(`posts/${postId}/adoptions`, data),
