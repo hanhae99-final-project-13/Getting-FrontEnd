@@ -193,7 +193,7 @@ const Alarm = () => {
                       >
                         <Grid fontSize='10px' color='darkgrey'>
                           {/* {alarmTime(alarm.createdAt)} 전 */}
-                          {alarm.createdAt.split('.')[0]}
+                          {/* {alarm.createdAt.split('.')[0]} */}
                         </Grid>
                         <Grid fontSize='12px' fontWeight='800'>
                           {alarm.alarmContent}
