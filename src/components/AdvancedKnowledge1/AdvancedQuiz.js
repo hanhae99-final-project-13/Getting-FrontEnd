@@ -20,8 +20,8 @@ const AdvancedQuiz = (props) => {
     (quiz) => parseInt(QuizId) === quiz.id,
   );
 
-  const { id, QuizContent, classNumber } = CurrentQuizData[0];
-
+  const { id, QuizContent, classNumber, select1, select2 } = CurrentQuizData[0];
+  console.log(id, QuizContent, classNumber);
   window.sessionStorage.setItem(`answer${id}`, '');
 
   const [selectAnswer, setSelectAnswer] = useState('');
@@ -84,8 +84,7 @@ const AdvancedQuiz = (props) => {
         width='20px' //width, height를 안주면 sticky left가 안먹음..
         height='20px'
         top='65px'
-        left='36px'
-      >
+        left='36px'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -102,8 +101,7 @@ const AdvancedQuiz = (props) => {
       {/* 프로그래스바 */}
       <Grid margin='88px auto 0 '>
         <QuizProgressBar
-          totalQuizLength={AdvancedQuizData.length}
-        ></QuizProgressBar>
+          totalQuizLength={AdvancedQuizData.length}></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
@@ -116,96 +114,64 @@ const AdvancedQuiz = (props) => {
         padding='0 35px'
         size='16px'
         line_height='24px'
-        weight='700'
-      ></Text>
-      <form>
-        <Grid
-          position='relative'
-          width='300px'
-          margin='54px 0 0 0'
-          padding='0 35px'
-          display='flex'
-          alignItems='center'
-        >
-          <input
-            type='radio'
-            id={`${id}true`}
-            name={`answer${id}`}
-            value='true'
-            onClick={handleClickRadioButton}
-          ></input>
-          <label
-            onClick={trueClick}
-            style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor={`${id}true`}
-          >
-            {/* 빨간색원 div */}
-            <Grid
-              position='absolute'
-              left='38px'
-              width='18px'
-              height='18px'
-              borderRadius='15px'
-              bg='#FFFFFF'
-              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
-            >
-              <Grid
-                position='absolute'
-                top='4px'
-                left='4px'
-                bg={selectAnswer === 'true' ? '#FE7968' : ''}
-                width='10px'
-                height='10px'
-                borderRadius='10px'
-              ></Grid>
-            </Grid>
-            맞습니다
-          </label>
-        </Grid>
-        <Grid
-          position='relative'
-          width='300px'
-          margin='42px 0 0 0'
-          padding='0 35px'
-          display='flex'
-          alignItems='center'
-        >
-          <input
-            type='radio'
-            id={`${id}false`}
-            name={`answer${id}`}
-            value='false'
-            onClick={handleClickRadioButton}
-          ></input>
+        weight='700'></Text>
 
-          <label
-            onClick={falseClick}
-            style={{ margin: '0 0 0 10px', weight: '700' }}
-            htmlFor={`${id}false`}
-          >
-            {/* 빨간색원 div */}
-            <Grid
-              position='absolute'
-              left='38px'
-              width='18px'
-              height='18px'
-              borderRadius='15px'
-              bg='#FFFFFF'
-              boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
-            >
-              <Grid
-                position='absolute'
-                top='4px'
-                left='4px'
-                bg={selectAnswer === 'false' ? '#FE7968' : ''}
-                width='10px'
-                height='10px'
-                borderRadius='10px'
-              ></Grid>
-            </Grid>
-            아닙니다
-          </label>
-        </Grid>
+      <form>
+        <input
+          style={{ display: 'none' }}
+          type='radio'
+          id={`${id}:1번보기`}
+          name={`answer${id}`}
+          value={select1}
+          onClick={handleClickRadioButton}></input>
+        <label onClick={trueClick} htmlFor={`${id}:1번보기`}>
+          <Grid
+            display='flex'
+            alignItems='center'
+            border={selectAnswer === 'true' ? 'none' : '1px solid #CECBCA'}
+            borderRadius='15px'
+            boxSizing='border-box'
+            position='relative'
+            width='300px'
+            height='60px'
+            margin='25px 35px 0'
+            padding='0 0 0 20px'
+            bg={selectAnswer === 'true' ? '#FE7968' : '#FFFFFF'}>
+            <Text
+              margin='0'
+              color={selectAnswer === 'true' ? '#FFFFFF' : '#B6B1B0'}>
+              {select1}
+            </Text>
+          </Grid>
+        </label>
+
+        <input
+          style={{ display: 'none' }}
+          type='radio'
+          id={`${id}:2번보기`}
+          name={`answer${id}`}
+          value={select2}
+          onClick={handleClickRadioButton}></input>
+        <label onClick={falseClick} htmlFor={`${id}:2번보기`}>
+          <Grid
+            display='flex'
+            alignItems='center'
+            border={selectAnswer === 'false' ? 'none' : '1px solid #CECBCA'}
+            borderRadius='15px'
+            boxSizing='border-box'
+            position='relative'
+            width='300px'
+            height='60px'
+            margin='10px 35px 0'
+            padding='0 0 0 20px'
+            bg={selectAnswer === 'false' ? '#FE7968' : '#FFFFFF'}>
+            <Text
+              margin='0'
+              color={selectAnswer === 'false' ? '#FFFFFF' : '#B6B1B0'}>
+              {select2}
+            </Text>
+          </Grid>
+        </label>
       </form>
 
       <Grid
@@ -233,8 +199,7 @@ const AdvancedQuiz = (props) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'
-      >
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
           {AdvancedQuizData.length !== id ? '다음퀴즈' : '채점하기'}
         </Text>

@@ -1,39 +1,46 @@
 const AdvancedQuizData = [
   {
     id: 1,
-
     QuizContent:
-      '분리불안 증세를 호전시키지 위해 외출 후 <br/> 귀가하자마자 강아지에게 간식 보상을 해줍니다',
-    answer: 'false',
+      '새로 입양한 반려견이 우리집 규칙을 제대로 <br/>알 수 있게끔 첫날부터 철저히 교육한다.',
+    answer: '맞아',
     classNumber: '2',
+    select1: '맞아',
+    select2: '아니야',
   },
   {
     id: 2,
-    QuizContent:
-      '강아지가 불리불안으로 습관적으로<br/>하울링한다면 하울링 하지 못하도록 무조건 혼내고 교육한다.',
-    answer: 'false',
+    QuizContent: '집 앞에 산책을 나가더라도 목줄은 꼭 해야한다.',
+    answer: '그래',
     classNumber: '2',
+    select1: '그래',
+    select2: '아니?',
   },
   {
     id: 3,
     QuizContent:
-      '반려견을위한 장난감으로 반려견 케어 및 치매 예방을 할 수 있다.',
-    answer: 'true',
+      '노령견일 경우, <br/>나이가 들어 다리와 허리가 약해졌기 때문에 <br/>산책은 가급적 피하도록한다',
+    answer: '그럴껄..?',
     classNumber: '2',
+    select1: '그럴껄..?',
+    select2: '아닐껄..?',
   },
   {
     id: 4,
     QuizContent:
-      '반려견이 내 관심을 받기 위해 배변을 보는 것<br/>같으면, 그 자리에서 혼을 내야 행동이 고쳐진다.',
-    answer: 'false',
+      '반려견 등록은 법적으로 의무적이진 않다. <br/>  필요할 시에만 등록을 하면 된다. ',
+    answer: '무조건 맞다',
     classNumber: '2',
+    select1: '무조건 맞다',
+    select2: '아니 무조건 틀려',
   },
   {
     id: 5,
-    QuizContent:
-      '강아지가 무는 행동을 교육하기 위해서 엄하게<br/> 체벌하여 못하게 해야합니다.',
-    answer: 'false',
+    QuizContent: ' 반려견을 키울때에는 <br/> 장기적인 계획이 필요로한다.',
+    answer: 'O',
     classNumber: '2',
+    select1: 'O',
+    select2: 'X',
   },
 ];
 
