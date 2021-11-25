@@ -55,6 +55,8 @@ const Alarm = () => {
     }, 10);
   }, []);
 
+  if (!userInfo.nickname) return <div></div>;
+
   return (
     <>
       <Header></Header>

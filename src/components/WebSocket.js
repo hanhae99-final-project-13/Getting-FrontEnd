@@ -10,29 +10,82 @@ const WebSocket = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
   console.log(userId);
-  const token = document.cookie.includes('USER_TOKEN');
+  const isToken = document.cookie.includes('USER_TOKEN');
+  const token = document.cookie.split(';')[0].split('=')[1];
+  const client = React.useRef({});
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
+  // const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
   const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
   const ws = StompJs.over(sock);
-  ws.connect({}, () => {
-    if (!token) {
-      // console.log('토큰없음');
-      return null;
-    }
-    console.log('됨');
-    ws.subscribe(
-      `/sub/${userId}`,
-      async (msg) => {
-        const alarmData = JSON.parse(msg.body);
-        // console.log(msg);
-        // console.log(alarmData);
-        await dispatch(actionCreators.readAlarm(false));
-        dispatch(actionCreators.updateAlarm(alarmData));
-      },
-      { token },
-    );
-  });
+
+  React.useEffect(() => {
+    ws.connect({}, () => {
+      if (!isToken) {
+        // console.log('토큰없음');
+        return null;
+      }
+      console.log('됨');
+      ws.subscribe(
+        `/sub/${userId}`,
+        async (msg) => {
+          const alarmData = JSON.parse(msg.body);
+          // console.log(msg);
+          // console.log(alarmData);
+          await dispatch(actionCreators.readAlarm(false));
+          dispatch(actionCreators.updateAlarm(alarmData));
+        },
+        { token },
+      );
+    });
+  }, []);
+
+  // const connect = () => {
+  //   client.current = new StompJs.Client({
+  //     brokerURL: 'ws://seonkang.shop/ws-stomp', // 웹소켓 서버로 직접 접속
+  //     webSocketFactory: () => new SockJS('wss://seonkang.shop/ws-stomp'), // proxy를 통한 접속
+  //     // connectHeaders: {
+  //     //   'auth-token': 'spring-chat-auth-token',
+  //     // },
+  //     debug: function (str) {
+  //       console.log(str);
+  //     },
+  //     reconnectDelay: 5000,
+  //     heartbeatIncoming: 4000,
+  //     heartbeatOutgoing: 4000,
+  //     onConnect: () => {
+  //       subscribe();
+  //     },
+  //     onStompError: (frame) => {
+  //       console.error(frame);
+  //     },
+  //   });
+
+  //   client.current.activate();
+  // };
+
+  // const disconnect = () => {
+  //   client.current.deactivate();
+  // };
+
+  // const subscribe = () => {
+  //   client.current.subscribe(
+  //     `/sub/${userId}`,
+  //     async (msg) => {
+  //       const alarmData = JSON.parse(msg.body);
+  //       // console.log(msg);
+  //       // console.log(alarmData);
+  //       await dispatch(actionCreators.readAlarm(false));
+  //       dispatch(actionCreators.updateAlarm(alarmData));
+  //     },
+  //     { token },
+  //   );
+  // };
+
+  // React.useEffect(() => {
+  //   if (!isToken) return null;
+  //   connect();
+  // }, []);
 
   // console.log('현재 페이지 =====>', window.location.pathname);
   // const history = useHistory();
