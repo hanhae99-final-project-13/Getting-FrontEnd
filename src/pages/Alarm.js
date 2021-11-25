@@ -62,7 +62,7 @@ const Alarm = () => {
   return (
     <>
       <Header></Header>
-      <Grid maxWidth='414px' margin='50px auto 0'>
+      <Grid maxWidth='414px' margin='50px auto'>
         <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
