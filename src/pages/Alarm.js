@@ -7,11 +7,10 @@ import { actionCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 const Alarm = () => {
   const dispatch = useDispatch();
-  const alarmCount = useSelector(
-    (state) => state.user.user.userInfo.alarmCount,
-  );
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  console.log(userInfo.nickname);
+  const newAlarmCount = userInfo.alarmContent.filter(
+    (alarmContent) => alarmContent.checked === true,
+  ).length;
   const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
@@ -76,11 +75,11 @@ const Alarm = () => {
             alignItems='center'
           >
             <Text size='12px'>
-              {/* 새로운 알림{' '}
+              새로운 알림{' '}
               <span style={{ color: 'red', fontSize: '12px' }}>
-                {alarmCount}
+                {newAlarmCount}
               </span>
-              개 */}
+              개
             </Text>
             <button
               style={{
@@ -129,123 +128,140 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
-                  console.log(alarm);
                   return (
-                    <Grid
-                      bg='white'
-                      height='60px'
-                      padding='10px 10px'
-                      borderRadius='15px'
-                      width='auto'
-                      display='flex'
-                      alignItems='center'
-                      margin='15px 0'
-                      boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
-                      _onClick={() => {
-                        dispatch(
-                          actionCreators.isReadAlarmToAxios(alarm.alarmId),
-                        );
-                        console.log(alarm);
-                        if (alarm.alarmType === 'COMMENT') {
-                          history.push(`/detail/${alarm.postId}`);
-                        }
-                        if (alarm.alarmType === 'FOSTER_FORM') {
-                          history.push(`/takeapply/${alarm.contentId}`);
-                        }
-                      }}
-                    >
+                    <>
+                      {alarm.checked === true ? (
+                        <Grid
+                          position='relative'
+                          top='10px'
+                          left='10px'
+                          width='10px'
+                          height='10px'
+                          bg='#FE7968'
+                          borderRadius='5px'
+                        ></Grid>
+                      ) : (
+                        <Grid height='10px'></Grid>
+                      )}
                       <Grid
-                        bg='#E8E8E8'
-                        width='36px'
-                        height='36px'
-                        borderRadius='25px'
+                        bg='white'
+                        height='60px'
+                        padding='10px 10px'
+                        borderRadius='15px'
+                        width='auto'
                         display='flex'
-                        justifyContent='center'
                         alignItems='center'
+                        margin='5px 0'
+                        boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+                        _onClick={() => {
+                          dispatch(
+                            actionCreators.isReadAlarmToAxios(alarm.alarmId),
+                          );
+                          console.log(alarm);
+                          if (alarm.alarmType === 'COMMENT') {
+                            history.push(`/detail/${alarm.postId}`);
+                          }
+                          if (alarm.alarmType === 'FOSTER_FORM') {
+                            history.push(`/takeapply/${alarm.contentId}`);
+                          }
+                        }}
                       >
-                        {alarm.alarmType === 'SIGN_UP' ? (
-                          <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              '/img/icon/signup_icon.svg'
-                            }
-                          />
-                        ) : alarm.alarmType === 'COMMENT' ? (
-                          <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              '/img/icon/comment_icon.svg'
-                            }
-                          />
-                        ) : (
-                          <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              '/img/icon/refuse_icon.svg'
-                            }
-                          />
-                        )}
-                      </Grid>
-                      <Grid
-                        display='flex'
-                        flexDirection='column'
-                        boxSizing='border-box'
-                        margin='0 0 0 10px'
-                        width='78%'
-                      >
-                        <Grid fontSize='10px' color='darkgrey'>
-                          {/* {alarmTime(alarm.createdAt)} 전 */}
-                          {/* {alarm.createdAt.split('.')[0]} */}
+                        <Grid
+                          bg='#E8E8E8'
+                          width='36px'
+                          height='36px'
+                          borderRadius='25px'
+                          display='flex'
+                          justifyContent='center'
+                          alignItems='center'
+                        >
+                          {alarm.alarmType === 'SIGN_UP' ? (
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '/img/icon/signup_icon.svg'
+                              }
+                            />
+                          ) : alarm.alarmType === 'COMMENT' ? (
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '/img/icon/comment_icon.svg'
+                              }
+                            />
+                          ) : (
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '/img/icon/refuse_icon.svg'
+                              }
+                            />
+                          )}
                         </Grid>
-                        <Grid fontSize='12px' fontWeight='800'>
-                          {alarm.alarmContent}
-                        </Grid>
-                        <Grid display='flex'>
-                          {alarm.alarmType === 'COMMENT' ? (
-                            <>
-                              <span
-                                style={{
-                                  fontSize: '10px',
-                                  color: 'darkgray',
-                                }}
-                              >
-                                "
-                              </span>
-                              <span
-                                style={{
-                                  fontSize: '10px',
-                                  height: '100%',
-                                  color: 'darkgray',
-                                  whiteSpace: 'nowrap',
-                                  overflow: 'hidden',
-                                  textOverflow: 'ellipsis',
-                                }}
-                              >
-                                {alarm.comment}
-                              </span>
+                        <Grid
+                          display='flex'
+                          flexDirection='column'
+                          boxSizing='border-box'
+                          margin='0 0 0 10px'
+                          width='78%'
+                        >
+                          <Grid fontSize='10px' color='darkgrey'>
+                            {alarmTime(alarm.createdAt)}
+                            {/* {alarm.createdAt.split('.')[0]} */}
+                          </Grid>
+                          <Grid fontSize='12px' fontWeight='800'>
+                            {alarm.alarmContent}
+                          </Grid>
+                          <Grid display='flex'>
+                            {alarm.alarmType === 'COMMENT' ? (
+                              <>
+                                <span
+                                  style={{
+                                    fontSize: '10px',
+                                    color: 'darkgray',
+                                  }}
+                                >
+                                  "
+                                </span>
+                                <span
+                                  style={{
+                                    fontSize: '10px',
+                                    height: '100%',
+                                    color: 'darkgray',
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                  }}
+                                >
+                                  {alarm.comment}
+                                </span>
+                                <span
+                                  style={{
+                                    fontSize: '10px',
+                                    color: 'darkgray',
+                                  }}
+                                >
+                                  "
+                                </span>
+                              </>
+                            ) : alarm.alarmType === 'SIGN_UP' ? (
                               <span
                                 style={{ fontSize: '10px', color: 'darkgray' }}
                               >
-                                "
+                                개팅에 오신 것을 환영합니다!
                               </span>
-                            </>
-                          ) : alarm.alarmType === 'SIGN_UP' ? (
-                            <span
-                              style={{ fontSize: '10px', color: 'darkgray' }}
-                            >
-                              개팅에 오신 것을 환영합니다!
-                            </span>
-                          ) : alarm.alarmType === 'FOSTER_FORM' ? (
-                            <span
-                              style={{ fontSize: '10px', color: 'darkgray' }}
-                            >
-                              마이페이지 > 입양 관리 > 받은 입양 신청 탭에서
-                              확인하세요!
-                            </span>
-                          ) : null}
+                            ) : alarm.alarmType === 'FOSTER_FORM' ? (
+                              <span
+                                style={{ fontSize: '10px', color: 'darkgray' }}
+                              >
+                                마이페이지 > 입양 관리 > 받은 입양 신청 탭에서
+                                확인하세요!
+                              </span>
+                            ) : null}
+                          </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </>
                   );
                 })}
             </>
