@@ -28,10 +28,14 @@ const Carousel2 = ({ children, innerWidth }) => {
     }
   };
   const sliderMouseUp = (e) => {
+    if (!isPress) return;
     isPress = false;
+    console.log('손땜');
   };
   const sliderMouseLeave = (e) => {
+    if (!isPress) return;
     isPress = false;
+    console.log('손땜');
   };
   const sliderMouseMove = (e) => {
     if (!isPress) return;
@@ -49,7 +53,7 @@ const Carousel2 = ({ children, innerWidth }) => {
       <SliderBox
         ref={sliderBox}
         onMouseDown={sliderMouseDown}
-        onMouseup={sliderMouseUp}
+        onClick={sliderMouseUp}
         onMouseLeave={sliderMouseLeave}
         onMouseMove={sliderMouseMove}
         onTouchStart={sliderMouseDown}

@@ -5,7 +5,7 @@ import { Grid, Text } from '../../elements';
 const Tutorial = (props) => {
   const { history } = props;
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  const isToken = document.cookie.includes('USER_TOKEN');
+  const isToken = localStorage.getItem('USER_TOKEN');
 
   return (
     <Grid

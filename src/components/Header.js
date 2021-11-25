@@ -18,7 +18,7 @@ const Header = (props) => {
   const histroy = useHistory();
 
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
   const alarmCount = useSelector(

@@ -16,22 +16,23 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     console.log(config);
-    const cookie = document.cookie;
-    const aToken = cookie.split(';')[0].split('=')[1];
-    const isAToken = cookie.includes('USER_TOKEN');
-    const isRToken = cookie.includes('REFRESH_TOKEN');
+    // const cookie = document.cookie;
+    // const aToken = cookie.split(';')[0].split('=')[1];
+    // const isAToken = cookie.includes('USER_TOKEN');
+    // const isRToken = cookie.includes('REFRESH_TOKEN');
+    const token = localStorage.getItem('USER_TOKEN');
     // if (!isAToken && isRToken) {
     //   apis
     //     .refresh({})
     // }
-    if (!isAToken) {
+    if (!token) {
       return config;
     }
 
     config.headers = {
       'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
       accept: 'application/json',
-      Authorization: `Bearer ${aToken}`,
+      Authorization: `Bearer ${token}`,
     };
     return config;
   },

@@ -20,7 +20,7 @@ const Detail = (props) => {
   const postId = props.match.params.id;
   const post = useSelector((state) => state.post?.detailPost);
   const user = useSelector((state) => state.user?.user.userInfo);
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   console.log('aa', post);
@@ -62,7 +62,7 @@ const Detail = (props) => {
   }, []);
 
   if (!post.post) {
-    return <div style={{ marginTop: '80px' }}>로우딩주웅</div>;
+    return <div style={{ marginTop: '80px' }}></div>;
   }
   if (token && !isLogin) {
     return <div></div>;

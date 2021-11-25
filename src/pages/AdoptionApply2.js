@@ -17,7 +17,7 @@ const AdoptionApply2 = (props) => {
   const dispatch = useDispatch();
   const postId = useParams().id;
   // console.log(postId, '입양신청서2번 id');
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   // 입양신청 모달

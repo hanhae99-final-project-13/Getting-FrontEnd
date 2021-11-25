@@ -12,7 +12,7 @@ const Alarm = () => {
   );
   const userInfo = useSelector((state) => state.user.user.userInfo);
   console.log(userInfo.nickname);
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);

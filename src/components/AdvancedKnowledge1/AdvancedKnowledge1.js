@@ -6,7 +6,7 @@ import { history } from '../../redux/configureStore';
 import AdvancedQuizData from '../Data/AdvancedQuizData';
 
 const AdvancedKnowledge1 = () => {
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
 
   const quizId = AdvancedQuizData[0].id;
   console.log(quizId);

@@ -10,7 +10,7 @@ const AdoptionCardList = () => {
   const postList = useSelector((state) => state.post.postList);
 
   // if (postList === []) {
-  //   return <div>로우딩중</div>;
+  //   return <div></div>;
   // }
 
   return (

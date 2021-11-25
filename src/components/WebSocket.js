@@ -10,8 +10,8 @@ export default function WebSocket() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
   console.log(userId);
-  const isToken = document.cookie.includes('USER_TOKEN');
-  const token = document.cookie.split(';')[0].split('=')[1];
+  const isToken = localStorage.getItem('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const client = React.useRef({});
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 

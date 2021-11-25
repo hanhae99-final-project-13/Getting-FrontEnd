@@ -16,7 +16,7 @@ const AdoptionApply = (props) => {
   const { history } = props;
   const postID = useParams().id;
   // console.log(postID, '입양신청서 1번 id');
-  const token = document.cookie.includes('USER_TOKEN');
+  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   //입력 값 state
