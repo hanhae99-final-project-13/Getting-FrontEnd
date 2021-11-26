@@ -115,10 +115,7 @@ const Signup = (props) => {
   );
 
   useEffect(() => {
-    if (document.cookie.includes('REFRESH_TOKEN')) {
-      deleteCookie('USER_TOKEN');
-      deleteCookie('REFRESH_TOKEN');
-    }
+    if (localStorage.getItem('USER_TOKEN')) localStorage.clear();
   }, []);
 
   // 휴대폰 번호전송 버튼 함수
