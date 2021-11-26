@@ -37,10 +37,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (document.cookie.includes('REFRESH_TOKEN')) {
-      deleteCookie('USER_TOKEN');
-      deleteCookie('REFRESH_TOKEN');
-    }
+    if (localStorage.getItem('USER_TOKEN')) localStorage.clear();
   }, []);
 
   return (
