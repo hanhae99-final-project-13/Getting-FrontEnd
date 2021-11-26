@@ -161,9 +161,9 @@ const Signup = (props) => {
         setPhoneCode('');
         setClickPhoneNumberAuthButton(!clickPhoneNumberAuthButton);
       });
-    console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
+    // console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
   };
-  console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
+  // console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
 
   //회원가입 버튼 함수
   const registerClick = () => {

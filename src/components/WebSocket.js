@@ -84,7 +84,7 @@ export default function WebSocket() {
   //   if (!isToken) return null;
   //   connect();
   // }, []);
-  const wsConnectSubscribe = React.useCallback(async () => {
+  const wsConnectSubscribe = React.useCallback(() => {
     if (!token) {
       return null;
     }
@@ -96,10 +96,10 @@ export default function WebSocket() {
 
         ws.subscribe(
           `/sub/${userId}`,
-          async (msg) => {
+          (msg) => {
             const alarmData = JSON.parse(msg.body);
 
-            await dispatch(actionCreators.readAlarm(false));
+            dispatch(actionCreators.readAlarm(false));
             dispatch(actionCreators.updateAlarm(alarmData));
           },
           { token },
