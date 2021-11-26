@@ -15,12 +15,13 @@ const AdoptionNoticeModal = (props) => {
         bg='white'
         width='335px'
         height='740px'
-        margin='0 auto'
+        margin='auto'
         padding='0 20px'
         position='stiky'
         top='43px'
         left='20px'
-        zIndex='999'>
+        zIndex='999'
+      >
         <Grid margin='36px 0 0 0' position='relative' height='auto'>
           <Text align='center' size='18px' margin='0'>
             <span
@@ -29,7 +30,8 @@ const AdoptionNoticeModal = (props) => {
                 boxShadow: 'inset 0px -9px 0px #FFC98A',
                 fontWeight: '800',
                 fontSize: '18px',
-              }}>
+              }}
+            >
               입양신청서&nbsp;
             </span>
             <span
@@ -39,7 +41,8 @@ const AdoptionNoticeModal = (props) => {
                 fontWeight: '800',
                 fontSize: '18px',
                 color: '#FF0000',
-              }}>
+              }}
+            >
               주의사항
             </span>
           </Text>
@@ -50,7 +53,8 @@ const AdoptionNoticeModal = (props) => {
           margin='15px 0 0 0'
           height='auto'
           justifyContent='center'
-          alignItems='center'>
+          alignItems='center'
+        >
           <img
             width='37px'
             height='44px'
@@ -64,14 +68,16 @@ const AdoptionNoticeModal = (props) => {
             boxShadow=' 4px 4px 20px rgba(0, 0, 0, 0.15);'
             display='flex'
             justifyContent='center'
-            alignItems='center'>
+            alignItems='center'
+          >
             <Text
               padding='15px'
               margin='0'
               weight='800'
               size='15px'
               align='center'
-              line_height='22px'>
+              line_height='22px'
+            >
               저희를 가족으로 입양하실려면,
               <br />
               <span
@@ -80,7 +86,8 @@ const AdoptionNoticeModal = (props) => {
                   boxShadow: 'inset 0px -9px 0px #FFC98A',
                   fontSize: '18px',
                   color: '#FF0000',
-                }}>
+                }}
+              >
                 꼭 아래부분
               </span>
               대로 임해주세요!
@@ -156,7 +163,8 @@ const AdoptionNoticeModal = (props) => {
           margin='15px 0 0 0'
           height='auto'
           justifyContent='center'
-          alignItems='center'>
+          alignItems='center'
+        >
           <Grid
             margin='0 10px 0 0px'
             boxSizing='border-box'
@@ -164,14 +172,16 @@ const AdoptionNoticeModal = (props) => {
             boxShadow=' 4px 4px 20px rgba(0, 0, 0, 0.15);'
             display='flex'
             justifyContent='center'
-            alignItems='center'>
+            alignItems='center'
+          >
             <Text
               padding='15px'
               margin='0'
               weight='800'
               size='15px'
               align='center'
-              line_height='22px'>
+              line_height='22px'
+            >
               아래 분들을 저희를
               <span
                 style={{
@@ -179,7 +189,8 @@ const AdoptionNoticeModal = (props) => {
                   boxShadow: 'inset 0px -9px 0px #FFC98A',
                   fontSize: '18px',
                   color: '#FF0000',
-                }}>
+                }}
+              >
                 가족으로 <br />
                 데려올 수 없습니다!
               </span>
@@ -275,7 +286,8 @@ const AdoptionNoticeModal = (props) => {
                 }),
               );
               window.scrollTo(0, 0);
-            }}>
+            }}
+          >
             <Text margin='0' color='#F9F9F9' weight='800'>
               확인했습니다
             </Text>
@@ -298,6 +310,7 @@ const ModalParent = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 999;
+  overflow-y: auto;
 `;
 
 export default AdoptionNoticeModal;
