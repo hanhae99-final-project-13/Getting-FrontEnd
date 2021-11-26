@@ -67,7 +67,6 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
               apis
                 .applyDecision(fosterFormId, { acceptance: 'accepted' })
                 .then((res) => {
-                  console.log(res.data);
                   SuccessAlert('입양 신청을 수락하셨습니다');
                 })
                 .catch((err) => console.log(err));

@@ -46,7 +46,7 @@ const MainIfYouFirstAdoption = (props) => {
         width='auto'
       >
         <Text margin='0 0 12px 0' size='18px'>
-          입양이
+          입양이{' '}
           <ElSpan>
             처음
             <img
@@ -57,7 +57,7 @@ const MainIfYouFirstAdoption = (props) => {
               style={{ position: 'absolute', top: '-5px', right: '7px' }}
               src={process.env.PUBLIC_URL + '/img/icon/dot_pink.svg'}
             />
-          </ElSpan>
+          </ElSpan>{' '}
           이라면?
         </Text>
 

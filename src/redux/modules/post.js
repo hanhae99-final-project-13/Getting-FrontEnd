@@ -101,13 +101,11 @@ const initialState = {
 };
 
 const getPostMW = (searchData) => {
-  console.log(searchData);
   return function (dispatch, getState) {
     dispatch(setLoading(true));
     apis
       .getPots(searchData)
       .then((res) => {
-        console.log(res.data);
         if (res.data.data.postList.length === 0) {
           ErrorAlert('해당 조건 맞는 친구들이 없습니다!');
           dispatch(setSearchPrev());
@@ -125,13 +123,11 @@ const getPostMW = (searchData) => {
 };
 
 const getMorePostMW = (searchData) => {
-  console.log(searchData);
   return (dispatch) => {
     dispatch(setLoading(true));
     apis
       .getPots(searchData)
       .then((res) => {
-        console.log(res.data);
         dispatch(getMorePost(res.data.data.postList));
         dispatch(setTotalPage(res.data.data.totalPages));
         dispatch(setLoading(false));
@@ -160,7 +156,6 @@ const getDetailPostMW = (postId) => {
     apis
       .getDetailPost(postId)
       .then((res) => {
-        console.log(res.data);
         dispatch(getDetailPost(res.data.data));
       })
       .catch((err) => {
@@ -170,13 +165,10 @@ const getDetailPostMW = (postId) => {
 };
 
 const getWishPostMW = () => {
-  console.log();
   return (dispatch) => {
     apis
       .getWishPost()
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.data.wishList);
         dispatch(getWishPost(res.data.data.wishList));
       })
       .catch((err) => {
@@ -190,7 +182,6 @@ const getMyPostsMW = () => {
     apis
       .getMyPosts()
       .then((res) => {
-        console.log(res.data);
         dispatch(getMyPosts(res.data.data.fosterFormsInMyPosts));
       })
       .catch((err) => {
@@ -200,12 +191,10 @@ const getMyPostsMW = () => {
 };
 
 const addPostToAxios = (postInfo) => {
-  console.log('값확인', postInfo);
   return (dispatch, getState, { history }) => {
     apis
       .addPost(postInfo)
       .then((res) => {
-        console.log('분양글등록리스폰스', res.data);
         history.push('/main');
       })
       .catch((err) => {
@@ -229,12 +218,9 @@ const deleteDetailToAxios = (postId) => {
 
 const updateDetailToAxios = (postId, postInfo) => {
   return (dispatch, getState, { history }) => {
-    console.log('디테일 수정', postId);
-    console.log('디테일 수정정보', postInfo);
     apis
       .updatePost(postId, postInfo)
       .then((res) => {
-        console.log('디테일수정 리스폰스', res.data);
         dispatch(updateDetail(res.data));
         history.push('/main');
       })
@@ -247,13 +233,11 @@ const updateDetailToAxios = (postId, postInfo) => {
 //댓글
 
 const addCommentToAxios = (comment) => {
-  console.log('댓글등록액시오스', comment);
   return (dispatch) => {
     apis
       .addComment(comment)
 
       .then((res) => {
-        // console.log('댓글등록리스폰스', res.data.data.newComment);
         dispatch(addComment(res.data.data.newComment));
       })
       .catch((err) => {
@@ -263,12 +247,10 @@ const addCommentToAxios = (comment) => {
 };
 
 const updateCommentToAxios = (commentId, comment) => {
-  console.log('댓글수정액시오스', commentId, comment);
   return (dispatch) => {
     apis
       .editComment(commentId, comment)
       .then((res) => {
-        console.log('댓글수정리스폰스', res.data.data.updatedComment);
         dispatch(updateComment(res.data.data.updatedComment));
       })
       .catch((err) => {
@@ -278,12 +260,10 @@ const updateCommentToAxios = (commentId, comment) => {
 };
 
 const deleteCommentToAxios = (commentId) => {
-  console.log('댓글삭제액시오스', commentId);
   return (dispatch) => {
     apis
       .deleteComment(commentId)
       .then((res) => {
-        console.log('댓글삭제리스폰스', res.data);
         dispatch(deleteComment(commentId));
       })
       .catch((err) => {
@@ -293,7 +273,6 @@ const deleteCommentToAxios = (commentId) => {
 };
 
 const heartToAxios = (postId) => {
-  console.log(postId);
   return (dispatch) => {
     apis
       .addWish(postId)
@@ -354,21 +333,18 @@ export default handleActions(
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         draft.detailPost.commentList.unshift(action.payload.commentInfo);
       }),
     [UPDATE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.updateComment);
         const idx = state.detailPost.commentList.findIndex(
           (a) => a.commentId === action.payload.updateComment.commentId,
         );
-        console.log(idx);
+
         draft.detailPost.commentList[idx] = action.payload.updateComment;
       }),
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         const newComment = draft.detailPost.commentList.filter(
           (c) => c.commentId !== action.payload.commentInfo,
         );
@@ -401,17 +377,14 @@ export default handleActions(
 
     [DELETE_IMG]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         const newImg = draft.detailPost.post.img.filter(
           (a) => a !== action.payload.img,
         );
-        console.log(newImg);
+
         draft.detailPost.post.img = [...newImg];
       }),
     [UPDATE_IMG]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.img);
-        console.log(state.detailPost.post.img);
         draft.detailPost.post.img.push(action.payload.img);
       }),
   },

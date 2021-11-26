@@ -7,7 +7,6 @@ const Kakao = (props) => {
   // const { history } = props;
   const dispatch = useDispatch();
   let code = new URL(window.location.href).searchParams.get('code');
-  console.log(code);
 
   React.useEffect(() => {
     // You can await here

@@ -54,9 +54,8 @@ const AdoptionApply2 = (props) => {
     const apply2Data = JSON.parse(window.sessionStorage.getItem('length2'));
     const TotalData = { ...apply1Data, ...apply2Data };
     const DbData = (({ check, click, preview, ...o }) => o)(TotalData);
-    console.log(DbData, '서버 전달 데이터');
+
     const info = Object.values(DbData);
-    console.log(info, '입력안된 질문확인용');
 
     if (info.includes('') === true) {
       ErrorAlert2(
@@ -85,7 +84,6 @@ const AdoptionApply2 = (props) => {
 
   useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem('length2'));
-    console.log(data);
 
     const {
       allergy,

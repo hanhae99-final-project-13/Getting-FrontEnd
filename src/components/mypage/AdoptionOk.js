@@ -7,7 +7,7 @@ import Card from '../Card';
 
 const AdoptionOk = (props) => {
   const myApplyList = useSelector((state) => state.apply.myApplyList);
-  console.log(myApplyList);
+
   return (
     <Grid display={props.display}>
       {myApplyList.map((p) => {

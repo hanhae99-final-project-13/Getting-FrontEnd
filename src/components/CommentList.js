@@ -8,7 +8,7 @@ import CommentWrite from './CommentWrite';
 const CommentList = (props) => {
   const { postId } = props;
   const commentList = useSelector((state) => state.post.detailPost.commentList);
-  console.log(commentList);
+
   return (
     <React.Fragment>
       <CommentWrite postId={postId} />

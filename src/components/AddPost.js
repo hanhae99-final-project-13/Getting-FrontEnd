@@ -71,7 +71,6 @@ const AddPost = () => {
     img: img,
     isAdopted: 'abandoned',
   };
-  console.log(postInfo);
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
@@ -90,6 +89,11 @@ const AddPost = () => {
       WarningAlert('모든 값을 입력해주세요!');
     }
   };
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <React.Fragment>
       <Header></Header>

@@ -37,9 +37,29 @@ const ReceivedAdoptionList = ({ index }) => {
                 <Text margin='0 8px 0 0' size='12px' weight='800'>
                   {preview.name}
                 </Text>
-                <img
-                  src={process.env.PUBLIC_URL + '/img/icon/must_mini_icon.svg'}
-                />
+                {preview.eduStatus.심화지식2 && (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/hard2_mini_icon.svg'
+                    }
+                  />
+                )}
+                {!preview.eduStatus.심화지식2 && preview.eduStatus.심화지식 && (
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/img/icon/hard1_mini_icon.svg'
+                    }
+                  />
+                )}
+                {!preview.eduStatus.심화지식 &&
+                  !preview.eduStatus.심화지식2 && (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + '/img/icon/must_mini_icon.svg'
+                      }
+                    />
+                  )}
+
                 <Text margin='0 8px' size='12px'>
                   ({preview.gender === 'F' ? '여' : '남'}, {preview.fosterAge})
                 </Text>

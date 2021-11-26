@@ -8,13 +8,12 @@ import { Grid, Text } from '../elements';
 const Footer = withRouter((props) => {
   const dispatch = useDispatch();
   const a = props;
-  console.log(a.history.location.pathname);
 
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user.user.isLogin);
-  console.log(token);
+
   // const data = {
   //   adoptionknowledge: false,
   //   adoption: false,
@@ -22,7 +21,6 @@ const Footer = withRouter((props) => {
   //   mypage: false,
   // };
   // const [onClick, setOnClick] = useState(data);
-  // console.log(onClick);
 
   // const clickAdoptionKnowledge = () => {
   //   const newData = {

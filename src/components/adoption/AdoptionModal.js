@@ -64,7 +64,7 @@ const AdoptionModal = (props) => {
       newSearchSetting.city = undefined;
       newSearchSetting.district = undefined;
     }
-    console.log(newSearchSetting);
+
     dispatch(postActions.setSearch(newSearchSetting));
     dispatch(postActions.getPostMW(newSearchSetting));
     hideModal();

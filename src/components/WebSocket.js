@@ -9,29 +9,28 @@ import { actionCreators } from '../redux/modules/user';
 export default function WebSocket() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
-  console.log(userId);
+
   const isToken = localStorage.getItem('USER_TOKEN');
   const token = localStorage.getItem('USER_TOKEN');
   const client = React.useRef({});
   // const isChatNoti = useSelector((state) => state.notice.isChatNoti);
 
-  const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
-  // const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
+  // const sock = new SockJS(`http://52.78.159.191/ws-stomp`);
+  const sock = new SockJS(`https://seonkang.shop/ws-stomp`);
   const ws = StompJs.over(sock);
 
   // React.useEffect(() => {
   //   ws.connect({}, () => {
   //     if (!isToken) {
-  //       // console.log('토큰없음');
+
   //       return null;
   //     }
-  //     console.log('됨');
+
   //     ws.subscribe(
   //       `/sub/${userId}`,
   //       async (msg) => {
   //         const alarmData = JSON.parse(msg.body);
-  //         // console.log(msg);
-  //         // console.log(alarmData);
+
   //         await dispatch(actionCreators.readAlarm(false));
   //         dispatch(actionCreators.updateAlarm(alarmData));
   //       },
@@ -48,7 +47,7 @@ export default function WebSocket() {
   //     //   'auth-token': 'spring-chat-auth-token',
   //     // },
   //     debug: function (str) {
-  //       console.log(str);
+
   //     },
   //     reconnectDelay: 5000,
   //     heartbeatIncoming: 4000,
@@ -57,7 +56,7 @@ export default function WebSocket() {
   //       subscribe();
   //     },
   //     onStompError: (frame) => {
-  //       console.error(frame);
+
   //     },
   //   });
 
@@ -73,8 +72,7 @@ export default function WebSocket() {
   //     `/sub/${userId}`,
   //     async (msg) => {
   //       const alarmData = JSON.parse(msg.body);
-  //       // console.log(msg);
-  //       // console.log(alarmData);
+
   //       await dispatch(actionCreators.readAlarm(false));
   //       dispatch(actionCreators.updateAlarm(alarmData));
   //     },
@@ -86,24 +84,22 @@ export default function WebSocket() {
   //   if (!isToken) return null;
   //   connect();
   // }, []);
-  const wsConnectSubscribe = React.useCallback(async () => {
+  const wsConnectSubscribe = React.useCallback(() => {
     if (!token) {
       return null;
     }
     try {
       ws.connect({}, () => {
         if (!token) {
-          // console.log('토큰없음');
           return null;
         }
-        console.log('됨');
+
         ws.subscribe(
           `/sub/${userId}`,
-          async (msg) => {
+          (msg) => {
             const alarmData = JSON.parse(msg.body);
-            // console.log(msg);
-            // console.log(alarmData);
-            await dispatch(actionCreators.readAlarm(false));
+
+            dispatch(actionCreators.readAlarm(false));
             dispatch(actionCreators.updateAlarm(alarmData));
           },
           { token },
@@ -115,7 +111,6 @@ export default function WebSocket() {
     return null;
   }, [token]);
 
-  // console.log('현재 페이지 =====>', window.location.pathname);
   // const history = useHistory();
 
   return [wsConnectSubscribe];
@@ -140,7 +135,7 @@ export default function WebSocket() {
 //   // tap 요청 수락한게 타입 5
 //   if (newNoti.type === 1) {
 //     if (history.location.pathname === '/grabtalk') {
-//       console.log('디패 로드 톡룸');
+
 //       await dispatch(loadTalkRoomListToAxios());
 //     }
 //     dispatch(setChatNoti(true));

@@ -11,7 +11,7 @@ import { deleteCookie } from '../shared/Cookie';
 import WebSocket from '../components/WebSocket';
 import { reject } from 'lodash';
 const Login = (props) => {
-  const [wsConnectSubscribe] = WebSocket();
+  // const [wsConnectSubscribe] = WebSocket();
   const { history } = props;
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user?.error);
@@ -22,12 +22,10 @@ const Login = (props) => {
 
   const handleChangeID = (e) => {
     setID(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleChangePW = (e) => {
     setPw(e.target.value);
-    console.log(e.target.value);
   };
 
   const user = {
