@@ -12,7 +12,7 @@ const Alarm = () => {
     (alarmContent) => alarmContent.checked === true,
   ).length;
   const alarmCreatedAt = userInfo.alarmContent.map((a) => a.createdAt);
-  console.log(alarmCreatedAt);
+
   const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
@@ -131,7 +131,6 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
-                  console.log(alarm.createdAt);
                   return (
                     <>
                       {alarm.checked === true ? (
@@ -161,7 +160,7 @@ const Alarm = () => {
                           dispatch(
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),
                           );
-                          console.log(alarm);
+
                           if (alarm.alarmType === 'COMMENT') {
                             history.push(`/detail/${alarm.postId}`);
                           }

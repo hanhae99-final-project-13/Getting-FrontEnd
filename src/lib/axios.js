@@ -15,7 +15,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log(config);
     // const cookie = document.cookie;
     // const aToken = cookie.split(';')[0].split('=')[1];
     // const isAToken = cookie.includes('USER_TOKEN');

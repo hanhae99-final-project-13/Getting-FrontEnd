@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { WarningAlert } from '../shared/Alerts';
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
-  // console.log(data.img.length > 0);
+
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState(data.breed);
   const [sex, setSex] = React.useState(data.sex);
@@ -71,14 +71,12 @@ const EditPost = (props) => {
     img: img,
     isAdopted: 'abandoned',
   };
-  console.log(postInfo);
+
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
   const editPost = () => {
-    console.log('이미지', img);
-    console.log(img.length);
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
     }

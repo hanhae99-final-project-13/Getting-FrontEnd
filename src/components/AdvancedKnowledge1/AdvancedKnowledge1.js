@@ -9,7 +9,6 @@ const AdvancedKnowledge1 = () => {
   const token = localStorage.getItem('USER_TOKEN');
 
   const quizId = AdvancedQuizData[0].id;
-  console.log(quizId);
 
   return (
     <>

@@ -9,7 +9,7 @@ import { actionCreators } from '../redux/modules/user';
 export default function WebSocket() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.user.userInfo.userId);
-  console.log(userId);
+
   const isToken = localStorage.getItem('USER_TOKEN');
   const token = localStorage.getItem('USER_TOKEN');
   const client = React.useRef({});
@@ -25,7 +25,7 @@ export default function WebSocket() {
         // console.log('토큰없음');
         return null;
       }
-      console.log('됨');
+
       ws.subscribe(
         `/sub/${userId}`,
         async (msg) => {

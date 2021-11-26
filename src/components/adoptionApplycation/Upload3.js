@@ -42,9 +42,7 @@ const Upload3 = forwardRef((props, ref) => {
     });
     const promise = upload.promise();
     promise.then(
-      function (data) {
-        console.log('이미지 업로드에 성공했습니다.');
-      },
+      function (data) {},
       function (err) {
         return console.log('오류가 발생했습니다.', err.message);
       },
@@ -62,7 +60,6 @@ const Upload3 = forwardRef((props, ref) => {
 
   // 이미지 핸들 함수
   const handleImage = (e) => {
-    console.log(e.target.files[0]);
     if (e.target.files[0] === undefined) {
       return;
     }
@@ -76,7 +73,6 @@ const Upload3 = forwardRef((props, ref) => {
     const reader = new FileReader();
     reader.readAsDataURL(imagefile);
     reader.onloadend = () => {
-      console.log(reader.result);
       //미리보기이미지
       setPreview(reader.result);
     };

@@ -46,13 +46,10 @@ const initialState = {
 //미들웨어
 
 const addApplyDB = (postId, data) => {
-  console.log(postId, '서버에 id넘어가는값');
-  console.log(data, '서버에 넘어가는 데이터');
   return (dispatch, getState, { history }) => {
     apis
       .applyFoster(postId, data)
       .then((res) => {
-        console.log(res.data, '서버통신 성공');
         //  dispatch(addApply(res.data.FosterForm));
       })
       .catch((err) => {
@@ -62,13 +59,10 @@ const addApplyDB = (postId, data) => {
 };
 
 const getApplyMW = (fosterFormId) => {
-  console.log(fosterFormId);
   return (dispatch) => {
     apis
       .getDetailfosterForm(fosterFormId)
-      .then((res) => {
-        console.log(res.data);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -80,7 +74,6 @@ const getMyApplyMW = () => {
     apis
       .getMyApplyList()
       .then((res) => {
-        console.log(res.data);
         dispatch(getMyApply(res.data.data.myRequestList));
       })
       .catch((err) => {
@@ -94,7 +87,6 @@ const getDetailPostForm = (fosterFormId) => {
     apis
       .getDetailfosterForm(fosterFormId)
       .then((res) => {
-        console.log(res.data);
         dispatch(getDetailFosterForm(res.data.data.fosterForm));
       })
       .catch((err) => {

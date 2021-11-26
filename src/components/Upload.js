@@ -47,10 +47,8 @@ const Upload = (props) => {
     props.setImg(newImg);
     props.setFiles(imgUrlList);
   };
-  console.log('이미지파일', props.img);
+
   const deleteImg = (e) => {
-    console.log(e);
-    console.log(props.img);
     const file = props.img[e].split('/')[3];
     const s3 = new AWS.S3();
     s3.deleteObject(

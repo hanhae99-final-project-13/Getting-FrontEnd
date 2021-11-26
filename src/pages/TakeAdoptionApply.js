@@ -111,7 +111,6 @@ const TakeAdoptionApply = (props) => {
               apis
                 .applyDecision(fosterFormId, { acceptance: 'rejected' })
                 .then((res) => {
-                  console.log(res.data);
                   ErrorAlert('입양 신청을 거절하셨습니다');
                   history.push('/mypage');
                 })

@@ -37,7 +37,6 @@ const Card = (props) => {
   const goDetail = (e) => {
     history.push(`/detail/${postId}`);
   };
-  console.log(isAdopted);
   return (
     <React.Fragment>
       <Grid

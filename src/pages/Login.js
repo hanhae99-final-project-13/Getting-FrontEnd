@@ -22,12 +22,10 @@ const Login = (props) => {
 
   const handleChangeID = (e) => {
     setID(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleChangePW = (e) => {
     setPw(e.target.value);
-    console.log(e.target.value);
   };
 
   const user = {

@@ -63,8 +63,6 @@ function App() {
   const dispatch = useDispatch();
   const isToken = localStorage.getItem('USER_TOKEN');
 
-  console.log(isToken, '로그인 토큰 체크');
-
   React.useEffect(() => {
     if (isToken) {
       dispatch(userAction.LoginCheck());

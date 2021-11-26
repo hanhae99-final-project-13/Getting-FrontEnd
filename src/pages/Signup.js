@@ -29,8 +29,6 @@ const Signup = (props) => {
   //ID, nickName 중복체크, 휴대폰인증 useState
   const [checkId, setCheckId] = useState('');
   const [checknickName, setChecknickName] = useState('');
-  console.log('아이디중복체크 확인 :', checkId);
-  console.log('닉네임중복체크 확인 :', checknickName);
 
   //입력 데이터
   const [phoneCode, setPhoneCode] = useState('');
@@ -50,7 +48,6 @@ const Signup = (props) => {
     const Newform = { ...form, [e.target.name]: e.target.value };
     setForm(Newform);
   };
-  console.log('회원가입 입력값', form);
 
   //phoneNumber, phoneAuthCode 서버에 넘기는 데이터
   const phoneNumberInfo = {
@@ -73,13 +70,11 @@ const Signup = (props) => {
     apis
       .checkId(username)
       .then((res) => {
-        console.log('아이디 중복체크 :', res.data.status);
         setCheckId(true);
       })
       .catch((error) => {
         setCheckId(false);
-        console.log(error);
-        console.log('아이디중복 : ', error);
+
         return;
       });
   }, []);
@@ -87,7 +82,6 @@ const Signup = (props) => {
   //id 중복체크 debounce 함수
   const debounceOnchangeId = useCallback(
     debounce((username) => {
-      console.log('this is debounce');
       idCheck(username);
     }, 900),
     [],
@@ -103,7 +97,6 @@ const Signup = (props) => {
     apis
       .checknickName(nickName)
       .then((res) => {
-        console.log('닉네임 중복체크 :', res.data.status);
         setChecknickName(true);
       })
       .catch((error) => {
@@ -137,7 +130,6 @@ const Signup = (props) => {
     apis
       .sendPhoneNumber(phoneNumberInfo)
       .then((res) => {
-        console.log('휴대폰번호전송 : ', res.data.status);
         SuccessAlert2(`${phoneNumber} 로 인증번호가 <br/>
         발송되었습니다.`);
         setClickPhoneNumberAuthButton(!clickPhoneNumberAuthButton);
@@ -157,7 +149,6 @@ const Signup = (props) => {
     apis
       .sendPhoneAuthCode(phoneAuthCode)
       .then((res) => {
-        console.log('코드인증 :', res.data.status);
         setClickCodeAuthButton(!clickCodeAuthButton);
 
         SuccessAlert2('휴대폰 인증 성공!');

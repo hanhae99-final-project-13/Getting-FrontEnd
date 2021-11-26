@@ -6,14 +6,12 @@ import CommentWrite from './CommentWrite';
 import Swal from 'sweetalert2';
 const Comment = (props) => {
   const { comment } = props;
-  // console.log('코멘트 하나의 정보', comment);
 
   const userInfo = useSelector((state) => state.user.user.userInfo);
-  // console.log('유저인포', userInfo);
+
   const dispatch = useDispatch();
 
   const commentDelete = () => {
-    console.log(comment.commentId);
     dispatch(postActions.deleteCommentToAxios(comment.commentId));
 
     setCommentModal(!commentModal);
@@ -25,13 +23,11 @@ const Comment = (props) => {
   };
   const [commentModal, setCommentModal] = React.useState(false);
   const onModal = () => {
-    // console.log(commentModal);
     setCommentModal(!commentModal);
   };
 
   const createdAt = new Date(comment.createdAt);
   const commentTime = (createdAt) => {
-    console.log('asd asdasd', createdAt);
     const milliSeconds = new Date() - createdAt;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return `방금 전`;

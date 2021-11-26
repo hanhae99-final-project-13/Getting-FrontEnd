@@ -24,7 +24,7 @@ const MypageImageUpload = (props) => {
     const fileFullName = e.target.files[0].name;
     const file = e.target.files[0];
     const reader = new FileReader();
-    console.log(e.target.files);
+
     reader.readAsDataURL(file);
     reader.onloadend = () => {};
     const awsUpload = new AWS.S3.ManagedUpload({
