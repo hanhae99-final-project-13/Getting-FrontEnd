@@ -39,8 +39,8 @@ const AdoptionApply2 = (props) => {
   const [experience, setExperience] = React.useState('');
   const [timeTogether, setTimeTogether] = React.useState('');
   const [leaveHome, setLeaveHome] = React.useState('');
-  const [vaccinationPrice, setVaccinationPrice] = React.useState('');
-  const [oneMonthPrice, setOneMonthPrice] = React.useState('');
+  const [medicalBudget, setMedicalBuget] = React.useState('');
+  const [monthlyBudget, setMonthlyBuget] = React.useState('');
   const [anxiety, setAnxiety] = React.useState('');
   const [bark, setBark] = React.useState('');
   const [etc, setEtc] = React.useState('');
@@ -98,12 +98,12 @@ const AdoptionApply2 = (props) => {
     );
     imageRef.current.upload();
     imageRef2.current.upload();
-    // dispatch(useActions.addApplyDB(postId, DbData));
-    // SuccessAlert2(
-    //   '입양신청이 완료되었습니다!<br/>임보자님의 연락을 기다려주세요',
-    // );
-    // history.push('/main');
-    // window.sessionStorage.clear();
+    dispatch(useActions.addApplyDB(postId, DbData));
+    SuccessAlert2(
+      '입양신청이 완료되었습니다!<br/>임보자님의 연락을 기다려주세요',
+    );
+    history.push('/main');
+    window.sessionStorage.clear();
   };
 
   useEffect(() => {
@@ -114,8 +114,8 @@ const AdoptionApply2 = (props) => {
       experience,
       timeTogether,
       leaveHome,
-      vaccinationPrice,
-      oneMonthPrice,
+      medicalBudget,
+      monthlyBudget,
       anxiety,
       bark,
       check,
@@ -129,8 +129,8 @@ const AdoptionApply2 = (props) => {
     setExperience(experience);
     setTimeTogether(timeTogether);
     setLeaveHome(leaveHome);
-    setVaccinationPrice(vaccinationPrice);
-    setOneMonthPrice(oneMonthPrice);
+    setMedicalBuget(medicalBudget);
+    setMonthlyBuget(monthlyBudget);
     setAnxiety(anxiety);
     setBark(bark);
     setEtc(etc);
@@ -149,8 +149,8 @@ const AdoptionApply2 = (props) => {
         experience: experience,
         timeTogether: timeTogether,
         leaveHome: leaveHome,
-        vaccinationPrice: vaccinationPrice,
-        oneMonthPrice: oneMonthPrice,
+        medicalBudget: medicalBudget,
+        monthlyBudget: monthlyBudget,
         anxiety: anxiety,
         bark: bark,
         etc: etc,
@@ -166,8 +166,8 @@ const AdoptionApply2 = (props) => {
     experience,
     timeTogether,
     leaveHome,
-    vaccinationPrice,
-    oneMonthPrice,
+    medicalBudget,
+    monthlyBudget,
     anxiety,
     bark,
     etc,
@@ -370,10 +370,10 @@ const AdoptionApply2 = (props) => {
                   bg='#F7F7F7'
                   border='none'
                   padding='5px'
-                  name='vaccinationPrice'
-                  value={vaccinationPrice}
+                  name='medicalBudget'
+                  value={medicalBudget}
                   _onChange={(e) => {
-                    setVaccinationPrice(e.target.value);
+                    setMedicalBuget(e.target.value);
                   }}></Input>
                 <Text margin='0' weight='700'>
                   원
@@ -407,10 +407,10 @@ const AdoptionApply2 = (props) => {
                   bg='#F7F7F7'
                   border='none'
                   padding='5px'
-                  name='oneMonthPrice'
-                  value={oneMonthPrice}
+                  name='monthlyBudget'
+                  value={monthlyBudget}
                   _onChange={(e) => {
-                    setOneMonthPrice(e.target.value);
+                    setMonthlyBuget(e.target.value);
                   }}></Input>
                 <Text margin='0' weight='700'>
                   원

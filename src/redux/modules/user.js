@@ -160,7 +160,11 @@ const LoginCheck = () => {
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
             alarmContent: /* res.data.data.alarmContent */ [],
+<<<<<<< HEAD
             requestedPostList: res.data.data.requestedPostList,
+=======
+
+>>>>>>> 69be5f9 (김기철 [add] 입양지식페이지, 입양지식퀴즈 수정 중)
             isRead: null,
           },
           isLogin: true,
