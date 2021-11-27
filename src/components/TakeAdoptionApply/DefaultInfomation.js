@@ -82,6 +82,17 @@ const DefaultInfomation = (props) => {
               padding='16px 0px'
               weight='700'
             >
+              {detailFosterForm.phone}
+            </Text>
+            <Text
+              margin='0'
+              width='100%'
+              bg='#FFFFFF'
+              border='none'
+              borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+              padding='16px 0px'
+              weight='700'
+            >
               {detailFosterForm.fosterAddress}
             </Text>
 
