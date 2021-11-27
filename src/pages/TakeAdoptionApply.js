@@ -86,6 +86,15 @@ const TakeAdoptionApply = (props) => {
                 src={process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'}
               />
             )}
+          <Text margin='5px 0 0 0' size='14px' weight='700'>
+            {detailFosterForm.eduStatus.심화지식2 && '심화지식2'}
+            {!detailFosterForm.eduStatus.심화지식2 &&
+              detailFosterForm.eduStatus.심화지식 &&
+              '심화지식1'}
+            {!detailFosterForm.eduStatus.심화지식 &&
+              !detailFosterForm.eduStatus.심화지식2 &&
+              '필수지식'}
+          </Text>
         </Grid>
         <DefaultInfomation />
         <AdoptionReason />
