@@ -83,14 +83,16 @@ Text.defaultProps = {
 };
 
 const TextBox = styled.p`
+  ${(props) => (props.family ? `font-family: ${props.family};` : '')}
   ${(props) => (props.color ? `color: ${props.color};` : '')}
   ${(props) => (props.size ? `font-size: ${props.size};` : '')}
     font-weight: ${(props) => (props.bold ? `600` : `400`)};
   ${(props) => (props.weight ? `font-weight:${props.weight}` : '')};
+  ${(props) =>
+    props.weight === '800' ? `font-family: 'NanumSquareR_EB'` : ''};
   ${(props) => (props.align ? `text-align: ${props.align};` : '')}
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
     ${(props) => (props.padding ? `padding: ${props.padding};` : '')}
-    ${(props) => (props.family ? `font-family: ${props.family};` : '')}
     border: ${(props) => (props.border ? props.border : '')};
   width: ${(props) => props.width};
   word-break: break-all;

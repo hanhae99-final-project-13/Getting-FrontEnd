@@ -1,6 +1,12 @@
+@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css');
+
 @font-face {
   font-family: 'NanumSquareR';
-  src: url('../src/font/NANUMSQUAREB.TTF');
+  src: url('../src/font/NanumSquareR.otf');
+}
+@font-face {
+  font-family: 'NanumSquareR_EB';
+  src: url('../src/font/NanumSquareOTF_acEB.otf');
 }
 body {
   margin: 0;
