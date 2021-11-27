@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import { actionCreators as userAction } from '../redux/modules/user';
 import { Grid } from '../elements';
 import {
   MainHello,
@@ -24,6 +24,12 @@ const Main = (props) => {
       dispatch(userAction.LoginCheck());
     }, 1000);
     dispatch(postActions.getMainPostMW());
+  }, []);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      dispatch(userAction.LoginCheck());
+    }, 1000);
   }, []);
 
   return (

@@ -31,15 +31,21 @@ const AdvancedKnowledge2 = () => {
           position='absolute'
           width='20px'
           height='20px'
-          top='-30px'
+          top='30px'
           left='36px'>
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
         </Grid>
-        <Grid position='absolute' top='-30px' left='0' right='0'>
+        <Grid
+          position='absolute'
+          top='30px'
+          left='0'
+          right='0'
+          zIndex='9998'
+          height='auto'>
           <Text size='18px' margin='0' weight='800' align='center'>
-            심화지식 리스트2
+            심화2 지식
           </Text>
         </Grid>
 
@@ -48,7 +54,8 @@ const AdvancedKnowledge2 = () => {
             <img
               src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
               style={{
-                maxWidth: '100%',
+                maxWidth: '414px',
+                width: '100%',
                 margin: '0 auto',
               }}
             />
@@ -129,7 +136,7 @@ const settings = {
 const StyledSlider = styled(Slider)`
   .slick-list {
     max-width: 414px;
-    margin: 60px auto 0;
+    margin: 0 auto;
   }
   .slick-dots li {
     margin: 0 0rem;

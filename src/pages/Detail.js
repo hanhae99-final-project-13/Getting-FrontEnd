@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { postActions } from '../redux/modules/post';
 import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 import Header from '../components/Header';
@@ -85,8 +86,7 @@ const Detail = (props) => {
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
-                }}
-              >
+                }}>
                 저와 친구하실래요?
                 <img
                   src={process.env.PUBLIC_URL + '/img/icon/smile.svg'}
@@ -101,8 +101,7 @@ const Detail = (props) => {
                 left='70px'
                 display='flex'
                 flexDirection='row-reverse'
-                zIndex='2'
-              >
+                zIndex='2'>
                 <button
                   style={{ all: 'unset', cursor: 'pointer' }}
                   onClick={() => {
@@ -111,8 +110,7 @@ const Detail = (props) => {
                     } else {
                       dispatch(postActions.heartToAxios({ postId: postId }));
                     }
-                  }}
-                >
+                  }}>
                   {post.post.heart === true ? (
                     <img
                       src={
@@ -133,8 +131,7 @@ const Detail = (props) => {
               {user && user.nickname === post.post.nickname ? (
                 <button
                   style={{ all: 'unset', cursor: 'pointer' }}
-                  onClick={onModal}
-                >
+                  onClick={onModal}>
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -146,8 +143,7 @@ const Detail = (props) => {
               ) : (
                 <button
                   style={{ all: 'unset', width: '12px' }}
-                  onClick={onModal}
-                ></button>
+                  onClick={onModal}></button>
               )}
             </Grid>
             <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
@@ -203,8 +199,7 @@ const Detail = (props) => {
                   }
                   openModal();
                   window.sessionStorage.clear();
-                }}
-              >
+                }}>
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -224,8 +219,7 @@ const Detail = (props) => {
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   eduCheckopenModal();
-                }}
-              >
+                }}>
                 <Text color='white'>입양 신청하기</Text>
               </Grid>
             </Grid>
@@ -235,22 +229,19 @@ const Detail = (props) => {
             margin='0 auto'
             padding='15px 25px'
             boxShadow='1px 1px 2px 1px rgba(0, 0, 0, 0.06)'
-            borderRadius='10px'
-          >
+            borderRadius='10px'>
             <Grid
               display='flex'
               margin='10px 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid width='50%'>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   견종
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -264,8 +255,7 @@ const Detail = (props) => {
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   성별
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.sex}</span>
@@ -276,16 +266,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid width='50%'>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   체중
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -299,8 +287,7 @@ const Detail = (props) => {
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   나이
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -313,16 +300,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   발견 장소
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -335,16 +320,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   보호 장소
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -357,16 +340,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   주소
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -379,16 +360,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   출처
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>{post.post.tag}</span>
@@ -398,20 +377,17 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid
                 display='flex'
                 justifyContent='space-between'
-                alignItems='center'
-              >
+                alignItems='center'>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   웹사이트
                 </span>
                 <span style={{ margin: '0 5px 0 10px', cursor: 'pointer' }}>
@@ -511,16 +487,14 @@ const Detail = (props) => {
               display='flex'
               margin='20px 0 0 0'
               padding='0 0 15px 0'
-              borderBottom='1px solid rgba(225, 225, 225, 0.8)'
-            >
+              borderBottom='1px solid rgba(225, 225, 225, 0.8)'>
               <Grid>
                 <span
                   style={{
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   연락처
                 </span>
                 <span style={{ margin: '0 5px 0 10px' }}>
@@ -536,8 +510,7 @@ const Detail = (props) => {
                     fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
-                  }}
-                >
+                  }}>
                   특이사항
                 </p>
                 <span style={{ whiteSpace: 'pre-line' }}>
@@ -554,8 +527,7 @@ const Detail = (props) => {
           {modalOpen ? (
             <AdoptionNoticeModal
               postId={postId}
-              closeModal={closeModal}
-            ></AdoptionNoticeModal>
+              closeModal={closeModal}></AdoptionNoticeModal>
           ) : (
             ' '
           )}
@@ -585,8 +557,7 @@ const Detail = (props) => {
                 margin: '0 auto',
                 left: 0,
                 right: 0,
-              }}
-            >
+              }}>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <button
                   style={{
@@ -601,8 +572,7 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     editMode();
-                  }}
-                >
+                  }}>
                   수정
                 </button>
               </Grid>
@@ -635,8 +605,7 @@ const Detail = (props) => {
                       }
                       setDetailModal(!detailModal);
                     });
-                  }}
-                >
+                  }}>
                   삭제
                 </button>
               </Grid>
@@ -654,8 +623,7 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
-                  }}
-                >
+                  }}>
                   취소
                 </button>
               </Grid>
