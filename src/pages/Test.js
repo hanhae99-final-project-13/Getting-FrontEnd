@@ -6,10 +6,6 @@ import { Carousel2 } from '../components';
 const Test = () => {
   const info = (e) => {
     let x = e.nativeEvent.offsetX;
-    console.log(e.target.offsetLeft);
-    console.log(e.pageX);
-    console.log(x);
-    console.log(e);
   };
 
   return (

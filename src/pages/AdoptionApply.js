@@ -51,12 +51,11 @@ const AdoptionApply = (props) => {
   const [click, setClick] = useState(false);
   const handleCurrentPet = () => {
     setClick(!click);
-    console.log(click);
+
     if (click === false) {
       setCurrentPet('없음');
     } else setCurrentPet('있음');
   };
-  console.log(click);
 
   // 주소 입력 모달
   const [addressModal, setAddressModal] = React.useState(false);
@@ -70,7 +69,6 @@ const AdoptionApply = (props) => {
     const DbData = (({ click, ...o }) => o)(sessionData);
 
     const info = Object.values(DbData);
-    console.log(info, '입력안된 질문 확인용');
 
     if (info.includes('') === true) {
       ErrorAlert2('정보를 모두 입력해주셔야합니다.', 'bottom');
@@ -87,7 +85,7 @@ const AdoptionApply = (props) => {
 
   useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem('length'));
-    console.log(data);
+
     const {
       name,
       job,

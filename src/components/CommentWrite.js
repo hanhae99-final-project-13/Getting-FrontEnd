@@ -6,10 +6,9 @@ import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
 const CommentWrite = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
-  // console.log('코멘트', props);
+
   const postId = props.postId;
   if (props.comment) {
-    console.log('수정버튼시 활성화', props.comment);
   }
   const editSubmit = () => {
     const commentId = props.comment.commentId;

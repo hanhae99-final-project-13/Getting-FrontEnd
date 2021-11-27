@@ -11,7 +11,7 @@ import {
 import { postActions } from '../redux/modules/post';
 import WebSocket from '../components/WebSocket';
 const Main = (props) => {
-  const [wsConnectSubscribe] = WebSocket();
+  // const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
   const token = localStorage.getItem('USER_TOKEN');
   React.useEffect(() => {

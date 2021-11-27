@@ -9,6 +9,7 @@ import LoginErrorAlert from '../components/LoginErrorAlert';
 import { WarningAlert } from '../shared/Alerts';
 import { deleteCookie } from '../shared/Cookie';
 const Login = (props) => {
+  // const [wsConnectSubscribe] = WebSocket();
   const { history } = props;
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user?.error);
@@ -18,12 +19,10 @@ const Login = (props) => {
 
   const handleChangeID = (e) => {
     setID(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleChangePW = (e) => {
     setPw(e.target.value);
-    console.log(e.target.value);
   };
 
   const user = {
@@ -35,10 +34,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (document.cookie.includes('REFRESH_TOKEN')) {
-      deleteCookie('USER_TOKEN');
-      deleteCookie('REFRESH_TOKEN');
-    }
+    if (localStorage.getItem('USER_TOKEN')) localStorage.clear();
   }, []);
 
   return (

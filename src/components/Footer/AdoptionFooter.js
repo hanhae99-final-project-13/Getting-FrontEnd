@@ -7,7 +7,6 @@ import { Grid, Text } from '../../elements';
 const AdoptionFooter = withRouter((props) => {
   const dispatch = useDispatch();
   const a = props;
-  console.log(a.history.location.pathname);
 
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);

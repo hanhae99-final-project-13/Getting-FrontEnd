@@ -23,8 +23,6 @@ const Detail = (props) => {
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
-  console.log('aa', post);
-
   // 필수지식 수료요청 모달
   const [eduCheck, setEduCheck] = useState(false);
   const eduCheckopenModal = () => {
@@ -54,7 +52,6 @@ const Detail = (props) => {
   };
   const toTop = () => {
     window.scrollTo(0, 0);
-    console.log('스크롤 탑');
   };
   React.useEffect(() => {
     window.scrollTo(0, 0);

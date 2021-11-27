@@ -17,7 +17,7 @@ const AdoptionNoticeModal = (props) => {
         height='740px'
         margin='auto'
         padding='0 20px'
-        position='stiky'
+        position='sticky'
         top='43px'
         left='20px'
         zIndex='999'

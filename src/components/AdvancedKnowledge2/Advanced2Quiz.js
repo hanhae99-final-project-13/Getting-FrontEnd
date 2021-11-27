@@ -19,10 +19,9 @@ const Advanced2Quiz = (props) => {
   const CurrentQuizData = Advanced2QuizData.filter(
     (quiz) => parseInt(QuizId) === quiz.id,
   );
-  console.log(CurrentQuizData);
 
   const { id, QuizContent, classNumber } = CurrentQuizData[0];
-  console.log(id, QuizContent, classNumber);
+
   window.sessionStorage.setItem(`answer${id}`, '');
 
   const [selectAnswer, setSelectAnswer] = useState('');

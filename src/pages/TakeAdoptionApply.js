@@ -66,10 +66,26 @@ const TakeAdoptionApply = (props) => {
           <Text margin='0 0 12px 0' size='16px' weight='700'>
             '{detailFosterForm.name}'님의 이수현황
           </Text>
-          <img
-            width='81.73'
-            src={process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'}
-          />
+          {detailFosterForm.eduStatus.심화지식2 && (
+            <img
+              width='81.73'
+              src={process.env.PUBLIC_URL + '/img/GUIicon/badge_3_icon.svg'}
+            />
+          )}
+          {!detailFosterForm.eduStatus.심화지식2 &&
+            detailFosterForm.eduStatus.심화지식 && (
+              <img
+                width='81.73'
+                src={process.env.PUBLIC_URL + '/img/GUIicon/badge_2_icon.svg'}
+              />
+            )}
+          {!detailFosterForm.eduStatus.심화지식 &&
+            !detailFosterForm.eduStatus.심화지식2 && (
+              <img
+                width='81.73'
+                src={process.env.PUBLIC_URL + '/img/GUIicon/badge_1_icon.svg'}
+              />
+            )}
         </Grid>
         <DefaultInfomation />
         <AdoptionReason />
@@ -95,7 +111,6 @@ const TakeAdoptionApply = (props) => {
               apis
                 .applyDecision(fosterFormId, { acceptance: 'rejected' })
                 .then((res) => {
-                  console.log(res.data);
                   ErrorAlert('입양 신청을 거절하셨습니다');
                   history.push('/mypage');
                 })

@@ -86,9 +86,9 @@ const Card = (props) => {
             borderRadius='15px'
           >
             <Text margin='0' size='12px' weight='700'>
-              {isAdopted === 'ABANDONED' ? '보호중' : null}
-              {isAdopted === 'ADOPTED ' ? '입양완료' : null}
-              {isAdopted === 'EXPIRED' ? '보호종료' : null}
+              {isAdopted === 'ADOPTED' ? '입양완료' : ''}
+              {isAdopted === 'EXPIRED' ? '보호종료' : ''}
+              {isAdopted === 'ABANDONED' ? '보호중' : ''}
             </Text>
           </Grid>
         </Grid>
