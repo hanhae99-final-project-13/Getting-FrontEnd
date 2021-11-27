@@ -274,9 +274,12 @@ const Alarm = () => {
         {deleteModal ? (
           <div
             style={{
-              width: '375px',
+              maxWidth: '414px',
+              margin: '0 auto',
               backgroundColor: 'white',
               position: 'fixed',
+              left: '0',
+              right: '0',
               bottom: '0',
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',

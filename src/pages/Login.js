@@ -8,14 +8,11 @@ import { KAKAO_AUTH_URL } from '../shared/kakaoAuth';
 import LoginErrorAlert from '../components/LoginErrorAlert';
 import { WarningAlert } from '../shared/Alerts';
 import { deleteCookie } from '../shared/Cookie';
-import WebSocket from '../components/WebSocket';
-import { reject } from 'lodash';
 const Login = (props) => {
   // const [wsConnectSubscribe] = WebSocket();
   const { history } = props;
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user?.error);
-  // console.log(error.errorAlert);
 
   const [id, setID] = useState('');
   const [pw, setPw] = useState('');
