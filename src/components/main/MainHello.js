@@ -24,7 +24,13 @@ const MainHello = (props) => {
       />
       <Grid display='flex' width='auto' margin='18.5px 0 0 0'>
         <Text size='18px' weight='700' margin='0'>
-          안녕하세요{isLogin && ','} <Bold>{isLogin && userInfo.nickname}</Bold>
+          안녕하세요{isLogin && ','}&nbsp;
+          {isLogin && ' '}
+        </Text>
+        <Text size='18px' weight='800' margin='0'>
+          {isLogin && userInfo.nickname}
+        </Text>
+        <Text size='18px' weight='700' margin='0'>
           {isLogin && '님'}!
         </Text>
       </Grid>

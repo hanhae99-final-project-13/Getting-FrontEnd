@@ -19,9 +19,9 @@ const MainAdoptionCardList = (props) => {
         display='flex'
         justifyContent='space-between'
         alignItems='center'
-        margin='0 0 5px 0'
-        width='calc(100% - 36px)'
+        margin='0 0 20px 0'
         height='auto'
+        zIndex='2'
       >
         <Grid display='flex'>
           <Text
@@ -34,12 +34,24 @@ const MainAdoptionCardList = (props) => {
           </Text>
           <img src={process.env.PUBLIC_URL + '/img/icon/eye_heart.svg'} />
         </Grid>
-        <img
-          width='13'
-          height='4'
-          src={process.env.PUBLIC_URL + '/img/icon/setting_horizontal_icon.svg'}
-          onClick={() => history.push('/adoption')}
-        />
+        <Grid
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+          width='20px'
+          height='10px'
+          _onClick={() => {
+            history.push('/adoption');
+          }}
+        >
+          <img
+            width='13'
+            height='4'
+            src={
+              process.env.PUBLIC_URL + '/img/icon/setting_horizontal_icon.svg'
+            }
+          />
+        </Grid>
       </Grid>
       <Carousel2 width={mainPostList.length}>
         {mainPostList.map((p) => {
