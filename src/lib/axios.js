@@ -2,8 +2,8 @@ import axios from 'axios';
 import { ErrorAlert } from '../shared/Alerts';
 
 const instance = axios.create({
-  // baseURL: 'http://52.78.159.191', // 선강 님
-  baseURL: 'https://seonkang.shop', // 선강 님
+  baseURL: 'http://52.78.159.191', // 선강 님
+  // baseURL: 'https://seonkang.shop', // 선강 님
   // baseURL: 'http://3.38.107.59', // 지은님
   // baseURL: 'http://3.36.139.165',
   headers: {

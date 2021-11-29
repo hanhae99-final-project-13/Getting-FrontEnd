@@ -150,9 +150,9 @@ const Detail = (props) => {
                 ></button>
               )}
             </Grid>
-            {/* <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
-              닉네임 · 2021 - 11 - 29 작성 됨
-            </Grid> */}
+            <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
+              {post.post.nickname} · {post.post.createdAt.split('T')[0]} 등록
+            </Grid>
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null
