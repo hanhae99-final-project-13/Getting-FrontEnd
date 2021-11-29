@@ -10,14 +10,14 @@ import { Grid, Text } from '../../elements';
 import '../../shared/App.css';
 import AWS from 'aws-sdk';
 
-const Upload3 = forwardRef((props, ref) => {
+const Upload2 = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     upload,
   }));
 
-  const { setRoomUrl, previewImage, setPreviewImage } = props;
+  const { setSignUrl, signPreviewImage, setSignPreviewImage } = props;
 
-  const token = localStorage.getItem('USER_TOKEN');
+  const token = document.cookie.includes('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
 
   // s3 연결
@@ -43,7 +43,7 @@ const Upload3 = forwardRef((props, ref) => {
     const promise = upload.promise();
     promise.then(
       function (data) {
-        console.log('지낼 곳 이미지 업로드에 성공했습니다.');
+        console.log('Sign 이미지 업로드에 성공했습니다.');
       },
       function (err) {
         return console.log('오류가 발생했습니다.', err.message);
@@ -55,13 +55,14 @@ const Upload3 = forwardRef((props, ref) => {
 
   //이미지 미리보기 삭제
   const deletePrevieImage = () => {
-    URL.revokeObjectURL(previewImage);
-    setPreviewImage('');
-    setRoomUrl('');
+    URL.revokeObjectURL(signPreviewImage);
+    setSignPreviewImage('');
+    setSignUrl('');
   };
 
   // 이미지 핸들 함수
   const handleImage = (e) => {
+    console.log(e.target.files[0]);
     if (e.target.files[0] === undefined) {
       return;
     }
@@ -75,11 +76,12 @@ const Upload3 = forwardRef((props, ref) => {
     const reader = new FileReader();
     reader.readAsDataURL(imagefile);
     reader.onloadend = () => {
+      console.log(reader.result);
       //미리보기이미지
-      setPreviewImage(reader.result);
+      setSignPreviewImage(reader.result);
     };
     //우리서버에 보낼 데이터
-    setRoomUrl(
+    setSignUrl(
       `https://docking.s3.ap-northeast-2.amazonaws.com/${imagefullname}`,
     );
   };
@@ -92,12 +94,12 @@ const Upload3 = forwardRef((props, ref) => {
     <Grid>
       <input
         type='file'
-        id='file'
+        id='file2'
         style={{ display: 'none' }}
         accept='image/*'
         onChange={handleImage}
       />
-      <label htmlFor='file'>
+      <label htmlFor='file2'>
         <Grid
           cusor='pointer'
           weight='800'
@@ -114,7 +116,7 @@ const Upload3 = forwardRef((props, ref) => {
         </Grid>
       </label>
 
-      {previewImage ? (
+      {signPreviewImage ? (
         <Grid
           position='relative'
           bg='white'
@@ -141,7 +143,7 @@ const Upload3 = forwardRef((props, ref) => {
             x
           </button>
           <img
-            src={previewImage}
+            src={signPreviewImage}
             style={{
               maxWidth: '414px',
               width: '100%',
@@ -185,4 +187,4 @@ const Upload3 = forwardRef((props, ref) => {
   );
 });
 
-export default Upload3;
+export default Upload2;

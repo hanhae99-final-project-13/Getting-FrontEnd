@@ -276,13 +276,19 @@ const AdoptionNoticeModal = (props) => {
                 'length2',
                 JSON.stringify({
                   allergy: '증상있음',
-                  experience: '',
-                  timeTogether: '',
                   anxiety: '',
                   bark: '',
-                  roomUrl: '',
-                  preview: '',
                   check: false,
+                  etc: '',
+                  experience: '',
+                  leaveHome: '',
+                  medicalBudget: '',
+                  monthlyBudget: '',
+                  roomPreview: '',
+                  roomUrl: '',
+                  signPreview: '',
+                  signUrl: '',
+                  timeTogether: '',
                 }),
               );
               window.scrollTo(0, 0);

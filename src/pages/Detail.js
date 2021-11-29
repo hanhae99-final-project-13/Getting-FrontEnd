@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { postActions } from '../redux/modules/post';
 import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 import Header from '../components/Header';
@@ -150,10 +151,9 @@ const Detail = (props) => {
                 ></button>
               )}
             </Grid>
-            <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
-              {post.post.nickname} · {post && post.post.createdAt.split('T')[0]}{' '}
-              등록
-            </Grid>
+            {/* <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
+              {post.post.nickname} · {post.post.createdAt.split('T')[0]} 등록
+            </Grid> */}
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null

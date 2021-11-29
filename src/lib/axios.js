@@ -5,7 +5,7 @@ const instance = axios.create({
   // baseURL: 'http://52.78.159.191', // 선강 님/
   baseURL: 'https://seonkang.shop', // 선강 님
   // baseURL: 'http://3.38.107.59', // 지은님
-  // baseURL: 'http://3.36.139.165',
+
   headers: {
     'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
     accept: 'application/json',
@@ -43,6 +43,7 @@ instance.interceptors.response.use(
     console.log(err);
     console.log(err.response);
     console.log(err.config);
+
     if (
       err.response.status === 400 &&
       err.response.data.errorMessage !==

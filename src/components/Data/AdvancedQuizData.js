@@ -1,39 +1,61 @@
 const AdvancedQuizData = [
   {
     id: 1,
-
-    QuizContent:
-      '분리불안 증세를 호전시키지 위해 외출 후 <br/> 귀가하자마자 강아지에게 간식 보상을 해줍니다',
-    answer: 'false',
     classNumber: '2',
+    QuizContent:
+      '다음 중, 강아지가 피해야할 음식이<br/> <span>아닌</span> 것은?',
+    answer: '사과',
+    select1: '초콜릿',
+    select2: '아보카도',
+    select3: '포도',
+    select4: '사과',
   },
   {
     id: 2,
-    QuizContent:
-      '강아지가 불리불안으로 습관적으로<br/>하울링한다면 하울링 하지 못하도록 무조건 혼내고 교육한다.',
-    answer: 'false',
     classNumber: '2',
+    QuizContent:
+      '다음 중, 반려견이 자동차 멀미를 할 때<br/> 할 수 있는 대처사항이 <span>아닌</span> 것은?',
+    answer: '충분히 물을 섭취하게끔 하기',
+
+    select1: '출발 전, 너무 많은 음식 먹이지 않기',
+    select2: '충분히 물을 섭취하게끔 하기',
+    select3: '창밖을 내다보는 것이 아닌 앞을 보게 하기',
+    select4: '창문을 열어 환기 시키기',
   },
   {
     id: 3,
-    QuizContent:
-      '반려견을위한 장난감으로 반려견 케어 및 치매 예방을 할 수 있다.',
-    answer: 'true',
     classNumber: '2',
+    QuizContent:
+      '아이가 몇 주동안 엉덩이를 끌고 다녀야지 항문낭을 짤 <span>시기</span>일까?',
+    answer: '1-2주',
+
+    select1: '1-2주',
+    select2: '2-3주',
+    select3: '3-4주',
+    select4: '한 달',
   },
   {
     id: 4,
-    QuizContent:
-      '반려견이 내 관심을 받기 위해 배변을 보는 것<br/>같으면, 그 자리에서 혼을 내야 행동이 고쳐진다.',
-    answer: 'false',
     classNumber: '2',
+    QuizContent: '다음 중, 자율배식의 <span>장점</span>이<br/> 아닌 것은?',
+    answer: '건강 체크 용이',
+
+    select1: '스스로 먹는 양을 결정해 식탐을 완화',
+    select2: '건강 체크 용이',
+    select3: '스트레스 완화',
+    select4: '반려인의 편의',
   },
   {
     id: 5,
-    QuizContent:
-      '강아지가 무는 행동을 교육하기 위해서 엄하게<br/> 체벌하여 못하게 해야합니다.',
-    answer: 'false',
     classNumber: '2',
+    QuizContent:
+      '다음 중, 아이를 목욕시킬 때<br/> 지켜야할 사항으로 <span>맞는</span> 것은?',
+    answer: '목욕 전, 젖은 수건 또는 분무기로 씻기기',
+
+    select1: '온수 대신 차가운 물로 씻기기',
+    select2: '목욕 전, 젖은 수건 또는 분무기로 씻기기',
+    select3: '최대한 많은 양의 샴푸 사용하기',
+    select4: '꼼꼼한 헹굼을 위해 센 물줄기 유지하기',
   },
 ];
 
