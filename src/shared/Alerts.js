@@ -11,6 +11,17 @@ export const WarningAlert = (warning_text, footer, title) => {
     footer: footer,
   });
 };
+
+export const WarningAlert2 = (html_text, footer, title) => {
+  Swal.fire({
+    title: title,
+    html: html_text,
+    icon: 'warning',
+    confirmButtonColor: '#FE7968',
+    footer: footer,
+  });
+};
+
 //성공 alert
 export const SuccessAlert = (success_text) => {
   Swal.fire({
@@ -38,6 +49,7 @@ export const ErrorAlert = (error_text, position_text) => {
     icon: 'error',
     confirmButtonColor: '#FE7968',
     confirmButtonBorder: 'none',
+    // customClass: 'swal-font',
   });
 };
 //에러 alert (줄바꿈가능)

@@ -178,8 +178,7 @@ const AdoptionApply = (props) => {
       maxWidth='414px'
       width='auto'
       margin='0 auto'
-      padding='0 35px'
-    >
+      padding='0 35px'>
       <Grid
         cusor='pointer'
         _onClick={() => {
@@ -189,8 +188,7 @@ const AdoptionApply = (props) => {
         top='65px'
         left='0px'
         width='25px'
-        height='25px'
-      >
+        height='25px'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -248,22 +246,19 @@ const AdoptionApply = (props) => {
           boxSizing='border-box'
           bg='#FFFFFF'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <SelectBox
             options={AGEOPTION}
             _onChange={handleAgeChange}
-            defaultValue={fosterAge}
-          ></SelectBox>
+            defaultValue={fosterAge}></SelectBox>
 
-          <Text bold margin='10px 11px 0 8px'>
+          <Text weight='700' margin='10px 11px 0 8px'>
             살
           </Text>
           <SelectBox
             options={GENDEROPTION}
             _onChange={handleGenderChange}
-            defaultValue={gender}
-          ></SelectBox>
+            defaultValue={gender}></SelectBox>
         </Grid>
 
         <Grid
@@ -272,8 +267,7 @@ const AdoptionApply = (props) => {
           border='none'
           borderBottom='1px solid rgba(225, 225, 225, 0.5) '
           boxSizing='border-box'
-          height='auto'
-        >
+          height='auto'>
           <Input
             border='none'
             placeholder='거주지를 선택해주세요'
@@ -318,10 +312,9 @@ const AdoptionApply = (props) => {
           padding='16px 0px'
           boxSizing='border-box'
           height='49px'
-          borderBottom='1px solid rgba(225, 225, 225, 0.5) '
-        >
+          borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
           <Grid>
-            <Text margin='0' bold>
+            <Text margin='0' weight='700'>
               반려동물 여부
             </Text>
           </Grid>
@@ -330,9 +323,8 @@ const AdoptionApply = (props) => {
               _onClick={handleCurrentPetTextYes}
               cursor='pointer'
               color={currentPet === '있음' ? '#000000' : '#E7E5E5'}
-              bold
-              margin='0 10px 0 0'
-            >
+              weight='700'
+              margin='0 10px 0 0'>
               있음
             </Text>
             <Slider
@@ -344,9 +336,8 @@ const AdoptionApply = (props) => {
               _onClick={handleCurrentPetTextNo}
               cursor='pointer'
               color={currentPet === '없음' ? '#000000' : '#E7E5E5'}
-              bold
-              margin='0  0 0 10px'
-            >
+              weight='700'
+              margin='0  0 0 10px'>
               없음
             </Text>
           </Grid>
@@ -387,8 +378,7 @@ const AdoptionApply = (props) => {
             }}
             cols='40'
             rows='13'
-            placeholder='500자 이하로 작성해주세요'
-          ></Textarea>
+            placeholder='500자 이하로 작성해주세요'></Textarea>
         </Grid>
 
         <Grid height='auto' margin='23px auto'>
@@ -403,8 +393,7 @@ const AdoptionApply = (props) => {
             justifyContent='center'
             alignItems='center'
             boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-            _onClick={NextPage}
-          >
+            _onClick={NextPage}>
             <Text margin='0' color='#FFFFFF' weight='800'>
               다음 페이지로
             </Text>

@@ -83,6 +83,7 @@ Text.defaultProps = {
   borderBottom: null,
   cursor: null,
   _onClick: () => {},
+  cusor: null,
 };
 
 const TextBox = styled.p`

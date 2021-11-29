@@ -11,7 +11,8 @@ const Alarm = () => {
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
-
+  const alarmCreatedAt = userInfo.alarmContent.map((a) => a.createdAt);
+  console.log(alarmCreatedAt);
   const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
   const delModaltoggle = () => {
@@ -61,7 +62,7 @@ const Alarm = () => {
   return (
     <>
       <Header></Header>
-      <Grid maxWidth='414px' margin='50px auto'>
+      <Grid maxWidth='414px' margin='50px auto 0'>
         <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
@@ -74,8 +75,7 @@ const Alarm = () => {
             width='auto'
             padding='0 5px'
             justifyContent='space-between'
-            alignItems='center'
-          >
+            alignItems='center'>
             <Text size='12px'>
               새로운 알림{' '}
               <span style={{ color: 'red', fontSize: '12px' }}>
@@ -91,8 +91,7 @@ const Alarm = () => {
               }}
               onClick={() => {
                 delModaltoggle();
-              }}
-            >
+              }}>
               전체삭제
             </button>
           </Grid>
@@ -106,8 +105,7 @@ const Alarm = () => {
                   bg='white'
                   borderRadius='200px'
                   color='black'
-                  boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
-                >
+                  boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'>
                   <Image
                     style={{}}
                     src={
@@ -131,6 +129,7 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
+                  console.log(alarm.createdAt);
                   return (
                     <>
                       {alarm.checked === true ? (
@@ -141,8 +140,7 @@ const Alarm = () => {
                           width='10px'
                           height='10px'
                           bg='#FE7968'
-                          borderRadius='5px'
-                        ></Grid>
+                          borderRadius='5px'></Grid>
                       ) : (
                         <Grid height='10px'></Grid>
                       )}
@@ -161,15 +159,14 @@ const Alarm = () => {
                           dispatch(
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),
                           );
-
+                          console.log(alarm);
                           if (alarm.alarmType === 'COMMENT') {
                             history.push(`/detail/${alarm.postId}`);
                           }
                           if (alarm.alarmType === 'FOSTER_FORM') {
                             history.push(`/takeapply/${alarm.contentId}`);
                           }
-                        }}
-                      >
+                        }}>
                         <Grid
                           bg='#E8E8E8'
                           width='36px'
@@ -177,8 +174,7 @@ const Alarm = () => {
                           borderRadius='25px'
                           display='flex'
                           justifyContent='center'
-                          alignItems='center'
-                        >
+                          alignItems='center'>
                           {alarm.alarmType === 'SIGN_UP' ? (
                             <img
                               src={
@@ -207,8 +203,7 @@ const Alarm = () => {
                           flexDirection='column'
                           boxSizing='border-box'
                           margin='0 0 0 10px'
-                          width='78%'
-                        >
+                          width='78%'>
                           <Grid fontSize='10px' color='darkgrey'>
                             {alarmTime(alarm.createdAt)}
                           </Grid>
@@ -222,8 +217,7 @@ const Alarm = () => {
                                   style={{
                                     fontSize: '10px',
                                     color: 'darkgray',
-                                  }}
-                                >
+                                  }}>
                                   "
                                 </span>
                                 <span
@@ -234,29 +228,25 @@ const Alarm = () => {
                                     whiteSpace: 'nowrap',
                                     overflow: 'hidden',
                                     textOverflow: 'ellipsis',
-                                  }}
-                                >
+                                  }}>
                                   {alarm.comment}
                                 </span>
                                 <span
                                   style={{
                                     fontSize: '10px',
                                     color: 'darkgray',
-                                  }}
-                                >
+                                  }}>
                                   "
                                 </span>
                               </>
                             ) : alarm.alarmType === 'SIGN_UP' ? (
                               <span
-                                style={{ fontSize: '10px', color: 'darkgray' }}
-                              >
+                                style={{ fontSize: '10px', color: 'darkgray' }}>
                                 개팅에 오신 것을 환영합니다!
                               </span>
                             ) : alarm.alarmType === 'FOSTER_FORM' ? (
                               <span
-                                style={{ fontSize: '10px', color: 'darkgray' }}
-                              >
+                                style={{ fontSize: '10px', color: 'darkgray' }}>
                                 마이페이지 > 입양 관리 > 받은 입양 신청 탭에서
                                 확인하세요!
                               </span>
@@ -287,14 +277,12 @@ const Alarm = () => {
               height: '265px',
               boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)',
               zIndex: '2',
-            }}
-          >
+            }}>
             <Grid
               display='flex'
               justifyContent='center'
               alignItems='center'
-              height='150px'
-            >
+              height='150px'>
               <img
                 src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'}
                 style={{ width: '75px' }}
@@ -304,16 +292,14 @@ const Alarm = () => {
               display='flex'
               justifyContent='center'
               alignItems='center'
-              height='10px'
-            >
+              height='10px'>
               모든 알림이 삭제됩니다. 그래도 괜찮으신가요?
             </Grid>
             <Grid
               display='flex'
               alignItems='center'
               justifyContent='center'
-              height='100px'
-            >
+              height='100px'>
               <button
                 style={{
                   all: 'unset',
@@ -330,8 +316,7 @@ const Alarm = () => {
                 }}
                 onClick={() => {
                   delModaltoggle();
-                }}
-              >
+                }}>
                 다시 생각해볼게요
               </button>
               <button
@@ -350,8 +335,7 @@ const Alarm = () => {
                 }}
                 onClick={() => {
                   deleteList();
-                }}
-              >
+                }}>
                 네, 삭제할게요
               </button>
             </Grid>

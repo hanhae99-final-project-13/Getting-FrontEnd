@@ -1,6 +1,6 @@
 {
-  "short_name": "getting",
   "name": "getting",
+  "short_name": "getting",
   "icons": [
     {
       "src": "/img/icon/appLogo2.png",
@@ -13,8 +13,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "landscape",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "start_url": "/"
 }
