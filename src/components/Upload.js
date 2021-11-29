@@ -3,7 +3,6 @@ import AWS from 'aws-sdk';
 import { Grid } from '../elements/index';
 import { WarningAlert } from '../shared/Alerts';
 const Upload = (props) => {
-  //다중이미지 aws s3 업로드
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
@@ -60,7 +59,6 @@ const Upload = (props) => {
         if (err) {
           throw err;
         }
-        //삭제버튼을 누르면 등록하는 이미지도 사라지게 설정
         props.setImg(props.img.filter((img) => img !== props.img[e]));
       },
     );

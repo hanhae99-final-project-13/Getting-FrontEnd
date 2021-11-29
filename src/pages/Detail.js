@@ -9,7 +9,7 @@ import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 import Header from '../components/Header';
 
 import CommentList from '../components/CommentList';
-import { Grid, Image, Text } from '../elements/index';
+import { Grid, Text } from '../elements/index';
 import Swal from 'sweetalert2';
 import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
@@ -49,9 +49,6 @@ const Detail = (props) => {
   const editMode = () => {
     setEdit(true);
     setDetailModal(!detailModal);
-  };
-  const toTop = () => {
-    window.scrollTo(0, 0);
   };
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -402,7 +399,6 @@ const Detail = (props) => {
                   {post.post.url === null || post.post.url === '' ? (
                     '없음'
                   ) : post.post.url.includes('http') ? (
-                    // http:// 가 주소에 있다면
                     post.post.url.includes('instagram.com') ? (
                       <img
                         src={
@@ -445,8 +441,7 @@ const Detail = (props) => {
                         }
                       />
                     )
-                  ) : // http:// 가 주소에 없다면
-                  post.post.url.includes('instagram.com') ? (
+                  ) : post.post.url.includes('instagram.com') ? (
                     <img
                       src={
                         process.env.PUBLIC_URL +
@@ -586,7 +581,6 @@ const Detail = (props) => {
                   }}
                   onClick={() => {
                     editMode();
-                    // history.push('/editpost');
                   }}
                 >
                   수정

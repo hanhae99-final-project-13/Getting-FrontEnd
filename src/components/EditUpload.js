@@ -7,7 +7,6 @@ import { WarningAlert } from '../shared/Alerts';
 const EditUpload = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.detailPost);
-  //다중이미지 aws s3 업로드
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
@@ -16,7 +15,6 @@ const EditUpload = (props) => {
   });
 
   let newImg = [...post.post.img];
-  //이미지 여러개 미리보기
   const onloadFile = (e) => {
     const date = new Date();
     const selectImg = e.target.files;
@@ -63,7 +61,6 @@ const EditUpload = (props) => {
       },
     );
 
-    //삭제버튼을 누르면 등록하는 이미지도 사라지게 설정
     props.setImg(
       post.post.img.filter((img) => img !== e),
       ...props.img,
@@ -72,7 +69,6 @@ const EditUpload = (props) => {
   return (
     <>
       <Grid display='flex' overflowX='auto'>
-        {/* 이미지 개수가 4개가 되면 첨부버튼 사라짐 */}
         {post.post.img.length >= 4 ? null : (
           <Grid
             width='150px'

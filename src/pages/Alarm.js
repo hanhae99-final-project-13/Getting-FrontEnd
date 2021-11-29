@@ -11,7 +11,6 @@ const Alarm = () => {
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
-  const alarmCreatedAt = userInfo.alarmContent.map((a) => a.createdAt);
 
   const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);

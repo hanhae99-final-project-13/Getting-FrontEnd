@@ -25,7 +25,6 @@ const CommentWrite = (props) => {
   };
   const dispatch = useDispatch();
   const [comment, setComment] = useState();
-  // 임시로 id값 지정
   const commentSubmit = () => {
     if (!token) {
       ErrorAlert('로그인 후 이용해주세요');

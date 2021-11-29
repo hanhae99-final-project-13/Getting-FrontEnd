@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { Grid, Image } from '../elements/';
 import Comment from './Comment';
 import CommentWrite from './CommentWrite';
 

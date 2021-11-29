@@ -61,7 +61,6 @@ const Comment = (props) => {
               margin='0 auto 10px'
               borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
               borderRadius='10px'
-              // display='flex'
               alignItems='center'
             >
               <div
@@ -161,7 +160,6 @@ const Comment = (props) => {
                   </div>
                   <div
                     style={{
-                      // display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-around',
                     }}
