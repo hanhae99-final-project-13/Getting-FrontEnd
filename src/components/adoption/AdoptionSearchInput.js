@@ -20,6 +20,7 @@ const AdoptionSearchInput = () => {
         boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'
         bg='white'
         _onClick={showModal}
+        cusor='pointer'
       >
         <Text margin='0' size='14px' wiehgt='700' color='#cecbca'>
           조건에 맞는 반려친구들을 찾아보세요!

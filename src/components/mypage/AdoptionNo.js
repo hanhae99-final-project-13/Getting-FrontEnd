@@ -8,7 +8,7 @@ import Card from '../Card';
 const AdoptionNo = (props) => {
   const myApplyList = useSelector((state) => state.apply.myApplyList);
   return (
-    <Grid display={props.display} height='calc(100vh - 566px)'>
+    <Grid display={props.display}>
       {myApplyList.map((p) => {
         if (p.acceptance !== 'rejected') {
           return;

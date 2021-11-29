@@ -36,18 +36,6 @@ const Adoption = () => {
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'old' }));
   };
 
-  const setCur = () => {
-    old.current.classList.remove('active');
-    cur.current.classList.add('active');
-    console.log('setCur 실행');
-  };
-
-  const setOld = () => {
-    cur.current.classList.remove('active');
-    old.current.classList.add('active');
-    console.log('setOld 실행');
-  };
-
   const goAddPost = () => {
     history.push('/addpost');
   };
@@ -57,13 +45,9 @@ const Adoption = () => {
     if (searchSetting.sort === 'new') {
       old.current.classList.remove('active');
       cur.current.classList.add('active');
-      console.log('setCur 실행');
-      // setCur();
     } else {
       cur.current.classList.remove('active');
       old.current.classList.add('active');
-      console.log('setOld 실행');
-      // setOld();
     }
     if (searchSetting.page !== 0) return;
     // dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
@@ -163,6 +147,11 @@ const AddButton = styled.img`
 const CategoryBox = styled.div`
   display: flex;
   padding-left: 12px;
+
+  span {
+    cursor: pointer;
+  }
+
   .category {
     margin-right: 15px;
     font-size: 14px;

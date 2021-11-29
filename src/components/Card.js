@@ -49,6 +49,7 @@ const Card = (props) => {
         margin={margin}
         boxShadow={boxShadow}
         _onClick={goDetail}
+        cusor='pointer'
       >
         <Grid
           position='absolute'

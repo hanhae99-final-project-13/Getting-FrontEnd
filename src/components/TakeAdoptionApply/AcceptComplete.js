@@ -44,6 +44,7 @@ const AcceptComplete = ({ name }) => {
           bg='#fe7968'
           borderRadius='34px'
           _onClick={() => history.push('/mypage')}
+          cusor='pointer'
         >
           <Text margin='0' color='white' size='14px' weight='800'>
             알겠습니다

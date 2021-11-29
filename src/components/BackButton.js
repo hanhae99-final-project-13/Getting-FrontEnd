@@ -23,6 +23,7 @@ const ImgBox = styled.img`
   right: ${(props) => props.right};
   width: 10px;
   height: 14px;
+  cursor: pointer;
 `;
 
 export default BackButton;

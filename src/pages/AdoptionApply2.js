@@ -48,6 +48,15 @@ const AdoptionApply2 = (props) => {
     } else setAllergy('증상있음');
   };
 
+  const handleallergyNo = () => {
+    setCheck(true);
+    setAllergy('증상없음');
+  };
+  const handleallergyYes = () => {
+    setCheck(false);
+    setAllergy('증상있음');
+  };
+
   //입양 신청버튼
   const applyClick = () => {
     const apply1Data = JSON.parse(window.sessionStorage.getItem('length'));
@@ -190,9 +199,11 @@ const AdoptionApply2 = (props) => {
               margin='12px 0 0 0'
             >
               <Text
+                _onClick={handleallergyYes}
                 color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0 7px 0 0'
+                cursor='pointer'
               >
                 증상있음
               </Text>
@@ -202,9 +213,11 @@ const AdoptionApply2 = (props) => {
                 handleToggle={handleallergy}
               />
               <Text
+                _onClick={handleallergyNo}
                 color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
                 bold
                 margin='0  0 0 7px'
+                cursor='pointer'
               >
                 증상없음
               </Text>
