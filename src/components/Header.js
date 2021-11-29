@@ -32,7 +32,6 @@ const Header = (props) => {
       <Grid
         bg='white'
         boxSizing='border-box'
-        position='fixed'
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
