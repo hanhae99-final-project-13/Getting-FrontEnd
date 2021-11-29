@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
@@ -7,10 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { actionCreators } from '../redux/modules/user';
-const Header = () => {
+const Header = withRouter((props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
-
+  const pathName = props;
+  console.log(pathName.history.location.pathname);
   const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
@@ -19,7 +20,12 @@ const Header = () => {
       <Grid
         bg='white'
         boxSizing='border-box'
-        position='fixed'
+        position={
+          pathName.history.location.pathname.includes('/detail') ||
+          pathName.history.location.pathname.includes('/addpost')
+            ? 'fixed'
+            : null
+        }
         top='0px'
         borderRadius='0 0 15px 15px '
         display='flex'
@@ -51,7 +57,6 @@ const Header = () => {
             />
           </Grid>
         </Grid>
-
         <Grid
           display='flex'
           alignItems='center'
@@ -132,6 +137,5 @@ const Header = () => {
       </Grid>
     </React.Fragment>
   );
-};
-
+});
 export default Header;
