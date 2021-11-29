@@ -95,7 +95,7 @@ const Detail = (props) => {
                 zIndex='2'
               >
                 <button
-                  style={{ all: 'unset' }}
+                  style={{ all: 'unset', cursor: 'pointer' }}
                   onClick={() => {
                     if (!token) {
                       ErrorAlert('로그인 후 이용해주세요');
@@ -122,7 +122,10 @@ const Detail = (props) => {
                 </button>
               </Grid>
               {user && user.nickname === post.post.nickname ? (
-                <button style={{ all: 'unset' }} onClick={onModal}>
+                <button
+                  style={{ all: 'unset', cursor: 'pointer' }}
+                  onClick={onModal}
+                >
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -181,6 +184,7 @@ const Detail = (props) => {
                 alignItems='center'
                 bottom='130px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                cusor='pointer'
                 _onClick={() => {
                   openModal();
                   window.sessionStorage.clear();
@@ -395,7 +399,7 @@ const Detail = (props) => {
                 >
                   웹사이트
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>
+                <span style={{ margin: '0 5px 0 10px', cursor: 'pointer' }}>
                   {post.post.url === null || post.post.url === '' ? (
                     '없음'
                   ) : post.post.url.includes('http') ? (
@@ -578,6 +582,7 @@ const Detail = (props) => {
                     color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     editMode();
@@ -598,6 +603,7 @@ const Detail = (props) => {
                     height: '100%',
                     borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                     borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     Swal.fire({
@@ -629,6 +635,7 @@ const Detail = (props) => {
                     color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);

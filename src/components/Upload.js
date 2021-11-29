@@ -103,6 +103,7 @@ const Upload = (props) => {
                   width: '150px',
                   height: '150px',
                   color: '#fe7968',
+                  cursor: 'pointer',
                 }}
               >
                 +

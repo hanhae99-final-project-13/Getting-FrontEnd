@@ -25,7 +25,8 @@ const AddressSelector = (props) => {
         zIndex='10000'
         top='0'
         left='0'
-        rigth='0'>
+        rigth='0'
+      >
         <Grid
           display='flex'
           bg='rgba(0, 0, 0, 0.5)'
@@ -35,7 +36,6 @@ const AddressSelector = (props) => {
           position='fixed'
           justifyContent='center'
           alignItems='center'
-          // _onClick={closeModal}
         ></Grid>
         <ModalBox style={{ display: `${DoVisible}` }}>
           {Object.keys(local).map((Do, i) => {
@@ -46,7 +46,8 @@ const AddressSelector = (props) => {
                   setLocalDo(Do);
                   props.setAddress(Do);
                   open(Do);
-                }}>
+                }}
+              >
                 {Do}
               </DoBox>
             );
@@ -59,7 +60,8 @@ const AddressSelector = (props) => {
             position='fixed'
             top='0'
             left='0'
-            rigth='0'>
+            rigth='0'
+          >
             <Grid
               display='flex'
               width='100%'
@@ -78,7 +80,8 @@ const AddressSelector = (props) => {
                       onClick={() => {
                         props.setSiAddress(' ' + d);
                         closeModal();
-                      }}>
+                      }}
+                    >
                       {d}
                     </DoBox>
                   );
@@ -114,6 +117,7 @@ const DoBox = styled.div`
   border-radius: 20px;
   color: white;
   background-color: #ff6666;
+  cursor: pointer;
 `;
 
 export default AddressSelector;

@@ -3,34 +3,17 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
-import { WarningAlert } from '../shared/Alerts';
-import WebSocket from './WebSocket';
-import WebSocket2 from './WebSocket2';
-const Header = (props) => {
-  // const [wsConnectSubscribe] = WebSocket();
+const Header = () => {
   const dispatch = useDispatch();
   const histroy = useHistory();
 
-  const isLogin = useSelector((state) => state.user.user.isLogin);
   const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
-  const alarmCount = useSelector(
-    (state) => state.user.user.userInfo?.alarmCount,
-  );
-  // React.useEffect(() => {
-  //   if (!token) {
-  //     return null;
-  //   }
-  //   wsConnectSubscribe();
-  //   return null;
-  // }, []);
   return (
     <React.Fragment>
       <Grid
@@ -57,6 +40,7 @@ const Header = (props) => {
             display='flex'
             alignItems='center'
             justifyContent='center'
+            cusor='pointer'
             _onClick={() => {
               histroy.goBack();
             }}
@@ -73,9 +57,9 @@ const Header = (props) => {
           alignItems='center'
           justifyContent='center'
           margin='0 auto'
+          cusor='pointer'
           _onClick={() => {
             histroy.push('/main');
-            // dispatch(actionCreators.updateAlarm(0));
           }}
         >
           <img
@@ -98,10 +82,10 @@ const Header = (props) => {
               display='flex'
               alignItems='center'
               justifyContent='center'
+              cusor='pointer'
             >
               <FontAwesomeIcon
                 onClick={() => {
-                  // WarningAlert('서비스 준비중입니다');
                   dispatch(actionCreators.readAlarm(true));
                   history.push('/alarm');
                 }}
@@ -123,9 +107,7 @@ const Header = (props) => {
                   color='white'
                   bg='red'
                   fontSize='10px'
-                >
-                  {/* {alarmCount} */}
-                </Grid>
+                ></Grid>
               ) : null}
             </Grid>
           </Grid>
@@ -151,14 +133,5 @@ const Header = (props) => {
     </React.Fragment>
   );
 };
-
-const TEXT = styled.p`
-  text-align: center;
-  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
-  width: 100%;
-  font-weight: ${(props) => (props.bold ? `600` : `400`)};
-  ${(props) => (props.color ? `color: ${props.color};` : '')}
-  ${(props) => (props.size ? `font-size: ${props.size};` : '')}
-`;
 
 export default Header;

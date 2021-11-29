@@ -105,6 +105,7 @@ const EditPost = (props) => {
           justifyContent='center'
           color='#FE7968'
           zIndex='1000'
+          cusor='pointer'
         >
           <img
             style={{ width: '10px' }}
@@ -129,7 +130,12 @@ const EditPost = (props) => {
           zIndex='1000'
         >
           <button
-            style={{ all: 'unset', color: '#FE7968', marginLeft: '10px' }}
+            style={{
+              all: 'unset',
+              color: '#FE7968',
+              marginLeft: '10px',
+              cursor: 'pointer',
+            }}
             onClick={editPost}
           >
             수정완료

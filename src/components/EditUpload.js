@@ -100,6 +100,7 @@ const EditUpload = (props) => {
                   width: '150px',
                   height: '150px',
                   color: '#fe7968',
+                  cursor: 'pointer',
                 }}
               >
                 +
@@ -132,6 +133,7 @@ const EditUpload = (props) => {
                       height: '15px',
                       top: '10px',
                       left: '125px',
+                      cursor: 'pointer',
                     }}
                     src={
                       process.env.PUBLIC_URL +

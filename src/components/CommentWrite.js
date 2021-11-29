@@ -82,6 +82,7 @@ const CommentWrite = (props) => {
               color: 'white',
               backgroundColor: '#FE7968',
               borderRadius: '10px',
+              cursor: 'pointer',
             }}
             onClick={editSubmit}
           >
@@ -115,6 +116,7 @@ const CommentWrite = (props) => {
               color: 'white',
               backgroundColor: '#FE7968',
               borderRadius: '10px',
+              cursor: 'pointer',
             }}
             onClick={commentSubmit}
             onKeyUp={enterKey}
