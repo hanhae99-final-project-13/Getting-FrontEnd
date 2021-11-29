@@ -132,7 +132,7 @@ const CommentWrite = (props) => {
 const CommentBox = styled.input`
   background-color: white;
   width: 250px;
-  height: 35px;
+  height: 30px;
   margin: auto;
   display: flex;
   align-items: center;
