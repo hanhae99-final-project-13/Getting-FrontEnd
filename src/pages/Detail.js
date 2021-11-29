@@ -88,8 +88,8 @@ const Detail = (props) => {
                 width='30px'
                 height='auto'
                 position='relative'
-                top='45px'
-                left='75px'
+                top='60px'
+                left='70px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
@@ -141,7 +141,9 @@ const Detail = (props) => {
                 ></button>
               )}
             </Grid>
-
+            <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
+              닉네임 · 2021 - 11 - 29 작성 됨
+            </Grid>
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null
