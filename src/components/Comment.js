@@ -61,7 +61,6 @@ const Comment = (props) => {
               margin='0 auto 10px'
               borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
               borderRadius='10px'
-              // display='flex'
               alignItems='center'
             >
               <div
@@ -103,7 +102,7 @@ const Comment = (props) => {
                   src={
                     process.env.PUBLIC_URL + '/img/icon/cancel_filled_icon.svg'
                   }
-                  style={{ width: '18px', height: '18px' }}
+                  style={{ width: '18px', height: '18px', cursor: 'pointer' }}
                   onClick={() => {
                     setEdit(false);
                   }}
@@ -161,7 +160,6 @@ const Comment = (props) => {
                   </div>
                   <div
                     style={{
-                      // display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-around',
                     }}
@@ -177,6 +175,7 @@ const Comment = (props) => {
                           position: 'relative',
                           top: '7px',
                           margin: '0 0 -30px 0',
+                          cursor: 'pointer',
                         }}
                       >
                         <img
@@ -237,6 +236,7 @@ const Comment = (props) => {
                   color: '#FE7968',
                   width: '100%',
                   height: '100%',
+                  cursor: 'pointer',
                 }}
                 onClick={editOn}
               >
@@ -255,6 +255,7 @@ const Comment = (props) => {
                   height: '100%',
                   borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                   borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
+                  cursor: 'pointer',
                 }}
                 onClick={() => {
                   Swal.fire({
@@ -286,6 +287,7 @@ const Comment = (props) => {
                   color: '#FE7968',
                   width: '100%',
                   height: '100%',
+                  cursor: 'pointer',
                 }}
                 onClick={() => {
                   setCommentModal(!commentModal);

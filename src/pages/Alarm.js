@@ -11,7 +11,6 @@ const Alarm = () => {
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
-  const alarmCreatedAt = userInfo.alarmContent.map((a) => a.createdAt);
 
   const token = localStorage.getItem('USER_TOKEN');
   const [deleteModal, setDeleteModal] = React.useState(false);
@@ -88,12 +87,13 @@ const Alarm = () => {
               style={{
                 all: 'unset',
                 fontSize: '12px',
+                cursor: 'pointer',
               }}
               onClick={() => {
                 delModaltoggle();
               }}
             >
-              전체삭제{' '}
+              전체삭제
             </button>
           </Grid>
           {userInfo.alarmContent.length === 0 ? (
@@ -156,6 +156,7 @@ const Alarm = () => {
                         alignItems='center'
                         margin='5px 0'
                         boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
+                        cusor='pointer'
                         _onClick={() => {
                           dispatch(
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),

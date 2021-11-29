@@ -25,7 +25,6 @@ const CommentWrite = (props) => {
   };
   const dispatch = useDispatch();
   const [comment, setComment] = useState();
-  // 임시로 id값 지정
   const commentSubmit = () => {
     if (!token) {
       ErrorAlert('로그인 후 이용해주세요');
@@ -83,6 +82,7 @@ const CommentWrite = (props) => {
               color: 'white',
               backgroundColor: '#FE7968',
               borderRadius: '10px',
+              cursor: 'pointer',
             }}
             onClick={editSubmit}
           >
@@ -116,6 +116,7 @@ const CommentWrite = (props) => {
               color: 'white',
               backgroundColor: '#FE7968',
               borderRadius: '10px',
+              cursor: 'pointer',
             }}
             onClick={commentSubmit}
             onKeyUp={enterKey}
@@ -131,7 +132,7 @@ const CommentWrite = (props) => {
 const CommentBox = styled.input`
   background-color: white;
   width: 250px;
-  height: 35px;
+  height: 30px;
   margin: auto;
   display: flex;
   align-items: center;

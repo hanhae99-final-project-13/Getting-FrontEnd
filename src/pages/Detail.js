@@ -9,7 +9,7 @@ import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
 import Header from '../components/Header';
 
 import CommentList from '../components/CommentList';
-import { Grid, Image, Text } from '../elements/index';
+import { Grid, Text } from '../elements/index';
 import Swal from 'sweetalert2';
 import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
@@ -50,9 +50,6 @@ const Detail = (props) => {
     setEdit(true);
     setDetailModal(!detailModal);
   };
-  const toTop = () => {
-    window.scrollTo(0, 0);
-  };
   React.useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(postActions.getDetailPostMW(postId));
@@ -91,14 +88,14 @@ const Detail = (props) => {
                 width='30px'
                 height='auto'
                 position='relative'
-                top='45px'
-                left='75px'
+                top='60px'
+                left='70px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
               >
                 <button
-                  style={{ all: 'unset' }}
+                  style={{ all: 'unset', cursor: 'pointer' }}
                   onClick={() => {
                     if (!token) {
                       ErrorAlert('로그인 후 이용해주세요');
@@ -125,7 +122,10 @@ const Detail = (props) => {
                 </button>
               </Grid>
               {user && user.nickname === post.post.nickname ? (
-                <button style={{ all: 'unset' }} onClick={onModal}>
+                <button
+                  style={{ all: 'unset', cursor: 'pointer' }}
+                  onClick={onModal}
+                >
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -141,7 +141,9 @@ const Detail = (props) => {
                 ></button>
               )}
             </Grid>
-
+            <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
+              닉네임 · 2021 - 11 - 29 작성 됨
+            </Grid>
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
                 {post.post.img === null
@@ -184,6 +186,7 @@ const Detail = (props) => {
                 alignItems='center'
                 bottom='130px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+                cusor='pointer'
                 _onClick={() => {
                   openModal();
                   window.sessionStorage.clear();
@@ -398,11 +401,10 @@ const Detail = (props) => {
                 >
                   웹사이트
                 </span>
-                <span style={{ margin: '0 5px 0 10px' }}>
+                <span style={{ margin: '0 5px 0 10px', cursor: 'pointer' }}>
                   {post.post.url === null || post.post.url === '' ? (
                     '없음'
                   ) : post.post.url.includes('http') ? (
-                    // http:// 가 주소에 있다면
                     post.post.url.includes('instagram.com') ? (
                       <img
                         src={
@@ -445,8 +447,7 @@ const Detail = (props) => {
                         }
                       />
                     )
-                  ) : // http:// 가 주소에 없다면
-                  post.post.url.includes('instagram.com') ? (
+                  ) : post.post.url.includes('instagram.com') ? (
                     <img
                       src={
                         process.env.PUBLIC_URL +
@@ -583,10 +584,10 @@ const Detail = (props) => {
                     color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     editMode();
-                    // history.push('/editpost');
                   }}
                 >
                   수정
@@ -604,6 +605,7 @@ const Detail = (props) => {
                     height: '100%',
                     borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                     borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     Swal.fire({
@@ -635,6 +637,7 @@ const Detail = (props) => {
                     color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     setDetailModal(!detailModal);
