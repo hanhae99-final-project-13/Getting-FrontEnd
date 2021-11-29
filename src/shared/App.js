@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import styled from 'styled-components';
 
 import { history } from '../redux/configureStore';
 import './App.css';
@@ -72,6 +73,7 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        {/* <Background> */}
         <Switch>
           <Route path='/login' exact component={Login} />
           <Route path='/test' exact component={Test} />
@@ -160,9 +162,15 @@ function App() {
 
           <Route component={NotFound} />
         </Switch>
+        {/* </Background> */}
       </ConnectedRouter>
     </React.Fragment>
   );
 }
+
+const Background = styled.div`
+  padding: 0;
+  background-color: #eff4f8;
+`;
 
 export default App;

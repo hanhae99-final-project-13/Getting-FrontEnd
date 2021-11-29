@@ -1,11 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import {
-  SuccessAlert,
-  WarningAlert,
-  ErrorAlert,
-  imageSuccessAlert,
-} from '../../shared/Alerts';
+import { ErrorAlert } from '../../shared/Alerts';
 import { apis } from '../../lib/axios';
 
 const GET_POST = 'GET_POST';
