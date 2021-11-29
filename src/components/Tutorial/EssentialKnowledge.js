@@ -20,7 +20,8 @@ const EssentialKnowledge = () => {
         maxWidth='414px'
         width='auto'
         margin='0 auto 200px'
-        position='relative'>
+        position='relative'
+      >
         <Grid
           cusor='pointer'
           zIndex='9999'
@@ -31,7 +32,8 @@ const EssentialKnowledge = () => {
           width='20px'
           height='20px'
           top='30px'
-          left='24px'>
+          left='24px'
+        >
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -42,7 +44,8 @@ const EssentialKnowledge = () => {
           left='0'
           right='0'
           zIndex='9998'
-          height='auto'>
+          height='auto'
+        >
           <Text size='18px' margin='0' weight='800' align='center'>
             필수 지식
           </Text>
@@ -184,7 +187,8 @@ const EssentialKnowledge = () => {
           display='flex'
           justifyContent='center'
           alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
+          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+        >
           <Text color='white' margin='0' weight='700'>
             퀴즈로 검증하기
           </Text>
@@ -218,7 +222,7 @@ const StyledSlider = styled(Slider)`
     position: sticky;
     left: 0;
     right: 0;
-    margin: -100px 0 0 0;
+    margin: -170px 0 0 0;
     .slick-active {
       button::before {
         color: #fe7968;
