@@ -212,7 +212,7 @@ const StyledSlider = styled(Slider)`
     position: sticky;
     left: 0;
     right: 0;
-    margin-top: -90px;
+    margin-top: -150px;
     .slick-active {
       button::before {
         color: #fe7968;
