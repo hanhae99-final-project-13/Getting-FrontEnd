@@ -136,7 +136,7 @@ const Login = (props) => {
                 _onClick={() => {
                   WarningAlert('서비스 준비중 입니다');
                 }}>
-                아이디찾기
+                아이디 찾기
               </Text>
               <Text
                 size='12px'
@@ -158,7 +158,7 @@ const Login = (props) => {
               <Text size='14px' bold margin='0' color='#DFDFDF'>
                 더 빠르게
                 <Span weight='700' size='14px'>
-                  개팅
+                  &nbsp;개팅
                 </Span>
                 하기
                 <Grid position='absolute' top='-1px' left='115px' width='auto'>
