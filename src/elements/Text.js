@@ -25,6 +25,7 @@ const Text = (props) => {
     display,
     borderBottom,
     _ref,
+    cursor,
   } = props;
 
   const styles = {
@@ -48,6 +49,7 @@ const Text = (props) => {
     id: id,
     display: display,
     borderBottom: borderBottom,
+    cursor,
   };
 
   return (
@@ -79,6 +81,7 @@ Text.defaultProps = {
   right: false,
   display: null,
   borderBottom: null,
+  cursor: null,
   _onClick: () => {},
 };
 
@@ -104,6 +107,7 @@ const TextBox = styled.p`
   right: ${(props) => props.right};
   display: ${(props) => props.display};
   border-bottom: ${(props) => props.borderBottom};
+  cursor: ${(props) => props.cursor};
 `;
 
 export default Text;

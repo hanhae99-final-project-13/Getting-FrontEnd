@@ -84,6 +84,7 @@ const Mypage = () => {
         size='12px'
         weight='800'
         _onClick={editButton}
+        cursor='pointer'
       >
         수정하기
       </Text>

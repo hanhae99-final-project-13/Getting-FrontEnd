@@ -37,6 +37,7 @@ const AdoptionCard = (props) => {
       border='0.5px solid #e7e5e5'
       boxShadow='4px 4px 20px rgba(164, 184, 255, 0.3)'
       _onClick={goDetail}
+      cusor='pointer'
     >
       <Grid
         position='absolute'

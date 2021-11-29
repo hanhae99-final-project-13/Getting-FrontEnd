@@ -10,7 +10,8 @@ import {
 } from '../components/main';
 import { postActions } from '../redux/modules/post';
 import WebSocket from '../components/WebSocket';
-import { WebSocket2 } from '../components';
+import { actionCreators as userAction } from '../redux/modules/user';
+
 const Main = (props) => {
   const [wsConnectSubscribe] = WebSocket();
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const Main = (props) => {
     if (token) {
       wsConnectSubscribe();
     }
+    setTimeout(() => {
+      dispatch(userAction.LoginCheck());
+    }, 1000);
     dispatch(postActions.getMainPostMW());
   }, []);
 

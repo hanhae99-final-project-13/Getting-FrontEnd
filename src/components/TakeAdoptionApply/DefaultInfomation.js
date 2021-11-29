@@ -17,6 +17,7 @@ const DefaultInfomation = (props) => {
         padding='15px 0'
         height='auto'
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
+        cusor='pointer'
       >
         <Grid
           display='flex'

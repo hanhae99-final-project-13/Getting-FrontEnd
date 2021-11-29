@@ -97,6 +97,10 @@ const CategoryBox = styled.div`
   display: flex;
   margin: 0 0 24px 0;
 
+  span {
+    cursor: pointer;
+  }
+
   .category {
     margin-right: 15px;
     font-size: 12px;

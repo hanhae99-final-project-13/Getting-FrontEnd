@@ -32,6 +32,7 @@ const ReceivedAdoptionList = ({ index }) => {
               _onClick={() => {
                 history.push(`/takeapply/${preview.fosterFormId}`);
               }}
+              cusor='pointer'
             >
               <Grid display='flex' width='auto'>
                 <Text margin='0 8px 0 0' size='12px' weight='800'>

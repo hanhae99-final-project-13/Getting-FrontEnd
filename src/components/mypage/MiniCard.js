@@ -30,6 +30,7 @@ const MiniCard = ({
         boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
         borderRadius='10px'
         boxSizing='border-box'
+        cusor='pointer'
       >
         <Grid
           margin='0 10px 0 0'

@@ -64,7 +64,7 @@ const AdoptionModal = (props) => {
       newSearchSetting.city = undefined;
       newSearchSetting.district = undefined;
     }
-
+    console.log(newSearchSetting);
     dispatch(postActions.setSearch(newSearchSetting));
     dispatch(postActions.getPostMW(newSearchSetting));
     hideModal();
@@ -235,6 +235,7 @@ const AdoptionModal = (props) => {
             bg='#fe7968'
             borderRadius='26px'
             _onClick={doSearch}
+            cusor='pointer'
           >
             <Text margin='0' color='white' size='16px' weight='800'>
               찾아보기
@@ -271,6 +272,7 @@ const CheckBoxOn = styled.div`
   background: url(${process.env.PUBLIC_URL}/img/icon/check_icon_pink.svg);
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 `;
 
 const CheckBoxOff = styled.div`
@@ -280,6 +282,7 @@ const CheckBoxOff = styled.div`
   background: url(${process.env.PUBLIC_URL}/img/icon/check_icon_black.svg);
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 `;
 
 const Cover = styled.div`

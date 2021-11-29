@@ -84,6 +84,7 @@ const CameraIcon = styled.label`
   background-repeat: no-repeat;
   background-size: 24px 24px;
   background-position: center;
+  cursor: pointer;
 `;
 
 export default MypageImageUpload;

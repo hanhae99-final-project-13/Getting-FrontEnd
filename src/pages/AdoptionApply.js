@@ -57,6 +57,16 @@ const AdoptionApply = (props) => {
     } else setCurrentPet('있음');
   };
 
+  const handleCurrentPetTextNo = () => {
+    setClick(true);
+    setCurrentPet('없음');
+  };
+
+  const handleCurrentPetTextYes = () => {
+    setClick(false);
+    setCurrentPet('있음');
+  };
+
   // 주소 입력 모달
   const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
@@ -317,6 +327,8 @@ const AdoptionApply = (props) => {
           </Grid>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text
+              _onClick={handleCurrentPetTextYes}
+              cursor='pointer'
               color={currentPet === '있음' ? '#000000' : '#E7E5E5'}
               bold
               margin='0 10px 0 0'
@@ -329,6 +341,8 @@ const AdoptionApply = (props) => {
               handleToggle={handleCurrentPet}
             />
             <Text
+              _onClick={handleCurrentPetTextNo}
+              cursor='pointer'
               color={currentPet === '없음' ? '#000000' : '#E7E5E5'}
               bold
               margin='0  0 0 10px'

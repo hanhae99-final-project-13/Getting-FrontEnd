@@ -22,6 +22,16 @@ const Detail = (props) => {
   const user = useSelector((state) => state.user?.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
+  const requestedPostList = useSelector(
+    (state) => state.user?.user.userInfo.requestedPostList,
+  );
+
+  const appliedPostId =
+    requestedPostList !== []
+      ? requestedPostList.filter((i) => {
+          return i === parseInt(postId);
+        })
+      : null;
 
   // 필수지식 수료요청 모달
   const [eduCheck, setEduCheck] = useState(false);
@@ -187,6 +197,10 @@ const Detail = (props) => {
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 cusor='pointer'
                 _onClick={() => {
+                  if (appliedPostId[0] === parseInt(postId)) {
+                    ErrorAlert('이미 입양신청한 게시글입니다');
+                    return;
+                  }
                   openModal();
                   window.sessionStorage.clear();
                 }}
