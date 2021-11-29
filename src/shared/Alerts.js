@@ -49,6 +49,7 @@ export const ErrorAlert = (error_text, position_text) => {
     icon: 'error',
     confirmButtonColor: '#FE7968',
     confirmButtonBorder: 'none',
+    // customClass: 'swal-font',
   });
 };
 //에러 alert (줄바꿈가능)
