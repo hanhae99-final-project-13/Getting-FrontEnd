@@ -36,14 +36,38 @@ const Adoption = () => {
     dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'old' }));
   };
 
+  const setCur = () => {
+    old.current.classList.remove('active');
+    cur.current.classList.add('active');
+    console.log('setCur 실행');
+  };
+
+  const setOld = () => {
+    cur.current.classList.remove('active');
+    old.current.classList.add('active');
+    console.log('setOld 실행');
+  };
+
   const goAddPost = () => {
     history.push('/addpost');
   };
 
   React.useEffect(() => {
+    console.log(searchSetting.sort);
+    if (searchSetting.sort === 'new') {
+      old.current.classList.remove('active');
+      cur.current.classList.add('active');
+      console.log('setCur 실행');
+      // setCur();
+    } else {
+      cur.current.classList.remove('active');
+      old.current.classList.add('active');
+      console.log('setOld 실행');
+      // setOld();
+    }
     if (searchSetting.page !== 0) return;
-    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
-    dispatch(postActions.getPostMW({ ...searchSetting, page: 0, sort: 'new' }));
+    // dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
+    dispatch(postActions.getPostMW(searchSetting));
   }, []);
 
   React.useEffect(() => {
@@ -54,7 +78,13 @@ const Adoption = () => {
 
   return (
     <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
-      <Grid width='auto' padding='0 24px' margin='12px 0 0 0' overflow='auto'>
+      <Grid
+        width='auto'
+        padding='0 24px'
+        margin='12px 0 0 0'
+        bg='white'
+        overflow='auto'
+      >
         <Grid width='auto'>
           <AdoptionWishedCardList />
         </Grid>
@@ -62,7 +92,7 @@ const Adoption = () => {
           <AdoptionSearchInput />
         </Grid>
         <CategoryBox>
-          <span className='category active' ref={cur} onClick={activeCurButton}>
+          <span className='category' ref={cur} onClick={activeCurButton}>
             최신순
           </span>
           <span className='category' ref={old} onClick={activeOldButton}>
