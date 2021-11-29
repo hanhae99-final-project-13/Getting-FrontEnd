@@ -31,7 +31,7 @@ const EssentialKnowledge = () => {
           width='20px'
           height='20px'
           top='30px'
-          left='36px'>
+          left='24px'>
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -51,7 +51,10 @@ const EssentialKnowledge = () => {
         <StyledSlider {...settings}>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge1.svg'
+              }
               style={{
                 maxWidth: '414px',
                 width: '100%',
@@ -61,7 +64,10 @@ const EssentialKnowledge = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge2.svg'
+              }
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -70,7 +76,10 @@ const EssentialKnowledge = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge3.svg'
+              }
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -79,7 +88,10 @@ const EssentialKnowledge = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge4.svg'
+              }
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -88,7 +100,10 @@ const EssentialKnowledge = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge5.svg'
+              }
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -97,7 +112,49 @@ const EssentialKnowledge = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge6.svg'
+              }
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge7.svg'
+              }
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge8.svg'
+              }
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/EssentialKnowledge/EssentialKnowledge9.svg'
+              }
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -161,6 +218,7 @@ const StyledSlider = styled(Slider)`
     position: sticky;
     left: 0;
     right: 0;
+    margin: -100px 0 0 0;
     .slick-active {
       button::before {
         color: #fe7968;

@@ -31,7 +31,7 @@ const AdvancedKnowledge1 = () => {
           width='20px'
           height='20px'
           top='30px'
-          left='36px'>
+          left='24px'>
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -51,7 +51,10 @@ const AdvancedKnowledge1 = () => {
         <StyledSlider {...settings}>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_1.svg'
+              }
               style={{
                 maxWidth: '414px',
                 width: '100%',
@@ -61,27 +64,117 @@ const AdvancedKnowledge1 = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_2.svg'
+              }
               style={{
-                maxWidth: '100%',
+                maxWidth: '414px',
+                width: '100%',
                 margin: '0 auto',
               }}
             />
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_3.svg'
+              }
               style={{
-                maxWidth: '100%',
+                maxWidth: '414px',
+                width: '100%',
                 margin: '0 auto',
               }}
             />
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_4.svg'
+              }
               style={{
-                maxWidth: '100%',
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_5.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_6.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_7.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_8.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_9.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/img/AdvancedKnowledge1/AdvancedKnowledge1_10.svg'
+              }
+              style={{
+                maxWidth: '414px',
+                width: '100%',
                 margin: '0 auto',
               }}
             />
@@ -144,6 +237,7 @@ const StyledSlider = styled(Slider)`
     position: sticky;
     left: 0;
     right: 0;
+    margin: -90px 0 0 0;
     .slick-active {
       button::before {
         color: #fe7968;

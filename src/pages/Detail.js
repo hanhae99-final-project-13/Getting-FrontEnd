@@ -99,7 +99,7 @@ const Detail = (props) => {
                 height='auto'
                 position='relative'
                 top='60px'
-                left='70px'
+                left='60px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
