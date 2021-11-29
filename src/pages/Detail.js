@@ -64,7 +64,6 @@ const Detail = (props) => {
 
   return (
     <React.Fragment>
-      <Header></Header>
       {edit ? (
         <EditPost data={post.post} postId={postId} setEdit={setEdit} />
       ) : (

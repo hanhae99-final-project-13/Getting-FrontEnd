@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, withRouter } from 'react-router-dom';
+import { useHistory, useParams, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { Grid } from '../elements';

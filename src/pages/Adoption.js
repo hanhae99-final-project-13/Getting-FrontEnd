@@ -78,13 +78,7 @@ const Adoption = () => {
 
   return (
     <Grid maxWidth='414px' margin='0 auto' padding='0 0 80px 0'>
-      <Grid
-        width='auto'
-        padding='0 24px'
-        margin='12px 0 0 0'
-        bg='white'
-        overflow='auto'
-      >
+      <Grid width='auto' padding='0 24px' bg='white' overflow='auto'>
         <Grid width='auto'>
           <AdoptionWishedCardList />
         </Grid>

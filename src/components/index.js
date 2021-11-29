@@ -19,7 +19,7 @@ import Slider from './Slider';
 import Timer from './Timer';
 import Upload from './Upload';
 import SliderBox from './SliderBox';
-import StaticHeader from './StaticHeader';
+
 import Carousel2 from './Carousel2';
 import WebSocket2 from './WebSocket2';
 
@@ -44,7 +44,6 @@ export {
   Post,
   Slider,
   SliderBox,
-  StaticHeader,
   Timer,
   Upload,
   WebSocket2,
