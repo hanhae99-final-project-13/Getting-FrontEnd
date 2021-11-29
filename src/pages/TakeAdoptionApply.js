@@ -125,6 +125,7 @@ const TakeAdoptionApply = (props) => {
                 })
                 .catch((err) => console.log(err));
             }}
+            cusor='pointer'
           >
             <Text margin='0' color='white' size='16px' weight='800'>
               입양 거절하기
@@ -141,6 +142,7 @@ const TakeAdoptionApply = (props) => {
             _onClick={() => {
               setShowModal(true);
             }}
+            cusor='pointer'
           >
             <Text margin='0' color='white' size='16px' weight='800'>
               입양 승인하기

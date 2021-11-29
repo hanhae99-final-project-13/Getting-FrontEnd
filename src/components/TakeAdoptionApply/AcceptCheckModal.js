@@ -49,6 +49,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
             bg='rgba(254, 121, 104, 0.5)'
             borderRadius='34px'
             _onClick={() => setShowModal(false)}
+            cusor='pointer'
           >
             <Text margin='0' color='white' size='14px' weight='800'>
               다시 생각해볼게요
@@ -71,6 +72,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
                 })
                 .catch((err) => console.log(err));
             }}
+            cusor='pointer'
           >
             <Text margin='0' color='white' size='14px' weight='800'>
               확인했습니다

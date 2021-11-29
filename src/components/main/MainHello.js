@@ -72,6 +72,7 @@ const ElA = styled.p`
   font-size: 12px;
   font-weight: 700;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 export default MainHello;

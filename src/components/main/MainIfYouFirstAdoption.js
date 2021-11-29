@@ -154,6 +154,7 @@ const BePerfect = styled.div`
   border-radius: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: #fe7968;
+  cursor: pointer;
 `;
 
 export default MainIfYouFirstAdoption;

@@ -20,6 +20,7 @@ const AdoptionReason = (props) => {
         padding='15px 0'
         height='auto'
         borderBottom='1px solid rgba(225, 225, 225, 0.5)'
+        cusor='pointer'
       >
         <Grid
           display='flex'
@@ -125,9 +126,10 @@ const AdoptionReason = (props) => {
             <Grid
               boxSizing='border-box'
               height='auto'
+              padding='18px 0'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             >
-              <Grid margin='11px 0 26px 0 ' height='auto'>
+              <Grid height='auto'>
                 <Text margin='0' bold line_height='24px'>
                   해당 카테고리의 예측되는 비용을 적어주세요.
                 </Text>
@@ -135,8 +137,56 @@ const AdoptionReason = (props) => {
                   display='flex'
                   justifyContent='space-between'
                   alignItems='center'
+                  margin='18px 0 0 0'
                   height='auto'
-                ></Grid>
+                >
+                  <Text margin='0' weight='700' size='16px'>
+                    1년 동안의 예방접종 비용
+                  </Text>
+                  <Grid
+                    display='flex'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    padding='0 13px'
+                    width='128px'
+                    height='46px'
+                    bg='#F7F7F7'
+                    borderRadius='9px'
+                    boxSizing='border-box'
+                  >
+                    <Text margin='0' size='16px'></Text>
+                    <Text margin='0' size='16px' weight='700'>
+                      원
+                    </Text>
+                  </Grid>
+                </Grid>
+                <Grid
+                  display='flex'
+                  justifyContent='space-between'
+                  alignItems='center'
+                  margin='14px 0 0 0'
+                  height='auto'
+                >
+                  <Text margin='0' weight='700' size='16px'>
+                    1년 동안의 양육비용
+                  </Text>
+                  <Grid
+                    display='flex'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    padding='0 13px'
+                    width='128px'
+                    height='46px'
+                    bg='#F7F7F7'
+                    borderRadius='9px'
+                    boxSizing='border-box'
+                  >
+                    <Text margin='0' size='16px'></Text>
+                    <Text margin='0' size='16px' weight='700'>
+                      원
+                    </Text>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid
@@ -196,6 +246,17 @@ const AdoptionReason = (props) => {
               </Grid>
 
               <Textarea>{detailFosterForm.bark}</Textarea>
+            </Grid>
+            <Grid margin='18px 0 21px 0 ' height='auto'>
+              <Text margin='0 0 8px 0' bold line_height='24px'>
+                동거인들의 입양동의 서명을 찍어 첨부해주세요.
+              </Text>
+              <Image
+                shape='square'
+                src={detailFosterForm.roomUrl}
+                borderRadius='10px'
+                backgroundPosition='center'
+              />
             </Grid>
             <Grid margin='18px 0 21px 0 ' height='auto'>
               <Text margin='0 0 8px 0' bold line_height='24px'>

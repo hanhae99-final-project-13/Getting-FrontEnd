@@ -53,6 +53,7 @@ const readAlarm = createAction(READ_ALARM, (isRead) => ({
 const initialState = {
   user: {
     userInfo: {
+      requestedPostList: [],
       nickname: null,
       email: null,
       userImgUrl:
@@ -95,6 +96,7 @@ const GetUserDB = (user) => {
             phone: res.data.data.phone,
             alarmCount: res.data.data.alarmCount,
             alarmContent: res.data.data.alarmContents,
+            requestedPostList: res.data.data.requestedPostList,
           },
           isLogin: true,
         };
@@ -158,6 +160,7 @@ const LoginCheck = () => {
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
             alarmContent: /* res.data.data.alarmContent */ [],
+            requestedPostList: res.data.data.requestedPostList,
             isRead: null,
           },
           isLogin: true,
@@ -193,6 +196,7 @@ const KakaoLogin = (code) => {
             phone: res.data.data.phone,
             eduList: res.data.data.eduList,
             alarmCount: res.data.data.alarmCount,
+            requestedPostList: res.data.data.requestedPostList,
           },
           isLogin: true,
         };
@@ -305,6 +309,7 @@ export default handleActions(
           applyList: [],
           alarmContent: null,
           userId: null,
+          requestedPostList: [],
         };
         draft.user.isLogin = false;
       }),

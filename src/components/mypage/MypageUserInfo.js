@@ -68,24 +68,6 @@ const MypageUserInfo = (props) => {
             {userInfo.nickname}
           </Text>
         )}
-        {/* {editMode ? (
-          <Image
-            size='20'
-            src='https://static.thenounproject.com/png/1727505-200.png'
-            _onClick={() => {
-              setEditMode(!editMode);
-              updateNickname();
-            }}
-          />
-        ) : (
-          <Image
-            size='20'
-            src='https://cdn.iconscout.com/icon/free/png-256/edit-2653317-2202989.png'
-            _onClick={() => {
-              setEditMode(!editMode);
-            }}
-          />
-        )} */}
       </Grid>
     </Container>
   );

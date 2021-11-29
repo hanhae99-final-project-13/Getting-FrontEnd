@@ -29,6 +29,7 @@ const MainAdoptionCardList = (props) => {
             size='18px'
             weight='800'
             _onClick={goAdoptionPage}
+            cursor='pointer'
           >
             저랑 <ElSpan>가족 </ElSpan>하실래요?
           </Text>
@@ -43,6 +44,7 @@ const MainAdoptionCardList = (props) => {
           _onClick={() => {
             history.push('/adoption');
           }}
+          cusor='pointer'
         >
           <img
             width='13'

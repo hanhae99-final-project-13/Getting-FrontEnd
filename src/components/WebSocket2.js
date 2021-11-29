@@ -13,6 +13,7 @@ const WebSocket2 = () => {
 
   const client = new StompJs.Client({
     brokerURL: 'wss:///seonkang.shop/ws-stomp',
+    // brokerURL: 'ws:///52.78.159.191/ws-stomp',
     debug: function (str) {
       console.log(str);
     },
