@@ -15,15 +15,8 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    // const cookie = document.cookie;
-    // const aToken = cookie.split(';')[0].split('=')[1];
-    // const isAToken = cookie.includes('USER_TOKEN');
-    // const isRToken = cookie.includes('REFRESH_TOKEN');
     const token = localStorage.getItem('USER_TOKEN');
-    // if (!isAToken && isRToken) {
-    //   apis
-    //     .refresh({})
-    // }
+
     if (!token) {
       return config;
     }
@@ -36,22 +29,10 @@ instance.interceptors.request.use(
     return config;
   },
   (err) => {
-    console.log(err);
+    console.log('요청 에러', err);
+    return Promise.reject(err);
   },
 );
-
-// let isTokenRefreshing = false;
-// let refreshSubscribers = [];
-
-// const onTokenRefreshed = (accessToken) => {
-//   refreshSubscribers.map((callback, idx) => {
-//     return callback(accessToken);
-//   });
-// };
-
-// const addRefreshSubscriber = (callback) => {
-//   refreshSubscribers.push(callback);
-// };
 
 instance.interceptors.response.use(
   (success) => {
@@ -61,7 +42,6 @@ instance.interceptors.response.use(
     console.log(err);
     console.log(err.response);
     console.log(err.config);
-    const originalReq = err.config;
     if (
       err.response.status === 400 &&
       err.response.data.errorMessage !==
@@ -77,32 +57,8 @@ instance.interceptors.response.use(
     ) {
       ErrorAlert(err.response.data.errorMessage);
     }
-    // if (err.response.status === 401) {
-    //   if (!isTokenRefreshing) {
-    //     isTokenRefreshing = true;
-    //     // const accessToken = localStorage.getItem('USER_TOKEN');
-    //     const refreshToken = localStorage.getItem('REFRESH_TOKEN');
-    //     const userId = localStorage.getItem('USER_ID');
 
-    //     apis
-    //       .refresh({ refreshToken: encodeURI(refreshToken), userId })
-    //       .then((res) => {
-    //         console.log(res);
-    //         console.log(res.data);
-    // localStorage.setItem('NEW_TOKEN', res.data.accessToken);
-    // localStorage.setItem('REFRESH_TOKEN', res.data.refreshToken);
-    // });
-    // isTokenRefreshing = false;
-    // axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-    //   'USER_TOKEN',
-    // )}`;
-    // originalReq.headers.Authorization = `Bearer ${localStorage.getItem(
-    //   'USER_TOKEN',
-    // )}`;
-    // return axios(originalReq);
-    //   }
-    // }
-    // return err;
+    return Promise.reject(err);
   },
 );
 
