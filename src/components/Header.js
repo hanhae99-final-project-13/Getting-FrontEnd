@@ -7,12 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { actionCreators } from '../redux/modules/user';
-<<<<<<< HEAD
 const Header = () => {
-=======
-
-const Header = (props) => {
->>>>>>> 9abbf81765a547a0e8498fba581d9d5df399315a
   const dispatch = useDispatch();
   const histroy = useHistory();
 
