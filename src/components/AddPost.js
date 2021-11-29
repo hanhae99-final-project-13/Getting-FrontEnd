@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Grid } from '../elements/index';
+import { Grid, Text } from '../elements/index';
 import Slider from './Slider';
 import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
 import Upload from './Upload';
-import Header from './Header';
 import { history } from '../redux/configureStore';
 import { WarningAlert } from '../shared/Alerts';
 const AddPost = () => {
@@ -96,7 +95,6 @@ const AddPost = () => {
 
   return (
     <React.Fragment>
-      <Header></Header>
       <Grid maxWidth='414px' margin='50px auto '>
         <Grid
           position='sticky'
@@ -154,9 +152,9 @@ const AddPost = () => {
               style={{ border: 'none', width: '80%' }}
             />
             <Grid display='flex' alignItems='center'>
-              남아
+              <Text color={sex === 'M' ? 'black' : '#E7E5E5'}>남아</Text>
               <Slider handleToggle={sexCheck} valueCheck={sexToggle} />
-              여아
+              <Text color={sex === 'F' ? 'black' : '#E7E5E5'}>여아</Text>
             </Grid>
           </Grid>
 
@@ -209,17 +207,21 @@ const AddPost = () => {
             borderTop='1px solid rgba(225, 225, 225, 0.5)'
           >
             <input
-              value={'보호장소'}
+              value={'보호장소를 선택해주세요'}
               placeholder='보호장소'
-              style={{ border: 'none', width: '80%', color: 'gray' }}
+              style={{ border: 'none', width: '100%', color: 'black' }}
             />
             <Grid display='flex' alignItems='center'>
-              개인
+              <Text color={ownerType === '개인' ? 'black' : '#E7E5E5'}>
+                개인
+              </Text>
               <Slider
                 handleToggle={ownerTypeCheck}
                 valueCheck={ownerTypeToggle}
               />
-              보호소
+              <Text color={ownerType === '보호소' ? 'black' : '#E7E5E5'}>
+                보호소
+              </Text>
             </Grid>
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
@@ -247,13 +249,17 @@ const AddPost = () => {
           >
             <input
               placeholder='정보출처'
-              value={'정보출처'}
-              style={{ border: 'none', width: '50%', color: 'gray' }}
+              value={'정보출처를 선택해주세요'}
+              style={{ border: 'none', width: '80%', color: 'black' }}
             />
-            <Grid display='flex' alignItems='center'>
-              직접등록
+            <Grid display='flex' alignItems='center' fontSize='14px'>
+              <Text color={tag === '직접등록' ? 'black' : '#E7E5E5'}>
+                직접등록
+              </Text>
               <Slider handleToggle={tagCheck} valueCheck={tagToggle} />
-              가져온 정보
+              <Text color={tag === '가져온 정보' ? 'black' : '#E7E5E5'}>
+                가져온 정보
+              </Text>
             </Grid>
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>

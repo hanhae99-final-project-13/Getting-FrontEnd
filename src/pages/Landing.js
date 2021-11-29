@@ -98,7 +98,7 @@ const Landing = () => {
                 history.push('/main');
               }}
             >
-              <Button>시작하기</Button>
+              <Button>먼저 둘러볼래요!</Button>
             </ButtonBox>
 
             <ButtonBox2
@@ -106,7 +106,7 @@ const Landing = () => {
                 history.push('/login');
               }}
             >
-              <Button2>이미 계정이 있어요</Button2>
+              <Button2>로그인 할게요!</Button2>
             </ButtonBox2>
           </div>
         </Grid>
@@ -141,10 +141,12 @@ const ButtonBox2 = styled.div`
 const Button = styled.button`
   all: unset;
   color: #fe7968;
+  font-weight: 800;
 `;
 const Button2 = styled.button`
   all: unset;
   color: white;
+  font-weight: 800;
 `;
 const settings = {
   dots: true, // 슬라이드 밑에 점 보이게
