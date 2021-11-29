@@ -88,7 +88,7 @@ const Detail = (props) => {
                 height='auto'
                 position='relative'
                 top='60px'
-                left='70px'
+                left='60px'
                 display='flex'
                 flexDirection='row-reverse'
                 zIndex='2'
@@ -141,7 +141,8 @@ const Detail = (props) => {
               )}
             </Grid>
             <Grid margin='-10px 0 20px' color='#b6b1b0' fontSize='12px'>
-              {post.post.nickname} · {post.post.createdAt.split('T')[0]} 등록
+              {post.post.nickname} · {post && post.post.createdAt.split('T')[0]}{' '}
+              등록
             </Grid>
             <Grid overflowX='hidden'>
               <StyledSlider {...settings}>
