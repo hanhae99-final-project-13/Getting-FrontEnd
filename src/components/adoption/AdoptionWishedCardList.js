@@ -9,7 +9,7 @@ const AdoptionWishedCardList = (props) => {
   const wishPostList = useSelector((state) => state.post.wishPostList);
 
   return (
-    <Grid margin='60px 0 0 0'>
+    <Grid margin='5.5px 0 0 0'>
       <Grid display='flex' margin='0 0 8px 0' width='calc(100% - 1rem)'>
         <Text margin='0' size='18px' weight='700'>
           나의 관심친구
