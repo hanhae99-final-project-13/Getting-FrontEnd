@@ -109,7 +109,7 @@ const AdoptionReason = (props) => {
 
               <Textarea>{detailFosterForm.timeTogether}</Textarea>
             </Grid>
-            <Grid
+            {/* <Grid
               boxSizing='border-box'
               height='375px'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
@@ -122,8 +122,8 @@ const AdoptionReason = (props) => {
               </Grid>
 
               <Textarea>{detailFosterForm.timeTogether}</Textarea>
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               boxSizing='border-box'
               height='auto'
               padding='18px 0'
@@ -188,8 +188,8 @@ const AdoptionReason = (props) => {
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               boxSizing='border-box'
               height='auto'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
@@ -214,7 +214,7 @@ const AdoptionReason = (props) => {
                   {detailFosterForm.allergy}
                 </Text>
               </Grid>
-            </Grid>
+            </Grid> */}
 
             <Grid
               boxSizing='border-box'
@@ -247,7 +247,7 @@ const AdoptionReason = (props) => {
 
               <Textarea>{detailFosterForm.bark}</Textarea>
             </Grid>
-            <Grid margin='18px 0 21px 0 ' height='auto'>
+            {/* <Grid margin='18px 0 21px 0 ' height='auto'>
               <Text margin='0 0 8px 0' bold line_height='24px'>
                 동거인들의 입양동의 서명을 찍어 첨부해주세요.
               </Text>
@@ -257,7 +257,7 @@ const AdoptionReason = (props) => {
                 borderRadius='10px'
                 backgroundPosition='center'
               />
-            </Grid>
+            </Grid> */}
             <Grid margin='18px 0 21px 0 ' height='auto'>
               <Text margin='0 0 8px 0' bold line_height='24px'>
                 아이가
