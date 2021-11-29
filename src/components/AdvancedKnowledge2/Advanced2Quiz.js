@@ -5,7 +5,12 @@ import { actionCreators as eduAction } from '../../redux/modules/user';
 
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
-import { WarningAlert, SuccessAlert } from '../../shared/Alerts';
+import {
+  WarningAlert,
+  SuccessAlert,
+  WarningAlert2,
+  SuccessAlert2,
+} from '../../shared/Alerts';
 import QuizProgressBar from '../Tutorial/QuizProgressBar';
 import Advanced2QuizData from '../Data/Advanced2QuizData';
 
@@ -57,15 +62,23 @@ const Advanced2Quiz = (props) => {
 
   const checkAnswer = () => {
     getSessiondata();
-    if (JSON.stringify(userTotalAnswer) === JSON.stringify(QuizTotalAnswer)) {
+    const point = userTotalAnswer.filter((i) => {
+      return QuizTotalAnswer.includes(i);
+    });
+    if (point.length >= 4) {
       dispatch(eduAction.addEduSuccessDB(classNumber));
-      SuccessAlert('축하합니다! 심화지식2를 완료하셨습니다.');
+      SuccessAlert2(
+        `축하합니다! ${
+          point.length * 20
+        }점으로 <br/>심화지식2를 완료하셨습니다.`,
+      );
       window.sessionStorage.clear();
       history.push('/main');
     } else {
-      WarningAlert(
-        '안타깝게도 틀린부분이 있네요!',
-        '심화지식2를 다시 진행해 주세요!',
+      WarningAlert2(
+        `안타깝게도 ${point.length * 20}점이네요😓<br/>
+      80점(4문제)이상 맞추면 수료하실 수 <br/> 있습니다!`,
+        '심화2 지식을 다시 확인해주세요!',
       );
       window.sessionStorage.clear();
       history.push('/advancedknowledge2');

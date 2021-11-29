@@ -50,7 +50,7 @@ const EssentialQuizData = [
     id: 5,
     classNumber: '1',
     QuizContent:
-      '반려견 등록 신규 신고시, <span>내장형 등록 인식표</span>의<br/>  가격은?',
+      '반려견 등록 신규 신고시, <span>내장형 등록 인식표</span>의 가격은?',
     answer: '10,000원',
 
     select1: '15,000원',

@@ -366,7 +366,7 @@ const AdoptionApply2 = (props) => {
                 margin='0 0 0 8px'
                 padding='0 10px'>
                 <Input
-                  // type='number'
+                  type='number'
                   bg='#F7F7F7'
                   border='none'
                   padding='5px'
@@ -403,7 +403,7 @@ const AdoptionApply2 = (props) => {
                 margin='0 0 0 8px'
                 padding='0 10px'>
                 <Input
-                  // type='number'
+                  type='number'
                   bg='#F7F7F7'
                   border='none'
                   padding='5px'

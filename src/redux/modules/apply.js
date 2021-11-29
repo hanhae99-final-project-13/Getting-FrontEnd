@@ -50,6 +50,7 @@ const addApplyDB = (postId, data) => {
     apis
       .applyFoster(postId, data)
       .then((res) => {
+        console.log('입양신청성공');
         //  dispatch(addApply(res.data.FosterForm));
       })
       .catch((err) => {

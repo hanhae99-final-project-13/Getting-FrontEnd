@@ -43,6 +43,7 @@ instance.interceptors.response.use(
     console.log(err);
     console.log(err.response);
     console.log(err.config);
+
     if (
       err.response.status === 400 &&
       err.response.data.errorMessage !==

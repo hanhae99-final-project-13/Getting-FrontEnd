@@ -70,9 +70,11 @@ const Signup = (props) => {
     apis
       .checkId(username)
       .then((res) => {
+        console.log('성공');
         setCheckId(true);
       })
       .catch((error) => {
+        console.log('중복된 아이디가 있어!');
         setCheckId(false);
 
         return;
@@ -437,7 +439,7 @@ const Signup = (props) => {
             <Timer />
 
             <Input
-              type='text'
+              type='number'
               bg='#FFFFFF'
               border='black'
               padding='16px'
@@ -451,6 +453,7 @@ const Signup = (props) => {
               }}
             />
             <Text
+              cusor='pointer'
               _onClick={() => {
                 if (clickCodeAuthButton === true) {
                   SuccessAlert2('이미 휴대폰 인증을 완료하셨습니다');
@@ -472,6 +475,7 @@ const Signup = (props) => {
         ) : (
           <Grid position='relative'>
             <Text
+              cusor='pointer'
               _onClick={() => {
                 sendPhoneNumber(phoneNumberInfo);
               }}
@@ -486,7 +490,7 @@ const Signup = (props) => {
               인증하기
             </Text>
             <Input
-              type='text'
+              type='number'
               bg='#FFFFFF'
               width='100%'
               border='none'

@@ -11,6 +11,17 @@ export const WarningAlert = (warning_text, footer, title) => {
     footer: footer,
   });
 };
+
+export const WarningAlert2 = (html_text, footer, title) => {
+  Swal.fire({
+    title: title,
+    html: html_text,
+    icon: 'warning',
+    confirmButtonColor: '#FE7968',
+    footer: footer,
+  });
+};
+
 //성공 alert
 export const SuccessAlert = (success_text) => {
   Swal.fire({
