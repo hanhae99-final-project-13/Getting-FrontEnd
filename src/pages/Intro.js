@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Grid, Text } from '../elements/index';
+import { Grid } from '../elements/index';
 import styled from 'styled-components';
-import Header from '../components/Header';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

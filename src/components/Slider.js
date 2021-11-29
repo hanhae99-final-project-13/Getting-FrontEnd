@@ -39,11 +39,11 @@ const SwitchBox = styled.label`
   width: 60px;
   height: 32px;
   margin: 0 2px;
+  cursor: pointer;
 `;
 const Switch = styled.span`
   z-index: -1;
   position: absolute;
-  cursor: pointer;
   border-radius: 17px;
   top: 0;
   left: 0;
@@ -67,6 +67,7 @@ const CheckBox = styled.input`
   z-index: 1;
   width: 0;
   height: 0;
+
   &:checked + ${Switch} {
     background-color: #fe7968;
     &::after {
