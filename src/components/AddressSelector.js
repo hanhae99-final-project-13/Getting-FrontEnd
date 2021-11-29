@@ -70,7 +70,6 @@ const AddressSelector = (props) => {
               position='fixed'
               justifyContent='center'
               alignItems='center'
-              // _onClick={closeModal}
             >
               <ModalBox>
                 {local[localDo].map((d, i) => {

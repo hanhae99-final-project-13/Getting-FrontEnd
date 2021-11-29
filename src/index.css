@@ -30,3 +30,11 @@ input[type='password'] {
 input[type='password']::placeholder {
   font-family: 'NanumSquareR';
 }
+
+input {
+  font-family: 'NanumSquareR'
+}
+
+textarea {
+  font-family: 'NanumSquareR'
+}
