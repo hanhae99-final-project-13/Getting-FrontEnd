@@ -21,7 +21,8 @@ const AdvancedKnowledge2 = () => {
         maxWidth='414px'
         width='auto'
         margin='0 auto 200px'
-        position='relative'>
+        position='relative'
+      >
         <Grid
           cusor='pointer'
           zIndex='9999'
@@ -32,7 +33,8 @@ const AdvancedKnowledge2 = () => {
           width='20px'
           height='20px'
           top='30px'
-          left='36px'>
+          left='24px'
+        >
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -43,7 +45,8 @@ const AdvancedKnowledge2 = () => {
           left='0'
           right='0'
           zIndex='9998'
-          height='auto'>
+          height='auto'
+        >
           <Text size='18px' margin='0' weight='800' align='center'>
             심화2 지식
           </Text>
@@ -52,7 +55,7 @@ const AdvancedKnowledge2 = () => {
         <StyledSlider {...settings}>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa1.svg'}
               style={{
                 maxWidth: '414px',
                 width: '100%',
@@ -62,7 +65,7 @@ const AdvancedKnowledge2 = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa2.svg'}
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -71,7 +74,7 @@ const AdvancedKnowledge2 = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa3.svg'}
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -80,7 +83,70 @@ const AdvancedKnowledge2 = () => {
           </Grid>
           <Grid>
             <img
-              src={process.env.PUBLIC_URL + '/img/GUIicon/landing1.svg'}
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa4.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa5.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa6.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa7.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa8.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa9.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa10.svg'}
+              style={{
+                maxWidth: '100%',
+                margin: '0 auto',
+              }}
+            />
+          </Grid>
+          <Grid>
+            <img
+              src={process.env.PUBLIC_URL + '/img/simhwa1/simhwa11.svg'}
               style={{
                 maxWidth: '100%',
                 margin: '0 auto',
@@ -111,7 +177,8 @@ const AdvancedKnowledge2 = () => {
           display='flex'
           justifyContent='center'
           alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
+          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+        >
           <Text color='white' margin='0' weight='700'>
             퀴즈로 검증하기
           </Text>
@@ -145,6 +212,7 @@ const StyledSlider = styled(Slider)`
     position: sticky;
     left: 0;
     right: 0;
+    margin-top: -150px;
     .slick-active {
       button::before {
         color: #fe7968;
