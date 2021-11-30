@@ -46,8 +46,9 @@ const deleteAlarm = createAction(DELETE_ALARMLIST, () => ({}));
 const updateAlarm = createAction(UPDATE_ALARMCOUNT, (alarmData) => ({
   alarmData,
 }));
-const readAlarm = createAction(READ_ALARM, (isRead) => ({
-  isRead,
+const readAlarm = createAction(READ_ALARM, (alarmId, checked) => ({
+  alarmId,
+  checked,
 }));
 //초기값
 const initialState = {
@@ -277,11 +278,14 @@ const deleteAlarmToAxios = () => {
 };
 
 const isReadAlarmToAxios = (alarmId) => {
+  console.log(alarmId);
   return (dispatch) => {
     apis
       .isReadAlarm(alarmId)
       .then((res) => {
-        // 받아오는 데이터 true이면 안읽음, false면 읽음처리하면 된다.
+        dispatch(
+          readAlarm(res.data.data.data.alarmId, res.data.data.data.checked),
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -345,7 +349,10 @@ export default handleActions(
       }),
     [READ_ALARM]: (state, action) =>
       produce(state, (draft) => {
-        draft.user.userInfo.isRead = action.payload.isRead;
+        const idx = state.user.userInfo.alarmContent.findIndex(
+          (alarm) => alarm.alarmId === action.payload.alarmId,
+        );
+        draft.user.userInfo.alarmContent[idx].checked = action.payload.checked;
       }),
   },
   initialState,

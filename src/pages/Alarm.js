@@ -130,7 +130,6 @@ const Alarm = () => {
             <>
               {userInfo.alarmContent &&
                 userInfo.alarmContent.map((alarm, i) => {
-                  console.log(alarm.createdAt);
                   return (
                     <>
                       {alarm.checked === true ? (
@@ -161,8 +160,8 @@ const Alarm = () => {
                           dispatch(
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),
                           );
-                          console.log(alarm);
                           if (alarm.alarmType === 'COMMENT') {
+                            console.log(alarm);
                             history.push(`/detail/${alarm.postId}`);
                           }
                           if (alarm.alarmType === 'FOSTER_FORM') {
