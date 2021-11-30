@@ -24,6 +24,7 @@ const LOAD_ALARM = 'LOAD_ALARM';
 const DELETE_ALARMLIST = 'DELETE_ALARMLIST';
 const UPDATE_ALARMCOUNT = 'UPDATE_ALARMCOUNT';
 const READ_ALARM = 'READ_ALARM';
+const ALARM_CHECK = 'ALARM_CHECK';
 //유저 액션 생성함수
 const SetUser = createAction(SET_USER, (user) => ({ user }));
 const LogOut = createAction(LOG_OUT, () => {});
@@ -46,7 +47,10 @@ const deleteAlarm = createAction(DELETE_ALARMLIST, () => ({}));
 const updateAlarm = createAction(UPDATE_ALARMCOUNT, (alarmData) => ({
   alarmData,
 }));
-const readAlarm = createAction(READ_ALARM, (alarmId, checked) => ({
+const readAlarm = createAction(READ_ALARM, (isRead) => ({
+  isRead,
+}));
+const alarmCheck = createAction(ALARM_CHECK, (alarmId, checked) => ({
   alarmId,
   checked,
 }));
@@ -284,7 +288,7 @@ const isReadAlarmToAxios = (alarmId) => {
       .isReadAlarm(alarmId)
       .then((res) => {
         dispatch(
-          readAlarm(res.data.data.data.alarmId, res.data.data.data.checked),
+          alarmCheck(res.data.data.data.alarmId, res.data.data.data.checked),
         );
       })
       .catch((err) => {
@@ -349,10 +353,20 @@ export default handleActions(
       }),
     [READ_ALARM]: (state, action) =>
       produce(state, (draft) => {
+        draft.user.userInfo.isRead = action.payload.isRead;
+      }),
+    [ALARM_CHECK]: (state, action) =>
+      produce(state, (draft) => {
         const idx = state.user.userInfo.alarmContent.findIndex(
           (alarm) => alarm.alarmId === action.payload.alarmId,
         );
-        draft.user.userInfo.alarmContent[idx].checked = action.payload.checked;
+        if (
+          draft.user.userInfo.alarmContent.length >= 1 &&
+          action.payload.checked !== undefined
+        ) {
+          draft.user.userInfo.alarmContent[idx].checked =
+            action.payload.checked;
+        }
       }),
   },
   initialState,
