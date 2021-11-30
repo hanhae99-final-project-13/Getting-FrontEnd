@@ -9,9 +9,12 @@ const InfinityScroll = ({ page }) => {
 
   const getMoreObserver = new IntersectionObserver((entry) => {
     if (entry[0].isIntersecting) {
-      const newSearchSetting = { ...searchSetting, page: page + 1 };
+      const _page = searchSetting.page;
+      const newSearchSetting = { ...searchSetting, page: _page + 1 };
+      console.log(newSearchSetting);
       dispatch(postActions.setSearch(newSearchSetting));
       dispatch(postActions.getMorePostMW(newSearchSetting));
+      console.log(newSearchSetting);
     }
   });
 

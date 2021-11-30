@@ -106,7 +106,8 @@ const Adoption = () => {
       ) : (
         <InfinityScroll page={searchSetting.page} />
       )} */}
-      <InfinityScroll page={searchSetting.page} />
+      {/* {isLoading ? '' : <InfinityScroll />} */}
+      <InfinityScroll />
     </Grid>
   );
 };
