@@ -252,7 +252,7 @@ const AddPost = () => {
               value={'출처를 선택해주세요'}
               style={{
                 border: 'none',
-                width: '45%',
+                width: '60%',
                 color: 'black',
               }}
             />
@@ -260,7 +260,7 @@ const AddPost = () => {
               display='flex'
               justifyContent='flex-end'
               alignItems='center'
-              fontSize='12px'
+              fontSize='14px'
             >
               <Text color={tag === '직접등록' ? 'black' : '#E7E5E5'}>
                 직접등록
