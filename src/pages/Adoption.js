@@ -41,7 +41,6 @@ const Adoption = () => {
   };
 
   React.useEffect(() => {
-    console.log(searchSetting.sort);
     if (searchSetting.sort === 'new') {
       old.current.classList.remove('active');
       cur.current.classList.add('active');
@@ -102,11 +101,12 @@ const Adoption = () => {
         </Grid>
         <AdoptionCardList />
       </Grid>
-      {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
+      {/* {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
       ) : (
         <InfinityScroll page={searchSetting.page} />
-      )}
+      )} */}
+      <InfinityScroll page={searchSetting.page} />
     </Grid>
   );
 };
