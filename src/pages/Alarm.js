@@ -52,8 +52,8 @@ const Alarm = () => {
     dispatch(postActions.getMyPostsMW());
     setTimeout(() => {
       dispatch(actionCreators.loadAlarmListToAxios());
-    }, 10);
-  }, []);
+    }, 50);
+  }, [dispatch]);
 
   if (!userInfo.nickname) return <div></div>;
 
