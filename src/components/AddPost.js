@@ -249,15 +249,19 @@ const AddPost = () => {
           >
             <input
               placeholder='정보출처'
-              value={'정보출처를 선택해주세요'}
+              value={'출처를 선택해주세요'}
               style={{
                 border: 'none',
-                width: '80%',
+                width: '45%',
                 color: 'black',
-                fontSize: '12px',
               }}
             />
-            <Grid display='flex' alignItems='center' fontSize='13px'>
+            <Grid
+              display='flex'
+              justifyContent='flex-end'
+              alignItems='center'
+              fontSize='12px'
+            >
               <Text color={tag === '직접등록' ? 'black' : '#E7E5E5'}>
                 직접등록
               </Text>
