@@ -260,7 +260,7 @@ const AddPost = () => {
               display='flex'
               justifyContent='flex-end'
               alignItems='center'
-              fontSize='12px'
+              fontSize='14px'
             >
               <Text color={tag === '직접등록' ? 'black' : '#E7E5E5'}>
                 직접등록
