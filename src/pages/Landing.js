@@ -91,18 +91,21 @@ const Landing = () => {
               left: 0,
               right: 0,
               margin: '20px auto 0',
-            }}>
+            }}
+          >
             <ButtonBox
               onClick={() => {
                 history.push('/main');
-              }}>
+              }}
+            >
               <Button>먼저 둘러볼래요!</Button>
             </ButtonBox>
 
             <ButtonBox2
               onClick={() => {
                 history.push('/login');
-              }}>
+              }}
+            >
               <Button2>로그인 할게요!</Button2>
             </ButtonBox2>
           </div>

@@ -22,7 +22,8 @@ const AdoptionApplyCheckModal = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
-        zIndex='9999'>
+        zIndex='9999'
+      >
         <Grid width='62px' height='85px' margin='24px auto 8px '>
           <img src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'} />
         </Grid>
@@ -30,7 +31,8 @@ const AdoptionApplyCheckModal = (props) => {
           margin='14.25px 0 0 0'
           align='center'
           line_height='21px'
-          weight='600'>
+          weight='600'
+        >
           작성한 입양신청서는
           <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
           <br />
@@ -43,13 +45,13 @@ const AdoptionApplyCheckModal = (props) => {
             size='14px'
             weight='800'
             height='40px'
-            padding='12px 0px'
             bg='#FFBE5B'
             border='none'
             border_radius='34px'
             onClick={() => {
               closeModal();
-            }}>
+            }}
+          >
             다시 생각해볼게요
           </Button>
 
@@ -59,14 +61,14 @@ const AdoptionApplyCheckModal = (props) => {
             size='14px'
             weight='800'
             height='40px'
-            padding='12px 0px'
             bg='#FE7968'
             border='none'
             border_radius='34px'
             onClick={() => {
               realApply();
               closeModal();
-            }}>
+            }}
+          >
             확인했습니다
           </Button>
         </Grid>
