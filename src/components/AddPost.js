@@ -252,7 +252,7 @@ const AddPost = () => {
               value={'출처를 선택해주세요'}
               style={{
                 border: 'none',
-                width: '45%',
+                width: '60%',
                 color: 'black',
               }}
             />
