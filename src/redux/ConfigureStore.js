@@ -2,11 +2,17 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
+import User from './modules/user';
+import Post from './modules/post';
+import Search from './modules/search';
+import Apply from './modules/apply';
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  
+  apply: Apply,
+  post: Post,
+  user: User,
   router: connectRouter(history),
 });
 
@@ -26,7 +32,7 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-let store = initialStore => createStore(rootReducer, enhancer);
+let store = (initialStore) => createStore(rootReducer, enhancer);
 //테스트중입니다.
 
 export default store();

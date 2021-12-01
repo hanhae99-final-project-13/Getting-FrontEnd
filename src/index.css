@@ -1,8 +1,19 @@
+@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css');
+
+@font-face {
+  font-family: 'NanumSquareR';
+  src: url('../src/font/NanumSquareR.otf');
+}
+@font-face {
+  font-family: 'NanumSquareR_EB';
+  src: url('../src/font/NanumSquareOTF_acEB.otf');
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'NanumSquareR';
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +21,24 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input[type='password'] {
+  font-family: 'Malgun gothic', dotum, sans-serif;
+}
+
+input[type='password']::placeholder {
+  font-family: 'NanumSquareR';
+}
+
+input {
+  font-family: 'NanumSquareR';
+}
+
+textarea {
+  font-family: 'NanumSquareR';
+}
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
