@@ -88,7 +88,7 @@ const AddPost = () => {
       WarningAlert('모든 값을 입력해주세요!');
     }
   };
-
+  console.log(process.env.REACT_APP_IDENTIFYPOOLID);
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

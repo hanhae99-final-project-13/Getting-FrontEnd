@@ -52,8 +52,8 @@ const Alarm = () => {
     dispatch(postActions.getMyPostsMW());
     setTimeout(() => {
       dispatch(actionCreators.loadAlarmListToAxios());
-    }, 10);
-  }, []);
+    }, 50);
+  }, [dispatch]);
 
   if (!userInfo.nickname) return <div></div>;
 
@@ -189,6 +189,13 @@ const Alarm = () => {
                               src={
                                 process.env.PUBLIC_URL +
                                 '/img/icon/comment_icon.svg'
+                              }
+                            />
+                          ) : alarm.alarmType === 'FOSTER_FORM' ? (
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '/img/icon/apply_icon.svg'
                               }
                             />
                           ) : (
