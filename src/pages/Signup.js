@@ -478,6 +478,7 @@ const Signup = (props) => {
               size='12px'
               weight='800'
               margin='0'
+              cursor='pointer'
             >
               코드확인
             </Text>
@@ -497,6 +498,7 @@ const Signup = (props) => {
               size='12px'
               weight='800'
               margin='0'
+              cursor='pointer'
             >
               인증하기
             </Text>
