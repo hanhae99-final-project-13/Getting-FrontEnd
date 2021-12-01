@@ -86,11 +86,9 @@ const GetUserDB = (user) => {
       .then((res) => {
         const USER_TOKEN = res.data.data.token.accessToken;
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
-
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-        // setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
-        // setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
+        window.localStorage.setItem('USER_ID', res.data.data.userId);
         const user = {
           userInfo: {
             userId: res.data.data.userId,
@@ -189,9 +187,7 @@ const KakaoLogin = (code) => {
         const REFRESH_TOKEN = res.data.data.token.refreshToken;
         window.localStorage.setItem('USER_TOKEN', USER_TOKEN);
         window.localStorage.setItem('REFRESH_TOKEN', REFRESH_TOKEN);
-
-        // setCookie('USER_TOKEN', USER_TOKEN, 60 * 24);
-        // setCookie('REFRESH_TOKEN', REFRESH_TOKEN, 60 * 24 * 14);
+        window.localStorage.setItem('USER_ID', res.data.data.userId);
         const user = {
           userInfo: {
             email: res.data.data.email,
