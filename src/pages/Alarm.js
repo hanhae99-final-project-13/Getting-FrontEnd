@@ -192,6 +192,13 @@ const Alarm = () => {
                                 '/img/icon/comment_icon.svg'
                               }
                             />
+                          ) : alarm.alarmType === 'FOSTER_FORM' ? (
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '/img/icon/apply_icon.svg'
+                              }
+                            />
                           ) : (
                             <img
                               src={
