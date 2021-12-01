@@ -36,7 +36,7 @@ const AcceptCheckModal = ({ setShowModal, fosterFormId, name }) => {
           height='92'
         />
         <Text margin='18px 0 26px 0' weight='700'>
-          님의 입양신청을 승인합니다
+          {name}님의 입양신청을 승인합니다
         </Text>
         <Grid display='flex' justifyContent='center' height='auto'>
           <Grid
