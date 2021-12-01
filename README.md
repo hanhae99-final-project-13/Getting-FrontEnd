@@ -8,28 +8,29 @@
 
 
 
-저희 개팅은 반려견에 대한 교육을 통해 예비 견주님들께는 반려견을 키울 수 있다는 자신감을,
+저희 개팅은 
 
-임보자님들께는 믿고 맡길 수 있는 예비 견주님들을 만나실 수 있는 기회를 제공해드립니다.
+반려견에 대한 교육 지식과 퀴즈를 통해 예비 견주님들께는 반려견을 키울 수 있다는 자신감을,
 
-이를 바탕으로 올바른 반려견 입양 문화를 지향하고자 하는 유기견 입양 웹앱 서비스입니다.
+임보자님들께는 믿고 맡길 수 있는 예비 견주님들을 만나실 수 있는 기회를 제공하고자 합니다.
 
-<h2>🌐<a href='https://getting.co.kr' target='_blank'>개팅에서 개팅하세요!</a></h2>
+이를 바탕으로 올바른 반려견 입양 문화를 지향하는 유기견 입양 웹앱 서비스입니다.
+
+<p style='font-size:22px;'>🌐<a href='https://getting.co.kr' target='_blank'>개팅에서 개팅하세요!</a></p>
 
 ---
 
 ## 📝 개요
 + 프로젝트 이름 : 개팅 (Getting)
-+ 기획 의도 : 
 + 개발 기간 : 2021.10.24 ~ 2021.12.04
 + 팀원
-    + Front-end(React) : 김기철, 김현수, 이지훈
-    + Back-end(Spring) : 송지은, 이다담, 최선강
+    + Front-end(React) : <a href='https://github.com/GCEE91' style="text-decoration:none" target='_blank'>김기철</a>, <a href='https://github.com/geemhunsu' style="text-decoration:none" target='_blank'>김현수</a>, <a href='https://github.com/2Juzzang' style="text-decoration:none" target='_blank'>이지훈</a>
+    + Back-end(Spring) : <a href='https://github.com/wldms2494' style="text-decoration:none" target='_blank'>송지은</a>, <a href='https://github.com/vktm91' style="text-decoration:none" target='_blank'>이다담</a>, <a href='https://github.com/zzangoobrother' style="text-decoration:none" target='_blank'>최선강</a>
     + Designer(UI/UX) : 윤서연, 장성윤
 + <a href='https://www.notion.so/Getting-f2a8f1ac6dea41f79d60b318f7c0e41a' target='_blank' >Notion</a>
 + <a href=''>시연 영상</a>
-+ <a href='https://github.com/hanhae99-final-project-13/Getting-FrontEnd' target='_blank'>Front-end 깃허브</a>
-+ <a href='https://github.com/hanhae99-final-project-13/docking-final-project' target='_blank'>Back-end 깃허브</a>
++ <a href='https://github.com/hanhae99-final-project-13' target='_blank'>Github</a>
+
 
 ---
 
@@ -41,8 +42,17 @@
 
 ## 🧰 사용 패키지
 
-+ react-slick 
-  - 캐러셀 구현 패키지
++ aws-sdk
++ axios
++ lodash
++ react-device-detect
++ react-slick
++ redux
++ sockjs
++ stompjs
++ styled-components
++ sweetalert2
+
 ---
 
 ## ⚙ 주요 기능
@@ -76,7 +86,7 @@
 + 유기견들의 간략한 정보를 볼 수 있고 상세 정보를 조회할 수 있습니다.
 + 분양 글 등록 기능이 있습니다.
 + 관심 등록한 강아지를 최상단에서 조회할 수 있습니다.
-+ 조건과 일치한 유기견 검색 기능 (기간, 장소, 지역)이 있습니다. 
++ 조건(기간, 장소, 지역)과 일치한 유기견 검색이 가능합니다. 
 + 최신순, 등록순으로 유기견을 조회할 수 있습니다.
 + 무한 스크롤 기능을 통해 분양글을 더 불러올 수 있습니다.
 </details>

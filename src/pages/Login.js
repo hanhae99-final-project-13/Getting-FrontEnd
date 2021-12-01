@@ -51,7 +51,8 @@ const Login = (props) => {
               margin='0 auto 20px'
               _onClick={() => {
                 history.push('/main');
-              }}>
+              }}
+            >
               <img src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'} />
             </Grid>
 
@@ -60,7 +61,8 @@ const Login = (props) => {
               weight='700'
               size='12px'
               margin='0px'
-              line_height='18px'>
+              line_height='18px'
+            >
               반려친구와 내가
               <span style={{ fontWeight: '800', fontSize: '12px' }}>
                 이어지는 순간,
@@ -135,7 +137,8 @@ const Login = (props) => {
                 color='#DFDFDF'
                 _onClick={() => {
                   WarningAlert('서비스 준비중 입니다');
-                }}>
+                }}
+              >
                 아이디 찾기
               </Text>
               <Text
@@ -145,7 +148,8 @@ const Login = (props) => {
                 color='#DFDFDF'
                 _onClick={() => {
                   WarningAlert('서비스 준비중 입니다');
-                }}>
+                }}
+              >
                 비밀번호 찾기
               </Text>
             </Grid>
@@ -178,7 +182,8 @@ const Login = (props) => {
                 border_radius='25px'
                 onClick={() => {
                   window.location.href = KAKAO_AUTH_URL;
-                }}>
+                }}
+              >
                 카카오톡으로 시작하기
               </Button>
 
@@ -193,7 +198,8 @@ const Login = (props) => {
                   border_radius='25px'
                   onClick={() => {
                     history.push('/signup');
-                  }}>
+                  }}
+                >
                   메일로 회원가입하기
                 </Button>
               </Grid>
