@@ -15,7 +15,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log(config);
+    // console.log(config);
     const token = localStorage.getItem('USER_TOKEN');
 
     if (!token) {

@@ -10,7 +10,7 @@ const MainHello = (props) => {
   const isLogin = useSelector((state) => state.user.user.isLogin);
 
   return (
-    <Grid padding='0 12px'>
+    <Grid position='relative' padding='0 12px'>
       <Image
         src={
           isLogin &&
@@ -22,6 +22,31 @@ const MainHello = (props) => {
         size='78'
         backgroundPosition='center'
       />
+      <Grid
+        position='absolute'
+        top='0'
+        right='24px'
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        padding='10px 18px'
+        width='auto'
+        height='auto'
+        borderRadius='50px'
+        // bg='rgba(255, 190, 91, 0.6)'
+        bg='#9FB0DA'
+        boxShadow='10px 10px 20px rgba(0, 0, 0, 0.1)'
+        cusor='pointer'
+        _onClick={() =>
+          (window.location.href =
+            'https://docs.google.com/forms/d/11l_JZ-dFgEZL5gwkswhPEh6i5UvoLm0VgShU_6fLLos/edit')
+        }
+      >
+        <img src={process.env.PUBLIC_URL + '/img/icon/dogbal.svg'} />
+        <Text margin='5px 0 0 0' weight='700' color='white'>
+          꾹꾹이
+        </Text>
+      </Grid>
       <Grid display='flex' width='auto' margin='18.5px 0 0 0'>
         <Text size='18px' weight='700' margin='0'>
           안녕하세요{isLogin && ','}&nbsp;

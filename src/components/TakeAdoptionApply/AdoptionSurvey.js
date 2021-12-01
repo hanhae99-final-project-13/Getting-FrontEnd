@@ -109,7 +109,7 @@ const AdoptionReason = (props) => {
 
               <Textarea>{detailFosterForm.timeTogether}</Textarea>
             </Grid>
-            {/* <Grid
+            <Grid
               boxSizing='border-box'
               height='375px'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
@@ -121,9 +121,9 @@ const AdoptionReason = (props) => {
                 </Text>
               </Grid>
 
-              <Textarea>{detailFosterForm.timeTogether}</Textarea>
-            </Grid> */}
-            {/* <Grid
+              <Textarea>{detailFosterForm.leaveHome}</Textarea>
+            </Grid>
+            <Grid
               boxSizing='border-box'
               height='auto'
               padding='18px 0'
@@ -154,7 +154,9 @@ const AdoptionReason = (props) => {
                     borderRadius='9px'
                     boxSizing='border-box'
                   >
-                    <Text margin='0' size='16px'></Text>
+                    <Text margin='0' size='16px'>
+                      {detailFosterForm.medicalBudget}
+                    </Text>
                     <Text margin='0' size='16px' weight='700'>
                       원
                     </Text>
@@ -181,40 +183,29 @@ const AdoptionReason = (props) => {
                     borderRadius='9px'
                     boxSizing='border-box'
                   >
-                    <Text margin='0' size='16px'></Text>
+                    <Text margin='0' size='16px'>
+                      {detailFosterForm.monthlyBudget}
+                    </Text>
                     <Text margin='0' size='16px' weight='700'>
                       원
                     </Text>
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid> */}
-            {/* <Grid
+            </Grid>
+            <Grid
               boxSizing='border-box'
-              height='auto'
+              height='375px'
               borderBottom='1px solid rgba(225, 225, 225, 0.5) '
             >
               <Grid margin='11px 0 26px 0 ' height='auto'>
                 <Text margin='0' bold line_height='24px'>
-                  입양 후, 입양하신 반려동물의 동물 등록이 이루어져야 합니다.
-                  이에 동의하시나요?
+                  그 외, 하고 싶은 말씀이 있으시다면 적어주세요.
                 </Text>
               </Grid>
-              <Grid
-                display='flex'
-                alignItems='center'
-                justifyContent='center'
-                margin='0 0 17px 0'
-                width='70px'
-                height='30px'
-                bg='#FE7968'
-                borderRadius='15px'
-              >
-                <Text color='white' weight='700'>
-                  {detailFosterForm.allergy}
-                </Text>
-              </Grid>
-            </Grid> */}
+
+              <Textarea>{detailFosterForm.etc}</Textarea>
+            </Grid>
 
             <Grid
               boxSizing='border-box'
@@ -247,17 +238,17 @@ const AdoptionReason = (props) => {
 
               <Textarea>{detailFosterForm.bark}</Textarea>
             </Grid>
-            {/* <Grid margin='18px 0 21px 0 ' height='auto'>
+            <Grid margin='18px 0 21px 0 ' height='auto'>
               <Text margin='0 0 8px 0' bold line_height='24px'>
                 동거인들의 입양동의 서명을 찍어 첨부해주세요.
               </Text>
               <Image
                 shape='square'
-                src={detailFosterForm.roomUrl}
+                src={detailFosterForm.signUrl}
                 borderRadius='10px'
                 backgroundPosition='center'
               />
-            </Grid> */}
+            </Grid>
             <Grid margin='18px 0 21px 0 ' height='auto'>
               <Text margin='0 0 8px 0' bold line_height='24px'>
                 아이가

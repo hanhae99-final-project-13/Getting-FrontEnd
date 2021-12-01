@@ -282,7 +282,6 @@ const deleteAlarmToAxios = () => {
 };
 
 const isReadAlarmToAxios = (alarmId) => {
-  console.log(alarmId);
   return (dispatch) => {
     apis
       .isReadAlarm(alarmId)

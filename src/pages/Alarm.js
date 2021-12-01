@@ -161,7 +161,6 @@ const Alarm = () => {
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),
                           );
                           if (alarm.alarmType === 'COMMENT') {
-                            console.log(alarm);
                             history.push(`/detail/${alarm.postId}`);
                           }
                           if (alarm.alarmType === 'FOSTER_FORM') {
