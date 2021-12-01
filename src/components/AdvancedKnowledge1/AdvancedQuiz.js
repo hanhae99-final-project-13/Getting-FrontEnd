@@ -28,7 +28,7 @@ const AdvancedQuiz = (props) => {
 
   const { id, QuizContent, classNumber, select1, select2, select3, select4 } =
     CurrentQuizData[0];
-  console.log(id, QuizContent, classNumber);
+
   window.sessionStorage.setItem(`answer${id}`, '');
 
   const [selectAnswer, setSelectAnswer] = useState('');
@@ -97,7 +97,8 @@ const AdvancedQuiz = (props) => {
       maxWidth='414px'
       width='auto'
       margin='0 auto 200px'
-      position='relative'>
+      position='relative'
+    >
       <Grid
         cusor='pointer'
         zIndex='9999'
@@ -109,7 +110,8 @@ const AdvancedQuiz = (props) => {
         width='20px'
         height='20px'
         top='-45px'
-        left='36px'>
+        left='36px'
+      >
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
@@ -126,7 +128,8 @@ const AdvancedQuiz = (props) => {
       {/* 프로그래스바 */}
       <Grid margin='104px auto 0 '>
         <QuizProgressBar
-          totalQuizLength={AdvancedQuizData.length}></QuizProgressBar>
+          totalQuizLength={AdvancedQuizData.length}
+        ></QuizProgressBar>
       </Grid>
 
       {/* 문제 */}
@@ -142,7 +145,8 @@ const AdvancedQuiz = (props) => {
           id={`${id}:1번보기`}
           name={`answer${id}`}
           value={select1}
-          onClick={handleClickRadioButton}></input>
+          onClick={handleClickRadioButton}
+        ></input>
         <label onClick={numberOneClick} htmlFor={`${id}:1번보기`}>
           <Grid
             display='flex'
@@ -155,13 +159,15 @@ const AdvancedQuiz = (props) => {
             height='60px'
             margin='25px 35px 0'
             padding='0 21px 0 20px'
-            bg={selectAnswer === select1 ? '#FE7968' : '#FFFFFF'}>
+            bg={selectAnswer === select1 ? '#FE7968' : '#FFFFFF'}
+          >
             <Text
               size='14px'
               weight='700'
               margin='0'
               line_height='21px'
-              color={selectAnswer === select1 ? '#FFFFFF' : '#1A0300'}>
+              color={selectAnswer === select1 ? '#FFFFFF' : '#1A0300'}
+            >
               {select1}
             </Text>
           </Grid>
@@ -173,7 +179,8 @@ const AdvancedQuiz = (props) => {
           id={`${id}:2번보기`}
           name={`answer${id}`}
           value={select2}
-          onClick={handleClickRadioButton}></input>
+          onClick={handleClickRadioButton}
+        ></input>
         <label onClick={numberTwoClick} htmlFor={`${id}:2번보기`}>
           <Grid
             display='flex'
@@ -186,13 +193,15 @@ const AdvancedQuiz = (props) => {
             height='60px'
             margin='10px 35px 0'
             padding='0 21px 0 20px'
-            bg={selectAnswer === select2 ? '#FE7968' : '#FFFFFF'}>
+            bg={selectAnswer === select2 ? '#FE7968' : '#FFFFFF'}
+          >
             <Text
               size='14px'
               weight='700'
               line_height='21px'
               margin='0'
-              color={selectAnswer === select2 ? '#FFFFFF' : '#1A0300'}>
+              color={selectAnswer === select2 ? '#FFFFFF' : '#1A0300'}
+            >
               {select2}
             </Text>
           </Grid>
@@ -204,7 +213,8 @@ const AdvancedQuiz = (props) => {
           id={`${id}:3번보기`}
           name={`answer${id}`}
           value={select3}
-          onClick={handleClickRadioButton}></input>
+          onClick={handleClickRadioButton}
+        ></input>
         <label onClick={numberThreeClick} htmlFor={`${id}:3번보기`}>
           <Grid
             display='flex'
@@ -217,13 +227,15 @@ const AdvancedQuiz = (props) => {
             height='60px'
             margin='10px 35px 0'
             padding='0 21px 0 20px'
-            bg={selectAnswer === select3 ? '#FE7968' : '#FFFFFF'}>
+            bg={selectAnswer === select3 ? '#FE7968' : '#FFFFFF'}
+          >
             <Text
               size='14px'
               weight='700'
               margin='0'
               line_height='21px'
-              color={selectAnswer === select3 ? '#FFFFFF' : '#1A0300'}>
+              color={selectAnswer === select3 ? '#FFFFFF' : '#1A0300'}
+            >
               {select3}
             </Text>
           </Grid>
@@ -235,7 +247,8 @@ const AdvancedQuiz = (props) => {
           id={`${id}:4번보기`}
           name={`answer${id}`}
           value={select4}
-          onClick={handleClickRadioButton}></input>
+          onClick={handleClickRadioButton}
+        ></input>
         <label onClick={numberFourClick} htmlFor={`${id}:4번보기`}>
           <Grid
             display='flex'
@@ -248,13 +261,15 @@ const AdvancedQuiz = (props) => {
             height='60px'
             margin='10px 35px 0'
             padding='0 21px 0 20px'
-            bg={selectAnswer === select4 ? '#FE7968' : '#FFFFFF'}>
+            bg={selectAnswer === select4 ? '#FE7968' : '#FFFFFF'}
+          >
             <Text
               size='14px'
               weight='700'
               margin='0'
               line_height='21px'
-              color={selectAnswer === select4 ? '#FFFFFF' : '#1A0300'}>
+              color={selectAnswer === select4 ? '#FFFFFF' : '#1A0300'}
+            >
               {select4}
             </Text>
           </Grid>
@@ -286,7 +301,8 @@ const AdvancedQuiz = (props) => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'>
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.15)'
+      >
         <Text color='#FFFFFF' margin='0' weight='800' size='16px'>
           {AdvancedQuizData.length !== id ? '다음퀴즈' : '채점하기'}
         </Text>

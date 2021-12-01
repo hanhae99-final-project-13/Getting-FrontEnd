@@ -101,13 +101,14 @@ const Adoption = () => {
         </Grid>
         <AdoptionCardList />
       </Grid>
-      {/* {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
+      {isLoading || totalPage <= searchSetting.page || totalPage === 1 ? (
         ''
       ) : (
         <InfinityScroll page={searchSetting.page} />
-      )} */}
+      )}
       {/* {isLoading ? '' : <InfinityScroll />} */}
-      <InfinityScroll />
+      {/* <InfinityScroll /> */}
+      {/* <InfinityScroll page={searchSetting.page} /> */}
     </Grid>
   );
 };

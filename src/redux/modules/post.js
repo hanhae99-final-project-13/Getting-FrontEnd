@@ -125,7 +125,6 @@ const getMorePostMW = (searchData) => {
       .then((res) => {
         dispatch(getMorePost(res.data.data.postList));
         dispatch(setTotalPage(res.data.data.totalPages));
-        console.log('무한스크롤 발생중');
         dispatch(setLoading(false));
       })
       .catch((err) => {
@@ -360,6 +359,7 @@ export default handleActions(
       }),
     [SET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.searchSetting);
         draft.prevSearchSetting = draft.searchSetting;
         draft.searchSetting = {
           ...draft.searchSetting,
