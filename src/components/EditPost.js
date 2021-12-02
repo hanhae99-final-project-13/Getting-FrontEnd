@@ -82,13 +82,26 @@ const EditPost = (props) => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
     }
-    const nullCheck =
-      Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true) {
-      dispatch(postActions.updateDetailToAxios(postId, postInfo));
-    } else {
-      WarningAlert('모든 값을 입력해주세요!');
+    if (breed === null || breed === '') {
+      return WarningAlert('견종을 입력해주세요');
     }
+    if (age === null || age === '') {
+      return WarningAlert('나이를 입력해주세요');
+    }
+    if (weight === null || weight === '') {
+      return WarningAlert('체중을 입력해주세요');
+    }
+    if (lostLocation === null || lostLocation === '') {
+      return WarningAlert('발견장소를 입력해주세요');
+    }
+    if (address === null || address === '') {
+      return WarningAlert('주소를 입력해주세요');
+    }
+    if (phone === null || phone === '') {
+      return WarningAlert('연락처를 입력해주세요');
+    }
+    dispatch(postActions.addPostToAxios(postInfo));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
   };
 
   return (

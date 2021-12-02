@@ -81,14 +81,26 @@ const AddPost = () => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
     }
-    const nullCheck =
-      Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true || url === '') {
-      dispatch(postActions.addPostToAxios(postInfo));
-      dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
-    } else {
-      WarningAlert('모든 값을 입력해주세요!');
+    if (breed === null || breed === '') {
+      return WarningAlert('견종을 입력해주세요');
     }
+    if (age === null || age === '') {
+      return WarningAlert('나이를 입력해주세요');
+    }
+    if (weight === null || weight === '') {
+      return WarningAlert('체중을 입력해주세요');
+    }
+    if (lostLocation === null || lostLocation === '') {
+      return WarningAlert('발견장소를 입력해주세요');
+    }
+    if (address === null || address === '') {
+      return WarningAlert('주소를 입력해주세요');
+    }
+    if (phone === null || phone === '') {
+      return WarningAlert('연락처를 입력해주세요');
+    }
+    dispatch(postActions.addPostToAxios(postInfo));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
   };
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -276,7 +288,7 @@ const AddPost = () => {
             {tag === '직접등록' ? (
               <input
                 placeholder='유기견 정보를 참고할 수 있는 링크를 남겨주세요'
-                value={url}
+                value={url || ''}
                 onChange={(e) => {
                   setUrl(e.target.value);
                 }}
@@ -290,7 +302,7 @@ const AddPost = () => {
             ) : (
               <input
                 placeholder='유기견 정보를 가져오신 링크를 남겨주세요'
-                value={url}
+                value={url || ''}
                 onChange={(e) => {
                   setUrl(e.target.value);
                 }}
@@ -315,7 +327,8 @@ const AddPost = () => {
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <textarea
-              placeholder='특이사항'
+              placeholder='특이사항을 입력해주세요!
+예비 견주님께 참고가 될만한 어떤 것이라도 좋습니다'
               value={extra}
               onChange={(e) => {
                 setExtra(e.target.value);
