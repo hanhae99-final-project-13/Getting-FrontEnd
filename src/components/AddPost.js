@@ -5,7 +5,6 @@ import AddressSelector from './AddressSelector';
 import { WarningAlert } from '../shared/Alerts';
 import { Grid, Text } from '../elements/index';
 import { useDispatch } from 'react-redux';
-import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 
 const AddPost = () => {
@@ -108,45 +107,7 @@ const AddPost = () => {
 
   return (
     <React.Fragment>
-      <Grid maxWidth='414px' margin='50px auto '>
-        <Grid
-          position='sticky'
-          top='0'
-          left='0'
-          zIndex='1000'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          width='100px'
-          height='60px'
-          margin='-60px auto 0 0'
-          bg='white'
-          color='#6B6462'
-          cusor='pointer'
-          _onClick={() => {
-            history.goBack();
-          }}
-        >
-          닫기
-        </Grid>
-        <Grid
-          position='sticky'
-          top='0'
-          left='305px'
-          zIndex='1000'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          width='100px'
-          height='60px'
-          margin='-60px 0 0 auto'
-          bg='white'
-          color='#FE7968'
-          cusor='pointer'
-          _onClick={addPostCard}
-        >
-          등록완료
-        </Grid>
+      <Grid maxWidth='414px' margin='65px auto '>
         <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
@@ -343,6 +304,21 @@ const AddPost = () => {
               }}
             />
           </Grid>
+        </Grid>
+        <Grid
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          width='150px'
+          height='50px'
+          margin='0 auto 100px'
+          bg='#FE7968'
+          color='white'
+          borderRadius='30px'
+          cusor='pointer'
+          _onClick={addPostCard}
+        >
+          등록하기
         </Grid>
       </Grid>
     </React.Fragment>
