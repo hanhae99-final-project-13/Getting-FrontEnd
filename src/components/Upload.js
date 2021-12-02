@@ -1,7 +1,8 @@
 import React from 'react';
 import AWS from 'aws-sdk';
-import { Grid } from '../elements/index';
 import { WarningAlert } from '../shared/Alerts';
+import { Grid } from '../elements/index';
+
 const Upload = (props) => {
   AWS.config.update({
     region: 'ap-northeast-2',
@@ -74,15 +75,15 @@ const Upload = (props) => {
       <Grid display='flex' overflowX='auto'>
         {props.files.length >= 4 ? null : (
           <Grid
-            width='150px'
-            height='150px'
-            bg='white'
-            borderRadius='10px'
             display='flex'
             justifyContent='center'
             alignItems='center'
+            width='150px'
+            height='150px'
             margin='0 10px 40px 0'
+            bg='white'
             boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
+            borderRadius='10px'
             boxSizing='border-box'
           >
             <input
@@ -99,10 +100,10 @@ const Upload = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  fontSize: '48px',
                   width: '150px',
                   height: '150px',
                   color: '#fe7968',
+                  fontSize: '48px',
                   cursor: 'pointer',
                 }}
               >
@@ -116,14 +117,14 @@ const Upload = (props) => {
             return (
               <Grid
                 key={i}
-                width='150px'
-                height='150px'
-                bg='white'
-                borderRadius='10px'
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
+                width='150px'
+                height='150px'
                 margin='0 10px 40px 0px'
+                bg='white'
+                borderRadius='10px'
                 boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
                 boxSizing='border-box'
               >
@@ -131,10 +132,10 @@ const Upload = (props) => {
                   <img
                     style={{
                       position: 'absolute',
-                      width: '15px',
-                      height: '15px',
                       top: '10px',
                       left: '125px',
+                      width: '15px',
+                      height: '15px',
                     }}
                     src={
                       process.env.PUBLIC_URL +
@@ -149,11 +150,11 @@ const Upload = (props) => {
                   alt='sample'
                   src={a}
                   style={{
-                    padding: '0px auto',
                     width: '150px',
                     height: '150px',
-                    objectFit: 'scale-down',
+                    padding: '0px auto',
                     borderRadius: '10px',
+                    objectFit: 'scale-down',
                   }}
                 />
               </Grid>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Comment from './Comment';
 import CommentWrite from './CommentWrite';
+import { useSelector } from 'react-redux';
 
 const CommentList = (props) => {
   const { postId } = props;

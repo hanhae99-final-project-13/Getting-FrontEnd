@@ -25,3 +25,12 @@ input:focus {
 .swal-borderRadius {
   border-radius: 15px;
 }
+.swal-padding{
+  padding-right: 0px;
+  overflow: auto;
+}
+
+body{ -ms-overflow-style: none; } ::-webkit-scrollbar { display: none; }
+
+
+

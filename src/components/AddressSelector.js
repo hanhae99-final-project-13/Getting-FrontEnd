@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import AddressData from './AddressData';
 import { Grid } from '../elements/index';
 const AddressSelector = (props) => {
+  const [DoVisible, setDoVisible] = React.useState('block');
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [localDo, setLocalDo] = React.useState('');
   const local = AddressData;
   const closeModal = () => {
     props.visible(!props.addressModal);
   };
-  const [DoVisible, setDoVisible] = React.useState('block');
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [localDo, setLocalDo] = React.useState('');
   const open = (e) => {
     if (e) {
       setDoVisible('none');
@@ -20,22 +20,22 @@ const AddressSelector = (props) => {
   return (
     <>
       <Grid
-        display='flex'
         position='fixed'
-        zIndex='10000'
         top='0'
         left='0'
         rigth='0'
+        zIndex='10000'
+        display='flex'
       >
         <Grid
-          display='flex'
-          bg='rgba(0, 0, 0, 0.5)'
-          width='100%'
-          height='100%'
-          zindex='10'
           position='fixed'
+          zindex='10'
+          display='flex'
           justifyContent='center'
           alignItems='center'
+          width='100%'
+          height='100%'
+          bg='rgba(0, 0, 0, 0.5)'
         ></Grid>
         <ModalBox style={{ display: `${DoVisible}` }}>
           {Object.keys(local).map((Do, i) => {
@@ -55,21 +55,21 @@ const AddressSelector = (props) => {
         </ModalBox>
         {modalOpen ? (
           <Grid
-            display='flex'
-            zindex='20'
             position='fixed'
             top='0'
             left='0'
             rigth='0'
+            zindex='20'
+            display='flex'
           >
             <Grid
-              display='flex'
-              width='100%'
-              height='100%'
-              zindex='25'
               position='fixed'
+              zindex='25'
+              display='flex'
               justifyContent='center'
               alignItems='center'
+              width='100%'
+              height='100%'
             >
               <ModalBox>
                 {local[localDo].map((d, i) => {
@@ -95,27 +95,27 @@ const AddressSelector = (props) => {
 };
 
 const ModalBox = styled.div`
-  margin: auto;
   position: relative;
+  z-index: 15;
   width: 305px;
   height: 40%;
-  background-color: white;
-  border-radius: 15px;
-  z-index: 15;
-  overflow: auto;
+  margin: auto;
   padding: 10px 0;
+  background-color: white;
+  overflow: auto;
+  border-radius: 15px;
 `;
 const DoBox = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px auto;
   width: 150px;
   height: 40px;
-  border-radius: 20px;
+  margin: 10px auto;
   color: white;
   background-color: #ff6666;
+  border-radius: 20px;
   cursor: pointer;
 `;
 
