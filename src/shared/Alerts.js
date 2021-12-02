@@ -49,7 +49,6 @@ export const ErrorAlert = (error_text, position_text) => {
     icon: 'error',
     confirmButtonColor: '#FE7968',
     confirmButtonBorder: 'none',
-    // customClass: 'swal-font',
   });
 };
 //에러 alert (줄바꿈가능)
@@ -63,16 +62,17 @@ export const ErrorAlert2 = (html_text) => {
     confirmButtonColor: '#FE7968',
   });
 };
-// 이미지 추가 alert
-export const imageSuccessAlert = (success_text) => {
+// 이미지 추가 로그아웃 alert
+export const ImageSuccessAlert = (html_text, image) => {
   Swal.fire({
-    // title: success_text,
-    text: success_text,
-    imageUrl: 'https://unsplash.it/400/200',
-    imageWidth: 400,
-    imageHeight: 200,
+    // title: html_text,
+    html: html_text,
+    imageUrl: image,
+    imageWidth: 150,
+    imageHeight: 150,
     imageAlt: 'Custom image',
     confirmButtonColor: '#FE7968',
+    customClass: 'swal-font',
   });
 };
 

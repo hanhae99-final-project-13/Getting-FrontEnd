@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
 
-const AdoptionApplyCheckModal = (props) => {
-  const { closeModal, realApply } = props;
+const ReCheckModal = (props) => {
+  const {
+    closeModal,
+    clickTrue,
+    text,
+    buttonTrueText,
+    buttonFalseText,
+    image,
+  } = props;
+
+  const ModalText = useRef();
+
+  const makeText = () => {
+    ModalText.current.innerHTML = text;
+  };
+
+  useEffect(() => {
+    makeText();
+  }, []);
+
   return (
     <>
       <Grid
@@ -22,22 +40,23 @@ const AdoptionApplyCheckModal = (props) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
-        zIndex='9999'
-      >
-        <Grid width='62px' height='85px' margin='24px auto 8px '>
-          <img src={process.env.PUBLIC_URL + '/img/GUIicon/warning_icon.svg'} />
+        zIndex='9999'>
+        <Grid
+          width='62px'
+          height='85px'
+          margin={
+            image.includes('warning_icon')
+              ? '24px auto 8px'
+              : '24px 40px 25px 0px'
+          }>
+          <img src={process.env.PUBLIC_URL + image} />
         </Grid>
         <Text
+          _ref={ModalText}
           margin='14.25px 0 0 0'
           align='center'
           line_height='21px'
-          weight='600'
-        >
-          작성한 입양신청서는
-          <span style={{ fontWeight: '800' }}> 수정/삭제가 불가합니다.</span>
-          <br />
-          정말 이대로 제출하시겠습니까?
-        </Text>
+          weight='800'></Text>
         <Grid display='flex' justifyContent='center'>
           <Button
             margin='17px 10px 0 0'
@@ -50,9 +69,8 @@ const AdoptionApplyCheckModal = (props) => {
             border_radius='34px'
             onClick={() => {
               closeModal();
-            }}
-          >
-            다시 생각해볼게요
+            }}>
+            {buttonFalseText}
           </Button>
 
           <Button
@@ -65,11 +83,10 @@ const AdoptionApplyCheckModal = (props) => {
             border='none'
             border_radius='34px'
             onClick={() => {
-              realApply();
+              clickTrue();
               closeModal();
-            }}
-          >
-            확인했습니다
+            }}>
+            {buttonTrueText}
           </Button>
         </Grid>
       </Grid>
@@ -88,6 +105,7 @@ const Button = styled.button`
   color: white;
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
+  cursor: pointer;
 `;
 
-export default AdoptionApplyCheckModal;
+export default ReCheckModal;
