@@ -6,9 +6,7 @@ import Card from '../Card';
 import MiniCard from './MiniCard';
 const MyWriteList = (props) => {
   const myPostList = useSelector((state) => state.post.myPostList);
-  if (!myPostList) {
-    return <div></div>;
-  }
+
   return (
     <Grid display={props.display}>
       {myPostList.map((p) => {

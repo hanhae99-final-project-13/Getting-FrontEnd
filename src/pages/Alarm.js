@@ -52,8 +52,8 @@ const Alarm = () => {
     dispatch(postActions.getMyPostsMW());
     setTimeout(() => {
       dispatch(actionCreators.loadAlarmListToAxios());
-    }, 10);
-  }, []);
+    }, 50);
+  }, [dispatch]);
 
   if (!userInfo.nickname) return <div></div>;
 
@@ -161,7 +161,6 @@ const Alarm = () => {
                             actionCreators.isReadAlarmToAxios(alarm.alarmId),
                           );
                           if (alarm.alarmType === 'COMMENT') {
-                            console.log(alarm);
                             history.push(`/detail/${alarm.postId}`);
                           }
                           if (alarm.alarmType === 'FOSTER_FORM') {

@@ -42,9 +42,7 @@ const Upload3 = forwardRef((props, ref) => {
     });
     const promise = upload.promise();
     promise.then(
-      function (data) {
-        console.log('지낼 곳 이미지 업로드에 성공했습니다.');
-      },
+      function (data) {},
       function (err) {
         return console.log('오류가 발생했습니다.', err.message);
       },
@@ -109,7 +107,8 @@ const Upload3 = forwardRef((props, ref) => {
           height='58px'
           bg='#FFBE5B'
           borderRadius='11px'
-          color='#FFFFFF'>
+          color='#FFFFFF'
+        >
           사진 첨부하기
         </Grid>
       </label>
@@ -127,7 +126,8 @@ const Upload3 = forwardRef((props, ref) => {
           boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
           display='flex'
           justifyContent='center'
-          alignItems='center'>
+          alignItems='center'
+        >
           <button
             onClick={deletePrevieImage}
             style={{
@@ -137,7 +137,8 @@ const Upload3 = forwardRef((props, ref) => {
               right: '10px',
               fontSize: '20px',
               cursor: 'pointer',
-            }}>
+            }}
+          >
             x
           </button>
           <img
@@ -147,7 +148,8 @@ const Upload3 = forwardRef((props, ref) => {
               width: '100%',
               height: '160px',
               objectFit: 'contain',
-            }}></img>
+            }}
+          ></img>
         </Grid>
       ) : (
         <Grid
@@ -159,7 +161,8 @@ const Upload3 = forwardRef((props, ref) => {
           borderRadius='12px'
           margin='20px auto 0px'
           boxSizing='border-box'
-          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'>
+          boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
+        >
           <Grid position='absolute' top='0'>
             <Text margin='10px 0 0 10px' color='#FFFFFF' weight='700'>
               사진첨부 미리보기
@@ -170,14 +173,16 @@ const Upload3 = forwardRef((props, ref) => {
             display='flex'
             justifyContent='center'
             alignItems='center'
-            width='auto'>
+            width='auto'
+          >
             <img
               src={process.env.PUBLIC_URL + '/img/icon/camera_icon_white.svg'}
               style={{
                 width: '42px',
                 height: '35px',
                 objectFit: 'contain',
-              }}></img>
+              }}
+            ></img>
           </Grid>
         </Grid>
       )}

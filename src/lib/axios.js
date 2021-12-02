@@ -13,14 +13,12 @@ const instance = axios.create({
   withCredentials: true, // CORS를 위해 설정, 기존은 SOP
 });
 
+let isRefreshing = false;
+
 instance.interceptors.request.use(
   (config) => {
-    console.log(config);
     const token = localStorage.getItem('USER_TOKEN');
-
-    if (!token) {
-      return config;
-    }
+    if (!token || isRefreshing) return config;
 
     config.headers = {
       'Content-Type': 'application/json; charset=UTF-8', // 데이터보낼때 인코딩하고 서버쪽에서 받을때 디코딩 할때 글자타입이 필요하다.
@@ -46,6 +44,7 @@ instance.interceptors.response.use(
 
     if (
       err.response.status === 400 &&
+      isRefreshing &&
       err.response.data.errorMessage !==
         '해당 입양신청서를 찾을 수 없습니다.' &&
       err.response.data.errorMessage !== '회원 정보를 찾을 수 없습니다.' &&
@@ -58,6 +57,25 @@ instance.interceptors.response.use(
       err.response.data.errorMessage !== '해당 댓글을 찾을 수 없습니다.'
     ) {
       ErrorAlert(err.response.data.errorMessage);
+    }
+    if (err.response.status === 401) {
+      isRefreshing = true;
+      const refreshToken = localStorage.getItem('REFRESH_TOKEN');
+      const userId = localStorage.getItem('USER_ID');
+      return apis
+        .refresh({ refreshToken, userId })
+        .then((res) => {
+          const newAceessToken = res.data.accessToken;
+          const newRefreshToken = res.data.refreshToken;
+          localStorage.setItem('USER_TOKEN', newAceessToken);
+          localStorage.setItem('REFRESH_TOKEN', newRefreshToken);
+          err.config.headers.Authorization = `Bearer ${newAceessToken}`;
+          isRefreshing = false;
+          return instance.request(err.config);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     return Promise.reject(err);

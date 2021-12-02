@@ -5,7 +5,6 @@ import { history } from '../../redux/configureStore';
 
 const AdoptionNoticeModal = (props) => {
   const { postId } = props;
-  console.log(postId, '모달id');
   return (
     <ModalParent>
       <Grid

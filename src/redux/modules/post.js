@@ -359,6 +359,7 @@ export default handleActions(
       }),
     [SET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.searchSetting);
         draft.prevSearchSetting = draft.searchSetting;
         draft.searchSetting = {
           ...draft.searchSetting,
