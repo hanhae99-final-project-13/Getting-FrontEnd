@@ -1,27 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Image } from '../elements/';
-import { postActions } from '../redux/modules/post';
-import CommentWrite from './CommentWrite';
 import Swal from 'sweetalert2';
+import CommentWrite from './CommentWrite';
+import { Grid, Image } from '../elements/';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
+
 const Comment = (props) => {
   const { comment } = props;
-
-  const userInfo = useSelector((state) => state.user.user.userInfo);
-
   const dispatch = useDispatch();
+  const [edit, setEdit] = React.useState(false);
+  const [commentModal, setCommentModal] = React.useState(false);
+  const userInfo = useSelector((state) => state.user.user.userInfo);
 
   const commentDelete = () => {
     dispatch(postActions.deleteCommentToAxios(comment.commentId));
-
     setCommentModal(!commentModal);
   };
-  const [edit, setEdit] = React.useState(false);
   const editOn = () => {
     setEdit(!edit);
     setCommentModal(!commentModal);
   };
-  const [commentModal, setCommentModal] = React.useState(false);
   const onModal = () => {
     setCommentModal(!commentModal);
   };
@@ -56,21 +54,21 @@ const Comment = (props) => {
         {(comment.commentId ? edit : false) ? (
           <React.Fragment>
             <Grid
-              height='70px'
+              alignItems='center'
               width='333px'
+              height='70px'
               margin='0 auto 10px'
               borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
               borderRadius='10px'
-              alignItems='center'
             >
               <div
                 style={{
                   display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                   width: '100%',
                   height: '40px',
                   padding: '5px 0',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -91,8 +89,8 @@ const Comment = (props) => {
                   <div
                     style={{
                       display: 'flex',
-                      fontSize: '12px',
                       color: '#FE7968',
+                      fontSize: '12px',
                     }}
                   >
                     {comment.nickname}
@@ -118,19 +116,19 @@ const Comment = (props) => {
           </React.Fragment>
         ) : (
           <Grid
-            height='70px'
+            display='flex'
+            alignItems='center'
             width='333px'
+            height='70px'
             margin='0 auto'
             borderBottom='solid 1px rgba(225, 225, 225, 0.5)'
             borderRadius='10px'
-            display='flex'
-            alignItems='center'
           >
             <div
               style={{
+                display: 'flex',
                 width: '100%',
                 height: '40px',
-                display: 'flex',
               }}
             >
               <Image
@@ -150,30 +148,30 @@ const Comment = (props) => {
               <Grid margin='0 0 0 5px'>
                 <div
                   style={{
-                    margin: '4px 0',
                     display: 'flex',
                     justifyContent: 'space-between',
+                    margin: '4px 0',
                   }}
                 >
-                  <div style={{ fontSize: '12px', color: '#FE7968' }}>
+                  <div style={{ color: '#FE7968', fontSize: '12px' }}>
                     {comment.nickname}
                   </div>
                   <div
                     style={{
-                      alignItems: 'center',
                       justifyContent: 'space-around',
+                      alignItems: 'center',
                     }}
                   >
-                    <div style={{ fontSize: '12px', color: '#B6B1B0' }}>
+                    <div style={{ color: '#B6B1B0', fontSize: '12px' }}>
                       {commentTime(createdAt)}
                     </div>
                     {comment.nickname === userInfo.nickname ? (
                       <div
                         style={{
-                          display: 'flex',
-                          justifyContent: 'flex-end',
                           position: 'relative',
                           top: '7px',
+                          display: 'flex',
+                          justifyContent: 'flex-end',
                           margin: '0 0 -30px 0',
                           cursor: 'pointer',
                         }}
@@ -209,21 +207,21 @@ const Comment = (props) => {
         {commentModal ? (
           <div
             style={{
-              backgroundColor: 'white',
-              boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-              maxWidth: '414px',
-              height: '200px',
               position: 'fixed',
+              left: 0,
+              right: 0,
               bottom: '0',
+              zIndex: '10',
               display: 'flex',
               flexDirection: 'column',
+              maxWidth: '414px',
+              height: '200px',
+              margin: '0 auto',
+              backgroundColor: 'white',
+              boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',
               boxSizing: 'border-box',
-              zIndex: '10',
-              margin: '0 auto',
-              left: 0,
-              right: 0,
             }}
           >
             <Grid display='flex' justifyContent='center' alignItems='center'>
@@ -233,9 +231,9 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
+                  color: '#FE7968',
                   cursor: 'pointer',
                 }}
                 onClick={editOn}
@@ -250,9 +248,9 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
+                  color: '#FE7968',
                   borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                   borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
                   cursor: 'pointer',
@@ -284,9 +282,9 @@ const Comment = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#FE7968',
                   width: '100%',
                   height: '100%',
+                  color: '#FE7968',
                   cursor: 'pointer',
                 }}
                 onClick={() => {

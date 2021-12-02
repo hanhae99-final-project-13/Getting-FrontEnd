@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
-import { Grid } from '../elements/';
-import { postActions } from '../redux/modules/post';
 import { ErrorAlert } from '../shared/Alerts';
-const CommentWrite = (props) => {
-  const token = localStorage.getItem('USER_TOKEN');
+import { Grid } from '../elements/';
+import { useDispatch } from 'react-redux';
+import { postActions } from '../redux/modules/post';
 
+const CommentWrite = (props) => {
+  const dispatch = useDispatch();
+  const [comment, setComment] = React.useState();
+  const token = localStorage.getItem('USER_TOKEN');
   const postId = props.postId;
+
   if (props.comment) {
   }
   const editSubmit = () => {
@@ -23,8 +26,7 @@ const CommentWrite = (props) => {
       props.setEdit(false);
     }
   };
-  const dispatch = useDispatch();
-  const [comment, setComment] = useState();
+
   const commentSubmit = () => {
     if (!token) {
       ErrorAlert('로그인 후 이용해주세요');
@@ -56,15 +58,15 @@ const CommentWrite = (props) => {
     <React.Fragment>
       {props.comment ? (
         <Grid
-          bg='white'
-          width='333px'
-          height='40px'
-          border='1.5px solid rgb(235, 235, 235)'
-          borderRadius='10px'
-          margin='0 auto 10px auto'
           display='flex'
           alignItems='center'
           justifyContent='space-between'
+          width='333px'
+          height='40px'
+          margin='0 auto 10px auto'
+          bg='white'
+          border='1.5px solid rgb(235, 235, 235)'
+          borderRadius='10px'
         >
           <CommentBox
             value={comment || ''}
@@ -78,9 +80,9 @@ const CommentWrite = (props) => {
             style={{
               marginRight: '6px',
               padding: '4px 10px',
-              border: 'none',
               color: 'white',
               backgroundColor: '#FE7968',
+              border: 'none',
               borderRadius: '10px',
               cursor: 'pointer',
             }}
@@ -91,15 +93,15 @@ const CommentWrite = (props) => {
         </Grid>
       ) : (
         <Grid
-          bg='white'
-          width='333px'
-          height='40px'
-          border='1.5px solid rgb(235, 235, 235)'
-          borderRadius='10px'
-          margin='0 auto 10px auto'
           display='flex'
           alignItems='center'
           justifyContent='space-between'
+          width='333px'
+          height='40px'
+          margin='0 auto 10px auto'
+          bg='white'
+          border='1.5px solid rgb(235, 235, 235)'
+          borderRadius='10px'
         >
           <CommentBox
             value={comment || ''}
@@ -112,9 +114,9 @@ const CommentWrite = (props) => {
             style={{
               marginRight: '6px',
               padding: '4px 10px',
-              border: 'none',
               color: 'white',
               backgroundColor: '#FE7968',
+              border: 'none',
               borderRadius: '10px',
               cursor: 'pointer',
             }}
@@ -130,12 +132,12 @@ const CommentWrite = (props) => {
 };
 
 const CommentBox = styled.input`
-  background-color: white;
+  display: flex;
+  align-items: center;
   width: 250px;
   height: 30px;
   margin: auto;
-  display: flex;
-  align-items: center;
+  background-color: white;
   border: none;
   border-radius: 10px;
   &:focus {
