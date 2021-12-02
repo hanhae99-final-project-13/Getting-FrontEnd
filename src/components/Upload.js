@@ -4,9 +4,9 @@ import { Grid } from '../elements/index';
 import { WarningAlert } from '../shared/Alerts';
 const Upload = (props) => {
   AWS.config.update({
-    region: process.env.REACT_APP_AWS_REGION,
+    region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: process.env.REACT_APP_IDENTIFYPOOLID,
+      IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff',
     }),
   });
   //이미지 여러개 미리보기
@@ -21,7 +21,7 @@ const Upload = (props) => {
       const fileType = selectImg[i].name.split('.')[1];
       const upload = new AWS.S3.ManagedUpload({
         params: {
-          Bucket: process.env.REACT_APP_BUCKET_NAME,
+          Bucket: 'docking',
           Key: `${fileName}` + date.getTime() + `.${fileType}`,
           Body: selectImg[i],
           ACL: 'public-read',
@@ -52,7 +52,7 @@ const Upload = (props) => {
     const s3 = new AWS.S3();
     s3.deleteObject(
       {
-        Bucket: process.env.REACT_APP_BUCKET_NAME,
+        Bucket: 'docking',
         Key: `${file}`,
       },
       (err, data) => {

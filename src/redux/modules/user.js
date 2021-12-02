@@ -1,6 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import jwt_Decode from 'jwt-decode';
 import { apis } from '../../lib/axios';
 import {
   SuccessAlert,
