@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { history } from '../../redux/configureStore';
-
 import { Card, Carousel2 } from '../';
 import { Grid, Text } from '../../elements';
-import { useSelector } from 'react-redux';
-import SliderBox from '../SliderBox';
+import { history } from '../../redux/configureStore';
 
 const MainAdoptionCardList = (props) => {
   const mainPostList = useSelector((state) => state.post.mainPostList);
@@ -23,7 +21,7 @@ const MainAdoptionCardList = (props) => {
         height='auto'
         zIndex='2'
       >
-        <Grid display='flex'>
+        <Grid display='flex' width='auto'>
           <Text
             margin='0 8px 0 0'
             size='18px'
@@ -35,25 +33,18 @@ const MainAdoptionCardList = (props) => {
           </Text>
           <img src={process.env.PUBLIC_URL + '/img/icon/eye_heart.svg'} />
         </Grid>
-        <Grid
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          width='20px'
-          height='10px'
+
+        <Text
+          margin='0'
+          size='14px'
+          weight='800'
           _onClick={() => {
             history.push('/adoption');
           }}
-          cusor='pointer'
+          cursor='pointer'
         >
-          <img
-            width='13'
-            height='4'
-            src={
-              process.env.PUBLIC_URL + '/img/icon/setting_horizontal_icon.svg'
-            }
-          />
-        </Grid>
+          더보기+
+        </Text>
       </Grid>
       <Carousel2 width={mainPostList.length}>
         {mainPostList.map((p) => {

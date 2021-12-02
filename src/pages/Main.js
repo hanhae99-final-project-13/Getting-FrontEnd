@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
-import { actionCreators as userAction } from '../redux/modules/user';
 import { Grid } from '../elements';
 import {
   MainHello,
@@ -10,6 +9,7 @@ import {
 } from '../components/main';
 import { postActions } from '../redux/modules/post';
 import WebSocket from '../components/WebSocket';
+import { actionCreators as userAction } from '../redux/modules/user';
 
 const Main = (props) => {
   const [wsConnectSubscribe] = WebSocket();

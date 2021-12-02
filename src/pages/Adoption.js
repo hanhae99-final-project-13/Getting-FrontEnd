@@ -106,25 +106,9 @@ const Adoption = () => {
       ) : (
         <InfinityScroll page={searchSetting.page} />
       )}
-      {/* {isLoading ? '' : <InfinityScroll />} */}
-      {/* <InfinityScroll /> */}
-      {/* <InfinityScroll page={searchSetting.page} /> */}
     </Grid>
   );
 };
-
-const Tag = styled.button`
-  margin-right: 20px;
-  padding: 3px 6px;
-  background-color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  :nth-child(1) {
-    background-color: steelblue;
-  }
-`;
 
 const ToTop = styled.img`
   position: absolute;
@@ -134,6 +118,7 @@ const ToTop = styled.img`
   height: 56px;
   border-radius: 28px;
   box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
+  cursor: pointer;
 `;
 
 const AddButton = styled.img`
@@ -144,6 +129,7 @@ const AddButton = styled.img`
   height: 56px;
   border-radius: 28px;
   box-shadow: 4px 4px 20px rgba(87, 87, 87, 0.1);
+  cursor: pointer;
 `;
 
 const CategoryBox = styled.div`
