@@ -8,7 +8,7 @@ import { Grid } from '../elements/index';
 const Intro = () => {
   return (
     <>
-      <Grid width='375px' margin='60px auto 120px'>
+      <Grid width='375px' margin='0 auto 120px'>
         <Grid width='auto'>
           <Grid
             display='flex'
