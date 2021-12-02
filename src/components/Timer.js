@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Text } from '../elements';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
 
 const Timer = (props) => {
   const [minutes, setMinutes] = useState(parseInt(3));

@@ -6,11 +6,10 @@ import Slider from '../components/Slider';
 import Upload2 from '../components/adoptionApplycation/Upload2';
 import Upload3 from '../components/adoptionApplycation/Upload3';
 import ApplyProgressBar2 from '../components/adoptionApplycation/ApplyProgressBar2';
-import AdoptionApplyCheckModal from '../components/adoptionApplycation/AdoptionApplyCheckModal';
+import ReCheckModal from '../components/adoptionApplycation/ReCheckModal';
 
 import styled from 'styled-components';
 import { Grid, Input, Text } from '../elements';
-import Swal from 'sweetalert2';
 import { ErrorAlert2, SuccessAlert2 } from '../shared/Alerts';
 
 const AdoptionApply2 = (props) => {
@@ -549,9 +548,14 @@ const AdoptionApply2 = (props) => {
 
       {/* apply 신청 정말 할꺼니?  */}
       {openApplyAlert ? (
-        <AdoptionApplyCheckModal
+        <ReCheckModal
+          text='작성한 입양신청서는 수정/삭제가 불가합니다. 
+          <br/> 정말 이대로 제출하시겠습니까?'
+          image='/img/GUIicon/warning_icon.svg'
+          buttonTrueText='확인했습니다'
+          buttonFalseText='다시 생각해볼게요'
           closeModal={closeApplyAlert}
-          realApply={realApply}
+          clickTrue={realApply}
         />
       ) : (
         ''

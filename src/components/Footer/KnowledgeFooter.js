@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 import { actionCreators as userAction } from '../../redux/modules/user';
+import ReCheckModal from '../adoptionApplycation/ReCheckModal';
 import { Grid, Text } from '../../elements';
 
 const KnowledgeFooter = withRouter((props) => {
@@ -11,8 +12,17 @@ const KnowledgeFooter = withRouter((props) => {
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const token = localStorage.getItem('USER_TOKEN');
-
   const isLogin = useSelector((state) => state.user.user.isLogin);
+
+  const [openLogOutAlert, setOpenLogOutAlert] = useState(false);
+
+  const closeLogOutAlert = () => {
+    setOpenLogOutAlert(!openLogOutAlert);
+  };
+
+  const logOut = () => {
+    dispatch(userAction.LogOutDB());
+  };
 
   if (token && !isLogin) {
     return <div></div>;
@@ -32,8 +42,7 @@ const KnowledgeFooter = withRouter((props) => {
         borderRadius='11px 11px 0px 0px;'
         display='flex'
         justifyContent='space-evenly'
-        height='84px'
-      >
+        height='84px'>
         {/* 데이터 안불러져왓을 때 null */}
         {userInfo.eduList === null ? (
           <Grid
@@ -46,8 +55,7 @@ const KnowledgeFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}
-          >
+            }}>
             <img
               width='30px'
               height='24px'
@@ -71,8 +79,7 @@ const KnowledgeFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/fosterknowledge');
               window.sessionStorage.clear();
-            }}
-          >
+            }}>
             <img
               width='30px'
               height='24px'
@@ -96,8 +103,7 @@ const KnowledgeFooter = withRouter((props) => {
             _onClick={() => {
               history.push('/tutorial');
               window.sessionStorage.clear();
-            }}
-          >
+            }}>
             <img
               width='30px'
               height='24px'
@@ -121,8 +127,7 @@ const KnowledgeFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/adoption');
-          }}
-        >
+          }}>
           <img
             width='27.5px'
             height='24px'
@@ -143,8 +148,7 @@ const KnowledgeFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/main');
-          }}
-        >
+          }}>
           <img src={process.env.PUBLIC_URL + '/img/icon/home_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -161,8 +165,7 @@ const KnowledgeFooter = withRouter((props) => {
           justifyContent='center'
           _onClick={() => {
             history.push('/mypage');
-          }}
-        >
+          }}>
           <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -179,9 +182,8 @@ const KnowledgeFooter = withRouter((props) => {
             alignItems='center'
             justifyContent='center'
             _onClick={() => {
-              dispatch(userAction.LogOutDB());
-            }}
-          >
+              setOpenLogOutAlert(!openLogOutAlert);
+            }}>
             <img
               width='24.86px'
               height='24px'
@@ -202,8 +204,7 @@ const KnowledgeFooter = withRouter((props) => {
             justifyContent='center'
             _onClick={() => {
               history.push('/login');
-            }}
-          >
+            }}>
             <img
               width='24.86px'
               height='24px'
@@ -216,6 +217,19 @@ const KnowledgeFooter = withRouter((props) => {
           </Grid>
         )}
       </Grid>
+
+      {openLogOutAlert ? (
+        <ReCheckModal
+          text='로그아웃 하시겠습니까?'
+          image='/img/GUIicon/logout.svg'
+          buttonTrueText='로그아웃 할게요'
+          buttonFalseText='좀 더 둘러볼게요'
+          closeModal={closeLogOutAlert}
+          clickTrue={logOut}
+        />
+      ) : (
+        ''
+      )}
     </React.Fragment>
   );
 });

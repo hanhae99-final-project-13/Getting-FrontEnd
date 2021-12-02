@@ -1,12 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
-import {
-  SuccessAlert,
-  WarningAlert,
-  ErrorAlert,
-  imageSuccessAlert,
-} from '../../shared/Alerts';
+import { ImageSuccessAlert } from '../../shared/Alerts';
 import { setCookie, deleteCookie, deleteAllCookies } from '../../shared/Cookie';
 //유저정보 액션
 const SET_USER = 'SET_USER';
@@ -124,7 +119,7 @@ const LogOutDB = () => {
     // deleteCookie('REFRESH_TOKEN');
     localStorage.clear();
     dispatch(LogOut());
-    imageSuccessAlert('로그아웃 되셨습니다');
+    ImageSuccessAlert('로그아웃 되셨습니다', '/img/GUIicon/logout2.svg');
     history.push('/main');
   };
 };
@@ -135,7 +130,10 @@ const SignupDB = (form) => {
     apis
       .signup(form)
       .then((res) => {
-        imageSuccessAlert('회원 가입을 축하드립니다');
+        ImageSuccessAlert(
+          '회원 가입을 축하드립니다',
+          '/img/GUIicon/signup.svg',
+        );
         history.push('/login');
       })
       .catch((error) => {
