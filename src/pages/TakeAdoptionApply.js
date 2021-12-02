@@ -7,9 +7,9 @@ import {
   AdoptionReason,
   AdoptionSurvey,
   DefaultInfomation,
-} from '../components/TakeAdoptionApply';
+} from '../components/takeAdoptionApply';
 import { Grid, Text } from '../elements';
-import { BackButton, Logo } from '../components';
+import { BackButton } from '../components';
 import { applyActions } from '../redux/modules/apply';
 import { apis } from '../lib/axios';
 import { history } from '../redux/configureStore';
@@ -64,7 +64,7 @@ const TakeAdoptionApply = (props) => {
           boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'
         >
           <Text margin='0 0 12px 0' size='16px' weight='700'>
-            '{detailFosterForm.name}'님의 이수현황
+            '{detailFosterForm.name}'님의 교육 이수현황
           </Text>
           {detailFosterForm.eduStatus.심화지식2 && (
             <img

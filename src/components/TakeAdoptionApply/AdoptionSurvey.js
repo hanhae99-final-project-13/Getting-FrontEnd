@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid, Image, Text } from '../../elements';
-import Slider from '../../components/Slider';
+import Slider from '../Slider';
 import styled from 'styled-components';
 
 const AdoptionReason = (props) => {

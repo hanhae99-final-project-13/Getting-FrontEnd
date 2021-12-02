@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { history } from '../redux/configureStore';
@@ -26,7 +26,6 @@ const Card = (props) => {
     boxShadow,
     noTag,
   } = props;
-  const dispatch = useDispatch();
   const isDockingDeleteMode = useSelector(
     (state) => state.post.isDockingDeleteMode,
   );
@@ -65,6 +64,15 @@ const Card = (props) => {
             margin='0 4px 0 0'
             padding='4px 9px'
             border=' 0.5px solid #E7E5E5'
+            border={
+              ownerType.includes('보호') ||
+              ownerType.includes('병원') ||
+              ownerType.includes('동물') ||
+              ownerType.includes('센터') ||
+              ownerType.includes('시청')
+                ? '0.8px solid #A4B8FF'
+                : '0.8px solid #FFBE5B'
+            }
             boxShadow={boxShadow}
             borderRadius='15px'
           >
@@ -82,7 +90,11 @@ const Card = (props) => {
             width='auto'
             height='auto'
             padding='4px 9px'
-            border=' 0.5px solid #E7E5E5'
+            border={
+              isAdopted === 'ABANDONED'
+                ? ' 0.8px solid #FE7968'
+                : '0.8px solid #CECBCA'
+            }
             boxShadow={boxShadow}
             borderRadius='15px'
           >
