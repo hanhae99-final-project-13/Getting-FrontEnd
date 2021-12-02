@@ -3,29 +3,30 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { postActions } from '../redux/modules/post';
-import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
-import Header from '../components/Header';
-
-import CommentList from '../components/CommentList';
-import { Grid, Text } from '../elements/index';
 import Swal from 'sweetalert2';
-import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import EditPost from '../components/EditPost';
+import CommentList from '../components/CommentList';
+import AdoptionNoticeModal from '../components/adoptionApplycation/AdoptionNoticeModal';
 import { ErrorAlert } from '../shared/Alerts';
+import { Grid, Text } from '../elements/index';
+import EduCheckAlert from '../components/adoptionApplycation/EduCheckAlert';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
 
 const Detail = (props) => {
   const dispatch = useDispatch();
-  const postId = props.match.params.id;
+  const [eduCheck, setEduCheck] = useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [detailModal, setDetailModal] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
   const post = useSelector((state) => state.post?.detailPost);
   const user = useSelector((state) => state.user?.user.userInfo);
-  const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
   const requestedPostList = useSelector(
     (state) => state.user?.user.userInfo.requestedPostList,
   );
+  const token = localStorage.getItem('USER_TOKEN');
+  const postId = props.match.params.id;
 
   const appliedPostId =
     requestedPostList !== []
@@ -35,20 +36,20 @@ const Detail = (props) => {
       : null;
 
   // 필수지식 수료요청 모달
-  const [eduCheck, setEduCheck] = useState(false);
+
   const eduCheckopenModal = () => {
     setEduCheck(!eduCheck);
   };
 
   //입양신청시 주의하기 modal
-  const [modalOpen, setModalOpen] = React.useState(false);
+
   const openModal = () => {
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
-  const [detailModal, setDetailModal] = React.useState(false);
+
   const onModal = () => {
     setDetailModal(!detailModal);
   };
@@ -56,7 +57,7 @@ const Detail = (props) => {
   const detailDelete = () => {
     dispatch(postActions.deleteDetailToAxios(postId));
   };
-  const [edit, setEdit] = React.useState(false);
+
   const editMode = () => {
     setEdit(true);
     setDetailModal(!detailModal);
@@ -83,9 +84,9 @@ const Detail = (props) => {
             <Grid display='flex' justifyContent='space-between'>
               <p
                 style={{
-                  fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
+                  fontWeight: '800',
                 }}
               >
                 저와 친구하실래요?
@@ -95,14 +96,14 @@ const Detail = (props) => {
                 />
               </p>
               <Grid
-                width='30px'
-                height='auto'
                 position='relative'
                 top='60px'
                 left='60px'
+                zIndex='2'
                 display='flex'
                 flexDirection='row-reverse'
-                zIndex='2'
+                width='30px'
+                height='auto'
               >
                 <button
                   style={{ all: 'unset', cursor: 'pointer' }}
@@ -164,9 +165,9 @@ const Detail = (props) => {
                           <img
                             key={i}
                             style={{
-                              margin: '0 10px 15px 0',
                               width: '305px',
                               height: '305px',
+                              margin: '0 10px 15px 0',
                               borderRadius: '10px',
                               objectFit: 'scale-down',
                             }}
@@ -186,15 +187,15 @@ const Detail = (props) => {
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'
-                margin='auto'
-                bg='#FE7968'
-                width='144px'
-                height='40px'
-                borderRadius='25px'
+                bottom='130px'
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
-                bottom='130px'
+                width='144px'
+                height='40px'
+                margin='auto'
+                bg='#FE7968'
+                borderRadius='25px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 cusor='pointer'
                 _onClick={() => {
@@ -213,15 +214,15 @@ const Detail = (props) => {
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Grid
                 position='fixed'
-                margin='auto'
-                bg='#FE7968'
-                width='144px'
-                height='40px'
-                borderRadius='25px'
+                bottom='130px'
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
-                bottom='130px'
+                width='144px'
+                height='40px'
+                margin='auto'
+                bg='#FE7968'
+                borderRadius='25px'
                 boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
                 _onClick={() => {
                   eduCheckopenModal();
@@ -247,9 +248,9 @@ const Detail = (props) => {
               <Grid width='50%'>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   견종
@@ -262,9 +263,9 @@ const Detail = (props) => {
               <Grid width='50%'>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   성별
@@ -282,9 +283,9 @@ const Detail = (props) => {
               <Grid width='50%'>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   체중
@@ -297,9 +298,9 @@ const Detail = (props) => {
               <Grid width='50%'>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   나이
@@ -319,9 +320,9 @@ const Detail = (props) => {
               <Grid>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   발견 장소
@@ -341,9 +342,9 @@ const Detail = (props) => {
               <Grid>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   보호 장소
@@ -363,9 +364,9 @@ const Detail = (props) => {
               <Grid>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   주소
@@ -385,9 +386,9 @@ const Detail = (props) => {
               <Grid>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   출처
@@ -408,9 +409,9 @@ const Detail = (props) => {
               >
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   웹사이트
@@ -517,9 +518,9 @@ const Detail = (props) => {
               <Grid>
                 <span
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   연락처
@@ -534,9 +535,9 @@ const Detail = (props) => {
               <Grid>
                 <p
                   style={{
-                    fontWeight: '800',
                     color: '#6B6462',
                     fontSize: '14px',
+                    fontWeight: '800',
                   }}
                 >
                   특이사항
@@ -571,21 +572,21 @@ const Detail = (props) => {
           {detailModal ? (
             <div
               style={{
-                backgroundColor: 'white',
-                boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
-                maxWidth: '414px',
-                height: '200px',
                 position: 'fixed',
+                left: 0,
+                right: 0,
                 bottom: '0',
+                zIndex: '5',
                 display: 'flex',
                 flexDirection: 'column',
+                maxWidth: '414px',
+                height: '200px',
+                margin: '0 auto',
+                backgroundColor: 'white',
+                boxShadow: '2px 2px 5px 2px rgba(0, 0, 0, 0.1)',
                 borderTopLeftRadius: '15px',
                 borderTopRightRadius: '15px',
                 boxSizing: 'border-box',
-                zIndex: '5',
-                margin: '0 auto',
-                left: 0,
-                right: 0,
               }}
             >
               <Grid display='flex' justifyContent='center' alignItems='center'>
@@ -595,9 +596,9 @@ const Detail = (props) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    color: '#ff6666',
                     cursor: 'pointer',
                   }}
                   onClick={() => {
@@ -614,9 +615,9 @@ const Detail = (props) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    color: '#ff6666',
                     borderTop: 'solid 1px rgba(225, 225, 225, 0.8)',
                     borderBottom: 'solid 1px rgba(225, 225, 225, 0.8)',
                     cursor: 'pointer',
@@ -648,9 +649,9 @@ const Detail = (props) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: '#ff6666',
                     width: '100%',
                     height: '100%',
+                    color: '#ff6666',
                     cursor: 'pointer',
                   }}
                   onClick={() => {

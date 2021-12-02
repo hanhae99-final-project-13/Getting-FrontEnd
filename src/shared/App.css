@@ -18,11 +18,19 @@ input:focus {
   background: rgb(255, 255, 255);
   cursor: pointer;
 }
-/* .swal-font {
+.swal-font {
   font-weight: bold;
-  font-size: 15px;
   font-family: 'NanumSquareR';
-} */
+}
 .swal-borderRadius {
   border-radius: 15px;
 }
+.swal-padding{
+  padding-right: 0px;
+  overflow: auto;
+}
+
+body{ -ms-overflow-style: none; } ::-webkit-scrollbar { display: none; }
+
+
+

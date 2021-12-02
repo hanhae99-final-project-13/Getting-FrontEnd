@@ -16,11 +16,11 @@ const EssentialQuizData = [
     classNumber: '1',
     QuizContent:
       '내 반려견 정보 질문 체크리스트에 들어가 있지<br/> <span>않는</span> 내용은?',
-    answer: '부모견의 성격',
+    answer: '중성화 여부',
 
     select1: '특이 병력',
     select2: '좋아하는 음식과 싫어 하는 음식',
-    select3: '부모견의 성격',
+    select3: '중성화 여부',
     select4: '예방접종 여부',
   },
   {

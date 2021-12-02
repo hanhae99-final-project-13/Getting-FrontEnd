@@ -1,12 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Grid, Text } from '../elements/index';
-import Slider from './Slider';
-import { postActions } from '../redux/modules/post';
-import AddressSelector from './AddressSelector';
 import Upload from './Upload';
-import { history } from '../redux/configureStore';
+import Slider from './Slider';
+import AddressSelector from './AddressSelector';
 import { WarningAlert } from '../shared/Alerts';
+import { Grid, Text } from '../elements/index';
+import { useDispatch } from 'react-redux';
+import { history } from '../redux/configureStore';
+import { postActions } from '../redux/modules/post';
+
 const AddPost = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = React.useState('');
@@ -27,8 +28,24 @@ const AddPost = () => {
   const [ownerTypeToggle, setOwnerTypeToggle] = React.useState(false);
   const [tagToggle, setTagToggle] = React.useState(false);
   const [files, setFiles] = React.useState([]);
-  //토글
+  const [addressModal, setAddressModal] = React.useState(false);
+  const postInfo = {
+    breed: breed,
+    sex: sex,
+    age: age,
+    weight: weight,
+    lostLocation: lostLocation,
+    ownerType: ownerType,
+    address: address + siAddress,
+    url: url,
+    tag: tag,
+    phone: phone,
+    extra: extra,
+    img: img,
+    isAdopted: 'abandoned',
+  };
 
+  //토글
   const sexCheck = () => {
     setSexToggle(!sexToggle);
     if (sexToggle === true) {
@@ -55,22 +72,7 @@ const AddPost = () => {
       setTag('가져온 정보');
     }
   };
-  const postInfo = {
-    breed: breed,
-    sex: sex,
-    age: age,
-    weight: weight,
-    lostLocation: lostLocation,
-    ownerType: ownerType,
-    address: address + siAddress,
-    url: url,
-    tag: tag,
-    phone: phone,
-    extra: extra,
-    img: img,
-    isAdopted: 'abandoned',
-  };
-  const [addressModal, setAddressModal] = React.useState(false);
+
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
@@ -79,16 +81,27 @@ const AddPost = () => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
     }
-    const nullCheck =
-      Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true || url === '') {
-      dispatch(postActions.addPostToAxios(postInfo));
-      dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
-    } else {
-      WarningAlert('모든 값을 입력해주세요!');
+    if (breed === null || breed === '') {
+      return WarningAlert('견종을 입력해주세요');
     }
+    if (age === null || age === '') {
+      return WarningAlert('나이를 입력해주세요');
+    }
+    if (weight === null || weight === '') {
+      return WarningAlert('체중을 입력해주세요');
+    }
+    if (lostLocation === null || lostLocation === '') {
+      return WarningAlert('발견장소를 입력해주세요');
+    }
+    if (address === null || address === '') {
+      return WarningAlert('주소를 입력해주세요');
+    }
+    if (phone === null || phone === '') {
+      return WarningAlert('연락처를 입력해주세요');
+    }
+    dispatch(postActions.addPostToAxios(postInfo));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
   };
-  console.log(process.env.REACT_APP_IDENTIFYPOOLID);
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -99,16 +112,16 @@ const AddPost = () => {
         <Grid
           position='sticky'
           top='0'
-          margin='-60px auto 0 0'
-          left='0px'
-          width='100px'
-          height='60px'
-          bg='white'
+          left='0'
+          zIndex='1000'
           display='flex'
           alignItems='center'
           justifyContent='center'
+          width='100px'
+          height='60px'
+          margin='-60px auto 0 0'
+          bg='white'
           color='#6B6462'
-          zIndex='1000'
           cusor='pointer'
           _onClick={() => {
             history.goBack();
@@ -119,16 +132,16 @@ const AddPost = () => {
         <Grid
           position='sticky'
           top='0'
-          margin='-60px 0 0 auto'
           left='305px'
-          width='100px'
-          height='60px'
-          bg='white'
+          zIndex='1000'
           display='flex'
           alignItems='center'
           justifyContent='center'
+          width='100px'
+          height='60px'
+          margin='-60px 0 0 auto'
+          bg='white'
           color='#FE7968'
-          zIndex='1000'
           cusor='pointer'
           _onClick={addPostCard}
         >
@@ -149,7 +162,7 @@ const AddPost = () => {
               onChange={(e) => {
                 setBreed(e.target.value);
               }}
-              style={{ border: 'none', width: '80%' }}
+              style={{ width: '80%', border: 'none' }}
             />
             <Grid display='flex' alignItems='center'>
               <Text color={sex === 'M' ? 'black' : '#E7E5E5'}>남아</Text>
@@ -171,7 +184,7 @@ const AddPost = () => {
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
-                style={{ border: 'none', width: '60%' }}
+                style={{ width: '60%', border: 'none' }}
               />
               <strong style={{ paddingRight: '10px' }}>살</strong>
             </Grid>
@@ -186,7 +199,7 @@ const AddPost = () => {
                   }
                   setWeight(e.target.value);
                 }}
-                style={{ border: 'none', width: '60%' }}
+                style={{ width: '60%', border: 'none' }}
               />
               <strong style={{ paddingRight: '10px' }}>kg</strong>
             </Grid>
@@ -209,7 +222,7 @@ const AddPost = () => {
             <input
               value={'보호장소를 선택해주세요'}
               placeholder='보호장소'
-              style={{ border: 'none', width: '100%', color: 'black' }}
+              style={{ width: '100%', color: 'black', border: 'none' }}
             />
             <Grid display='flex' alignItems='center'>
               <Text color={ownerType === '개인' ? 'black' : '#E7E5E5'}>
@@ -251,9 +264,9 @@ const AddPost = () => {
               placeholder='정보출처'
               value={'출처를 선택해주세요'}
               style={{
-                border: 'none',
                 width: '60%',
                 color: 'black',
+                border: 'none',
               }}
             />
             <Grid
@@ -275,29 +288,29 @@ const AddPost = () => {
             {tag === '직접등록' ? (
               <input
                 placeholder='유기견 정보를 참고할 수 있는 링크를 남겨주세요'
-                value={url}
+                value={url || ''}
                 onChange={(e) => {
                   setUrl(e.target.value);
                 }}
                 style={{
-                  border: 'none',
                   width: '100%',
-                  boxSizing: 'border-box',
                   fontSize: '14px',
+                  border: 'none',
+                  boxSizing: 'border-box',
                 }}
               />
             ) : (
               <input
                 placeholder='유기견 정보를 가져오신 링크를 남겨주세요'
-                value={url}
+                value={url || ''}
                 onChange={(e) => {
                   setUrl(e.target.value);
                 }}
                 style={{
-                  border: 'none',
                   width: '100%',
-                  boxSizing: 'border-box',
                   fontSize: '14px',
+                  border: 'none',
+                  boxSizing: 'border-box',
                 }}
               />
             )}
@@ -314,7 +327,8 @@ const AddPost = () => {
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
             <textarea
-              placeholder='특이사항'
+              placeholder='특이사항을 입력해주세요!
+예비 견주님께 참고가 될만한 어떤 것이라도 좋습니다'
               value={extra}
               onChange={(e) => {
                 setExtra(e.target.value);
@@ -322,9 +336,9 @@ const AddPost = () => {
               style={{
                 width: '100%',
                 height: '200px',
+                marginBottom: '20px',
                 border: 'none',
                 resize: 'none',
-                marginBottom: '20px',
                 boxSizing: 'border-box',
               }}
             />

@@ -1,14 +1,15 @@
 import React from 'react';
-import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import { Grid } from '../elements/index';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Grid } from '../elements/index';
+import { history } from '../redux/configureStore';
+
 const Landing = () => {
   return (
     <React.Fragment>
-      <Grid maxWidth='414px' margin='0 auto' height='80vh'>
+      <Grid maxWidth='414px' height='80vh' margin='0 auto'>
         <Grid>
           <StyledSlider {...settings}>
             <Grid>
@@ -33,9 +34,9 @@ const Landing = () => {
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing22.png'}
                   style={{
                     position: 'relative',
-                    width: '150px',
                     top: '-479px',
                     left: '62px',
+                    width: '150px',
                     margin: '0 auto',
                   }}
                 />
@@ -54,9 +55,9 @@ const Landing = () => {
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing33.png'}
                   style={{
                     position: 'relative',
-                    width: '150px',
                     top: '-457px',
                     left: '-68px',
+                    width: '150px',
                     margin: '0 auto',
                   }}
                 />
@@ -75,9 +76,9 @@ const Landing = () => {
                   src={process.env.PUBLIC_URL + '/img/GUIicon/landing44.png'}
                   style={{
                     position: 'relative',
-                    width: '150px',
                     top: '-457px',
                     left: '70px',
+                    width: '150px',
                     margin: '0 auto',
                   }}
                 />
@@ -116,27 +117,27 @@ const Landing = () => {
 };
 
 const ButtonBox = styled.div`
-  width: 100%;
-  height: 50px;
-  margin: 10px auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 50px;
+  margin: 10px auto;
   background-color: white;
-  cursor: pointer;
   border-radius: 25px;
   border: solid 0.5px #eee;
+  cursor: pointer;
 `;
 const ButtonBox2 = styled.div`
-  width: 100%;
-  height: 50px;
-  margin: 10px auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 50px;
+  margin: 10px auto;
   background-color: #fe7968;
-  cursor: pointer;
   border-radius: 25px;
+  cursor: pointer;
 `;
 const Button = styled.button`
   all: unset;

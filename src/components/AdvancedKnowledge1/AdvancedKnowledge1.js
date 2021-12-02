@@ -20,8 +20,7 @@ const AdvancedKnowledge1 = () => {
         maxWidth='414px'
         width='auto'
         margin='0 auto 200px'
-        position='relative'
-      >
+        position='relative'>
         <Grid
           cusor='pointer'
           zIndex='9999'
@@ -31,21 +30,19 @@ const AdvancedKnowledge1 = () => {
           position='absolute'
           width='20px'
           height='20px'
-          top='30px'
-          left='24px'
-        >
+          top='50px'
+          left='40px'>
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
         </Grid>
         <Grid
           position='absolute'
-          top='30px'
+          top='50px'
           left='0'
           right='0'
           zIndex='9998'
-          height='auto'
-        >
+          height='auto'>
           <Text size='18px' margin='0' weight='800' align='center'>
             심화1 지식
           </Text>
@@ -206,8 +203,7 @@ const AdvancedKnowledge1 = () => {
           display='flex'
           justifyContent='center'
           alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-        >
+          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
           <Text color='white' margin='0' weight='700'>
             퀴즈로 검증하기
           </Text>
