@@ -1,14 +1,14 @@
 import React from 'react';
-
-import { Grid } from '../elements/index';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Grid } from '../elements/index';
+
 const Intro = () => {
   return (
     <>
-      <Grid width='375px' margin='60px auto 120px'>
+      <Grid width='375px' margin='0 auto 120px'>
         <Grid width='auto'>
           <Grid
             display='flex'
@@ -17,25 +17,25 @@ const Intro = () => {
           ></Grid>
           <Grid
             display='flex'
+            alignItems='center'
             height='100%'
             margin='30px 0'
-            alignItems='center'
             overflowX='hidden'
           >
             <StyledSlider {...settings}>
               <Grid
                 width='305px'
                 margin='0 auto 30px'
+                border='solid 0.5px #DFDFDF'
                 borderRadius='15px'
                 boxShadow='10px 10px 20px  rgba(0, 0, 0, 0.2)'
-                border='solid 0.5px #DFDFDF'
               >
                 <img
                   style={{
                     width: '305px',
                     height: '100%',
-                    borderRadius: '15px',
                     margin: '0 auto',
+                    borderRadius: '15px',
                   }}
                   src={process.env.PUBLIC_URL + '/img/GUIicon/intro1.svg'}
                 />
@@ -51,8 +51,8 @@ const Intro = () => {
                   style={{
                     width: '305px',
                     height: '100%',
-                    borderRadius: '15px',
                     margin: '0 auto',
+                    borderRadius: '15px',
                   }}
                   src={process.env.PUBLIC_URL + '/img/GUIicon/intro2.svg'}
                 />
@@ -61,10 +61,9 @@ const Intro = () => {
                     src={process.env.PUBLIC_URL + '/img/GUIicon/intro2.png'}
                     style={{
                       position: 'relative',
-                      width: '130px',
                       top: '-444px',
                       left: '35px',
-                      // margin: '0 auto',
+                      width: '130px',
                     }}
                   />
                 </Grid>
@@ -80,8 +79,8 @@ const Intro = () => {
                   style={{
                     width: '305px',
                     height: '100%',
-                    borderRadius: '15px',
                     margin: '0 auto',
+                    borderRadius: '15px',
                   }}
                   src={process.env.PUBLIC_URL + '/img/GUIicon/intro3.svg'}
                 />
@@ -90,10 +89,9 @@ const Intro = () => {
                     src={process.env.PUBLIC_URL + '/img/GUIicon/intro3.png'}
                     style={{
                       position: 'relative',
-                      width: '130px',
                       top: '-436px',
                       left: '57px',
-                      // margin: '0 auto',
+                      width: '130px',
                     }}
                   />
                 </Grid>
@@ -109,8 +107,8 @@ const Intro = () => {
                   style={{
                     width: '305px',
                     height: '100%',
-                    borderRadius: '15px',
                     margin: '0 auto',
+                    borderRadius: '15px',
                   }}
                   src={process.env.PUBLIC_URL + '/img/GUIicon/intro4.svg'}
                 />
@@ -119,10 +117,9 @@ const Intro = () => {
                     src={process.env.PUBLIC_URL + '/img/GUIicon/intro4.png'}
                     style={{
                       position: 'relative',
-                      width: '130px',
                       top: '-440px',
                       left: '130px',
-                      // margin: '0 auto',
+                      width: '130px',
                     }}
                   />
                 </Grid>

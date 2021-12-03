@@ -72,7 +72,7 @@ const MypageDockingCheck = (props) => {
           입양 대기중
         </span>
         <span className='category' ref={adoptionOk} onClick={showAdoptionOk}>
-          입양 승락
+          입양 승낙
         </span>
         <span className='category' ref={adoptionNo} onClick={showAdoptionNo}>
           입양 반려

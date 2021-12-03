@@ -47,7 +47,17 @@ const AdoptionCard = (props) => {
         width='auto'
         height='auto'
       >
-        <Tag>
+        <Tag
+          border={
+            ownerType.includes('보호') ||
+            ownerType.includes('병원') ||
+            ownerType.includes('동물') ||
+            ownerType.includes('센터') ||
+            ownerType.includes('시청')
+              ? '0.8px solid #A4B8FF'
+              : '0.8px solid #FFBE5B'
+          }
+        >
           <ElP>
             {ownerType.includes('보호') ||
             ownerType.includes('병원') ||
@@ -58,7 +68,13 @@ const AdoptionCard = (props) => {
               : ownerType}
           </ElP>
         </Tag>
-        <Tag2>
+        <Tag2
+          border={
+            isAdopted === 'ABANDONED'
+              ? ' 0.8px solid #FE7968'
+              : '0.8px solid #CECBCA'
+          }
+        >
           <ElP>
             {isAdopted === 'ADOPTED' ? '입양완료' : ''}
             {isAdopted === 'EXPIRED' ? '보호종료' : ''}
@@ -130,7 +146,7 @@ const Tag = styled.div`
   margin-right: 4px;
   padding: 3px 6px;
   background-color: white;
-  border: 0.5px solid #e7e5e5;
+  border: ${(props) => props.border};
   border-radius: 15px;
   box-shadow: 4px 4px 20px rgba(164, 184, 255, 0.3);
 `;
@@ -139,7 +155,7 @@ const Tag2 = styled.div`
   height: auto;
   padding: 3px 6px;
   background-color: white;
-  border: 0.5px solid #e7e5e5;
+  border: ${(props) => props.border};
   border-radius: 15px;
   box-shadow: 4px 4px 20px rgba(164, 184, 255, 0.3);
 `;

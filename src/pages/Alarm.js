@@ -1,18 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import { Grid, Text, Image } from '../elements/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { history } from '../redux/configureStore';
 import { postActions } from '../redux/modules/post';
 import { actionCreators } from '../redux/modules/user';
-import { history } from '../redux/configureStore';
+
 const Alarm = () => {
   const dispatch = useDispatch();
+  const [deleteModal, setDeleteModal] = React.useState(false);
   const userInfo = useSelector((state) => state.user.user.userInfo);
   const newAlarmCount = userInfo.alarmContent.filter(
     (alarmContent) => alarmContent.checked === true,
   ).length;
   const token = localStorage.getItem('USER_TOKEN');
-  const [deleteModal, setDeleteModal] = React.useState(false);
+
   const delModaltoggle = () => {
     setDeleteModal(!deleteModal);
   };
@@ -61,7 +63,7 @@ const Alarm = () => {
     <>
       <Header></Header>
       <Grid maxWidth='414px' margin='0 auto 0'>
-        <Grid padding='0 35px' boxSizing='border-box' margin='10px 0'>
+        <Grid margin='10px 0' padding='0 35px' boxSizing='border-box'>
           <Grid display='flex' justifyContent='center' alignItems='center'>
             <Text size='20px' weight='800'>
               알림
@@ -70,10 +72,10 @@ const Alarm = () => {
 
           <Grid
             display='flex'
-            width='auto'
-            padding='0 5px'
             justifyContent='space-between'
             alignItems='center'
+            width='auto'
+            padding='0 5px'
           >
             <Text size='12px'>
               새로운 알림{' '}
@@ -103,8 +105,8 @@ const Alarm = () => {
                   height='250px'
                   margin='70px 0 30px 0'
                   bg='white'
-                  borderRadius='200px'
                   color='black'
+                  borderRadius='200px'
                   boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1)'
                 >
                   <Image
@@ -146,14 +148,14 @@ const Alarm = () => {
                         <Grid height='10px'></Grid>
                       )}
                       <Grid
-                        bg='white'
-                        height='60px'
-                        padding='10px 10px'
-                        borderRadius='15px'
-                        width='auto'
                         display='flex'
                         alignItems='center'
+                        width='auto'
+                        height='60px'
                         margin='5px 0'
+                        padding='10px 10px'
+                        bg='white'
+                        borderRadius='15px'
                         boxShadow='4px 4px 10px 0px rgba(0, 0, 0, 0.1)'
                         cusor='pointer'
                         _onClick={() => {
@@ -169,13 +171,13 @@ const Alarm = () => {
                         }}
                       >
                         <Grid
-                          bg='#E8E8E8'
-                          width='36px'
-                          height='36px'
-                          borderRadius='25px'
                           display='flex'
                           justifyContent='center'
                           alignItems='center'
+                          width='36px'
+                          height='36px'
+                          bg='#E8E8E8'
+                          borderRadius='25px'
                         >
                           {alarm.alarmType === 'SIGN_UP' ? (
                             <img
@@ -210,9 +212,9 @@ const Alarm = () => {
                         <Grid
                           display='flex'
                           flexDirection='column'
-                          boxSizing='border-box'
-                          margin='0 0 0 10px'
                           width='78%'
+                          margin='0 0 0 10px'
+                          boxSizing='border-box'
                         >
                           <Grid fontSize='10px' color='darkgrey'>
                             {alarmTime(alarm.createdAt)}
@@ -233,9 +235,9 @@ const Alarm = () => {
                                 </span>
                                 <span
                                   style={{
-                                    fontSize: '10px',
                                     height: '100%',
                                     color: 'darkgray',
+                                    fontSize: '10px',
                                     whiteSpace: 'nowrap',
                                     overflow: 'hidden',
                                     textOverflow: 'ellipsis',
@@ -280,18 +282,18 @@ const Alarm = () => {
         {deleteModal ? (
           <div
             style={{
-              maxWidth: '414px',
-              margin: '0 auto',
-              backgroundColor: 'white',
               position: 'fixed',
+              bottom: '0',
               left: '0',
               right: '0',
-              bottom: '0',
+              zIndex: '2',
+              maxWidth: '414px',
+              height: '265px',
+              margin: '0 auto',
+              backgroundColor: 'white',
               borderTopLeftRadius: '15px',
               borderTopRightRadius: '15px',
-              height: '265px',
               boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)',
-              zIndex: '2',
             }}
           >
             <Grid
@@ -322,16 +324,16 @@ const Alarm = () => {
               <button
                 style={{
                   all: 'unset',
-                  width: '130px',
-                  margin: '0 5px',
-                  padding: '0 10px',
-                  height: '40px',
-                  borderRadius: '20px',
-                  backgroundColor: '#FFD3D3',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  width: '130px',
+                  height: '40px',
+                  margin: '0 5px',
+                  padding: '0 10px',
+                  backgroundColor: '#FFD3D3',
                   color: 'white',
+                  borderRadius: '20px',
                 }}
                 onClick={() => {
                   delModaltoggle();
@@ -342,16 +344,16 @@ const Alarm = () => {
               <button
                 style={{
                   all: 'unset',
-                  width: '130px',
-                  margin: '0 5px',
-                  padding: '0 10px',
-                  height: '40px',
-                  borderRadius: '20px',
-                  backgroundColor: '#FF7878',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  width: '130px',
+                  height: '40px',
+                  margin: '0 5px',
+                  padding: '0 10px',
+                  backgroundColor: '#FF7878',
                   color: 'white',
+                  borderRadius: '20px',
                 }}
                 onClick={() => {
                   deleteList();

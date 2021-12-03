@@ -1,12 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Grid } from '../elements/index';
 import Slider from './Slider';
-import { postActions } from '../redux/modules/post';
 import AddressSelector from './AddressSelector';
-import EditUpload from './EditUpload';
 import Footer from './Footer';
+import EditUpload from './EditUpload';
 import { WarningAlert } from '../shared/Alerts';
+import { Grid } from '../elements/index';
+import { useDispatch } from 'react-redux';
+import { postActions } from '../redux/modules/post';
+
 const EditPost = (props) => {
   const { data, postId, setEdit } = props;
 
@@ -29,8 +30,25 @@ const EditPost = (props) => {
   const [ownerTypeToggle, setOwnerTypeToggle] = React.useState(false);
   const [tagToggle, setTagToggle] = React.useState(false);
   const [files, setFiles] = React.useState([]);
-  //토글
+  const [addressModal, setAddressModal] = React.useState(false);
 
+  const postInfo = {
+    breed: breed,
+    sex: sex,
+    age: age,
+    weight: weight,
+    lostLocation: lostLocation,
+    ownerType: ownerType,
+    address: address + siAddress,
+    url: url,
+    tag: tag,
+    phone: phone,
+    extra: extra,
+    img: img,
+    isAdopted: 'abandoned',
+  };
+
+  //토글
   const sexCheck = () => {
     setSexToggle(!sexToggle);
     if (sexToggle === true) {
@@ -56,23 +74,7 @@ const EditPost = (props) => {
       setTag('가져온 정보');
     }
   };
-  const postInfo = {
-    breed: breed,
-    sex: sex,
-    age: age,
-    weight: weight,
-    lostLocation: lostLocation,
-    ownerType: ownerType,
-    address: address + siAddress,
-    url: url,
-    tag: tag,
-    phone: phone,
-    extra: extra,
-    img: img,
-    isAdopted: 'abandoned',
-  };
 
-  const [addressModal, setAddressModal] = React.useState(false);
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
@@ -80,67 +82,31 @@ const EditPost = (props) => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
     }
-    const nullCheck =
-      Object.values(postInfo).filter((check) => check === '').length === 0;
-    if (nullCheck === true) {
-      dispatch(postActions.updateDetailToAxios(postId, postInfo));
-    } else {
-      WarningAlert('모든 값을 입력해주세요!');
+    if (breed === null || breed === '') {
+      return WarningAlert('견종을 입력해주세요');
     }
+    if (age === null || age === '') {
+      return WarningAlert('나이를 입력해주세요');
+    }
+    if (weight === null || weight === '') {
+      return WarningAlert('체중을 입력해주세요');
+    }
+    if (lostLocation === null || lostLocation === '') {
+      return WarningAlert('발견장소를 입력해주세요');
+    }
+    if (address === null || address === '') {
+      return WarningAlert('주소를 입력해주세요');
+    }
+    if (phone === null || phone === '') {
+      return WarningAlert('연락처를 입력해주세요');
+    }
+    dispatch(postActions.addPostToAxios(postInfo));
+    dispatch(postActions.setSearch({ page: 0, sort: 'new' }));
   };
 
   return (
     <React.Fragment>
-      <Grid maxWidth='414px' margin='50px auto'>
-        <Grid
-          position='sticky'
-          top='0'
-          margin='-60px auto 0 0'
-          left='0px'
-          width='45px'
-          height='60px'
-          bg='white'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          color='#FE7968'
-          zIndex='1000'
-          cusor='pointer'
-        >
-          <img
-            style={{ width: '10px' }}
-            src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
-            onClick={() => {
-              setEdit(false);
-            }}
-          />
-        </Grid>
-        <Grid
-          position='sticky'
-          top='0'
-          margin='-60px 0 0 auto'
-          left='305px'
-          width='100px'
-          height='60px'
-          bg='white'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          color='#FE7968'
-          zIndex='1000'
-        >
-          <button
-            style={{
-              all: 'unset',
-              color: '#FE7968',
-              marginLeft: '10px',
-              cursor: 'pointer',
-            }}
-            onClick={editPost}
-          >
-            수정완료
-          </button>
-        </Grid>
+      <Grid maxWidth='414px' margin='65px auto'>
         <Grid padding='0 35px' boxSizing='border-box'>
           <p>이미지</p>
           <EditUpload
@@ -162,7 +128,7 @@ const EditPost = (props) => {
               onChange={(e) => {
                 setBreed(e.target.value);
               }}
-              style={{ border: 'none', width: '80%' }}
+              style={{ width: '80%', border: 'none' }}
             />
             <Grid display='flex' alignItems='center'>
               남아
@@ -188,7 +154,7 @@ const EditPost = (props) => {
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
-                style={{ border: 'none', width: '60%' }}
+                style={{ width: '60%', border: 'none' }}
               />
               <strong style={{ paddingRight: '10px' }}>년생</strong>
             </Grid>
@@ -200,7 +166,7 @@ const EditPost = (props) => {
                 onChange={(e) => {
                   setWeight(e.target.value);
                 }}
-                style={{ border: 'none', width: '60%' }}
+                style={{ width: '60%', border: 'none' }}
               />
               <strong style={{ paddingRight: '10px' }}>kg</strong>
             </Grid>
@@ -280,7 +246,7 @@ const EditPost = (props) => {
               onChange={(e) => {
                 setUrl(e.target.value);
               }}
-              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
+              style={{ width: '100%', border: 'none', boxSizing: 'border-box' }}
             />
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
@@ -290,7 +256,7 @@ const EditPost = (props) => {
               onChange={(e) => {
                 setPhone(e.target.value);
               }}
-              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
+              style={{ width: '100%', border: 'none', boxSizing: 'border-box' }}
             />
           </Grid>
           <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
@@ -310,7 +276,21 @@ const EditPost = (props) => {
             />
           </Grid>
         </Grid>
-        <Footer></Footer>
+        <Grid
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          width='150px'
+          height='50px'
+          margin='0 auto 100px'
+          bg='#FE7968'
+          color='white'
+          borderRadius='30px'
+          cusor='pointer'
+          _onClick={editPost}
+        >
+          수정하기
+        </Grid>
       </Grid>
     </React.Fragment>
   );

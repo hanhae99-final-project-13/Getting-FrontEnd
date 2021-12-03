@@ -1,9 +1,10 @@
 import React from 'react';
 import AWS from 'aws-sdk';
+import { WarningAlert } from '../shared/Alerts';
 import { Grid } from '../elements/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
-import { WarningAlert } from '../shared/Alerts';
+
 const EditUpload = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.detailPost);
@@ -71,14 +72,14 @@ const EditUpload = (props) => {
       <Grid display='flex' overflowX='auto'>
         {post.post.img.length >= 4 ? null : (
           <Grid
-            width='150px'
-            height='150px'
-            bg='white'
-            borderRadius='10px'
             display='flex'
             justifyContent='center'
             alignItems='center'
+            width='150px'
+            height='150px'
             margin='0 10px 40px 0'
+            bg='white'
+            borderRadius='10px'
             boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
             boxSizing='border-box'
           >
@@ -96,10 +97,10 @@ const EditUpload = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  fontSize: '48px',
                   width: '150px',
                   height: '150px',
                   color: '#fe7968',
+                  fontSize: '48px',
                   cursor: 'pointer',
                 }}
               >
@@ -114,14 +115,14 @@ const EditUpload = (props) => {
             return (
               <Grid
                 key={i}
-                width='150px'
-                height='150px'
-                bg='white'
-                borderRadius='10px'
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
+                width='150px'
+                height='150px'
                 margin='0 10px 40px 0px'
+                bg='white'
+                borderRadius='10px'
                 boxShadow='4px 4px 20px 0px rgba(0, 0, 0, 0.1)'
                 boxSizing='border-box'
               >
@@ -129,10 +130,10 @@ const EditUpload = (props) => {
                   <img
                     style={{
                       position: 'absolute',
-                      width: '15px',
-                      height: '15px',
                       top: '10px',
                       left: '125px',
+                      width: '15px',
+                      height: '15px',
                       cursor: 'pointer',
                     }}
                     src={
@@ -148,11 +149,11 @@ const EditUpload = (props) => {
                   alt='sample'
                   src={a}
                   style={{
-                    padding: '0px auto',
                     width: '150px',
                     height: '150px',
-                    objectFit: 'scale-down',
+                    padding: '0px auto',
                     borderRadius: '10px',
+                    objectFit: 'scale-down',
                   }}
                 />
               </Grid>

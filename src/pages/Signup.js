@@ -301,7 +301,7 @@ const Signup = (props) => {
             border_bottom='1px solid rgba(225, 225, 225, 0.5) '
             padding='16px'
             box-sizing
-            placeholder='패스워드'
+            placeholder='패스워드 ( 숫자,영문자 1개씩 포함, 8자이상 )'
             placeholder_color='#DFDFDF'
             type='password'
             name='password'

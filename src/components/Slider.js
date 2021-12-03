@@ -42,41 +42,41 @@ const SwitchBox = styled.label`
   cursor: pointer;
 `;
 const Switch = styled.span`
-  z-index: -1;
   position: absolute;
-  border-radius: 17px;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  z-index: -1;
   background-color: #fe7968;
+  border-radius: 17px;
   &::after {
-    content: '';
     display: block;
-    border-radius: 50%;
     width: 26px;
     height: 26px;
     margin: 3px;
     background-color: white;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    content: '';
     transition: 0.2s;
   }
 `;
 const CheckBox = styled.input`
-  opacity: 0;
   z-index: 1;
   width: 0;
   height: 0;
+  opacity: 0;
 
   &:checked + ${Switch} {
     background-color: #fe7968;
     &::after {
-      content: '';
       display: block;
-      border-radius: 50%;
       width: 26px;
       height: 26px;
       margin-left: 31px;
+      border-radius: 50%;
+      content: '';
       transition: 0.2s;
     }
   }
