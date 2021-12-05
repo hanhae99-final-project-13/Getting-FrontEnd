@@ -1,13 +1,13 @@
 import React from 'react';
-import { Grid, Text } from '../../elements';
-import { ErrorAlert } from '../../shared/Alerts';
-import { history } from '../../redux/configureStore';
-import EssentialQuizData from '../Data/EssentialQuizData';
-
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import { Grid, Text } from '../../elements';
+import { ErrorAlert } from '../../shared/Alerts';
+import { history } from '../../redux/configureStore';
+import EssentialQuizData from '../Data/EssentialQuizData';
 
 const EssentialKnowledge = () => {
   const token = localStorage.getItem('USER_TOKEN');
@@ -17,21 +17,21 @@ const EssentialKnowledge = () => {
   return (
     <>
       <Grid
+        position='relative'
         maxWidth='414px'
         width='auto'
-        margin='0 auto 200px'
-        position='relative'>
+        margin='0 auto 200px'>
         <Grid
-          cusor='pointer'
-          zIndex='9999'
           _onClick={() => {
             history.goBack();
           }}
           position='absolute'
+          zIndex='9999'
+          top='50px'
+          left='40px'
           width='20px'
           height='20px'
-          top='50px'
-          left='40px'>
+          cusor='pointer'>
           <Grid width='12px' height='7px'>
             <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
           </Grid>
@@ -43,7 +43,7 @@ const EssentialKnowledge = () => {
           right='0'
           zIndex='9998'
           height='auto'>
-          <Text size='18px' margin='0' weight='800' align='center'>
+          <Text align='center' margin='0' weight='800' size='18px'>
             필수 지식
           </Text>
         </Grid>
@@ -163,11 +163,6 @@ const EssentialKnowledge = () => {
           </Grid>
         </StyledSlider>
         <Grid
-          cusor='pointer'
-          position='fixed'
-          left='0'
-          right='0'
-          bottom='110px'
           _onClick={() => {
             if (!token) {
               ErrorAlert('로그인 후 진행해주세요!');
@@ -176,16 +171,21 @@ const EssentialKnowledge = () => {
 
             history.push(`/essentialquiz/${quizId}`);
           }}
-          margin='0 auto'
-          bg='#FE7968'
-          width='157px'
-          height='52px'
-          borderRadius='26px'
+          position='fixed'
+          left='0'
+          right='0'
+          bottom='110px'
           display='flex'
           justifyContent='center'
           alignItems='center'
-          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
-          <Text color='white' margin='0' weight='700'>
+          width='157px'
+          height='52px'
+          margin='0 auto'
+          bg='#FE7968'
+          borderRadius='26px'
+          boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
+          cusor='pointer'>
+          <Text margin='0' color='white' weight='700'>
             퀴즈로 검증하기
           </Text>
         </Grid>

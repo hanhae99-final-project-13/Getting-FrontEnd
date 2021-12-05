@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as userAction } from '../redux/modules/user';
-
 import styled from 'styled-components';
-import { Grid, Input, Text } from '../elements';
+
 import { KAKAO_AUTH_URL } from '../shared/kakaoAuth';
 import LoginErrorAlert from '../components/LoginErrorAlert';
 import { WarningAlert } from '../shared/Alerts';
-import { deleteCookie } from '../shared/Cookie';
+
+import { Grid, Input, Text } from '../elements';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as userAction } from '../redux/modules/user';
+
 const Login = (props) => {
   // const [wsConnectSubscribe] = WebSocket();
-  const { history } = props;
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.user?.error);
+  const { history } = props;
 
   const [id, setID] = useState('');
   const [pw, setPw] = useState('');
+
+  const error = useSelector((state) => state.user?.error);
 
   const handleChangeID = (e) => {
     setID(e.target.value);
@@ -43,26 +46,24 @@ const Login = (props) => {
         <Grid width='auto' margin='122px auto 0'>
           <Grid>
             <Grid
-              cusor='pointer'
-              hover='white'
+              _onClick={() => {
+                history.push('/main');
+              }}
               maxWidth='78px'
               width='auto'
               height='35px'
               margin='0 auto 20px'
-              _onClick={() => {
-                history.push('/main');
-              }}
-            >
+              cusor='pointer'
+              hover='white'>
               <img src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'} />
             </Grid>
 
             <Text
               align='center'
+              margin='0px'
               weight='700'
               size='12px'
-              margin='0px'
-              line_height='18px'
-            >
+              line_height='18px'>
               반려친구와 내가
               <span style={{ fontWeight: '800', fontSize: '12px' }}>
                 이어지는 순간,
@@ -84,13 +85,13 @@ const Login = (props) => {
 
             <Grid margin=' 28px 0px 0px 0px'>
               <Input
+                value={id}
+                _onChange={handleChangeID}
+                padding='16px'
                 bg='#FFFFFF'
                 border='0.3px solid rgba(0, 0, 0, 0.05)'
                 border_radius='25px'
-                padding='16px'
                 box-sizing
-                value={id}
-                _onChange={handleChangeID}
                 placeholder='아이디를 입력해주세요'
                 placeholder_color='#DFDFDF'
                 placeholder_weight='bold'
@@ -99,14 +100,14 @@ const Login = (props) => {
 
             <Grid margin=' 12px 0 0 0'>
               <Input
-                bg='#FFFFFF'
                 type='password'
-                border=' 0.3px solid rgba(0, 0, 0, 0.05)'
-                border_radius='25px'
-                padding='16px'
-                box-sizing
                 value={pw}
                 _onChange={handleChangePW}
+                padding='16px'
+                bg='#FFFFFF'
+                border=' 0.3px solid rgba(0, 0, 0, 0.05)'
+                border_radius='25px'
+                box-sizing
                 placeholder='비밀번호를 입력해주세요'
                 placeholder_color='#DFDFDF'
                 placeholder_weight='bold'
@@ -115,41 +116,37 @@ const Login = (props) => {
 
             <Grid margin=' 12px 0 0 0'>
               <Button
-                size='16px'
+                onClick={onClickLogin}
                 weight='600'
                 height='50px'
                 padding='16px'
                 bg='#FE7968'
                 border='none'
                 border_radius='25px'
-                onClick={onClickLogin}
-                // onClick={test}
-              >
+                size='16px'>
                 로그인하기
               </Button>
             </Grid>
 
             <Grid display='flex' justifyContent='flex-end' margin='12px 0 0 0'>
               <Text
-                size='12px'
-                bold
-                margin='0'
-                color='#DFDFDF'
                 _onClick={() => {
                   WarningAlert('서비스 준비중 입니다');
                 }}
-              >
+                margin='0'
+                size='12px'
+                bold
+                color='#DFDFDF'>
                 아이디 찾기
               </Text>
               <Text
-                size='12px'
-                bold
-                margin='0 0 0 14px'
-                color='#DFDFDF'
                 _onClick={() => {
                   WarningAlert('서비스 준비중 입니다');
                 }}
-              >
+                margin='0 0 0 14px'
+                size='12px'
+                bold
+                color='#DFDFDF'>
                 비밀번호 찾기
               </Text>
             </Grid>
@@ -173,33 +170,31 @@ const Login = (props) => {
 
             <Grid margin='24px 0 0 0'>
               <Button
-                size='16px'
-                weight='600'
-                height='50px'
-                padding='16px'
-                bg='#FFDA7C'
-                border='none'
-                border_radius='25px'
                 onClick={() => {
                   window.location.href = KAKAO_AUTH_URL;
                 }}
-              >
+                padding='16px'
+                size='16px'
+                weight='600'
+                height='50px'
+                bg='#FFDA7C'
+                border='none'
+                border_radius='25px'>
                 카카오톡으로 시작하기
               </Button>
 
               <Grid margin='12px 0 0 0'>
                 <Button
-                  size='16px'
-                  weight='700'
-                  height='50px'
-                  padding='16px'
-                  bg='#CECBCA'
-                  border='none'
-                  border_radius='25px'
                   onClick={() => {
                     history.push('/signup');
                   }}
-                >
+                  padding='16px'
+                  weight='700'
+                  height='50px'
+                  bg='#CECBCA'
+                  border='none'
+                  border_radius='25px'
+                  size='16px'>
                   메일로 회원가입하기
                 </Button>
               </Grid>
