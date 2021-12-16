@@ -26,7 +26,6 @@ export default function WebSocket() {
           `/sub/${userId}`,
           (msg) => {
             const alarmData = JSON.parse(msg.body);
-
             dispatch(actionCreators.readAlarm(false));
             dispatch(actionCreators.updateAlarm(alarmData));
           },

@@ -1,17 +1,17 @@
 import React from 'react';
-import { useHistory, useParams, withRouter } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { history } from '../redux/configureStore';
-import { Grid } from '../elements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { Grid } from '../elements';
+import { useHistory, withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../redux/modules/user';
+import { history } from '../redux/configureStore';
+
 const Header = withRouter((props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
   const pathName = props;
-  console.log(pathName.history.location.pathname);
   const token = localStorage.getItem('USER_TOKEN');
   // 헤더 알람 조회
   const isRead = useSelector((state) => state.user.user.userInfo.isRead);
@@ -37,7 +37,8 @@ const Header = withRouter((props) => {
         margin='0 auto'
         zIndex='3'
         left='0'
-        right='0'>
+        right='0'
+      >
         <Grid display='flex' alignItems='center'>
           <Grid
             width='45px'
@@ -49,7 +50,8 @@ const Header = withRouter((props) => {
             cusor='pointer'
             _onClick={() => {
               histroy.goBack();
-            }}>
+            }}
+          >
             <img
               style={{ width: '10px' }}
               src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'}
@@ -64,7 +66,8 @@ const Header = withRouter((props) => {
           cusor='pointer'
           _onClick={() => {
             histroy.push('/main');
-          }}>
+          }}
+        >
           <img
             width='50'
             src={process.env.PUBLIC_URL + '/img/getting_typo_4.svg'}
@@ -75,7 +78,8 @@ const Header = withRouter((props) => {
             display='flex'
             alignItems='center'
             justifyContent='flex-end'
-            width='375px'>
+            width='375px'
+          >
             <Grid
               borderRadius='3px'
               width='45px'
@@ -84,7 +88,8 @@ const Header = withRouter((props) => {
               display='flex'
               alignItems='center'
               justifyContent='center'
-              cusor='pointer'>
+              cusor='pointer'
+            >
               <FontAwesomeIcon
                 onClick={() => {
                   dispatch(actionCreators.readAlarm(true));
@@ -107,7 +112,8 @@ const Header = withRouter((props) => {
                   top='-10%'
                   color='white'
                   bg='red'
-                  fontSize='10px'></Grid>
+                  fontSize='10px'
+                ></Grid>
               ) : null}
             </Grid>
           </Grid>
@@ -123,7 +129,8 @@ const Header = withRouter((props) => {
               bg='white'
               display='flex'
               alignItems='center'
-              justifyContent='center'>
+              justifyContent='center'
+            >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>
           </Grid>

@@ -7,7 +7,7 @@ import {
   AdoptionReason,
   AdoptionSurvey,
   DefaultInfomation,
-} from '../components/takeAdoptionApply';
+} from '../components/TakeAdoptionApply';
 import { Grid, Text } from '../elements';
 import { BackButton } from '../components';
 import { applyActions } from '../redux/modules/apply';

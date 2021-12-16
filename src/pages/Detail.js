@@ -97,8 +97,8 @@ const Detail = (props) => {
               </p>
               <Grid
                 position='relative'
-                top='60px'
-                left='60px'
+                top='75px'
+                left='55px'
                 zIndex='2'
                 display='flex'
                 flexDirection='row-reverse'
