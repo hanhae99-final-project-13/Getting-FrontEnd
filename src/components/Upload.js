@@ -14,7 +14,7 @@ const Upload = (props) => {
   // 이미지 리사이즈
   const options = {
     maxSizeMB: 0.2,
-    maxWidthOrHeight: 1920,
+    maxWidthOrHeight: 414,
     useWebWorker: true,
   };
   //이미지 여러개 미리보기
