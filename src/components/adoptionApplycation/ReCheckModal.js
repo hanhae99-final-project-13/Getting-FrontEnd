@@ -28,19 +28,19 @@ const ReCheckModal = (props) => {
         position='fixed'
         left='0'
         right='0'
-        bg='#FFFFFF'
         bottom='250px'
-        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        zIndex='9999'
         height='264px'
         maxWidth='414px'
         width='auto'
         margin='35px auto'
+        bg='#FFFFFF'
+        boxShadow='4px 4px 20px rgba(0, 0, 0, 0.1);'
         borderRadius='30px 30px 0 0'
-        boxSizing='border-box'
-        display='flex'
-        flexDirection='column'
-        alignItems='center'
-        zIndex='9999'>
+        boxSizing='border-box'>
         <Grid
           width='62px'
           height='85px'
@@ -59,33 +59,33 @@ const ReCheckModal = (props) => {
           weight='800'></Text>
         <Grid display='flex' justifyContent='center'>
           <Button
-            margin='17px 10px 0 0'
-            width='130px'
-            size='14px'
-            weight='800'
-            height='40px'
-            bg='#FFBE5B'
-            border='none'
-            border_radius='34px'
             onClick={() => {
               closeModal();
-            }}>
+            }}
+            height='40px'
+            width='130px'
+            margin='17px 10px 0 0'
+            size='14px'
+            weight='800'
+            bg='#FFBE5B'
+            border='none'
+            border_radius='34px'>
             {buttonFalseText}
           </Button>
 
           <Button
-            margin='17px 0 0 10px'
-            width='130px'
-            size='14px'
-            weight='800'
-            height='40px'
-            bg='#FE7968'
-            border='none'
-            border_radius='34px'
             onClick={() => {
               clickTrue();
               closeModal();
-            }}>
+            }}
+            height='40px'
+            width='130px'
+            margin='17px 0 0 10px'
+            size='14px'
+            weight='800'
+            bg='#FE7968'
+            border='none'
+            border_radius='34px'>
             {buttonTrueText}
           </Button>
         </Grid>

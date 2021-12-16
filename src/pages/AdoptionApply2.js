@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
+
+import { Grid, Input, Text } from '../elements';
+import { ErrorAlert2, SuccessAlert2 } from '../shared/Alerts';
 import { applyActions as useActions } from '../redux/modules/apply';
 import Slider from '../components/Slider';
 import Upload2 from '../components/adoptionApplycation/Upload2';
@@ -8,9 +10,8 @@ import Upload3 from '../components/adoptionApplycation/Upload3';
 import ApplyProgressBar2 from '../components/adoptionApplycation/ApplyProgressBar2';
 import ReCheckModal from '../components/adoptionApplycation/ReCheckModal';
 
-import styled from 'styled-components';
-import { Grid, Input, Text } from '../elements';
-import { ErrorAlert2, SuccessAlert2 } from '../shared/Alerts';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AdoptionApply2 = (props) => {
   const { history } = props;
@@ -19,16 +20,8 @@ const AdoptionApply2 = (props) => {
   // console.log(postId, '입양신청서2번 id');
   const token = localStorage.getItem('USER_TOKEN');
   const isLogin = useSelector((state) => state.user?.user.isLogin);
-
-  // 입양신청 모달
-  const [openApplyAlert, setOpenApplyAlert] = useState(false);
-  const closeApplyAlert = () => {
-    setOpenApplyAlert(!openApplyAlert);
-  };
-
   //Upload2에 있는 s3업로드 함수 가져온것 (지내게 될 곳)
   const imageRef2 = useRef();
-
   //Upload3에 있는 s3업로드 함수 가져온것 (지내게 될 곳)
   const imageRef = useRef();
   // console.log(imageRef.current);
@@ -48,8 +41,15 @@ const AdoptionApply2 = (props) => {
   const [roomUrl, setRoomUrl] = React.useState('');
   const [previewImage, setPreviewImage] = useState('');
 
-  // 알러지 체크함수
+  const [openApplyAlert, setOpenApplyAlert] = useState(false);
   const [check, setCheck] = useState(false);
+
+  // 입양신청 모달
+  const closeApplyAlert = () => {
+    setOpenApplyAlert(!openApplyAlert);
+  };
+
+  // 알러지 체크함수
   const handleallergy = () => {
     setCheck(!check);
     if (check === false) {
@@ -189,7 +189,6 @@ const AdoptionApply2 = (props) => {
       margin='0 auto'
       padding='0 35px'>
       <Grid
-        cusor='pointer'
         _onClick={() => {
           history.goBack();
           window.scrollTo(0, 0);
@@ -198,13 +197,14 @@ const AdoptionApply2 = (props) => {
         top='65px'
         left='0px'
         width='25px'
-        height='25px'>
+        height='25px'
+        cusor='pointer'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
 
-      <Grid boxSizing='border-box' margin='100px auto 0'>
+      <Grid margin='100px auto 0' boxSizing='border-box'>
         <ApplyProgressBar2 />
         <Grid>
           <Grid margin='30px 0 15px 0 '>
@@ -214,11 +214,11 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            padding='13px 0px'
-            boxSizing='border-box'
             height='118px'
+            padding='13px 0px'
             borderTop='1px solid rgba(225, 225, 225, 0.5) '
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 가족 구성원 중
@@ -233,33 +233,33 @@ const AdoptionApply2 = (props) => {
               height='auto'
               margin='12px 0 0 0'>
               <Text
-                cursor='pointer'
                 _onClick={handleallergyYes}
+                margin='0 7px 0 0'
                 color={allergy === '증상있음' ? '#000000' : '#E7E5E5'}
                 weight='700'
-                margin='0 7px 0 0'>
+                cursor='pointer'>
                 증상있음
               </Text>
               <Slider
+                handleToggle={handleallergy}
                 data={allergy}
                 valueCheck={check}
-                handleToggle={handleallergy}
               />
               <Text
-                cursor='pointer'
                 _onClick={handleallergyNo}
+                margin='0  0 0 7px'
                 color={allergy === '증상없음' ? '#000000' : '#E7E5E5'}
                 weight='700'
-                margin='0  0 0 7px'>
+                cursor='pointer'>
                 증상없음
               </Text>
             </Grid>
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='352px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 만약 <span style={{ fontWeight: '800' }}> 과거</span>에
@@ -268,13 +268,13 @@ const AdoptionApply2 = (props) => {
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='experience'
-                value={experience}
                 onChange={(e) => {
                   setExperience(e.target.value);
                 }}
+                name='experience'
+                value={experience}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -282,10 +282,10 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='375px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
-            <Grid margin='11px 0 26px 0 ' height='auto'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5)'
+            boxSizing='border-box'>
+            <Grid height='auto' margin='11px 0 26px 0 '>
               <Text margin='0' weight='700' line_height='24px'>
                 반려동물과
                 <span style={{ fontWeight: '800' }}>함께 할 수 있는 시간</span>
@@ -295,13 +295,13 @@ const AdoptionApply2 = (props) => {
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='timeTogether'
-                value={timeTogether}
                 onChange={(e) => {
                   setTimeTogether(e.target.value);
                 }}
+                name='timeTogether'
+                value={timeTogether}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -309,10 +309,10 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='350px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
-            <Grid margin='11px 0 26px 0 ' height='auto'>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5)'
+            boxSizing='border-box'>
+            <Grid margin='11px 0 26px 0' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 하루동안 불가피하게 집을 비우는 경우
                 <br />
@@ -320,13 +320,13 @@ const AdoptionApply2 = (props) => {
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='leaveHome'
-                value={leaveHome}
                 onChange={(e) => {
                   setLeaveHome(e.target.value);
                 }}
+                name='leaveHome'
+                value={leaveHome}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -334,9 +334,9 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='180px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            boxSizing='border-box'
+            borderBottom='1px solid rgba(225, 225, 225, 0.5)'>
             <Grid margin='30px 0 18px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 해당 카테고리의 예측되는 비용을 적어주세요.
@@ -346,9 +346,9 @@ const AdoptionApply2 = (props) => {
             <Grid is_flex height='auto'>
               <Grid
                 maxWidth='200px'
+                height='auto'
                 padding='13px 0 0 5px'
-                boxSizing='border-box'
-                height='auto'>
+                boxSizing='border-box'>
                 <Text margin='0' weight='700'>
                   1년 동안의 예방접종 비용
                 </Text>
@@ -357,23 +357,23 @@ const AdoptionApply2 = (props) => {
               <Grid
                 display='flex'
                 alignItems='center'
-                boxSizing='border-box'
-                borderRadius='9px'
                 maxWidth='120px'
                 height='46px'
-                bg='#F7F7F7'
                 margin='0 0 0 8px'
-                padding='0 10px'>
+                padding='0 10px'
+                bg='#F7F7F7'
+                borderRadius='9px'
+                boxSizing='border-box'>
                 <Input
                   type='number'
-                  bg='#F7F7F7'
-                  border='none'
-                  padding='5px'
-                  name='medicalBudget'
-                  value={medicalBudget}
                   _onChange={(e) => {
                     setMedicalBuget(e.target.value);
-                  }}></Input>
+                  }}
+                  name='medicalBudget'
+                  value={medicalBudget}
+                  padding='5px'
+                  bg='#F7F7F7'
+                  border='none'></Input>
                 <Text margin='0' weight='700'>
                   원
                 </Text>
@@ -383,9 +383,9 @@ const AdoptionApply2 = (props) => {
             <Grid is_flex height='auto' margin='14px 0 0 0'>
               <Grid
                 maxWidth='200px'
+                height='auto'
                 padding='13px 0 0 5px'
-                boxSizing='border-box'
-                height='auto'>
+                boxSizing='border-box'>
                 <Text margin='0' weight='700'>
                   1개월 동안의 양육비용
                 </Text>
@@ -394,23 +394,23 @@ const AdoptionApply2 = (props) => {
               <Grid
                 display='flex'
                 alignItems='center'
-                boxSizing='border-box'
-                borderRadius='9px'
                 maxWidth='120px'
                 height='46px'
-                bg='#F7F7F7'
                 margin='0 0 0 8px'
-                padding='0 10px'>
+                padding='0 10px'
+                borderRadius='9px'
+                bg='#F7F7F7'
+                boxSizing='border-box'>
                 <Input
                   type='number'
-                  bg='#F7F7F7'
-                  border='none'
-                  padding='5px'
-                  name='monthlyBudget'
-                  value={monthlyBudget}
                   _onChange={(e) => {
                     setMonthlyBuget(e.target.value);
-                  }}></Input>
+                  }}
+                  name='monthlyBudget'
+                  value={monthlyBudget}
+                  padding='5px'
+                  bg='#F7F7F7'
+                  border='none'></Input>
                 <Text margin='0' weight='700'>
                   원
                 </Text>
@@ -419,9 +419,9 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='362px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 입양한 반려동물이
@@ -431,13 +431,13 @@ const AdoptionApply2 = (props) => {
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='anxiety'
-                value={anxiety}
                 onChange={(e) => {
                   setAnxiety(e.target.value);
                 }}
+                name='anxiety'
+                value={anxiety}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -445,9 +445,9 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 입양한{' '}
@@ -456,13 +456,13 @@ const AdoptionApply2 = (props) => {
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='bark'
-                value={bark}
                 onChange={(e) => {
                   setBark(e.target.value);
                 }}
+                name='bark'
+                value={bark}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -470,22 +470,22 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='364px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid margin='11px 0 26px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 그 외, 하고 싶은 말씀이 있으시다면 적어주세요.
               </Text>
             </Grid>
 
-            <Grid boxSizing='border-box' display='flex' height='250px'>
+            <Grid display='flex' height='250px' boxSizing='border-box'>
               <Textarea
-                name='bark'
-                value={etc}
                 onChange={(e) => {
                   setEtc(e.target.value);
                 }}
+                name='bark'
+                value={etc}
                 cols='40'
                 rows='13'
                 placeholder='500자 이하로 적어주세요'></Textarea>
@@ -493,9 +493,9 @@ const AdoptionApply2 = (props) => {
           </Grid>
 
           <Grid
-            boxSizing='border-box'
             height='360px'
-            borderBottom='1px solid rgba(225, 225, 225, 0.5) '>
+            borderBottom='1px solid rgba(225, 225, 225, 0.5) '
+            boxSizing='border-box'>
             <Grid margin='18px 0 18px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 동거인들의 입양동의{' '}
@@ -512,7 +512,7 @@ const AdoptionApply2 = (props) => {
               setSignPreviewImage={setSignPreviewImage}></Upload2>
           </Grid>
 
-          <Grid boxSizing='border-box' height='330px'>
+          <Grid height='330px' boxSizing='border-box'>
             <Grid margin='18px 0 18px 0 ' height='auto'>
               <Text margin='0' weight='700' line_height='24px'>
                 아이가 <span style={{ fontWeight: '800' }}>지내게 될 곳</span>을
@@ -528,16 +528,16 @@ const AdoptionApply2 = (props) => {
 
           <Grid height='auto' margin='23px auto' cusor='pointer'>
             <Grid
-              margin='auto'
-              bg='#FE7968'
-              width='157px'
-              height='52px'
-              borderRadius='26px'
+              _onClick={applyClick}
               display='flex'
               justifyContent='center'
               alignItems='center'
-              boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'
-              _onClick={applyClick}>
+              width='157px'
+              height='52px'
+              margin='auto'
+              bg='#FE7968'
+              borderRadius='26px'
+              boxShadow='1px 1px 5px rgba(0, 0, 0, 0.5)'>
               <Text margin='0' color='white' weight='800'>
                 입양 신청 보내기
               </Text>
@@ -549,13 +549,13 @@ const AdoptionApply2 = (props) => {
       {/* apply 신청 정말 할꺼니?  */}
       {openApplyAlert ? (
         <ReCheckModal
+          closeModal={closeApplyAlert}
+          clickTrue={realApply}
           text='작성한 입양신청서는 수정/삭제가 불가합니다. 
           <br/> 정말 이대로 제출하시겠습니까?'
           image='/img/GUIicon/warning_icon.svg'
           buttonTrueText='확인했습니다'
           buttonFalseText='다시 생각해볼게요'
-          closeModal={closeApplyAlert}
-          clickTrue={realApply}
         />
       ) : (
         ''

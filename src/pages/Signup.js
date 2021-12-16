@@ -1,25 +1,25 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { debounce } from 'lodash';
-
 import styled from 'styled-components';
-import { Grid, Input, Text } from '../elements';
+
+import { apis } from '../lib/axios';
+import { emailCheck } from '../shared/emailCheck';
+import Timer from '../components/Timer';
+
 import {
-  SuccessAlert,
   WarningAlert,
   ErrorAlert,
   SuccessAlert2,
   ErrorAlert2,
 } from '../shared/Alerts';
-import { deleteCookie } from '../shared/Cookie';
-import { emailCheck } from '../shared/emailCheck';
-import Timer from '../components/Timer';
+import { Grid, Input, Text } from '../elements';
+
 import { useDispatch } from 'react-redux';
 import { actionCreators as userAction } from '../redux/modules/user';
-import { apis } from '../lib/axios';
 
 const Signup = (props) => {
-  const { history } = props;
   const dispatch = useDispatch();
+  const { history } = props;
 
   // 휴대폰 인증 토글
   const [clickPhoneNumberAuthButton, setClickPhoneNumberAuthButton] =
@@ -70,10 +70,11 @@ const Signup = (props) => {
     apis
       .checkId(username)
       .then((res) => {
+        // console.log('성공');
         setCheckId(true);
       })
       .catch((error) => {
-        console.log('중복된 아이디가 있어!');
+        // console.log('중복된 아이디가 있어!');
         setCheckId(false);
 
         return;
@@ -81,15 +82,17 @@ const Signup = (props) => {
   }, []);
 
   //id 중복체크 debounce 함수
-  const debounceOnchangeId = useCallback(
-    debounce((username) => {
+  let timer;
+  const debounceOnchangeId = useCallback((username) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
       idCheck(username);
-    }, 900),
-    [],
-  );
+    }, 900);
+  }, []);
 
   //닉네임중복체크 함수
-
   const nicknameCheck = useCallback((nickName) => {
     if (nickName === '') {
       setChecknickName('');
@@ -107,13 +110,15 @@ const Signup = (props) => {
   }, []);
 
   // 닉네임중복체크 debounce 함수
-
-  const debounceOnchangeNickname = useCallback(
-    debounce((nickName) => {
+  let timer2;
+  const debounceOnchangeNickname = useCallback((nickName) => {
+    if (timer2) {
+      clearTimeout(timer2);
+    }
+    timer2 = setTimeout(() => {
       nicknameCheck(nickName);
-    }, 900),
-    [],
-  );
+    }, 900);
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem('USER_TOKEN')) localStorage.clear();
@@ -159,9 +164,7 @@ const Signup = (props) => {
         setPhoneCode('');
         setClickPhoneNumberAuthButton(!clickPhoneNumberAuthButton);
       });
-    // console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
   };
-  // console.log(`인증코드 성공실패체크 : ${clickCodeAuthButton}`);
 
   //회원가입 버튼 함수
   const registerClick = () => {
@@ -190,41 +193,39 @@ const Signup = (props) => {
       return;
     }
 
-    if (!clickCodeAuthButton) {
-      ErrorAlert('휴대폰 인증을 진행해 주세요.');
-      return;
-    }
+    // if (!clickCodeAuthButton) {
+    //   ErrorAlert('휴대폰 인증을 진행해 주세요.');
+    //   return;
+    // }
 
     dispatch(userAction.SignupDB(form));
   };
 
   return (
     <Grid
+      position='relative'
       maxWidth='414px'
       width='auto'
       margin='0 auto'
-      position='relative'
-      padding='0 35px'
-    >
+      padding='0 35px'>
       <Grid
-        cusor='pointer'
-        zIndex='9999'
         _onClick={() => {
           history.goBack();
         }}
         position='absolute'
-        width='20px'
-        height='20px'
         top='-45px'
         left='33px'
-      >
+        zIndex='9999'
+        width='20px'
+        height='20px'
+        cusor='pointer'>
         <Grid width='12px' height='7px'>
           <img src={process.env.PUBLIC_URL + '/img/icon/back_icon.svg'} />
         </Grid>
       </Grid>
 
       <Grid margin='110px 0 0 0'>
-        <Text size='24px' weight='700' align='center' margin='0'>
+        <Text align='center' weight='700' margin='0' size='24px'>
           회원가입
         </Text>
       </Grid>
@@ -233,13 +234,12 @@ const Signup = (props) => {
         <Grid position='relative'>
           {checkId ? (
             <Grid
-              margin='0 4px 0 0'
               position='absolute'
               right='6px'
               top='15px'
               width='20px'
               height='20px'
-            >
+              margin='0 4px 0 0'>
               <img
                 width='20px'
                 height='20px'
@@ -250,23 +250,21 @@ const Signup = (props) => {
             </Grid>
           ) : checkId === false ? (
             <Grid
-              margin='0 4px 0 0'
               position='absolute'
               right='0px'
               top='15px'
               width='150px'
               height='20px'
-            >
+              margin='0 4px 0 0'>
               <Text
-                color='#FF1D00'
                 position='absolute'
+                top='5px'
                 right='0px'
                 width='auto'
-                top='5px'
+                margin='0'
                 size='12px'
                 weight='800'
-                margin='0'
-              >
+                color='#FF1D00'>
                 이미 존재하는 아이디입니다.
               </Text>
             </Grid>
@@ -275,38 +273,38 @@ const Signup = (props) => {
           )}
 
           <Input
-            bg='#FFFFFF'
-            width='100%'
-            border='none'
-            border_top='1px solid rgba(225, 225, 225, 0.5) '
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px'
-            box-sizing
-            placeholder='아이디'
-            placeholder_color='#DFDFDF'
-            name='username'
-            value={username}
             _onChange={(e) => {
               handleForm(e);
               debounceOnchangeId(e.target.value);
             }}
+            value={username}
+            name='username'
+            padding='16px'
+            width='100%'
+            bg='#FFFFFF'
+            border='none'
+            border_top='1px solid rgba(225, 225, 225, 0.5) '
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            placeholder='아이디'
+            placeholder_color='#DFDFDF'
+            box-sizing
           />
         </Grid>
 
         <Grid>
           <Input
-            bg='#FFFFFF'
+            type='password'
+            _onChange={handleForm}
+            value={password}
+            name='password'
             width='100%'
+            padding='16px'
+            bg='#FFFFFF'
             border='none'
             border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px'
-            box-sizing
             placeholder='패스워드 ( 숫자,영문자 1개씩 포함, 8자이상 )'
             placeholder_color='#DFDFDF'
-            type='password'
-            name='password'
-            value={password}
-            _onChange={handleForm}
+            box-sizing
           />
         </Grid>
 
@@ -316,8 +314,7 @@ const Signup = (props) => {
             right='10px'
             top='19px'
             width='20px'
-            height='20px'
-          >
+            height='20px'>
             {password !== '' && password === pwcheck ? (
               <img
                 width='20px'
@@ -335,31 +332,30 @@ const Signup = (props) => {
             )}
           </Grid>
           <Input
-            bg='#FFFFFF'
-            width='100%'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px'
-            box-sizing
-            placeholder='패스워드 확인'
-            placeholder_color='#DFDFDF'
             type='password'
+            _onChange={handleForm}
             name='pwcheck'
             value={pwcheck}
-            _onChange={handleForm}
+            width='100%'
+            padding='16px'
+            bg='#FFFFFF'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            placeholder='패스워드 확인'
+            placeholder_color='#DFDFDF'
+            box-sizing
           />
         </Grid>
 
         <Grid position='relative'>
           {checknickName ? (
             <Grid
-              margin='0 4px 0 0'
               position='absolute'
               right='6px'
               top='15px'
               width='20px'
               height='20px'
-            >
+              margin='0 4px 0 0'>
               <img
                 width='20px'
                 height='20px'
@@ -370,23 +366,21 @@ const Signup = (props) => {
             </Grid>
           ) : checknickName === false ? (
             <Grid
-              margin='0 4px 0 0'
               position='absolute'
               right='0px'
               top='15px'
               width='150px'
               height='20px'
-            >
+              margin='0 4px 0 0'>
               <Text
-                color='#FF1D00'
                 position='absolute'
                 right='0px'
-                width='auto'
                 top='5px'
-                size='12px'
-                weight='800'
+                width='auto'
                 margin='0'
-              >
+                color='#FF1D00'
+                size='12px'
+                weight='800'>
                 이미 존재하는 닉네입입니다.
               </Text>
             </Grid>
@@ -395,40 +389,41 @@ const Signup = (props) => {
           )}
 
           <Input
-            bg='#FFFFFF'
-            width='100%'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px'
-            box-sizing
-            placeholder='닉네임'
-            placeholder_color='#DFDFDF'
-            name='nickname'
-            value={nickname}
             _onChange={(e) => {
               handleForm(e);
               debounceOnchangeNickname(e.target.value);
             }}
+            name='nickname'
+            value={nickname}
+            width='100%'
+            padding='16px'
+            bg='#FFFFFF'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            placeholder='닉네임'
+            placeholder_color='#DFDFDF'
+            box-sizing
           />
         </Grid>
 
         <Grid>
           <Input
-            bg='#FFFFFF'
-            width='100%'
-            border='none'
-            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
-            padding='16px'
-            box-sizing
-            placeholder='이메일'
-            placeholder_color='#DFDFDF'
+            _onChange={handleForm}
             name='email'
             value={email}
-            _onChange={handleForm}
+            width='100%'
+            padding='16px'
+            bg='#FFFFFF'
+            border='none'
+            border_bottom='1px solid rgba(225, 225, 225, 0.5) '
+            placeholder='이메일'
+            placeholder_color='#DFDFDF'
+            box-sizing
           />
         </Grid>
 
-        {clickPhoneNumberAuthButton ? (
+        {/* 휴대폰 인증 (프로젝트 끝나서 주석처리) */}
+        {/* {clickPhoneNumberAuthButton ? (
           <Grid
             position='relative'
             display='flex'
@@ -517,18 +512,17 @@ const Signup = (props) => {
               _onChange={handleForm}
             />
           </Grid>
-        )}
+        )} */}
       </Grid>
 
       <Grid margin='81px 0 50px 0'>
         <Text
-          color='#A5A5A5'
           align='center'
+          margin='0px'
+          color='#A5A5A5'
           bold
           size='10px'
-          margin='0px'
-          line_height='18px'
-        >
+          line_height='18px'>
           회원가입시,
           <Span style={{ fontWeight: '600', fontSize: '10px' }}>
             {' '}
@@ -543,15 +537,14 @@ const Signup = (props) => {
 
       <Grid maxWidth='305px' width='auto' margin='0 auto'>
         <Button
-          size='16px'
+          onClick={registerClick}
           weight='700'
           height='50px'
           padding='16px'
           bg='#FE7968'
           border='none'
           border_radius='25px'
-          onClick={registerClick}
-        >
+          size='16px'>
           가입하기
         </Button>
       </Grid>

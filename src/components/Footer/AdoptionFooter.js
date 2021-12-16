@@ -7,7 +7,6 @@ import { Grid, Text } from '../../elements';
 
 const AdoptionFooter = withRouter((props) => {
   const dispatch = useDispatch();
-  const a = props;
 
   const history = useHistory();
   const userInfo = useSelector((state) => state.user.user.userInfo);
@@ -31,31 +30,31 @@ const AdoptionFooter = withRouter((props) => {
   return (
     <React.Fragment>
       <Grid
-        boxShadow='0px -8px 50px 5px rgba(47, 47, 47, 0.06)'
-        maxWidth='414px'
-        margin='0 auto'
+        position='fixed'
         left='0'
         right='0'
-        bg='white'
-        position='fixed'
         bottom='0'
-        borderRadius='11px 11px 0px 0px;'
         display='flex'
         justifyContent='space-evenly'
-        height='84px'>
+        maxWidth='414px'
+        height='84px'
+        margin='0 auto'
+        boxShadow='0px -8px 50px 5px rgba(47, 47, 47, 0.06)'
+        bg='white'
+        borderRadius='11px 11px 0px 0px;'>
         {/* 데이터 안불러져왓을 때 null */}
         {userInfo.eduList === null ? (
           <Grid
-            width='auto'
-            cusor='pointer'
+            _onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='center'
-            _onClick={() => {
-              history.push('/tutorial');
-              window.sessionStorage.clear();
-            }}>
+            width='auto'
+            cusor='pointer'>
             <img
               width='30px'
               height='24px'
@@ -68,16 +67,16 @@ const AdoptionFooter = withRouter((props) => {
           </Grid>
         ) : userInfo.eduList[0] && userInfo.eduList[0].필수지식 === true ? (
           <Grid
-            width='auto'
-            cusor='pointer'
+            _onClick={() => {
+              history.push('/fosterknowledge');
+              window.sessionStorage.clear();
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='center'
-            _onClick={() => {
-              history.push('/fosterknowledge');
-              window.sessionStorage.clear();
-            }}>
+            width='auto'
+            cusor='pointer'>
             <img
               width='30px'
               height='24px'
@@ -90,16 +89,16 @@ const AdoptionFooter = withRouter((props) => {
           </Grid>
         ) : (
           <Grid
-            width='auto'
-            cusor='pointer'
+            _onClick={() => {
+              history.push('/tutorial');
+              window.sessionStorage.clear();
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='center'
-            _onClick={() => {
-              history.push('/tutorial');
-              window.sessionStorage.clear();
-            }}>
+            width='auto'
+            cusor='pointer'>
             <img
               width='30px'
               height='24px'
@@ -113,15 +112,15 @@ const AdoptionFooter = withRouter((props) => {
         )}
 
         <Grid
-          width='auto'
-          cusor='pointer'
+          _onClick={() => {
+            history.push('/adoption');
+          }}
           display='flex'
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
-          _onClick={() => {
-            history.push('/adoption');
-          }}>
+          width='auto'
+          cusor='pointer'>
           <img
             width='27.5px'
             height='24px'
@@ -136,15 +135,15 @@ const AdoptionFooter = withRouter((props) => {
         </Grid>
 
         <Grid
-          width='auto'
-          cusor='pointer'
+          _onClick={() => {
+            history.push('/main');
+          }}
           display='flex'
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
-          _onClick={() => {
-            history.push('/main');
-          }}>
+          width='auto'
+          cusor='pointer'>
           <img src={process.env.PUBLIC_URL + '/img/icon/home_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -153,15 +152,15 @@ const AdoptionFooter = withRouter((props) => {
         </Grid>
 
         <Grid
-          width='auto'
-          cusor='pointer'
+          _onClick={() => {
+            history.push('/mypage');
+          }}
           display='flex'
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
-          _onClick={() => {
-            history.push('/mypage');
-          }}>
+          width='auto'
+          cusor='pointer'>
           <img src={process.env.PUBLIC_URL + '/img/icon/mypage_icon1.svg'} />
 
           <Text margin='8px 0 0 0' color='#6B6462' weight='800' size='12px'>
@@ -171,15 +170,15 @@ const AdoptionFooter = withRouter((props) => {
 
         {token ? (
           <Grid
-            width='auto'
-            cusor='pointer'
+            _onClick={() => {
+              setOpenLogOutAlert(!openLogOutAlert);
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='center'
-            _onClick={() => {
-              setOpenLogOutAlert(!openLogOutAlert);
-            }}>
+            width='auto'
+            cusor='pointer'>
             <img
               width='24.86px'
               height='24px'
@@ -192,15 +191,15 @@ const AdoptionFooter = withRouter((props) => {
           </Grid>
         ) : (
           <Grid
-            width='auto'
-            cusor='pointer'
+            _onClick={() => {
+              history.push('/login');
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='center'
-            _onClick={() => {
-              history.push('/login');
-            }}>
+            width='auto'
+            cusor='pointer'>
             <img
               width='24.86px'
               height='24px'

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Grid } from '../../elements';
 import styled from 'styled-components';
+import { Grid } from '../../elements';
+
 const ApplyProgressBar = () => {
   return (
     <Grid
+      margin='10px auto 0'
       width='100%'
       height='5px'
       bg='#EEEEEE'
-      margin='10px auto 0'
       borderRadius='3px'>
       <Bar width={(1 / 2) * 100 + '%'}></Bar>
     </Grid>

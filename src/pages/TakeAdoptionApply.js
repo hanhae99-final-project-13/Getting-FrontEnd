@@ -7,7 +7,7 @@ import {
   AdoptionReason,
   AdoptionSurvey,
   DefaultInfomation,
-} from '../components/takeAdoptionApply';
+} from '../components/TakeAdoptionApply';
 import { Grid, Text } from '../elements';
 import { BackButton } from '../components';
 import { applyActions } from '../redux/modules/apply';
@@ -38,8 +38,7 @@ const TakeAdoptionApply = (props) => {
         margin='0 auto 160px auto'
         padding='59px 35px 0 35px'
         maxWidth='414px'
-        width='auto'
-      >
+        width='auto'>
         <BackButton position='absolute' top='21px' left='35px' />
         <Text
           position='absolute'
@@ -47,8 +46,7 @@ const TakeAdoptionApply = (props) => {
           right='calc(50% - 48px)'
           margin='0'
           size='20px'
-          weight='800'
-        >
+          weight='800'>
           입양 신청서
         </Text>
         <Grid
@@ -61,8 +59,7 @@ const TakeAdoptionApply = (props) => {
           margin='0 auto 10px auto'
           bg='white'
           borderRadius='10px'
-          boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'
-        >
+          boxShadow='4px 4px 20px rgba(87, 87, 87, 0.1)'>
           <Text margin='0 0 12px 0' size='16px' weight='700'>
             '{detailFosterForm.name}'님의 교육 이수현황
           </Text>
@@ -105,8 +102,7 @@ const TakeAdoptionApply = (props) => {
           display='flex'
           justifyContent='space-evenly'
           height='auto'
-          maxWidth='414px'
-        >
+          maxWidth='414px'>
           <Grid
             display='flex'
             justifyContent='center'
@@ -125,8 +121,7 @@ const TakeAdoptionApply = (props) => {
                 })
                 .catch((err) => console.log(err));
             }}
-            cusor='pointer'
-          >
+            cusor='pointer'>
             <Text margin='0' color='white' size='16px' weight='800'>
               입양 거절하기
             </Text>
@@ -142,8 +137,7 @@ const TakeAdoptionApply = (props) => {
             _onClick={() => {
               setShowModal(true);
             }}
-            cusor='pointer'
-          >
+            cusor='pointer'>
             <Text margin='0' color='white' size='16px' weight='800'>
               입양 승인하기
             </Text>
