@@ -1,13 +1,12 @@
 import React from 'react';
+import { history } from '../redux/configureStore';
+import { Grid } from '../elements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { Grid } from '../elements';
-import { useHistory, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../redux/modules/user';
-import { history } from '../redux/configureStore';
-
+import { useHistory, withRouter } from 'react-router-dom';
 const Header = withRouter((props) => {
   const dispatch = useDispatch();
   const histroy = useHistory();
@@ -19,8 +18,6 @@ const Header = withRouter((props) => {
   return (
     <React.Fragment>
       <Grid
-        bg='white'
-        boxSizing='border-box'
         position={
           pathName.history.location.pathname.includes('/detail') ||
           pathName.history.location.pathname.includes('/addpost')
@@ -28,29 +25,31 @@ const Header = withRouter((props) => {
             : null
         }
         top='0px'
-        borderRadius='0 0 15px 15px '
+        left='0'
+        right='0'
+        zIndex='3'
         display='flex'
         justifyContent='space-between'
         maxWidth='414px'
         height='60px'
         padding='0 12px'
         margin='0 auto'
-        zIndex='3'
-        left='0'
-        right='0'
+        borderRadius='0 0 15px 15px '
+        bg='white'
+        boxSizing='border-box'
       >
         <Grid display='flex' alignItems='center'>
           <Grid
-            width='45px'
-            height='45px'
-            bg='white'
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-            cusor='pointer'
             _onClick={() => {
               histroy.goBack();
             }}
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+            width='45px'
+            height='45px'
+            bg='white'
+            cusor='pointer'
           >
             <img
               style={{ width: '10px' }}
@@ -59,14 +58,14 @@ const Header = withRouter((props) => {
           </Grid>
         </Grid>
         <Grid
+          _onClick={() => {
+            histroy.push('/main');
+          }}
           display='flex'
           alignItems='center'
           justifyContent='center'
           margin='0 auto'
           cusor='pointer'
-          _onClick={() => {
-            histroy.push('/main');
-          }}
         >
           <img
             width='50'
@@ -81,13 +80,13 @@ const Header = withRouter((props) => {
             width='375px'
           >
             <Grid
+              display='flex'
+              alignItems='center'
+              justifyContent='center'
               borderRadius='3px'
               width='45px'
               height='45px'
               bg='white'
-              display='flex'
-              alignItems='center'
-              justifyContent='center'
               cusor='pointer'
             >
               <FontAwesomeIcon
@@ -123,13 +122,13 @@ const Header = withRouter((props) => {
               _onClick={() => {
                 histroy.push('/login');
               }}
-              borderRadius='3px'
-              width='45px'
-              height='45px'
-              bg='white'
               display='flex'
               alignItems='center'
               justifyContent='center'
+              width='45px'
+              height='45px'
+              bg='white'
+              borderRadius='3px'
             >
               <FontAwesomeIcon icon={faSignInAlt} color='black' fontSize='1x' />
             </Grid>

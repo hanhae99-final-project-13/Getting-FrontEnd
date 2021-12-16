@@ -10,8 +10,8 @@ const QuizProgressBar = (props) => {
     <Grid
       maxWidth='330px'
       width='auto'
-      margin='0 35px'
       height='5px'
+      margin='0 35px'
       bg='#EEEEEE'
       borderRadius='3px'>
       <Bar width={(progressLength / totalQuizLength) * 100 + '%'}></Bar>

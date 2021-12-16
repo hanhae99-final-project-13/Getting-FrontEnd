@@ -99,15 +99,12 @@ const GetUserDB = (user) => {
         };
 
         dispatch(SetUser(user));
-        // window.location.href = '/main';
         history.replace('/main');
-        // window.location.reload();
       })
       .catch((error) => {
         const data = { errorAlert: true };
         dispatch(checkError(data));
         window.scrollTo(0, 1000);
-        // ErrorAlert('아이디 또는 패스워드가 맞지않아요!', 'bottom');
       });
   };
 };
@@ -139,7 +136,6 @@ const SignupDB = (form) => {
       .catch((error) => {
         console.log(error);
         console.log(error.response);
-        // ErrorAlert(error.response.data.errorMessage);
       });
   };
 };
