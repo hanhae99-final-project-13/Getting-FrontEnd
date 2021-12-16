@@ -1,5 +1,6 @@
 import React from 'react';
 import AWS from 'aws-sdk';
+import imageCompression from 'browser-image-compression';
 import { WarningAlert } from '../shared/Alerts';
 import { Grid } from '../elements/index';
 
@@ -10,38 +11,49 @@ const Upload = (props) => {
       IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff',
     }),
   });
+  // 이미지 리사이즈
+  const options = {
+    maxSizeMB: 0.2,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
   //이미지 여러개 미리보기
-  const onloadFile = (e) => {
+  const onloadFile = async (e) => {
     let newImg = [...props.img];
     const date = new Date();
     const selectImg = e.target.files;
     const imgUrlList = [...props.files];
     for (let i = 0; i < selectImg.length; i++) {
-      const nowImgUrl = URL.createObjectURL(selectImg[i]);
-      const fileName = selectImg[i].name.split('.')[0];
-      const fileType = selectImg[i].name.split('.')[1];
-      const upload = new AWS.S3.ManagedUpload({
-        params: {
-          Bucket: 'docking',
-          Key: `${fileName}` + date.getTime() + `.${fileType}`,
-          Body: selectImg[i],
-          ACL: 'public-read',
-        },
-      });
-      const promise = upload.promise();
-
-      promise
-        .then((data) => {
-          newImg.push(data.Location);
-        })
-        .catch((err) => {
-          return alert('오류가 발생했습니다: ', err.message);
+      try {
+        const compressedFile = await imageCompression(selectImg[i], options);
+        const nowImgUrl = URL.createObjectURL(compressedFile);
+        const fileName = compressedFile.name.split('.')[0];
+        const fileType = compressedFile.name.split('.')[1];
+        const upload = new AWS.S3.ManagedUpload({
+          params: {
+            Bucket: 'docking',
+            Key: `${fileName}` + date.getTime() + `.${fileType}`,
+            Body: compressedFile,
+            ACL: 'public-read',
+          },
         });
-      imgUrlList.push(nowImgUrl);
+        const promise = upload.promise();
 
-      if (imgUrlList.length >= 4) {
-        WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
-        break;
+        promise
+          .then((data) => {
+            newImg.push(data.Location);
+          })
+          .catch((err) => {
+            return alert('오류가 발생했습니다: ', err.message);
+          });
+        imgUrlList.push(nowImgUrl);
+
+        if (imgUrlList.length >= 4) {
+          WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
+          break;
+        }
+      } catch (error) {
+        window.alert('앗, 이미지 업로드에 오류가 있습니다!');
       }
     }
     props.setImg(newImg);
@@ -70,6 +82,7 @@ const Upload = (props) => {
       );
     }
   };
+
   return (
     <>
       <Grid display='flex' overflowX='auto'>
