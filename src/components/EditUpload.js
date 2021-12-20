@@ -1,5 +1,6 @@
 import React from 'react';
 import AWS from 'aws-sdk';
+import imageCompression from 'browser-image-compression';
 import { WarningAlert } from '../shared/Alerts';
 import { Grid } from '../elements/index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,35 +15,44 @@ const EditUpload = (props) => {
       IdentityPoolId: 'ap-northeast-2:24a59675-7fac-4f78-81a7-3f87f75a70ff',
     }),
   });
-
+  const options = {
+    maxSizeMB: 0.2,
+    maxWidthOrHeight: 414,
+    useWebWorker: true,
+  };
   let newImg = [...post.post.img];
-  const onloadFile = (e) => {
+  const onloadFile = async (e) => {
     const date = new Date();
     const selectImg = e.target.files;
     for (let i = 0; i < selectImg.length; i++) {
-      const fileName = selectImg[i].name.split('.')[0];
-      const fileType = selectImg[i].name.split('.')[1];
-      if (post.post.img.length + selectImg.length > 4) {
-        return WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
-      }
+      try {
+        const compressedFile = await imageCompression(selectImg[i], options);
+        const fileName = compressedFile.name.split('.')[0];
+        const fileType = compressedFile.name.split('.')[1];
+        if (post.post.img.length + selectImg.length > 4) {
+          return WarningAlert('이미지는 최대 4개까지 올리실 수 있습니다!');
+        }
 
-      const upload = new AWS.S3.ManagedUpload({
-        params: {
-          Bucket: 'docking',
-          Key: `${fileName}` + date.getTime() + `.${fileType}`,
-          Body: selectImg[i],
-          ACL: 'public-read',
-        },
-      });
-      const promise = upload.promise();
-      promise
-        .then((data) => {
-          dispatch(postActions.updateImg(data.Location));
-          newImg.push(data.Location);
-        })
-        .catch((err) => {
-          return alert('오류가 발생했습니다: ', err.message);
+        const upload = new AWS.S3.ManagedUpload({
+          params: {
+            Bucket: 'docking',
+            Key: `${fileName}` + date.getTime() + `.${fileType}`,
+            Body: compressedFile,
+            ACL: 'public-read',
+          },
         });
+        const promise = upload.promise();
+        promise
+          .then((data) => {
+            dispatch(postActions.updateImg(data.Location));
+            newImg.push(data.Location);
+          })
+          .catch((err) => {
+            return alert('오류가 발생했습니다: ', err.message);
+          });
+      } catch (error) {
+        window.alert('앗, 이미지 업로드에 오류가 있습니다!');
+      }
     }
     props.setImg(newImg);
   };
