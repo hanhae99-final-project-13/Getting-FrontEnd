@@ -93,6 +93,7 @@ const Header = withRouter((props) => {
                 onClick={() => {
                   dispatch(actionCreators.readAlarm(true));
                   history.push('/alarm');
+                  window.location.reload();
                 }}
                 icon={faBell}
                 color='black'

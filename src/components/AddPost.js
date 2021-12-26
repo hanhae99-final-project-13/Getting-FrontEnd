@@ -1,9 +1,20 @@
 import React from 'react';
+import {
+  Address,
+  Age,
+  Breed,
+  Extra,
+  LostLocation,
+  OwnerType,
+  Phone,
+  Tag,
+  Url,
+  Weight,
+  Regist,
+} from '../components/AddPost/index';
 import Upload from './Upload';
-import Slider from './Slider';
-import AddressSelector from './AddressSelector';
 import { WarningAlert } from '../shared/Alerts';
-import { Grid, Text } from '../elements/index';
+import { Grid } from '../elements/index';
 import { useDispatch } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
@@ -75,7 +86,7 @@ const AddPost = () => {
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
-
+  console.log(postInfo);
   const addPostCard = () => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
@@ -112,214 +123,44 @@ const AddPost = () => {
           <p>이미지</p>
           <Upload files={files} setFiles={setFiles} img={img} setImg={setImg} />
           <p>상세 정보</p>
-          <Grid
-            display='flex'
-            padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
-            <input
-              placeholder='견종'
-              value={breed}
-              onChange={(e) => {
-                setBreed(e.target.value);
-              }}
-              style={{ width: '80%', border: 'none' }}
-            />
-            <Grid display='flex' alignItems='center'>
-              <Text color={sex === 'M' ? 'black' : '#E7E5E5'}>남아</Text>
-              <Slider handleToggle={sexCheck} valueCheck={sexToggle} />
-              <Text color={sex === 'F' ? 'black' : '#E7E5E5'}>여아</Text>
-            </Grid>
-          </Grid>
-
+          <Breed
+            breed={breed}
+            setBreed={setBreed}
+            sex={sex}
+            setSex={sexToggle}
+            sexCheck={sexCheck}
+          />
           <Grid
             display='flex'
             padding='15px 0'
             borderTop='1px solid rgba(225, 225, 225, 0.5)'
           >
-            <Grid display='flex' justifyContent='space-between'>
-              <input
-                type='number'
-                placeholder='나이'
-                value={age}
-                onChange={(e) => {
-                  setAge(e.target.value);
-                }}
-                style={{ width: '60%', border: 'none' }}
-              />
-              <strong style={{ paddingRight: '10px' }}>살</strong>
-            </Grid>
-            <Grid display='flex' justifyContent='space-between'>
-              <input
-                type='number'
-                placeholder='체중'
-                value={weight}
-                onChange={(e) => {
-                  if (e.keyCode < 48 || e.keyCode > 57) {
-                    return false;
-                  }
-                  setWeight(e.target.value);
-                }}
-                style={{ width: '60%', border: 'none' }}
-              />
-              <strong style={{ paddingRight: '10px' }}>kg</strong>
-            </Grid>
+            <Age age={age} setAge={setAge} />
+            <Weight weight={weight} setWeight={setWeight} />
           </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='발견장소를 입력해주세요'
-              value={lostLocation}
-              onChange={(e) => {
-                setLostLocation(e.target.value);
-              }}
-              style={{ border: 'none' }}
-            />
-          </Grid>
-          <Grid
-            display='flex'
-            padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
-            <input
-              value={'보호장소를 선택해주세요'}
-              placeholder='보호장소'
-              style={{ width: '100%', color: 'black', border: 'none' }}
-            />
-            <Grid display='flex' alignItems='center'>
-              <Text color={ownerType === '개인' ? 'black' : '#E7E5E5'}>
-                개인
-              </Text>
-              <Slider
-                handleToggle={ownerTypeCheck}
-                valueCheck={ownerTypeToggle}
-              />
-              <Text color={ownerType === '보호소' ? 'black' : '#E7E5E5'}>
-                보호소
-              </Text>
-            </Grid>
-          </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='주소'
-              type='text'
-              value={address + siAddress}
-              onClick={addressSelect}
-              style={{ border: 'none', cursor: 'pointer' }}
-            />
-            {addressModal ? (
-              <AddressSelector
-                visible={addressSelect}
-                setAddress={setAddress}
-                siAddress={siAddress}
-                setSiAddress={setSiAddress}
-                addressModal={addressModal}
-              />
-            ) : null}
-          </Grid>
-          <Grid
-            display='flex'
-            padding='10px 0'
-            borderTop='1px solid rgba(225, 225, 225, 0.5)'
-          >
-            <input
-              placeholder='정보출처'
-              value={'출처를 선택해주세요'}
-              style={{
-                width: '60%',
-                color: 'black',
-                border: 'none',
-              }}
-            />
-            <Grid
-              display='flex'
-              justifyContent='flex-end'
-              alignItems='center'
-              fontSize='14px'
-            >
-              <Text color={tag === '직접등록' ? 'black' : '#E7E5E5'}>
-                직접등록
-              </Text>
-              <Slider handleToggle={tagCheck} valueCheck={tagToggle} />
-              <Text color={tag === '가져온 정보' ? 'black' : '#E7E5E5'}>
-                가져온 정보
-              </Text>
-            </Grid>
-          </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            {tag === '직접등록' ? (
-              <input
-                placeholder='유기견 정보를 참고할 수 있는 링크를 남겨주세요'
-                value={url || ''}
-                onChange={(e) => {
-                  setUrl(e.target.value);
-                }}
-                style={{
-                  width: '100%',
-                  fontSize: '14px',
-                  border: 'none',
-                  boxSizing: 'border-box',
-                }}
-              />
-            ) : (
-              <input
-                placeholder='유기견 정보를 가져오신 링크를 남겨주세요'
-                value={url || ''}
-                onChange={(e) => {
-                  setUrl(e.target.value);
-                }}
-                style={{
-                  width: '100%',
-                  fontSize: '14px',
-                  border: 'none',
-                  boxSizing: 'border-box',
-                }}
-              />
-            )}
-          </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <input
-              placeholder='연락처'
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
-              style={{ border: 'none', width: '100%', boxSizing: 'border-box' }}
-            />
-          </Grid>
-          <Grid padding='15px 0' borderTop='1px solid rgba(225, 225, 225, 0.5)'>
-            <textarea
-              placeholder='특이사항을 입력해주세요!
-예비 견주님께 참고가 될만한 어떤 것이라도 좋습니다'
-              value={extra}
-              onChange={(e) => {
-                setExtra(e.target.value);
-              }}
-              style={{
-                width: '100%',
-                height: '200px',
-                marginBottom: '20px',
-                border: 'none',
-                resize: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
-          </Grid>
+          <LostLocation
+            lostLocation={lostLocation}
+            setLostLocation={setLostLocation}
+          />
+          <OwnerType
+            ownerType={ownerType}
+            ownerTypeCheck={ownerTypeCheck}
+            ownerTypeToggle={ownerTypeToggle}
+          />
+          <Address
+            address={address}
+            siAddress={siAddress}
+            addressSelect={addressSelect}
+            addressModal={addressModal}
+            setAddress={setAddress}
+            setSiAddress={setSiAddress}
+          />
+          <Tag tag={tag} tagCheck={tagCheck} tagToggle={tagToggle} />
+          <Url tag={tag} url={url} setUrl={setUrl} />
+          <Phone phone={phone} setPhone={setPhone} />
+          <Extra extra={extra} setExtra={setExtra} />
         </Grid>
-        <Grid
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          width='150px'
-          height='50px'
-          margin='0 auto 100px'
-          bg='#FE7968'
-          color='white'
-          borderRadius='30px'
-          cusor='pointer'
-          _onClick={addPostCard}
-        >
-          등록하기
-        </Grid>
+        <Regist addPostCard={addPostCard} />
       </Grid>
     </React.Fragment>
   );
