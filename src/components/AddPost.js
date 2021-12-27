@@ -86,7 +86,6 @@ const AddPost = () => {
   const addressSelect = () => {
     setAddressModal(!addressModal);
   };
-  console.log(postInfo);
   const addPostCard = () => {
     if (img.length === 0) {
       return WarningAlert('이미지를 최소 한 장 올려주세요');
