@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import AWS from 'aws-sdk';
 import imageCompression from 'browser-image-compression';
 import { WarningAlert } from '../shared/Alerts';
@@ -18,6 +18,8 @@ const Upload = (props) => {
     useWebWorker: true,
   };
   //이미지 여러개 미리보기
+
+  console.log('업로드 리렌더링');
   const onloadFile = async (e) => {
     let newImg = [...props.img];
     const date = new Date();
@@ -178,4 +180,4 @@ const Upload = (props) => {
   );
 };
 
-export default Upload;
+export default memo(Upload);

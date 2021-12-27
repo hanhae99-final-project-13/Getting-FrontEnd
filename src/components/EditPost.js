@@ -1,4 +1,5 @@
 import React from 'react';
+import {} from '../components/AddPost/index';
 import Slider from './Slider';
 import AddressSelector from './AddressSelector';
 import Footer from './Footer';
